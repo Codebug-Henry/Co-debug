@@ -14,23 +14,43 @@ const Headerlogin = () => {
             <Link to="/">
                 <img className={style.logo} src={logo} alt="logo"/>
             </Link>
-            
         </div>
-        <div>
-            <div className={style.imagenYNombre}>
-                <div >
-                  <img className={style.userImage} src={user.picture} alt={user.name}/>
-                </div>
-                <div className={style.nombre}>
-                  <h4>{user.name}</h4>
-                </div>
-            </div>
+        <div className={style.links}>
+            <Link to="/" className={style.linksInt}>
+              <h5>PRINCIPAL</h5>
+            </Link>
+            <Link to="/favoritas" className={style.linksInt}>
+              <h5>FAVORITOS</h5>
+            </Link>
+            <Link to="/mispreguntas" className={style.linksInt}>
+              <h5>MIS PREGUNTAS</h5>
+            </Link>
+            <Link to="/misrespuestas" className={style.linksInt}>
+              <h5>MIS RESPUESTAS</h5>
+            </Link>
+            <Link to="/ranking" className={style.linksInt}>
+              <h5>RANKING</h5>
+            </Link>
+            <Link to="/preguntar" className={style.linksInt}>
+              <h5>PREGUNTAR</h5>
+            </Link>
+            <Link to="/admin" className={style.linksInt}>
+              <h5>ADMIN</h5>
+            </Link>
+        </div>
+        <div className={style.imgNameLogOut}>
+            <Link to="/configuracion" className={style.contImagen}>
+              <img className={style.userImage} src={user.picture} alt={user.name}/>
+            </Link>
+            <Link to="/configuracion" >
+              <h3 className={style.name}>{user.name}</h3>
+            </Link>
+        
             <div className={style.cajaLogReg}>
-                <div>
                     <Butlogout/>
-                </div>
             </div>
         </div>
+
     </div>
   )
 }
