@@ -1,4 +1,4 @@
-# Final Project Henry - Co-debug
+# Final Project Henry Toni Genio - Co-debug
 
 El sitio está pensado para otorgar un espacio de preguntas y respuestas entre estudiantes de programación. El mismo está planificado a fin de ser dinámico e intuitivo para que la experiencia sea lo más espontánea posible. A diferencia de otras soluciones preexistentes.
 Entre las funciones a desarrollar podemos destacar la valorización de respuestas a preguntas con mayor tiempo sin solucionar. Puntuamos a quienes ayudan y los destacamos en un ranking según su participación. También hacemos públicas las interacciones para que los usuarios puedan aprender de las dudas de otros.
