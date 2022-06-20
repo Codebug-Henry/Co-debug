@@ -1,0 +1,48 @@
+.userImage{
+    size: 100px;
+    border-radius: 50px;
+    border-color: rgb(0, 0, 0);
+    border-style: solid;
+    margin-bottom: 0%;
+    gap: 0px;
+}
+.nombre{
+    margin-top: 0%;
+    padding-top: 0%;
+}
+.headerfull{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: row;
+    background-color: rgb(255, 247, 18);
+    box-shadow: 4px 5px 10px 3px;
+    width: auto;
+    border-radius: 15px;
+    padding-right: 40px;
+    padding-left: 20px;
+    padding-top: 20px;
+    padding-bottom: 15px;
+}
+
+.logo{
+    width: 400px;
+}
+.logo:hover{
+    width: 400px;
+    opacity: 70%;
+}
+
+.cajaLogReg{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-direction: row;
+    gap:30px;
+}
+.imagenYNombre{
+    display: flex;
+    flex-direction: column;
+    
+
+}

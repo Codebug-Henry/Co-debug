@@ -1,10 +1,19 @@
-import "./App.css";
+import { BrowserRouter, Route, Routes } from "react-router-dom"
+import Landing from "./pages/Landing.js"
+import NotFound from "./pages/NotFound"
+import Creadores from "./pages/Creadores.js";
+
+
 
 function App() {
   return (
-    <div className="App">
-      <h1>Henry PF2</h1>
-    </div>
+    <BrowserRouter>
+      <Routes>
+        <Route path={"/"} element={<Landing/>}/>
+        <Route path={"*"} element={<NotFound/>}/>
+        <Route path={"/creadores"} element={<Creadores/>}/>
+      </Routes>
+    </BrowserRouter>
   );
 }
 
