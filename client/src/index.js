@@ -1,4 +1,4 @@
-// import { Provider } from "react-redux"
+import { Provider } from "react-redux"
 import React from 'react';
 //import ReactDOM from 'react-dom';
 import ReactDOMClient from "react-dom/client"
@@ -16,11 +16,10 @@ const container = document.getElementById("root")
 const root = ReactDOMClient.createRoot(container);
 
 root.render(
-  <Auth0Provider store={store} domain={domain} clientId={clientId} redirectUri={window.location.origin}>
-    {/* <Provider store={store}> */}
+  <Auth0Provider domain={domain} clientId={clientId} redirectUri={window.location.origin}>
+    <Provider store={store}>
       <App />
-    {/* </Provider> */}
+    </Provider>
   </Auth0Provider>//,
 //  document.getElementById('root')
 );
-

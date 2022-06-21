@@ -1,12 +1,6 @@
-import reducer from "./reducer"                                 // reducer se encarga de filtrar las peticiones de las acciones
-import { createStore, applyMiddleware } from "redux"            // creacion del store y funcion que permite aplicar middleware
-import thunk from "redux-thunk"                                 // middleware permite hacer peticiones asincronicas
-import { composeWithDevTools } from "redux-devtools-extension"  // para que funcione dev tools
+import rootReducer from './reducer/reducer';                               // reducer se encarga de filtrar las peticiones de las acciones
+import { configureStore } from '@reduxjs/toolkit'
 
-const store =createStore(
-    reducer,
-    composeWithDevTools(applyMiddleware(thunk))
-
-)
+const store = configureStore({ reducer: rootReducer })
 
 export default store;
