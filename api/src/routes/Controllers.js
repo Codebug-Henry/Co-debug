@@ -1,6 +1,6 @@
 const {User,Question}=require("../db.js")
 
-const PostUser=async (req,res,next)=>{
+const postUser=async (req,res,next)=>{
     const newUser = req.body
     const sub = req.parmas.sub
 
@@ -15,43 +15,96 @@ const PostUser=async (req,res,next)=>{
     .catch(e=>next(e))
 }
 
-const LogIn=async (req,res,next)=>{
-    const email = req.params.email
-
-    try {
-        let finded= await User.findOne({
-            where:{
-                email:email
-            },
-            // includes:{
-            //     model:Question
-            //     at
-            // }
-        })
-        if(!finded) next(new Error(message="no esta ese usuario"))
-
-        // let Questions=await finded.getQuestions()
-
-        res.send({...finded.dataValues})
-
-    } catch (error) {
-        next(error)
-    }
+const getTopTen= (req,res,next)=>{
     
 }
 
-const AllQuestions=async(req,res,next)=>{
-    const sub=req.query.sub
+const getAllQuestions=(req,res,next)=>{
+    const {search,sort}=req.query
 
-    try {
-        let questions=sub? await Question.findAll({where:{UserSub:sub}})
-                         : await Question.findAll()    
+    // if(search) //filtra por search
+    // else if( sort) //amoda por siort
+    // else finall
 
-        res.send(questions)
-    } catch (e) {
-        (e=>next(e)) 
-    }
 }
+
+const getUserQuestions=(req,res,next)=>{
+    // por query answered=boolean
+    //if(answered===undefined) todo
+    // else uno u otro
+}
+
+
+const getSingleQuestion=(req,res,next)=>{
+
+}
+
+
+const postAnswer=(req,res,next)=>{
+    //user.findbypk=usuario que respondio=>usuario.addAnswer(respuesta crada)/user.findbypk=question=>Question.addAnswer(respuesta crada)
+    //llega por body respuesta, id de pregunta y id de usuario=>añade respuesta a usuario, pregunta, cdrea respuesta
+}
+
+const putFavourites=(req,res,next)=>{
+    // /questions/favourites?subUser=" "&idQuestion=" "&add=boolean 
+}
+
+const getFavourites=(req,res,next)=>{
+   
+}
+
+const deleteUserQuestion=(req,res,next)=>{
+   
+}
+
+const putUserQuestion=(req,res,next)=>{
+   
+}
+
+const getRanking=(req,res,next)=>{
+   //  /users?sort=ascendent/descendent
+}
+
+const postQuestion=(req,res,next)=>{
+   
+}
+
+const getUserInfo=(req,res,next)=>{
+   
+}
+
+const putUserInfo=(req,res,next)=>{
+   
+}
+
+const deleteUser=(req,res,next)=>{
+   
+}
+
+const putAnswer=(req,res,next)=>{
+   
+}
+
+const deleteAnswer=(req,res,next)=>{
+   
+}
+
+const getAnswers=(req,res,next)=>{
+   
+}
+
+// const allQuestions=async(req,res,next)=>{
+//     const sub=req.query.sub
+
+//     try {
+//         let questions=sub? await Question.findAll({where:{UserSub:sub}})
+//                          : await Question.findAll()    
+
+//         res.send(questions)
+//     } catch (e) {
+//         (e=>next(e)) 
+//     }
+// }
 
 const PostQuestion=(req,res,next)=>{
     const sub = req.params.sub
@@ -70,9 +123,51 @@ const PostQuestion=(req,res,next)=>{
 }
 
 module.exports={
-    PostUser,
-    LogIn,
-    AllQuestions,
-    PostQuestion
+    postUser,
+    getTopTen,
+    getAllQuestions,
+    getUserQuestions,
+    getSingleQuestion,
+    PostQuestion,
+    postAnswer,
+    putFavourites,
+    getFavourites,
+    putUserQuestion,
+    deleteUserQuestion,
+    getRanking,
+    postQuestion,
+    getUserInfo,
+    putUserInfo,
+    deleteUser,
+    getAnswers,
+    deleteAnswer,
+    putAnswer
 }
 
+
+
+// LogIn,
+    // const LogIn=async (req,res,next)=>{
+    //     const email = req.params.email
+    
+    //     try {
+    //         let finded= await User.findOne({
+    //             where:{
+    //                 email:email
+    //             },
+    //             // includes:{
+    //             //     model:Question
+    //             //     at
+    //             // }
+    //         })
+    //         if(!finded) next(new Error(message="no esta ese usuario"))
+    
+    //         // let Questions=await finded.getQuestions()
+    
+    //         res.send({...finded.dataValues})
+    
+    //     } catch (error) {
+    //         next(error)
+    //     }
+        
+    // }

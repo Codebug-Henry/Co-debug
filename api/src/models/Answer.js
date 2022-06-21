@@ -3,19 +3,11 @@ const { DataTypes } = require('sequelize');
 // Luego le injectamos la conexion a sequelize.
 module.exports = (sequelize) => {
   // defino el modelo
-  sequelize.define('Question', {
+  sequelize.define('answer', {
     id: {
       type: DataTypes.INTEGER,
       autoIncrement:true,
       primaryKey:true
-    },
-    teachPoints: {
-      type: DataTypes.INTEGER,
-      defaultValue:0
-    },
-    title: {
-      type: DataTypes.STRING,
-      allowNull: false,
     },
     text: {
       type: DataTypes.TEXT,
@@ -25,17 +17,9 @@ module.exports = (sequelize) => {
       type: DataTypes.INTEGER,
       defaultValue:0
     },
-    cantAnswers: {
-      type: DataTypes.INTEGER,
-      defaultValue:0
-    },
-    // tagMacro: {
-    //   type: DataTypes.STRING,
-    //   allowNull:false
-    // },
-    // tagsMicro: {
-    //   type: DataTypes.STRING,
-    //   allowNull:false
+    // teachPoints: {
+    //   type: DataTypes.INTEGER,
+    //   defaultValue:0
     // },
   });
 };
