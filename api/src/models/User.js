@@ -16,32 +16,53 @@ module.exports = (sequelize) => {
       type: DataTypes.STRING,
       allowNull: false,
     },
-    password: {
-      type: DataTypes.STRING,
-    },
+    // password: {
+    //   type: DataTypes.STRING,
+    // },
     email: {
       type: DataTypes.STRING,
       allowNull: false,
     },
-    email_verified: {
-      type: DataTypes.BOOLEAN,
-      allowNull: false,
-    },
+    // email_verified: {
+    //   type: DataTypes.BOOLEAN,
+    //   allowNull: false,
+    // },
     locale: {
       type: DataTypes.STRING,
       allowNull: false,
+    },
+    myTeachPoints: {
+      type: DataTypes.INTEGER,
+      defaultValue:0
     },
     picture: {
       type: DataTypes.TEXT,
       defaultValue:"imgvacia"
     },
-    status_admin: {
+    statusAdmin: {
       type: DataTypes.BOOLEAN,
       defaultValue:false
     },
-    status_banned: {
+    statusBanned: {
       type: DataTypes.BOOLEAN,
       defaultValue:false
+    },
+    favourites: {
+      type: DataTypes.ARRAY,
+      defaultValue:[]//"contiene ids"
+    },
+    cantFav: {
+      type: DataTypes.INTEGER,
+      defaultValue:0
+      //revisar como setearlo con el largo de fav
+    },
+    cantQuest: {
+      type: DataTypes.INTEGER,
+      defaultValue:0
+    },
+    cantAns: {
+      type: DataTypes.INTEGER,
+      defaultValue:0
     },
   },{
     timestamps:false
