@@ -14,7 +14,6 @@ import Ayuda from "./pages/Ayuda.js"
 import Configuracion from "./pages/Configuracion.js"
 import Delete from "./pages/Delete.js"
 import NotFound from "./pages/NotFound"
-import Footer from "./components/Footer.js"
 
 function App() {
   return (
@@ -34,7 +33,6 @@ function App() {
         <Route path={"/delete"} element={<Delete/>}/>
         <Route path={"*"} element={<NotFound/>}/>
       </Routes>
-      <Footer/>
     </BrowserRouter>
   );
 }
