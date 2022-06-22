@@ -1,58 +1,132 @@
-import { Link } from "react-router-dom"
-import logo from "../images/logo_codebug.png"
-import React from 'react'
-import Butlogout from "./Butlogout"
-import { useAuth0 } from "@auth0/auth0-react"
-import style from "./styles/Headerlogin.module.css"
+import { Link } from "react-router-dom";
+import logo from "../images/logo_codebug.png";
+import React from "react";
+import { useState, useEffect } from "react";
+import { useAuth0 } from "@auth0/auth0-react";
+import style from "./styles/Headerlogin.module.css";
+import Butlogout from "./Butlogout";
 
 const Headerlogin = () => {
   const { user } = useAuth0();
-  console.log(user)
+
+  const [width, setWidth] = useState(window.innerWitdh);
+
+  useEffect(() => {
+    window.addEventListener("resize", handleResize, false);
+  }, []);
+
+  const handleResize = () => {
+    setWidth(window.innerWidth);
+  };
+
   return (
-    <div className={style.headerfull}>
-        <div>
-            <Link to="/">
-                <img className={style.logo} src={logo} alt="logo"/>
-            </Link>
-        </div>
-        <div className={style.links}>
-            <Link to="/" className={style.linksInt}>
-              <h5>PRINCIPAL</h5>
-            </Link>
-            <Link to="/favoritas" className={style.linksInt}>
-              <h5>FAVORITOS</h5>
-            </Link>
-            <Link to="/mispreguntas" className={style.linksInt}>
-              <h5>MIS PREGUNTAS</h5>
-            </Link>
-            <Link to="/misrespuestas" className={style.linksInt}>
-              <h5>MIS RESPUESTAS</h5>
-            </Link>
-            <Link to="/ranking" className={style.linksInt}>
-              <h5>RANKING</h5>
-            </Link>
-            <Link to="/preguntar" className={style.linksInt}>
-              <h5>PREGUNTAR</h5>
-            </Link>
-            <Link to="/admin" className={style.linksInt}>
-              <h5>ADMIN</h5>
-            </Link>
-        </div>
-        <div className={style.imgNameLogOut}>
-            <Link to="/configuracion" className={style.contImagen}>
-              <img className={style.userImage} src={user.picture} alt={user.name}/>
-            </Link>
-            <Link to="/configuracion" >
-              <h3 className={style.name}>{user.name}</h3>
-            </Link>
-        
-            <div className={style.cajaLogReg}>
-                    <Butlogout/>
-            </div>
+    <div class={`container-fluid ${style.container}`}>
+      <div class={`row ${style.row1}`}>
+        <div class={`col-lg ${style.col1}`}>
+          <Link to="/">
+            <img className={style.logo} src={logo} alt="logo" />
+          </Link>
         </div>
 
+        <div class={`col-lg ${style.col2}`}>
+          <Link to="/" className={style.linksInt}>
+            PRINCIPAL
+          </Link>
+          <Link to="/ranking" className={style.linksInt}>
+            RANKING
+          </Link>
+        </div>
+
+        <div class={`col-lg ${style.col3}`}>
+          <div className={style.linksInt}>RANKEADO</div>
+          <div className={style.linksInt}>TEACH POINTS</div>
+        </div>
+
+        <div class={`col-lg ${style.col4} ${style.imgNameLogOut}`}>
+          <Link to="/configuracion" className={style.contImagen}>
+            <img
+              className={style.userImage}
+              src={user.picture}
+              alt={user.name}
+            />
+          </Link>
+          <div class="dropdown">
+            <button
+              class={`
+                ${
+                  width > 600
+                    ? "btn btn-secondary dropdown-toggle"
+                    : "btn btn-secondary btn-sm"
+                }
+              `}
+              type="button"
+              id="dropdownMenuButton2"
+              data-bs-toggle="dropdown"
+              aria-expanded="false"
+            >
+              Nombre traer
+            </button>
+            <ul
+              class="dropdown-menu dropdown-menu-dark"
+              aria-labelledby="dropdownMenuButton2"
+            >
+              <li>
+                <Link className={style.linkDesp} to="/mispreguntas">
+                  <p class="dropdown-item" href="#">
+                    Mis preguntas
+                  </p>
+                </Link>
+              </li>
+              <li>
+                <Link className={style.linkDesp} to="/misrespuestas">
+                  <p class="dropdown-item" href="#">
+                    Mis respuestas
+                  </p>
+                </Link>
+              </li>
+              <li>
+                <Link className={style.linkDesp} to="/favoritas">
+                  <p class="dropdown-item" href="#">
+                    Favoritos
+                  </p>
+                </Link>
+              </li>
+              <li>
+                <Link className={style.linkDesp} to="/preguntar">
+                  <p class="dropdown-item" href="#">
+                    Preguntar
+                  </p>
+                </Link>
+              </li>
+              <li>
+                <Link className={style.linkDesp} to="/admin">
+                  <p class="dropdown-item" href="#">
+                    Admin
+                  </p>
+                </Link>
+              </li>
+              <li>
+                <Link className={style.linkDesp} to="/configuracion">
+                  <p class="dropdown-item" href="#">
+                    Configuración
+                  </p>
+                </Link>
+              </li>
+
+              <li>
+                <hr class="dropdown-divider"></hr>
+              </li>
+              <li>
+                <p class="dropdown-item" href="#">
+                  <Butlogout />
+                </p>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
     </div>
-  )
-}
+  );
+};
 
-export default Headerlogin
+export default Headerlogin;

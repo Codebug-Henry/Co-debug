@@ -1,4 +1,4 @@
-.footerTotal{
+/* .footerTotal{
     background-color: rgb(255, 247, 18);
     display: flex;
     justify-content: space-around;
@@ -11,4 +11,27 @@
     padding-left: 20px;
     padding-top: 20px;
     padding-bottom: 15px;
+} */
+
+.col1 {
+  border: 1px black solid;
+}
+
+.col2 {
+  display: flex;
+  border: 1px black solid;
+  align-items: center;
+}
+
+.col3 {
+  display: flex;
+  border: 1px black solid;
+  align-items: center;
+}
+
+.links {
+  width: 30%;
+  font-size: 1.4vw;
+  text-decoration: none;
+  color: black;
 }
