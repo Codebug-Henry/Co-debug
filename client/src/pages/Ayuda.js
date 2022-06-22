@@ -41,7 +41,7 @@ const Ayuda = () => {
                         <div className={style.rightQuestions}>
                                 <div className={style.questionContainer}>
                                     <h2>Para que sirven los Teachpoints?</h2>
-                                    <h3>Los "Teachpoints" son nuestra humilde manera de reconocer el esfuerzo ageno y la empatía. Los usuarios con mayor participación se encontrarán visibles en los primeros puestos de nuestra sección: Ranking. Preparado/a para la fama?</h3>
+                                    <h3>Los "Teachpoints" son nuestra humilde manera de reconocer el esfuerzo ajeno y la empatía. Los usuarios con mayor participación se encontrarán visibles en los primeros puestos de nuestra sección: Ranking. Preparado/a para la fama?</h3>
                                 </div>
                                 <div className={style.questionContainer}>
                                     <h2>Cuanto tarda en ser respondida mi pregunta?</h2>
@@ -49,7 +49,7 @@ const Ayuda = () => {
                                 </div>
                                 <div className={style.questionContainer}>
                                     <h2>Que hago ante un comportamiento inadecuado?</h2>
-                                    <h3>Denunciá cualquier comportamiento que concideres impropio, irrespetuoso o de mal gusto con cualquiera de los administradores. Encontrarás un botón "denunciar" disponible en preguntas y respuestas por toda nuestra página.
+                                    <h3>Denunciá cualquier comportamiento que consideres impropio, irrespetuoso o de mal gusto con cualquiera de los administradores. Encontrarás un botón "denunciar" disponible en preguntas y respuestas por toda nuestra página.
                                         Igual, ante todo, te pedimos paciencia. Somos muy geniales pero todavía no somos pulpos!</h3>
                                 </div>
                         </div>
