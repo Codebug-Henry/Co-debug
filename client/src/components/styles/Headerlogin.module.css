@@ -42,9 +42,14 @@
 
 .linksInt {
   width: 30%;
-  font-size: 1.4vw;
+  font-size: 1.75vw;
   text-decoration: none;
   color: black;
+}
+@media screen and (max-width: 600px) {
+  .linksInt {
+    font-size: 3vw;
+  }
 }
 
 .name {
