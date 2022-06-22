@@ -7,7 +7,7 @@ const Butlog = () => {
   return (
     <button
       type="button"
-      class="btn btn-warning"
+      className="btn btn-warning"
       onClick={() => loginWithRedirect()}
     >
       Log in/Register

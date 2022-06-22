@@ -13,9 +13,9 @@ const Ayuda = () => {
                     <div>
                       <Headerlogin />
                       {/* Acá el contenido para logueados */}
-                      <div class={`container-fluid ${style.container}`}>
-                        <div class={`row ${style.middleRow}`}>
-                          <div class={`col-lg ${style.col1}`}>
+                      <div className={`container-fluid ${style.container}`}>
+                        <div className={`row ${style.middleRow}`}>
+                          <div className={`col-lg ${style.col1}`}>
                           <div className={style.help}>
                     <h1>Preguntas frecuentes</h1>
                     <section className={style.questions}>
@@ -59,9 +59,9 @@ const Ayuda = () => {
                     <div className={style.total}>
                       <Header />
                       {/* Acá el contenido para no logueados */}
-                      <div class={`container-fluid ${style.container}`}>
-                        <div class={`row ${style.middleRow}`}>
-                          <div class={`col-lg ${style.colOut}`}>
+                      <div className={`container-fluid ${style.container}`}>
+                        <div className={`row ${style.middleRow}`}>
+                          <div className={`col-lg ${style.colOut}`}>
                           <div className={style.help}>
                     <h1>Preguntas frecuentes</h1>
                     <section className={style.questions}>

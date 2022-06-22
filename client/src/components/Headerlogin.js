@@ -20,15 +20,15 @@ const Headerlogin = () => {
   };
 
   return (
-    <div class={`container-fluid ${style.container}`}>
-      <div class={`row ${style.row1}`}>
-        <div class={`col-lg ${style.col1}`}>
+    <div className={`container-fluid ${style.container}`}>
+      <div className={`row ${style.row1}`}>
+        <div className={`col-lg ${style.col1}`}>
           <Link to="/">
             <img className={style.logo} src={logo} alt="logo" />
           </Link>
         </div>
 
-        <div class={`col-lg ${style.col2}`}>
+        <div className={`col-lg ${style.col2}`}>
           <Link to="/" className={style.linksInt}>
             PRINCIPAL
           </Link>
@@ -37,12 +37,14 @@ const Headerlogin = () => {
           </Link>
         </div>
 
-        <div class={`col-lg ${style.col3}`}>
-          <div className={style.linksInt}>RANKEADO</div>
+        <div className={`col-lg ${style.col3}`}>
+          <Link to="/preguntar" className={style.linksInt}>
+            PREGUNTAR
+          </Link>
           <div className={style.linksInt}>TEACH POINTS</div>
         </div>
 
-        <div class={`col-lg ${style.col4} ${style.imgNameLogOut}`}>
+        <div className={`col-lg ${style.col4} ${style.imgNameLogOut}`}>
           <Link to="/configuracion" className={style.contImagen}>
             <img
               className={style.userImage}
@@ -50,9 +52,9 @@ const Headerlogin = () => {
               alt={user.name}
             />
           </Link>
-          <div class="dropdown">
+          <div className="dropdown">
             <button
-              class={`
+              className={`
                 ${
                   width > 600
                     ? "btn btn-secondary dropdown-toggle"
@@ -67,57 +69,57 @@ const Headerlogin = () => {
               Nombre traer
             </button>
             <ul
-              class="dropdown-menu dropdown-menu-dark"
+              className="dropdown-menu dropdown-menu-dark"
               aria-labelledby="dropdownMenuButton2"
             >
               <li>
                 <Link className={style.linkDesp} to="/mispreguntas">
-                  <p class="dropdown-item" href="#">
+                  <p className="dropdown-item" href="#">
                     Mis preguntas
                   </p>
                 </Link>
               </li>
               <li>
                 <Link className={style.linkDesp} to="/misrespuestas">
-                  <p class="dropdown-item" href="#">
+                  <p className="dropdown-item" href="#">
                     Mis respuestas
                   </p>
                 </Link>
               </li>
               <li>
                 <Link className={style.linkDesp} to="/favoritas">
-                  <p class="dropdown-item" href="#">
+                  <p className="dropdown-item" href="#">
                     Favoritos
                   </p>
                 </Link>
               </li>
               <li>
                 <Link className={style.linkDesp} to="/preguntar">
-                  <p class="dropdown-item" href="#">
+                  <p className="dropdown-item" href="#">
                     Preguntar
                   </p>
                 </Link>
               </li>
               <li>
                 <Link className={style.linkDesp} to="/admin">
-                  <p class="dropdown-item" href="#">
+                  <p className="dropdown-item" href="#">
                     Admin
                   </p>
                 </Link>
               </li>
               <li>
                 <Link className={style.linkDesp} to="/configuracion">
-                  <p class="dropdown-item" href="#">
+                  <p className="dropdown-item" href="#">
                     Configuración
                   </p>
                 </Link>
               </li>
 
               <li>
-                <hr class="dropdown-divider"></hr>
+                <hr className="dropdown-divider"></hr>
               </li>
               <li>
-                <p class="dropdown-item" href="#">
+                <p className="dropdown-item" href="#">
                   <Butlogout />
                 </p>
               </li>

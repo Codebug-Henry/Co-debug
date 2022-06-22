@@ -13,9 +13,9 @@ const Favoritas = () => {
         <div>
           <Headerlogin />
           {/* Acá el contenido para logueados */}
-          <div class={`container-fluid ${style.container}`}>
-            <div class={`row ${style.middleRow}`}>
-              <div class={`col-lg-8 ${style.col1}`}>
+          <div className={`container-fluid ${style.container}`}>
+            <div className={`row ${style.middleRow}`}>
+              <div className={`col-lg-8 ${style.col1}`}>
                 Sed ut perspiciatis unde omnis iste natus error sit voluptatem
                 accusantium doloremque laudantium, totam rem aperiam, eaque ipsa
                 quae ab illo inventore veritatis et quasi architecto beatae
@@ -47,7 +47,7 @@ const Favoritas = () => {
                 voluptas nulla pariatur?"
               </div>
 
-              <div class={`col-lg-4 ${style.col2}`}>
+              <div className={`col-lg-4 ${style.col2}`}>
                 "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
                 eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
                 enim ad minim veniam, quis nostrud exercitation ullamco laboris
@@ -70,9 +70,9 @@ const Favoritas = () => {
         <div className={style.total}>
           <Header />
           {/* Acá el contenido para no logueados */}
-          <div class={`container-fluid ${style.container}`}>
-            <div class={`row ${style.middleRow}`}>
-              <div class={`col-lg ${style.colOut}`}>
+          <div className={`container-fluid ${style.container}`}>
+            <div className={`row ${style.middleRow}`}>
+              <div className={`col-lg ${style.colOut}`}>
                 At vero eos et accusamus et iusto odio dignissimos ducimus qui
                 blanditiis praesentium voluptatum deleniti atque corrupti quos
                 dolores et quas molestias excepturi sint occaecati cupiditate
