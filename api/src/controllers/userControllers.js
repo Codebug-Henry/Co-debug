@@ -1,9 +1,20 @@
-const getUserInfo=(req,res,next)=>{
-   
+const { User } = require('../db')
+
+const getUserInfo = (req, res, next) => {
+    const sub = req.params.sub
+    return User.findByPk(sub)
+        .then(result => res.send(result))
+        .catch((error) => res.send(error))
 }
 
-const postUser=(req,res,next)=>{
-   
+const postUser = async (req, res, next) => {
+    try {
+        let user = await User.findByPk(req.body.sub)
+        if(!user) user = await User.create(req.body)
+        res.send(user)
+    } catch (error) {
+        res.send(error)
+    }
 }
 
 // const postUser=async (req,res,next)=>{
@@ -22,16 +33,16 @@ const postUser=(req,res,next)=>{
 // }
 
 
-const putUserInfo=(req,res,next)=>{
-   
+const putUserInfo = (req, res, next) => {
+
 }
 
 
-const deleteUser=(req,res,next)=>{
-   
+const deleteUser = (req, res, next) => {
+
 }
 
-module.exports={
+module.exports = {
     getUserInfo,
     postUser,
     putUserInfo,
