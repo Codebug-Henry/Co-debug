@@ -7,7 +7,7 @@ import style from "./styles/Headerlogin.module.css"
 
 const Headerlogin = () => {
   const { user } = useAuth0();
-
+  console.log(user)
   return (
     <div className={style.headerfull}>
         <div>
