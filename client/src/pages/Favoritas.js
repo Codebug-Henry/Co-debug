@@ -3,11 +3,13 @@ import { useAuth0 } from '@auth0/auth0-react';
 import Headerlogin from '../components/Headerlogin';
 import Header from "../components/Header"
 import style from "./styles/Favoritas.module.css"
+import Footer from "../components/Footer.js"
 
 const Favoritas = () => {
     const { isAuthenticated } = useAuth0();
     return (
-     
+      <div>
+        {
       isAuthenticated ? (
       <div >
           <Headerlogin />
@@ -20,6 +22,9 @@ const Favoritas = () => {
           <Header />
           {/* Acá el contenido para no logueados */}
           <h1>Para tener contenido favorito primero hay que loguearse</h1>
+      </div>
+        }
+      <div><Footer/></div>
       </div>
       
     )

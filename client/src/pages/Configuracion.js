@@ -3,13 +3,15 @@ import { useAuth0 } from '@auth0/auth0-react';
 import Headerlogin from '../components/Headerlogin';
 import Header from "../components/Header"
 import style from "./styles/Configuracion.module.css"
+import Footer from "../components/Footer.js"
 
 
 
 const Configuracion = () => {
     const { isAuthenticated } = useAuth0();
     return (
-     
+     <div>
+        {
       isAuthenticated ? (
       <div >
           <Headerlogin />
@@ -23,6 +25,9 @@ const Configuracion = () => {
           {/* Acá el contenido para no logueados */}
           <h1>Usted no está logueado como para generar cambios</h1>
       </div>
+        }
+        <div><Footer/></div>
+     </div>
       
     )
 }

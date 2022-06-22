@@ -5,12 +5,14 @@ import style from "./styles/Creadores.module.css"
 import { useAuth0 } from '@auth0/auth0-react'
 import Headerlogin from '../components/Headerlogin'
 import Header from '../components/Header'
+import Footer from "../components/Footer.js"
 
 const Creadores = () => {
 
   const { isAuthenticated } = useAuth0();
     return (
-     
+      <div>
+        {
       isAuthenticated ? (
       <div >
           <Headerlogin />
@@ -40,7 +42,9 @@ const Creadores = () => {
         <section>Lorem ipsum dolor sit amet consectetur adipisicing elit. Esse facilis undeLorem ipsum dolor sit amet consectetur adipisicing elit. Esse facilis undeLorem ipsum dolor sit amet consectetur adipisicing elit. Esse facilis undeLorem ipsum dolor sit amet consectetur adipisicing elit. Esse facilis undeLorem ipsum dolor sit amet consectetur adipisicing elit. Esse facilis undeLorem ipsum dolor sit amet consectetur adipisicing elit. Esse facilis undeLorem ipsum dolor sit amet consectetur adipisicing elit. Esse facilis undeLorem ipsum dolor sit amet consectetur adipisicing elit. Esse facilis undeLorem ipsum dolor sit amet consectetur adipisicing elit. Esse facilis undeLorem ipsum dolor sit amet consectetur adipisicing elit. Esse facilis undeLorem ipsum dolor sit amet consectetur adipisicing elit. Esse facilis undeLorem ipsum dolor sit amet consectetur adipisicing elit. Esse facilis undeLorem ipsum dolor sit amet consectetur adipisicing elit. Esse facilis undeLorem ipsum dolor sit amet consectetur adipisicing elit. Esse facilis undeLorem ipsum dolor sit amet consectetur adipisicing elit. Esse facilis undeLorem ipsum dolor sit amet consectetur adipisicing elit. Esse facilis undeLorem ipsum dolor sit amet consectetur adipisicing elit. Esse facilis undeLorem ipsum dolor sit amet consectetur adipisicing elit. Esse facilis undeLorem ipsum dolor sit amet consectetur adipisicing elit. Esse facilis undeLorem ipsum dolor sit amet consectetur adipisicing elit. Esse facilis undeLorem ipsum dolor sit amet consectetur adipisicing elit. Esse facilis undeLorem ipsum dolor sit amet consectetur adipisicing elit. Esse facilis undeLorem ipsum dolor sit amet consectetur adipisicing elit. Esse facilis undeLorem ipsum dolor sit amet consectetur adipisicing elit. Esse facilis undeLorem ipsum dolor sit amet consectetur adipisicing elit. Esse facilis undeLorem ipsum dolor sit amet consectetur adipisicing elit. Esse facilis undeLorem ipsum dolor sit amet consectetur adipisicing elit. Esse facilis undeLorem ipsum dolor sit amet consectetur adipisicing elit. Esse facilis undeLorem ipsum dolor sit amet consectetur adipisicing elit. Esse facilis undeLorem ipsum dolor sit amet consectetur adipisicing elit. Esse facilis undeLorem ipsum dolor sit amet consectetur adipisicing elit. Esse facilis undeLorem ipsum dolor sit amet consectetur adipisicing elit. Esse facilis undeLorem ipsum dolor sit amet consectetur adipisicing elit. Esse facilis undeLorem ipsum dolor sit amet consectetur adipisicing elit. Esse facilis undeLorem ipsum dolor sit amet consectetur adipisicing elit. Esse facilis undeLorem ipsum dolor sit amet consectetur adipisicing elit. Esse facilis undeLorem ipsum dolor sit amet consectetur adipisicing elit. Esse facilis undeLorem ipsum dolor sit amet consectetur adipisicing elit. Esse facilis undeLorem ipsum dolor sit amet consectetur adipisicing elit. Esse facilis undeLorem ipsum dolor sit amet consectetur adipisicing elit. Esse facilis undeLorem ipsum dolor sit amet consectetur adipisicing elit. Esse facilis undeLorem ipsum dolor sit amet consectetur adipisicing elit. Esse facilis undeLorem ipsum dolor sit amet consectetur adipisicing elit. Esse facilis undeLorem ipsum dolor sit amet consectetur adipisicing elit. Esse facilis undeLorem ipsum dolor sit amet consectetur adipisicing elit. Esse facilis undeLorem ipsum dolor sit amet consectetur adipisicing elit. Esse facilis undeLorem ipsum dolor sit amet consectetur adipisicing elit. Esse facilis undeLorem ipsum dolor sit amet consectetur adipisicing elit. Esse facilis undeLorem ipsum dolor sit amet consectetur adipisicing elit. Esse facilis undeLorem ipsum dolor sit amet consectetur adipisicing elit. Esse facilis undeLorem ipsum dolor sit amet consectetur adipisicing elit. Esse facilis undeLorem ipsum dolor sit amet consectetur adipisicing elit. Esse facilis unde</section>
     </div>
       </div>
-      
+        }
+      <div><Footer/></div>
+      </div>
     )
 
 }
