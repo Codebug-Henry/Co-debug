@@ -1,17 +1,11 @@
-#all{
-    background-color: #ffea00;
-    justify-content: center;
-    height: 80%;
-}
-
 #contenedor{
     width: 100%;
+    background-color: yellow;
 }
 
 #form{
     display: flex;
     flex-direction: column;
-    width: 90%;
     height:max-content;
     border: solid 2px black;
     justify-content: center;
