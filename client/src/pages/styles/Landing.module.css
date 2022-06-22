@@ -1,5 +1,15 @@
-.total{
-    display: flex;
-    flex-direction: column;
-    gap: 50px;
+.col1 {
+  border: 1px black solid;
+}
+
+.col2 {
+  display: flex;
+  border: 1px black solid;
+  align-items: center;
+}
+
+.colOut {
+  display: flex;
+  border: 1px black solid;
+  align-items: center;
 }

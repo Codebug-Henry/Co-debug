@@ -1,30 +1,52 @@
-.headerfull{
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    flex-direction: row;
-    background-color: rgb(255, 247, 18);
-    box-shadow: 4px 5px 10px 3px;
-    width: auto;
-    border-radius: 15px;
-    padding-right: 40px;
-    padding-left: 20px;
-    padding-top: 20px;
-    padding-bottom: 15px;
+/* .headerfull {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-direction: row;
+  background-color: rgb(255, 247, 18);
+  box-shadow: 4px 5px 10px 3px;
+  width: auto;
+  border-radius: 15px;
+  padding-right: 40px;
+  padding-left: 20px;
+  padding-top: 20px;
+  padding-bottom: 15px;
 }
 
-.logo{
-    width: 400px;
+.logo {
+  width: 400px;
 }
-.logo:hover{
-    width: 400px;
-    opacity: 70%;
+.logo:hover {
+  width: 400px;
+  opacity: 70%;
 }
 
-.cajaLogReg{
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    flex-direction: row;
-    gap:30px;
+.cajaLogReg {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  flex-direction: row;
+  gap: 30px;
+} */
+
+.row1 {
+  display: flex;
+  align-items: center;
+}
+
+.col1 {
+  display: flex;
+}
+
+.col2 {
+  display: flex;
+  justify-content: flex-end;
+}
+.logo {
+  width: 25vw;
+}
+
+.logo:hover {
+  width: 25vw;
+  opacity: 70%;
 }
