@@ -6,7 +6,7 @@ const imgVacia="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAOEAAADhCAMAAAAJbS
     
 module.exports = (sequelize) => {
   // defino el modelo
-  sequelize.define('User', {
+  sequelize.define('user', {
     sub: {
       type: DataTypes.TEXT,
       allowNull:false,
