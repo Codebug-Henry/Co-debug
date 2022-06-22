@@ -1,13 +1,13 @@
 const { Router } = require('express');
 
-const {postAnswer,putAnswer,deleteAnswer} = require("../controllers/answerControllers")
+const { postAnswer,putAnswer,deleteAnswer } = require("../controllers/answerControllers")
 
 const router = Router();
 
-router.post("/answer",postAnswer)
+router.post("/", postAnswer)
 
-router.put("/answer",putAnswer)
+router.put("/", putAnswer)
 
-router.delete("/answer/:id",deleteAnswer)
+router.delete("/:id", deleteAnswer)
 
 module.exports = router

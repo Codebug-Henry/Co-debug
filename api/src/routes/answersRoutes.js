@@ -1,9 +1,9 @@
 const { Router } = require('express');
 
-const {getAnswers} = require("../controllers/answersControllers")
+const { getAnswers } = require("../controllers/answersControllers")
 
 const router = Router();
 
-router.get("/answers/:sub",getAnswers)
+router.get("/:sub", getAnswers)
 
 module.exports = router

@@ -1,16 +1,16 @@
 const { Router } = require('express');
 
-const {postQuestion,putUserQuestion,getSingleQuestion,deleteUserQuestion} = require("../controllers/questionControllers")
+const { postQuestion,putUserQuestion,getSingleQuestion,deleteUserQuestion } = require("../controllers/questionControllers")
 
 const router = Router();
 
-router.post("/question",postQuestion)
+router.post("/", postQuestion)
 
-router.put("/question",putUserQuestion)
+router.put("/", putUserQuestion)
 
-router.get("/question/:id",getSingleQuestion)
+router.get("/:id", getSingleQuestion)
 
-router.delete("/question/:id",deleteUserQuestion)
+router.delete("/:id", deleteUserQuestion)
 
 
 module.exports = router

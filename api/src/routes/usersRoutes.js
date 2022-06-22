@@ -1,11 +1,11 @@
 const { Router } = require('express');
 
-const {getTopTen,getRanking} = require("../controllers/usersControllers")
+const { getTopTen,getRanking } = require("../controllers/usersControllers")
 
 const router = Router();
 
-router.get("/users/topTen",getTopTen)
+router.get("/topTen", getTopTen)
 
-router.get("/users",getRanking)
+router.get("/", getRanking)
 
 module.exports = router
