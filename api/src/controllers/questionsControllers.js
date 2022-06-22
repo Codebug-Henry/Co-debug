@@ -1,31 +1,8 @@
-const { Question } = require("../db");
+const { User, Question } = require("../db");
 const { Op } = require('sequelize');
 const { sortQuestionsAsc, sortQuestionsDesc } = require("./generalControllers");
 
-const getAllQuestions= async (req,res,next) => {
-
-    const {search, sort} = req.query
-
-    try {
-
-        let condition = search
-        ? {[Op.or]: [{ title: {[Op.iLike]: `%${search}%`} }, { text: {[Op.iLike]: `%${search}%`} }]}
-        : {}
-        
-        let allQuestions = await Question.findAll({where: condition})
-        
-        if (sort === "ascendent") allQuestions.sort(sortQuestionsAsc)
-        else if (sort === "descendent") allQuestions.sort(sortQuestionsDesc)
-
-        res.send(allQuestions)
-
-    } catch (error) {
-        next(error)
-    }
-
-}
-
-const getUserQuestions= async (req,res,next) => {
+const getUserQuestions = async (req, res, next) => {
 
     const {sub} = req.params
     const {answered} = req.query
@@ -55,12 +32,77 @@ const getUserQuestions= async (req,res,next) => {
     
 }
 
-const putFavourites=(req,res,next)=>{
-    // /questions/favourites?subUser=" "&idQuestion=" "&add=boolean 
+const getAllQuestions = async (req, res, next) => {
+
+    const {search, sort} = req.query
+
+    try {
+
+        let condition = search
+        ? {[Op.or]: [{ title: {[Op.iLike]: `%${search}%`} }, { text: {[Op.iLike]: `%${search}%`} }]}
+        : {}
+        
+        let allQuestions = await Question.findAll({where: condition})
+        
+        if (sort === "ascendent") allQuestions.sort(sortQuestionsAsc)
+        else if (sort === "descendent") allQuestions.sort(sortQuestionsDesc)
+
+        res.send(allQuestions)
+
+    } catch (error) {
+        next(error)
+    }
+
 }
 
-const getFavourites=(req,res,next)=>{
-   
+const getFavourites = async (req, res, next) => {
+
+    const {sub} = req.params
+
+    try {
+
+        const user = await User.findByPk(sub)
+
+        const favourites = await Question.findAll({where: {id: {[Op.in]: user.favourites}}})
+        
+        res.send(favourites)
+
+    } catch (error) {
+        next(error)
+    }
+
+}
+
+const putFavourites = async (req, res, next) => {
+    
+    const {sub, id, add} = req.query
+
+    try {
+
+        const user = await User.findByPk(sub)
+        
+        if (add === "true") {
+
+            const newFavourites = [...user.favourites, id]
+
+            await user.update({favourites: newFavourites})
+
+            res.send("Question added to favourites")
+
+        } else {
+
+            const filteredFavourites = user.favourites.filter(e => e !== id)
+
+            await user.update({favourites: filteredFavourites})
+
+            res.send("Question removed from favourites")
+
+        }
+
+    } catch (error) {
+        next(error)
+    }
+
 }
 
 module.exports={
