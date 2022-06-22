@@ -30,18 +30,18 @@ const Headerlogin = () => {
 
         <div className={`col-lg ${style.col2}`}>
           <Link to="/" className={style.linksInt}>
-            PRINCIPAL
+            Principal
           </Link>
-          <Link to="/ranking" className={style.linksInt}>
-            RANKING
+          <Link to="/preguntar" className={style.linksInt}>
+            Preguntar
           </Link>
         </div>
 
         <div className={`col-lg ${style.col3}`}>
-          <Link to="/preguntar" className={style.linksInt}>
-            PREGUNTAR
+          <Link to="/ranking" className={style.linksInt}>
+            Ranking
           </Link>
-          <div className={style.linksInt}>TEACH POINTS</div>
+          <div className={style.linksInt}>Teach points</div>
         </div>
 
         <div className={`col-lg ${style.col4} ${style.imgNameLogOut}`}>
