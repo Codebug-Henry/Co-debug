@@ -5,7 +5,7 @@ import * as api from '../api'
 export const sendUserInfo = (user) => async (dispatch) => {
     try {
         const { data } = await api.sendUserInfo(user)
-        // dispatch({ type: SEND_USER_INFO, payload: data })
+        dispatch({ type: GET_USER_INFO, payload: data })
     } catch (error) {
         console.log(error.message)
     }    
@@ -75,7 +75,7 @@ export const getQuestion = (id) => async (dispatch) => {
     }
 }
 
-export const modifyQuestion = async (question) => {
+export const modifyQuestion = (question) => async (dispatch) => {
     try {
         const { data } = await api.modifyQuestion(question)
         dispatch({ type: MODIFY_QUESTION, payload: data})
