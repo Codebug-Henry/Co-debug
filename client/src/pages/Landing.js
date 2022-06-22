@@ -3,10 +3,21 @@ import Header from '../components/Header.js'
 import Headerlogin from '../components/Headerlogin.js'
 import style from "./styles/Landing.module.css"
 import { useAuth0 } from '@auth0/auth0-react'
+import Loading from '../components/Loading.js'
 
+
+// import { useEffect, useState } from 'react'
+// import { useDispatch, useSelector } from "react-redux"
+// //Mandar pedido useEffect dispatch mi action >> pedido back >> res new object >
 
 const Landing = () => {
-  const { isAuthenticated } = useAuth0();
+  const { isAuthenticated, isLoading } = useAuth0();
+
+  if(isLoading){
+    return <div>
+      <Loading />
+    </div>
+  }
   return (
    
     isAuthenticated ? (
@@ -14,6 +25,7 @@ const Landing = () => {
         <Headerlogin />
         {/* Acá el contenido para logueados */}
         <h1>Página principal logueado</h1>
+
     </div>
 
     ):
