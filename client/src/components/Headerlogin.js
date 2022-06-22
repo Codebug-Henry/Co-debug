@@ -4,10 +4,10 @@ import React from "react";
 import { useState, useEffect } from "react";
 import { useAuth0 } from "@auth0/auth0-react";
 import style from "./styles/Headerlogin.module.css";
-import Butlogout from "./Butlogout";
 
 const Headerlogin = () => {
   const { user } = useAuth0();
+  const { logout } = useAuth0();
 
   const [width, setWidth] = useState(window.innerWitdh);
 
@@ -119,8 +119,8 @@ const Headerlogin = () => {
                 <hr className="dropdown-divider"></hr>
               </li>
               <li>
-                <p className="dropdown-item" href="#">
-                  <Butlogout />
+                <p onClick={() => logout()} className="dropdown-item" href="#">
+                  Log Out
                 </p>
               </li>
             </ul>
