@@ -14,11 +14,11 @@ const sortQuestionsAsc = (a, b) => {
 const populateDB = async () => {
 
     const users = [
-        { sub: '1',  name: 'Gonzalo',  nickname: 'gonza', email: 'gonza@gmail.com', locale: 'argentina'},
-        { sub: '2',  name: 'Santiago',  nickname: 'santi', email: 'santi@gmail.com', locale: 'argentina'},
-        { sub: '3',  name: 'Felipe',  nickname: 'feli', email: 'feli@gmail.com', locale: 'argentina'},
+        { sub: '1',  name: 'Gonzalo',  nickname: 'gonza', email: 'gonza@gmail.com', locale: 'argentina', favourites: [1, 2, 4]},
+        { sub: '2',  name: 'Santiago',  nickname: 'santi', email: 'santi@gmail.com', locale: 'argentina', favourites: [3, 4, 5]},
+        { sub: '3',  name: 'Felipe',  nickname: 'feli', email: 'feli@gmail.com', locale: 'argentina', favourites: [1]},
         { sub: '4',  name: 'David',  nickname: 'davo', email: 'davo@gmail.com', locale: 'argentina'},
-        { sub: '5',  name: 'Luciano',  nickname: 'lucho', email: 'lucho@gmail.com', locale: 'argentina'},
+        { sub: '5',  name: 'Luciano',  nickname: 'lucho', email: 'lucho@gmail.com', locale: 'argentina', favourites: [2, 3]},
         { sub: '6',  name: 'Gustavo',  nickname: 'gus', email: 'gus@gmail.com', locale: 'argentina'},
         { sub: '7',  name: 'Patricio',  nickname: 'pato', email: 'pato@gmail.com', locale: 'argentina'},
         { sub: '8',  name: 'Matias',  nickname: 'mati', email: 'mati@gmail.com', locale: 'argentina'},
