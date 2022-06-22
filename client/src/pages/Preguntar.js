@@ -13,10 +13,15 @@ const Preguntar = () => {
         <div>
         {
         isAuthenticated ? (
-        <div id={style.all}>
+        <div>
             <Headerlogin />
-            {/* Acá el contenido para logueados */}
-            <FormQuestion />
+            <div class={`container-fluid ${style.container}`}>
+                <div class={`row ${style.middleRow}`}>
+                    <div class={`col-lg ${style.col1}`}>
+                        <FormQuestion />
+                    </div>
+                </div>
+            </div>
         </div>
         ):
         <div className={style.total}>
