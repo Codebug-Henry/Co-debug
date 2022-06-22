@@ -11,6 +11,7 @@
 {
   sub,
   name,
+  nickname,
   email,
   locale,
   picture
@@ -32,6 +33,7 @@
     {
         myTeachPoints,
         name,
+        nickname,
         picture,
         sub
     }
@@ -41,6 +43,7 @@
     {
         myTeachPoints,
         name,
+        nickname,
         picture,
         sub
     }
@@ -62,6 +65,7 @@
     {
         myTeachPoints,
         name,
+        nickname,
         picture,
         sub
     }
@@ -71,6 +75,7 @@
     {
         myTeachPoints,
         name,
+        nickname,
         picture,
         sub
     }
@@ -91,6 +96,7 @@
 {
     sub,
     name,
+    nickname,
     email,
     myTeachPoints,
     picture,
@@ -115,6 +121,7 @@ body= obj con props cambiadas
 
 {
     name,
+    nickname,
     email,
     locale,
     picture
@@ -124,6 +131,7 @@ body= obj con props cambiadas
 
 {
     name,
+    nickname,
     email,
     locale,
     picture
@@ -162,7 +170,20 @@ router.post("/question",postQuestion)
   title//titulo de la pregunta
 }
 
-->RESPUESTA: “se ha creado correctamente"
+>RESPUESTA:
+
+{
+  user:{
+    sub,
+    name,
+    nickname
+  },
+  //tag,
+  title,
+  teachPoints,
+  text,
+  likes,
+}
 
 ____________________
 
@@ -177,7 +198,8 @@ router.get("/question/:id",getSingleQuestion)
 {
   user:{
     sub,
-    name
+    name,
+    nickname
   },
   //tag,
   title,
@@ -331,7 +353,11 @@ router.get("/questions/:sub",getUserQuestions)
  
 ->DESCRIPCION: esta ruta es para acceder a todas mis preguntas.
 
-->REQUERIMIENTOS: recibo “sub” por params.
+->REQUERIMIENTOS: recibo “sub” por params y puede traer por query ?answered para filtrar por preguntas respondidas o no respondidas, en caso de no traer nada simplemente accedo a todas las preguntas del usuario.
+
+ ?answered=" "
+
+(answered=>true/false)
 
 ->RESPUESTA: devuelvo un arreglo de objetos con la info de mis preguntas.
 
