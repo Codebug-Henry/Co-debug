@@ -57,8 +57,8 @@ const Headerlogin = () => {
               className={`
                 ${
                   width > 600
-                    ? "btn btn-secondary dropdown-toggle"
-                    : "btn btn-secondary btn-sm"
+                    ? "btn btn-warning btn-secondary dropdown-toggle"
+                    : "btn btn-warning btn-secondary btn-sm"
                 }
               `}
               type="button"
@@ -66,7 +66,7 @@ const Headerlogin = () => {
               data-bs-toggle="dropdown"
               aria-expanded="false"
             >
-              Nombre traer
+              {user.name}
             </button>
             <ul
               className="dropdown-menu dropdown-menu-dark"
