@@ -9,10 +9,9 @@ const getUserInfo = (req, res, next) => {
 
 const postUser = async (req, res, next) => {
     try {
-        // let user = await User.findByPk(req.body.sub)
-        // if(!user) user = await User.create(req.body)
-        let user=await User.findOrCreate({where:req.body})
-        res.send(user[0])
+        let user = await User.findByPk(req.body.sub)
+        if(!user) user = await User.create(req.body)
+        res.send(user)
     } catch (error) {
         next(error)
     }
