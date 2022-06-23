@@ -17,7 +17,23 @@
   picture
 }
 
-->RESPUESTA: si el usuario existe, no lo crea y -> "el usuario existe", sino-> "se a creado correctamente"
+->RESPUESTA: si el usuario existe, no lo crea y -> "el usuario existe", sino->
+
+{
+    sub,
+    name,
+    nickname,
+    email,
+    locale,
+    myTeachPoints,
+    picture,
+    statusAdmin,
+    statusBanned,
+    favourites,
+    cantFav,
+    cantQuest,
+    cantAns
+}
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -67,6 +83,7 @@
         name,
         nickname,
         picture,
+        cantAns,
         sub
     }
     .
@@ -77,6 +94,7 @@
         name,
         nickname,
         picture,
+        cantAns,
         sub
     }
 ]
@@ -98,10 +116,12 @@
     name,
     nickname,
     email,
+    locale,
     myTeachPoints,
     picture,
     statusAdmin,
     statusBanned,
+    favourites,
     cantFav,
     cantQuest,
     cantAns
@@ -122,19 +142,25 @@ body= obj con props cambiadas
 {
     name,
     nickname,
-    email,
-    locale,
     picture
 }
 
 ->RESPUESTA: un objeto con el user modificado
 
 {
+    sub,
     name,
     nickname,
     email,
     locale,
-    picture
+    myTeachPoints,
+    picture,
+    statusAdmin,
+    statusBanned,
+    favourites,
+    cantFav,
+    cantQuest,
+    cantAns
 }
 
 --------------------------------------------------------------------------------------------------------------------

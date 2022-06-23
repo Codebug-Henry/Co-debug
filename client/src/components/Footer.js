@@ -18,7 +18,7 @@ const footer = () => {
         </div>
         <div className={`col-lg-4 ${style.col3}`}>
           <Link className={style.links} to="/terminos">
-            Terminos y condiciones
+            Términos y condiciones
           </Link>
         </div>
       </div>
