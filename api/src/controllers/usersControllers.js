@@ -18,7 +18,7 @@ const getTopTen = async (req,res,next)=>{
 const getRanking = async (req,res,next)=>{
     //  /users?sort=ascendent/descendent
     const allUsers = await User.findAll()
-      let sortedUsers = req.query.sort === "ascendente" ?
+      let sortedUsers = req.query.sort === "ascendent" ?
         allUsers.sort(function (a, b) {
           if (a.myTeachPoints > b.myTeachPoints) {
             return 1;
