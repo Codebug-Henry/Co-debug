@@ -1,8 +1,10 @@
 const { Router } = require('express');
 
-const { postUser,getUserInfo,putUserInfo,deleteUser } = require("../controllers/userControllers")
+const { postUser, getUserInfo, getUserPosition, putUserInfo, deleteUser } = require("../controllers/userControllers")
 
 const router = Router();
+
+router.get("/myPosition/:sub", getUserPosition)
 
 router.post("/", postUser)
 
