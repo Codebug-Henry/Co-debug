@@ -5,8 +5,16 @@
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 }
 .section{
-font-size: 2rem;
-padding: 2rem;
-background-color: black;
-color: white;
+    font-size: 2rem;
+    padding: 2rem;
+    background-color: black;
+    color: white;
 }
+
+
+@media screen and (max-width: 991px){
+    .col2{
+        margin-top: -2vh;
+    } 
+}
+
