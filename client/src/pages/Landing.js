@@ -5,6 +5,7 @@ import style from "./styles/Landing.module.css";
 import { useAuth0 } from "@auth0/auth0-react";
 import Loading from "../components/Loading.js";
 import Footer from "../components/Footer.js";
+import CardsQuestions from "../components/CardsQuestions.js";
 
 // import { useEffect, useState } from 'react'
 // import { useDispatch, useSelector } from "react-redux"
@@ -30,7 +31,7 @@ const Landing = () => {
           <div className={`container-fluid ${style.container}`}>
             <div className={`row ${style.middleRow}`}>
               <div className={`col-lg-8 ${style.col1}`}>
-                Sed ut perspiciatis unde omnis iste natus error sit voluptatem
+                {/* Sed ut perspiciatis unde omnis iste natus error sit voluptatem
                 accusantium doloremque laudantium, totam rem aperiam, eaque ipsa
                 quae ab illo inventore veritatis et quasi architecto beatae
                 vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia
@@ -57,22 +58,9 @@ const Landing = () => {
                 quis nostrum exercitationem ullam corporis suscipit laboriosam,
                 nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum
                 iure reprehenderit qui in ea voluptate velit esse quam nihil
-                molestiae consequatur, vel illum qui dolorem eum fugiat quo
-                voluptas nulla pariatur?" Sed ut perspiciatis unde omnis iste
-                natus error sit voluptatem accusantium doloremque laudantium,
-                totam rem aperiam, eaque ipsa quae ab illo inventore veritatis
-                et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim
-                ipsam voluptatem quia voluptas sit aspernatur aut odit aut
-                fugit, sed quia consequuntur magni dolores eos qui ratione
-                voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem
-                ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia
-                non numquam eius modi tempora incidunt ut labore et dolore
-                magnam aliquam quaerat voluptatem. Ut enim ad minima veniam,
-                quis nostrum exercitationem ullam corporis suscipit laboriosam,
-                nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum
-                iure reprehenderit qui in ea voluptate velit esse quam nihil
-                molestiae consequatur, vel illum qui dolorem eum fugiat quo
-                voluptas nulla pariatur?"
+                voluptas nulla pariatur?" */}
+                <CardsQuestions/>
+
               </div>
 
               <div className={`col-lg-4 ${style.col2}`}>
