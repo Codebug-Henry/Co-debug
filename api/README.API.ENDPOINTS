@@ -17,7 +17,7 @@
   picture
 }
 
-->RESPUESTA: si el usuario existe, no lo crea y -> "el usuario existe", sino->
+->RESPUESTA: si encuentra el usuario no lo crea, sino lo crea. devuelve el usuario
 
 {
     sub,
@@ -71,7 +71,7 @@
 
 ->DESCRIPCION:esta ruta es para obtener todos los usuarios para rankearlos
 
-->REQUERIMIENTOS: por query deberan enviar la variable sort para definir como ordenarlos (ascendente/descendente)
+->REQUERIMIENTOS: por query deberan enviar la variable sort para definir como ordenarlos (ascendent/descendent)
 
 /?sort=ascendent/descendent
 
