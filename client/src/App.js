@@ -15,10 +15,12 @@ import Configuracion from "./pages/Configuracion.js";
 import Delete from "./pages/Delete.js";
 import NotFound from "./pages/NotFound";
 import Terminos from "./pages/Terminos.js";
+import Headerlogin from "./components/Headerlogin.js";
 
 function App() {
   return (
     <BrowserRouter>
+      <Headerlogin />
       <Routes>
         <Route path={"/"} element={<Landing />} />
         <Route path={"/mispreguntas"} element={<MisPreguntas />} />

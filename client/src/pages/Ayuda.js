@@ -11,7 +11,6 @@ const Ayuda = () => {
                 <div>
                   {isAuthenticated ? (
                     <div>
-                      <Headerlogin />
                       {/* Acá el contenido para logueados */}
                       <div className={`container-fluid ${style.container}`}>
                         <div className={`row ${style.middleRow}`}>
@@ -57,7 +56,6 @@ const Ayuda = () => {
                     </div>
                   ) : (
                     <div className={style.total}>
-                      <Header />
                       {/* Acá el contenido para no logueados */}
                       <div className={`container-fluid ${style.container}`}>
                         <div className={`row ${style.middleRow}`}>
