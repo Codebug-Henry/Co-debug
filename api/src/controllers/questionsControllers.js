@@ -1,6 +1,6 @@
 const { User, Question } = require("../db");
 const { Op } = require('sequelize');
-const { sortQuestionsAsc, sortQuestionsDesc } = require("./generalControllers");
+const { sortByPointsAsc, sortByPointsDesc } = require("./generalControllers");
 
 const getUserQuestions = async (req, res, next) => {
 
@@ -35,6 +35,7 @@ const getUserQuestions = async (req, res, next) => {
 const getAllQuestions = async (req, res, next) => {
 
     const {search, sort} = req.query
+
     try {
 
         let condition = search !== "undefined"
@@ -43,8 +44,8 @@ const getAllQuestions = async (req, res, next) => {
         
         let allQuestions = await Question.findAll({where: condition, include:User})
         
-        if (sort === "ascendent") allQuestions.sort(sortQuestionsAsc)
-        else if (sort === "descendent") allQuestions.sort(sortQuestionsDesc)
+        if (sort === "ascendent") allQuestions.sort(sortByPointsAsc)
+        else if (sort === "descendent") allQuestions.sort(sortByPointsDesc)
 
         res.send(allQuestions)
 
