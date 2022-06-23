@@ -35,14 +35,13 @@ const getUserQuestions = async (req, res, next) => {
 const getAllQuestions = async (req, res, next) => {
 
     const {search, sort} = req.query
-
     try {
 
-        let condition = search
+        let condition = search !== "undefined"
         ? {[Op.or]: [{ title: {[Op.iLike]: `%${search}%`} }, { text: {[Op.iLike]: `%${search}%`} }]}
         : {}
         
-        let allQuestions = await Question.findAll({where: condition})
+        let allQuestions = await Question.findAll({where: condition, include:User})
         
         if (sort === "ascendent") allQuestions.sort(sortQuestionsAsc)
         else if (sort === "descendent") allQuestions.sort(sortQuestionsDesc)
