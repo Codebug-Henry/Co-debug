@@ -1,8 +1,6 @@
 import React from "react";
 import style from "./styles/Creadores.module.css";
 import { useAuth0 } from "@auth0/auth0-react";
-import Headerlogin from "../components/Headerlogin";
-import Header from "../components/Header";
 import Footer from "../components/Footer.js";
 import Creador from '../components/Creador';
 

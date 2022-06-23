@@ -1,7 +1,5 @@
 import React from "react";
 import Footer from "../components/Footer.js";
-import Header from "../components/Header.js";
-import Headerlogin from "../components/Headerlogin.js";
 import style from "./styles/Terminos.module.css";
 import { useAuth0 } from "@auth0/auth0-react";
 import Loading from "../components/Loading.js";
