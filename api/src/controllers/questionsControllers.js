@@ -85,15 +85,21 @@ const putFavourites = async (req, res, next) => {
 
             const newFavourites = [...user.favourites, id]
 
-            await user.update({favourites: newFavourites})
+            await user.update({
+                favourites: newFavourites,
+                cantFav: user.cantFav + 1
+            })
 
             res.send("Question added to favourites")
 
         } else {
 
             const filteredFavourites = user.favourites.filter(e => e !== parseInt(id))
-            console.log(filteredFavourites)
-            await user.update({favourites: filteredFavourites})
+            
+            await user.update({
+                favourites: filteredFavourites,
+                cantFav: user.cantFav - 1
+            })
 
             res.send("Question removed from favourites")
 
