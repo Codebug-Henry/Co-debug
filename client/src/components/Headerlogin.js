@@ -22,7 +22,9 @@ const Headerlogin = () => {
   }, []);
 
   useEffect(() => {
+    if(isAuthenticated){
       dispatch(sendUserInfo(user))
+    }
   }, [user])
 
   const handleResize = () => {
@@ -139,7 +141,7 @@ const Headerlogin = () => {
         </div>
       </div>
     </div>) : 
-    <Loading />
+    <Header />
   );
 };
 
