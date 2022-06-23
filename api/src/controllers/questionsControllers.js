@@ -91,8 +91,8 @@ const putFavourites = async (req, res, next) => {
 
         } else {
 
-            const filteredFavourites = user.favourites.filter(e => e !== id)
-
+            const filteredFavourites = user.favourites.filter(e => e !== parseInt(id))
+            console.log(filteredFavourites)
             await user.update({favourites: filteredFavourites})
 
             res.send("Question removed from favourites")

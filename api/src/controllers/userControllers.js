@@ -9,12 +9,12 @@ const getUserInfo = (req, res, next) => {
 
 const postUser = async (req, res, next) => {
     try {
-        let user = await User.findByPk(req.body.sub)
-        if(!user) user = await User.create(req.body)
-        else throw Error
-        res.send(user)
+        // let user = await User.findByPk(req.body.sub)
+        // if(!user) user = await User.create(req.body)
+        let user=await User.findOrCreate({where:req.body})
+        res.send(user[0])
     } catch (error) {
-        res.send("el usuario existe")
+        next(error)
     }
 }
 
