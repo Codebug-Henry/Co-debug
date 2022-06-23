@@ -4,42 +4,52 @@ const getUserInfo = (req, res, next) => {
     const sub = req.params.sub
     return User.findByPk(sub)
         .then(result => res.send(result))
-        .catch((error) => res.send(error))
+        .catch((error) => next(error))
 }
 
 const postUser = async (req, res, next) => {
     try {
         let user = await User.findByPk(req.body.sub)
         if(!user) user = await User.create(req.body)
+        else throw Error
         res.send(user)
     } catch (error) {
-        res.send(error)
+        res.send("el usuario existe")
     }
 }
 
-// const postUser=async (req,res,next)=>{
-//     const newUser = req.body
-//     const sub = req.parmas.sub
+const putUserInfo = async (req, res, next) => {
+    const {sub} = req.params
+    const {name,nickname,picture,myTeachPoints} = req.body
 
-//     let user_finded=await User.findByPk(sub)
+    try {
+        await User.update({name,nickname,picture,myTeachPoints},{
+            where:{
+                sub:(sub)
+            }
+        })
+        let userUpdated=await User.findByPk(sub)
 
-//     if(user_finded)res.send(user_finded)
-
-//     User.create(newUser)
-//     .then(Created=>{
-//         res.send(Created)
-//     })
-//     .catch(e=>next(e))
-// }
-
-
-const putUserInfo = (req, res, next) => {
-
+        res.send({userUpdated})
+    } catch (error) {
+        next(error)
+    }
 }
 
 
-const deleteUser = (req, res, next) => {
+const deleteUser = async (req,res,next)=>{
+    const {sub} = req.params
 
+    try {
+        await User.destroy({
+            where:{
+                sub:(sub)
+            }
+        })
+        res.send("el usuario a sido eliminado correctamente")
+    } catch (error) {
+        next(error)
+    }
 }
 
 module.exports = {
