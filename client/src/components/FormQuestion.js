@@ -2,6 +2,7 @@ import React, {useEffect, useState} from 'react';
 // import { useDispatch, useSelector } from 'react-redux';
 // import {getUserInfo, sendQuestion } from '../redux/actions/index';
 import style from './styles/FormQuestion.module.css';
+import InfoPopper from './InfoPopper';
 
 
 const FormQuestion = () => {
@@ -116,6 +117,7 @@ const FormQuestion = () => {
         <div id={style.all}>
             <div id={style.title}>
                 <h1>Ingresa una pregunta</h1>
+                <InfoPopper/>
             </div>
             <div id={style.contenedor}>
                 <form id={style.form}>

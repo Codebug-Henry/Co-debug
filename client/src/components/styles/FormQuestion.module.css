@@ -77,3 +77,9 @@
     color: #c0c0c0;
     cursor: none;
 }
+
+#title{
+    display: flex;
+    gap: 50vw;
+}
+
