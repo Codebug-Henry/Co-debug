@@ -15,9 +15,9 @@ const Preguntar = () => {
         isAuthenticated ? (
         <div>
             <Headerlogin />
-            <div class={`container-fluid ${style.container}`}>
-                <div class={`row ${style.middleRow}`}>
-                    <div class={`col-lg ${style.col1}`}>
+            <div className={`container-fluid ${style.container}`}>
+                <div className={`row ${style.middleRow}`}>
+                    <div className={`col-lg ${style.col1}`}>
                         <FormQuestion />
                     </div>
                 </div>

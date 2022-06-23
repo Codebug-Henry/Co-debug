@@ -52,8 +52,8 @@ module.exports = (sequelize) => {
       defaultValue:false
     },
     favourites: {
-      type: DataTypes.ARRAY(DataTypes.DECIMAL),
-      defaultValue:[]//"contiene ids"
+      type: DataTypes.ARRAY(DataTypes.INTEGER),
+      defaultValue:[]     //contiene ids de preguntas
     },
     cantFav: {
       type: DataTypes.INTEGER,

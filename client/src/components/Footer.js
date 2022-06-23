@@ -4,20 +4,22 @@ import style from "./styles/Footer.module.css";
 
 const footer = () => {
   return (
-    <div class={`container-fluid ${style.container}`}>
-      <div class={`row ${style.middleRow}`}>
-        <div class={`col-lg-4 ${style.col1}`}>
-          <Link class={style.links} to="/ayuda">
+    <div className={`container-fluid ${style.container}`}>
+      <div className={`row ${style.middleRow}`}>
+        <div className={`col-lg-4 ${style.col1}`}>
+          <Link className={style.links} to="/ayuda">
             Ayuda
           </Link>
         </div>
-        <div class={`col-lg-4 ${style.col2}`}>
-          <Link class={style.links} to="/creadores">
+        <div className={`col-lg-4 ${style.col2}`}>
+          <Link className={style.links} to="/creadores">
             Creadores
           </Link>
         </div>
-        <div class={`col-lg-4 ${style.col3}`}>
-          Todos los derechos re sebados y los torcidos ni te cuento
+        <div className={`col-lg-4 ${style.col3}`}>
+          <Link className={style.links} to="/terminos">
+            Terminos y condiciones
+          </Link>
         </div>
       </div>
     </div>

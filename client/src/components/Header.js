@@ -6,14 +6,14 @@ import Butlog from "./Butlog";
 
 const headerlogout = () => {
   return (
-    <div class={`container-fluid ${style.container}`}>
-      <div class={`row ${style.row1}`}>
-        <div class={`col-lg ${style.col1}`}>
+    <div className={`container-fluid ${style.container}`}>
+      <div className={`row ${style.row1}`}>
+        <div className={`col-lg ${style.col1}`}>
           <Link to="/">
             <img className={style.logo} src={logo} alt="logo" />
           </Link>
         </div>
-        <div class={`col-lg ${style.col2}`}>
+        <div className={`col-lg ${style.col2}`}>
           <Butlog />
         </div>
       </div>

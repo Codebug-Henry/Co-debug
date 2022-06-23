@@ -10,9 +10,9 @@ const Delete = () => {
         <Header />
       </div>
       {/* Acá el contenido para no logueados */}
-      <div class={`container-fluid ${style.container}`}>
-        <div class={`row ${style.middleRow}`}>
-          <div class={`col-lg ${style.colOut}`}>
+      <div className={`container-fluid ${style.container}`}>
+        <div className={`row ${style.middleRow}`}>
+          <div className={`col-lg ${style.colOut}`}>
             At vero eos et accusamus et iusto odio dignissimos ducimus qui
             blanditiis praesentium voluptatum deleniti atque corrupti quos
             dolores et quas molestias excepturi sint occaecati cupiditate non
