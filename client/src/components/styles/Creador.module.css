@@ -1,0 +1,58 @@
+#card{
+    display: flex;
+    flex-direction: row;
+    /* border: solid 1px black; */
+    height: 15vh;
+    width: 50vh;
+    margin-bottom: 4vh;
+    align-content: space-between;
+    margin-top: 2vh;
+}
+
+#photo{
+    align-content: flex-end;
+    margin-top: 1vh;
+}
+
+#photo img{
+    width: 15vh;
+    height: 15vh;
+    justify-self: center;
+    align-content: center;
+    border-radius: 5%;
+    align-content: flex-end;
+}
+
+#cont{
+    margin-left: 3vh;
+    align-self: flex-start;
+}
+
+#name{
+    font-weight: 600;
+    font-size: 3vh;
+}
+
+#work{
+    font-size:2vh;
+}
+
+#icons{
+    margin-top: -1.5vh;
+    margin-left: -1vh;
+}
+
+.link{
+    text-decoration: none;
+}
+
+@media screen and (max-width: 500px){
+    #card{
+        align-content: space-around;
+    }
+
+    #name{
+        font-weight: 500;
+        font-size: 2.6vh;
+    }
+}
