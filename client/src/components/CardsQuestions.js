@@ -27,30 +27,33 @@ const CardsQuestions = () => {
     }
 
   return (
-    <div className={style.questBox}>
-        <div className={style.searchBar}>
-            <p>Busqueda: </p>
-            <input type="text" onChange={(e)=>onChangeSearch(e)} placeholder="Buscar..."></input>
-            <button onClick={(e)=>handleRestart(e)} value={input}>Reiniciar</button>
-        </div>
-        <div className={style.boxQuestions}>
-        {questions && questions.map((e)=>
-            <CardQuestion 
-            cantAnswers={e.cantAnswers}
-            nickname={e.user.nickname}
-            key={e.id}
-            id={e.id}
-            likes={e.likes}
-            title={e.title} 
-            text={e.text} 
-            teachPoints={e.teachPoints}
-            picture={e.user.picture}/>
-            )
-        }
-        </div>
-        <div className={style.paginado}>
-            <h3> acá el paginado </h3>
-        </div>
+    <div divclassName={style.questBox}>
+
+            <div className={style.searchBar}>
+                <input type="text" onChange={(e)=>onChangeSearch(e)} placeholder="Buscar..."></input>
+                <button onClick={(e)=>handleRestart(e)} value={input}>Reiniciar</button>
+            </div>
+
+            <div className={style.boxQuestions}>
+            {questions && questions.map((e)=>
+                <CardQuestion 
+                cantAnswers={e.cantAnswers}
+                nickname={e.user.nickname}
+                key={e.id}
+                id={e.id}
+                likes={e.likes}
+                title={e.title} 
+                text={e.text} 
+                teachPoints={e.teachPoints}
+                picture={e.user.picture}/>
+                )
+            }
+            </div>
+
+            <div className={style.paginado}>
+                <h3> acá el paginado </h3>
+            </div>
+        
     </div>
   )
 }
