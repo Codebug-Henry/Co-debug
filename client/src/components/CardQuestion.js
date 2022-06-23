@@ -52,7 +52,7 @@ const CardQuestion = ({cantAnswers, nickname, id, likes, title, text, teachPoint
                     <img onClick={()=> handlerDislike()} src={dislike} alt="mano abajo" className={style.dislike}/>
                 </div>
                 <div>
-                    <img src={favorito} alt="denuncia" className={style.like}/>
+                    <img src={favorito} alt="favorito" className={style.like}/>
                 </div>
                 <div>
                     <img src={denuncia} alt="denuncia" className={style.like}/>
