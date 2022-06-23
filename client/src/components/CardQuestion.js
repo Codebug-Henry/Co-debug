@@ -7,7 +7,7 @@ import dislike from "../images/dislike2.png"
 import denuncia from "../images/denuncia2.png"
 import favorito from "../images/favorito2.png"
 
-const CardQuestion = ({cantAnswers, nickname, id, likes, title, text, teachPoints}) => {
+const CardQuestion = ({cantAnswers, nickname, picture, likes, title, text, teachPoints}) => {
     
     //const dispatch = useDispatch()
     const [ likeOnScreen, setlikeOnScreen ] = useState(likes)
@@ -28,6 +28,13 @@ const CardQuestion = ({cantAnswers, nickname, id, likes, title, text, teachPoint
 
   return (
     <div className={style.total}>
+        <div className={style.pictureBox}>
+            <img
+              className={style.userImage}
+              src={picture}
+              alt="imagen de usuario"
+            />
+        </div>
         <div className={style.leftBox}>
             <div className={style.TitleAndExtrasBox}>
                 <div className={style.userPreg}>

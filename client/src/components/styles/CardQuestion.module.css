@@ -52,3 +52,7 @@
     align-items: baseline;
     gap: 5vh;
 }
+.userImage{
+    border-radius: 30px;
+    width: 60px;
+}
