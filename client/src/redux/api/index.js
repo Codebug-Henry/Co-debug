@@ -17,6 +17,7 @@ export const deleteQuestion = (id) => axios.delete(`${URL}/question/${id}`)
 export const addFavourites = (sub, qId, boolean) => axios.put(`${URL}/questions/favourites?sub=${sub}&id=${qId}&add=${boolean}`);
 export const getFavourites = (sub) => axios.get(`${URL}/questions/favourites/${sub}`)
 export const getAllQuestions = (search, sort) => axios.get(`${URL}/questions?search=${search}&sort=${sort}`);
+// export const getAllQuestions = (search, sort) => axios.get(`${URL}/questions`);
 export const getUserQuestions = (sub) => axios.get(`${URL}/questions/${sub}`)
 
 // RUTAS ANSWER
