@@ -14,7 +14,7 @@ const sortByPointsAsc = (a, b) => {
 const populateDB = async () => {
 
     const users = [
-        { sub: '1',  name: 'Gonzalo',  nickname: 'gonza', email: 'gonza@gmail.com', locale: 'argentina', favourites: [1, 2, 4], cantFav: 3, cantQuest: 3, cantAns: 1 },
+        { sub: '1',  name: 'Gonzalo',  nickname: 'gonza', email: 'gonza@gmail.com', locale: 'argentina', picture:"https://media-exp1.licdn.com/dms/image/C4E03AQHrPJNaA_xQRQ/profile-displayphoto-shrink_800_800/0/1612972013299?e=1661385600&v=beta&t=1lbIzsR2k2GfKHSO7VFmh6z059m_BLzYXJSZhDLVMSA", favourites: [1, 2, 4], cantFav: 3, cantQuest: 3, cantAns: 1 },
         { sub: '2',  name: 'Santiago',  nickname: 'santi', email: 'santi@gmail.com', locale: 'argentina', favourites: [3, 4, 5], cantFav: 3, cantQuest: 2, cantAns: 1 },
         { sub: '3',  name: 'Felipe',  nickname: 'feli', email: 'feli@gmail.com', locale: 'argentina', favourites: [1], cantFav: 1, cantQuest: 1, cantAns: 2 },
         { sub: '4',  name: 'David',  nickname: 'davo', email: 'davo@gmail.com', locale: 'argentina', cantAns: 2 },

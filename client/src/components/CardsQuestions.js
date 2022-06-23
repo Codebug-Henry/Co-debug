@@ -25,7 +25,8 @@ const CardsQuestions = () => {
             likes={e.likes}
             title={e.title} 
             text={e.text} 
-            teachPoints={e.teachPoints}/>
+            teachPoints={e.teachPoints}
+            picture={e.user.picture}/>
             )
         }
         </div>

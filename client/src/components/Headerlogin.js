@@ -7,6 +7,7 @@ import { useAuth0 } from "@auth0/auth0-react";
 import style from "./styles/Headerlogin.module.css";
 import { sendUserInfo } from "../redux/actions";
 import Header from './Header'
+import Loading from "./Loading.js"
 
 const Headerlogin = () => {
   const { user } = useAuth0();
@@ -21,9 +22,7 @@ const Headerlogin = () => {
   }, []);
 
   useEffect(() => {
-    if(user){
       dispatch(sendUserInfo(user))
-    }
   }, [user])
 
   const handleResize = () => {
@@ -140,7 +139,7 @@ const Headerlogin = () => {
         </div>
       </div>
     </div>) : 
-    <Header />
+    <Loading />
   );
 };
 
