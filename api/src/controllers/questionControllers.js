@@ -8,6 +8,7 @@ const {User,Question} = require("../db.js")
 // const user_try={
 //     sub:"id 1",
 //     name:"usuario de prueba",
+//     nickname:"usuario",
 //     email:"usuario.com",
 //     locale:"argnetina",
 // }
@@ -21,7 +22,8 @@ const deleteUserQuestion=async (req,res,next)=>{
                 id
             }
         })
-        res.send(await User.findOne({include:Question}))
+        // res.send(await User.findOne({include:Question}))
+        res.send("borrado correctamente")        
     } catch (error) {
         next(error)
     }
@@ -39,8 +41,8 @@ const putUserQuestion=async (req,res,next)=>{
         let questionUpdated=await Question.findByPk(id)
 
         res.send({
-            text:questionUpdated.text,
-            title:questionUpdated.title
+            text,
+            title
         })
     } catch (error) {
         next(error)
@@ -53,15 +55,13 @@ const putUserQuestion=async (req,res,next)=>{
 const postQuestion = async (req,res,next)=>{
    const {sub,text,title} = req.body
 
-//    let user 
-
-   if(!sub||!text||!title) next(new Error(message="falta informacion"))
-   try {
+//    let user
+    
+    try {
         // user = await User.findByPk(user_try.sub)
         // if(!user)user = await  User.create(user_try)
         const user = await User.findByPk(sub)
         const newQuestion = await Question.create({text,title})
-        await user.addQuestion(newQuestion)
         newQuestion.setUser(user)
         // const user_whit_question=await User.findAll({include:Question})
         // res.send([newQuestion,user_whit_question])
@@ -78,6 +78,7 @@ const getSingleQuestion=async (req,res,next)=>{
     try {
         let questionFound = await Question.findByPk(id)
         let user=await questionFound.getUser()
+        let answers=await questionFound.getAnswers()
 
         res.send(
             {
@@ -85,6 +86,7 @@ const getSingleQuestion=async (req,res,next)=>{
                     name:user.name,
                 },
                 ...questionFound.dataValues,
+                answers
             }
         )
 
