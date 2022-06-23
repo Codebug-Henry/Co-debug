@@ -1,12 +1,12 @@
 const { User, Question, Answer } = require('../db.js');
 
 // Callback function for descending sort
-const sortQuestionsDesc = (a, b) => {
+const sortByPointsDesc = (a, b) => {
     return b.teachPoints - a.teachPoints
 }
 
 // Callback function for ascending sort
-const sortQuestionsAsc = (a, b) => {
+const sortByPointsAsc = (a, b) => {
     return a.teachPoints - b.teachPoints
 }
 
@@ -63,7 +63,7 @@ const populateDB = async () => {
 }
 
 module.exports={
-    sortQuestionsDesc,
-    sortQuestionsAsc,
+    sortByPointsDesc,
+    sortByPointsAsc,
     populateDB,
 }

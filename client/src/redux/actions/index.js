@@ -1,4 +1,4 @@
-import { SEND_USER_INFO, GET_TOPTEN_RANKING, GET_USER_INFO, MODIFY_USER, DELETE_USER, SEND_QUESTION, MODIFY_QUESTION, DELETE_QUESTION, GET_RANKING, GET_QUESTION, SEND_RESPONSE, GET_FAVOURITES, GET_ALL_QUESTIONS, GET_USER_QUESTIONS, PUT_ANSWER, DELETE_ANSWER, GET_USER_ANSWERS } from './actionTypes'
+import { SEND_USER_INFO, GET_TOPTEN_RANKING, GET_USER_INFO, MODIFY_USER, DELETE_USER, SEND_QUESTION, MODIFY_QUESTION, DELETE_QUESTION, GET_RANKING, GET_QUESTION, SEND_RESPONSE, GET_FAVOURITES, GET_ALL_QUESTIONS, GET_ALL_QUESTIONS_SORTED, GET_SEARCH_QUESTIONS, GET_USER_QUESTIONS, PUT_ANSWER, DELETE_ANSWER, GET_USER_ANSWERS } from './actionTypes'
 import * as api from '../api'
 
 // RUTAS user - users
@@ -110,10 +110,28 @@ export const getFavourites = (sub) => async (dispatch) => {
     }
 }
 
-export const getAllQuestions = (search, sort) => async (dispatch) => {
+export const getAllQuestions = () => async (dispatch) => {
     try {
-        const { data } = await api.getAllQuestions(search, sort)
+        const { data } = await api.getAllQuestions()
         dispatch({ type: GET_ALL_QUESTIONS, payload: data })
+    } catch (error) {
+        console.log(error.message)
+    }
+}
+
+export const getAllQuestionsSorted = (sort) => async (dispatch) => {
+    try {
+        const { data } = await api.getAllQuestionsSorted(sort)
+        dispatch({ type: GET_ALL_QUESTIONS_SORTED, payload: data })
+    } catch (error) {
+        console.log(error.message)
+    }
+}
+
+export const getSearchQuestions = (search) => async (dispatch) => {
+    try {
+        const { data } = await api.getSearchQuestions(search)
+        dispatch({ type: GET_SEARCH_QUESTIONS, payload: data })
     } catch (error) {
         console.log(error.message)
     }

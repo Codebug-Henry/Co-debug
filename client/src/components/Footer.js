@@ -17,7 +17,9 @@ const footer = () => {
           </Link>
         </div>
         <div className={`col-lg-4 ${style.col3}`}>
-          Todos los derechos re sebados y los torcidos ni te cuento
+          <Link className={style.links} to="/terminos">
+            Terminos y condiciones
+          </Link>
         </div>
       </div>
     </div>
