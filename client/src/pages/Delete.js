@@ -1,7 +1,6 @@
 import React from "react";
 import Footer from "../components/Footer.js";
 import style from "./styles/Delete.module.css";
-import Header from "../components/Header.js";
 
 const Delete = () => {
   return (

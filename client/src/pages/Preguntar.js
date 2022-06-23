@@ -1,7 +1,5 @@
 import React from 'react';
 import { useAuth0 } from '@auth0/auth0-react';
-import Headerlogin from '../components/Headerlogin';
-import Header from "../components/Header";
 import style from "./styles/Preguntar.module.css";
 import Footer from "../components/Footer.js";
 import FormQuestion from '../components/FormQuestion';

@@ -1,6 +1,4 @@
 import React from "react";
-import Header from "../components/Header.js";
-import Headerlogin from "../components/Headerlogin.js";
 import style from "./styles/Landing.module.css";
 import { useAuth0 } from "@auth0/auth0-react";
 import Loading from "../components/Loading.js";

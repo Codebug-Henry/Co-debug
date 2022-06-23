@@ -1,7 +1,5 @@
 import React from "react";
 import Footer from "../components/Footer.js";
-import Headerlogin from "../components/Headerlogin.js";
-import Header from "../components/Header.js";
 import { useAuth0 } from "@auth0/auth0-react";
 import style from "./styles/Admin.module.css";
 import Loading from "../components/Loading.js";
