@@ -22,7 +22,9 @@ const putUserInfo = async (req, res, next) => {
     const {name,nickname,picture,myTeachPoints} = req.body
 
     try {
-        await User.update({name,nickname,picture,myTeachPoints},{
+        if(name) var nameChanges = (await User.findByPk(sub)).nameChanges+1
+        if(nameChanges>2)next(new Error(message="no se puede cambiar mas de 3 veces"))
+        await User.update({name,nickname,picture,myTeachPoints,nameChanges},{
             where:{
                 sub:(sub)
             }
