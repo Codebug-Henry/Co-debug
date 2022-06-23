@@ -6,9 +6,6 @@ import Header from "../components/Header.js";
 const Delete = () => {
   return (
     <div>
-      <div>
-        <Header />
-      </div>
       {/* Acá el contenido para no logueados */}
       <div className={`container-fluid ${style.container}`}>
         <div className={`row ${style.middleRow}`}>

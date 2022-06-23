@@ -1,25 +1,37 @@
 import { Link } from "react-router-dom";
 import logo from "../images/logo_codebug.png";
 import React from "react";
+import { useDispatch, useSelector} from 'react-redux'
 import { useState, useEffect } from "react";
 import { useAuth0 } from "@auth0/auth0-react";
 import style from "./styles/Headerlogin.module.css";
+import { sendUserInfo } from "../redux/actions";
+import Header from './Header'
 
 const Headerlogin = () => {
   const { user } = useAuth0();
+  const { isAuthenticated } = useAuth0();
   const { logout } = useAuth0();
-
+  const dispatch = useDispatch()
+  const userInfo = useSelector(state => state.user)
   const [width, setWidth] = useState(window.innerWitdh);
 
   useEffect(() => {
     window.addEventListener("resize", handleResize, false);
   }, []);
 
+  useEffect(() => {
+    if(user){
+      dispatch(sendUserInfo(user))
+    }
+  }, [user])
+
   const handleResize = () => {
     setWidth(window.innerWidth);
   };
 
   return (
+    isAuthenticated ? (
     <div className={`container-fluid ${style.container}`}>
       <div className={`row ${style.row1}`}>
         <div className={`col-lg ${style.col1}`}>
@@ -41,15 +53,15 @@ const Headerlogin = () => {
           <Link to="/ranking" className={style.linksInt}>
             Ranking
           </Link>
-          <div className={style.linksInt}>Teach points</div>
+          <div className={style.linksInt}>Teach points {userInfo.myTeachPoints}</div>
         </div>
 
         <div className={`col-lg ${style.col4} ${style.imgNameLogOut}`}>
           <Link to="/configuracion" className={style.contImagen}>
             <img
               className={style.userImage}
-              src={user.picture}
-              alt={user.name}
+              src={userInfo.picture}
+              alt={userInfo.name}
             />
           </Link>
           <div className="dropdown">
@@ -127,7 +139,8 @@ const Headerlogin = () => {
           </div>
         </div>
       </div>
-    </div>
+    </div>) : 
+    <Header />
   );
 };
 
