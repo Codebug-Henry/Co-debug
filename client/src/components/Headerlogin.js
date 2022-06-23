@@ -78,7 +78,7 @@ const Headerlogin = () => {
               data-bs-toggle="dropdown"
               aria-expanded="false"
             >
-              {user.name}
+              {userInfo.name}
             </button>
             <ul
               className="dropdown-menu dropdown-menu-dark"
