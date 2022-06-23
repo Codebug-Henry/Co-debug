@@ -38,7 +38,7 @@ const getAllQuestions = async (req, res, next) => {
 
     try {
 
-        let condition = search !== "undefined"
+        let condition = search
         ? {[Op.or]: [{ title: {[Op.iLike]: `%${search}%`} }, { text: {[Op.iLike]: `%${search}%`} }]}
         : {}
         
