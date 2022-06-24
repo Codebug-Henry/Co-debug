@@ -1,16 +1,10 @@
-const { User } = require('../db')
+const { User } = require('../db');
+const { paginate, sortByPointsDesc, sortByPointsAsc } = require('./generalControllers');
 
 const getTopTen = async (req,res,next)=>{
     const allUsers = await User.findAll()
-      let sortedUsers = allUsers.sort(function (a, b) {
-          if (a.myTeachPoints > b.myTeachPoints) {
-            return -1;
-          }
-          if (b.myTeachPoints > a.myTeachPoints) {
-            return 1;
-          }
-          return 0;
-        })
+
+      let sortedUsers = allUsers.sort(sortByPointsDesc)
 
       res.send (sortedUsers.slice(0,10))
 }
@@ -18,27 +12,16 @@ const getTopTen = async (req,res,next)=>{
 const getRanking = async (req,res,next)=>{
     //  /users?sort=ascendent/descendent
     const allUsers = await User.findAll()
-      let sortedUsers = req.query.sort === "ascendent" ?
-        allUsers.sort(function (a, b) {
-          if (a.myTeachPoints > b.myTeachPoints) {
-            return 1;
-          }
-          if (b.myTeachPoints > a.myTeachPoints) {
-            return -1;
-          }
-          return 0;
-        }) :
-        allUsers.sort(function (a, b) {
-          if (a.myTeachPoints > b.myTeachPoints) {
-            return -1;
-          }
-          if (b.myTeachPoints > a.myTeachPoints) {
-            return 1;
-          }
-          return 0;
-        })
 
-      res.send (sortedUsers)
+    const {page, limit}=req.query
+
+    let sortedUsers = req.query.sort === "ascendent" 
+
+    ? allUsers.sort(sortByPointsAsc) 
+    
+    : allUsers.sort(sortByPointsDesc)
+    // limit 10  page 5  [elementos]
+    res.send (paginate(parseInt(limit), parseInt(page), sortedUsers))
  }
 
 module.exports={

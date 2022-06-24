@@ -7,6 +7,8 @@ const postAnswer = async (req, res, next) => {
         const newAnswer = await Answer.create({text})
         const question= await Question.findByPk(id)
         const user= await User.findByPk(sub)
+        await user.update({cantAns:user.cantAns+1})
+        await question.update({cantAnswers:question.cantAnswers+1})
         
         await newAnswer.setQuestion(question)
         await newAnswer.setUser(user)
@@ -47,11 +49,18 @@ const deleteAnswer  =async (req, res, next) => {
     const {id} = req.params
 
     try {
-        await Answer.destroy({
-            where:{
-                id
-            }
-        })
+
+        const answerDeleted=await Answer.findByPk(id)
+
+        const userDeleter = await User.findByPk(answerDeleted.userSub)
+
+        const question = await User.findByPk(answerDeleted.questionId)
+
+        await userDeleter.update({cantAns:userDeleter.cantAns-1})
+
+        await question.update({cantAnswer:question.cantAnswer-1})
+
+        await answerDeleted.destroy()
        
        res.send("borrado correctamente")
 
