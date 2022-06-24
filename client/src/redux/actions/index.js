@@ -110,9 +110,9 @@ export const getFavourites = (sub) => async (dispatch) => {
     }
 }
 
-export const getAllQuestions = () => async (dispatch) => {
+export const getAllQuestions = (page) => async (dispatch) => {
     try {
-        const { data } = await api.getAllQuestions()
+        const { data } = await api.getAllQuestions(page)
         dispatch({ type: GET_ALL_QUESTIONS, payload: data })
     } catch (error) {
         console.log(error.message)
