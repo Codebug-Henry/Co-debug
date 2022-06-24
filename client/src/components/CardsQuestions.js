@@ -35,7 +35,7 @@ const CardsQuestions = () => {
             </div>
 
             <div className={style.boxQuestions}>
-            {questions && questions.map((e)=>
+            {questions.results && questions.results.map((e)=>
                 <CardQuestion 
                 cantAnswers={e.cantAnswers}
                 nickname={e.user.nickname}
