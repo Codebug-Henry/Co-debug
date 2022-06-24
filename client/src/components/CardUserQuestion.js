@@ -31,10 +31,10 @@ const CardUserQuestion = ({id, title, text, likes, cantAnswers, name, picture, s
         style1 === true ? setStyle1(false) : setStyle1(true)
     }
 
-    function handleDeleteQuestion(e){
+    async function handleDeleteQuestion(e){
         e.preventDefault();
-        dispatch(deleteQuestion(id));
-        setCant(questions.length-1) 
+        await dispatch(deleteQuestion(id));
+        setCant(questions.length) 
     }
 
     function handleEditQuestion(e){
