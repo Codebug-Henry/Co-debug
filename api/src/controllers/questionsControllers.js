@@ -22,7 +22,11 @@ const getUserQuestions = async (req, res, next) => {
                 break
         }
         
-        let myQuestions = await Question.findAll({where: condition})
+        let myQuestions = await Question.findAll({where: condition,
+            order: [
+            ['createdAt', 'DESC'],
+            ['title', 'ASC'],
+        ]})
         
         res.send(paginate(parseInt(limit), parseInt(page), myQuestions))
 
