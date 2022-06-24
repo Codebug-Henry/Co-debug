@@ -1,4 +1,5 @@
 const { User } = require('../db')
+const { sortByPointsDesc } = require('./generalControllers')
 
 const getUserInfo = (req, res, next) => {
     const sub = req.params.sub
@@ -10,18 +11,15 @@ const getUserInfo = (req, res, next) => {
 const getUserPosition = async (req, res, next) => {
     try {
         const sub = req.params.sub
+
         const allUsers = await User.findAll()
-        allUsers.sort(function (a, b) {
-            if (a.myTeachPoints > b.myTeachPoints) {
-                return -1;
-            }
-            if (b.myTeachPoints > a.myTeachPoints) {
-                return 1;
-            }
-            return 0;
-        })
+
+        allUsers.sort(sortByPointsDesc)
+
         let allSub = allUsers.map(e => e.sub)
+
         let myPosition = allSub.indexOf(sub)
+
         res.send({myPosition : myPosition + 1})
     } catch (error) {
         next(error)
@@ -39,18 +37,19 @@ const postUser = async (req, res, next) => {
 }
 
 const putUserInfo = async (req, res, next) => {
-    const { sub } = req.params
-    const { name, nickname, picture, myTeachPoints } = req.body
+    const {sub} = req.params
+    let {name,nickname,picture,myTeachPoints,nameChanges} = req.body
 
     try {
-        await User.update({ name, nickname, picture, myTeachPoints }, {
-            where: {
-                sub: (sub)
+        nameChanges=nameChanges+1
+        await User.update({name,nickname,picture,myTeachPoints,nameChanges},{
+            where:{
+                sub:(sub)
             }
         })
-        let userUpdated = await User.findByPk(sub)
+        let userUpdated=await User.findByPk(sub)
 
-        res.send({ userUpdated })
+        res.send({userUpdated})
     } catch (error) {
         next(error)
     }
