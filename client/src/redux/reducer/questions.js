@@ -3,7 +3,7 @@ import { GET_ALL_QUESTIONS, GET_USER_QUESTIONS, GET_ALL_QUESTIONS_SORTED, GET_SE
 export default function questions (state = [], action){
     switch(action.type){
         case GET_ALL_QUESTIONS:
-            return action.payload
+            return action.payload.results
         case GET_ALL_QUESTIONS_SORTED:
             return action.payload
         case GET_USER_QUESTIONS:

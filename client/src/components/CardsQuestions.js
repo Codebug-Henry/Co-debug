@@ -8,12 +8,13 @@ const CardsQuestions = () => {
 
     const dispatch = useDispatch()
     const questions = useSelector((state)=> state.questions)
-    
+    const pages = useSelector(state => state.pages)
+    const [page, setPage] = useState(1)    
     const [input, setInput] = useState("");
 
     useEffect(()=>{
-        dispatch(getAllQuestions())
-    },[dispatch])
+        dispatch(getAllQuestions(page))
+    },[dispatch, page])
 
     const onChangeSearch = (e)=>{
         setInput(e.target.value);
@@ -23,7 +24,12 @@ const CardsQuestions = () => {
     const handleRestart = (e)=>{
         e.preventDefault();
         setInput("");
-        dispatch(getAllQuestions());
+        dispatch(getAllQuestions(page));
+    }
+
+    const handleClick = (e) => {
+        e.preventDefault()
+        setPage(parseInt(e.target.value))
     }
 
   return (
@@ -35,7 +41,7 @@ const CardsQuestions = () => {
             </div>
 
             <div className={style.boxQuestions}>
-            {questions.results && questions.results.map((e)=>
+            {questions && questions.map((e)=>
                 <CardQuestion 
                 cantAnswers={e.cantAnswers}
                 nickname={e.user.nickname}
@@ -50,8 +56,12 @@ const CardsQuestions = () => {
             }
             </div>
 
-            <div className={style.paginado}>
-                <h3> acá el paginado </h3>
+            <div className={style.paginado}>            
+                    {pages && pages.map(pag =>
+                        (   
+                                <button key={pag} onClick={e => handleClick(e)} value={pag}>{pag}</button>      
+                        )
+                    )}            
             </div>
         
     </div>
