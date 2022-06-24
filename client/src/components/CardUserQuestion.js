@@ -14,7 +14,7 @@ import { deleteQuestion, getUserQuestions, modifyQuestion } from '../redux/actio
 const CardUserQuestion = ({id, title, text, likes, cantAnswers, name, picture, setCant, sub, page}) => {
 
     const dispatch = useDispatch();
-    const questions = useSelector(state=> state.questions);
+    const questions = useSelector(state=> state.userQuestions);
     const [style1, setStyle1] = useState(true)
 
     const [newQuestion, setnewQuestion] = useState({

@@ -32,9 +32,6 @@ const CardsQuestions = () => {
         setPage(parseInt(e.target.value))
     }
 
-    
-  console.log(questions)
-
   return (
     <div divclassName={style.questBox}>
 
@@ -47,7 +44,7 @@ const CardsQuestions = () => {
             {questions && questions.map((e)=>
                 <CardQuestion 
                 cantAnswers={e.cantAnswers}
-                nickname={e.user ? e.user.nickname : 'anonimo'}
+                nickname={e.user.nickname}
                 key={e.id}
                 id={e.id}
                 likes={e.likes}
