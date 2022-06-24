@@ -11,7 +11,7 @@ import CheckIcon from '@mui/icons-material/Check';
 import { deleteQuestion, getUserQuestions, modifyQuestion } from '../redux/actions';
 
 
-const CardUserQuestion = ({id, title, text, likes, cantAnswers, name, picture, setCant, sub}) => {
+const CardUserQuestion = ({id, title, text, likes, cantAnswers, name, picture, setCant, sub, page}) => {
 
     const dispatch = useDispatch();
     const questions = useSelector(state=> state.questions);
@@ -23,9 +23,9 @@ const CardUserQuestion = ({id, title, text, likes, cantAnswers, name, picture, s
         text: text
     })
 
-    useEffect(()=>{
-        dispatch(getUserQuestions(sub))
-      }, [])
+    // useEffect(()=>{
+    //     dispatch(getUserQuestions(sub, page))
+    //   }, [])
 
     function toRender(){
         style1 === true ? setStyle1(false) : setStyle1(true)
@@ -45,7 +45,7 @@ const CardUserQuestion = ({id, title, text, likes, cantAnswers, name, picture, s
     async function handleConfirmQuestion(e){
         e.preventDefault();
         await dispatch(modifyQuestion(newQuestion));
-        dispatch(getUserQuestions(sub))
+        dispatch(getUserQuestions(sub, page))
         toRender()
     }
 

@@ -7,9 +7,9 @@ export default function questions (state = [], action){
         case GET_ALL_QUESTIONS_SORTED:
             return action.payload
         case GET_USER_QUESTIONS:
-            return action.payload
+            return action.payload.results
         case GET_USER_QUESTIONS_ORDERER:
-            return action.payload
+            return action.payload.results
         case GET_SEARCH_QUESTIONS:
             return action.payload
         default:
