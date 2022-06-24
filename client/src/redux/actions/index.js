@@ -138,18 +138,18 @@ export const getSearchQuestions = (search, page) => async (dispatch) => {
     }
 }
 
-export const getUserQuestions = (sub) => async (dispatch) => {
+export const getUserQuestions = (sub, page) => async (dispatch) => {
     try {
-        const { data } = await api.getUserQuestions(sub)
+        const { data } = await api.getUserQuestions(sub, page)
         dispatch({ type: GET_USER_QUESTIONS, payload: data })
     } catch (error) {
         console.log(error.message)
     }
 }
 
-export const getUserQuestionsOrderer = (sub, answered) => async (dispatch) => {
+export const getUserQuestionsOrderer = (sub, answered, page) => async (dispatch) => {
     try {
-        const { data } = await api.getUserQuestionsOrderer(sub, answered);
+        const { data } = await api.getUserQuestionsOrderer(sub, answered, page);
         dispatch({ type: GET_USER_QUESTIONS_ORDERER, payload: data})
     } catch (error) {
         console.log(error.message)

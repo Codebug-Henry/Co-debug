@@ -14,12 +14,14 @@ const MisPreguntas = () => {
   const questions = useSelector(state => state.questions);
   const dispatch = useDispatch();
 
-  let [cant, setCant] = useState(questions.length);
-
+  const [cant, setCant] = useState(questions.length);
+  const [page, setPage] = useState(1)
+ 
   useEffect(()=>{
-    dispatch(getUserQuestions(userInfo.sub))
-  }, [dispatch, userInfo.sub, cant])
+    dispatch(getUserQuestions(userInfo.sub, page))
+  }, [userInfo, cant])
 
+  console.log(questions)
 
   return (
     <div>
@@ -42,7 +44,7 @@ const MisPreguntas = () => {
                     questions.map(q => {
                         return (
                           <CardUserQuestion key={q.id} id={q.id} title={q.title} text={q.text} likes={q.likes} cantAnswers={q.cantAnswers} 
-                                            name={userInfo.nickname} picture={userInfo.picture} setCant={setCant} sub={userInfo.sub}/>
+                                            name={userInfo.nickname} picture={userInfo.picture} setCant={setCant} sub={userInfo.sub} page={page}/>
                         )
                     }) :
                     <div>
