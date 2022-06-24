@@ -20,6 +20,12 @@
   justify-content: center;
 }
 
+.col4 {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 .links {
   width: 30%;
   font-size: 1.25vw;
