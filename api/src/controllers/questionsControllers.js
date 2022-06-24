@@ -1,6 +1,6 @@
 const { User, Question } = require("../db");
 const { Op } = require('sequelize');
-const { sortByPointsAsc, sortByPointsDesc } = require("./generalControllers");
+const { sortByPointsAsc, sortByPointsDesc, paginate } = require("./generalControllers");
 
 const getUserQuestions = async (req, res, next) => {
 
@@ -34,7 +34,7 @@ const getUserQuestions = async (req, res, next) => {
 
 const getAllQuestions = async (req, res, next) => {
 
-    const {search, sort} = req.query
+    const {search, sort, page, limit} = req.query
 
     try {
 
@@ -47,7 +47,7 @@ const getAllQuestions = async (req, res, next) => {
         if (sort === "ascendent") allQuestions.sort(sortByPointsAsc)
         else if (sort === "descendent") allQuestions.sort(sortByPointsDesc)
 
-        res.send(allQuestions)
+        res.send (paginate(parseInt(limit), parseInt(page), allQuestions))
 
     } catch (error) {
         next(error)
@@ -59,13 +59,15 @@ const getFavourites = async (req, res, next) => {
 
     const {sub} = req.params
 
+    const {limit,page} = req.query
+
     try {
 
         const user = await User.findByPk(sub)
 
         const favourites = await Question.findAll({where: {id: {[Op.in]: user.favourites}}})
         
-        res.send(favourites)
+        res.send (paginate(parseInt(limit), parseInt(page), favourites))
 
     } catch (error) {
         next(error)

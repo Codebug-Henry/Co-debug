@@ -6,21 +6,18 @@
     margin: 3%;
     display: flex;
     align-items: center;
-    justify-content: space-around;
-    flex-direction: column;
+    justify-content: center;
+}
 
-}
-.boxQuestions{
-    margin: 2%;
-    display: flex;
-    justify-content: space-between;
-    gap: 2vh;
-    flex-direction: column;
-    padding: 2%;
-    
-}
 .paginado{
     display: flex;
     align-items: center;
     justify-content: center;
+}
+.searchBar{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-top: 2vh;
+    margin-bottom: 2vh;
 }

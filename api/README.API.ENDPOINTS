@@ -254,22 +254,24 @@ router.put("/question",putUserQuestion)
 
 ->DESCRIPCION: esta ruta es para poder modificar una pregunta.
 
-->REQUERIMIENTOS: por body enviar el id de la pregunta + campo a actualizar. 
+->REQUERIMIENTOS: por body enviar el id de la pregunta + campo a actualizar (en el caso de like, si se sumó o restó un like las opciones son "add" o "remove"). 
 
 {
   sub,
   id,
   //tag,
-  text,//contenido de la pregunta
-  title//titulo de la pregunta
+  text,   //contenido de la pregunta
+  title,  //titulo de la pregunta
+  like,   //"add" or "remove" 
 }
 
 ->RESPUESTA: devuelvo un objeto con la info actualizada.
 
 {
   //tag,
-  text,//contenido de la pregunta
-  title//titulo de la pregunta
+  text,   //contenido de la pregunta
+  title,   //titulo de la pregunta
+  likes,    //cantidad de likes de la pregunta
 }
 
 ____________________
@@ -437,17 +439,19 @@ RUTAS ANSWER
 
 ->DESCRIPCION: esta ruta es para que el usuario pueda editar una de sus respuestas
 
-->REQUERIMIENTOS: por body enviar el texto de la respuesta editado y el id
+->REQUERIMIENTOS: por body enviar el id de la respuesta, el texto editado y/o si se sumó o restó un like ("add"/"remove")
 
 {  
   id,
-  text
+  text,
+  like,   //"add" or "remove" 
 }
 
-->RESPUESTA: en caso de ser necesaria -> el texto de la respuesta editada
+->RESPUESTA: en caso de ser necesaria -> el texto de la respuesta editada y el contador de likes actualizado
 
 {
-  text
+  text,
+  likes,    //cantidad de likes de la respuesta 
 }
 
 -------------------------------

@@ -8,6 +8,7 @@ import style from "./styles/Headerlogin.module.css";
 import { sendUserInfo } from "../redux/actions";
 import Header from "./Header";
 
+
 const Headerlogin = () => {
   const { user } = useAuth0();
   const { isAuthenticated } = useAuth0();
@@ -21,8 +22,9 @@ const Headerlogin = () => {
   }, []);
 
   useEffect(() => {
-    if (user) {
-      dispatch(sendUserInfo(user));
+
+    if(isAuthenticated){
+      dispatch(sendUserInfo(user))
     }
   }, [user]);
 

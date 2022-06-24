@@ -1,12 +1,9 @@
 .total{
-    width: 100vh;
-    background-size: cover;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    flex-direction: row;
+
     background-color: rgb(255, 192, 124);
     border-radius: 1vh;
+    border: solid 1px black;
+    margin-bottom: 2vh;
 
 }
 .TitleAndExtrasBox{
@@ -39,11 +36,11 @@
 }
 .answerIt{
     border-radius: 2vh;
+    margin-bottom: 2vh;
 }
 .likes{
     margin-left: 3vh;
     padding: 1vh;
-
 }
 
 .bajoTexto{
@@ -51,4 +48,9 @@
     flex-direction: row;
     align-items: baseline;
     gap: 5vh;
+}
+.userImage{
+    border-radius: 30px;
+    width: 60px;
+    padding-top: 2vh;
 }
