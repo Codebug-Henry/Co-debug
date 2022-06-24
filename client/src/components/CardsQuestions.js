@@ -18,7 +18,7 @@ const CardsQuestions = () => {
 
     const onChangeSearch = (e)=>{
         setInput(e.target.value);
-        dispatch(getSearchQuestions(e.target.value));
+        dispatch(getSearchQuestions(e.target.value, page));
     }
 
     const handleRestart = (e)=>{
