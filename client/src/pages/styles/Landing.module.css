@@ -1,3 +1,4 @@
+/* landing LOGIN */
 .container {
   background-color: lightyellow;
 }
@@ -16,4 +17,39 @@
   display: flex;
   border: 1px black solid;
   align-items: center;
+}
+
+
+/* Landing Logout */
+
+.rightRowUp{
+  background-color: rgb(185, 155, 107);
+  padding: 1%;
+}
+
+.rightRowMidle{
+background-color: cadetblue;
+padding: 1%;
+}
+.rightRowDown{
+  background-color: rgb(193, 237, 123);
+  padding: 1%;
+  }
+
+.colOutLeft{
+  background-color: darkgreen;
+}
+
+.Titulo{
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-size: 400%;
+}
+.rigthContainer{
+  padding: 0;
+}
+
+.subTitulo{
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-size: 200%; 
+  letter-spacing: 13px;
 }

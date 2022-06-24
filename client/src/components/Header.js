@@ -13,7 +13,14 @@ const headerlogout = () => {
             <img className={style.logo} src={logo} alt="logo" />
           </Link>
         </div>
+
         <div className={`col-lg ${style.col2}`}>
+          <Link to="/preguntar" className={style.linksInt}>
+            Preguntar
+          </Link>
+        </div>
+
+        <div className={`col-lg ${style.col3}`}>
           <Butlog />
         </div>
       </div>
