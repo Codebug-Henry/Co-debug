@@ -1,13 +1,28 @@
 const { User, Question, Answer } = require('../db.js');
 
-// Callback function for descending sort
-const sortByPointsDesc = (a, b) => {
-    return b.teachPoints - a.teachPoints
-}
+//Get user position in ranking
+const getUserPosition = async (sub) => {
+    try {
+        const allUsers = await User.findAll({
+            order: [
+            ['myTeachPoints', 'DESC'],
+            ['cantAns', 'DESC'],
+            ['cantQuest', 'DESC'],
+        ]})
 
-// Callback function for ascending sort
-const sortByPointsAsc = (a, b) => {
-    return a.teachPoints - b.teachPoints
+        let myPosition
+
+        for (let i = 0; i < allUsers.length; i++) {
+            if (allUsers[i].sub === sub) {
+                myPosition = i + 1
+                break
+            }
+        }
+
+        return myPosition
+    } catch (error) {
+        console.log(error)
+    }
 }
 
 // Populate database with random data
@@ -35,9 +50,9 @@ const populateDB = async () => {
 
     const answers = [
         { userSub: 3, questionId: 1, text: 'El bucle for es una estructura de control en programación en la que se puede indicar de antemano el número máximo de iteraciones' },
-        { userSub: 3, questionId: 1, text: 'Su uso principal se orienta a los vectores, pudiendo modificar, agregar, eliminar o consultar datos que se encuentren según el índice.' },
-        { userSub: 3, questionId: 1, text: 'Por esto último, una condición mínima del vector es que debe ser ordenado, porque si se intenta leer un dato inexistente, esto genera un error de programación.' },
-        { userSub: 3, questionId: 2, text: 'El comando git push se usa para cargar contenido del repositorio local a un repositorio remoto.' },
+        { userSub: 4, questionId: 1, text: 'Su uso principal se orienta a los vectores, pudiendo modificar, agregar, eliminar o consultar datos que se encuentren según el índice.' },
+        { userSub: 5, questionId: 1, text: 'Por esto último, una condición mínima del vector es que debe ser ordenado, porque si se intenta leer un dato inexistente, esto genera un error de programación.' },
+        { userSub: 6, questionId: 2, text: 'El comando git push se usa para cargar contenido del repositorio local a un repositorio remoto.' },
         { userSub: 7, questionId: 2, text: 'El envío es la forma de transferir confirmaciones desde tu repositorio local a un repositorio remoto' },
         { userSub: 8, questionId: 2, text: 'Es el equivalente a git fetch, pero mientras que al recuperar se importan las confirmaciones a ramas locales, al enviar estas se exportan a ramas remotas.' },
         { userSub: 3, questionId: 2, text: 'Las ramas remotas se configuran mediante el comando git remote' },
@@ -62,45 +77,40 @@ const populateDB = async () => {
     }
 }
 
-const paginate=(limit,page,arr)=>{
+const paginate = (limit, page, arr)=>{
 
-    const startIndex=(page-1)*limit
+    const startIndex = (page - 1) * limit
 
-    const endIndex=(page)*limit
+    const endIndex = (page) * limit
 
-    const results=arr.slice(startIndex,endIndex)
+    const results = arr.slice(startIndex, endIndex)
 
-    let aux=Math.ceil(arr.length/limit)
+    let aux = Math.ceil(arr.length / limit)
 
-    let totalPages=aux
+    let totalPages = aux
 
-    let pages=[]
+    let pages = []
 
-    while(aux>0){
+    while (aux > 0) {
         pages.unshift(aux)
-        aux=aux-1
+        aux = aux - 1
     }
 
-    switch(page){
-        case 1:{
-            pages=pages.filter(p=>p<page+5)
-            break;
-        }
-        case 2:{
-            pages=pages.filter(p=>p<page+4)
-            break;
-        }
-        case pages.length-1:{
-            pages=pages.filter(p=>p>page-4)
-            break;
-        }
-        case pages.length:{
-            pages=pages.filter(p=>p>page-5)
-            break;
-        }
-        default:{
-            pages=pages.filter(p=>p>page-3&&p<page+3)
-        }
+    switch (page) {
+        case 1:
+            pages = pages.filter(p => p < page + 5)
+            break
+        case 2:
+            pages = pages.filter(p => p < page + 4)
+            break
+        case pages.length - 1:
+            pages = pages.filter(p => p > page - 4)
+            break
+        case pages.length:
+            pages = pages.filter(p => p > page - 5)
+            break
+        default:
+            pages = pages.filter(p => p > page - 3 && p < page + 3)
     }
 
     return {
@@ -110,11 +120,20 @@ const paginate=(limit,page,arr)=>{
     }
 }
 
-console.log(paginate(2,39,["a","b","c","d","e","f","g","h","i","j","k","a","b","c","d","e","f","g","h","i","j","k","a","b","c","d","e","f","g","h","i","j","k","a","b","c","d","e","f","g","h","i","j","k","a","b","c","d","e","f","g","h","i","j","k","a","b","c","d","e","f","g","h","i","j","k","a","b","c","d","e","f","g","h","i","j","k"]))
+// Callback function for descending sort
+// const sortByPointsDesc = (a, b) => {
+//     return b.teachPoints - a.teachPoints
+// }
+
+// Callback function for ascending sort
+// const sortByPointsAsc = (a, b) => {
+//     return a.teachPoints - b.teachPoints
+// }
 
 module.exports={
-    sortByPointsDesc,
-    sortByPointsAsc,
     populateDB,
-    paginate
+    paginate,
+    getUserPosition,
+    // sortByPointsDesc,
+    // sortByPointsAsc,
 }

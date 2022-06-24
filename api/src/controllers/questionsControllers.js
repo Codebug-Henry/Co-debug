@@ -1,11 +1,11 @@
 const { User, Question } = require("../db");
 const { Op } = require('sequelize');
-const { sortByPointsAsc, sortByPointsDesc, paginate } = require("./generalControllers");
+const { paginate } = require("./generalControllers");
 
 const getUserQuestions = async (req, res, next) => {
 
     const {sub} = req.params
-    const {answered} = req.query
+    const {answered, page, limit} = req.query
 
     try {
 
@@ -24,7 +24,7 @@ const getUserQuestions = async (req, res, next) => {
         
         let myQuestions = await Question.findAll({where: condition})
         
-        res.send(myQuestions)
+        res.send(paginate(parseInt(limit), parseInt(page), myQuestions))
 
     } catch (error) {
         next(error)
@@ -42,12 +42,14 @@ const getAllQuestions = async (req, res, next) => {
         ? {[Op.or]: [{ title: {[Op.iLike]: `%${search}%`} }, { text: {[Op.iLike]: `%${search}%`} }]}
         : {}
         
-        let allQuestions = await Question.findAll({where: condition, include:User})
+        let allQuestions = await Question.findAll({where: condition, include: User,
+            order: [
+            ['teachPoints', sort || 'DESC'],
+            ['likes', sort || 'DESC'],
+            ['cantAnswers', sort || 'DESC'],
+        ]})
         
-        if (sort === "ascendent") allQuestions.sort(sortByPointsAsc)
-        else if (sort === "descendent") allQuestions.sort(sortByPointsDesc)
-
-        res.send (paginate(parseInt(limit), parseInt(page), allQuestions))
+        res.send(paginate(parseInt(limit), parseInt(page), allQuestions))
 
     } catch (error) {
         next(error)
@@ -59,7 +61,7 @@ const getFavourites = async (req, res, next) => {
 
     const {sub} = req.params
 
-    const {limit,page} = req.query
+    const {limit, page} = req.query
 
     try {
 
@@ -67,7 +69,7 @@ const getFavourites = async (req, res, next) => {
 
         const favourites = await Question.findAll({where: {id: {[Op.in]: user.favourites}}})
         
-        res.send (paginate(parseInt(limit), parseInt(page), favourites))
+        res.send(paginate(parseInt(limit), parseInt(page), favourites))
 
     } catch (error) {
         next(error)
@@ -106,7 +108,7 @@ const putFavourites = async (req, res, next) => {
             res.send("Question removed from favourites")
 
         }
-
+        
     } catch (error) {
         next(error)
     }
