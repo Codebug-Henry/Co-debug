@@ -1,7 +1,7 @@
-const {Answer,Question,User} = require("../db")
+const {Answer, Question, User} = require("../db")
 
-const postAnswer=async (req,res,next)=>{
-    const {sub,id,text}=req.body
+const postAnswer = async (req, res, next) => {
+    const {sub, id, text} = req.body
 
      try {
         const newAnswer = await Answer.create({text})
@@ -19,23 +19,32 @@ const postAnswer=async (req,res,next)=>{
 //user.findbypk=usuario que respondio=>usuario.addAnswer(respuesta crada)/user.findbypk=question=>Question.addAnswer(respuesta crada)
 //llega por body respuesta, id de pregunta y id de usuario=>añade respuesta a usuario, pregunta, cdrea respuesta
 
-const putAnswer=async (req,res,next)=>{
-    const {id,text}=req.body
+const putAnswer = async (req, res, next) => {
+    const {id, text, like} = req.body
+
+    const answer = await Answer.findByPk(id)
+    let newLikes = answer.likes
+
+    if (like === "add") newLikes++
+    else if (like === "remove") newLikes--
 
     try {
-       await Answer.update({text},{
+       await Answer.update({text, likes: newLikes},{
         where:{
             id
         }
        })
-       res.send({text})
+       res.send({
+        text,
+        likes: newLikes
+       })
     } catch (error) {
        next(error)
     }
 }
 
-const deleteAnswer=async (req,res,next)=>{
-    const {id}=req.params
+const deleteAnswer  =async (req, res, next) => {
+    const {id} = req.params
 
     try {
         await Answer.destroy({
