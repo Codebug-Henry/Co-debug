@@ -20,11 +20,11 @@ const CardsQuestions = () => {
     dispatch(getSearchQuestions(e.target.value));
   };
 
-  const handleRestart = (e) => {
-    e.preventDefault();
-    setInput("");
-    dispatch(getAllQuestions(page));
-  };
+
+    const onChangeSearch = (e)=>{
+        setInput(e.target.value);
+        dispatch(getSearchQuestions(e.target.value, page));
+    }
 
   const handleClick = (e) => {
     e.preventDefault();

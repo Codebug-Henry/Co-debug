@@ -20,9 +20,9 @@ export const getTopTenRanking = () => async (dispatch) => {
     }    
 }
 
-export const getRanking = () => async (dispatch) => {
+export const getRanking = (sort, page) => async (dispatch) => {
     try {
-        const { data } = await api.getRanking()
+        const { data } = await api.getRanking(sort, page)
         dispatch({ type: GET_TOPTEN_RANKING, payload: data})
     } catch (error) {
         console.log(error.message)
@@ -58,9 +58,10 @@ export const deleteUser = (sub) => async (dispatch) => {
 
 // RUTAS question - questions
 
-export const sendQuestion = async (question) => {
+export const sendQuestion = (question) => async (dispatch) => {
     try {
-        await api.sendQuestion(question)
+        const { data } = await api.sendQuestion(question)
+        dispatch({ type: GET_QUESTION, payload: data})
     } catch (error) {
         console.log(error.message)
     }
@@ -101,9 +102,9 @@ export const addFavourites = async (sub, qId, boolean)  => {
     }
 }
 
-export const getFavourites = (sub) => async (dispatch) => {
+export const getFavourites = (sub, page) => async (dispatch) => {
     try {
-        const { data } = await api.getFavourites(sub)
+        const { data } = await api.getFavourites(sub, page)
         dispatch({ type: GET_FAVOURITES, payload: data })
     } catch (error) {
         console.log(error.message)
@@ -119,36 +120,36 @@ export const getAllQuestions = (page) => async (dispatch) => {
     }
 }
 
-export const getAllQuestionsSorted = (sort) => async (dispatch) => {
+export const getAllQuestionsSorted = (sort, page) => async (dispatch) => {
     try {
-        const { data } = await api.getAllQuestionsSorted(sort)
+        const { data } = await api.getAllQuestionsSorted(sort, page)
         dispatch({ type: GET_ALL_QUESTIONS_SORTED, payload: data })
     } catch (error) {
         console.log(error.message)
     }
 }
 
-export const getSearchQuestions = (search) => async (dispatch) => {
+export const getSearchQuestions = (search, page) => async (dispatch) => {
     try {
-        const { data } = await api.getSearchQuestions(search)
+        const { data } = await api.getSearchQuestions(search, page)
         dispatch({ type: GET_SEARCH_QUESTIONS, payload: data })
     } catch (error) {
         console.log(error.message)
     }
 }
 
-export const getUserQuestions = (sub) => async (dispatch) => {
+export const getUserQuestions = (sub, page) => async (dispatch) => {
     try {
-        const { data } = await api.getUserQuestions(sub)
+        const { data } = await api.getUserQuestions(sub, page)
         dispatch({ type: GET_USER_QUESTIONS, payload: data })
     } catch (error) {
         console.log(error.message)
     }
 }
 
-export const getUserQuestionsOrderer = (sub, answered) => async (dispatch) => {
+export const getUserQuestionsOrderer = (sub, answered, page) => async (dispatch) => {
     try {
-        const { data } = await api.getUserQuestionsOrderer(sub, answered);
+        const { data } = await api.getUserQuestionsOrderer(sub, answered, page);
         dispatch({ type: GET_USER_QUESTIONS_ORDERER, payload: data})
     } catch (error) {
         console.log(error.message)
@@ -183,9 +184,9 @@ export const deleteAnswer = (id) => async (dispatch) => {
     }
 }
 
-export const getUserAnswers = (sub) => async (dispatch) => {
+export const getUserAnswers = (sub, page) => async (dispatch) => {
     try {
-        const { data } = await api.getUserAnswers(sub)
+        const { data } = await api.getUserAnswers(sub, page)
         dispatch({ type: GET_USER_ANSWERS, payload: data })
     } catch (error) {
         console.log(error.message)

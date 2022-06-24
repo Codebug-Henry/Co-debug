@@ -33,7 +33,7 @@ module.exports = (sequelize) => {
     // },
     locale: {
       type: DataTypes.STRING,
-      allowNull: false,
+      // allowNull: false,
     },
     myTeachPoints: {
       type: DataTypes.INTEGER,

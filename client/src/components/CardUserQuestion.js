@@ -11,10 +11,10 @@ import CheckIcon from '@mui/icons-material/Check';
 import { deleteQuestion, getUserQuestions, modifyQuestion } from '../redux/actions';
 
 
-const CardUserQuestion = ({id, title, text, likes, cantAnswers, name, picture, setCant, sub}) => {
+const CardUserQuestion = ({id, title, text, likes, cantAnswers, name, picture, setCant, sub, page}) => {
 
     const dispatch = useDispatch();
-    const questions = useSelector(state=> state.questions);
+    const questions = useSelector(state=> state.userQuestions);
     const [style1, setStyle1] = useState(true)
 
     const [newQuestion, setnewQuestion] = useState({
@@ -23,18 +23,18 @@ const CardUserQuestion = ({id, title, text, likes, cantAnswers, name, picture, s
         text: text
     })
 
-    useEffect(()=>{
-        dispatch(getUserQuestions(sub))
-      }, [])
+    // useEffect(()=>{
+    //     dispatch(getUserQuestions(sub, page))
+    //   }, [])
 
     function toRender(){
         style1 === true ? setStyle1(false) : setStyle1(true)
     }
 
-    function handleDeleteQuestion(e){
+    async function handleDeleteQuestion(e){
         e.preventDefault();
-        dispatch(deleteQuestion(id));
-        setCant(questions.length-1) 
+        await dispatch(deleteQuestion(id));
+        setCant(questions.length) 
     }
 
     function handleEditQuestion(e){
@@ -45,7 +45,7 @@ const CardUserQuestion = ({id, title, text, likes, cantAnswers, name, picture, s
     async function handleConfirmQuestion(e){
         e.preventDefault();
         await dispatch(modifyQuestion(newQuestion));
-        dispatch(getUserQuestions(sub))
+        dispatch(getUserQuestions(sub, page))
         toRender()
     }
 

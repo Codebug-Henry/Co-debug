@@ -51,10 +51,10 @@ const postQuestion = async (req, res, next) => {
     
     try {
         const user = await User.findByPk(sub)
-        await user.update({cantQuest:user.cantQuest+1})
+        await user.update({cantQuest: user.cantQuest + 1})
         const newQuestion = await Question.create({text, title})
         newQuestion.setUser(user)
-        res.send(newQuestion)
+        res.send({user, ...newQuestion.dataValues})
 
    } catch (error) {
         next(error)
@@ -71,9 +71,7 @@ const getSingleQuestion = async (req, res, next) => {
 
         res.send(
             {
-                user:{
-                    name:user.name,
-                },
+                user,
                 ...questionFound.dataValues,
                 answers
             }
