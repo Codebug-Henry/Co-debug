@@ -28,7 +28,7 @@ const putUserInfo = async (req, res, next) => {
     let {name, nickname, picture, myTeachPoints, nameChanges} = req.body
 
     try {
-        nameChanges = nameChanges + 1
+        if (name) nameChanges = nameChanges + 1
         await User.update({name, nickname, picture, myTeachPoints, nameChanges}, {
             where:{
                 sub:(sub)
@@ -52,7 +52,7 @@ const deleteUser = async (req, res, next) => {
                 sub: (sub)
             }
         })
-        res.send("el usuario a sido eliminado correctamente")
+        res.send("el usuario ha sido eliminado correctamente")
     } catch (error) {
         next(error)
     }

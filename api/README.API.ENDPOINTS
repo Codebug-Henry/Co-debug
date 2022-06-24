@@ -2,9 +2,9 @@
 
 --------------------------------------------------------------------------------------------------------------------
 
-<> router.post("/user",postUser) <>
+<> router.post("/user", postUser) <>
 
-->DESCRIPCION:esta ruta es para crear un usuario cuando se registra
+->DESCRIPCION: esta ruta es para crear un usuario cuando se registra
 
 ->REQUERIMIENTOS: por body enviar datos del usuario. 
 
@@ -37,13 +37,13 @@
 
 --------------------------------------------------------------------------------------------------------------------
 
-<> router.get("/users/topTen",getTopTen) <>
+<> router.get("/users/topTen", getTopTen) <>
 
-->DESCRIPCION:esta ruta es para obtener los usuarios con los 10 mayores puntajes
+->DESCRIPCION: esta ruta es para obtener los usuarios con los 10 mayores puntajes
 
 ->REQUERIMIENTOS: ninguno
 
-->RESPUESTA: un arreglo de tamaño 10, con dichos usuarios
+->RESPUESTA: un arreglo de tamaño 10, con dichos usuarios ordenado por puntos de mayor a menor
 
 [
     {
@@ -67,17 +67,22 @@
 
 --------------------------------------------------------------------------------------------------------------------
 
-<> router.get("/users",getRanking) <>
+<> router.get("/users", getRanking) <>
 
-->DESCRIPCION:esta ruta es para obtener todos los usuarios para rankearlos
+->DESCRIPCION: esta ruta es para obtener todos los usuarios para rankearlos
 
-->REQUERIMIENTOS: por query deberan enviar la variable sort para definir como ordenarlos (asc/desc)
+->REQUERIMIENTOS: por query deberan enviar page, limit y sort para definir como ordenarlos (asc/desc)
 
 /?sort=asc/desc
+&page=(número de página)
+&limit=(cantidad de elementos por página)
 
-->RESPUESTA: un arreglo con todos los usuarios, en un principio acomodados de mayor a menos puntaje
+->RESPUESTA: un objeto con 3 propiedades: totalPages, pages, results (todos los usuarios, en un principio acomodados de mayor a menos puntaje)
 
-[
+{
+  totalPages: (cantidad de paginas totales),
+  pages: []     //rango de paginas habilitadas (máximo 5),
+  results: [
     {
         myTeachPoints,
         name,
@@ -97,13 +102,14 @@
         cantAns,
         sub
     }
-]
+  ]
+}
 
 --------------------------------------------------------------------------------------------------------------------
 
-<> router.get("/user/:sub",getUserInfo) <>
+<> router.get("/user/:sub", getUserInfo) <>
 
-->DESCRIPCION:esta ruta es para devolver toda la info de un usuario
+->DESCRIPCION: esta ruta es para devolver toda la info de un usuario
 
 ->REQUERIMIENTOS: por params enviar sub de el usuario  
 
@@ -124,25 +130,27 @@
     favourites,
     cantFav,
     cantQuest,
-    cantAns
+    cantAns,
+    myPosition      //posición del usuario en el ranking (no está incluido en el modelo User)
 }
 
 --------------------------------------------------------------------------------------------------------------------
 
-<> router.put("/user/:sub",putUserInfo) <>
+<> router.put("/user/:sub", putUserInfo) <>
 
-->DESCRIPCION:esta ruta es para actualizar la info de un usuario
+->DESCRIPCION: esta ruta es para actualizar la info de un usuario
 
 ->REQUERIMIENTOS: por params enviar sub de el usuario, por body enviar props a cambiar  
 
 /${sub}=>/(text de el auth0)
 
-body= obj con props cambiadas
+body = obj con props cambiadas
 
 {
     name,
     nickname,
-    picture
+    picture,
+    myTeachpoints
 }
 
 ->RESPUESTA: un objeto con el user modificado
@@ -165,15 +173,15 @@ body= obj con props cambiadas
 
 --------------------------------------------------------------------------------------------------------------------
 
-<> router.delete("/user/:sub",deleteUser) <>
+<> router.delete("/user/:sub", deleteUser) <>
 
-->DESCRIPCION:esta ruta es para borrar un usuario de la base de datos
+->DESCRIPCION: esta ruta es para borrar un usuario de la base de datos
 
 ->REQUERIMIENTOS: por params enviar sub de el usuario  
 
 /${sub}=>/(text de el auth0)
 
-->RESPUESTA: un string indicando que "el usuario a sido eliminado correctamente"
+->RESPUESTA: un string indicando que "el usuario ha sido eliminado correctamente"
 
 --------------------------------------------------------------------------------------------------------------------
 --------------------------------------------------------------------------------------------------------------------
@@ -183,7 +191,7 @@ body= obj con props cambiadas
 
 --------------------------------------------------------------------------------------------------------------------
 
-router.post("/question",postQuestion)
+router.post("/question", postQuestion)
 
 ->DESCRIPCION: esta ruta es para crear una pregunta.
 
@@ -192,17 +200,15 @@ router.post("/question",postQuestion)
 {
   sub,
   //tag,
-  text,//contenido de la pregunta
-  title//titulo de la pregunta
+  text,   //contenido de la pregunta
+  title   //titulo de la pregunta
 }
 
 >RESPUESTA:
 
 {
-  user:{
-    sub,
-    name,
-    nickname
+  user: {
+    (todas las propiedades del usuario)
   },
   //tag,
   title,
@@ -213,7 +219,7 @@ router.post("/question",postQuestion)
 
 ____________________
 
-router.get("/question/:id",getSingleQuestion)
+router.get("/question/:id", getSingleQuestion)
 
 ->DESCRIPCION: esta ruta es para acceder al detalle de una pregunta con todas sus respuestas.
 
@@ -223,9 +229,7 @@ router.get("/question/:id",getSingleQuestion)
 
 {
   user:{
-    sub,
-    name,
-    nickname
+    (todas las propiedades del usuario)
   },
   //tag,
   title,
@@ -250,7 +254,7 @@ router.get("/question/:id",getSingleQuestion)
 
 ____________________
 
-router.put("/question",putUserQuestion)
+router.put("/question", putUserQuestion)
 
 ->DESCRIPCION: esta ruta es para poder modificar una pregunta.
 
@@ -286,51 +290,57 @@ router.delete("/question/:id",deleteUserQuestion)
 
 ____________________
 
-router.put("/questions/favourites",putFavourites)
+router.put("/questions/favourites", putFavourites)
 
 ->DESCRIPCION: esta ruta es para agregar o quitar preguntas de la lista de favotitos.
 
 ->REQUERIMIENTOS: recibe por query ?sub=" "&id=" "&add=boolean
 
-(add=>true agrega/false borra)
 (sub=>sub del usuario)
 (id=>id de la pregunta)
+(add=>true agrega/false borra)
 
-->RESPUESTA: agregada o quitada correctamente
+->RESPUESTA: agregada o quitada correctamente a favoritos
 
 ____________________
 
-router.get("/questions/favourites/:sub",getFavourites)
+router.get("/questions/favourites/:sub", getFavourites)
 
 ->DESCRIPCION: esta ruta es para acceder a mis preguntas favoritas.
 
-->REQUERIMIENTOS: por params enviar sub del usuario. 
+->REQUERIMIENTOS: por params enviar sub del usuario y por query enviar page y limit. 
 
-->RESPUESTA: devuelvo un arreglo con las favoritas de ese usuario.
+/${sub}
+&page=(número de página)
+&limit=(cantidad de elementos por página)
+
+->RESPUESTA: un objeto con 3 propiedades: totalPages, pages, results (preguntas favoritas del usuario)
 
 {
-  favourites:[
-                {
-                    id,
-                    //tag,
-                    title,
-                    teachPoints,
-                    text,
-                    likes,
-                    cantAnswers,
-                }
-                .
-                .
-                .
-                {
-                    id,
-                    //tag,
-                    title,
-                    teachPoints,
-                    text,
-                    likes,
-                    cantAnswers,
-                }
+  totalPages: (cantidad de paginas totales),
+  pages: []     //rango de paginas habilitadas (máximo 5),
+  results: [
+    {
+      id,
+      //tag,
+      title,
+      teachPoints,
+      text,
+      likes,
+      cantAnswers,
+    }
+    .
+    .
+    .
+    {
+      id,
+      //tag,
+      title,
+      teachPoints,
+      text,
+      likes,
+      cantAnswers,
+    }
   ]
 }
   
@@ -340,40 +350,48 @@ router.get("/questions",getAllQuestions)
 
 ->DESCRIPCION: esta ruta es para acceder a todas las preguntas.
 
-->REQUERIMIENTOS: puede traer por query ?search o ?sort para buscar u ordenar, en caso de no traer nada simplemente accedo a todas las preguntas.
+->REQUERIMIENTOS: puede traer por query ?search o ?sort para buscar u ordenar, ?page y ?limit, en caso de no traer ?search simplemente accedo a todas las preguntas.
 
- ?search=" "&sort=" "
+ ?search=" " (string que esta buscando en texto/titulo)
+ &sort=" "   (sort=>string que define ordenamiento(asc/desc))
+ &page=(número de página)
+ &limit=(cantidad de elementos por página)
 
-(search=>string que esta buscando en texto/titulo)
-(sort=>string que define ordenamiento(asc/desc))
+->RESPUESTA: un objeto con 3 propiedades: totalPages, pages, results (preguntas en base a la busqueda o todas las preguntas)
 
-->RESPUESTA: devuelvo un arreglo de objetos con la info de las preguntas.
-
-[
+{
+  totalPages: (cantidad de paginas totales),
+  pages: []     //rango de paginas habilitadas (máximo 5),
+  results: [
     {
-        id,
-        sub,
-        //tag,
-        title,
-        teachPoints,
-        text,
-        likes,
-        cantAnswers,
+      user: {
+        (todas las propiedades del usuario)
+      },
+      id,
+      //tag,
+      title,
+      teachPoints,
+      text,
+      likes,
+      cantAnswers,
     }
     .
     .
     .
     {
-        id,
-        sub,
-        //tag,
-        title,
-        teachPoints,
-        text,
-        likes,
-        cantAnswers,
+      user: {
+        (todas las propiedades del usuario)
+      },
+      id,
+      //tag,
+      title,
+      teachPoints,
+      text,
+      likes,
+      cantAnswers,
     }
   ]
+}
 
 ____________________
 
@@ -381,37 +399,41 @@ router.get("/questions/:sub",getUserQuestions)
  
 ->DESCRIPCION: esta ruta es para acceder a todas mis preguntas.
 
-->REQUERIMIENTOS: recibo “sub” por params y puede traer por query ?answered para filtrar por preguntas respondidas o no respondidas, en caso de no traer nada simplemente accedo a todas las preguntas del usuario.
+->REQUERIMIENTOS: recibo “sub” por params y puede traer por query ?page, ?limit y ?answered para filtrar por preguntas respondidas o no respondidas, en caso de no traer ?answered simplemente accedo a todas las preguntas del usuario.
 
- ?answered=" "
+ ?answered=" " (answered=>true/false)
+ &page=(número de página)
+ &limit=(cantidad de elementos por página)
 
-(answered=>true/false)
+->RESPUESTA: un objeto con 3 propiedades: totalPages, pages, results (preguntas del usuario)
 
-->RESPUESTA: devuelvo un arreglo de objetos con la info de mis preguntas.
-
-[
+{
+  totalPages: (cantidad de paginas totales),
+  pages: []     //rango de paginas habilitadas (máximo 5),
+  results: [
     {
-        id,
-        //tag,
-        title,
-        teachPoints,
-        text,
-        likes,
-        cantAnswers,
+      id,
+      //tag,
+      title,
+      teachPoints,
+      text,
+      likes,
+      cantAnswers,
     }
     .
     .
     .
     {
-        id,
-        //tag,
-        title,
-        teachPoints,
-        text,
-        likes,
-        cantAnswers,
+      id,
+      //tag,
+      title,
+      teachPoints,
+      text,
+      likes,
+      cantAnswers,
     }
   ]
+}
 
 ____________________
 
@@ -419,7 +441,7 @@ RUTAS ANSWER
 
 -------------------------------
 
-<> router.post("/answer",postAnswer) <>
+<> router.post("/answer", postAnswer) <>
 
 ->DESCRIPCION: esta ruta es para que el usuario pueda responder una pregunta y se agregue al hilo de respuestas
 
@@ -431,11 +453,17 @@ RUTAS ANSWER
   text
 }
 
-->RESPUESTA: en caso de ser necesaria -> "respuesta creada correctamente"
+->RESPUESTA: un objeto con la info de la respuesta creada
+
+{
+  sub,
+  id,
+  text
+}
 
 -------------------------------
 
-<> router.put("/answer",putAnswer) <>
+<> router.put("/answer", putAnswer) <>
 
 ->DESCRIPCION: esta ruta es para que el usuario pueda editar una de sus respuestas
 
@@ -456,7 +484,7 @@ RUTAS ANSWER
 
 -------------------------------
 
-<> router.delete("/answer/:id",deleteAnswer) <>
+<> router.delete("/answer/:id", deleteAnswer) <>
 
 ->DESCRIPCION: esta ruta es para que el usuario pueda eliminar una de sus respuestas
 
@@ -468,39 +496,43 @@ RUTAS ANSWER
 
 -------------------------------
 
-<> router.get("/answers/:sub",getAnswers) <>
+<> router.get("/answers/:sub", getAnswers) <>
 
 ->DESCRIPCION: esta ruta es para que el usuario pueda ver sus respuestas publicadas con sus preguntas asociadas
 
-->REQUERIMIENTOS: por params enviar el sub del usuario
+->REQUERIMIENTOS: por params enviar el sub del usuario y por query ?page y ?limit
 
 /answers/${sub}
+&page=(número de página)
+&limit=(cantidad de elementos por página)
 
-->RESPUESTA: un arreglo de las respuestas incluyendo los datos de la pregunta asociada a cada una
+->RESPUESTA: un objeto con 3 propiedades: totalPages, pages, results (todas las respuestas del usuario)
 
-[
-	{
-        id,
-        text,
-        likes,
-        question:{
-                    id,
-                    titulo
-                }
-	}
+{
+  totalPages: (cantidad de paginas totales),
+  pages: []     //rango de paginas habilitadas (máximo 5),
+  results: [
+    {
+      question: {
+        (todas las propiedades de la pregunta)
+      },
+      id,
+      text,
+      likes,
+    }
     .
     .
     .
     {
-        id,
-        text,
-        likes,
-        question:{
-                    id,
-                    titulo
-                }
-	}
-]
+      question: {
+        (todas las propiedades de la pregunta)
+      },
+      id,
+      text,
+      likes,
+    }
+  ]
+}
 
 //Anotaciones/Recomndaciones/hagan caso mierda
 
