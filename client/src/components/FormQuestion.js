@@ -41,8 +41,7 @@ const FormQuestion = () => {
         // microTag: [],
         // macroTag: []
     })
-
-    console.log(userInfo.sub)
+    
     const [errors, setErrors] = useState({})
 
     function handleChange(e){

@@ -20,9 +20,9 @@ export const getTopTenRanking = () => async (dispatch) => {
     }    
 }
 
-export const getRanking = () => async (dispatch) => {
+export const getRanking = (sort, page) => async (dispatch) => {
     try {
-        const { data } = await api.getRanking()
+        const { data } = await api.getRanking(sort, page)
         dispatch({ type: GET_TOPTEN_RANKING, payload: data})
     } catch (error) {
         console.log(error.message)
@@ -102,9 +102,9 @@ export const addFavourites = async (sub, qId, boolean)  => {
     }
 }
 
-export const getFavourites = (sub) => async (dispatch) => {
+export const getFavourites = (sub, page) => async (dispatch) => {
     try {
-        const { data } = await api.getFavourites(sub)
+        const { data } = await api.getFavourites(sub, page)
         dispatch({ type: GET_FAVOURITES, payload: data })
     } catch (error) {
         console.log(error.message)
@@ -184,9 +184,9 @@ export const deleteAnswer = (id) => async (dispatch) => {
     }
 }
 
-export const getUserAnswers = (sub) => async (dispatch) => {
+export const getUserAnswers = (sub, page) => async (dispatch) => {
     try {
-        const { data } = await api.getUserAnswers(sub)
+        const { data } = await api.getUserAnswers(sub, page)
         dispatch({ type: GET_USER_ANSWERS, payload: data })
     } catch (error) {
         console.log(error.message)

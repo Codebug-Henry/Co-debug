@@ -11,7 +11,7 @@ const MisPreguntas = () => {
   const { isAuthenticated } = useAuth0();
 
   const userInfo = useSelector(state=> state.user);
-  const questions = useSelector(state => state.questions);
+  const questions = useSelector(state => state.userQuestions);
   const dispatch = useDispatch();
 
   const [cant, setCant] = useState(questions.length);
@@ -20,8 +20,6 @@ const MisPreguntas = () => {
   useEffect(()=>{
     dispatch(getUserQuestions(userInfo.sub, page))
   }, [userInfo, cant])
-
-  console.log(questions)
 
   return (
     <div>
