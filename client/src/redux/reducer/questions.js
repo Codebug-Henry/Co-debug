@@ -11,7 +11,7 @@ export default function questions (state = [], action){
         case GET_USER_QUESTIONS_ORDERER:
             return action.payload
         case GET_SEARCH_QUESTIONS:
-            return action.payload
+            return action.payload.results
         default:
             return state            
     }

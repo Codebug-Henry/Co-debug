@@ -120,18 +120,18 @@ export const getAllQuestions = (page) => async (dispatch) => {
     }
 }
 
-export const getAllQuestionsSorted = (sort) => async (dispatch) => {
+export const getAllQuestionsSorted = (sort, page) => async (dispatch) => {
     try {
-        const { data } = await api.getAllQuestionsSorted(sort)
+        const { data } = await api.getAllQuestionsSorted(sort, page)
         dispatch({ type: GET_ALL_QUESTIONS_SORTED, payload: data })
     } catch (error) {
         console.log(error.message)
     }
 }
 
-export const getSearchQuestions = (search) => async (dispatch) => {
+export const getSearchQuestions = (search, page) => async (dispatch) => {
     try {
-        const { data } = await api.getSearchQuestions(search)
+        const { data } = await api.getSearchQuestions(search, page)
         dispatch({ type: GET_SEARCH_QUESTIONS, payload: data })
     } catch (error) {
         console.log(error.message)
