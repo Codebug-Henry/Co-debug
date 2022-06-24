@@ -58,9 +58,10 @@ export const deleteUser = (sub) => async (dispatch) => {
 
 // RUTAS question - questions
 
-export const sendQuestion = async (question) => {
+export const sendQuestion = (question) => async (dispatch) => {
     try {
-        await api.sendQuestion(question)
+        const { data } = await api.sendQuestion(question)
+        dispatch({ type: GET_QUESTION, payload: data})
     } catch (error) {
         console.log(error.message)
     }
