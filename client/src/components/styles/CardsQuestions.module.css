@@ -1,23 +1,23 @@
-.questBox{
-    background-color: rgb(255, 255, 255);
-    border-style: solid;
-    border-radius: 1%;
-    border-color: black;
-    margin: 3%;
-    display: flex;
+.questBox {
+  /* background-color: rgb(255, 255, 255);
+  border-style: solid;
+  border-radius: 1%;
+  border-color: black; */
+  margin: 3%;
+  /* display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: center; */
 }
 
-.paginado{
-    display: flex;
-    align-items: center;
-    justify-content: center;
+.paginado {
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
-.searchBar{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding-top: 2vh;
-    margin-bottom: 2vh;
+.searchBar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-top: 2vh;
+  margin-bottom: 2vh;
 }
