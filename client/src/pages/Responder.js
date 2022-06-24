@@ -1,10 +1,27 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useAuth0 } from "@auth0/auth0-react";
 import style from "./styles/Responder.module.css";
 import Footer from "../components/Footer.js";
+import { useDispatch, useSelector } from "react-redux";
+import { useParams } from "react-router-dom";
+import { getQuestion } from "../redux/actions/index";
+import like from "../images/like2.png"
+import dislike from "../images/dislike2.png"
+import denuncia from "../images/denuncia2.png"
+import favorito from "../images/favorito2.png"
+import SimpleAnswer from "../components/SimpleAnswer";
 
 const Responder = () => {
   const { isAuthenticated } = useAuth0();
+  const dispatch = useDispatch();
+  const question = useSelector((state)=>state.question);
+  const {questionId} = useParams()
+
+  useEffect(()=>{
+    dispatch(getQuestion(questionId))
+    console.log(question)
+  },[dispatch])
+
   return (
     <div>
       {isAuthenticated ? (
@@ -12,53 +29,63 @@ const Responder = () => {
           {/* Acá el contenido para logueados */}
           <div className={`container-fluid ${style.container}`}>
             <div className={`row ${style.middleRow}`}>
-              <div className={`col-lg-8 ${style.col1}`}>
-                Sed ut perspiciatis unde omnis iste natus error sit voluptatem
-                accusantium doloremque laudantium, totam rem aperiam, eaque ipsa
-                quae ab illo inventore veritatis et quasi architecto beatae
-                vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia
-                voluptas sit aspernatur aut odit aut fugit, sed quia
-                consequuntur magni dolores eos qui ratione voluptatem sequi
-                nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor
-                sit amet, consectetur, adipisci velit, sed quia non numquam eius
-                modi tempora incidunt ut labore et dolore magnam aliquam quaerat
-                voluptatem. Ut enim ad minima veniam, quis nostrum
-                exercitationem ullam corporis suscipit laboriosam, nisi ut
-                aliquid ex ea commodi consequatur? Quis autem vel eum iure
-                reprehenderit qui in ea voluptate velit esse quam nihil
-                molestiae consequatur, vel illum qui dolorem eum fugiat quo
-                voluptas nulla pariatur?" "Sed ut perspiciatis unde omnis iste
-                natus error sit voluptatem accusantium doloremque laudantium,
-                totam rem aperiam, eaque ipsa quae ab illo inventore veritatis
-                et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim
-                ipsam voluptatem quia voluptas sit aspernatur aut odit aut
-                fugit, sed quia consequuntur magni dolores eos qui ratione
-                voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem
-                ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia
-                non numquam eius modi tempora incidunt ut labore et dolore
-                magnam aliquam quaerat voluptatem. Ut enim ad minima veniam,
-                quis nostrum exercitationem ullam corporis suscipit laboriosam,
-                nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum
-                iure reprehenderit qui in ea voluptate velit esse quam nihil
-                molestiae consequatur, vel illum qui dolorem eum fugiat quo
-                voluptas nulla pariatur?"
-              </div>
-
-              <div className={`col-lg-4 ${style.col2}`}>
-                "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-                eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-                enim ad minim veniam, quis nostrud exercitation ullamco laboris
-                nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor
-                in reprehenderit in voluptate velit esse cillum dolore eu fugiat
-                nulla pariatur. Excepteur sint occaecat cupidatat non proident,
-                sunt in culpa qui officia deserunt mollit anim id est laborum."
-                "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-                eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-                enim ad minim veniam, quis nostrud exercitation ullamco laboris
-                nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor
-                in reprehenderit in voluptate velit esse cillum dolore eu fugiat
-                nulla pariatur. Excepteur sint occaecat cupidatat non proident,
-                sunt in culpa qui officia deserunt mollit anim id est laborum."
+              <div className={`col-lg ${style.col1}`}>
+                <div className={style.question}>
+                    <div className={`col-2-lg ${style.pictureBox}`}>
+                    <img
+                    className={style.userImage}
+                    src={question.user["picture"]}
+                    alt="imagen de usuario"
+                    />
+                    </div>
+                  <div className={`col-8-lg ${style.leftBox}`}>
+                        <div className={style.TitleAndExtrasBox}>
+                            <div className={style.userPreg}>
+                                <h6>{question.user.name} pregunta:</h6>
+                            </div>
+                            <div className={style.Title}>
+                                <h6>{question.title}</h6>
+                            </div>
+                            <div className={style.Extras}>
+                                <h6>
+                                    Respuestas:{question.cantAnswers} - T.Points:{question.teachPoints}
+                                </h6>                 
+                            </div>
+                        </div>
+                        <div className={style.questionText}>
+                                  {question.text}
+                        </div>
+                        <div className={style.bajoTexto}>
+                            <div className={style.likes}>
+                                {question.likes}
+                                <img /*onClick={()=> handlerLike()}*/ src={like} alt="mano arriba" className={style.like}/>
+                                <img /*onClick={()=> handlerDislike()}*/ src={dislike} alt="mano abajo" className={style.dislike}/>
+                            </div>
+                            <div>
+                                <img src={favorito} alt="favorito" className={style.like}/>
+                            </div>
+                            <div>
+                                <img src={denuncia} alt="denuncia" className={style.like}/>
+                            </div>
+                        </div>
+                </div>
+                </div>
+                <br></br>
+                <div className={style.userAnswer}>
+                          form answer
+                </div>
+                <br></br>
+                <div className={style.answers}>
+                         <p>Respuestas: </p>
+                          {question && question.answers.map((e)=>
+                              <SimpleAnswer
+                                  key={e.id}
+                                  text={e.text}
+                                  likes={e.likes}
+                                  userSub={e.userSub}
+                              />
+                          )}
+                </div>
               </div>
             </div>
           </div>
@@ -69,35 +96,7 @@ const Responder = () => {
           <div className={`container-fluid ${style.container}`}>
             <div className={`row ${style.middleRow}`}>
               <div className={`col-lg ${style.colOut}`}>
-                At vero eos et accusamus et iusto odio dignissimos ducimus qui
-                blanditiis praesentium voluptatum deleniti atque corrupti quos
-                dolores et quas molestias excepturi sint occaecati cupiditate
-                non provident, similique sunt in culpa qui officia deserunt
-                mollitia animi, id est laborum et dolorum fuga. Et harum quidem
-                rerum facilis est et expedita distinctio. Nam libero tempore,
-                cum soluta nobis est eligendi optio cumque nihil impedit quo
-                minus id quod maxime placeat facere possimus, omnis voluptas
-                assumenda est, omnis dolor repellendus. Temporibus autem
-                quibusdam et aut officiis debitis aut rerum necessitatibus saepe
-                eveniet ut et voluptates repudiandae sint et molestiae non
-                recusandae. Itaque earum rerum hic tenetur a sapiente delectus,
-                ut aut reiciendis voluptatibus maiores alias consequatur aut
-                perferendis doloribus asperiores repellat." "Sed ut perspiciatis
-                unde omnis iste natus error sit voluptatem accusantium
-                doloremque laudantium, totam rem aperiam, eaque ipsa quae ab
-                illo inventore veritatis et quasi architecto beatae vitae dicta
-                sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit
-                aspernatur aut odit aut fugit, sed quia consequuntur magni
-                dolores eos qui ratione voluptatem sequi nesciunt. Neque porro
-                quisquam est, qui dolorem ipsum quia dolor sit amet,
-                consectetur, adipisci velit, sed quia non numquam eius modi
-                tempora incidunt ut labore et dolore magnam aliquam quaerat
-                voluptatem. Ut enim ad minima veniam, quis nostrum
-                exercitationem ullam corporis suscipit laboriosam, nisi ut
-                aliquid ex ea commodi consequatur? Quis autem vel eum iure
-                reprehenderit qui in ea voluptate velit esse quam nihil
-                molestiae consequatur, vel illum qui dolorem eum fugiat quo
-                voluptas nulla pariatur?"
+                No logeado
               </div>
             </div>
           </div>

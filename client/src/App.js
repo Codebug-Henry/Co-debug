@@ -27,7 +27,7 @@ function App() {
         <Route path={"/mispreguntas"} element={<MisPreguntas />} />
         <Route path={"/preguntar"} element={<Preguntar />} />
         <Route path={"/misrespuestas"} element={<MisRespuestas />} />
-        <Route path={"/responder"} element={<Responder />} />
+        <Route path={"/responder/:questionId"} element={<Responder />} />
         <Route path={"/favoritas"} element={<Favoritas />} />
         <Route path={"/ranking"} element={<Ranking />} />
         <Route path={"/admin"} element={<Admin />} />

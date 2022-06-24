@@ -1,4 +1,5 @@
 //import { useDispatch } from 'react-redux'
+import { Link } from 'react-router-dom'
 import { useState } from 'react'
 import React from 'react'
 import style from "./styles/CardQuestion.module.css"
@@ -7,7 +8,7 @@ import dislike from "../images/dislike2.png"
 import denuncia from "../images/denuncia2.png"
 import favorito from "../images/favorito2.png"
 
-const CardQuestion = ({cantAnswers, nickname, picture, likes, title, text, teachPoints}) => {
+const CardQuestion = ({cantAnswers, nickname, picture, likes, title, text, teachPoints,id}) => {
     
     //const dispatch = useDispatch()
     const [ likeOnScreen, setlikeOnScreen ] = useState(likes)
@@ -68,9 +69,11 @@ const CardQuestion = ({cantAnswers, nickname, picture, likes, title, text, teach
                 </div>
             </div>
             <div className={`col-2-lg ${style.rightBox}`}>
-                <button className={style.answerIt}>
-                    Responder
-                </button>
+                <Link to={`/responder/${id}`}>
+                    <button className={style.answerIt}>
+                        Responder
+                    </button>
+                </Link>
             </div>
         </div>
     </div>
