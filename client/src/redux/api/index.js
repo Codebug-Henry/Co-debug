@@ -17,11 +17,10 @@ export const deleteQuestion = (id) => axios.delete(`${URL}/question/${id}`)
 export const addFavourites = (sub, qId, boolean) => axios.put(`${URL}/questions/favourites?sub=${sub}&id=${qId}&add=${boolean}`);
 export const getFavourites = (sub) => axios.get(`${URL}/questions/favourites/${sub}`)
 export const getAllQuestions = () => axios.get(`${URL}/questions`);
-
 export const getAllQuestionsSorted = (sort) => axios.get(`${URL}/questions?sort=${sort}`);
 export const getSearchQuestions = (search) => axios.get(`${URL}/questions?search=${search}`);
-
 export const getUserQuestions = (sub) => axios.get(`${URL}/questions/${sub}`)
+export const getUserQuestionsOrderer = (sub, answered) => axios.get(`${URL}/questions/${sub}?answered=${answered}`) // answered puede ser true o false
 
 // RUTAS ANSWER
 export const sendAnswer = (answer) => axios.post(`${URL}/answer`, answer);
