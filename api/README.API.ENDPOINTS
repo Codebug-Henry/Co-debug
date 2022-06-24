@@ -71,9 +71,9 @@
 
 ->DESCRIPCION:esta ruta es para obtener todos los usuarios para rankearlos
 
-->REQUERIMIENTOS: por query deberan enviar la variable sort para definir como ordenarlos (ascendent/descendent)
+->REQUERIMIENTOS: por query deberan enviar la variable sort para definir como ordenarlos (asc/desc)
 
-/?sort=ascendent/descendent
+/?sort=asc/desc
 
 ->RESPUESTA: un arreglo con todos los usuarios, en un principio acomodados de mayor a menos puntaje
 
@@ -345,7 +345,7 @@ router.get("/questions",getAllQuestions)
  ?search=" "&sort=" "
 
 (search=>string que esta buscando en texto/titulo)
-(sort=>string que define ordenamiento(ascendent/descendent))
+(sort=>string que define ordenamiento(asc/desc))
 
 ->RESPUESTA: devuelvo un arreglo de objetos con la info de las preguntas.
 
