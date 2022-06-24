@@ -1,6 +1,6 @@
-const {User,Question} = require("../db.js")
+const {User, Question} = require("../db.js")
 
-const deleteUserQuestion=async (req,res,next)=>{
+const deleteUserQuestion = async (req, res, next) => {
     const {id} = req.params
 
     try {
@@ -15,20 +15,27 @@ const deleteUserQuestion=async (req,res,next)=>{
     }
 }
 
-const putUserQuestion=async (req,res,next)=>{
-    const {id,text,title} = req.body
+const putUserQuestion = async (req, res, next) => {
+    const {id, text, title, like} = req.body
+
+    const question = await Question.findByPk(id)
+    let newLikes = question.likes
+
+    if (like === "add") newLikes++
+    else if (like === "remove") newLikes--
 
     try {
-        await Question.update({text,title},{
+        await Question.update({text, title, likes: newLikes},{
             where:{
                 id:parseInt(id)
             }
         })
-        await Question.findByPk(id)
+        // await Question.findByPk(id)
 
         res.send({
             text,
-            title
+            title,
+            likes: newLikes
         })
     } catch (error) {
         next(error)
@@ -36,12 +43,12 @@ const putUserQuestion=async (req,res,next)=>{
 }
 
 
-const postQuestion = async (req,res,next)=>{
-   const {sub,text,title} = req.body
+const postQuestion = async (req, res, next) => {
+   const {sub, text, title} = req.body
     
     try {
         const user = await User.findByPk(sub)
-        const newQuestion = await Question.create({text,title})
+        const newQuestion = await Question.create({text, title})
         newQuestion.setUser(user)
         res.send(newQuestion)
 
@@ -50,7 +57,7 @@ const postQuestion = async (req,res,next)=>{
    }
 }
 
-const getSingleQuestion=async (req,res,next)=>{
+const getSingleQuestion = async (req, res, next) => {
     const id = req.params.id
 
     try {
