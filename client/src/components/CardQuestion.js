@@ -1,23 +1,16 @@
 //import { useDispatch } from 'react-redux'
-import { useState } from "react";
-import React from "react";
-import style from "./styles/CardQuestion.module.css";
-import like from "../images/like2.png";
-import dislike from "../images/dislike2.png";
-import denuncia from "../images/denuncia2.png";
-import favorito from "../images/favorito2.png";
+import { Link } from 'react-router-dom'
+import { useState } from 'react'
+import React from 'react'
+import style from "./styles/CardQuestion.module.css"
+import like from "../images/like2.png"
+import dislike from "../images/dislike2.png"
+import denuncia from "../images/denuncia2.png"
+import favorito from "../images/favorito2.png"
 
-const CardQuestion = ({
-  cantAnswers,
-  nickname,
-  picture,
-  likes,
-  title,
-  text,
-  teachPoints,
-}) => {
-  //const dispatch = useDispatch()
-  const [likeOnScreen, setlikeOnScreen] = useState(likes);
+const CardQuestion = ({cantAnswers, nickname, picture, likes, title, text, teachPoints,id}) => {
+    
+   const [ likeOnScreen, setlikeOnScreen ] = useState(likes)
 
   //handlers likes ( faltan las actions sumarLike y restarLike )
   const handlerLike = () => {
@@ -55,6 +48,14 @@ const CardQuestion = ({
                 Respuestas:{cantAnswers} - T.Points:{teachPoints}
               </h6>
             </div>
+
+            <div className={`col-2-lg ${style.rightBox}`}>
+                <Link to={`/responder/${id}`}>
+                    <button className={style.answerIt}>
+                        Responder
+                    </button>
+                </Link>
+
           </div>
           <div className={style.questionText}>{text}</div>
           <div className={style.bajoTexto}>
@@ -72,6 +73,7 @@ const CardQuestion = ({
                 alt="mano abajo"
                 className={style.dislike}
               />
+
             </div>
             <div>
               <img src={favorito} alt="favorito" className={style.like} />

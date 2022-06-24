@@ -1,0 +1,56 @@
+.total{
+
+    background-color: rgb(255, 192, 124);
+    border-radius: 1vh;
+    border: solid 1px black;
+    margin-bottom: 2vh;
+
+}
+.TitleAndExtrasBox{
+    padding-top: 1vh;
+    margin-left: 3vh;
+    display: flex;
+    align-items: flex-start;
+    flex-direction: row;
+    justify-content: space-between;
+    gap:6vh;
+}
+.leftbox{
+    
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+.rightBox{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    margin-right: 3vh;
+}
+.questionText{
+    background-color: rgb(255, 255, 255);
+    padding: 1vh;
+    border-radius: 1vh;
+    margin-left: 3vh;
+}
+.answerIt{
+    border-radius: 2vh;
+    margin-bottom: 2vh;
+}
+.likes{
+    margin-left: 3vh;
+    padding: 1vh;
+}
+
+.bajoTexto{
+    display: flex;
+    flex-direction: row;
+    align-items: baseline;
+    gap: 5vh;
+}
+.userImage{
+    border-radius: 30px;
+    width: 60px;
+    padding-top: 2vh;
+}
