@@ -8,12 +8,23 @@
 }
 
 .col1 {
+  background-color: aqua;
   display: flex;
+  justify-content: center;
 }
 
 .col2 {
+  background-size: cover;
+  background-color: blanchedalmond;
   display: flex;
-  justify-content: flex-end;
+  justify-content: center;
+  align-items: center;
+}
+.col3{
+  background-color: darkgreen;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .logo {
@@ -23,4 +34,32 @@
 .logo:hover {
   width: 25vw;
   opacity: 70%;
+}
+
+
+.linksInt {
+  width: 30%;
+  font-size: 1.7vw;
+  text-decoration: none;
+  color: black;
+}
+@media screen and (max-width: 900px) {
+  .linksInt {
+    font-size: 2vw;
+  }
+}
+@media screen and (max-width: 720px) {
+  .linksInt {
+    font-size: 2.5vw;
+  }
+}
+@media screen and (max-width: 600px) {
+  .linksInt {
+    font-size: 3vw;
+  }
+}
+@media screen and (max-width: 450px) {
+  .linksInt {
+    font-size: 4vw;
+  }
 }
