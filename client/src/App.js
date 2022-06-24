@@ -16,6 +16,7 @@ import Delete from "./pages/Delete.js";
 import NotFound from "./pages/NotFound";
 import Terminos from "./pages/Terminos.js";
 import Headerlogin from "./components/Headerlogin.js";
+import Contacto from "./pages/Contacto.js";
 
 function App() {
   return (
@@ -35,6 +36,7 @@ function App() {
         <Route path={"/terminos"} element={<Terminos />} />
         <Route path={"/configuracion"} element={<Configuracion />} />
         <Route path={"/delete"} element={<Delete />} />
+        <Route path={"/contacto"} element={<Contacto />} />
         <Route path={"*"} element={<NotFound />} />
       </Routes>
     </BrowserRouter>
