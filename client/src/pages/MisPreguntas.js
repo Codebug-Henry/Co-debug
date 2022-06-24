@@ -1,10 +1,26 @@
-import React from "react";
+import React, {useEffect, useState} from "react";
+import { useDispatch, useSelector } from "react-redux" 
 import { useAuth0 } from "@auth0/auth0-react";
 import style from "./styles/MisPreguntas.module.css";
 import Footer from "../components/Footer.js";
+import CardUserQuestion from "../components/CardUserQuestion";
+import FilterBar from "../components/FilterBar";
+import { getUserQuestions } from "../redux/actions";
 
 const MisPreguntas = () => {
   const { isAuthenticated } = useAuth0();
+
+  const userInfo = useSelector(state=> state.user);
+  const questions = useSelector(state => state.questions);
+  const dispatch = useDispatch();
+
+  let [cant, setCant] = useState(questions.length);
+
+  useEffect(()=>{
+    dispatch(getUserQuestions(userInfo.sub))
+  }, [dispatch, userInfo.sub, cant])
+
+
   return (
     <div>
       {isAuthenticated ? (
@@ -12,39 +28,35 @@ const MisPreguntas = () => {
           {/* Acá el contenido para logueados */}
           <div className={`container-fluid ${style.container}`}>
             <div className={`row ${style.middleRow}`}>
-              <div className={`col-lg-8 ${style.col1}`}>
-                Sed ut perspiciatis unde omnis iste natus error sit voluptatem
-                accusantium doloremque laudantium, totam rem aperiam, eaque ipsa
-                quae ab illo inventore veritatis et quasi architecto beatae
-                vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia
-                voluptas sit aspernatur aut odit aut fugit, sed quia
-                consequuntur magni dolores eos qui ratione voluptatem sequi
-                nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor
-                sit amet, consectetur, adipisci velit, sed quia non numquam eius
-                modi tempora incidunt ut labore et dolore magnam aliquam quaerat
-                voluptatem. Ut enim ad minima veniam, quis nostrum
-                exercitationem ullam corporis suscipit laboriosam, nisi ut
-                aliquid ex ea commodi consequatur? Quis autem vel eum iure
-                reprehenderit qui in ea voluptate velit esse quam nihil
-                molestiae consequatur, vel illum qui dolorem eum fugiat quo
-                voluptas nulla pariatur?" "Sed ut perspiciatis unde omnis iste
-                natus error sit voluptatem accusantium doloremque laudantium,
-                totam rem aperiam, eaque ipsa quae ab illo inventore veritatis
-                et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim
-                ipsam voluptatem quia voluptas sit aspernatur aut odit aut
-                fugit, sed quia consequuntur magni dolores eos qui ratione
-                voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem
-                ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia
-                non numquam eius modi tempora incidunt ut labore et dolore
-                magnam aliquam quaerat voluptatem. Ut enim ad minima veniam,
-                quis nostrum exercitationem ullam corporis suscipit laboriosam,
-                nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum
-                iure reprehenderit qui in ea voluptate velit esse quam nihil
-                molestiae consequatur, vel illum qui dolorem eum fugiat quo
-                voluptas nulla pariatur?"
+              <div className={`col-lg-10 ${style.col1}`}>
+                <div id={style.all}>
+                <div id={style.explore}>
+                  <p>Explora tus preguntas</p>
+                </div>
+                <div id={style.filters}>
+                  <FilterBar />
+                </div>
+                <div id={style.myQuestions}>
+                  {
+                    questions.length > 0 ?
+                    questions.map(q => {
+                        return (
+                          <CardUserQuestion key={q.id} id={q.id} title={q.title} text={q.text} likes={q.likes} cantAnswers={q.cantAnswers} 
+                                            name={userInfo.nickname} picture={userInfo.picture} setCant={setCant} sub={userInfo.sub}/>
+                        )
+                    }) :
+                    <div>
+                        <p>
+                          Crea una nueva pregunta ...
+                        </p>
+                    </div>
+                  }
+
+                </div>
+                </div>
               </div>
 
-              <div className={`col-lg-4 ${style.col2}`}>
+              <div className={`col-lg-2 ${style.col2}`}>
                 "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
                 eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
                 enim ad minim veniam, quis nostrud exercitation ullamco laboris
