@@ -10,74 +10,85 @@ import favorito from "../images/favorito2.png"
 
 const CardQuestion = ({cantAnswers, nickname, picture, likes, title, text, teachPoints,id}) => {
     
-    //const dispatch = useDispatch()
-    const [ likeOnScreen, setlikeOnScreen ] = useState(likes)
+   const [ likeOnScreen, setlikeOnScreen ] = useState(likes)
 
+  //handlers likes ( faltan las actions sumarLike y restarLike )
+  const handlerLike = () => {
+    // dispatch(sumarLike())
+    // setlikeOnScreen(likes)
+    return;
+  };
 
-    //handlers likes ( faltan las actions sumarLike y restarLike )
-    const handlerLike = ()=>{
-        // dispatch(sumarLike())
-        // setlikeOnScreen(likes)
-        return
-    }
-
-    const handlerDislike = ()=>{
-        // dispatch(restarLike())
-        // setlikeOnScreen(likes)
-        return
-    }
+  const handlerDislike = () => {
+    // dispatch(restarLike())
+    // setlikeOnScreen(likes)
+    return;
+  };
 
   return (
-    <div className={`container-fluid ${style.total}`}>
-        <div className={`row gy-300 ${style.fila}`}>
-            <div className={`col-2-lg ${style.pictureBox}`}>
-                <img
-                className={style.userImage}
-                src={picture}
-                alt="imagen de usuario"
-                />
+    <div className={`container ${style.total}`}>
+      <div className={`row gy-300 ${style.fila}`}>
+        <div className={`col-2-lg ${style.pictureBox}`}>
+          <img
+            className={style.userImage}
+            src={picture}
+            alt="imagen de usuario"
+          />
+        </div>
+        <div className={`col-8-lg ${style.leftBox}`}>
+          <div className={style.TitleAndExtrasBox}>
+            <div className={style.userPreg}>
+              <h6>{nickname} pregunta:</h6>
             </div>
-            <div className={`col-8-lg ${style.leftBox}`}>
-                <div className={style.TitleAndExtrasBox}>
-                    <div className={style.userPreg}>
-                        <h6>{nickname} pregunta:</h6>
-                    </div>
-                    <div className={style.Title}>
-                        <h6>{title}</h6>
-                    </div>
-                    <div className={style.Extras}>
-                        <h6>
-                            Respuestas:{cantAnswers} - T.Points:{teachPoints}
-                        </h6>                 
-                    </div>
-                </div>
-                <div className={style.questionText}>
-                    {text}
-                </div>
-                <div className={style.bajoTexto}>
-                    <div className={style.likes}>
-                        {likeOnScreen}
-                        <img onClick={()=> handlerLike()} src={like} alt="mano arriba" className={style.like}/>
-                        <img onClick={()=> handlerDislike()} src={dislike} alt="mano abajo" className={style.dislike}/>
-                    </div>
-                    <div>
-                        <img src={favorito} alt="favorito" className={style.like}/>
-                    </div>
-                    <div>
-                        <img src={denuncia} alt="denuncia" className={style.like}/>
-                    </div>
-                </div>
+            <div className={style.Title}>
+              <h6>{title}</h6>
             </div>
+            <div className={style.Extras}>
+              <h6>
+                Respuestas:{cantAnswers} - T.Points:{teachPoints}
+              </h6>
+            </div>
+
             <div className={`col-2-lg ${style.rightBox}`}>
                 <Link to={`/responder/${id}`}>
                     <button className={style.answerIt}>
                         Responder
                     </button>
                 </Link>
-            </div>
-        </div>
-    </div>
-  )
-}
 
-export default CardQuestion
+          </div>
+          <div className={style.questionText}>{text}</div>
+          <div className={style.bajoTexto}>
+            <div className={style.likes}>
+              {likeOnScreen}
+              <img
+                onClick={() => handlerLike()}
+                src={like}
+                alt="mano arriba"
+                className={style.like}
+              />
+              <img
+                onClick={() => handlerDislike()}
+                src={dislike}
+                alt="mano abajo"
+                className={style.dislike}
+              />
+
+            </div>
+            <div>
+              <img src={favorito} alt="favorito" className={style.like} />
+            </div>
+            <div>
+              <img src={denuncia} alt="denuncia" className={style.like} />
+            </div>
+          </div>
+        </div>
+        <div className={`col-2-lg ${style.rightBox}`}>
+          <button className={style.answerIt}>Responder</button>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default CardQuestion;
