@@ -20,7 +20,7 @@ const CardQuestion = ({cantAnswers, nickname, picture, likes, title, text, teach
 
    useEffect(()=>{
     dispatch(getQuestion(infoQuestion.id));
-   },[dispatch])
+   },[dispatch, infoQuestion.id])
   
 
   return (
@@ -67,7 +67,7 @@ const CardQuestion = ({cantAnswers, nickname, picture, likes, title, text, teach
         </div>
       </div>
       <div className={`col-2-lg ${style.rightBox}`}>
-        <Link to={`/responder/${id}`}>
+        <Link reloadDocument to={`/responder/${id}` }>
           <button  className={style.answerIt}>
               Responder
           </button>
