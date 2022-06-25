@@ -314,13 +314,16 @@ router.get("/questions/favourites/:sub", getFavourites)
 &page=(número de página)
 &limit=(cantidad de elementos por página)
 
-->RESPUESTA: un objeto con 3 propiedades: totalPages, pages, results (preguntas favoritas del usuario)
+->RESPUESTA: un objeto con 3 propiedades: totalPages, pages, results (preguntas favoritas del usuario y la info del usuario)
 
 {
   totalPages: (cantidad de paginas totales),
   pages: []     //rango de paginas habilitadas (máximo 5),
   results: [
     {
+      user:{
+        (todas las propiedades del usuario)
+      },
       id,
       //tag,
       title,

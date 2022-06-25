@@ -98,7 +98,7 @@ const getFavourites = async (req, res, next) => {
 
         const user = await User.findByPk(sub)
 
-        const favourites = await Question.findAll({where: {id: {[Op.in]: user.favourites}}})
+        const favourites = await Question.findAll({where: {id: {[Op.in]: user.favourites}}, include: User})
         
         res.send(paginate(parseInt(limit), parseInt(page), favourites))
 
