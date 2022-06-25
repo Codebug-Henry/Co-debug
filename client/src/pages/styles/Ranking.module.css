@@ -1,0 +1,10 @@
+.puestos{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: cyan;
+    border-style: solid;
+    border-radius: 10px;
+    margin: 5vh;
+    padding: 1vh;
+}
