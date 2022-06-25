@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import {useSelector, useDispatch} from 'react-redux';
 import style from "./styles/CardUserQuestion.module.css"
 import QuestionAnswerIcon from '@mui/icons-material/QuestionAnswer';
@@ -9,6 +9,7 @@ import TextField from '@mui/material/TextField';
 import Avatar from '@mui/material/Avatar';
 import CheckIcon from '@mui/icons-material/Check';
 import { deleteQuestion, getUserQuestions, modifyQuestion } from '../redux/actions';
+import {Link} from 'react-router-dom';
 
 
 const CardUserQuestion = ({id, title, text, likes, cantAnswers, name, picture, setCant, sub, page}) => {
@@ -22,10 +23,6 @@ const CardUserQuestion = ({id, title, text, likes, cantAnswers, name, picture, s
         title: title,
         text: text
     })
-
-    // useEffect(()=>{
-    //     dispatch(getUserQuestions(sub, page))
-    //   }, [])
 
     function toRender(){
         style1 === true ? setStyle1(false) : setStyle1(true)
@@ -69,7 +66,9 @@ const CardUserQuestion = ({id, title, text, likes, cantAnswers, name, picture, s
             <div id={style.first}>
                 <div id={style.name}>
                     <div id={style.photo}>
-                    <QuestionAnswerIcon fontSize="small"/> 
+                    <Link to={`/responder/${id}`} >
+                        <QuestionAnswerIcon fontSize="medium" />
+                    </Link> 
                         <Avatar alt={name} src={picture} id={style.avatar} />
                     </div>
                     <div id={style.user}> 
@@ -94,7 +93,7 @@ const CardUserQuestion = ({id, title, text, likes, cantAnswers, name, picture, s
                 
                 <div id={style1 === true ? style.editBtn : style.editFull}>
                     <Fab color="primary" aria-label="edit" size="small" className={style.editBtn}>
-                        <EditIcon onClick={e=> handleEditQuestion(e)} />
+                        <EditIcon fontSize="small" onClick={e=> handleEditQuestion(e)} />
                     </Fab>
                 </div>
 
@@ -121,11 +120,17 @@ const CardUserQuestion = ({id, title, text, likes, cantAnswers, name, picture, s
             </div>
         </div>
         <div id={style.right}>
-            <p>Respuestas: {cantAnswers}</p>
-            <p>Likes: {likes}</p>
+            <div>
+                <span>Respuestas: {cantAnswers}</span>
+            </div>
+            <div>
+                <span>Likes: {likes}</span>
+            </div>
+            <div>
             <Fab color="primary" aria-label="edit" size="small" className={style.deleteBtn}>
-                <DeleteIcon onClick={e=> handleDeleteQuestion(e)}/>
+                <DeleteIcon fontSize="small" onClick={e=> handleDeleteQuestion(e)}/>
             </Fab>
+            </div>
         </div>
     </div>
   )

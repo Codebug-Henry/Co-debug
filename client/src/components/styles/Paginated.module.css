@@ -1,0 +1,58 @@
+.bar{
+    width: 100%;
+    align-items:center;
+    display:inline-flex;
+    justify-content:center;
+    margin-top: 35px;
+}
+
+.bar ul{
+    display: inline;
+    /* border: #c0c0c0 solid 1.8px; */
+    /* margin-left: 190px; */
+}
+
+.bar li{
+    height:32px;
+    width:32px;
+    text-align: center;
+    list-style: none;
+    margin-left: 1px;
+    display: inline;
+    border-radius: 100%;
+} 
+
+#number{
+    height:32px;
+    width:32px;
+    border-radius: 100%;
+    font-family: 'Source Serif Pro', serif;
+}
+
+#number:hover{
+    cursor: pointer;
+    background-color: grey;
+}
+
+.active{
+    background-color: #fcca46;
+}
+
+.prev{
+    height:45px;
+    width:45px;
+    border-radius: 100%;
+}
+.next{
+    height:45px;
+    width:45px;
+    border-radius: 100%;
+}
+.next:hover{
+    cursor: pointer;
+    background-color: grey;
+}
+.prev:hover{
+    cursor: pointer;
+    background-color: grey;
+}
