@@ -1,8 +1,7 @@
 import React, { useState } from "react";
 // import { useDispatch, useSelector } from 'react-redux';
-// import {getUserInfo, sendQuestion } from '../redux/actions/index';
+// import {getUserInfo, sendConsult? } from '../redux/actions/index';
 import style from "./styles/FormContact.module.css";
-import InfoPopper from "./InfoPopper";
 
 const FormContact = () => {
   // const dispatch = useDispatch()
@@ -73,7 +72,6 @@ const FormContact = () => {
     <div id={style.all}>
       <div id={style.title}>
         <h1>Ingresa una consulta, sugerencia o reclamo</h1>
-        <InfoPopper />
       </div>
       <div id={style.contenedor}>
         <form id={style.form}>
