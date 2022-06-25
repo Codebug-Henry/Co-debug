@@ -14,13 +14,15 @@ import SimpleAnswer from "../components/SimpleAnswer";
 const Responder = () => {
   const { isAuthenticated } = useAuth0();
   const dispatch = useDispatch();
-  const question = useSelector((state)=>state.question);
   const {questionId} = useParams()
-
+  
   useEffect(()=>{
+    alert('entre al useEffect')
     dispatch(getQuestion(questionId))
     console.log(question)
   },[dispatch])
+  
+  const question = useSelector((state)=>state.question);
 
   return (
     <div>
@@ -30,7 +32,8 @@ const Responder = () => {
           <div className={`container-fluid ${style.container}`}>
             <div className={`row ${style.middleRow}`}>
               <div className={`col-lg ${style.col1}`}>
-                <div className={style.question}>
+                {
+                  question && (<div className={style.question}>
                     <div className={`col-2-lg ${style.pictureBox}`}>
                     <img
                     className={style.userImage}
@@ -69,7 +72,12 @@ const Responder = () => {
                             </div>
                         </div>
                 </div>
-                </div>
+                </div>)
+                    
+                  
+
+                  
+                }
                 <br></br>
                 <div className={style.userAnswer}>
                           form answer
