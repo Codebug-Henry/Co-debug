@@ -38,7 +38,7 @@ export default function Paginated({page, setPage}) {
                         </li>
                     ))
                 }
-                <button className={style.next} onClick={e=> handleNext(e)} disabled={page === pages.length ? true : false}> Next </button>
+                <button className={style.next} onClick={e=> handleNext(e)} disabled={page === pages.length || 1 ? true : false}> Next </button>
             </ul>
         </div>
     )
