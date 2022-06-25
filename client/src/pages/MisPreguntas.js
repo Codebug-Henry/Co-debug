@@ -5,7 +5,10 @@ import style from "./styles/MisPreguntas.module.css";
 import Footer from "../components/Footer.js";
 import CardUserQuestion from "../components/CardUserQuestion";
 import FilterBar from "../components/FilterBar";
+import SearchBar from '../components/SearchBar';
 import { getUserQuestions } from "../redux/actions";
+import FilterAltIcon from '@mui/icons-material/FilterAlt';
+import Paginated from "../components/Paginated";
 
 const MisPreguntas = () => {
   const { isAuthenticated } = useAuth0();
@@ -13,13 +16,14 @@ const MisPreguntas = () => {
   const userInfo = useSelector(state=> state.user);
   const questions = useSelector(state => state.userQuestions);
   const dispatch = useDispatch();
+  const pages = useSelector((state) => state.pages);
 
   const [cant, setCant] = useState(questions.length);
   const [page, setPage] = useState(1)
  
   useEffect(()=>{
     dispatch(getUserQuestions(userInfo.sub, page))
-  }, [userInfo, cant])
+  }, [userInfo, cant, page])
 
   return (
     <div>
@@ -28,35 +32,38 @@ const MisPreguntas = () => {
           {/* Acá el contenido para logueados */}
           <div className={`container-fluid ${style.container}`}>
             <div className={`row ${style.middleRow}`}>
-              <div className={`col-lg-10 ${style.col1}`}>
+              <div className={`col-lg-12 ${style.col1}`}>
                 <div id={style.all}>
-                <div id={style.explore}>
-                  <p>Explora tus preguntas</p>
-                </div>
-                <div id={style.filters}>
-                  <FilterBar />
-                </div>
-                <div id={style.myQuestions}>
-                  {
-                    questions.length > 0 ?
-                    questions.map(q => {
-                        return (
-                          <CardUserQuestion key={q.id} id={q.id} title={q.title} text={q.text} likes={q.likes} cantAnswers={q.cantAnswers} 
-                                            name={userInfo.nickname} picture={userInfo.picture} setCant={setCant} sub={userInfo.sub} page={page}/>
-                        )
-                    }) :
-                    <div>
-                        <p>
-                          Crea una nueva pregunta ...
-                        </p>
-                    </div>
-                  }
+                  <div id={style.explore}>
+                    <p> Mis preguntas</p>
+                  </div>
+                  <div id={style.filters}>
+                      <FilterAltIcon fontSize='medium'/>
+                      <SearchBar page={page} userInfo={userInfo} pages={pages}/>
+                      <FilterBar page={page} setPage={setPage} pages={pages}/>
+                  </div>
+                  <div id={style.myQuestions}>
+                    {
+                      questions.length > 0 ?
+                      questions.map(q => {
+                          return (
+                            <CardUserQuestion key={q.id} id={q.id} title={q.title} text={q.text} likes={q.likes} cantAnswers={q.cantAnswers} 
+                                              name={userInfo.nickname} picture={userInfo.picture} setCant={setCant} sub={userInfo.sub} page={page}/>
+                          )
+                      }) :
+                      <div>
+                          <p>
+                            Crea una nueva pregunta ...
+                          </p>
+                      </div>
+                    }
 
-                </div>
+                  </div>
+                  <Paginated page={page} setPage={setPage}/>
                 </div>
               </div>
 
-              <div className={`col-lg-2 ${style.col2}`}>
+              {/* <div className={`col-lg-2 ${style.col2}`}>
                 "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
                 eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
                 enim ad minim veniam, quis nostrud exercitation ullamco laboris
@@ -71,7 +78,7 @@ const MisPreguntas = () => {
                 in reprehenderit in voluptate velit esse cillum dolore eu fugiat
                 nulla pariatur. Excepteur sint occaecat cupidatat non proident,
                 sunt in culpa qui officia deserunt mollit anim id est laborum."
-              </div>
+              </div> */}
             </div>
           </div>
         </div>

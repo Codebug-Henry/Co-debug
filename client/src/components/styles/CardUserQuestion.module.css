@@ -1,6 +1,6 @@
 #questionCard{
     border: solid 1px black;
-    height: 16vh;
+    height: 19.5vh;
     display: flex;
     flex-direction: row;
     color: #2c383e;
@@ -9,14 +9,15 @@
 
 #left{
     /* border: solid 1px red; */
-    height: 17vh;
+    height: 20vh;
     width: 100%;
 }
 
 #first{
     display: flex;
     flex-direction: row;
-    height: 4vh;
+    height: 6.5vh;
+    align-items: center;
 }
 
 #name{
@@ -29,12 +30,12 @@
 #photo{
     /* border: solid 1px black; */
     width: 25%;
-    height: 4vh;
+    height: 4.2vh;
 }
 
 #avatar{
-    width: 3.6vh;
-    height: 3.6vh;
+    width: 4vh;
+    height: 4vh;
     float: right;
     margin-top: 0.1vh;
 }
@@ -54,20 +55,20 @@
 }
 
 #question{
-    border: solid 1px rgb(50, 52, 72);
+    /* border: solid 1px rgb(50, 52, 72); */
     border-radius: 2%;
-    height: 8vh;
+    height: 9vh;
     width: 94%;
     margin-left: 3%;
     display: grid;
-    grid-template-columns: 20fr 1fr;
+    grid-template-columns: 18fr 1fr;
     background-color: rgb(231, 231, 216);
 }
 
 #question2{
     border: none;
     border-radius: 2%;
-    height: 8vh;
+    height: 9vh;
     width: 94%;
     margin-left: 3%;
     display: grid;
@@ -85,7 +86,7 @@
 
 .editBtn{
     position: relative;
-    top: 1.2vh;
+    top: 1.5vh;
 }
 
 .editFull{
@@ -101,9 +102,7 @@
 }
 
 .editTitle{
-    display: flex;
-    position: relative;
-    top: -2vh
+    align-self: flex-end;
 }
 
 #tags{
@@ -114,24 +113,20 @@
 }
 
 #right{
-    border-left: solid 1px black;
-    height: 16vh;
+    /* border-left: solid 1px black; */
+    padding-top: 1vh;
+    height: 19.5vh;
     width: 20%;
-    align-items: space-evenly;
-    display: flex;
-    flex-direction: column;
-    text-align: center;
+    align-items: space-between;
+    display: grid;
+    grid-template-rows: 1fr 1fr 1.5fr;
     background-color: darkgrey;
-}
-
-#right p{
-    margin-left: 0.5vh;
+    text-align: center;
 }
 
 .deleteBtn{
     position: relative;
     align-self: center;
-    top: -0.5vh;
 }
 
 @media screen and (max-width: 670px){
@@ -173,7 +168,7 @@
     #first span{
         font-size: smaller;
     }
-    #right p{
+    #right span{
         font-size: smaller;
     }
     #tags span{
@@ -182,7 +177,7 @@
 }
 
 @media screen and (max-width: 400px){
-    #right p{
+    #right span{
         font-size: 9.5px;
     }
 }
