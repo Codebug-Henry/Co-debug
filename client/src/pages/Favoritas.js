@@ -6,6 +6,8 @@ import Footer from "../components/Footer.js";
 import { getFavourites } from "../redux/actions";
 import Paginated from "../components/Paginated";
 import CardQuestion from "../components/CardQuestion";
+import Fab from '@mui/material/Fab';
+import FavoriteIcon from '@mui/icons-material/Favorite';
 
 const Favoritas = () => {
 
@@ -29,10 +31,17 @@ const Favoritas = () => {
           {/* Acá el contenido para logueados */}
           <div className={`container-fluid ${style.container}`}>
             <div className={`row ${style.middleRow}`}>
-              <div className={`col-lg-8 ${style.col1}`}>
+              <div className={`col-lg-11 ${style.col1}`}>
               <div id={style.all}>
                   <div id={style.explore}>
-                    <p> Mis preguntas favoritas</p>
+                    <div>
+                      <Fab color='error' aria-label="FavoriteIcon" size="medium" >
+                        <FavoriteIcon />
+                      </Fab>
+                    </div>
+                    <div>
+                      <p> Mis preguntas favoritas</p>
+                    </div>
                   </div>
                   <div id={style.myQuestions}>
                     {
@@ -41,14 +50,14 @@ const Favoritas = () => {
                           return (
                             <CardQuestion
                                 cantAnswers={f.cantAnswers}
-                                nickname={f.user.nickname}
+                                // nickname={f.user.nickname}
                                 key={f.id}
                                 id={f.id}
                                 likes={f.likes}
                                 title={f.title}
                                 text={f.text}
                                 teachPoints={f.teachPoints}
-                                picture={f.user.picture}
+                                // picture={f.user.picture}
                               />
                           )
                       }) :
@@ -64,8 +73,8 @@ const Favoritas = () => {
                 </div>
               </div>
 
-              <div className={`col-lg-4 ${style.col2}`}>
-                "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+              <div className={`col-lg-1 ${style.col2}`}>
+                {/* "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
                 eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
                 enim ad minim veniam, quis nostrud exercitation ullamco laboris
                 nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor
@@ -78,7 +87,7 @@ const Favoritas = () => {
                 nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor
                 in reprehenderit in voluptate velit esse cillum dolore eu fugiat
                 nulla pariatur. Excepteur sint occaecat cupidatat non proident,
-                sunt in culpa qui officia deserunt mollit anim id est laborum."
+                sunt in culpa qui officia deserunt mollit anim id est laborum." */}
               </div>
             </div>
           </div>

@@ -66,7 +66,7 @@ const CardUserQuestion = ({id, title, text, likes, cantAnswers, name, picture, s
             <div id={style.first}>
                 <div id={style.name}>
                     <div id={style.photo}>
-                    <Link to={`/responder/${id}`} >
+                    <Link reloadDocument to={`/responder/${id}`} >
                         <QuestionAnswerIcon fontSize="medium" />
                     </Link> 
                         <Avatar alt={name} src={picture} id={style.avatar} />
