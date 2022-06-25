@@ -17,19 +17,6 @@ const CardQuestLogOut = ({cantAnswers, nickname, picture, likes, title, text, te
     const [ likeOnScreen, setlikeOnScreen ] = useState(likes)
 
 
-    //handlers likes ( faltan las actions sumarLike y restarLike )
-    const handlerLike = ()=>{
-        // dispatch(sumarLike())
-        // setlikeOnScreen(likes)
-        return
-    }
-
-    const handlerDislike = ()=>{
-        // dispatch(restarLike())
-        // setlikeOnScreen(likes)
-        return
-    }
-
   return (
     <div className={`container-fluid ${style.total}`}>
         <div className={`row gy-300 ${style.fila}`}>
@@ -60,21 +47,22 @@ const CardQuestLogOut = ({cantAnswers, nickname, picture, likes, title, text, te
                 <div className={style.bajoTexto}>
                     <div className={style.likes}>
                         {likeOnScreen}
-                        <img onClick={()=> handlerLike()} src={like} alt="mano arriba" className={style.like}/>
-                        <img onClick={()=> handlerDislike()} src={dislike} alt="mano abajo" className={style.dislike}/>
+                        <img onClick={()=> loginWithRedirect()} src={like} alt="mano arriba" className={style.like}/>
+                        <img onClick={()=> loginWithRedirect()} src={dislike} alt="mano abajo" className={style.dislike}/>
+                    </div>
+
+                    <div>
+                        <img onClick={() => loginWithRedirect()} src={favorito} alt="favorito" className={style.like}/>
                     </div>
                     <div>
-                        <img src={favorito} alt="favorito" className={style.like}/>
-                    </div>
-                    <div>
-                        <img src={denuncia} alt="denuncia" className={style.like}/>
+                        <img onClick={() => loginWithRedirect()} src={denuncia} alt="denuncia" className={style.like}/>
                     </div>
                 </div>
             </div>
             <div className={`col-2-lg ${style.rightBox}`}>
 
                     <button onClick={() => loginWithRedirect()} className={style.answerIt}>
-                        Responde como usuario
+                        Logueate para responder :D
                     </button>
 
             </div>

@@ -15,14 +15,13 @@ const Responder = () => {
   const { isAuthenticated } = useAuth0();
   const dispatch = useDispatch();
   const {questionId} = useParams()
+  console.log(questionId)
+  const question = useSelector((state)=>state.question);
   
   useEffect(()=>{
-    alert('entre al useEffect')
     dispatch(getQuestion(questionId))
-    console.log(question)
-  },[dispatch])
+  },[dispatch, getQuestion, questionId])
   
-  const question = useSelector((state)=>state.question);
 
   return (
     <div>
