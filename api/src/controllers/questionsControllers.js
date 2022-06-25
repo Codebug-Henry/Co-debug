@@ -42,10 +42,22 @@ const getAllQuestions = async (req, res, next) => {
 
     try {
 
-        let condition = search
-        ? {[Op.or]: [{ title: {[Op.iLike]: `%${search}%`} }, { text: {[Op.iLike]: `%${search}%`} }]}
-        : {}
-        
+        let condition = {}
+
+        if (search) {
+            let searchArr = search.split(" ")
+            searchArr.forEach((word, i, arr) => {
+                arr[i] = word ? `%${word}%` : ""
+            })
+            condition = {
+                [Op.or]:
+                    [
+                        {title: {[Op.iLike]: {[Op.any]: searchArr}}},
+                        {text: {[Op.iLike]: {[Op.any]: searchArr}}}
+                    ]
+            }
+        }
+
         let allQuestions = await Question.findAll({where: condition, include: User,
             order: [
             ['teachPoints', sort || 'DESC'],
