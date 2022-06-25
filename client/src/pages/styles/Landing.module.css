@@ -10,7 +10,7 @@
 .col2 {
   display: flex;
   border: 1px black solid;
-  align-items: center;
+  align-items: initial;
 }
 
 .colOut {
