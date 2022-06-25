@@ -42,7 +42,7 @@ const CardUserQuestion = ({id, title, text, likes, cantAnswers, name, picture, s
     async function handleConfirmQuestion(e){
         e.preventDefault();
         await dispatch(modifyQuestion(newQuestion));
-        dispatch(getUserQuestions(sub, page))
+        dispatch(getUserQuestions(sub, page, ''))
         toRender()
     }
 

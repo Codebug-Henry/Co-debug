@@ -19,7 +19,7 @@ export const getFavourites = (sub, page) => axios.get(`${URL}/questions/favourit
 export const getAllQuestions = (page) => axios.get(`${URL}/questions?page=${page}&limit=5`);
 export const getAllQuestionsSorted = (sort, page) => axios.get(`${URL}/questions?sort=${sort}&page=${page}&limit=5`);
 export const getSearchQuestions = (search, page) => axios.get(`${URL}/questions?search=${search}&page=${page}&limit=5`);
-export const getUserQuestions = (sub, page) => axios.get(`${URL}/questions/${sub}?page=${page}&limit=5`)
+export const getUserQuestions = (sub, page, search) => axios.get(`${URL}/questions/${sub}?page=${page}&search=${search}&limit=5`)
 export const getUserQuestionsOrderer = (sub, answered, page) => axios.get(`${URL}/questions/${sub}?answered=${answered}&page=${page}&limit=5`) // answered puede ser true o false
 
 // RUTAS ANSWER
