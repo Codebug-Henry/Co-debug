@@ -15,12 +15,6 @@ const CardsQuestions = () => {
     dispatch(getAllQuestions(page));
   }, [dispatch, page]);
 
-  const onChangeSearch = (e) => {
-    setInput(e.target.value);
-    dispatch(getSearchQuestions(e.target.value));
-  };
-
-
     const onChangeSearch = (e)=>{
         setInput(e.target.value);
         dispatch(getSearchQuestions(e.target.value, page));
@@ -30,6 +24,12 @@ const CardsQuestions = () => {
     e.preventDefault();
     setPage(parseInt(e.target.value));
   };
+
+  const handleRestart = (e)=>{
+    e.preventDefault();
+    setInput("");
+    dispatch(getAllQuestions(page));
+}
 
   return (
     <div className={style.questBox}>
