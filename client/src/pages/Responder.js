@@ -1,10 +1,10 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import { useAuth0 } from "@auth0/auth0-react";
 import style from "./styles/Responder.module.css";
 import Footer from "../components/Footer.js";
 import { useDispatch, useSelector } from "react-redux";
-import { useParams } from "react-router-dom";
-import { getQuestion } from "../redux/actions/index";
+import { useLocation, useNavigate, useParams } from "react-router-dom";
+import { getQuestion, sendAnswer } from "../redux/actions/index";
 import like from "../images/like2.png"
 import dislike from "../images/dislike2.png"
 import denuncia from "../images/denuncia2.png"
@@ -15,12 +15,40 @@ const Responder = () => {
   const { isAuthenticated } = useAuth0();
   const dispatch = useDispatch();
   const {questionId} = useParams()
-  console.log(questionId)
   const question = useSelector((state)=>state.question);
+
+
+  //form
+  const user = useSelector((state)=>state.user)
+  const [input,setInput] = useState("");
+  const [error,setError] = useState("")
+
+  const handleChange = (e) => {
+      setInput(e.target.value)
+      setError(validate(e.target.value))
+  }
+
+  const validate = (input)=>{
+    let error="";
+    if(!input) error="Se requiere escribir una respuesta"
+    if(input.length < 10)error ="La respuesta debe tener minimo 10 caracteres"
+    return error;
+  }
+
+  const handleSubmit = (e)=>{
+    e.preventDefault();
+    dispatch(sendAnswer({sub: user.sub, id: questionId, text: input}))
+    setInput("");
+    alert("Respuesta enviada")
+  }
+
+  useEffect(()=>{
+    dispatch(getQuestion(questionId))
+  },[question])
   
   useEffect(()=>{
     dispatch(getQuestion(questionId))
-  },[dispatch, getQuestion, questionId])
+  },[dispatch])
   
 
   return (
@@ -71,15 +99,44 @@ const Responder = () => {
                             </div>
                         </div>
                 </div>
-                </div>)
-                    
-                  
-
-                  
+                </div>) 
                 }
                 <br></br>
-                <div className={style.userAnswer}>
-                          form answer
+                
+                {/*----------------FORMULARIO*--------------------*/}
+
+                <div className={style.answerForm}>
+                          <form>
+                            <div className={style.write}>
+                                <p>Escribe una respuesta aqui: </p>
+                            </div>
+                            <div className={style.text}>
+                                <textarea 
+                                type="text"
+                                autoComplete="off"
+                                name="text"
+                                onChange={handleChange}
+                                value={input}></textarea>
+                            </div>
+                            <div className={style.error}>
+                            {   
+                            error && (
+                                <div className={style.errorMessage}>
+                                    <span> {error}</span>
+                                </div>
+                            )
+                        }
+                            </div>
+                            <div className={style.button}>
+                              <button 
+                                type="submit"
+                                onClick={(e)=>handleSubmit(e)}
+                                className={style.submit}
+                                disabled={!input || error}
+                                >Enviar 
+                              </button>
+                            </div>
+                          </form>
                 </div>
                 <br></br>
                 <div className={style.answers}>
@@ -103,7 +160,7 @@ const Responder = () => {
           <div className={`container-fluid ${style.container}`}>
             <div className={`row ${style.middleRow}`}>
               <div className={`col-lg ${style.colOut}`}>
-                No logeado
+                Cargando...
               </div>
             </div>
           </div>

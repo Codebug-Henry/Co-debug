@@ -158,13 +158,23 @@ export const getUserQuestionsOrderer = (sub, answered, page) => async (dispatch)
 
 // RUTAS ANSWER
 
-export const sendAnswer = async (answer) => {
+export const sendAnswer =  (answer) => async (dispatch)=> {
     try {
-        await api.sendAnswer(answer)
+        const {data} = await api.sendAnswer(answer)
+        dispatch({type: "GET_ANSWER",payload: data})
     } catch (error) {
         console.log(error.message)
     }
 }
+
+// export const sendQuestion = (question) => async (dispatch) => {
+//     try {
+//         const { data } = await api.sendQuestion(question)
+//         dispatch({ type: GET_QUESTION, payload: data})
+//     } catch (error) {
+//         console.log(error.message)
+//     }
+// }
 
 export const putAnswer = (answer) => async (dispatch) => {
     try {
