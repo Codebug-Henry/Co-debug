@@ -8,20 +8,20 @@
 }
 
 .col1 {
-  background-color: aqua;
+
   display: flex;
   justify-content: center;
 }
 
 .col2 {
   background-size: cover;
-  background-color: blanchedalmond;
+
   display: flex;
   justify-content: center;
   align-items: center;
 }
 .col3{
-  background-color: darkgreen;
+
   display: flex;
   align-items: center;
   justify-content: center;
