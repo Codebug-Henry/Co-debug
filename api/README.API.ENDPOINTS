@@ -399,11 +399,12 @@ router.get("/questions/:sub",getUserQuestions)
  
 ->DESCRIPCION: esta ruta es para acceder a todas mis preguntas.
 
-->REQUERIMIENTOS: recibo “sub” por params y puede traer por query ?page, ?limit y ?answered para filtrar por preguntas respondidas o no respondidas, en caso de no traer ?answered simplemente accedo a todas las preguntas del usuario.
+->REQUERIMIENTOS: recibo “sub” por params y puede traer por query ?page, ?limit, ?search para que busque dentro de sus preguntas y ?answered para filtrar por preguntas respondidas o no respondidas, en caso de no traer ?answered simplemente accedo a todas las preguntas del usuario.
 
- ?answered=" " (answered=>true/false)
- &page=(número de página)
+ ?page=(número de página)
  &limit=(cantidad de elementos por página)
+ &search=" " (string que esta buscando en texto/titulo)
+ &answered=" " (answered=>true/false)
 
 ->RESPUESTA: un objeto con 3 propiedades: totalPages, pages, results (preguntas del usuario)
 

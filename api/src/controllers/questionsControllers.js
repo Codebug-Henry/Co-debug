@@ -5,11 +5,26 @@ const { paginate } = require("./generalControllers");
 const getUserQuestions = async (req, res, next) => {
 
     const {sub} = req.params
-    const {answered, page, limit} = req.query
+    const {search, answered, page, limit} = req.query
 
     try {
 
         let condition = {userSub: sub}
+
+        if (search) {
+            let searchArr = search.split(" ")
+            searchArr.forEach((word, i, arr) => {
+                arr[i] = word ? `%${word}%` : ""
+            })
+            condition = {
+                ...condition,
+                [Op.or]:
+                    [
+                        {title: {[Op.iLike]: {[Op.any]: searchArr}}},
+                        {text: {[Op.iLike]: {[Op.any]: searchArr}}}
+                    ]
+            }
+        }
 
         switch (answered) {
             case "true":
