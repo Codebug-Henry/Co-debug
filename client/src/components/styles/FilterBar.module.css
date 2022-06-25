@@ -1,4 +1,4 @@
-#select{
+.select{
     width: 180px;
     height: 28px;
     border-radius: 10%;
@@ -8,17 +8,8 @@
 } 
 
 @media screen and (max-width: 670px){
-    #select{
+    .select{
         width: 150px;
         height: 25px;
-
     } 
 }
-
-/* @media screen and (max-width: 500px){
-    #name{
-        width: 65%;
-    }
-    #photo{
-        width: 30%;
-    } */

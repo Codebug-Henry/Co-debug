@@ -138,9 +138,9 @@ export const getSearchQuestions = (search, page) => async (dispatch) => {
     }
 }
 
-export const getUserQuestions = (sub, page) => async (dispatch) => {
+export const getUserQuestions = (sub, page, search) => async (dispatch) => {
     try {
-        const { data } = await api.getUserQuestions(sub, page)
+        const { data } = await api.getUserQuestions(sub, page, search)
         dispatch({ type: GET_USER_QUESTIONS, payload: data })
     } catch (error) {
         console.log(error.message)

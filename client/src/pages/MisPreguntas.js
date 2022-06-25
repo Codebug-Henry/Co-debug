@@ -6,7 +6,7 @@ import Footer from "../components/Footer.js";
 import CardUserQuestion from "../components/CardUserQuestion";
 import FilterBar from "../components/FilterBar";
 import SearchBar from '../components/SearchBar';
-import { getUserQuestions } from "../redux/actions";
+import { getUserQuestions, getUserQuestionsOrderer } from "../redux/actions";
 import FilterAltIcon from '@mui/icons-material/FilterAlt';
 import Paginated from "../components/Paginated";
 
@@ -17,13 +17,24 @@ const MisPreguntas = () => {
   const questions = useSelector(state => state.userQuestions);
   const dispatch = useDispatch();
   const pages = useSelector((state) => state.pages);
+  const [input, setInput] = useState("");
 
   const [cant, setCant] = useState(questions.length);
   const [page, setPage] = useState(1)
  
   useEffect(()=>{
-    dispatch(getUserQuestions(userInfo.sub, page))
+    // if(document.getElementById("selectAnswered").getElementsByTagName('option')[1].selected === 'selected'){
+    //   dispatch(getUserQuestionsOrderer(userInfo.sub, 'false', page));
+    // }
+    // else if(document.getElementById("selectAnswered").getElementsByTagName('option')[1].selected === 'selected'){
+    //   dispatch(getUserQuestionsOrderer(userInfo.sub, 'true', page));
+    // }
+    // else{
+    dispatch(getUserQuestions(userInfo.sub, page, ''))
+    // }
   }, [userInfo, cant, page])
+
+  // console.log(document.getElementById('selectAnswered').getElementsByTagName('option')[0].selected)
 
   return (
     <div>
@@ -39,8 +50,8 @@ const MisPreguntas = () => {
                   </div>
                   <div id={style.filters}>
                       <FilterAltIcon fontSize='medium'/>
-                      <SearchBar page={page} userInfo={userInfo} pages={pages}/>
-                      <FilterBar page={page} setPage={setPage} pages={pages}/>
+                      <SearchBar page={page} userInfo={userInfo} pages={pages} input={input} setInput={setInput} />
+                      <FilterBar page={page} setPage={setPage} pages={pages} setInput={setInput}/>
                   </div>
                   <div id={style.myQuestions}>
                     {
