@@ -19,22 +19,22 @@ const MisPreguntas = () => {
   const pages = useSelector((state) => state.pages);
   const [input, setInput] = useState("");
 
-  const [cant, setCant] = useState(questions.length);
+  // const [cant, setCant] = useState(questions.length);
   const [page, setPage] = useState(1)
- 
-  useEffect(()=>{
-    // if(document.getElementById("selectAnswered").getElementsByTagName('option')[1].selected === 'selected'){
-    //   dispatch(getUserQuestionsOrderer(userInfo.sub, 'false', page));
-    // }
-    // else if(document.getElementById("selectAnswered").getElementsByTagName('option')[1].selected === 'selected'){
-    //   dispatch(getUserQuestionsOrderer(userInfo.sub, 'true', page));
-    // }
-    // else{
-    dispatch(getUserQuestions(userInfo.sub, page, ''))
-    // }
-  }, [userInfo, cant, page])
+  const [cantFirstLast, setCantFirstLast] = useState([questions.length, questions[1], questions[4]])
 
-  // console.log(document.getElementById('selectAnswered').getElementsByTagName('option')[0].selected)
+  useEffect( () =>{
+    if(document.getElementById("selectAnswered").value === 'false'){
+      dispatch(getUserQuestionsOrderer(userInfo.sub, 'false', page));
+    }
+    if(document.getElementById("selectAnswered").value === 'true'){
+      dispatch(getUserQuestionsOrderer(userInfo.sub, 'true', page));
+    }
+    if(document.getElementById("selectAnswered").value === 'All'){
+    dispatch(getUserQuestions(userInfo.sub, page, ''))
+    }
+  }, [cantFirstLast, page])
+
 
   return (
     <div>
@@ -59,7 +59,8 @@ const MisPreguntas = () => {
                       questions.map(q => {
                           return (
                             <CardUserQuestion key={q.id} id={q.id} title={q.title} text={q.text} likes={q.likes} cantAnswers={q.cantAnswers} 
-                                              name={userInfo.nickname} picture={userInfo.picture} setCant={setCant} sub={userInfo.sub} page={page}/>
+                                              name={userInfo.nickname} picture={userInfo.picture} sub={userInfo.sub} page={page}
+                                              setCantFirstLast={setCantFirstLast}/>
                           )
                       }) :
                       <div>

@@ -8,11 +8,11 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import TextField from '@mui/material/TextField';
 import Avatar from '@mui/material/Avatar';
 import CheckIcon from '@mui/icons-material/Check';
-import { deleteQuestion, getUserQuestions, modifyQuestion } from '../redux/actions';
+import { deleteQuestion, getUserQuestions, modifyQuestion,getUserQuestionsOrderer } from '../redux/actions';
 import {Link} from 'react-router-dom';
 
 
-const CardUserQuestion = ({id, title, text, likes, cantAnswers, name, picture, setCant, sub, page}) => {
+const CardUserQuestion = ({id, title, text, likes, cantAnswers, name, picture, sub, page, setCantFirstLast}) => {
 
     const dispatch = useDispatch();
     const questions = useSelector(state=> state.userQuestions);
@@ -28,11 +28,13 @@ const CardUserQuestion = ({id, title, text, likes, cantAnswers, name, picture, s
         style1 === true ? setStyle1(false) : setStyle1(true)
     }
 
-    async function handleDeleteQuestion(e){
+    function handleDeleteQuestion(e){
         e.preventDefault();
-        await dispatch(deleteQuestion(id));
-        setCant(questions.length) 
+        // document.getElementById("selectAnswered").getElementsByTagName('option')[0] = 'selected'
+        dispatch(deleteQuestion(id));
+        setCantFirstLast([questions.length, questions[1], questions[4]])
     }
+
 
     function handleEditQuestion(e){
         e.preventDefault();
@@ -42,7 +44,15 @@ const CardUserQuestion = ({id, title, text, likes, cantAnswers, name, picture, s
     async function handleConfirmQuestion(e){
         e.preventDefault();
         await dispatch(modifyQuestion(newQuestion));
-        dispatch(getUserQuestions(sub, page, ''))
+        if(document.getElementById("selectAnswered").value === 'false'){
+            dispatch(getUserQuestionsOrderer(sub, 'false', page));
+          }
+        if(document.getElementById("selectAnswered").value === 'true'){
+        dispatch(getUserQuestionsOrderer(sub, 'true', page));
+        }
+        if(document.getElementById("selectAnswered").value === 'All'){
+          dispatch(getUserQuestions(sub, page, ''))
+        }
         toRender()
     }
 
@@ -92,7 +102,7 @@ const CardUserQuestion = ({id, title, text, likes, cantAnswers, name, picture, s
                 </div>
                 
                 <div id={style1 === true ? style.editBtn : style.editFull}>
-                    <Fab color="primary" aria-label="edit" size="small" className={style.editBtn}>
+                    <Fab color="primary" aria-label="edit" size="small" className={ document.getElementById("dropdownMenuButton2").ariaExpanded === 'false' ? style.editBtn : style.editFull} id='editButton'>
                         <EditIcon fontSize="small" onClick={e=> handleEditQuestion(e)} />
                     </Fab>
                 </div>
@@ -102,7 +112,7 @@ const CardUserQuestion = ({id, title, text, likes, cantAnswers, name, picture, s
                                 label="Edita la pregunta" 
                                 id="fullWidth" 
                                 defaultValue={text} 
-                                multiline='true' 
+                                multiline={true}
                                 onChange={e=> onChangeInputText(e)}/> 
                 </div>
                 <div className= {style1 === true ? style.editFull : style.editBtn}>
