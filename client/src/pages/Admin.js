@@ -33,32 +33,32 @@ const Admin = () => {
           <div className={`container-fluid ${style.container}`}>
             <div className={`row ${style.middleRow}`}>
               <div className={`col-lg-3 ${style.col1}`}>
-                <div class="d-grid gap-2 mx-auto">
+                <div className="d-grid gap-2 mx-auto">
                   <p className={style.tittleLeft}>Admin Options</p>
                   <button
                     onClick={() => setOptionSelected(<Alertas />)}
-                    class="btn btn-primary btn-warning"
+                    className="btn btn-primary btn-warning"
                     type="button"
                   >
                     Alertas
                   </button>
                   <button
                     onClick={() => setOptionSelected(<ListaUsuarios />)}
-                    class="btn btn-primary btn-warning"
+                    className="btn btn-primary btn-warning"
                     type="button"
                   >
                     Lista usuarios
                   </button>
                   <button
                     onClick={() => setOptionSelected(<AgregarAdmin />)}
-                    class="btn btn-primary btn-warning"
+                    className="btn btn-primary btn-warning"
                     type="button"
                   >
                     Agregar Admin
                   </button>
                   <button
                     onClick={() => setOptionSelected(<PreguntasDirectas />)}
-                    class="btn btn-primary btn-warning"
+                    className="btn btn-primary btn-warning"
                     type="button"
                   >
                     Preguntas directas

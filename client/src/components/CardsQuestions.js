@@ -53,10 +53,10 @@ const CardsQuestions = () => {
               </div>
              */}
 
-        <nav class="navbar navbar-expand-lg navbar-light bg-light">
-          <div class="container-fluid">
+        <nav className="navbar navbar-expand-lg navbar-light bg-light">
+          <div className="container-fluid">
             <button
-              class="navbar-toggler"
+              className="navbar-toggler"
               type="button"
               data-bs-toggle="collapse"
               data-bs-target="#navbarSupportedContent"
@@ -66,11 +66,14 @@ const CardsQuestions = () => {
             >
               <span class="navbar-toggler-icon"></span>
             </button>
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-              <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                <li class="nav-item dropdown">
+            <div
+              className="collapse navbar-collapse"
+              id="navbarSupportedContent"
+            >
+              <ul className="navbar-nav me-auto mb-2 mb-lg-0">
+                <li className="nav-item dropdown">
                   <a
-                    class="nav-link dropdown-toggle"
+                    className="nav-link dropdown-toggle"
                     href="#"
                     id="navbarDropdown"
                     role="button"
@@ -79,22 +82,25 @@ const CardsQuestions = () => {
                   >
                     Antiguedad
                   </a>
-                  <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                  <ul
+                    className="dropdown-menu"
+                    aria-labelledby="navbarDropdown"
+                  >
                     <li>
-                      <a class="dropdown-item" href="#">
+                      <a className="dropdown-item" href="#">
                         Más antiguas
                       </a>
                     </li>
                     <li>
-                      <a class="dropdown-item" href="#">
+                      <a className="dropdown-item" href="#">
                         Más nuevas
                       </a>
                     </li>
                   </ul>
                 </li>
-                <li class="nav-item dropdown">
+                <li className="nav-item dropdown">
                   <a
-                    class="nav-link dropdown-toggle"
+                    className="nav-link dropdown-toggle"
                     href="#"
                     id="navbarDropdown"
                     role="button"
@@ -103,66 +109,69 @@ const CardsQuestions = () => {
                   >
                     Tag's General
                   </a>
-                  <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                  <ul
+                    className="dropdown-menu"
+                    aria-labelledby="navbarDropdown"
+                  >
                     <li>
-                      <a class="dropdown-item" href="#">
+                      <a className="dropdown-item" href="#">
                         js
                       </a>
                     </li>
                     <li>
-                      <a class="dropdown-item" href="#">
+                      <a className="dropdown-item" href="#">
                         python
                       </a>
                     </li>
                     <li>
-                      <a class="dropdown-item" href="#">
+                      <a className="dropdown-item" href="#">
                         react
                       </a>
                     </li>
                     <li>
-                      <a class="dropdown-item" href="#">
+                      <a className="dropdown-item" href="#">
                         redux
                       </a>
                     </li>
                     <li>
-                      <a class="dropdown-item" href="#">
+                      <a className="dropdown-item" href="#">
                         github
                       </a>
                     </li>
                     <li>
-                      <a class="dropdown-item" href="#">
+                      <a className="dropdown-item" href="#">
                         html
                       </a>
                     </li>
                     <li>
-                      <a class="dropdown-item" href="#">
+                      <a className="dropdown-item" href="#">
                         css
                       </a>
                     </li>
                   </ul>
                 </li>
-                <li class="nav-item">
+                <li className="nav-item">
                   <a
-                    class="nav-link disabled"
+                    className="nav-link disabled"
                     href="#"
-                    tabindex="-1"
+                    tabIndex="-1"
                     aria-disabled="true"
                   >
                     tag
                   </a>
                 </li>
               </ul>
-              <form class="d-flex">
+              <form className="d-flex">
                 <input
                   onChange={(e) => onChangeSearch(e)}
-                  class="form-control me-2"
+                  className="form-control me-2"
                   type="search"
                   placeholder="Buscar..."
                   aria-label="Search"
                 />
                 <button
                   onClick={() => handlerRefresh()}
-                  class="btn btn-outline-success"
+                  className="btn btn-outline-success"
                   type="submit"
                 >
                   Refresh
