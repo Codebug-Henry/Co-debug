@@ -64,7 +64,11 @@ const CardsQuestions = () => {
               aria-expanded="false"
               aria-label="Toggle navigation"
             >
+<<<<<<< HEAD
               <span className="navbar-toggler-icon"></span>
+=======
+              <span class="navbar-toggler-icon"></span>
+>>>>>>> c1454b6e3533be633ccbe53b9aea8db103cd8af1
             </button>
             <div
               className="collapse navbar-collapse"
