@@ -18,9 +18,9 @@ const CardQuestion = ({cantAnswers, nickname, picture, likes, title, text, teach
    const dispatch = useDispatch()
    const infoQuestion = useSelector(state=>state.question)
 
-   useEffect(()=>{
-    dispatch(getQuestion(infoQuestion.id));
-   },[dispatch, infoQuestion.id])
+  //  useEffect(()=>{
+  //   dispatch(getQuestion(infoQuestion.id));
+  //  },[dispatch, infoQuestion.id])
   
 
   return (
