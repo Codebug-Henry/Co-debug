@@ -33,32 +33,32 @@ const Admin = () => {
           <div className={`container-fluid ${style.container}`}>
             <div className={`row ${style.middleRow}`}>
               <div className={`col-lg-3 ${style.col1}`}>
-                <div class="d-grid gap-2 mx-auto">
+                <div className="d-grid gap-2 mx-auto">
                   <p className={style.tittleLeft}>Admin Options</p>
                   <button
                     onClick={() => setOptionSelected(<Alertas />)}
-                    class="btn btn-primary btn-warning"
+                    className="btn btn-primary btn-warning"
                     type="button"
                   >
                     Alertas
                   </button>
                   <button
                     onClick={() => setOptionSelected(<ListaUsuarios />)}
-                    class="btn btn-primary btn-warning"
+                    className="btn btn-primary btn-warning"
                     type="button"
                   >
                     Lista usuarios
                   </button>
                   <button
                     onClick={() => setOptionSelected(<AgregarAdmin />)}
-                    class="btn btn-primary btn-warning"
+                    className="btn btn-primary btn-warning"
                     type="button"
                   >
                     Agregar Admin
                   </button>
                   <button
                     onClick={() => setOptionSelected(<PreguntasDirectas />)}
-                    class="btn btn-primary btn-warning"
+                    className="btn btn-primary btn-warning"
                     type="button"
                   >
                     Preguntas directas
@@ -101,12 +101,11 @@ const Admin = () => {
                 quisquam est, qui dolorem ipsum quia dolor sit amet,
                 consectetur, adipisci velit, sed quia non numquam eius modi
                 tempora incidunt ut labore et dolore magnam aliquam quaerat
-                voluptatem. Ut enim ad minima veniam, quis nostrum
-                exercitationem ullam corporis suscipit laboriosam, nisi ut
-                aliquid ex ea commodi consequatur? Quis autem vel eum iure
-                reprehenderit qui in ea voluptate velit esse quam nihil
-                molestiae consequatur, vel illum qui dolorem eum fugiat quo
-                voluptas nulla pariatur?"
+                voluptatem. Ut enim ad minima veniam, quis nostrum exercationem
+                ullam corporis suscipit laboriosam, nisi ut aliquid ex ea
+                commodi consequatur? Quis autem vel eum iure reprehenderit qui
+                in ea voluptate velit esse quam nihil molestiae consequatur, vel
+                illum qui dolorem eum fugiat quo voluptas nulla pariatur?"
               </div>
             </div>
           </div>
