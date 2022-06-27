@@ -376,9 +376,10 @@ const Terminos = () => {
       ) : (
         <div className={style.total}>
           {/* Acá el contenido para no logueados */}
+
           <div className={`container-fluid ${style.container}`}>
             <div className={`row ${style.middleRow}`}>
-              <div className={`col-lg ${style.colOut}`}>
+              <div className={`col-lg-8 ${style.colOut}`}>
                 TÉRMINOS DEL SERVICIO ---- GENERALIDADES Codebug gestiona este
                 sitio web. En todo el sitio, los términos "nosotros", "nos" y
                 "nuestro" se refieren en lo sucesivo a Codebug. Codebug ofrece
