@@ -1,27 +1,17 @@
 import { Link } from 'react-router-dom'
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import React from 'react'
 import style from "./styles/CardQuestion.module.css"
 import like from "../images/like2.png"
 import dislike from "../images/dislike2.png"
 import denuncia from "../images/denuncia2.png"
 import favorito from "../images/favorito2.png"
-import { getQuestion } from '../redux/actions'
-import { useDispatch } from 'react-redux'
-import { useSelector } from 'react-redux'
 
 
 
 const CardQuestion = ({cantAnswers, nickname, picture, likes, title, text, teachPoints,id}) => {
 
    const [ likeOnScreen, setlikeOnScreen ] = useState(likes)
-   const dispatch = useDispatch()
-   const infoQuestion = useSelector(state=>state.question)
-
-  //  useEffect(()=>{
-  //   dispatch(getQuestion(infoQuestion.id));
-  //  },[dispatch, infoQuestion.id])
-  
 
   return (
     <div className={`container-fluid ${style.total}`}>
@@ -67,7 +57,7 @@ const CardQuestion = ({cantAnswers, nickname, picture, likes, title, text, teach
         </div>
       </div>
       <div className={`col-2-lg ${style.rightBox}`}>
-        <Link reloadDocument to={`/responder/${id}` }>
+        <Link to={`/responder/${id}` }>
           <button  className={style.answerIt}>
               Responder
           </button>
