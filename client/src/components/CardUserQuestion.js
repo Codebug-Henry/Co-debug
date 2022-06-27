@@ -102,8 +102,8 @@ const CardUserQuestion = ({id, title, text, likes, cantAnswers, name, picture, s
                 </div>
                 
                 <div id={style1 === true ? style.editBtn : style.editFull}>
-                    <Fab color="primary" aria-label="edit" size="small" className={ document.getElementById("dropdownMenuButton2").ariaExpanded === 'false' ? style.editBtn : style.editFull} id='editButton'>
-                        <EditIcon fontSize="small" onClick={e=> handleEditQuestion(e)} />
+                    <Fab color="primary" aria-label="edit" size="small" className={style.editBtn} id='editButton' onClick={e=> handleEditQuestion(e)}>
+                        <EditIcon fontSize="small"  />
                     </Fab>
                 </div>
 
@@ -137,8 +137,8 @@ const CardUserQuestion = ({id, title, text, likes, cantAnswers, name, picture, s
                 <span>Likes: {likes}</span>
             </div>
             <div>
-            <Fab color="primary" aria-label="edit" size="small" className={style.deleteBtn}>
-                <DeleteIcon fontSize="small" onClick={e=> handleDeleteQuestion(e)}/>
+            <Fab color="primary" aria-label="edit" size="small" className={style.deleteBtn} onClick={e=> handleDeleteQuestion(e)}>
+                <DeleteIcon fontSize="small" />
             </Fab>
             </div>
         </div>
