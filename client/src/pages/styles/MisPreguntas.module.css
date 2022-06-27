@@ -40,7 +40,8 @@
     flex-direction: column;
     gap: 3vh;
     position: relative;
-    top: 3vh
+    top: 3vh;
+    z-index: -1;       /* esto lo puse para que el boton de delete no quede por encima del dropdown cuando se abre */
 }
 
 @media screen and (max-width: 500px){
