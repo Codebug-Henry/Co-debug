@@ -4,8 +4,8 @@ import {getUserInfo, sendQuestion } from '../redux/actions/index';
 import style from './styles/FormQuestion.module.css';
 import InfoPopper from './InfoPopper';
 import { useNavigate } from 'react-router-dom';
-import Alert from '@mui/material/Alert';
-import AlertTitle from '@mui/material/AlertTitle';
+// import Alert from '@mui/material/Alert';
+// import AlertTitle from '@mui/material/AlertTitle';
 
 const FormQuestion = () => {
 

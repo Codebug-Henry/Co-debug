@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getUserQuestions, getUserQuestionsOrderer } from '../redux/actions';
 import style from './styles/FilterBar.module.css'

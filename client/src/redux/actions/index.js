@@ -67,10 +67,11 @@ export const sendQuestion = (question) => async (dispatch) => {
     }
 }
 
-export const getQuestion = (id) => async (dispatch) => {
+export const getQuestion = (id, setLoad) => async (dispatch) => {
     try {
         const { data } = await api.getQuestion(id)
         dispatch({ type: GET_QUESTION, payload: data})
+        setLoad && setLoad(false)
     } catch (error) {
         console.log(error.message)
     }

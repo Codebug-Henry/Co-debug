@@ -1,11 +1,11 @@
-import React, { useEffect } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
-import style from "./styles/TopDiezRanking.module.css"
-import { getTopTenRanking } from '../redux/api'
+import React from 'react'
+// import { useDispatch, useSelector } from 'react-redux'
+// import style from "./styles/TopDiezRanking.module.css"
+// import { getTopTenRanking } from '../redux/api'
 
 const TopDiezRanking = () => {
-  const dispatch = useDispatch();
-  const topTen = useSelector(state=>state.topTenRanking)
+  // const dispatch = useDispatch();
+  // const topTen = useSelector(state=>state.topTenRanking)
 
 //   useEffect(()=>{
 //     dispatch(getTopTenRanking())

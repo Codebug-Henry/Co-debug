@@ -21,11 +21,11 @@ const CardsQuestsLogOut = () => {
         dispatch(getSearchQuestions(e.target.value, page));
     }
 
-    const handleRestart = (e)=>{
-        e.preventDefault();
-        setInput("");
-        dispatch(getAllQuestions(page));
-    }
+    // const handleRestart = (e)=>{
+    //     e.preventDefault();
+    //     setInput("");
+    //     dispatch(getAllQuestions(page));
+    // }
 
     const handleClick = (e) => {
         e.preventDefault()
