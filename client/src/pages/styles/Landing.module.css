@@ -19,34 +19,38 @@
   align-items: center;
 }
 
-
 /* Landing Logout */
 
-.rightRowUp{
+.rightRowTop {
+  display: flex;
+  align-items: center;
+  margin-top: 2%;
+}
+
+.rightRowUp {
   background-color: rgb(185, 155, 107);
   padding: 1%;
 }
 
-.rightRowMidle{
-background-color: cadetblue;
-padding: 1%;
+.rightRowMidle {
+  background-color: cadetblue;
+  padding: 1%;
 }
-.rightRowDown{
+.rightRowDown {
   background-color: rgb(193, 237, 123);
   padding: 1%;
-  }
+}
 
-
-.Titulo{
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+.Titulo {
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
   font-size: 400%;
 }
-.rigthContainer{
+.rigthContainer {
   padding: 0;
 }
 
-.subTitulo{
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  font-size: 200%; 
+.subTitulo {
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  font-size: 200%;
   letter-spacing: 13px;
 }
