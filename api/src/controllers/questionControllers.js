@@ -1,4 +1,4 @@
-const {User, Question} = require("../db.js")
+const {User, Question, Answer} = require("../db.js")
 
 const deleteUserQuestion = async (req, res, next) => {
     const {id} = req.params
@@ -65,17 +65,14 @@ const getSingleQuestion = async (req, res, next) => {
     const id = req.params.id
 
     try {
-        let questionFound = await Question.findByPk(id)
-        let user=await questionFound.getUser()
-        let answers=await questionFound.getAnswers()
+        const question = await Question.findByPk(id, {
+            include: [
+                {model: User},
+                {model: Answer, include: User}
+            ]
+        })        
 
-        res.send(
-            {
-                user,
-                ...questionFound.dataValues,
-                answers
-            }
-        )
+        res.send(question)
 
     } catch (error) {
         next(error)
