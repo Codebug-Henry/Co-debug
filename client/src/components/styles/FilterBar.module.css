@@ -1,0 +1,15 @@
+.select{
+    width: 180px;
+    height: 28px;
+    border-radius: 10%;
+    background: rgba(233, 236, 239, 0.8);
+    font-family: 'Source Serif Pro', serif;
+    cursor: pointer;
+} 
+
+@media screen and (max-width: 670px){
+    .select{
+        width: 150px;
+        height: 25px;
+    } 
+}

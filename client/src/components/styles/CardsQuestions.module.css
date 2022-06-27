@@ -1,0 +1,68 @@
+.questBox {
+  /* background-color: rgb(255, 255, 255);
+  border-style: solid;
+  border-radius: 1%;
+  border-color: black; */
+  margin: 3%;
+  /* display: flex;
+    align-items: center;
+    justify-content: center; */
+}
+
+.paginado {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.searchBar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-top: 2vh;
+  margin-bottom: 2vh;
+}
+
+/* Tope de cards - donde van las opciones de orden filtro y searchbar */
+
+.tags{
+  background-color: aqua;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.searchBar{
+  background-color: darkolivegreen;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.refresh{
+  background-color: darkmagenta;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.orderTime{
+  background-color: gold;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.fixSeachBar{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: row;
+  gap:1%;
+}
+.optionSearch{
+  margin:4%;
+}
+
+.paginado{
+  margin-bottom: 3%;
+}

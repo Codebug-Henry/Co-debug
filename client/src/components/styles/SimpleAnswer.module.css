@@ -1,0 +1,11 @@
+.total{
+    background: coral;
+    margin-bottom: 2vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.info{
+    display: flex;
+    background-color: grey;
+}

@@ -1,0 +1,51 @@
+.col1 {
+  display: flex;
+  flex-direction: column;
+}
+
+#all {
+  width: 96%;
+  margin-left: 2%;
+}
+
+#explore {
+  /* border: solid 1px black; */
+  height: 6vh;
+}
+
+#explore p {
+  position: relative;
+  text-align: center;
+  margin-top: 1vh;
+  font-size: x-large;
+}
+
+#filters {
+  /* border: solid 1px black; */
+  border-top: solid 1px black;
+  border-style: inset;
+  background-color: #fcca46;
+  border-radius: 5%;
+  height: 7vh;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+#myQuestions {
+  /* border: solid 1px black; */
+  height: fit-content;
+  display: flex;
+  flex-direction: column;
+  gap: 3vh;
+  position: relative;
+  top: 3vh;
+  /* z-index: -1;        esto lo puse para que el boton de delete no quede por encima del dropdown cuando se abre */
+}
+
+@media screen and (max-width: 500px) {
+  #filters {
+    flex-direction: column;
+  }
+}

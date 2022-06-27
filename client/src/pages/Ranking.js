@@ -1,28 +1,61 @@
-import React from 'react'
-import { useAuth0 } from '@auth0/auth0-react';
-import Headerlogin from '../components/Headerlogin';
-import Header from "../components/Header"
-import style from "./styles/Ranking.module.css"
+import React from "react";
+import { useAuth0 } from "@auth0/auth0-react";
+import style from "./styles/Ranking.module.css";
+import Footer from "../components/Footer.js";
+import Loading from "../components/Loading";
 
 const Ranking = () => {
-    const { isAuthenticated } = useAuth0();
-    return (
-     
-      isAuthenticated ? (
-      <div >
-          <Headerlogin />
+  const { isAuthenticated } = useAuth0();
+  return (
+    <div>
+      {isAuthenticated ? (
+        <div>
           {/* Acá el contenido para logueados */}
-          <h1>Acá va el Ranking</h1>
-      </div>
-    
-      ):
-      <div className={style.total}>
-          <Header />
-          {/* Acá el contenido para no logueados (en este caso lo mismo) */}
-          <h1>Acá va el Ranking</h1>
-      </div>
-      
-    )
-}
+          <div className={`container-fluid${style.rigthContainer}`}>
+                        <div className={`row ${style.puestos}`}>
+                            <div >
+                              <p className={style.Titulo}>PUESTO 1</p>
+                              <p>Gonzalo</p>
+                              <p>Puntos: 10.000</p>
 
-export default Ranking
+                            </div>
+                        </div>
+                        <div className={`row ${style.puestos}`}>
+                          <div >
+                            <p className={style.Titulo}>PUESTO 2</p>
+                            <p>Pato</p>
+                              <p>Puntos: 9.000</p>
+                          </div>
+                        </div>
+                        <div className={`row ${style.puestos}`}>
+                          <div >
+                            <p className={style.Titulo}>PUESTO 3</p>
+                            <p>Mati</p>
+                              <p>Puntos: 8.000</p>
+                          </div>
+                        </div>
+                        <div className={`row ${style.puestos}`}>
+                          <div >
+                            <p className={style.Titulo}>PUESTO 4</p>
+                            <p>Lucho</p>
+                              <p>Puntos: 7.000</p>
+                          </div>
+                        </div>
+                        <div className={`row ${style.puestos}`}>
+                          <div >
+                            <p className={style.Titulo}>PUESTO 5</p>
+                            <p>Davo</p>
+                              <p>Puntos: 6.000</p>
+                          </div>
+                        </div>
+                </div>
+              </div>
+      ): <Loading/>}
+      <div>
+        <Footer />
+      </div>
+    </div>
+  );
+};
+
+export default Ranking;

@@ -1,58 +1,149 @@
-import { Link } from "react-router-dom"
-import logo from "../images/logo_codebug.png"
-import React from 'react'
-import Butlogout from "./Butlogout"
-import { useAuth0 } from "@auth0/auth0-react"
-import style from "./styles/Headerlogin.module.css"
+import { Link } from "react-router-dom";
+import logo from "../images/logo_codebug.png";
+import React from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { useState, useEffect } from "react";
+import { useAuth0 } from "@auth0/auth0-react";
+import style from "./styles/Headerlogin.module.css";
+import { sendUserInfo } from "../redux/actions";
+import Header from "./Header";
 
 const Headerlogin = () => {
   const { user } = useAuth0();
+  const { isAuthenticated } = useAuth0();
+  const { logout } = useAuth0();
+  const dispatch = useDispatch();
+  const userInfo = useSelector((state) => state.user);
+  const [width, setWidth] = useState(window.innerWitdh);
 
-  return (
-    <div className={style.headerfull}>
-        <div>
-            <Link to="/">
-                <img className={style.logo} src={logo} alt="logo"/>
-            </Link>
-        </div>
-        <div className={style.links}>
-            <Link to="/" className={style.linksInt}>
-              <h5>PRINCIPAL</h5>
-            </Link>
-            <Link to="/favoritas" className={style.linksInt}>
-              <h5>FAVORITOS</h5>
-            </Link>
-            <Link to="/mispreguntas" className={style.linksInt}>
-              <h5>MIS PREGUNTAS</h5>
-            </Link>
-            <Link to="/misrespuestas" className={style.linksInt}>
-              <h5>MIS RESPUESTAS</h5>
-            </Link>
-            <Link to="/ranking" className={style.linksInt}>
-              <h5>RANKING</h5>
-            </Link>
-            <Link to="/preguntar" className={style.linksInt}>
-              <h5>PREGUNTAR</h5>
-            </Link>
-            <Link to="/admin" className={style.linksInt}>
-              <h5>ADMIN</h5>
-            </Link>
-        </div>
-        <div className={style.imgNameLogOut}>
-            <Link to="/configuracion" className={style.contImagen}>
-              <img className={style.userImage} src={user.picture} alt={user.name}/>
-            </Link>
-            <Link to="/configuracion" >
-              <h3 className={style.name}>{user.name}</h3>
-            </Link>
-        
-            <div className={style.cajaLogReg}>
-                    <Butlogout/>
-            </div>
+  useEffect(() => {
+    window.addEventListener("resize", handleResize, false);
+  }, []);
+
+  useEffect(() => {
+    if (isAuthenticated) {
+      dispatch(sendUserInfo(user));
+    }
+  }, [dispatch, user]);
+
+  const handleResize = () => {
+    setWidth(window.innerWidth);
+  };
+
+  return isAuthenticated ? (
+    <div className={`container-fluid ${style.container}`}>
+      <div className={`row ${style.row1}`}>
+        <div className={`col-lg ${style.col1}`}>
+          <Link to="/">
+            <img className={style.logo} src={logo} alt="logo" />
+          </Link>
         </div>
 
+        <div className={`col-lg ${style.col2}`}>
+          <Link to="/" className={style.linksInt}>
+            Principal
+          </Link>
+          <Link to="/preguntar" className={style.linksInt}>
+            Preguntar
+          </Link>
+        </div>
+
+        <div className={`col-lg ${style.col3}`}>
+          <Link to="/ranking" className={style.linksInt}>
+            Ranking
+          </Link>
+          <div className={style.linksInt}>
+            Teach points {userInfo.myTeachPoints}
+          </div>
+        </div>
+
+        <div className={`col-lg ${style.col4} ${style.imgNameLogOut}`}>
+          <Link to="/configuracion" className={style.contImagen}>
+            <img
+              className={style.userImage}
+              src={userInfo.picture}
+              alt={userInfo.name}
+            />
+          </Link>
+          <div className="dropdown">
+            <button
+              className={`
+                ${
+                  width > 600
+                    ? "btn btn-warning btn-secondary dropdown-toggle"
+                    : "btn btn-warning btn-secondary btn-sm"
+                }
+              `}
+              type="button"
+              id="dropdownMenuButton2"
+              data-bs-toggle="dropdown"
+              aria-expanded="false"
+            >
+              {userInfo.name}
+            </button>
+            <ul
+              className="dropdown-menu dropdown-menu-dark"
+              aria-labelledby="dropdownMenuButton2"
+            >
+              <li>
+                <Link className={style.linkDesp} to="/mispreguntas">
+                  <p className="dropdown-item" href="#">
+                    Mis preguntas
+                  </p>
+                </Link>
+              </li>
+              <li>
+                <Link className={style.linkDesp} to="/misrespuestas">
+                  <p className="dropdown-item" href="#">
+                    Mis respuestas
+                  </p>
+                </Link>
+              </li>
+              <li>
+                <Link className={style.linkDesp} to="/favoritas">
+                  <p className="dropdown-item" href="#">
+                    Favoritos
+                  </p>
+                </Link>
+              </li>
+              <li>
+                <Link className={style.linkDesp} to="/preguntar">
+                  <p className="dropdown-item" href="#">
+                    Preguntar
+                  </p>
+                </Link>
+              </li>
+              <li>
+                <Link className={style.linkDesp} to="/admin">
+                  <p className="dropdown-item" href="#">
+                    Admin
+                  </p>
+                </Link>
+              </li>
+              <li>
+                <Link className={style.linkDesp} to="/configuracion">
+                  <p className="dropdown-item" href="#">
+                    Configuración
+                  </p>
+                </Link>
+              </li>
+
+              <li>
+                <hr className="dropdown-divider"></hr>
+              </li>
+              <li>
+                <p onClick={() => logout()} className="dropdown-item" href="#">
+                  Log Out
+                </p>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
     </div>
-  )
-}
+  ) : (
+    <Header />
+  );
+};
 
-export default Headerlogin
+export default Headerlogin;

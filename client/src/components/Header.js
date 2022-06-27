@@ -1,29 +1,31 @@
-import { Link } from "react-router-dom"
-import logo from "../images/logo_codebug.png"
-import React from 'react'
-import style from "./styles/Header.module.css"
-import Butlog from "./Butlog"
-
+import { Link } from "react-router-dom";
+import logo from "../images/logo_codebug.png";
+import React from "react";
+import style from "./styles/Header.module.css";
+import Butlog from "./Butlog";
 
 const headerlogout = () => {
-
-
   return (
-    <div className={style.headerfull}>
-        <div>
-            <Link to="/">
-                <img className={style.logo} src={logo} alt="logo"/>
-            </Link>
-            
+    <div className={`container-fluid ${style.container}`}>
+      <div className={`row ${style.row1}`}>
+        <div className={`col-lg ${style.col1}`}>
+          <Link to="/">
+            <img className={style.logo} src={logo} alt="logo" />
+          </Link>
         </div>
-        <div className={style.cajaLogReg}>
-            <div>
-                <Butlog/>
-            </div>
-        </div>
-        
-    </div>
-  )
-}
 
-export default headerlogout
+        <div className={`col-lg ${style.col2}`}>
+          <Link to="/preguntar" className={style.linksInt}>
+            Preguntar
+          </Link>
+        </div>
+
+        <div className={`col-lg ${style.col3}`}>
+          <Butlog />
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default headerlogout;

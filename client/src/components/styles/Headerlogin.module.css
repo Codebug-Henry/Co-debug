@@ -1,82 +1,88 @@
-.headerfull{
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    flex-direction: row;
-    background-color: rgb(255, 247, 18);
-    box-shadow: 4px 5px 10px 3px;
-    width: auto;
-    border-radius: 15px;
-    padding-right: 40px;
-    padding-left: 20px;
-    padding-top: 20px;
-    padding-bottom: 15px;
+.container {
+  background-color: yellow;
 }
 
-.imgNameLogOut{
-    display: flex;
-    /* justify-content: center; */
-    flex-direction: column;
-    /* align-items: center; */
-    margin: 0;
-    padding: 0%;
-    gap: 0%;
-}
-.userImage{
-    width: 45px;
-    border-radius: 30px;
-    border-color: rgb(0, 0, 0);
-    border-style: solid;
-    margin-bottom: 0%;
-    gap: 0px;
-}
-.name{
-    height: 25px;
-    margin: 0%;
-    padding-top: 5px;
-    font-size: small;
-    text-decoration: none;
+.row1 {
+  border: 1px black solid;
 }
 
-
-.logo{
-    width: 400px;
-}
-.logo:hover{
-    width: 400px;
-    opacity: 70%;
+.col2 {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
 }
 
-.cajaLogReg{
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    flex-direction: row;
+.col3 {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
 }
 
-
-
-.links{
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    gap: 30px;
+.col4 {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
 }
 
-.linksInt{
-    text-decoration: none;
+.logo {
+  width: 25vw;
 }
 
-.imgNameLogOut{
-    size: cover;
-    margin: 0%;
-    display: flex;
-    justify-content: center;
-    gap: 0;
-    align-items: center;
+.logo:hover {
+  width: 25vw;
+  opacity: 70%;
 }
 
-.contImagen{
-    height: 50px;
-    padding: 0%;
+.linksInt {
+  width: 30%;
+  font-size: 1.7vw;
+  text-decoration: none;
+  color: black;
+}
+@media screen and (max-width: 900px) {
+  .linksInt {
+    font-size: 2vw;
+  }
+}
+@media screen and (max-width: 720px) {
+  .linksInt {
+    font-size: 2.5vw;
+  }
+}
+@media screen and (max-width: 600px) {
+  .linksInt {
+    font-size: 3vw;
+  }
+}
+@media screen and (max-width: 450px) {
+  .linksInt {
+    font-size: 4vw;
+  }
+}
+
+.name {
+  font-size: 1.2vw;
+}
+
+.userImage {
+  border-radius: 30px;
+  width: 60px;
+}
+@media screen and (max-width: 600px) {
+  .userImage {
+    width: 30px;
+  }
+}
+
+.cajaLogReg {
+  font-size: 20 px;
+}
+
+.middleRow {
+  height: 25vw;
+  color: blue;
+}
+
+.linkDesp {
+  text-decoration: none;
 }

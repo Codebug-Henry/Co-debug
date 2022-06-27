@@ -1,19 +1,34 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
-import style from "./styles/Footer.module.css"
+import React from "react";
+import { Link } from "react-router-dom";
+import style from "./styles/Footer.module.css";
 
 const footer = () => {
   return (
-    <div className={style.footerTotal}>
-        <Link to="/ayuda">
-            <h5>Ayuda</h5>
-        </Link>
-        <Link to="/creadores">
-            <h5>Creadores</h5>
-        </Link>
-        <h5>Todos los derechos re sebados y los torcidos ni te cuento</h5>
+    <div className={`container-fluid ${style.container}`}>
+      <div className={`row ${style.middleRow}`}>
+        <div className={`col-lg ${style.col1}`}>
+          <Link className={style.links} to="/ayuda">
+            Ayuda
+          </Link>
+        </div>
+        <div className={`col-lg ${style.col2}`}>
+          <Link className={style.links} to="/creadores">
+            Creadores
+          </Link>
+        </div>
+        <div className={`col-lg ${style.col3}`}>
+          <Link className={style.links} to="/contacto">
+            Contacto
+          </Link>
+        </div>
+        <div className={`col-lg ${style.col4}`}>
+          <Link className={style.links} to="/terminos">
+            Términos y condiciones
+          </Link>
+        </div>
+      </div>
     </div>
-  )
-}
+  );
+};
 
-export default footer
+export default footer;
