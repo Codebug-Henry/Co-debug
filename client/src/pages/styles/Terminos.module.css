@@ -1,4 +1,28 @@
+html{
+  min-height: 100%;
+  position: relative;
+}
+
+.footer{
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  overflow:hidden;
+}
+
+.fullContainer{
+  display: flex;
+  flex-direction: column;
+}
+
+
 .middleRow {
   display: flex;
   justify-content: center;
+}
+
+.col1{
+  margin-top: 15vh;
+  margin-bottom: 15vh;
 }

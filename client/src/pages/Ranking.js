@@ -7,9 +7,9 @@ import Loading from "../components/Loading";
 const Ranking = () => {
   const { isAuthenticated } = useAuth0();
   return (
-    <div>
+    <div className={style.fullContainer}>
       {isAuthenticated ? (
-        <div>
+        <div className={style.middleRow}>
           {/* Acá el contenido para logueados */}
           <div className={`container-fluid${style.rigthContainer}`}>
                         <div className={`row ${style.puestos}`}>
@@ -51,7 +51,7 @@ const Ranking = () => {
                 </div>
               </div>
       ): <Loading/>}
-      <div>
+      <div className={style.footer}>
         <Footer />
       </div>
     </div>
