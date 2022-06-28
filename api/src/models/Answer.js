@@ -16,6 +16,10 @@ module.exports = (sequelize) => {
       type: DataTypes.INTEGER,
       defaultValue:0
     },
+    statusDeleted: {
+      type: DataTypes.BOOLEAN,
+      defaultValue:false
+    },
     // teachPoints: {
     //   type: DataTypes.INTEGER,
     //   defaultValue:0
