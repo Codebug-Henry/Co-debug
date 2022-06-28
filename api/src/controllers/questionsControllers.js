@@ -43,7 +43,7 @@ const getUserQuestions = async (req, res, next) => {
         let myQuestions = await Question.findAll({where: condition,
             order: [
             ['createdAt', 'DESC'],
-            ['title', 'ASC'],
+            ['title', 'DESC'],
         ]})
         
         res.send(paginate(parseInt(limit), parseInt(page), myQuestions))
@@ -56,7 +56,7 @@ const getUserQuestions = async (req, res, next) => {
 
 const getAllQuestions = async (req, res, next) => {
 
-    const {search, sort, page, limit} = req.query
+    const {search, sort, page, limit, validated} = req.query
 
     try {
 
@@ -68,6 +68,7 @@ const getAllQuestions = async (req, res, next) => {
                 arr[i] = word ? `%${word}%` : ""
             })
             condition = {
+                ...condition,
                 [Op.or]:
                     [
                         {title: {[Op.iLike]: {[Op.any]: searchArr}}},
@@ -76,11 +77,21 @@ const getAllQuestions = async (req, res, next) => {
             }
         }
 
+        switch (validated) {
+            case "true":
+                condition = {...condition, statusValidated: true}
+                break
+            case "false":
+                condition = {...condition, statusValidated: false}
+                break
+            default:
+                break
+        }
+
         let allQuestions = await Question.findAll({where: condition, include: User,
             order: [
-            ['teachPoints', sort || 'DESC'],
-            ['likes', sort || 'DESC'],
-            ['cantAnswers', sort || 'DESC'],
+            ['createdAt', sort || 'DESC'],
+            ['title', sort || 'DESC'],
         ]})
         
         res.send(paginate(parseInt(limit), parseInt(page), allQuestions))
