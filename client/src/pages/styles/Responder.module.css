@@ -24,13 +24,8 @@ html{
     border-radius: 1vh;
     border: solid 1px black;
     margin-bottom: 2vh;
-
-.total {
-  background-color: rgb(255, 192, 124);
-  border-radius: 1vh;
-  border: solid 1px black;
-  margin-bottom: 2vh;
 }
+
 .TitleAndExtrasBox {
   padding-top: 1vh;
   margin-left: 3vh;

@@ -51,6 +51,7 @@ const Responder = () => {
 
     <div className={style.fullContainer}>
       {question.user ? 
+      (
         <div className={style.middleRow}>
           {/* Acá el contenido para logueados */}
           {question && (
@@ -171,6 +172,7 @@ const Responder = () => {
           )}{" "}
         </div>
       ) : (
+          <Loading />
         // <div className={style.total}>
         //   {/* Acá el contenido para no logueados */}
         //   <div className={`container-fluid ${style.container}`}>
@@ -181,13 +183,12 @@ const Responder = () => {
         //     </div>
         //   </div>
         // </div>
-        <Loading />
-      }
+      )}
       <div className={style.footer}>
         <Footer />
       </div>
     </div>
-  );
+    );
 };
 
 export default Responder;
