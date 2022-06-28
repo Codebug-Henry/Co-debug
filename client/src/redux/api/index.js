@@ -1,5 +1,4 @@
 import axios from 'axios';
-const URL = 'http://localhost:3001'
 
 // RUTAS user - users
 export const sendUserInfo = (user) => axios.post(`/user`, user);

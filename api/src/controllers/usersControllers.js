@@ -5,6 +5,10 @@ const getTopTen = async (req, res, next)=>{
     try {
 
         const allUsers = await User.findAll({
+            where:{
+                statusDeleted: false,
+                statusBanned: false
+            },
             order: [
             ['myTeachPoints', 'DESC'],
             ['cantAns', 'DESC'],
@@ -25,6 +29,10 @@ const getRanking = async (req, res, next) =>{
     try {
 
         const allUsers = await User.findAll({
+            where:{
+                statusDeleted: false,
+                statusBanned: false
+            },
             order: [
             ['myTeachPoints', sort || 'DESC'],
             ['cantAns', sort || 'DESC'],

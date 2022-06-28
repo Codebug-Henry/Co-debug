@@ -6,7 +6,7 @@ import Footer from "../components/Footer.js"
 const Ayuda = () => {
     const { isAuthenticated } = useAuth0();
         return (
-                <div>
+                <div className={style.fullContainer}>
                   {isAuthenticated ? (
                     <div>
                       {/* Acá el contenido para logueados */}
@@ -97,7 +97,7 @@ const Ayuda = () => {
                       </div>
                     </div>
                   )}
-                <div><Footer/></div>
+                <div className={style.footer}><Footer/></div>
       </div>
       
     )

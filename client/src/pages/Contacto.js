@@ -8,7 +8,7 @@ const Contacto = () => {
   const { isAuthenticated } = useAuth0();
 
   return (
-    <div>
+    <div className={style.fullContainer}>
       {isAuthenticated ? (
         <div>
           <div className={`container-fluid ${style.container}`}>
@@ -32,7 +32,7 @@ const Contacto = () => {
           </div>
         </div>
       )}
-      <div>
+      <div className={style.footer}>
         <Footer />
       </div>
     </div>

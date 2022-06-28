@@ -8,10 +8,10 @@ const Preguntar = () => {
     const { isAuthenticated } = useAuth0();
 
     return (
-        <div>
+        <div className={style.fullContainer}>
         {
         isAuthenticated ? (
-        <div>
+        <div className={style.middleRow}>
             <div className={`container-fluid ${style.container}`}>
                 <div className={`row ${style.middleRow}`}>
                     <div className={`col-lg ${style.col1}`}>
@@ -26,7 +26,7 @@ const Preguntar = () => {
             <h1>Para poder hacer preguntas primero hay que loguearse</h1>
         </div>
         }
-            <div><Footer/></div>
+            <div className={style.footer}><Footer/></div>
         </div>
     )
 }

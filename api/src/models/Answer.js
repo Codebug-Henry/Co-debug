@@ -5,8 +5,8 @@ module.exports = (sequelize) => {
   sequelize.define('answer', {
     id: {
       type: DataTypes.INTEGER,
-      autoIncrement:true,
-      primaryKey:true
+      autoIncrement: true,
+      primaryKey: true
     },
     text: {
       type: DataTypes.TEXT,
@@ -14,16 +14,20 @@ module.exports = (sequelize) => {
     },
     likes: {
       type: DataTypes.INTEGER,
-      defaultValue:0
+      defaultValue: 0
+    },
+    teachPoints: {
+      type: DataTypes.INTEGER,
+      defaultValue: 0
     },
     statusDeleted: {
       type: DataTypes.BOOLEAN,
-      defaultValue:false
+      defaultValue: false
     },
-    // teachPoints: {
-    //   type: DataTypes.INTEGER,
-    //   defaultValue:0
-    // },
+    statusValidated: {
+      type: DataTypes.BOOLEAN,
+      defaultValue: false
+    },
   });
 };
 

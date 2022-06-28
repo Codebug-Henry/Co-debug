@@ -1,9 +1,31 @@
-.total {
-  background-color: rgb(255, 192, 124);
-  border-radius: 1vh;
-  border: solid 1px black;
-  margin-bottom: 2vh;
+
+html{
+    min-height: 100%;
+    position: relative;
 }
+
+.footer{
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    overflow:hidden;
+}
+
+.fullContainer{
+    display: flex;
+    flex-direction: column;
+}
+
+
+.total{
+
+    background-color: rgb(255, 192, 124);
+    border-radius: 1vh;
+    border: solid 1px black;
+    margin-bottom: 2vh;
+}
+
 .TitleAndExtrasBox {
   padding-top: 1vh;
   margin-left: 3vh;
@@ -41,6 +63,7 @@
   margin-left: 3vh;
   padding: 1vh;
 }
+
 
 .bajoTexto {
   display: flex;

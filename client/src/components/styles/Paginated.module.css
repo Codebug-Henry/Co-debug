@@ -2,31 +2,36 @@
     width: 100%;
     align-items:center;
     display:inline-flex;
-    justify-content:center;
+    justify-content: center;
     margin-top: 35px;
+    font-size: 0.9rem;
 }
 
 .bar ul{
-    display: inline;
-    /* border: #c0c0c0 solid 1.8px; */
-    /* margin-left: 190px; */
+     display: inline; 
 }
 
 .bar li{
-    height:32px;
-    width:32px;
-    text-align: center;
-    list-style: none;
-    margin-left: 1px;
+    height:2.1vw;
+    min-height: fit-content;
+    width:2.1vw;
+    min-width: fit-content;
+    margin-left: 0.3vh;
     display: inline;
-    border-radius: 100%;
+    border-radius: 25%;
 } 
 
+.bar button{
+    min-height: 2.1vw;
+    height: fit-content;
+    min-width: fit-content;
+    width: 2.1vw;
+}
+
 #number{
-    height:32px;
-    width:32px;
-    border-radius: 100%;
-    font-family: 'Source Serif Pro', serif;
+    border-radius: 25%;
+    
+    text-align: center;
 }
 
 #number:hover{
@@ -39,15 +44,46 @@
 }
 
 .prev{
-    height:45px;
-    width:45px;
-    border-radius: 100%;
+    border-radius: 15%;
+    margin-right: 0.5vh;
+    align-content: flex-start;
 }
+
+.one{
+    border-radius: 25%;
+    font-family: 'Source Serif Pro', serif;
+    margin-left: 1px;
+}
+
+.firstDot{
+    background-color: transparent;
+    border: none;
+}
+
+.lastDot{
+    background-color: transparent;
+    border: none;
+}
+
+.firstDot:hover{
+    cursor: auto
+}
+
+.lastDot{
+    cursor: auto
+}
+
+.last{
+    border-radius: 25%;
+    font-family: 'Source Serif Pro', serif;
+    margin-right: 2px;
+}
+
 .next{
-    height:45px;
-    width:45px;
-    border-radius: 100%;
+    border-radius: 15%;
+    margin-left: 1px;
 }
+
 .next:hover{
     cursor: pointer;
     background-color: grey;
@@ -56,3 +92,14 @@
     cursor: pointer;
     background-color: grey;
 }
+
+.not{
+    display: none;
+}
+
+@media screen and (max-width: 900px){
+    .bar{
+        font-size: 0.7rem;
+    }
+}
+

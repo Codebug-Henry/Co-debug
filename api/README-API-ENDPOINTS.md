@@ -267,6 +267,7 @@
             text,
             likes,
             statusDeleted,
+            statusValidated,
             cantAnswers,
             respuestas: [
                 {
@@ -389,6 +390,7 @@
                     text,
                     likes,
                     statusDeleted,
+                    statusValidated,
                     cantAnswers,
                 },
                 .
@@ -439,6 +441,7 @@
                     text,
                     likes,
                     statusDeleted,
+                    statusValidated,
                     cantAnswers,
                 },
                 .
@@ -455,6 +458,7 @@
                     text,
                     likes,
                     statusDeleted,
+                    statusValidated,
                     cantAnswers,
                 }
             ]
@@ -491,6 +495,7 @@
                     text,
                     likes,
                     statusDeleted,
+                    statusValidated,
                     cantAnswers,
                 },
                 .
@@ -504,6 +509,7 @@
                     text,
                     likes,
                     statusDeleted,
+                    statusValidated,
                     cantAnswers,
                 }
             ]
@@ -550,7 +556,8 @@
         {
             sub,
             id,
-            text
+            text,
+            teachPoints     //se le asignan los teachPoints que posee en ese momento la pregunta
         }
 
 ***
@@ -561,13 +568,14 @@
 
 - **DESCRIPCION**: esta ruta es para que el usuario pueda editar una de sus respuestas
 
-- **REQUERIMIENTOS**: por body enviar el id de la respuesta, el texto editado y/o si se sumó o restó un like ("add"/"remove")
+- **REQUERIMIENTOS**: por body enviar el id de la respuesta, el texto editado, si se sumó o restó un like ("add"/"remove"), si se eliminó o si se validó
 
         {  
             id,
             text,
             like,   //"add" or "remove" 
             statusDeleted,
+            statusValidated,
         }
 
 - **RESPUESTA**: en caso de ser necesaria -> el texto de la respuesta editada y el contador de likes actualizado
@@ -576,6 +584,7 @@
             text,
             likes,    //cantidad de likes de la respuesta 
             statusDeleted,
+            statusValidated,
         }
 
 ***
@@ -624,6 +633,7 @@
                     text,
                     likes,
                     statusDeleted,
+                    statusValidated,
                 },
                 .
                 .
@@ -636,6 +646,7 @@
                     text,
                     likes,
                     statusDeleted,
+                    statusValidated,
                 }
             ]
         }

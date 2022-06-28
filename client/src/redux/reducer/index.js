@@ -9,5 +9,6 @@ import favourites from './favourites';
 import ranking from './ranking'
 import pages from './pages'
 import userQuestions from './userQuestions'
+import totalPages from './totalPages'
 
-export default combineReducers({ question, questions, answer, answers, user, topTenRanking, favourites, ranking, pages, userQuestions });
+export default combineReducers({ question, questions, answer, answers, user, topTenRanking, favourites, ranking, pages, userQuestions, totalPages });
