@@ -9,7 +9,7 @@ const CardsQuestsLogOut = () => {
   const questions = useSelector((state) => state.questions);
   const pages = useSelector((state) => state.pages);
   const [page, setPage] = useState(1);
-  const [input, setInput] = useState("");
+  const [setInput] = useState("");
 
   useEffect(() => {
     dispatch(getAllQuestions(page));
@@ -59,93 +59,90 @@ const CardsQuestsLogOut = () => {
             >
               <ul className="navbar-nav me-auto mb-2 mb-lg-0">
                 <li className="nav-item dropdown">
-                  <a
+                  <span
                     className="nav-link dropdown-toggle"
-                    href="#"
                     id="navbarDropdown"
                     role="button"
                     data-bs-toggle="dropdown"
                     aria-expanded="false"
                   >
                     Antiguedad
-                  </a>
+                  </span>
                   <ul
                     className="dropdown-menu"
                     aria-labelledby="navbarDropdown"
                   >
                     <li>
-                      <a className="dropdown-item" href="#">
+                      <span className="dropdown-item">
                         Más antiguas
-                      </a>
+                      </span>
                     </li>
                     <li>
-                      <a className="dropdown-item" href="#">
+                      <span className="dropdown-item">
                         Más nuevas
-                      </a>
+                      </span>
                     </li>
                   </ul>
                 </li>
                 <li className="nav-item dropdown">
-                  <a
+                  <span
                     className="nav-link dropdown-toggle"
-                    href="#"
                     id="navbarDropdown"
                     role="button"
                     data-bs-toggle="dropdown"
                     aria-expanded="false"
                   >
                     Tag's General
-                  </a>
+                  </span>
                   <ul
                     className="dropdown-menu"
                     aria-labelledby="navbarDropdown"
                   >
                     <li>
-                      <a className="dropdown-item" href="#">
+                      <span className="dropdown-item">
                         js
-                      </a>
+                      </span>
                     </li>
                     <li>
-                      <a className="dropdown-item" href="#">
+                      <span className="dropdown-item">
                         python
-                      </a>
+                      </span>
                     </li>
                     <li>
-                      <a className="dropdown-item" href="#">
+                      <span className="dropdown-item">
                         react
-                      </a>
+                      </span>
                     </li>
                     <li>
-                      <a className="dropdown-item" href="#">
+                      <span className="dropdown-item">
                         redux
-                      </a>
+                      </span>
                     </li>
                     <li>
-                      <a className="dropdown-item" href="#">
+                      <span className="dropdown-item">
                         github
-                      </a>
+                      </span>
                     </li>
                     <li>
-                      <a className="dropdown-item" href="#">
+                      <span className="dropdown-item">
                         html
-                      </a>
+                      </span>
                     </li>
                     <li>
-                      <a className="dropdown-item" href="#">
+                      <span className="dropdown-item">
                         css
-                      </a>
+                      </span>
                     </li>
                   </ul>
                 </li>
                 <li className="nav-item">
-                  <a
+                  <span
                     className="nav-link disabled"
-                    href="#"
                     tabIndex="-1"
                     aria-disabled="true"
                   >
                     tag
-                  </a>
+                  </span>
                 </li>
               </ul>
               <form className="d-flex">

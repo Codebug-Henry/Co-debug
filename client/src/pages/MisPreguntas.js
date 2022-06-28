@@ -21,8 +21,10 @@ const MisPreguntas = () => {
   const [input, setInput] = useState("");
   const [page, setPage] = useState(1)
   const [cantFirstLast, setCantFirstLast] = useState([questions.length, questions[1], questions[4]])
+  
 
   useEffect( () =>{
+
       if(document.getElementById("selectAnswered") && document.getElementById("selectAnswered").value === 'false'){
         dispatch(getUserQuestionsOrderer(userInfo.sub, 'false', page));
       }
@@ -32,7 +34,7 @@ const MisPreguntas = () => {
       else{
       dispatch(getUserQuestions(userInfo.sub, page, ''))
       }
-  }, [cantFirstLast, page, userInfo])
+  }, [cantFirstLast, page, dispatch, userInfo.sub])
 
   return (
     <div>
