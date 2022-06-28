@@ -33,7 +33,7 @@ const MisPreguntas = () => {
     if(document.getElementById("selectAnswered").value === 'All'){
     dispatch(getUserQuestions(userInfo.sub, page, ''))
     }
-  }, [cantFirstLast, page])
+  }, [cantFirstLast, page, dispatch, userInfo.sub])
 
 
   return (

@@ -24,7 +24,7 @@ const Responder = () => {
 
   useEffect(() => {
     dispatch(getQuestion(parseInt(questionId), setLoad));
-  }, [dispatch, load]);
+  }, [dispatch, load, questionId]);
 
   const handleChange = (e) => {
     setInput(e.target.value);

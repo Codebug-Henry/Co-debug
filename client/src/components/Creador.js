@@ -23,17 +23,17 @@ const Creador = ({photo, name, profesion, email, github, linkedin}) => {
                 </div>
                 <div id={style.icons}>
                     <IconButton aria-label="EmailIcon">
-                        <a href={`mailto:${email}`} className={style.link} target="_blank">
+                        <a href={`mailto:${email}`} className={style.link} target="_blank" rel="noreferrer">
                             <EmailIcon />
                         </a>
                     </IconButton>
                     <IconButton aria-label="GitHubIcon"> 
-                        <a href={github} className={style.link} target="_blank">
+                        <a href={github} className={style.link} target="_blank" rel="noreferrer">
                             <GitHubIcon />
                         </a>
                     </IconButton>
                     <IconButton aria-label="LinkedInIcon">
-                        <a href={linkedin} className={style.link} target="_blank">
+                        <a href={linkedin} className={style.link} target="_blank" rel="noreferrer">
                             <LinkedInIcon />
                         </a>
                     </IconButton>

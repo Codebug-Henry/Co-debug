@@ -17,7 +17,7 @@ const CardQuestion = ({
   teachPoints,
   id,
 }) => {
-  const [likeOnScreen, setlikeOnScreen] = useState(likes);
+  const [likeOnScreen] = useState(likes);
 
   return (
     <div className={`container-fluid ${style.total}`}>
