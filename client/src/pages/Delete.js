@@ -4,7 +4,7 @@ import style from "./styles/Delete.module.css";
 
 const Delete = () => {
   return (
-    <div>
+    <div className={style.fullContainer}>
       {/* Acá el contenido para no logueados */}
       <div className={`container-fluid ${style.container}`}>
         <div className={`row ${style.middleRow}`}>
@@ -40,7 +40,7 @@ const Delete = () => {
         </div>
       </div>
 
-      <div>
+      <div className={style.footer}>
         <Footer />
       </div>
     </div>

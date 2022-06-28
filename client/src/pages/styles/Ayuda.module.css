@@ -1,10 +1,30 @@
-.help {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  font-family: "Roboto", sans-serif;
-  background-color: lightyellow;
+
+html{
+    min-height: 100%;
+    position: relative;
 }
+
+.footer{
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    overflow:hidden;
+}
+
+.fullContainer{
+    display: flex;
+    flex-direction: column;
+}
+
+
+.help{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    font-family: "Roboto" ,sans-serif;
+    background-color: lightyellow;
+   }
 
 .help h1 {
   text-align: center;

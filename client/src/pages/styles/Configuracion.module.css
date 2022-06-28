@@ -2,6 +2,24 @@
   background-color: lightyellow;
 }
 
+html{
+    min-height: 100%;
+    position: relative;
+}
+
+.footer{
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    overflow:hidden;
+}
+
+.fullContainer{
+    display: flex;
+    flex-direction: column;
+}
+
 .row {
   padding: 2vh;
   background-color: rgb(255, 192, 124);

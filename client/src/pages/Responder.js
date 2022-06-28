@@ -48,9 +48,10 @@ const Responder = () => {
   };
 
   return (
-    <div>
-      {question.user ? (
-        <div>
+
+    <div className={style.fullContainer}>
+      {question.user ? 
+        <div className={style.middleRow}>
           {/* Acá el contenido para logueados */}
           {question && (
             <div className={style.question}>
@@ -181,8 +182,8 @@ const Responder = () => {
         //   </div>
         // </div>
         <Loading />
-      )}
-      <div>
+      }
+      <div className={style.footer}>
         <Footer />
       </div>
     </div>
