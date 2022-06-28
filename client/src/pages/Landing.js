@@ -23,9 +23,9 @@ const Landing = () => {
   }
 
   return (
-    <div>
+    <div className={style.fullContainer}>
       {isAuthenticated ? (
-        <div>
+        <div className={style.middleRow}>
           {/* Acá el contenido para logueados */}
           <div className={`container-fluid ${style.container}`}>
             <div className={`row ${style.middleRow}`}>
@@ -73,6 +73,7 @@ const Landing = () => {
                     voluptate velit esse cillum dolore eu fugiat nulla pariatur.
                     Excepteur sint occaecat cupidatat non proident, sunt in
                     culpa qui officia deserunt mollit anim id est laborum."
+                    
                   </div>
                 </div>
               </div>
@@ -119,6 +120,7 @@ const Landing = () => {
                     voluptate velit esse cillum dolore eu fugiat nulla pariatur.
                     Excepteur sint occaecat cupidatat non proident, sunt in
                     culpa qui officia deserunt mollit anim id est laborum."
+                    
                   </div>
                   <div className={`row ${style.rightRowDown}`}>
                     "Lorem ipsum dolor sit amet, consectetur adipiscing elit,
@@ -151,7 +153,7 @@ const Landing = () => {
           </div>
         </div>
       )}
-      <div>
+      <div className={style.footer}>
         <Footer />
       </div>
     </div>

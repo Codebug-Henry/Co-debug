@@ -15,9 +15,9 @@ const NotFound = () => {
     );
   }
   return (
-    <div>
+    <div className={style.fullContainer}>
       {isAuthenticated ? (
-        <div>
+        <div className={style.middleRow}>
           {/* Acá el contenido para logueados */}
           <div className={`container-fluid ${style.container}`}>
             <div className={`row ${style.middleRow}`}>
@@ -113,7 +113,7 @@ const NotFound = () => {
         </div>
       )}
 
-      <div>
+      <div className={style.footer}>
         <Footer />
       </div>
     </div>
