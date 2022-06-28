@@ -69,7 +69,7 @@ const getSingleQuestion = async (req, res, next) => {
         const question = await Question.findByPk(id, {
             include: [
                 {model: User},
-                {model: Answer, include: User}
+                {model: Answer, where: {statusDeleted: false}, include: User}
             ]
         })        
 

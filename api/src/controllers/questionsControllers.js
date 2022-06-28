@@ -9,7 +9,10 @@ const getUserQuestions = async (req, res, next) => {
 
     try {
 
-        let condition = {userSub: sub}
+        let condition = {
+            userSub: sub,
+            statusDeleted: false
+        }
 
         if (search) {
             let searchArr = search.split(" ")
@@ -57,7 +60,7 @@ const getAllQuestions = async (req, res, next) => {
 
     try {
 
-        let condition = {}
+        let condition = {statusDeleted: false}
 
         if (search) {
             let searchArr = search.split(" ")
@@ -98,7 +101,7 @@ const getFavourites = async (req, res, next) => {
 
         const user = await User.findByPk(sub)
 
-        const favourites = await Question.findAll({where: {id: {[Op.in]: user.favourites}}, include: User})
+        const favourites = await Question.findAll({where: {statusDeleted: false, id: {[Op.in]: user.favourites}}, include: User})
         
         res.send(paginate(parseInt(limit), parseInt(page), favourites))
 
