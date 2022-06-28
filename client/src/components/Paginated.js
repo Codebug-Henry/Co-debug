@@ -3,7 +3,7 @@ import { useSelector } from 'react-redux';
 import style from './styles/Paginated.module.css'
 
 
-export default function Paginated({page, setPage}) {
+export default function Paginated({page, setPage, totalPages}) {
 
     const pages = useSelector((state) => state.pages);
 
@@ -22,10 +22,13 @@ export default function Paginated({page, setPage}) {
         setPage(prev => prev +1);
     }
 
+    console.log(totalPages)
     return(
         <div className={style.bar}>
             <ul> 
-                <button className={style.prev} onClick={e=>handlePrev(e)} disabled={page - 1 === 0 ? true : false}> Prev </button>
+                <button className={page - 1 === 0 || pages.length === 0 ? style.not : style.prev} onClick={e=>handlePrev(e)} > Anterior </button>
+                <button className={page > 3 ? style.one : style.not} onClick={e=>setPage(1)}> 1 </button>
+                <button className={page > 4 ?style.firstDot : style.not}> ... </button>
                 {pages &&
                     pages.map((pag) =>(
                         <li key={pag}>
@@ -38,7 +41,9 @@ export default function Paginated({page, setPage}) {
                         </li>
                     ))
                 }
-                <button className={style.next} onClick={e=> handleNext(e)} disabled={page === pages.length || pages.length === 0 ? true : false}> Next </button>
+                <button className={page < totalPages -3 ? style.lastDot : style.not}> ... </button>
+                <button className={page < totalPages -2 ? style.last : style.not} onClick={e=>setPage(totalPages)}> {totalPages} </button>
+                <button className={page === totalPages || pages.length === 0 ? style.not : style.next} onClick={e=> handleNext(e)} > Siguiente </button>
             </ul>
         </div>
     )
