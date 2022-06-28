@@ -530,7 +530,8 @@
         {
             sub,
             id,
-            text
+            text,
+            teachPoints     //se le asignan los teachPoints que posee en ese momento la pregunta
         }
 
 ***
