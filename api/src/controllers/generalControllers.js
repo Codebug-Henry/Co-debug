@@ -4,6 +4,10 @@ const { User, Question, Answer } = require('../db.js');
 const getUserPosition = async (sub) => {
     try {
         const allUsers = await User.findAll({
+            where:{
+                statusDeleted: false,
+                statusBanned: false
+            },
             order: [
             ['myTeachPoints', 'DESC'],
             ['cantAns', 'DESC'],

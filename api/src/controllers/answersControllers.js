@@ -9,7 +9,7 @@ const getAnswers = async (req, res, next) => {
 
   try {
       
-    const myAnswers = await Answer.findAll({where: {userSub: sub}, include: Question})
+    const myAnswers = await Answer.findAll({where: {statusDeleted: false, userSub: sub}, include: Question})
       
     res.send(paginate(parseInt(limit), parseInt(page),myAnswers))
 

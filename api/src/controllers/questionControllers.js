@@ -19,7 +19,7 @@ const deleteUserQuestion = async (req, res, next) => {
 }
 
 const putUserQuestion = async (req, res, next) => {
-    const {id, text, title, like} = req.body
+    const {id, text, title, like, statusDeleted} = req.body
 
     const question = await Question.findByPk(id)
     let newLikes = question.likes
@@ -28,7 +28,7 @@ const putUserQuestion = async (req, res, next) => {
     else if (like === "remove") newLikes--
 
     try {
-        await Question.update({text, title, likes: newLikes},{
+        await Question.update({text, title, likes: newLikes, statusDeleted},{
             where:{
                 id:parseInt(id)
             }
@@ -38,7 +38,8 @@ const putUserQuestion = async (req, res, next) => {
         res.send({
             text,
             title,
-            likes: newLikes
+            likes: newLikes,
+            statusDeleted
         })
     } catch (error) {
         next(error)
@@ -68,7 +69,7 @@ const getSingleQuestion = async (req, res, next) => {
         const question = await Question.findByPk(id, {
             include: [
                 {model: User},
-                {model: Answer, include: User}
+                {model: Answer, where: {statusDeleted: false}, include: User}
             ]
         })        
 
