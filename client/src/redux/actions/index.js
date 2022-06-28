@@ -1,4 +1,4 @@
-import { GET_TOPTEN_RANKING, GET_USER_INFO, DELETE_USER, MODIFY_QUESTION, DELETE_QUESTION, SEND_QUESTION, GET_QUESTION, GET_FAVOURITES, GET_ALL_QUESTIONS, GET_ALL_QUESTIONS_SORTED, GET_SEARCH_QUESTIONS, GET_USER_QUESTIONS, PUT_ANSWER, DELETE_ANSWER, GET_USER_ANSWERS, GET_USER_QUESTIONS_ORDERER } from './actionTypes'
+import { GET_TOPTEN_RANKING, GET_RANKING, GET_USER_INFO, DELETE_USER, MODIFY_QUESTION, DELETE_QUESTION, SEND_QUESTION, GET_QUESTION, GET_FAVOURITES, GET_ALL_QUESTIONS, GET_ALL_QUESTIONS_SORTED, GET_SEARCH_QUESTIONS, GET_USER_QUESTIONS, PUT_ANSWER, DELETE_ANSWER, GET_USER_ANSWERS, GET_USER_QUESTIONS_ORDERER } from './actionTypes'
 import * as api from '../api'
 
 // RUTAS user - users
@@ -23,7 +23,7 @@ export const getTopTenRanking = () => async (dispatch) => {
 export const getRanking = (sort, page) => async (dispatch) => {
     try {
         const { data } = await api.getRanking(sort, page)
-        dispatch({ type: GET_TOPTEN_RANKING, payload: data})
+        dispatch({ type: GET_RANKING, payload: data})
     } catch (error) {
         console.log(error.message)
     }    
@@ -47,9 +47,9 @@ export const putUserInfo = (sub, modify) => async (dispatch) => {
     }
 }
 
-export const deleteUser = (sub) => async (dispatch) => {
+export const deleteUser = (sub, deleted) => async (dispatch) => {
     try {
-        const { data } = await api.deleteUser(sub)
+        const { data } = await api.deleteUser(sub, deleted)
         dispatch({ type: DELETE_USER, payload: data})
     } catch (error) {
         console.log(error.message)
@@ -86,9 +86,9 @@ export const modifyQuestion = (question) => async (dispatch) => {
     }
 }
 
-export const deleteQuestion = (id) => async (dispatch) => {
+export const deleteQuestion = (question) => async (dispatch) => {
     try {
-        const { data } = await api.deleteQuestion(id)
+        const { data } = await api.deleteQuestion(question)
         dispatch({ type: DELETE_QUESTION, payload: data})
     } catch (error) {
         console.log(error.message)
@@ -186,9 +186,9 @@ export const putAnswer = (answer) => async (dispatch) => {
     }
 }
 
-export const deleteAnswer = (id) => async (dispatch) => {
+export const deleteAnswer = (deleted) => async (dispatch) => {
     try {
-        const { data } = await api.deleteAnswer(id)
+        const { data } = await api.deleteAnswer(deleted)
         dispatch({ type: DELETE_ANSWER, payload: data})
     } catch (error) {
         console.log(error.message)
