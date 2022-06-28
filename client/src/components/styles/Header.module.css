@@ -1,5 +1,6 @@
 .container {
-  background-color: yellow;
+  background-color: lightyellow;
+  border: 2px solid black;
 }
 
 .row1 {
@@ -8,7 +9,6 @@
 }
 
 .col1 {
-
   display: flex;
   justify-content: center;
 }
@@ -20,8 +20,7 @@
   justify-content: center;
   align-items: center;
 }
-.col3{
-
+.col3 {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -35,7 +34,6 @@
   width: 25vw;
   opacity: 70%;
 }
-
 
 .linksInt {
   width: 30%;

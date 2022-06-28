@@ -56,6 +56,7 @@
             picture,
             statusAdmin,
             statusBanned,
+            statusDeleted,
             favourites,
             cantFav,
             cantQuest,
@@ -94,6 +95,7 @@
             picture,
             statusAdmin,
             statusBanned,
+            statusDeleted,
             favourites,
             cantFav,
             cantQuest,
@@ -118,7 +120,10 @@
             name,
             nickname,
             picture,
-            myTeachpoints
+            myTeachpoints,
+            statusAdmin,
+            statusBanned,
+            statusDeleted
         }
 
 - **RESPUESTA**: un objeto con el user modificado
@@ -133,6 +138,7 @@
             picture,
             statusAdmin,
             statusBanned,
+            statusDeleted,
             favourites,
             cantFav,
             cantQuest,
@@ -183,6 +189,7 @@
                     nickname,
                     picture,
                     cantAns,
+                    statusDeleted,
                     sub
                 },
                 .
@@ -194,6 +201,7 @@
                     nickname,
                     picture,
                     cantAns,
+                    statusDeleted,
                     sub
                 }
             ]
@@ -217,6 +225,7 @@
                 name,
                 nickname,
                 picture,
+                statusDeleted,
                 sub
             },
             .
@@ -227,6 +236,7 @@
                 name,
                 nickname,
                 picture,
+                statusDeleted,
                 sub
             }
         ]
@@ -256,6 +266,7 @@
             teachPoints,
             text,
             likes,
+            statusDeleted,
             cantAnswers,
             respuestas: [
                 {
@@ -300,6 +311,7 @@
             teachPoints,
             text,
             likes,
+            statusDeleted,
         }
 
 ***
@@ -319,6 +331,7 @@
             text,   //contenido de la pregunta
             title,  //titulo de la pregunta
             like,   //"add" or "remove" 
+            statusDeleted,
         }
 
 - **RESPUESTA**: devuelvo un objeto con la info actualizada.
@@ -328,6 +341,7 @@
             text,   //contenido de la pregunta
             title,   //titulo de la pregunta
             likes,    //cantidad de likes de la pregunta
+            statusDeleted,
         }
 
 ***
@@ -374,6 +388,7 @@
                     teachPoints,
                     text,
                     likes,
+                    statusDeleted,
                     cantAnswers,
                 },
                 .
@@ -386,6 +401,7 @@
                     teachPoints,
                     text,
                     likes,
+                    statusDeleted,
                     cantAnswers,
                 }
             ]
@@ -422,6 +438,7 @@
                     teachPoints,
                     text,
                     likes,
+                    statusDeleted,
                     cantAnswers,
                 },
                 .
@@ -437,6 +454,7 @@
                     teachPoints,
                     text,
                     likes,
+                    statusDeleted,
                     cantAnswers,
                 }
             ]
@@ -472,6 +490,7 @@
                     teachPoints,
                     text,
                     likes,
+                    statusDeleted,
                     cantAnswers,
                 },
                 .
@@ -484,6 +503,7 @@
                     teachPoints,
                     text,
                     likes,
+                    statusDeleted,
                     cantAnswers,
                 }
             ]
@@ -548,6 +568,7 @@
             id,
             text,
             like,   //"add" or "remove" 
+            statusDeleted,
         }
 
 - **RESPUESTA**: en caso de ser necesaria -> el texto de la respuesta editada y el contador de likes actualizado
@@ -555,6 +576,7 @@
         {
             text,
             likes,    //cantidad de likes de la respuesta 
+            statusDeleted,
         }
 
 ***
@@ -602,6 +624,7 @@
                     id,
                     text,
                     likes,
+                    statusDeleted,
                 },
                 .
                 .
@@ -613,6 +636,7 @@
                     id,
                     text,
                     likes,
+                    statusDeleted,
                 }
             ]
         }

@@ -53,7 +53,7 @@ const CardsQuestions = () => {
               </div>
              */}
 
-        <nav className="navbar navbar-expand-lg navbar-light bg-light">
+        <nav className="navbar navbar-expand-lg navbar-light bg-warning">
           <div className="container-fluid">
             <button
               className="navbar-toggler"
@@ -171,7 +171,7 @@ const CardsQuestions = () => {
                 />
                 <button
                   onClick={() => handlerRefresh()}
-                  className="btn btn-outline-success"
+                  className="btn btn-outline-dark"
                   type="submit"
                 >
                   Refresh

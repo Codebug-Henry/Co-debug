@@ -1,45 +1,45 @@
-.help{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    font-family: "Roboto" ,sans-serif;
-    background-color: rgb(255, 202, 183);
+.help {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  font-family: "Roboto", sans-serif;
+  background-color: lightyellow;
 }
 
-.help h1{
-    text-align: center;
+.help h1 {
+  text-align: center;
 }
 
-.help h2{
-    background-color: rgb(56, 95, 179);
-    border-radius: 20px 2px 25px 3px;
+.help h2 {
+  background-color: orange;
+  border-radius: 20px 2px 25px 3px;
 }
 
-.help h3{
-    background-color: rgb(94, 143, 250);
-    border-radius: 10px;
+.help h3 {
+  background-color: orange;
+  border-radius: 10px;
 }
 
-.questions{
-    display: flex;
-    justify-content: center;
-    margin-left: 0vw;
-    gap: 6vw;
+.questions {
+  display: flex;
+  justify-content: center;
+  margin-left: 0vw;
+  gap: 6vw;
 }
 
-.leftQuestions{
-    width: 50%;
+.leftQuestions {
+  width: 50%;
 }
 
-.rightQuestions{
-    width: 50%;
+.rightQuestions {
+  width: 50%;
 }
 
-.questions h2{
-    font-size: 250%;
-    margin-top: -1vh;
+.questions h2 {
+  font-size: 250%;
+  margin-top: -1vh;
 }
 
-.questions h3{
-    font-size: 130%;
+.questions h3 {
+  font-size: 130%;
 }

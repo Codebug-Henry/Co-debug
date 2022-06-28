@@ -34,6 +34,10 @@ module.exports = (sequelize) => {
       type: DataTypes.INTEGER,
       defaultValue: 0
     },
+    statusDeleted: {
+      type: DataTypes.BOOLEAN,
+      defaultValue:false
+    },
     // tagMacro: {
     //   type: DataTypes.STRING,
     //   allowNull:false

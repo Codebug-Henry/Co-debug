@@ -23,7 +23,8 @@ const postAnswer = async (req, res, next) => {
 }
 
 const putAnswer = async (req, res, next) => {
-   const {id, text, like} = req.body
+
+   const {id, text, like, statusDeleted} = req.body
 
    const answer = await Answer.findByPk(id)
    let newLikes = answer.likes
@@ -31,19 +32,20 @@ const putAnswer = async (req, res, next) => {
    if (like === "add") newLikes++
    else if (like === "remove") newLikes--
 
-   try {
-      await Answer.update({text, likes: newLikes}, {
-         where: {
+    try {
+       await Answer.update({text, likes: newLikes, statusDeleted},{
+        where:{
             id
-         }
-      })
-      res.send({
-         text,
-         likes: newLikes
-      })
-   } catch (error) {
-      next(error)
-   }
+        }
+       })
+       res.send({
+        text,
+        likes: newLikes,
+        statusDeleted
+       })
+    } catch (error) {
+       next(error)
+    }
 }
 
 const deleteAnswer  =async (req, res, next) => {
