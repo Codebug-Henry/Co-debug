@@ -1,6 +1,6 @@
 #contenedor {
   width: 100%;
-  background-color: yellow;
+  background-color: lightyellow;
 }
 
 #form {
@@ -18,8 +18,8 @@
 #div1 input {
   width: 60%;
   height: 30px;
-  border: solid 2px grey;
-  background-color: #c0c0c0;
+  border: solid 2px black;
+  background-color: white;
   font-family: "Source Serif Pro", serif;
   font-weight: 400;
   font-size: 16px;
@@ -32,8 +32,8 @@
 #divEmail input {
   width: 60%;
   height: 30px;
-  border: solid 2px grey;
-  background-color: #c0c0c0;
+  border: solid 2px black;
+  background-color: white;
   font-family: "Source Serif Pro", serif;
   font-weight: 400;
   font-size: 16px;
@@ -46,8 +46,8 @@
 #div2 textarea {
   width: 60%;
   height: 80px;
-  border: solid 2px grey;
-  background-color: #c0c0c0;
+  border: solid 2px black;
+  background-color: white;
   font-family: "Source Serif Pro", serif;
   font-weight: 400;
   font-size: 14px;
