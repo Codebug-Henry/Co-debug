@@ -6,7 +6,7 @@ import Footer from "../components/Footer.js";
 import CardUserQuestion from "../components/CardUserQuestion";
 import FilterBar from "../components/FilterBar";
 import SearchBar from '../components/SearchBar';
-import { getAllQuestions, getUserQuestions, getUserQuestionsOrderer } from "../redux/actions";
+import { getUserQuestions, getUserQuestionsOrderer } from "../redux/actions";
 import FilterAltIcon from '@mui/icons-material/FilterAlt';
 import Paginated from "../components/Paginated";
 
