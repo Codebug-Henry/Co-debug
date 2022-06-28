@@ -25,11 +25,11 @@ const postUser = async (req, res, next) => {
 
 const putUserInfo = async (req, res, next) => {
     const {sub} = req.params
-    let {name, nickname, picture, myTeachPoints, nameChanges} = req.body
+    let {name, nickname, picture, myTeachPoints, nameChanges, statusAdmin, statusBanned, statusDeleted} = req.body
 
     try {
         if (name) nameChanges = nameChanges + 1
-        await User.update({name, nickname, picture, myTeachPoints, nameChanges}, {
+        await User.update({name, nickname, picture, myTeachPoints, nameChanges, statusAdmin, statusBanned, statusDeleted}, {
             where:{
                 sub:(sub)
             }

@@ -16,7 +16,7 @@ const clientId = REACT_APP_AUTH0_CLIENT_ID;
 const container = document.getElementById("root")
 const root = ReactDOMClient.createRoot(container);
 
-axios.defaults.badeURL = REACT_APP_API || "http://localhost:3001"
+axios.defaults.baseURL = REACT_APP_API || "http://localhost:3001"
 
 root.render(
   <Auth0Provider domain={domain} clientId={clientId} redirectUri={window.location.origin}>
