@@ -1,8 +1,9 @@
 
 .container {
   background-color: lightyellow;
+}
 
-html{
+.html{
     min-height: 100%;
     position: relative;
 }
