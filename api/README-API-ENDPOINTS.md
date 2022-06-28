@@ -417,12 +417,13 @@
 
 - **DESCRIPCION**: esta ruta es para acceder a todas las preguntas.
 
-- **REQUERIMIENTOS**: puede traer por query ?search o ?sort para buscar u ordenar, ?page y ?limit, en caso de no traer ?search simplemente accedo a todas las preguntas.
+- **REQUERIMIENTOS**: puede traer por query ?search para buscar, ?sort para ordenar, ?page, ?limit y ?validated (en caso de no traer ?search simplemente accedo a todas las preguntas).
 
         ?search=" " (string que esta buscando en texto/titulo)
-        &sort=" "   (sort=>string que define ordenamiento(asc/desc))
+        &sort=" "   (sort=>string que define ordenamiento por antiguedad (asc/desc))
         &page=(número de página)
         &limit=(cantidad de elementos por página)
+        &validated=(booleano que define filtrado por si la pregunta ya tiene una respuesta validada o no (true/false))
 
 - **RESPUESTA**: un objeto con 3 propiedades: totalPages, pages, results (preguntas en base a la busqueda o todas las preguntas)
 
