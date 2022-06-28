@@ -51,6 +51,10 @@ module.exports = (sequelize) => {
       type: DataTypes.BOOLEAN,
       defaultValue:false
     },
+    statusDeleted: {
+      type: DataTypes.BOOLEAN,
+      defaultValue:false
+    },
     favourites: {
       type: DataTypes.ARRAY(DataTypes.INTEGER),
       defaultValue:[]

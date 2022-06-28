@@ -22,7 +22,7 @@ const postAnswer = async (req, res, next) => {
 //llega por body respuesta, id de pregunta y id de usuario=>añade respuesta a usuario, pregunta, cdrea respuesta
 
 const putAnswer = async (req, res, next) => {
-    const {id, text, like} = req.body
+    const {id, text, like, statusDeleted} = req.body
 
     const answer = await Answer.findByPk(id)
     let newLikes = answer.likes
@@ -31,14 +31,15 @@ const putAnswer = async (req, res, next) => {
     else if (like === "remove") newLikes--
 
     try {
-       await Answer.update({text, likes: newLikes},{
+       await Answer.update({text, likes: newLikes, statusDeleted},{
         where:{
             id
         }
        })
        res.send({
         text,
-        likes: newLikes
+        likes: newLikes,
+        statusDeleted
        })
     } catch (error) {
        next(error)
