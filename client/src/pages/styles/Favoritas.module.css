@@ -1,3 +1,5 @@
+.container {
+  background-color: lightyellow;
 html{
     min-height: 100%;
     position: relative;
@@ -17,37 +19,39 @@ html{
 }
 
 
-.col1{
-    display: flex;
-    flex-direction: column;
 }
 
-#all{
-    width: 96%;
-    margin-left: 2%;
+.col1 {
+  display: flex;
+  flex-direction: column;
 }
 
-#explore{
-    /* border: solid 1px black; */
-    height: 10vh;
-    display: grid;
-    grid-template-columns: 1fr 10fr;
-    align-content: flex-end;
+#all {
+  width: 96%;
+  margin-left: 2%;
 }
 
-#explore p{
-    position: relative;
-    text-align: center;
-    margin-top: 1vh;
-    font-size: x-large;
+#explore {
+  /* border: solid 1px black; */
+  height: 10vh;
+  display: grid;
+  grid-template-columns: 1fr 10fr;
+  align-content: flex-end;
 }
 
-#myQuestions{
-    /* border: solid 1px black; */
-    height: fit-content;
-    display: flex;
-    flex-direction: column;
-    gap: 3vh;
-    position: relative;
-    top: 3vh
+#explore p {
+  position: relative;
+  text-align: center;
+  margin-top: 1vh;
+  font-size: x-large;
+}
+
+#myQuestions {
+  /* border: solid 1px black; */
+  height: fit-content;
+  display: flex;
+  flex-direction: column;
+  gap: 3vh;
+  position: relative;
+  top: 3vh;
 }
