@@ -28,15 +28,18 @@ const getTopTen = async (req, res, next)=>{
 
 const getRanking = async (req, res, next) =>{
     
-    const {sort, page, limit} = req.query
+    const {sort, page, limit, admin} = req.query
     
     try {
-
+        let condition = {
+            statusDeleted: false,
+            statusBanned: false
+        }
+        if(admin === "true"){
+            condition = {}
+        }
         const allUsers = await User.findAll({
-            where:{
-                statusDeleted: false,
-                statusBanned: false
-            },
+            where:condition,
             order: [
             ['myTeachPoints', sort || 'DESC'],
             ['cantAns', sort || 'DESC'],
