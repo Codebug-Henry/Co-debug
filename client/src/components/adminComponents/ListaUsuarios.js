@@ -51,6 +51,7 @@ console.log(users)
                     statusBanned={e.statusBanned}
                     sub={e.sub}
                     points={e.myTeachPoints}
+                    setFlag={setFlag}
                     />
                 </div>
               )

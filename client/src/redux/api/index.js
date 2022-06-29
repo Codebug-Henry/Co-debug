@@ -6,7 +6,7 @@ export const getTopTenRanking = () => axios.get(`/users/topTen`);
 export const getRanking = (sort, page) => axios.get(`/users?sort=${sort}&page=${page}&limit=5`)
 export const getUserInfo = (sub) => axios.get(`/user/${sub}`)
 export const putUserInfo = (sub, modify) => axios.put(`/user/${sub}`, modify)
-export const getAllUsers = (page) => axios.get(`/users?sort=asc&page=${page}&limit=16`)
+export const getAllUsers = (page) => axios.get(`/users?sort=asc&page=${page}&limit=16&admin=true`)
 export const deleteUser = (sub, status) => axios.put(`/user/${sub}`, status)
 
 
