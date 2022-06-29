@@ -7,20 +7,6 @@
     font-size: 0.9rem;
 }
 
-/* .bar ul{
-     display: inline; 
-} 
-
-.bar li{
-    height:2.1vw;
-    min-height: fit-content;
-    width:2.1vw;
-    min-width: fit-content;
-    margin-left: 0.3vh;
-    display: inline;
-    border-radius: 25%;
-}   */
-
 .bar button{
     height:2.1vw;
     min-height: fit-content;
@@ -34,6 +20,7 @@
     border-radius: 25%;
     text-align: center;
 }
+
 
 .number:hover{
     cursor: pointer;

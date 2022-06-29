@@ -1,4 +1,6 @@
-import { GET_ALL_QUESTIONS, GET_SEARCH_QUESTIONS, GET_ALL_QUESTIONS_SORTED, GET_USER_QUESTIONS, GET_USER_ANSWERS, GET_FAVOURITES, GET_RANKING, GET_USER_QUESTIONS_ORDERER} from "../actions/actionTypes"
+
+import { GET_ALL_USERS,GET_ALL_QUESTIONS, GET_SEARCH_QUESTIONS, GET_ALL_QUESTIONS_SORTED, GET_USER_QUESTIONS, GET_USER_ANSWERS, GET_FAVOURITES, GET_TOPTEN_RANKING, GET_USER_QUESTIONS_ORDERER} from "../actions/actionTypes"
+
 
 export default function pages (state = [], action){
     switch(action.type){
@@ -17,6 +19,8 @@ export default function pages (state = [], action){
         case GET_RANKING:
             return action.payload.pages
         case GET_USER_QUESTIONS_ORDERER:
+            return action.payload.pages
+        case GET_ALL_USERS:
             return action.payload.pages
         default:
             return state            

@@ -6,7 +6,9 @@ export const getTopTenRanking = () => axios.get(`/users/topTen`);
 export const getRanking = (sort, page) => axios.get(`/users?sort=${sort}&page=${page}&limit=10`)
 export const getUserInfo = (sub) => axios.get(`/user/${sub}`)
 export const putUserInfo = (sub, modify) => axios.put(`/user/${sub}`, modify)
+export const getAllUsers = (page) => axios.get(`/users?sort=asc&page=${page}&limit=16`)
 export const deleteUser = (sub, status) => axios.put(`/user/${sub}`, status)
+
 
 // RUTAS question - questions
 export const sendQuestion = (question) => axios.post(`/question`, question);

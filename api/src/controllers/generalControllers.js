@@ -1,4 +1,4 @@
-const { User, Question, Answer } = require('../db.js');
+const { User, Question, Answer,MicroTag,MacroTag } = require('../db.js');
 
 //Get user position in ranking
 const getUserPosition = async (sub) => {
@@ -29,6 +29,25 @@ const getUserPosition = async (sub) => {
     }
 }
 
+async function questionTags(tagArr,tagType,question){
+
+    // await newQuestion.addMicroTags(microTags)
+    // microTags=await newQuestion.getMicroTags()
+    
+    let tagPromises=tagArr.map(tag=>tagType.findByPk(tag.id))
+    //[{"tag":"React","id":1}]
+    let tags=await Promise.all(tagPromises)
+    //[tags de]
+    if(tagType===MacroTag){
+        await question.addMacroTags(tags)
+        tags=await question.getMacroTags()
+    }else{
+        await question.addMicroTags(tags)
+        tags=await question.getMicroTags()
+    }
+    return tags
+}
+
 // Populate database with random data
 const populateDB = async () => {
 
@@ -41,6 +60,14 @@ const populateDB = async () => {
         { sub: '6',  name: 'Gustavo',  nickname: 'Gus', email: 'gus@gmail.com', locale: 'Argentina', cantAns: 2, picture: "https://media-exp1.licdn.com/dms/image/C4D03AQF6Ei7KEuOr2Q/profile-displayphoto-shrink_800_800/0/1646031911164?e=1661385600&v=beta&t=tmOY2NZf646gdf3eSsEcgMTCBvfHjwNZY7QFvcRfEuo" },
         { sub: '7',  name: 'Patricio',  nickname: 'Pato', email: 'pato@gmail.com', locale: 'Argentina', cantAns: 2, picture: "https://media-exp1.licdn.com/dms/image/D4D35AQFZmGrAaKPK8A/profile-framedphoto-shrink_800_800/0/1655595844858?e=1656561600&v=beta&t=r8P2z2IiLGH3Q9AElsDQogOe0ftn4GHv4SurIE1DjlA" },
         { sub: '8',  name: 'Matias',  nickname: 'Mati', email: 'mati@gmail.com', locale: 'Argentina', cantAns: 1, picture: "https://media-exp1.licdn.com/dms/image/C4E03AQEqpAyopWiyxg/profile-displayphoto-shrink_800_800/0/1570049909786?e=1661385600&v=beta&t=ip-2OyBLJuiOkxhPAcNc7iIZEDcC6hW2G3gNDJngTEA" },
+        { sub: '9',  name: 'Fabricio',  nickname: 'Gonza', email: 'gonza@gmail.com', locale: 'Argentina', favourites: [1, 2, 4], cantFav: 3, cantQuest: 3, cantAns: 1, picture: "https://media-exp1.licdn.com/dms/image/C4E03AQHrPJNaA_xQRQ/profile-displayphoto-shrink_800_800/0/1612972013299?e=1661385600&v=beta&t=1lbIzsR2k2GfKHSO7VFmh6z059m_BLzYXJSZhDLVMSA" },
+        { sub: '10',  name: 'Roberto',  nickname: 'Santi', email: 'santi@gmail.com', locale: 'Argentina', favourites: [3, 4, 5], cantFav: 3, cantQuest: 2, cantAns: 1, picture: "https://media-exp1.licdn.com/dms/image/C4E03AQHR0-pjCg6BEQ/profile-displayphoto-shrink_800_800/0/1627139903614?e=1661385600&v=beta&t=O7l3OEXo4Y313kbBX52CLRAMezyoQepFpQLNbP9Ss00" },
+        { sub: '11',  name: 'Patroclo',  nickname: 'Feli', email: 'feli@gmail.com', locale: 'Argentina', favourites: [1], cantFav: 1, cantQuest: 1, cantAns: 2, picture: "https://media-exp1.licdn.com/dms/image/C5635AQHNLEX3mjDpTQ/profile-framedphoto-shrink_800_800/0/1601474459223?e=1656561600&v=beta&t=HQIOWqWDdrSylVr6bW0eaGuBjLJN5HEmhNbrkylu750" },
+        { sub: '12',  name: 'Aquiles',  nickname: 'Davo', email: 'davo@gmail.com', locale: 'Argentina', cantAns: 2, picture: "https://media-exp1.licdn.com/dms/image/D4D35AQFCuw75x8_2MA/profile-framedphoto-shrink_400_400/0/1643486623169?e=1656561600&v=beta&t=sIToL6P8CIpObL7r8LSdMemnSvH5hgq_zYwJ-dBwdLA" },
+        { sub: '13',  name: 'Asdsdds',  nickname: 'asd', email: 'lucho@gmail.com', locale: 'Argentina', favourites: [2, 3], cantFav: 2, cantAns: 2, picture: "https://media-exp1.licdn.com/dms/image/C5603AQESqRrYU1PB7A/profile-displayphoto-shrink_800_800/0/1630024458215?e=1661385600&v=beta&t=CCSGyfdLAShZY2msqz0KVBcKroJL8RH5Au41hcnAI8E" },
+        { sub: '14',  name: 'Fsdsdsdsd',  nickname: 'asdsad', email: 'gus@gmail.com', locale: 'Argentina', cantAns: 2, picture: "https://media-exp1.licdn.com/dms/image/C4D03AQF6Ei7KEuOr2Q/profile-displayphoto-shrink_800_800/0/1646031911164?e=1661385600&v=beta&t=tmOY2NZf646gdf3eSsEcgMTCBvfHjwNZY7QFvcRfEuo" },
+        { sub: '15',  name: 'Cssdsdsd',  nickname: 'asdasd', email: 'pato@gmail.com', locale: 'Argentina', cantAns: 2, picture: "https://media-exp1.licdn.com/dms/image/D4D35AQFZmGrAaKPK8A/profile-framedphoto-shrink_800_800/0/1655595844858?e=1656561600&v=beta&t=r8P2z2IiLGH3Q9AElsDQogOe0ftn4GHv4SurIE1DjlA" },
+        { sub: '16',  name: 'HGghghgh',  nickname: 'asdasd', email: 'mati@gmail.com', locale: 'Argentina', cantAns: 1, picture: "https://media-exp1.licdn.com/dms/image/C4E03AQEqpAyopWiyxg/profile-displayphoto-shrink_800_800/0/1570049909786?e=1661385600&v=beta&t=ip-2OyBLJuiOkxhPAcNc7iIZEDcC6hW2G3gNDJngTEA" },
     ]
 
     const questions = [
@@ -68,11 +95,55 @@ const populateDB = async () => {
         { userSub: 7, questionId: 5, teachPoints: 500, text: 'Por ejemplo, si tenemos dos modelos, Foo y Bar, y están asociados, sus instancias tendrán disponibles diferentes métodos/mixins, según el tipo de asociación' },
     ]
 
+    const macros=[
+        {tag:"JavaScript"},
+        {tag:"React"},
+        {tag:"Redux"},
+        {tag:"Html"},
+        // {text:"GitHub",type:"Macro"},
+        // {text:"DataBase",type:"Macro"},
+        // {text:"Css",type:"Macro"},
+        // {text:"Postgress",type:"Macro"},
+        // {text:"Sequelize",type:"Macro"},
+        // {text:"Deployment",type:"Macro"},
+        // {text:"Back-End",type:"Macro"},
+        // {text:"Front-End",type:"Macro"},
+        // {text:"Visual-Code-Studio",type:"Macro"},
+        // {text:"Power-Shell",type:"Macro"},
+        // {text:"FrameWorks",type:"Macro"},
+        // {text:"Http",type:"Macro"},
+        // {text:"Node",type:"Macro"},
+    ]
+
+    const micros=[
+        {tag:"Arrays"},
+        {tag:"Functions"},
+        {tag:"Objetos"},
+        {tag:"Bucles"},
+        {tag:"Clases"},
+        {tag:"Condicionales"},
+        {tag:"Css"},
+
+        // {text:"TypeScript",type:"Micro"},
+        // {text:"Apis",type:"Micro"},
+        // {text:"Window",type:"Micro"},
+        // {text:"Parseo",type:"Micro"},
+        // {text:"For-In",type:"Micro"},
+        // {text:"J-Query",type:"Micro"},
+    ]
+
     try {
 
         await User.bulkCreate(users)
         await Question.bulkCreate(questions)
         await Answer.bulkCreate(answers) 
+        await MacroTag.bulkCreate(macros) 
+        let microTags=await MicroTag.bulkCreate(micros) 
+        let Js=await MacroTag.findOne({where:{tag:"JavaScript"}})
+        let Html=await MacroTag.findOne({where:{tag:"Html"}})
+
+        await Js.addMicroTags(microTags.slice(0,microTags.length-1))
+        await Html.addMicroTags(microTags[microTags.length-1])
 
         console.log("DB populated correctly")
 
@@ -138,6 +209,7 @@ module.exports={
     populateDB,
     paginate,
     getUserPosition,
+    questionTags,
     // sortByPointsDesc,
     // sortByPointsAsc,
 }
