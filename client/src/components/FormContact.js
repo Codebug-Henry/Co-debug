@@ -19,7 +19,7 @@ const FormContact = () => {
     if (!input.email) errors.email = "Se requiere un email";
     if (
       input.email &&
-      !/^[a-zA-Z0-9.! #$%&'*+/=? ^_`{|}~-]+@[a-zA-Z0-9-]+(?:\. [a-zA-Z0-9-]+)*$/.test(
+      !/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/.test(
         input.email
       )
     )
@@ -35,9 +35,9 @@ const FormContact = () => {
   const [input, setInput] = useState({
     sub: 1,
     // sub: user.sub,
-    email: "",
-    title: "",
-    text: "",
+    email: localStorage.email || "",
+    title: localStorage.title || "",
+    text: localStorage.text || "",
   });
 
   const [errors, setErrors] = useState({});
@@ -53,18 +53,20 @@ const FormContact = () => {
         [e.target.name]: e.target.value,
       })
     );
+    localStorage[e.target.name] = e.target.value
   }
 
   function handleSubmit(e) {
     e.preventDefault();
     console.log(input);
     // dispatch(sendQuestion(input))
-    alert("Actividad creada");
+    alert("Mensaje enviado");
     setInput({
       email: "",
       title: "",
       text: "",
     });
+    localStorage.clear()
     // ver donde redirigir
   }
 
@@ -134,7 +136,7 @@ const FormContact = () => {
             }
             className={style.btn}
           >
-            Crear Consulta
+            Enviar mensaje
           </button>
         </form>
       </div>
