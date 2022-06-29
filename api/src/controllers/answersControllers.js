@@ -1,4 +1,4 @@
-const { Question, Answer } = require("../db");
+const { Question, Answer,MacroTag, MicroTag } = require("../db");
 const { paginate } = require("./generalControllers");
 
 const getAnswers = async (req, res, next) => {
@@ -9,7 +9,15 @@ const getAnswers = async (req, res, next) => {
 
   try {
       
-    const myAnswers = await Answer.findAll({where: {userSub: sub}, include: Question})
+    const myAnswers = await Answer.findAll({where: {userSub: sub}, 
+      include:[
+        {model:Question,
+        include:[
+          {model:MacroTag},
+          {model:MicroTag}
+        ]},
+      ]
+    })
       
     res.send(paginate(parseInt(limit), parseInt(page),myAnswers))
 

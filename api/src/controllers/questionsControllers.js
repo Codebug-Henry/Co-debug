@@ -1,4 +1,4 @@
-const { User, Question } = require("../db");
+const { User, Question,MacroTag,MicroTag } = require("../db");
 const { Op } = require('sequelize');
 const { paginate } = require("./generalControllers");
 
@@ -41,7 +41,12 @@ const getUserQuestions = async (req, res, next) => {
             order: [
             ['createdAt', 'DESC'],
             ['title', 'ASC'],
-        ]})
+            ],
+            include:[
+                {model:MacroTag},
+                {model:MicroTag}
+            ]
+        })
         
         res.send(paginate(parseInt(limit), parseInt(page), myQuestions))
 
@@ -53,17 +58,22 @@ const getUserQuestions = async (req, res, next) => {
 
 const getAllQuestions = async (req, res, next) => {
 
-    const {search, sort, page, limit} = req.query
+    let {search, sort, page, limit, macroTag, microTag} = req.query
 
     try {
+        
+        // let macroCondition={}
 
+        // if(macroTag)macroCondition={...macroCondition,tag:macroTag}
+        
         let condition = {}
-
+        
         if (search) {
             let searchArr = search.split(" ")
             searchArr.forEach((word, i, arr) => {
                 arr[i] = word ? `%${word}%` : ""
             })
+            console.log(searchArr)
             condition = {
                 [Op.or]:
                     [
@@ -73,13 +83,36 @@ const getAllQuestions = async (req, res, next) => {
             }
         }
 
-        let allQuestions = await Question.findAll({where: condition, include: User,
+        let allQuestions = await Question.findAll({where: condition,
             order: [
             ['teachPoints', sort || 'DESC'],
             ['likes', sort || 'DESC'],
             ['cantAnswers', sort || 'DESC'],
-        ]})
-        
+            ],
+            include:[
+                {
+                    model:User,
+                },
+                {
+                    model:MacroTag,
+                },
+                {
+                    model:MicroTag,
+                }
+            ]
+        })
+
+        if(macroTag){
+            allQuestions=allQuestions.filter(q=>
+                q.macroTags.filter(maTag=>maTag.tag===macroTag).length>0
+            )
+        }
+        if(microTag){
+            allQuestions=allQuestions.filter(q=>
+                q.microTags.filter(miTag=>miTag.tag===microTag).length>0
+            )
+        }
+
         res.send(paginate(parseInt(limit), parseInt(page), allQuestions))
 
     } catch (error) {
@@ -98,7 +131,13 @@ const getFavourites = async (req, res, next) => {
 
         const user = await User.findByPk(sub)
 
-        const favourites = await Question.findAll({where: {id: {[Op.in]: user.favourites}}, include: User})
+        const favourites = await Question.findAll({where: {id: {[Op.in]: user.favourites}},
+            include:[
+                {model:User},
+                {model:MacroTag},
+                {model:MicroTag}
+            ]
+        })
         
         res.send(paginate(parseInt(limit), parseInt(page), favourites))
 

@@ -1,4 +1,4 @@
-const { User, Question, Answer } = require('../db.js');
+const { User, Question, Answer,MicroTag,MacroTag } = require('../db.js');
 
 //Get user position in ranking
 const getUserPosition = async (sub) => {
@@ -23,6 +23,25 @@ const getUserPosition = async (sub) => {
     } catch (error) {
         console.log(error)
     }
+}
+
+async function questionTags(tagArr,tagType,question){
+
+    // await newQuestion.addMicroTags(microTags)
+    // microTags=await newQuestion.getMicroTags()
+    
+    let tagPromises=tagArr.map(tag=>tagType.findByPk(tag.id))
+    //[{"tag":"React","id":1}]
+    let tags=await Promise.all(tagPromises)
+    //[tags de]
+    if(tagType===MacroTag){
+        await question.addMacroTags(tags)
+        tags=await question.getMacroTags()
+    }else{
+        await question.addMicroTags(tags)
+        tags=await question.getMicroTags()
+    }
+    return tags
 }
 
 // Populate database with random data
@@ -64,11 +83,55 @@ const populateDB = async () => {
         { userSub: 7, questionId: 5, text: 'Por ejemplo, si tenemos dos modelos, Foo y Bar, y están asociados, sus instancias tendrán disponibles diferentes métodos/mixins, según el tipo de asociación' },
     ]
 
+    const macros=[
+        {tag:"JavaScript"},
+        {tag:"React"},
+        {tag:"Redux"},
+        {tag:"Html"},
+        // {text:"GitHub",type:"Macro"},
+        // {text:"DataBase",type:"Macro"},
+        // {text:"Css",type:"Macro"},
+        // {text:"Postgress",type:"Macro"},
+        // {text:"Sequelize",type:"Macro"},
+        // {text:"Deployment",type:"Macro"},
+        // {text:"Back-End",type:"Macro"},
+        // {text:"Front-End",type:"Macro"},
+        // {text:"Visual-Code-Studio",type:"Macro"},
+        // {text:"Power-Shell",type:"Macro"},
+        // {text:"FrameWorks",type:"Macro"},
+        // {text:"Http",type:"Macro"},
+        // {text:"Node",type:"Macro"},
+    ]
+
+    const micros=[
+        {tag:"Arrays"},
+        {tag:"Functions"},
+        {tag:"Objetos"},
+        {tag:"Bucles"},
+        {tag:"Clases"},
+        {tag:"Condicionales"},
+        {tag:"Css"},
+
+        // {text:"TypeScript",type:"Micro"},
+        // {text:"Apis",type:"Micro"},
+        // {text:"Window",type:"Micro"},
+        // {text:"Parseo",type:"Micro"},
+        // {text:"For-In",type:"Micro"},
+        // {text:"J-Query",type:"Micro"},
+    ]
+
     try {
 
         await User.bulkCreate(users)
         await Question.bulkCreate(questions)
         await Answer.bulkCreate(answers) 
+        await MacroTag.bulkCreate(macros) 
+        let microTags=await MicroTag.bulkCreate(micros) 
+        let Js=await MacroTag.findOne({where:{tag:"JavaScript"}})
+        let Html=await MacroTag.findOne({where:{tag:"Html"}})
+
+        await Js.addMicroTags(microTags.slice(0,microTags.length-1))
+        await Html.addMicroTags(microTags[microTags.length-1])
 
         console.log("DB populated correctly")
 
@@ -134,6 +197,7 @@ module.exports={
     populateDB,
     paginate,
     getUserPosition,
+    questionTags,
     // sortByPointsDesc,
     // sortByPointsAsc,
 }

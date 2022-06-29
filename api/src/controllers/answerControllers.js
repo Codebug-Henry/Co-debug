@@ -1,10 +1,10 @@
 const {Answer, Question, User} = require("../db")
 
 const postAnswer = async (req, res, next) => {
-    const {sub, id, text} = req.body
+    const {sub, id, text,imgs} = req.body
 
      try {
-        const newAnswer = await Answer.create({text})
+        const newAnswer = await Answer.create({text,imgs})
         const question= await Question.findByPk(id)
         const user= await User.findByPk(sub)
         await user.update({cantAns:user.cantAns+1})
@@ -22,7 +22,7 @@ const postAnswer = async (req, res, next) => {
 //llega por body respuesta, id de pregunta y id de usuario=>añade respuesta a usuario, pregunta, cdrea respuesta
 
 const putAnswer = async (req, res, next) => {
-    const {id, text, like, statusDeleted} = req.body
+    const {id, text, like, statusDeleted,imgs} = req.body
 
     const answer = await Answer.findByPk(id)
     let newLikes = answer.likes
@@ -31,7 +31,7 @@ const putAnswer = async (req, res, next) => {
     else if (like === "remove") newLikes--
 
     try {
-       await Answer.update({text, likes: newLikes, statusDeleted},{
+       await Answer.update({text, likes: newLikes, statusDeleted,imgs},{
         where:{
             id
         }
