@@ -31,7 +31,7 @@ const CardUserQuestion = ({id, title, text, likes, cantAnswers, name, picture, s
     function handleDeleteQuestion(e){
         e.preventDefault();
         // document.getElementById("selectAnswered").getElementsByTagName('option')[0] = 'selected'
-        dispatch(deleteQuestion(id));
+        dispatch(deleteQuestion({id: id, statusDeleted: true}));
         setCantFirstLast([questions.length, questions[1], questions[4]])
     }
 
