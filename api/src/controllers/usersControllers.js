@@ -4,18 +4,22 @@ const { paginate } = require('./generalControllers');
 const getTopTen = async (req, res, next)=>{
     try {
 
-        const allUsers = await User.findAll({
+        const topTen = await User.findAll({
             where:{
                 statusDeleted: false,
                 statusBanned: false
             },
             order: [
-            ['myTeachPoints', 'DESC'],
-            ['cantAns', 'DESC'],
-            ['cantQuest', 'DESC'],
-        ]})
-    
-        res.send (allUsers.slice(0, 10))
+                ['myTeachPoints', 'DESC'],
+                ['cantAns', 'DESC'],
+                ['cantQuest', 'DESC'],
+            ],
+            limit: 10
+        })
+        
+        topTen.forEach((e, i) => e.dataValues.myPosition = i + 1)
+
+        res.send (topTen)
 
     } catch (error) {
         next(error)
@@ -38,7 +42,9 @@ const getRanking = async (req, res, next) =>{
             ['cantAns', sort || 'DESC'],
             ['cantQuest', sort || 'DESC'],
         ]})
-        
+
+        allUsers.forEach((e, i) => e.dataValues.myPosition = i + 1)
+
         res.send (paginate(parseInt(limit), parseInt(page), allUsers))
 
     } catch (error) {
