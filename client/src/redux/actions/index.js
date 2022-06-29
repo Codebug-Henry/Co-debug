@@ -1,4 +1,4 @@
-import { GET_TOPTEN_RANKING, GET_USER_INFO, DELETE_USER, MODIFY_QUESTION, DELETE_QUESTION, SEND_QUESTION, GET_QUESTION, GET_FAVOURITES, GET_ALL_QUESTIONS, GET_ALL_QUESTIONS_SORTED, GET_SEARCH_QUESTIONS, GET_USER_QUESTIONS, PUT_ANSWER, DELETE_ANSWER, GET_USER_ANSWERS, GET_USER_QUESTIONS_ORDERER } from './actionTypes'
+import { GET_ALL_USERS,GET_TOPTEN_RANKING, GET_USER_INFO, DELETE_USER, MODIFY_QUESTION, DELETE_QUESTION, SEND_QUESTION, GET_QUESTION, GET_FAVOURITES, GET_ALL_QUESTIONS, GET_ALL_QUESTIONS_SORTED, GET_SEARCH_QUESTIONS, GET_USER_QUESTIONS, PUT_ANSWER, DELETE_ANSWER, GET_USER_ANSWERS, GET_USER_QUESTIONS_ORDERER } from './actionTypes'
 import * as api from '../api'
 
 // RUTAS user - users
@@ -52,6 +52,15 @@ export const deleteUser = (sub) => async (dispatch) => {
         const { data } = await api.deleteUser(sub)
         dispatch({ type: DELETE_USER, payload: data})
     } catch (error) {
+        console.log(error.message)
+    }
+}
+
+export const getAllUsers = (page) => async (dispatch)=>{
+    try{
+        const { data } = await api.getAllUsers(page)
+        dispatch({type: GET_ALL_USERS, payload: data})
+    }catch(error){
         console.log(error.message)
     }
 }
