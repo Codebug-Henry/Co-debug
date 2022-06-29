@@ -6,6 +6,7 @@ import Footer from "../components/Footer.js";
 import { deleteUser, getUserInfo, putUserInfo } from "../redux/actions";
 import { useNavigate } from "react-router-dom";
 import CheckIcon from "@mui/icons-material/Check";
+import Upload from '../components/Upload.js'
 // import StatsUser from '../components/StatsUser';
 // import TeachPoints from "../components/TeachPoints";
 
