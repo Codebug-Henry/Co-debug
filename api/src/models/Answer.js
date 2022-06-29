@@ -22,8 +22,16 @@ module.exports = (sequelize) => {
     },
     statusDeleted: {
       type: DataTypes.BOOLEAN,
-      defaultValue:false
+      defaultValue: false
     },
+    statusValidated: {
+      type: DataTypes.BOOLEAN,
+      defaultValue: false
+    },
+    imgs:{
+      type: DataTypes.ARRAY(DataTypes.TEXT),
+      defaultValue:[]
+    }
   });
 };
 

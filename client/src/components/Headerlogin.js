@@ -24,7 +24,7 @@ const Headerlogin = () => {
     if (isAuthenticated) {
       dispatch(sendUserInfo(user));
     }
-  }, [dispatch, user]);
+  }, [dispatch, user, isAuthenticated]);
 
   const handleResize = () => {
     setWidth(window.innerWidth);

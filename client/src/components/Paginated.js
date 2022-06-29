@@ -3,7 +3,7 @@ import { useSelector } from 'react-redux';
 import style from './styles/Paginated.module.css'
 
 
-export default function Paginated({page, setPage}) {
+export default function Paginated({page, setPage, totalPages}) {
 
     const pages = useSelector((state) => state.pages);
     const totalPages = useSelector((state)=> state.totalPages)
@@ -21,6 +21,7 @@ export default function Paginated({page, setPage}) {
         e.preventDefault();
         setPage(prev => prev +1);
     }
+
 
     console.log(page,totalPages)
 
@@ -70,6 +71,7 @@ export default function Paginated({page, setPage}) {
                     }
                 
                 {/* {pages &&
+
                     pages.map((pag) =>(
                         <li key={pag}>
                             <button id={style.number} 
@@ -80,10 +82,12 @@ export default function Paginated({page, setPage}) {
                             </button>
                         </li>
                     ))
+
                 } */}
                 <button className={page < totalPages -3 ? style.lastDot : style.notDisplay}> ... </button>
                 <button className={page < totalPages -2 ? style.last : style.notDisplay} onClick={e=>setPage(totalPages)}> {totalPages} </button>
                 <button className={page === totalPages || pages.length === 0 ? style.notDisplay : style.next} onClick={e=> handleNext(e)} > Siguiente </button>
+
             </ul>
         </div>
     )

@@ -17,29 +17,29 @@ const MisPreguntas = () => {
   const questions = useSelector(state => state.userQuestions);
   const dispatch = useDispatch();
   const pages = useSelector((state) => state.pages);
+  const totalPages = useSelector(state => state.totalPages);
   const [input, setInput] = useState("");
-
-  // const [cant, setCant] = useState(questions.length);
   const [page, setPage] = useState(1)
   const [cantFirstLast, setCantFirstLast] = useState([questions.length, questions[1], questions[4]])
+  
 
   useEffect( () =>{
-    if(document.getElementById("selectAnswered").value === 'false'){
-      dispatch(getUserQuestionsOrderer(userInfo.sub, 'false', page));
-    }
-    if(document.getElementById("selectAnswered").value === 'true'){
-      dispatch(getUserQuestionsOrderer(userInfo.sub, 'true', page));
-    }
-    if(document.getElementById("selectAnswered").value === 'All'){
-    dispatch(getUserQuestions(userInfo.sub, page, ''))
-    }
-  }, [cantFirstLast, page])
 
+      if(document.getElementById("selectAnswered") && document.getElementById("selectAnswered").value === 'false'){
+        dispatch(getUserQuestionsOrderer(userInfo.sub, 'false', page));
+      }
+      if(document.getElementById("selectAnswered") && document.getElementById("selectAnswered").value === 'true'){
+        dispatch(getUserQuestionsOrderer(userInfo.sub, 'true', page));
+      }
+      else{
+      dispatch(getUserQuestions(userInfo.sub, page, ''))
+      }
+  }, [cantFirstLast, page, dispatch, userInfo.sub])
 
   return (
-    <div className={style.fullContainer}>
+    <div>
       {isAuthenticated ? (
-        <div className={style.middleRow}>
+        <div>
           {/* Acá el contenido para logueados */}
           <div className={`container-fluid ${style.container}`}>
             <div className={`row ${style.middleRow}`}>
@@ -71,7 +71,7 @@ const MisPreguntas = () => {
                     }
 
                   </div>
-                  <Paginated page={page} setPage={setPage}/>
+                  <Paginated page={page} setPage={setPage} totalPages={totalPages}/>
                 </div>
               </div>
 
@@ -134,7 +134,7 @@ const MisPreguntas = () => {
           </div>
         </div>
       )}
-      <div className={style.footer}>
+      <div>
         <Footer />
       </div>
     </div>

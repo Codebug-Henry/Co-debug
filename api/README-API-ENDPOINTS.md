@@ -26,7 +26,11 @@
     - [DELETE answer](#delete-answer)
 6. [Rutas **answers**](#rutas-answers)
     - [GET answers](#get-answers)
-7. [Observaciones](#observaciones)
+7. [Rutas **message**](#rutas-message)
+    - [POST message](#post-message)
+8. [Rutas **messages**](#rutas-messages)
+    - [GET all messages](#get-all-messages)
+9. [Observaciones](#observaciones)
 
 ***
 
@@ -267,6 +271,7 @@
             text,
             likes,
             statusDeleted,
+            statusValidated,
             cantAnswers,
             respuestas: [
                 {
@@ -389,6 +394,7 @@
                     text,
                     likes,
                     statusDeleted,
+                    statusValidated,
                     cantAnswers,
                 },
                 .
@@ -415,12 +421,13 @@
 
 - **DESCRIPCION**: esta ruta es para acceder a todas las preguntas.
 
-- **REQUERIMIENTOS**: puede traer por query ?search o ?sort para buscar u ordenar, ?page y ?limit, en caso de no traer ?search simplemente accedo a todas las preguntas.
+- **REQUERIMIENTOS**: puede traer por query ?search para buscar, ?sort para ordenar, ?page, ?limit y ?validated (en caso de no traer ?search simplemente accedo a todas las preguntas).
 
         ?search=" " (string que esta buscando en texto/titulo)
-        &sort=" "   (sort=>string que define ordenamiento(asc/desc))
+        &sort=" "   (sort=>string que define ordenamiento por antiguedad (asc/desc))
         &page=(número de página)
         &limit=(cantidad de elementos por página)
+        &validated=(booleano que define filtrado por si la pregunta ya tiene una respuesta validada o no (true/false))
 
 - **RESPUESTA**: un objeto con 3 propiedades: totalPages, pages, results (preguntas en base a la busqueda o todas las preguntas)
 
@@ -439,6 +446,7 @@
                     text,
                     likes,
                     statusDeleted,
+                    statusValidated,
                     cantAnswers,
                 },
                 .
@@ -455,6 +463,7 @@
                     text,
                     likes,
                     statusDeleted,
+                    statusValidated,
                     cantAnswers,
                 }
             ]
@@ -491,6 +500,7 @@
                     text,
                     likes,
                     statusDeleted,
+                    statusValidated,
                     cantAnswers,
                 },
                 .
@@ -504,6 +514,7 @@
                     text,
                     likes,
                     statusDeleted,
+                    statusValidated,
                     cantAnswers,
                 }
             ]
@@ -562,13 +573,14 @@
 
 - **DESCRIPCION**: esta ruta es para que el usuario pueda editar una de sus respuestas
 
-- **REQUERIMIENTOS**: por body enviar el id de la respuesta, el texto editado y/o si se sumó o restó un like ("add"/"remove")
+- **REQUERIMIENTOS**: por body enviar el id de la respuesta, el texto editado, si se sumó o restó un like ("add"/"remove"), si se eliminó o si se validó
 
         {  
             id,
             text,
             like,   //"add" or "remove" 
             statusDeleted,
+            statusValidated,
         }
 
 - **RESPUESTA**: en caso de ser necesaria -> el texto de la respuesta editada y el contador de likes actualizado
@@ -577,6 +589,7 @@
             text,
             likes,    //cantidad de likes de la respuesta 
             statusDeleted,
+            statusValidated,
         }
 
 ***
@@ -625,6 +638,7 @@
                     text,
                     likes,
                     statusDeleted,
+                    statusValidated,
                 },
                 .
                 .
@@ -637,6 +651,82 @@
                     text,
                     likes,
                     statusDeleted,
+                    statusValidated,
+                }
+            ]
+        }
+
+***
+
+## RUTAS **message**
+
+***
+
+### POST **message**
+
+- **RUTA**: router.post("/message", postMessage)
+
+- **DESCRIPCION**: esta ruta es para crear un mensaje por parte del usuario para que le llegue a los admin.
+
+- **REQUERIMIENTOS**: por body enviar datos del mensaje. 
+
+        {
+            sub,
+            title   //titulo del mensaje
+            text,   //contenido del mensaje
+        }
+
+- **RESPUESTA**: un objeto con el mensaje creado y la info del usuario
+
+        {
+            user: {
+                (todas las propiedades del usuario)
+            },
+            title,
+            text,
+        }
+
+***
+
+## RUTAS **messages**
+
+***
+
+### GET **all messages**
+
+- **RUTA**: router.get("/messages",getAllMessages)
+
+- **DESCRIPCION**: esta ruta es para que los admin puedan acceder a todos los mensajes que enviaron los usuarios a través del formulario de contacto.
+
+- **REQUERIMIENTOS**: debe traer por query ?page y ?limit
+
+        ?page=(número de página)
+        &limit=(cantidad de elementos por página)
+
+- **RESPUESTA**: un objeto con 3 propiedades: totalPages, pages, results (todos los mensajes)
+
+        {
+            totalPages: (cantidad de paginas totales),
+            pages: []     //rango de paginas habilitadas (máximo 5),
+            results: [
+                {
+                    user: {
+                        (todas las propiedades del usuario)
+                    },
+                    id,
+                    title,
+                    text,
+                },
+                .
+                .
+                .
+                {
+                    user: {
+                        (todas las propiedades del usuario)
+                    },
+                    id,
+                    title,
+                    text,
                 }
             ]
         }

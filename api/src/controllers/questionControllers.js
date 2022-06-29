@@ -1,4 +1,5 @@
-const {User, Question, Answer} = require("../db.js")
+const {User, Question, Answer, MacroTag, MicroTag} = require("../db.js")
+const { questionTags } = require("./generalControllers.js")
 
 const deleteUserQuestion = async (req, res, next) => {
     const {id} = req.params
@@ -19,7 +20,7 @@ const deleteUserQuestion = async (req, res, next) => {
 }
 
 const putUserQuestion = async (req, res, next) => {
-    const {id, text, title, like, statusDeleted} = req.body
+    let {id, text, title, like, statusDeleted,imgs,newMacroTags,newMicroTags} = req.body
 
     const question = await Question.findByPk(id)
     let newLikes = question.likes
@@ -28,17 +29,31 @@ const putUserQuestion = async (req, res, next) => {
     else if (like === "remove") newLikes--
 
     try {
-        await Question.update({text, title, likes: newLikes, statusDeleted},{
+        newMacroTags=await MacroTag.findAll({where:{id:newMacroTags}})
+        newMicroTags=await MicroTag.findAll({where:{id:newMicroTags}})
+        
+        let oldMacroTags=await question.getMacroTags()
+        let oldMicroTags=await question.getMicroTags()
+
+        await question.removeMacroTags(oldMacroTags)
+        await question.removeMicroTags(oldMicroTags)
+
+        newMacroTags=await questionTags(newMacroTags, MacroTag, question)
+        newMicroTags=await questionTags(newMicroTags, MicroTag, question)
+
+        await Question.update({text, title, likes: newLikes, statusDeleted,imgs},{
             where:{
                 id:parseInt(id)
             }
         })
-        // await Question.findByPk(id)
 
         res.send({
+            newMacroTags,
+            newMicroTags,
             text,
             title,
             likes: newLikes,
+            imgs,
             statusDeleted
         })
     } catch (error) {
@@ -46,16 +61,19 @@ const putUserQuestion = async (req, res, next) => {
     }
 }
 
-
 const postQuestion = async (req, res, next) => {
-   const {sub, text, title} = req.body
+   let {sub, text, title,imgs,macroTags,microTags} = req.body
     
     try {
         const user = await User.findByPk(sub)
         await user.update({cantQuest: user.cantQuest + 1})
-        const newQuestion = await Question.create({text, title})
+        const newQuestion = await Question.create({text, title,imgs})
+        // console.group(macrotag)
+        macroTags=await questionTags(macroTags, MacroTag, newQuestion)
+        microTags=await questionTags(microTags, MicroTag, newQuestion)
+
         newQuestion.setUser(user)
-        res.send({user, ...newQuestion.dataValues})
+        res.send({user, ...newQuestion.dataValues, macroTags, microTags})
 
    } catch (error) {
         next(error)
@@ -69,7 +87,9 @@ const getSingleQuestion = async (req, res, next) => {
         const question = await Question.findByPk(id, {
             include: [
                 {model: User},
-                {model: Answer, where: {statusDeleted: false}, include: User}
+                {model: Answer, required: false, where: {statusDeleted: false}, include: User},
+                {model: MacroTag},
+                {model: MicroTag}
             ]
         })        
 

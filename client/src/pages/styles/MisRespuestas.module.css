@@ -1,4 +1,9 @@
-html{
+
+.container {
+  background-color: lightyellow;
+}
+
+.html{
     min-height: 100%;
     position: relative;
 }
@@ -14,4 +19,5 @@ html{
 .fullContainer{
     display: flex;
     flex-direction: column;
+
 }

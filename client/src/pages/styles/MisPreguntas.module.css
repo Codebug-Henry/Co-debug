@@ -1,3 +1,8 @@
+
+.container {
+  background-color: lightyellow;
+}
+
 html{
   min-height: 100%;
   position: relative;
@@ -15,7 +20,6 @@ html{
   display: flex;
   flex-direction: column;
 }
-
 
 .col1 {
   display: flex;
