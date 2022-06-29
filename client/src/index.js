@@ -10,8 +10,8 @@ require('dotenv').config();
 const {
   REACT_APP_AUTH0_DOMAIN, REACT_APP_AUTH0_CLIENT_ID, REACT_APP_API
 } = process.env;
-const domain = REACT_APP_AUTH0_DOMAIN;
-const clientId = REACT_APP_AUTH0_CLIENT_ID;
+const domain = "dev-n7q7v880.us.auth0.com";
+const clientId = "mc6ESq1wOdZwvUsxeVc2Zb41s1hwhrbx";
 
 const container = document.getElementById("root")
 const root = ReactDOMClient.createRoot(container);
