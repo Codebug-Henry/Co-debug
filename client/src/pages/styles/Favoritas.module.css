@@ -1,34 +1,57 @@
-.col1{
+.container {
+  background-color: lightyellow;
+html{
+    min-height: 100%;
+    position: relative;
+}
+
+.footer{
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    overflow:hidden;
+}
+
+.fullContainer{
     display: flex;
     flex-direction: column;
 }
 
-#all{
-    width: 96%;
-    margin-left: 2%;
+
 }
 
-#explore{
-    /* border: solid 1px black; */
-    height: 10vh;
-    display: grid;
-    grid-template-columns: 1fr 10fr;
-    align-content: flex-end;
+.col1 {
+  display: flex;
+  flex-direction: column;
 }
 
-#explore p{
-    position: relative;
-    text-align: center;
-    margin-top: 1vh;
-    font-size: x-large;
+#all {
+  width: 96%;
+  margin-left: 2%;
 }
 
-#myQuestions{
-    /* border: solid 1px black; */
-    height: fit-content;
-    display: flex;
-    flex-direction: column;
-    gap: 3vh;
-    position: relative;
-    top: 3vh
+#explore {
+  /* border: solid 1px black; */
+  height: 10vh;
+  display: grid;
+  grid-template-columns: 1fr 10fr;
+  align-content: flex-end;
+}
+
+#explore p {
+  position: relative;
+  text-align: center;
+  margin-top: 1vh;
+  font-size: x-large;
+}
+
+#myQuestions {
+  /* border: solid 1px black; */
+  height: fit-content;
+  display: flex;
+  flex-direction: column;
+  gap: 3vh;
+  position: relative;
+  top: 3vh;
 }

@@ -8,8 +8,7 @@ const getAnswers = async (req, res, next) => {
   const {page, limit} = req.query
 
   try {
-      
-    const myAnswers = await Answer.findAll({where: {userSub: sub}, 
+    const myAnswers = await Answer.findAll({where: {statusDeleted: false, userSub: sub}, 
       include:[
         {model:Question,
         include:[
@@ -18,13 +17,12 @@ const getAnswers = async (req, res, next) => {
         ]},
       ]
     })
-      
+    
     res.send(paginate(parseInt(limit), parseInt(page),myAnswers))
 
   } catch (error) {
     next(error)
   }
-
 }
 
 

@@ -16,7 +16,7 @@ const FormQuestion = () => {
 
     useEffect(()=> {
         dispatch(getUserInfo(userInfo.sub));
-    }, [dispatch])
+    }, [dispatch, userInfo.sub])
 
     const navigate = useNavigate()
 

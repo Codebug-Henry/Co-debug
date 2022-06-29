@@ -15,7 +15,7 @@ const Terminos = () => {
     );
   }
   return (
-    <div>
+    <div className={style.fullContainer}>
       {isAuthenticated ? (
         <div>
           {/* Acá el contenido para logueados */}
@@ -733,7 +733,7 @@ const Terminos = () => {
         </div>
       )}
 
-      <div>
+      <div className={style.footer}>
         <Footer />
       </div>
     </div>

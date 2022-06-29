@@ -5,12 +5,18 @@ module.exports = (sequelize) => {
   sequelize.define('question', {
     id: {
       type: DataTypes.INTEGER,
-      autoIncrement:true,
-      primaryKey:true
+      autoIncrement: true,
+      primaryKey: true
     },
     teachPoints: {
       type: DataTypes.INTEGER,
-      defaultValue:0
+      defaultValue: 100,
+      get() {
+        const now = Date.now()
+        const created = Date.parse(this.createdAt)
+        const points = this.getDataValue('teachPoints') + 100 * Math.floor((now - created) / (24  * 60 * 60 * 1000))
+        return points;
+      }
     },
     title: {
       type: DataTypes.STRING,
@@ -22,15 +28,19 @@ module.exports = (sequelize) => {
     },
     likes: {
       type: DataTypes.INTEGER,
-      defaultValue:0
+      defaultValue: 0
     },
     cantAnswers: {
       type: DataTypes.INTEGER,
-      defaultValue:0
+      defaultValue: 0
     },
     statusDeleted: {
       type: DataTypes.BOOLEAN,
-      defaultValue:false
+      defaultValue: false
+    },
+    statusValidated: {
+      type: DataTypes.BOOLEAN,
+      defaultValue: false
     },
     imgs:{
       type: DataTypes.ARRAY(DataTypes.TEXT),

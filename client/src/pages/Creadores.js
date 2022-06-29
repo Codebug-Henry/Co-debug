@@ -80,7 +80,7 @@ let luciano = {
 const Creadores = () => {
   const { isAuthenticated } = useAuth0();
   return (
-    <div>
+    <div className={style.fullContainer}>
       {isAuthenticated ? (
         <div>
           {/* Acá el contenido para logueados */}
@@ -124,7 +124,7 @@ const Creadores = () => {
           </div>
         </div>
       )}
-      <div>
+      <div className={style.footer}>
         <Footer />
       </div>
     </div>

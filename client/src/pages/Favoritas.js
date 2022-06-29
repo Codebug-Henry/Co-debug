@@ -14,20 +14,20 @@ const Favoritas = () => {
   const userInfo = useSelector(state=> state.user);
   const favourites = useSelector(state => state.favourites);
   const dispatch = useDispatch()
+  let cant = favourites.length
 
-  const [cant, setCant] = useState(favourites.length);
   const [page, setPage] = useState(1)
 
   useEffect(()=>{
     dispatch(getFavourites(userInfo.sub, page))
-  }, [userInfo, cant, page])
+  }, [userInfo, cant, page, dispatch])
 
 
   const { isAuthenticated } = useAuth0();
   return (
-    <div>
+    <div className={style.fullContainer}>
       {isAuthenticated ? (
-        <div>
+        <div className={style.middleRow}>
           {/* Acá el contenido para logueados */}
           <div className={`container-fluid ${style.container}`}>
             <div className={`row ${style.middleRow}`}>
@@ -132,7 +132,7 @@ const Favoritas = () => {
           </div>
         </div>
       )}
-      <div>
+      <div className={style.footer}>
         <Footer />
       </div>
     </div>

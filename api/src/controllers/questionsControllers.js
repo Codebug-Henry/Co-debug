@@ -9,7 +9,10 @@ const getUserQuestions = async (req, res, next) => {
 
     try {
 
-        let condition = {userSub: sub}
+        let condition = {
+            userSub: sub,
+            statusDeleted: false
+        }
 
         if (search) {
             let searchArr = search.split(" ")
@@ -58,16 +61,12 @@ const getUserQuestions = async (req, res, next) => {
 
 const getAllQuestions = async (req, res, next) => {
 
-    let {search, sort, page, limit, macroTag, microTag} = req.query
+    let {search, sort, page, limit, macroTag, microTag, validated} = req.query
 
     try {
         
-        // let macroCondition={}
+        let condition = {statusDeleted: false}
 
-        // if(macroTag)macroCondition={...macroCondition,tag:macroTag}
-        
-        let condition = {}
-        
         if (search) {
             let searchArr = search.split(" ")
             searchArr.forEach((word, i, arr) => {
@@ -75,6 +74,7 @@ const getAllQuestions = async (req, res, next) => {
             })
             console.log(searchArr)
             condition = {
+                ...condition,
                 [Op.or]:
                     [
                         {title: {[Op.iLike]: {[Op.any]: searchArr}}},
@@ -82,12 +82,21 @@ const getAllQuestions = async (req, res, next) => {
                     ]
             }
         }
-
+        switch (validated) {
+            case "true":
+                condition = {...condition, statusValidated: true}
+                break
+            case "false":
+                condition = {...condition, statusValidated: false}
+                break
+            default:
+                break
+        }
+      
         let allQuestions = await Question.findAll({where: condition,
             order: [
-            ['teachPoints', sort || 'DESC'],
-            ['likes', sort || 'DESC'],
-            ['cantAnswers', sort || 'DESC'],
+            ['createdAt', sort || 'DESC'],
+            ['title', sort || 'DESC'],
             ],
             include:[
                 {
@@ -112,13 +121,12 @@ const getAllQuestions = async (req, res, next) => {
                 q.microTags.filter(miTag=>miTag.tag===microTag).length>0
             )
         }
-
+      
         res.send(paginate(parseInt(limit), parseInt(page), allQuestions))
 
     } catch (error) {
         next(error)
     }
-
 }
 
 const getFavourites = async (req, res, next) => {
@@ -131,7 +139,7 @@ const getFavourites = async (req, res, next) => {
 
         const user = await User.findByPk(sub)
 
-        const favourites = await Question.findAll({where: {id: {[Op.in]: user.favourites}},
+        const favourites = await Question.findAll({where: {statusDeleted: false, id: {[Op.in]: user.favourites}},
             include:[
                 {model:User},
                 {model:MacroTag},

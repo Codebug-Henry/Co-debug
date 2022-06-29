@@ -1,7 +1,25 @@
+html{
+  min-height: 100%;
+  position: relative;
+}
+
+.footer{
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  overflow:hidden;
+}
+
+.fullContainer{
+  display: flex;
+  flex-direction: column;
+}
+
+
 .container {
-  background-color: rgb(22, 39, 39);
-  /* color: wheat; */
-  color: rgb(204, 204, 1);
+  background-color: lightyellow;
+  color: black;
   padding-bottom: 2vh;
   padding-top: 2vh;
 }

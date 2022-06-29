@@ -1,5 +1,4 @@
 import axios from 'axios';
-const URL = 'http://localhost:3001'
 
 // RUTAS user - users
 export const sendUserInfo = (user) => axios.post(`/user`, user);
@@ -7,13 +6,13 @@ export const getTopTenRanking = () => axios.get(`/users/topTen`);
 export const getRanking = (sort, page) => axios.get(`/users?sort=${sort}&page=${page}&limit=10`)
 export const getUserInfo = (sub) => axios.get(`/user/${sub}`)
 export const putUserInfo = (sub, modify) => axios.put(`/user/${sub}`, modify)
-export const deleteUser = (sub) => axios.delete(`/user/${sub}`)
+export const deleteUser = (sub, status) => axios.put(`/user/${sub}`, status)
 
 // RUTAS question - questions
 export const sendQuestion = (question) => axios.post(`/question`, question);
 export const getQuestion = (id) => axios.get(`/question/${id}`)
 export const modifyQuestion = (modify) => axios.put(`/question`, modify)
-export const deleteQuestion = (id) => axios.delete(`/question/${id}`)
+export const deleteQuestion = (question) => axios.put(`/question`, question)
 export const addFavourites = (sub, qId, boolean) => axios.put(`/questions/favourites?sub=${sub}&id=${qId}&add=${boolean}`);
 export const getFavourites = (sub, page) => axios.get(`/questions/favourites/${sub}?limit=5&page=${page}`)
 export const getAllQuestions = (page) => axios.get(`/questions?page=${page}&limit=5`);
@@ -25,5 +24,5 @@ export const getUserQuestionsOrderer = (sub, answered, page) => axios.get(`/ques
 // RUTAS ANSWER
 export const sendAnswer = (answer) => axios.post(`/answer`, answer);
 export const putAnswer = (answer) => axios.put(`/answer`, answer);
-export const deleteAnswer = (id) => axios.delete(`/answer/${id}`)
+export const deleteAnswer = (deleted) => axios.put(`/answer`, deleted)
 export const getUserAnswers = (sub, page) => axios.get(`/answers/${sub}?page=${page}&limit=5`)
