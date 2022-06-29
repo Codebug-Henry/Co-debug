@@ -3,7 +3,7 @@ import axios from 'axios';
 // RUTAS user - users
 export const sendUserInfo = (user) => axios.post(`/user`, user);
 export const getTopTenRanking = () => axios.get(`/users/topTen`);
-export const getRanking = (sort, page) => axios.get(`/users?sort=${sort}&page=${page}&limit=10`)
+export const getRanking = (sort, page) => axios.get(`/users?sort=${sort}&page=${page}&limit=5`)
 export const getUserInfo = (sub) => axios.get(`/user/${sub}`)
 export const putUserInfo = (sub, modify) => axios.put(`/user/${sub}`, modify)
 export const getAllUsers = (page) => axios.get(`/users?sort=asc&page=${page}&limit=16`)
