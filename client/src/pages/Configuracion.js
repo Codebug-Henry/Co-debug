@@ -1,13 +1,13 @@
-import React, {useEffect, useState} from "react";
+import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useAuth0 } from "@auth0/auth0-react";
 import style from "./styles/Configuracion.module.css";
 import Footer from "../components/Footer.js";
 import { deleteUser, getUserInfo, putUserInfo } from "../redux/actions";
-import { useNavigate } from 'react-router-dom';
-import CheckIcon from '@mui/icons-material/Check';
-import StatsUser from '../components/StatsUser';
-import TeachPoints from "../components/TeachPoints";
+import { useNavigate } from "react-router-dom";
+import CheckIcon from "@mui/icons-material/Check";
+// import StatsUser from '../components/StatsUser';
+// import TeachPoints from "../components/TeachPoints";
 
 
 const Configuracion = () => {
@@ -18,34 +18,40 @@ const Configuracion = () => {
   const [nameUser, setNameUser] = useState(false);
   const [newName, setNewName] = useState(userInfo.name);
 
-  useEffect(()=>{
-    dispatch(getUserInfo(userInfo.sub))
-  }, [dispatch])
+  useEffect(() => {
+    dispatch(getUserInfo(userInfo.sub));
+  }, [dispatch]);
 
-  function handlerConfirmEditName(e){
-    e.preventDefault()
-    dispatch(putUserInfo({sub: userInfo.sub, name: newName, nameChanges: userInfo.nameChanges}))
-    dispatch(getUserInfo(userInfo.sub))
-    setNameUser(false)
+  function handlerConfirmEditName(e) {
+    e.preventDefault();
+    dispatch(
+      putUserInfo({
+        sub: userInfo.sub,
+        name: newName,
+        nameChanges: userInfo.nameChanges,
+      })
+    );
+    dispatch(getUserInfo(userInfo.sub));
+    setNameUser(false);
   }
 
-  function handlerEditName(e){
-    e.preventDefault()
-    setNameUser(true)
+  function handlerEditName(e) {
+    e.preventDefault();
+    setNameUser(true);
   }
 
-  function handlerChangeName(e){
-    e.preventDefault()
-    setNewName(e.target.value)
+  function handlerChangeName(e) {
+    e.preventDefault();
+    setNewName(e.target.value);
   }
 
-  function handlerDeleteAccount(e){
-    e.preventDefault()
-    dispatch(deleteUser({sub: userInfo.sub, statusDeleted: true}))
-    navigate('/')
+  function handlerDeleteAccount(e) {
+    e.preventDefault();
+    dispatch(deleteUser({ sub: userInfo.sub, statusDeleted: true }));
+    navigate("/");
   }
 
-  console.log(userInfo)
+  console.log(userInfo);
 
   return (
     <div className={style.fullContainer}>
@@ -53,40 +59,67 @@ const Configuracion = () => {
         <div className={style.middleRow}>
           {/* Acá el contenido para logueados */}
           <div className={`container-fluid ${style.container}`}>
-            
             <div className={`col-lg-6 ${style.col1}`}>
-            
               <div className={`row ${style.row}`}>
-
                 <div className={`col-lg-4 ${style.col2} ${style.text}`}>
                   Nombre:
                 </div>
 
-                <div className={nameUser === false ? `col-lg-4 ${style.col2}` : style.col2modify}>
+                <div
+                  className={
+                    nameUser === false
+                      ? `col-lg-4 ${style.col2}`
+                      : style.col2modify
+                  }
+                >
                   {userInfo.name}
                 </div>
-                <div className={nameUser === true ? `col-lg-4 ${style.col2}` : style.col2modify}>
-                  <input  type='text' 
-                          autoComplete='off'
-                          defaultValue={userInfo.name}
-                          onChange={e=>handlerChangeName(e)}
+                <div
+                  className={
+                    nameUser === true
+                      ? `col-lg-4 ${style.col2}`
+                      : style.col2modify
+                  }
+                >
+                  <input
+                    type="text"
+                    autoComplete="off"
+                    defaultValue={userInfo.name}
+                    onChange={(e) => handlerChangeName(e)}
                   />
                 </div>
 
-                <div className={nameUser === false ? `col-lg-4 ${style.col2}` : style.col2modify}>
-                  <button className={style.buttonUpdate} onClick={e=>handlerEditName(e)}>Modificar</button>
+                <div
+                  className={
+                    nameUser === false
+                      ? `col-lg-4 ${style.col2}`
+                      : style.col2modify
+                  }
+                >
+                  <button
+                    className={style.buttonUpdate}
+                    onClick={(e) => handlerEditName(e)}
+                  >
+                    Modificar
+                  </button>
                 </div>
-                <div className={nameUser === true ? `col-lg-4 ${style.col2}` : style.col2modify}>
-                <CheckIcon  fontSize='large' 
-                              color='primary' 
-                              cursor='pointer'
-                              onClick={e=> handlerConfirmEditName(e)}
-                /> 
-              </div>
+                <div
+                  className={
+                    nameUser === true
+                      ? `col-lg-4 ${style.col2}`
+                      : style.col2modify
+                  }
+                >
+                  <CheckIcon
+                    fontSize="large"
+                    color="primary"
+                    cursor="pointer"
+                    onClick={(e) => handlerConfirmEditName(e)}
+                  />
+                </div>
               </div>
 
               <div className={`row ${style.row}`}>
-
                 <div className={`col-lg-4 ${style.col2} ${style.text}`}>
                   Nickname:
                 </div>
@@ -98,13 +131,14 @@ const Configuracion = () => {
                 <div className={`col-lg-4 ${style.col2}`}>
                   <button className={style.buttonUpdate}>Modificar</button>
                 </div>
-                
               </div>
 
               <div className={`row ${style.row}`}>
 
+
                 <Upload />
                 {/* <div className={`col-lg-4 ${style.col2} ${style.text}`}>
+
                   Foto de perfil:
                 </div>
 
@@ -118,72 +152,60 @@ const Configuracion = () => {
 
                 <div className={`col-lg-4 ${style.col2}`}>
                   <button className={style.buttonUpdate}>Modificar</button>
+
                 </div> */}
                 
+
               </div>
 
               <div className={`row ${style.row}`}>
-
                 <div className={`col-lg-4 ${style.col2}`}>
-                  <button className={style.buttonUpdate} onClick={e=>handlerDeleteAccount(e)}>Dar de baja mi cuenta</button>
+                  <button
+                    className={style.buttonUpdate}
+                    onClick={(e) => handlerDeleteAccount(e)}
+                  >
+                    Dar de baja mi cuenta
+                  </button>
                 </div>
-                
               </div>
-            
             </div>
 
-            <div className={`col-lg`}>
-            </div>
-
+            <div className={`col-lg`}></div>
           </div>
         </div>
       ) : (
-        
         <div className={style.middleRow}>
           {/* Acá el contenido para logueados */}
           <div className={`container-fluid ${style.container}`}>
-            
             <div className={`col-lg-6 ${style.col1}`}>
-            
               <div className={`row ${style.row}`}>
-
-                <div className={`col-lg-6 ${style.col3}`}>
-                  Mis logros
-                </div>
+                <div className={`col-lg-6 ${style.col3}`}>Mis logros</div>
 
                 <div className={`col-lg-6 ${style.col2}`}>
-                  <TeachPoints />
+                  {/* <TeachPoints /> */}
                 </div>
-        
               </div>
 
               <div className={`row ${style.row}`}>
-
                 <div className={`col-lg-6 ${style.col2} ${style.text}`}>
-                  <StatsUser />
+                  {/* <StatsUser /> */}
                 </div>
 
                 <div className={`col-lg-6 ${style.col2}`}>
-                  <StatsUser />
+                  {/* <StatsUser /> */}
                 </div>
-                
               </div>
 
               <div className={`row ${style.row}`}>
-
                 <div className={`col-lg-6 ${style.col2} ${style.text}`}>
-                  <StatsUser />
+                  {/* <StatsUser /> */}
                 </div>
 
                 <div className={`col-lg-6 ${style.col2}`}>
-                  <StatsUser />
+                  {/* <StatsUser /> */}
                 </div>
-                
               </div>
-            
             </div>
-
-
           </div>
         </div>
         // <div className={style.total}>
