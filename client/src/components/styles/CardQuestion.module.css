@@ -1,8 +1,9 @@
 .total {
-  background-color: rgb(255, 192, 124);
+  background-color: rgb(255, 255, 255);
   border-radius: 1vh;
-  border: solid 1px black;
+  width:70%;
   margin-bottom: 2vh;
+  box-shadow:2px 2px 2px 1px rgba(0,0,0,0.2);
 }
 
 .TitleAndExtrasBox {
@@ -27,7 +28,9 @@
   margin-right: 3vh;
 }
 .questionText {
-  background-color: rgb(255, 255, 255);
+  height: 60%;
+  background-color: rgb(255, 245, 211);
+  box-shadow:2px 2px 2px 1px rgba(0,0,0,0.2);
   padding: 1vh;
   border-radius: 1vh;
   margin-left: 3vh;
@@ -49,6 +52,7 @@
 }
 .userImage {
   border-radius: 30px;
-  width: 60px;
+  /* width: 60px; */
+  width: 70%;
   padding-top: 2vh;
 }

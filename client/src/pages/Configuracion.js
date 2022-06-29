@@ -3,6 +3,7 @@ import { useSelector } from "react-redux";
 import { useAuth0 } from "@auth0/auth0-react";
 import style from "./styles/Configuracion.module.css";
 import Footer from "../components/Footer.js";
+import Upload from "../components/Upload";
 
 const Configuracion = () => {
   const { isAuthenticated } = useAuth0();
@@ -50,7 +51,8 @@ const Configuracion = () => {
 
               <div className={`row ${style.row}`}>
 
-                <div className={`col-lg-4 ${style.col2} ${style.text}`}>
+                <Upload />
+                {/* <div className={`col-lg-4 ${style.col2} ${style.text}`}>
                   Foto de perfil:
                 </div>
 
@@ -64,7 +66,7 @@ const Configuracion = () => {
 
                 <div className={`col-lg-4 ${style.col2}`}>
                   <button className={style.buttonUpdate}>Modificar</button>
-                </div>
+                </div> */}
                 
               </div>
 
