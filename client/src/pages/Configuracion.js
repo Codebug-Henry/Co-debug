@@ -9,6 +9,7 @@ import CheckIcon from "@mui/icons-material/Check";
 // import StatsUser from '../components/StatsUser';
 // import TeachPoints from "../components/TeachPoints";
 
+
 const Configuracion = () => {
   const { isAuthenticated } = useAuth0();
   const userInfo = useSelector((state) => state.user);
@@ -133,7 +134,11 @@ const Configuracion = () => {
               </div>
 
               <div className={`row ${style.row}`}>
-                <div className={`col-lg-4 ${style.col2} ${style.text}`}>
+
+
+                <Upload />
+                {/* <div className={`col-lg-4 ${style.col2} ${style.text}`}>
+
                   Foto de perfil:
                 </div>
 
@@ -147,7 +152,10 @@ const Configuracion = () => {
 
                 <div className={`col-lg-4 ${style.col2}`}>
                   <button className={style.buttonUpdate}>Modificar</button>
-                </div>
+
+                </div> */}
+                
+
               </div>
 
               <div className={`row ${style.row}`}>

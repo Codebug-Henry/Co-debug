@@ -88,7 +88,7 @@ const CardQuestLogOut = ({
             onClick={() => loginWithRedirect()}
             className={style.answerIt}
           >
-            Logueate para responder :D
+            Responder
           </button>
         </div>
       </div>
