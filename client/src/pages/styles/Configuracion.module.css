@@ -33,6 +33,10 @@ html{
   justify-content: center;
 }
 
+.col2modify {
+  display: none;
+}
+
 .text {
   font-weight: 700;
 }

@@ -20,21 +20,21 @@ const MisPreguntas = () => {
   const totalPages = useSelector(state => state.totalPages);
   const [input, setInput] = useState("");
   const [page, setPage] = useState(1)
-  const [cantFirstLast, setCantFirstLast] = useState([questions.length, questions[1], questions[4]])
+  const [cantFirstLast, setCantFirstLast] = useState([questions.length, questions[0], questions[4]])
   
-
   useEffect( () =>{
-
+      if(page > 1 && page > totalPages) setPage(prev => prev-1)
       if(document.getElementById("selectAnswered") && document.getElementById("selectAnswered").value === 'false'){
         dispatch(getUserQuestionsOrderer(userInfo.sub, 'false', page));
       }
-      if(document.getElementById("selectAnswered") && document.getElementById("selectAnswered").value === 'true'){
+      else if(document.getElementById("selectAnswered") && document.getElementById("selectAnswered").value === 'true'){
         dispatch(getUserQuestionsOrderer(userInfo.sub, 'true', page));
       }
       else{
-      dispatch(getUserQuestions(userInfo.sub, page, ''))
+        dispatch(getUserQuestions(userInfo.sub, page, ''))
       }
-  }, [cantFirstLast, page, dispatch, userInfo.sub])
+  }, [dispatch, cantFirstLast, page, userInfo.sub, totalPages])
+
 
   return (
     <div>
@@ -49,7 +49,9 @@ const MisPreguntas = () => {
                     <p> Mis preguntas</p>
                   </div>
                   <div id={style.filters}>
-                      <FilterAltIcon fontSize='medium'/>
+                      <div className={style.filterIcon}>
+                        <FilterAltIcon fontSize='medium' />
+                      </div>
                       <SearchBar page={page} userInfo={userInfo} pages={pages} input={input} setInput={setInput} />
                       <FilterBar page={page} setPage={setPage} pages={pages} setInput={setInput}/>
                   </div>
@@ -60,7 +62,7 @@ const MisPreguntas = () => {
                           return (
                             <CardUserQuestion key={q.id} id={q.id} title={q.title} text={q.text} likes={q.likes} cantAnswers={q.cantAnswers} 
                                               name={userInfo.nickname} picture={userInfo.picture} sub={userInfo.sub} page={page}
-                                              setCantFirstLast={setCantFirstLast}/>
+                                              setCantFirstLast={setCantFirstLast} />
                           )
                       }) :
                       <div>
