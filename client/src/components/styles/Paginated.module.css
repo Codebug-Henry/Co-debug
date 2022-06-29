@@ -7,34 +7,24 @@
     font-size: 0.9rem;
 }
 
-.bar ul{
-     display: inline; 
-}
 
-.bar li{
+
+
+.bar button{
     height:2.1vw;
     min-height: fit-content;
     width:2.1vw;
     min-width: fit-content;
     margin-left: 0.3vh;
-    display: inline;
+    border-radius: 25%;
+}
+
+.number{
     border-radius: 25%;
 } 
 
-.bar button{
-    min-height: 2.1vw;
-    height: fit-content;
-    min-width: fit-content;
-    width: 2.1vw;
-}
 
-#number{
-    border-radius: 25%;
-    
-    text-align: center;
-}
-
-#number:hover{
+.number:hover{
     cursor: pointer;
     background-color: grey;
 }
@@ -51,7 +41,7 @@
 
 .one{
     border-radius: 25%;
-    font-family: 'Source Serif Pro', serif;
+    text-align: center;
     margin-left: 1px;
 }
 
@@ -75,8 +65,8 @@
 
 .last{
     border-radius: 25%;
-    font-family: 'Source Serif Pro', serif;
     margin-right: 2px;
+    text-align: center;
 }
 
 .next{
@@ -93,7 +83,8 @@
     background-color: grey;
 }
 
-.not{
+
+.notDisplay {
     display: none;
 }
 

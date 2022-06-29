@@ -114,11 +114,13 @@ const Headerlogin = () => {
                 </Link>
               </li>
               <li>
+                {userInfo.statusAdmin ? 
                 <Link className={style.linkDesp} to="/admin">
-                  <p className="dropdown-item" href="#">
-                    Admin
-                  </p>
-                </Link>
+                <p className="dropdown-item" href="#">
+                  Admin
+                </p>
+              </Link> : ""}
+                
               </li>
               <li>
                 <Link className={style.linkDesp} to="/configuracion">
