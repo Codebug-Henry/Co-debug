@@ -9,21 +9,21 @@ export default function FilterBar({page, setPage, setInput}) {
     const userInfo = useSelector(state=> state.user)
     const dispatch = useDispatch()
 
-    async function handleSelectAnswered(e){
+    function handleSelectAnswered(e){
         e.preventDefault()
         if(e.target.value === 'All') {
             setInput('');
-            await setPage(1);
+            setPage(1);
             dispatch(getUserQuestions(userInfo.sub, 1, ''));
         } 
         if(e.target.value === 'true') {
             setInput('');
-            await setPage(1);
+            setPage(1);
             dispatch(getUserQuestionsOrderer(userInfo.sub, e.target.value, 1));
         }    
         if(e.target.value === 'false') {
             setInput('');
-            await setPage(1);
+            setPage(1);
             dispatch(getUserQuestionsOrderer(userInfo.sub, e.target.value, 1));
         }    
     }

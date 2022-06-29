@@ -44,6 +44,7 @@ export const putUserInfo = (sub, modify) => async (dispatch) => {
     try {
         await api.putUserInfo(sub, modify)
         // dispatch({ type: MODIFY_USER, payload: data})
+
     } catch (error) {
         console.log(error.message)
     }

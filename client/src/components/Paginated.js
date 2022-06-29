@@ -22,9 +22,6 @@ export default function Paginated({page, setPage, totalPages}) {
         setPage(prev => prev +1);
     }
 
-
-    console.log(page,totalPages)
-
     return(
         <div className={style.bar}>
             <ul> 
@@ -87,7 +84,6 @@ export default function Paginated({page, setPage, totalPages}) {
                 <button className={page < totalPages -3 ? style.lastDot : style.notDisplay}> ... </button>
                 <button className={page < totalPages -2 ? style.last : style.notDisplay} onClick={e=>setPage(totalPages)}> {totalPages} </button>
                 <button className={page === totalPages || pages.length === 0 ? style.notDisplay : style.next} onClick={e=> handleNext(e)} > Siguiente </button>
-
             </ul>
         </div>
     )

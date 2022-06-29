@@ -7,9 +7,6 @@
     font-size: 0.9rem;
 }
 
-
-
-
 .bar button{
     height:2.1vw;
     min-height: fit-content;
@@ -21,7 +18,8 @@
 
 .number{
     border-radius: 25%;
-} 
+    text-align: center;
+}
 
 
 .number:hover{
@@ -82,7 +80,6 @@
     cursor: pointer;
     background-color: grey;
 }
-
 
 .notDisplay {
     display: none;
