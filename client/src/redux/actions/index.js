@@ -1,3 +1,4 @@
+
 import {
   GET_RANKING,
   GET_ALL_USERS,
@@ -20,6 +21,7 @@ import {
 } from "./actionTypes";
 
 import * as api from "../api";
+
 
 // RUTAS user - users
 export const sendUserInfo = (user) => async (dispatch) => {
