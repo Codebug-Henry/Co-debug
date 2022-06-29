@@ -92,7 +92,7 @@ const Landing = () => {
                 <div className={`container-fluid${style.rigthContainer}`}>
                   <div className={`row ${style.rightRowUp}`}>
                     <div>
-                      {/* <p className={style.Titulo}>Bienvenido a CoDebug!</p> */}
+                      <p className={style.Titulo}>Bienvenido a CoDebug!</p>
                       <p className={style.subTitulo}>tu sitio de confianza</p>
                     </div>
                   </div>

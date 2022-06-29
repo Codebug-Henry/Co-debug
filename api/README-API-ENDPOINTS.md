@@ -181,7 +181,7 @@
         &page=(número de página)
         &limit=(cantidad de elementos por página)
 
-- **RESPUESTA**: un objeto con 3 propiedades: totalPages, pages, results (todos los usuarios, en un principio acomodados de mayor a menos puntaje)
+- **RESPUESTA**: un objeto con 3 propiedades: totalPages, pages, results (todos los usuarios, en un principio acomodados de mayor a menor puntaje). Se incluye la posición en el ranking como una propiedad dentro de cada objeto del arreglo results.
 
         {
             totalPages: (cantidad de paginas totales),
@@ -194,7 +194,8 @@
                     picture,
                     cantAns,
                     statusDeleted,
-                    sub
+                    sub,
+                    myPosition
                 },
                 .
                 .
@@ -206,7 +207,8 @@
                     picture,
                     cantAns,
                     statusDeleted,
-                    sub
+                    sub,
+                    myPosition
                 }
             ]
         }
@@ -221,7 +223,7 @@
 
 - **REQUERIMIENTOS**: ninguno
 
-- **RESPUESTA**: un arreglo de tamaño 10, con dichos usuarios ordenado por puntos de mayor a menor
+- **RESPUESTA**: un arreglo de tamaño 10, con dichos usuarios ordenado por puntos de mayor a menor (se incluye la posición en el ranking como una propiedad dentro de cada objeto del areglo)
 
         [
             {
@@ -230,7 +232,8 @@
                 nickname,
                 picture,
                 statusDeleted,
-                sub
+                sub,
+                myPosition
             },
             .
             .
@@ -241,7 +244,8 @@
                 nickname,
                 picture,
                 statusDeleted,
-                sub
+                sub,
+                myPosition
             }
         ]
 
