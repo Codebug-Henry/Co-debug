@@ -9,8 +9,11 @@ const questionsRoutes = require("./questionsRoutes")
 const answerRoutes = require("./answerRoutes")
 const answersRoutes = require("./answersRoutes")
 
+const tagsRoutes = require("./tagsRoutes")
+
 const messageRoutes = require("./messageRoutes")
 const messagesRoutes = require("./messagesRoutes")
+
 
 const router = Router()
 
@@ -22,6 +25,8 @@ router.use("/questions", questionsRoutes)
 
 router.use("/answer", answerRoutes)
 router.use("/answers", answersRoutes)
+
+router.use("/tags", tagsRoutes)
 
 router.use("/message", messageRoutes)
 router.use("/messages", messagesRoutes)

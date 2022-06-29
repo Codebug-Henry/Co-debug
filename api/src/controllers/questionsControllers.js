@@ -1,4 +1,4 @@
-const { User, Question } = require("../db");
+const { User, Question,MacroTag,MicroTag } = require("../db");
 const { Op } = require('sequelize');
 const { paginate } = require("./generalControllers");
 
@@ -43,8 +43,13 @@ const getUserQuestions = async (req, res, next) => {
         let myQuestions = await Question.findAll({where: condition,
             order: [
             ['createdAt', 'DESC'],
-            ['title', 'DESC'],
-        ]})
+            ['title', 'ASC'],
+            ],
+            include:[
+                {model:MacroTag},
+                {model:MicroTag}
+            ]
+        })
         
         res.send(paginate(parseInt(limit), parseInt(page), myQuestions))
 
@@ -56,10 +61,10 @@ const getUserQuestions = async (req, res, next) => {
 
 const getAllQuestions = async (req, res, next) => {
 
-    const {search, sort, page, limit, validated} = req.query
+    let {search, sort, page, limit, macroTag, microTag, validated} = req.query
 
     try {
-
+        
         let condition = {statusDeleted: false}
 
         if (search) {
@@ -67,6 +72,7 @@ const getAllQuestions = async (req, res, next) => {
             searchArr.forEach((word, i, arr) => {
                 arr[i] = word ? `%${word}%` : ""
             })
+            console.log(searchArr)
             condition = {
                 ...condition,
                 [Op.or]:
@@ -76,7 +82,6 @@ const getAllQuestions = async (req, res, next) => {
                     ]
             }
         }
-
         switch (validated) {
             case "true":
                 condition = {...condition, statusValidated: true}
@@ -87,19 +92,41 @@ const getAllQuestions = async (req, res, next) => {
             default:
                 break
         }
-
-        let allQuestions = await Question.findAll({where: condition, include: User,
+      
+        let allQuestions = await Question.findAll({where: condition,
             order: [
             ['createdAt', sort || 'DESC'],
             ['title', sort || 'DESC'],
-        ]})
-        
+            ],
+            include:[
+                {
+                    model:User,
+                },
+                {
+                    model:MacroTag,
+                },
+                {
+                    model:MicroTag,
+                }
+            ]
+        })
+
+        if(macroTag){
+            allQuestions=allQuestions.filter(q=>
+                q.macroTags.filter(maTag=>maTag.tag===macroTag).length>0
+            )
+        }
+        if(microTag){
+            allQuestions=allQuestions.filter(q=>
+                q.microTags.filter(miTag=>miTag.tag===microTag).length>0
+            )
+        }
+      
         res.send(paginate(parseInt(limit), parseInt(page), allQuestions))
 
     } catch (error) {
         next(error)
     }
-
 }
 
 const getFavourites = async (req, res, next) => {
@@ -112,7 +139,13 @@ const getFavourites = async (req, res, next) => {
 
         const user = await User.findByPk(sub)
 
-        const favourites = await Question.findAll({where: {statusDeleted: false, id: {[Op.in]: user.favourites}}, include: User})
+        const favourites = await Question.findAll({where: {statusDeleted: false, id: {[Op.in]: user.favourites}},
+            include:[
+                {model:User},
+                {model:MacroTag},
+                {model:MicroTag}
+            ]
+        })
         
         res.send(paginate(parseInt(limit), parseInt(page), favourites))
 

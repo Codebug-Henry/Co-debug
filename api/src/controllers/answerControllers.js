@@ -1,13 +1,15 @@
 const {Answer, Question, User} = require("../db")
 
 const postAnswer = async (req, res, next) => {
-   const {sub, id, text} = req.body
+
+   const {sub, id, text, imgs} = req.body
 
    try {
       const question = await Question.findByPk(id)
       const user = await User.findByPk(sub)
       const newAnswer = await Answer.create({
          text,
+         imgs,
          teachPoints: question.teachPoints
       })
 
@@ -24,7 +26,7 @@ const postAnswer = async (req, res, next) => {
 
 const putAnswer = async (req, res, next) => {
 
-   const {id, text, like, statusDeleted, statusValidated} = req.body
+   const {id, text, like, statusDeleted, statusValidated, imgs} = req.body
 
    try {
       const answer = await Answer.findByPk(id)
@@ -36,7 +38,7 @@ const putAnswer = async (req, res, next) => {
       if (like === "add") newLikes++
       else if (like === "remove") newLikes--
 
-      await answer.update({text, likes: newLikes, statusDeleted, statusValidated})
+      await answer.update({text, imgs, likes: newLikes, statusDeleted, statusValidated})
       
       if (statusValidated) {
          await question.update({statusValidated})
@@ -45,6 +47,7 @@ const putAnswer = async (req, res, next) => {
 
       res.send({
          text,
+         imgs,
          likes: newLikes,
          statusDeleted,
          statusValidated
