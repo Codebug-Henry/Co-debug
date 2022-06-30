@@ -36,10 +36,10 @@ const FormQuestion = () => {
     let sub = userInfo.sub
 
     const [input, setInput] = useState({
-        title: '',
-        text: '',
-        macroTag: [],
-        microTag: ['hola']
+        title: localStorage.titleQuestion || '',
+        text: localStorage.textQuestion || '',
+        macroTag: localStorage.macroTagQuestion ? JSON.parse(localStorage.macroTagQuestion) : [],
+        microTag: localStorage.microTagQuestion ? JSON.parse(localStorage.microTagQuestion) : []
     })
     
     const [errors, setErrors] = useState({})
@@ -53,6 +53,8 @@ const FormQuestion = () => {
             ...input,
             [e.target.name]: e.target.value
         }))
+        const property = e.target.name + "Question"
+        localStorage[property] = e.target.value;
     }
 
     function handleSelectMicroTag(e){
@@ -65,6 +67,7 @@ const FormQuestion = () => {
             ...input,
             microTag: e.target.value
         }))
+        localStorage.microTagQuestion = JSON.stringify([...input.microTag, e.target.value]);
         }   
         else{
             alert('Ese Tag ya fue elegido')
@@ -81,6 +84,7 @@ const FormQuestion = () => {
             ...input,
             macroTag: e.target.value
         }))
+        localStorage.macroTagQuestion = JSON.stringify([...input.macroTag, e.target.value]);
         }   
         else{
             alert('Ese Tag ya fue elegido')
@@ -93,6 +97,7 @@ const FormQuestion = () => {
             ...input,
             microTag: input.microTag.filter(m=> m !== e)
         })
+        localStorage.microTagQuestion = JSON.stringify(input.microTag);
     }
 
     function handleDeleteMacroTag(e){
@@ -101,11 +106,11 @@ const FormQuestion = () => {
             ...input,
             macroTag: input.macroTag.filter(m=> m !== e)
         })
+        localStorage.macroTagQuestion = JSON.stringify(input.macroTag);
     }
 
     function handleSubmit(e){
         e.preventDefault();
-        console.log(input);
         dispatch(sendQuestion({
             sub,
             title: input.title,
@@ -121,6 +126,10 @@ const FormQuestion = () => {
             macroTag: [],
             microTag: []
         })
+        localStorage.removeItem("titleQuestion");
+        localStorage.removeItem("textQuestion");
+        localStorage.removeItem("microTagQuestion");
+        localStorage.removeItem("macroTagQuestion");
         navigate('/mispreguntas')
     }
 

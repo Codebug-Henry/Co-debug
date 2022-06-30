@@ -34,9 +34,9 @@ const FormContact = () => {
   }
 
   const [input, setInput] = useState({
-    email: localStorage.email || "",
-    title: localStorage.title || "",
-    text: localStorage.text || "",
+    email: localStorage.emailContact || "",
+    title: localStorage.titleContact || "",
+    text: localStorage.textContact || "",
   });
 
   const [errors, setErrors] = useState({});
@@ -52,7 +52,8 @@ const FormContact = () => {
         [e.target.name]: e.target.value,
       })
     );
-    localStorage[e.target.name] = e.target.value;
+    const property = e.target.name + "Contact"
+    localStorage[property] = e.target.value;
   }
 
   function handleSubmit(e) {
@@ -65,7 +66,9 @@ const FormContact = () => {
       title: "",
       text: "",
     });
-    localStorage.clear();
+    localStorage.removeItem("emailContact");
+    localStorage.removeItem("titleContact");
+    localStorage.removeItem("textContact");
   }
 
   return (

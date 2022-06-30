@@ -31,6 +31,11 @@ const Headerlogin = () => {
     setWidth(window.innerWidth);
   };
 
+  const handleLogOut = () => {
+    logout()
+    localStorage.clear()
+  };
+
 
   if (isLoading) {
     return (
@@ -145,7 +150,7 @@ const Headerlogin = () => {
                 <hr className="dropdown-divider"></hr>
               </li>
               <li>
-                <p onClick={() => logout()} className="dropdown-item" href="#">
+                <p onClick={handleLogOut} className="dropdown-item" href="#">
                   Log Out
                 </p>
               </li>
