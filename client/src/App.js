@@ -17,6 +17,8 @@ import NotFound from "./pages/NotFound";
 import Terminos from "./pages/Terminos.js";
 import Headerlogin from "./components/Headerlogin.js";
 import Contacto from "./pages/Contacto.js";
+import PaypalPage from "./pages/PaypalPage.js";
+import PagoListo from "./pages/PagoListo.js";
 
 function App() {
   return (
@@ -37,6 +39,8 @@ function App() {
         <Route path={"/configuracion"} element={<Configuracion />} />
         <Route path={"/delete"} element={<Delete />} />
         <Route path={"/contacto"} element={<Contacto />} />
+        <Route path={"/donacion"} element={<PaypalPage />}/>
+        <Route path={"/pagolisto"} element={<PagoListo />}/>
         <Route path={"*"} element={<NotFound />} />
       </Routes>
     </BrowserRouter>
