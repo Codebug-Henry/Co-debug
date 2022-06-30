@@ -63,6 +63,10 @@
 .userImage {
   border-radius: 30px;
   width: 60px;
+  border-style: solid;
+  border-color:#ffc07c;
+  border-width: 0.7vh;
+  margin:1vh;
 }
 @media screen and (max-width: 600px) {
   .userImage {
@@ -81,4 +85,9 @@
 
 .linkDesp {
   text-decoration: none;
+}
+.imgNameLogOut{
+  display: flex;
+  align-items: center;
+  justify-content: center
 }
