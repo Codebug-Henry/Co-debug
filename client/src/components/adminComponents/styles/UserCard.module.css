@@ -1,5 +1,5 @@
-.container{
-    /* display: flex;
+.container {
+  /* display: flex;
     background-color: orange;
     margin-bottom: 2vh;
     color: black;
@@ -7,15 +7,21 @@
     justify-content: space-around; */
 }
 
-.column{
-   
+.column {
 }
 
+.unbanButton {
+  color: white;
+  background-color: green;
+  border-radius: 3px;
+  border: 0px;
+  position: relative;
+}
 
-.banButton{
-    color: white;
-    background-color: rgb(255, 60, 60);
-    border-radius: 3px;
-    border: 0px;
-    position: relative;
+.banButton {
+  color: white;
+  background-color: rgb(255, 60, 60);
+  border-radius: 3px;
+  border: 0px;
+  position: relative;
 }

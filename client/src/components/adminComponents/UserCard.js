@@ -1,7 +1,7 @@
 import React from "react";
 import style from "./styles/UserCard.module.css";
-import { useDispatch } from "react-redux";
-import { putUserInfo } from "../../redux/api";
+//import { useDispatch } from "react-redux";
+//import { putUserInfo } from "../../redux/api";
 import axios from "axios";
 
 const UserCard = ({
@@ -13,15 +13,16 @@ const UserCard = ({
   statusBanned,
   sub,
   points,
-  setFlag
+  setFlag,
 }) => {
-  const dispatch = useDispatch();
+  //const dispatch = useDispatch();
 
   const banUser = (e) => {
     e.preventDefault();
-    let modify = {statusBanned: true}
-    axios.put(`http://localhost:3001/user/${sub}`, modify)
-    .then(response=>setFlag(prevFlag => !prevFlag))
+    let modify = { statusBanned: true };
+    axios
+      .put(`http://localhost:3001/user/${sub}`, modify)
+      .then((response) => setFlag((prevFlag) => !prevFlag));
     // dispatch(
     //   putUserInfo({
     //     statusBanned: true,
@@ -38,7 +39,7 @@ const UserCard = ({
         <div className={`col-lg-3 ${style.column}`}>
           <p>{sub}</p>
         </div>
-        <div className={`col-lg-3 ${style.column}`}>
+        <div className={`col-lg-2 ${style.column}`}>
           <p>{email}</p>
         </div>
         <div className={`col-lg-1  ${style.column}`}>
@@ -57,7 +58,12 @@ const UserCard = ({
           <p>{String(statusBanned)}</p>
         </div>
         <div className={`col-lg  ${style.column}`}>
-          <button className={style.banButton} onClick={(e) => banUser(e)}>
+          <button
+            className={
+              statusBanned === false ? style.unbanButton : style.banButton
+            }
+            onClick={(e) => banUser(e)}
+          >
             Ban
           </button>
         </div>
