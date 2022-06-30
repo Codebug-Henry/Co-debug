@@ -26,6 +26,12 @@ const footer = () => {
             Términos
           </Link>
         </div>
+
+        <div className={`col-lg ${style.col5}`}>
+          <Link className={style.links} to="/terminos">
+            Donaciones
+          </Link>
+        </div>
       </div>
     </div>
   );

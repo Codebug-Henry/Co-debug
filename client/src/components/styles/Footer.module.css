@@ -26,6 +26,12 @@
   justify-content: center;
 }
 
+.col5 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 .links {
   width: 30%;
   font-size: 1.25vw;
