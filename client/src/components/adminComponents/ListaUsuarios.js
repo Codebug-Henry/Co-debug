@@ -37,9 +37,8 @@ const ListaUsuarios = ({ setFlag, setUsersPage, usersPage }) => {
         <>
           {users?.map((e) => {
             return (
-              <div className={`row`}>
+              <div className={`row`} key={e.sub}>
                 <UserCard
-                  key={e.sub}
                   cantAns={e.cantAns}
                   cantQuest={e.cantQuest}
                   email={e.email}
