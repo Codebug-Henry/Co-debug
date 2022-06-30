@@ -1,5 +1,11 @@
-#contenedor {
+#all {
   width: 100%;
+  background-color: lightyellow;
+  /* min-height: auto; */
+}
+
+#contenedor {
+  width: 80%;
   background-color: lightyellow;
 }
 
@@ -62,7 +68,6 @@
 .btnDelete{
   width: 25px;
   height:25px;
-  align-content: center;
   margin-left: 2px;
   margin-top: 1px;
   background-color: transparent;
@@ -70,7 +75,14 @@
   border-color: #4b4949;
   border-style: solid;
   color: #4b4949;
-  margin-right: 2vh
+  margin-right: 2vh;
+  padding-top: 0px;
+}
+
+.btnDelete img {
+  margin: auto;
+  margin-top: -6px;
+  margin-left: -3px;
 }
 
 .select{
@@ -101,15 +113,16 @@
 .btn {
   width: 140px;
   height: 30px;
-  background-color: orange;
+  background-color: #ff8800;
   border: #c0c0c0 solid 1.8px;
   border-radius: 10%;
-  color: #c0c0c0;
+  color: black;
   font-family: "Source Serif Pro", serif;
   font-weight: 300;
   font-size: 17px;
   /* justify-content: center; */
   justify-self: center;
+
   align-self: center;
 }
 

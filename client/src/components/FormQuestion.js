@@ -27,9 +27,9 @@ const FormQuestion = () => {
         if(!input.text) errors.text = 'Se requiere una pregunta'
         if(input.text.length > 500) errors.title = 'La pregunta debe tener un máximo de 500 caracteres'
         if(input.macroTag.length === 0) errors.macroTag = 'Selecciona al menos un macroTag'
-        // if(input.macroTag.length !== 0 && input.macroTag.length > 3) errors.macroTag = 'Selecciona como máximo 3 macroTag'
+        if(input.macroTag.length && input.macroTag.length > 3) errors.macroTag = 'Selecciona como máximo 3 macroTag'
         if(input.microTag.length === 0) errors.microTag = 'Selecciona al menos un microTag'
-        if(input.microTag.length !== 0 && input.microTag.length > 3) errors.microTag = 'Selecciona como máximo 3 microTag'
+        if(input.microTag.length && input.microTag.length > 3) errors.microTag = 'Selecciona como máximo 3 microTag'
   
        return errors
     }
@@ -65,7 +65,7 @@ const FormQuestion = () => {
         })
         setErrors(validate({
             ...input,
-            microTag: e.target.value
+            microTag: [...input.microTag, e.target.value]
         }))
         localStorage.microTagQuestion = JSON.stringify([...input.microTag, e.target.value]);
         }   
@@ -82,7 +82,7 @@ const FormQuestion = () => {
         })
         setErrors(validate({
             ...input,
-            macroTag: e.target.value
+            macroTag:  [...input.macroTag, e.target.value]
         }))
         localStorage.macroTagQuestion = JSON.stringify([...input.macroTag, e.target.value]);
         }   
@@ -90,23 +90,31 @@ const FormQuestion = () => {
             alert('Ese Tag ya fue elegido')
         }
     }
-
+ 
     function handleDeleteMicroTag(e){
-        e.preventDefault()
+        const filteredMicroTags = input.microTag.filter(m=> m !== e)
         setInput({
             ...input,
-            microTag: input.microTag.filter(m=> m !== e)
+            microTag: filteredMicroTags
         })
-        localStorage.microTagQuestion = JSON.stringify(input.microTag);
+        setErrors(validate({
+            ...input,
+            microTag: filteredMicroTags
+        }))
+        localStorage.microTagQuestion = JSON.stringify(filteredMicroTags);
     }
 
     function handleDeleteMacroTag(e){
-        e.preventDefault()
+        const filteredMacroTags = input.macroTag.filter(m=> m !== e)
         setInput({
             ...input,
-            macroTag: input.macroTag.filter(m=> m !== e)
+            macroTag: filteredMacroTags
         })
-        localStorage.macroTagQuestion = JSON.stringify(input.macroTag);
+        setErrors(validate({
+            ...input,
+            macroTag: filteredMacroTags
+        }))
+        localStorage.macroTagQuestion = JSON.stringify(filteredMacroTags);
     }
 
     function handleSubmit(e){
@@ -178,7 +186,7 @@ const FormQuestion = () => {
                             <div>
                                 <label> MacroTags: </label>
                                 <select value={input.macroTag} className={style.select} onChange={handleSelectMacroTag} >
-                                    <option value="">Selecciona</option>
+                                    <option hidden value='' selected>Selecciona</option>
                                     {
                                         tags && tags.map(tag=>(
                                             <option value={tag.tag} key={tag.id}> {tag.tag} </option>
@@ -196,7 +204,7 @@ const FormQuestion = () => {
                                             <span>
                                                 {macro}
                                             </span>
-                                            <button className={style.btnDelete} onClick={()=>handleDeleteMacroTag(macro)}>
+                                            <button type='button' className={style.btnDelete} onClick={()=>handleDeleteMacroTag(macro)}>
                                                 {/* <img src={deleteIcon} alt="X" width='15px' height='15px' /> */}
                                                 X
                                             </button>
@@ -218,11 +226,11 @@ const FormQuestion = () => {
                             <div>
                                 <label> MicroTags: </label>
                                 <select value={input.microTag} className={style.select} onChange={handleSelectMicroTag} >
-                                    <option value="">Selecciona</option>
+                                    <option hidden value=''>Selecciona</option>
                                     {
-                                        input.macroTag.length > 0 && tags.filter(t=> t.tag === input.macroTag).forEach(e=>e.microTags.map(micro=>(
-                                        <option value={micro.tag} key={micro.id}> {micro.tag} </option>  
-                                        )))
+                                        input.macroTag.length && tags.filter(t=> input.macroTag.includes(t.tag)).map(e=>e.microTags.map(micro=>(
+                                            <option value={micro.tag} key={micro.id}> {micro.tag} </option>  
+                                            )))
                                     }   
                                 </select>
                             </div>
@@ -236,7 +244,7 @@ const FormQuestion = () => {
                                             <span>
                                                 {micro}
                                             </span>
-                                            <button className={style.btnDelete} onClick={()=>handleDeleteMicroTag(micro)}>
+                                            <button type='button' className={style.btnDelete} onClick={()=>handleDeleteMicroTag(micro)}>
                                                 {/* <img src={deleteIcon} alt="X" width='15px' height='15px' /> */}
                                                 X
                                             </button>
@@ -253,51 +261,12 @@ const FormQuestion = () => {
                             )
                         }
                     </div>
-
-
-                    {/* <div id={style.div3}>
-                        <label> MicroTags: </label>
-                            <select value={input.microTag} onChange={handleSelectMicroTag} >
-                                <option value="">Selecciona</option>
-                                 {
-                                    input.macroTag && tags.filter(t=> t.tag === input.macroTag).map(micro=>(
-                                        <option value={micro.tag} key={micro.id}> {micro.tag} </option>  
-                                    ))
-                                    }   
-                        </select>
-                        {   
-                            errors.microTag && (
-                                <div className={style.error}>
-                                    <span> {errors.microTag}</span>
-                                </div>
-                            )
-                        }
-                        <div>
-                            <div className={style.selected}>
-                                <p>Microtags seleccionados: {input.microTag.length}</p>
-                            </div>
-                            <div>
-                                {input.microTag.map(micro=>
-                                        <div key={micro}>
-                                            <span>
-                                                {micro}
-                                            </span>
-                                            <button onClick={(el)=>handleDeleteMicroTag(el)}>
-                                                 X
-                                            </button>
-                                        </div>
-                                    )
-                                }
-                            </div>        
-                        </div>
-                    </div> */}
                          
                     <button type='submit' 
                             onClick={e=> handleSubmit(e)}
                             disabled={!input.title || !input.text || input.macroTag.length === 0 || input.microTag.length > 3 ||
-                                    // input.macroTag.length > 3 || input.microTag.length === 0 ||
-                                    errors.title || errors.text || errors.macroTag 
-                                    // || errors.microTag 
+                                        input.macroTag.length > 3 || input.microTag.length === 0 ||
+                                        errors.title || errors.text || errors.macroTag || errors.microTag 
                             }
                             className={style.btn}
                     >
