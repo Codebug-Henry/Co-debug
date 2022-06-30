@@ -1,11 +1,12 @@
 import React, { useState } from "react";
-// import { useDispatch, useSelector } from 'react-redux';
-// import {getUserInfo, sendConsult? } from '../redux/actions/index';
+import { putMessage } from "../redux/actions/index";
+import { useSelector, useDispatch } from "react-redux";
+import {} from "react-redux";
 import style from "./styles/FormContact.module.css";
 
 const FormContact = () => {
-  // const dispatch = useDispatch()
-  // let user = useSelector(state=> state.user);
+  const dispatch = useDispatch();
+  let user = useSelector((state) => state.user);
 
   // useEffect(()=> {
   //     dispatch(getUserInfo());
@@ -33,8 +34,7 @@ const FormContact = () => {
   }
 
   const [input, setInput] = useState({
-    sub: 1,
-    // sub: user.sub,
+    sub: user.sub,
     email: localStorage.email || "",
     title: localStorage.title || "",
     text: localStorage.text || "",
@@ -53,21 +53,19 @@ const FormContact = () => {
         [e.target.name]: e.target.value,
       })
     );
-    localStorage[e.target.name] = e.target.value
+    localStorage[e.target.name] = e.target.value;
   }
 
   function handleSubmit(e) {
     e.preventDefault();
-    console.log(input);
-    // dispatch(sendQuestion(input))
+    dispatch(putMessage(input));
     alert("Mensaje enviado");
     setInput({
       email: "",
       title: "",
       text: "",
     });
-    localStorage.clear()
-    // ver donde redirigir
+    localStorage.clear();
   }
 
   return (

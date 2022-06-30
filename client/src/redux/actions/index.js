@@ -1,4 +1,3 @@
-
 import {
   GET_RANKING,
   GET_ALL_USERS,
@@ -18,11 +17,15 @@ import {
   DELETE_ANSWER,
   GET_USER_ANSWERS,
   GET_USER_QUESTIONS_ORDERER,
+
+  PUT_MESSAGE,
+  GET_ALL_MESSAGES,
+
   GET_ALL_TAGS,
+
 } from "./actionTypes";
 
 import * as api from "../api";
-
 
 // RUTAS user - users
 export const sendUserInfo = (user) => async (dispatch) => {
@@ -238,6 +241,26 @@ export const getUserAnswers = (sub, page) => async (dispatch) => {
 };
 
 
+// RUTAS Message/Messages
+export const putMessage = (message) => async (dispatch) => {
+  try {
+    const { data } = await api.putMessage(message);
+    dispatch({ type: PUT_MESSAGE, payload: data });
+  } catch (error) {
+    console.log(error.message);
+  }
+};
+
+export const getAllMessages = (sub, page) => async (dispatch) => {
+  try {
+    const { data } = await api.getAllMessages(sub, page);
+    dispatch({ type: GET_ALL_MESSAGES, payload: data });
+  } catch (error) {
+    console.log(error.message);
+  }
+};
+
+
 // RUTA TAGS
 
 export const getAllTags = () => async (dispatch) => {
@@ -248,3 +271,4 @@ export const getAllTags = () => async (dispatch) => {
     console.log(error.message);
   }
 };
+
