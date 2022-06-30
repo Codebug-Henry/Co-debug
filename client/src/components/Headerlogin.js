@@ -7,10 +7,11 @@ import { useAuth0 } from "@auth0/auth0-react";
 import style from "./styles/Headerlogin.module.css";
 import { sendUserInfo } from "../redux/actions";
 import Header from "./Header";
+import HeaderLoading from "./HeaderLoading";
 
 const Headerlogin = () => {
   const { user } = useAuth0();
-  const { isAuthenticated } = useAuth0();
+  const { isAuthenticated, isLoading } = useAuth0();
   const { logout } = useAuth0();
   const dispatch = useDispatch();
   const userInfo = useSelector((state) => state.user);
@@ -29,6 +30,15 @@ const Headerlogin = () => {
   const handleResize = () => {
     setWidth(window.innerWidth);
   };
+
+
+  if (isLoading) {
+    return (
+      <div>
+        <HeaderLoading />
+      </div>
+    );
+  }
 
   return isAuthenticated ? (
     <div className={`container-fluid ${style.container}`}>

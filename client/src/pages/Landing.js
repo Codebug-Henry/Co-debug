@@ -6,6 +6,7 @@ import Footer from "../components/Footer.js";
 import CardsQuestions from "../components/CardsQuestions.js";
 import CardsQuestsLogOut from "../components/CardsQuestsLogOut.js";
 import TopDiezRanking from "../components/TopDiezRanking";
+import { useSelector } from "react-redux";
 
 // import { useEffect, useState } from 'react'
 // import { useDispatch, useSelector } from "react-redux"
@@ -13,6 +14,10 @@ import TopDiezRanking from "../components/TopDiezRanking";
 
 const Landing = () => {
   const { isAuthenticated, isLoading } = useAuth0();
+  const infoUsuario = useSelector(state=>state.user)
+  const preguntas = infoUsuario.cantQuest
+  const respuestas = infoUsuario.cantAns
+  const position = infoUsuario.myPosition
 
   if (isLoading) {
     return (
@@ -36,9 +41,9 @@ const Landing = () => {
               <div className={`col-lg-4 ${style.col2}`}>
                 <div className={`container-fluid${style.rigthContainer}`}>
                   <div className={`row ${style.rightRowTop}`}>
-                    <p>Mi posición en el Ranking: 9</p>
-                    <p>Cuántas preguntas hice? 120</p>
-                    <p>Cuántas respuestas hice? 220</p>
+                    <p>Mi posición en el Ranking: {position}</p>
+                    <p>Cuántas preguntas hice? {preguntas}</p>
+                    <p>Cuántas respuestas hice? {respuestas}</p>
                   </div>
                   <div className={`row ${style.rightRowUp}`}>
                     <div>
