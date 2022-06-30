@@ -1,16 +1,16 @@
 import React from "react";
 import Footer from "../components/Footer.js";
-import { useAuth0 } from "@auth0/auth0-react";
+//import { useAuth0 } from "@auth0/auth0-react";
 import style from "./styles/Admin.module.css";
-import Loading from "../components/Loading.js";
+//import Loading from "../components/Loading.js";
 import { useState, useEffect } from "react";
 import Alertas from "../components/adminComponents/Alertas.js";
 import ListaUsuarios from "../components/adminComponents/ListaUsuarios.js";
 import AgregarAdmin from "../components/adminComponents/AgregarAdmin.js";
 import PreguntasDirectas from "../components/adminComponents/PreguntasDirectas.js";
-import {useSelector, useDispatch} from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { getAllUsers } from "../redux/actions"
+import { getAllUsers } from "../redux/actions";
 
 //Traemos "user.sub" que contiene el ID unico del usuario conectado para que podamos comparar el id y ver si puede estar acá.
 // import { useAuth0 } from '@auth0/auth0-react'
@@ -18,21 +18,19 @@ import { getAllUsers } from "../redux/actions"
 const Admin = () => {
   // const { user } = useAuth0();
   //const { isAuthenticated, isLoading } = useAuth0();
-  const [flag,setFlag] = useState(true)
+  const [flag, setFlag] = useState(true);
   const isAuthenticated = true;
-  const [optionSelected, setOptionSelected] = useState(<Alertas/>);
-  const [usersPage,setUsersPage] = useState(1);
+  const [optionSelected, setOptionSelected] = useState(<Alertas />);
+  const [usersPage, setUsersPage] = useState(1);
 
-  const dispatch = useDispatch()
-  const userInfo  = useSelector(state=>state.user)
-  const navigate = useNavigate()
+  const dispatch = useDispatch();
+  const userInfo = useSelector((state) => state.user);
+  const navigate = useNavigate();
 
-  
-  useEffect(()=>{
-    dispatch(getAllUsers(usersPage))
-    console.log(flag)
-  },[dispatch,flag,usersPage])
-
+  useEffect(() => {
+    dispatch(getAllUsers(usersPage));
+    console.log(flag);
+  }, [dispatch, flag, usersPage]);
 
   // if (isLoading) {
   //   return (
@@ -45,60 +43,64 @@ const Admin = () => {
   return (
     <div className={style.fullContainer}>
       {isAuthenticated ? (
-        
         <div className={style.middleRow}>
-          {!userInfo.statusAdmin ?
-           (
+          {!userInfo.statusAdmin ? (
             <div className={`container-fluid ${style.container}`}>
-            <div className={`row ${style.middleRow}`}>
-              <div className={`col-lg-3 ${style.col1}`}>
-                <div className="d-grid gap-2 mx-auto">
-                  <p className={style.tittleLeft}>Admin Options</p>
-                  <button
-                    onClick={() => setOptionSelected(<Alertas />)}
-                    className="btn btn-primary btn-warning"
-                    type="button"
-                  >
-                    Alertas
-                  </button>
-                  <button
-                    onClick={() => setOptionSelected(<ListaUsuarios setUsersPage={setUsersPage} setFlag={setFlag} usersPage={usersPage}/>)}
-                    className="btn btn-primary btn-warning"
-                    type="button"
-                  >
-                    Lista usuarios
-                  </button>
-                  <button
-                    onClick={() => setOptionSelected(<AgregarAdmin />)}
-                    className="btn btn-primary btn-warning"
-                    type="button"
-                  >
-                    Agregar Admin
-                  </button>
-                  <button
-                    onClick={() => setOptionSelected(<PreguntasDirectas />)}
-                    className="btn btn-primary btn-warning"
-                    type="button"
-                  >
-                    Preguntas directas
-                  </button>
+              <div className={`row ${style.middleRow}`}>
+                <div className={`col-lg-2 ${style.col1}`}>
+                  <div className="d-grid gap-2 mx-auto">
+                    <p className={style.tittleLeft}>Admin Options</p>
+                    <button
+                      onClick={() => setOptionSelected(<Alertas />)}
+                      className="btn btn-warning"
+                      type="button"
+                    >
+                      Alertas
+                    </button>
+                    <button
+                      onClick={() =>
+                        setOptionSelected(
+                          <ListaUsuarios
+                            setUsersPage={setUsersPage}
+                            setFlag={setFlag}
+                            usersPage={usersPage}
+                          />
+                        )
+                      }
+                      className="btn btn-warning"
+                      type="button"
+                    >
+                      Lista usuarios
+                    </button>
+                    <button
+                      onClick={() => setOptionSelected(<AgregarAdmin />)}
+                      className="btn btn-warning"
+                      type="button"
+                    >
+                      Agregar Admin
+                    </button>
+                    <button
+                      onClick={() => setOptionSelected(<PreguntasDirectas />)}
+                      className="btn btn-warning"
+                      data-toggle="button"
+                      type="button"
+                    >
+                      Preguntas directas
+                    </button>
+                  </div>
+                </div>
+
+                <div className={`col-lg-10 ${style.col2}`}>
+                  {optionSelected ? optionSelected : "Hola... "}
                 </div>
               </div>
-
-              <div className={`col-lg-9 ${style.col2}`}>
-                {optionSelected ? optionSelected : "Hola... "}
-              </div>
             </div>
-          </div>
-           ) 
-           :
-           (
+          ) : (
             <div>
-                {navigate("/")}
+              {navigate("/")}
               <p>ERROR</p>
             </div>
-           )}
-          
+          )}
         </div>
       ) : (
         <div className={style.total}>
