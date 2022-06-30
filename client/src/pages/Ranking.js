@@ -3,11 +3,12 @@ import { useDispatch, useSelector } from 'react-redux';
 import style from "./styles/Ranking.module.css";
 import Footer from "../components/Footer.js";
 import { getRanking } from "../redux/actions";
+import Paginated from "../components/Paginated";
 
 const Ranking = () => {
   const dispatch = useDispatch()
   const ranking = useSelector(state => state.ranking)
-  const pages = useSelector(state => state.pages)
+  // const pages = useSelector(state => state.pages)
   const [sort, setSort] = useState('desc')
   const [page, setPage] = useState(1)
 
@@ -15,10 +16,10 @@ const Ranking = () => {
     dispatch(getRanking(sort, page))
   }, [dispatch, sort, page])
 
-  const handleClick = (e) => {
-    e.preventDefault();
-    setPage(parseInt(e.target.value));
-  };
+  // const handleClick = (e) => {
+  //   e.preventDefault();
+  //   setPage(parseInt(e.target.value));
+  // };
 
   const handleSort = (e) => {
     setSort(e.target.value)
@@ -47,12 +48,8 @@ const Ranking = () => {
             ))}
           </div>
           <div className={style.paginado}>
-        {pages?.map((e) => (
-            <button key={e} onClick={(e) => handleClick(e)} value={e}>
-              {e}
-            </button>
-          ))}
-      </div>
+            <Paginated page={page} setPage={setPage} />
+          </div>
         </div>      
       <div className={style.footer}>
         <Footer />
