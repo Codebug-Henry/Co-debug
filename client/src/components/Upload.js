@@ -3,7 +3,7 @@ import { useState } from 'react'
 import axios from "axios";
 import { useSelector } from 'react-redux';
 import { useDispatch } from 'react-redux';
-import { putUserInfo } from "../redux/actions"
+import { getUserInfo, putUserInfo } from "../redux/actions"
 import style from "./styles/Upload.module.css"
 
 
@@ -14,46 +14,43 @@ const Upload = () => {
     const [ loading, setLoading ] = useState(false)
     const dispatch = useDispatch()
 
-    useEffect(()=>{
-      if(image !== null){
-        dispatch(putUserInfo(todoElUser.sub,{
-        picture:image
-      }))
-      window.location.reload();
-      }
-      
-    },[image, dispatch, todoElUser])
+    useEffect(() => {
+      dispatch(getUserInfo(todoElUser.sub))
+    }, [loading])
 
-  
-    console.log(todoElUser)
+    const handleClick = () => {
+      setLoading(true)
+      dispatch(putUserInfo(todoElUser.sub,{
+        picture:image
+      }, setLoading))
+    }
 
     const uploadImage = async (e)=>{
+        setLoading(true)
         const files = e.target.files
         const data = new FormData()
         data.append('file', files[0])
         data.append('upload_preset','codebug')
-        console.log(data)
-        setLoading(true)
         const res = await axios.post("https://api.cloudinary.com/v1_1/codebugers/image/upload",data)
         const file = res.data
-        setLoading(false)
         setImage(file.secure_url)
-        
-    } 
- 
-    
+        setLoading(false)
+    }
 
   return (
     <div>
+        {loading ? <h5>Cargando...</h5> : (
+        <div>
         <p>Cambia tu foto:</p>
-        <img src={todoElUser.picture} alt="foto usuario" className={style.foto}></img>
+        <img src={image || todoElUser.picture} alt="foto usuario" className={style.foto} />
         <input type="file"
         name="file"
         placeholder='Click para elegir'
         onChange={(e)=>uploadImage(e)}
         />
-        { loading && <h5>Cargando...</h5> }
-
+        <button onClick={handleClick}>Confirmar</button>
+        </div>)
+        }
     </div>
   );
 }
