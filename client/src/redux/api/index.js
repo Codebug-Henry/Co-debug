@@ -20,12 +20,10 @@ export const addFavourites = (sub, qId, boolean) =>
   axios.put(`/questions/favourites?sub=${sub}&id=${qId}&add=${boolean}`);
 export const getFavourites = (sub, page) =>
   axios.get(`/questions/favourites/${sub}?limit=5&page=${page}`);
-export const getAllQuestions = (page) =>
-  axios.get(`/questions?page=${page}&limit=5`);
-export const getAllQuestionsSorted = (sort, page) =>
+export const getAllQuestions = (sort, page) =>
   axios.get(`/questions?sort=${sort}&page=${page}&limit=5`);
-export const getSearchQuestions = (search, page) =>
-  axios.get(`/questions?search=${search}&page=${page}&limit=5`);
+export const getSearchQuestions = (search, sort, page) =>
+  axios.get(`/questions?search=${search}&sort=${sort}&page=${page}&limit=5`);
 export const getUserQuestions = (sub, page, search) =>
   axios.get(`/questions/${sub}?page=${page}&search=${search}&limit=5`);
 export const getUserQuestionsOrderer = (sub, answered, page) =>
@@ -40,9 +38,9 @@ export const getUserAnswers = (sub, page) =>
   axios.get(`/answers/${sub}?page=${page}&limit=5`);
 
 // RUTAS Message / Messages
-export const putMessage = (message) => axios.put(`/message`, message);
-export const getAllMessages = (sub, page) =>
-  axios.get(`/messages/${sub}?page=${page}&limit=5`);
+export const putMessage = (message) => axios.post(`/message`, message);
+export const getAllMessages = (page) =>
+  axios.get(`/messages?page=${page}&limit=3`);
 
 
 // RUTA TAGS

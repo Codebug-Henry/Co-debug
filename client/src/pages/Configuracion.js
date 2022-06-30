@@ -53,8 +53,6 @@ const Configuracion = () => {
     navigate("/");
   }
 
-  console.log(userInfo);
-
   if (isLoading) {
     return (
       <div>

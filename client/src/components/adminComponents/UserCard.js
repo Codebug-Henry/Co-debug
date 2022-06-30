@@ -19,15 +19,11 @@ const UserCard = ({
 
   const banUser = (e) => {
     e.preventDefault();
-    let modify = { statusBanned: true };
+    let modify = { statusBanned: !statusBanned };
     axios
       .put(`http://localhost:3001/user/${sub}`, modify)
       .then((response) => setFlag((prevFlag) => !prevFlag));
-    // dispatch(
-    //   putUserInfo({
-    //     statusBanned: true,
-    //   })
-    // );
+
   };
 
   return (

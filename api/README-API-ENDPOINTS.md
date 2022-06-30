@@ -171,15 +171,18 @@
 
 ### GET **users**
 
-- **RUTA**: router.get("/users", getRanking)
+- **RUTA**: router.get("/users", getUsers)
 
 - **DESCRIPCION**: esta ruta es para obtener todos los usuarios para rankearlos
 
-- **REQUERIMIENTOS**: por query deberan enviar page, limit y sort para definir como ordenarlos (asc/desc)
+- **REQUERIMIENTOS**: por query deberan enviar page, limit, sort para definir como ordenarlos (asc/desc), admin si solo se quieren obtener los usuarios que son admin, all si se quieren todos los usuarios incluidos los baneados/eliminados, y search si se quiere buscar por email
 
         /?sort=asc/desc
         &page=(número de página)
         &limit=(cantidad de elementos por página)
+        &admin=true (o nada)
+        &all=true (o nada)
+        &search=(email que se desea buscar)
 
 - **RESPUESTA**: un objeto con 3 propiedades: totalPages, pages, results (todos los usuarios, en un principio acomodados de mayor a menor puntaje). Se incluye la posición en el ranking como una propiedad dentro de cada objeto del arreglo results.
 

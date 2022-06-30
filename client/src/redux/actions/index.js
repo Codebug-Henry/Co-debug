@@ -10,7 +10,6 @@ import {
   GET_QUESTION,
   GET_FAVOURITES,
   GET_ALL_QUESTIONS,
-  GET_ALL_QUESTIONS_SORTED,
   GET_SEARCH_QUESTIONS,
   GET_USER_QUESTIONS,
   PUT_ANSWER,
@@ -64,10 +63,11 @@ export const getUserInfo = (sub) => async (dispatch) => {
   }
 };
 
-export const putUserInfo = (sub, modify) => async (dispatch) => {
+export const putUserInfo = (sub, modify, setLoading) => async (dispatch) => {
   try {
     await api.putUserInfo(sub, modify);
     // dispatch({ type: MODIFY_USER, payload: data})
+    setLoading(false)
   } catch (error) {
     console.log(error.message);
   }
@@ -147,27 +147,18 @@ export const getFavourites = (sub, page) => async (dispatch) => {
   }
 };
 
-export const getAllQuestions = (page) => async (dispatch) => {
+export const getAllQuestions = (sort, page) => async (dispatch) => {
   try {
-    const { data } = await api.getAllQuestions(page);
+    const { data } = await api.getAllQuestions(sort, page);
     dispatch({ type: GET_ALL_QUESTIONS, payload: data });
   } catch (error) {
     console.log(error.message);
   }
 };
 
-export const getAllQuestionsSorted = (sort, page) => async (dispatch) => {
+export const getSearchQuestions = (search, sort, page) => async (dispatch) => {
   try {
-    const { data } = await api.getAllQuestionsSorted(sort, page);
-    dispatch({ type: GET_ALL_QUESTIONS_SORTED, payload: data });
-  } catch (error) {
-    console.log(error.message);
-  }
-};
-
-export const getSearchQuestions = (search, page) => async (dispatch) => {
-  try {
-    const { data } = await api.getSearchQuestions(search, page);
+    const { data } = await api.getSearchQuestions(search, sort, page);
     dispatch({ type: GET_SEARCH_QUESTIONS, payload: data });
   } catch (error) {
     console.log(error.message);

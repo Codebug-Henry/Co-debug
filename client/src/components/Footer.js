@@ -28,7 +28,7 @@ const footer = () => {
         </div>
 
         <div className={`col-lg ${style.col5}`}>
-          <Link className={style.links} to="/terminos">
+          <Link className={style.links} to="/donacion">
             Donaciones
           </Link>
         </div>
