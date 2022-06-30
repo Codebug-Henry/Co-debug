@@ -35,18 +35,22 @@ const getRanking = async (req, res, next) =>{
             statusDeleted: false,
             statusBanned: false
         }
-        if(admin === "true"){
+
+        if (admin === "true") {
             condition = {}
         }
+
         const allUsers = await User.findAll({
-            where:condition,
+            where: condition,
             order: [
             ['myTeachPoints', sort || 'DESC'],
             ['cantAns', sort || 'DESC'],
             ['cantQuest', sort || 'DESC'],
         ]})
 
-        allUsers.forEach((e, i) => e.dataValues.myPosition = i + 1)
+        const length = allUsers.length
+        
+        allUsers.forEach((e, i) => e.dataValues.myPosition = sort === "asc" ? length - i : i + 1)
 
         res.send (paginate(parseInt(limit), parseInt(page), allUsers))
 
