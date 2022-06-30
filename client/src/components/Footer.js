@@ -23,7 +23,7 @@ const footer = () => {
         </div>
         <div className={`col-lg ${style.col4}`}>
           <Link className={style.links} to="/terminos">
-            Términos y condiciones
+            Términos
           </Link>
         </div>
       </div>
