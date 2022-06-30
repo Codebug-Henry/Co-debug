@@ -9,7 +9,6 @@ import {
   GET_FAVOURITES,
   //GET_TOPTEN_RANKING,
   GET_USER_QUESTIONS_ORDERER,
-  GET_ALL_MESSAGES
 } from "../actions/actionTypes";
 
 export default function pages(state = [], action) {
@@ -31,8 +30,6 @@ export default function pages(state = [], action) {
     case GET_USER_QUESTIONS_ORDERER:
       return action.payload.pages;
     case GET_ALL_USERS:
-      return action.payload.pages;
-    case GET_ALL_MESSAGES:
       return action.payload.pages;
     default:
       return state;

@@ -34,6 +34,7 @@ const FormContact = () => {
   }
 
   const [input, setInput] = useState({
+    sub: user.sub,
     email: localStorage.email || "",
     title: localStorage.title || "",
     text: localStorage.text || "",
@@ -57,8 +58,7 @@ const FormContact = () => {
 
   function handleSubmit(e) {
     e.preventDefault();
-    let message = {sub: user.sub, email: input.email, title: input.title, text: input.text};
-    dispatch(putMessage(message));
+    dispatch(putMessage(input));
     alert("Mensaje enviado");
     setInput({
       email: "",

@@ -10,7 +10,7 @@ import AgregarAdmin from "../components/adminComponents/AgregarAdmin.js";
 import PreguntasDirectas from "../components/adminComponents/PreguntasDirectas.js";
 import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { getAllMessages, getAllUsers } from "../redux/actions";
+import { getAllUsers } from "../redux/actions";
 
 //Traemos "user.sub" que contiene el ID unico del usuario conectado para que podamos comparar el id y ver si puede estar acá.
 // import { useAuth0 } from '@auth0/auth0-react'
@@ -21,11 +21,7 @@ const Admin = () => {
   const [flag, setFlag] = useState(true);
   const isAuthenticated = true;
   const [optionSelected, setOptionSelected] = useState(<Alertas />);
-  //LISTA USUARIOS
   const [usersPage, setUsersPage] = useState(1);
-  //CONTACTO
-  const [messagePage, setMessagePage] = useState(1);
-
 
   const dispatch = useDispatch();
   const userInfo = useSelector((state) => state.user);
@@ -36,9 +32,6 @@ const Admin = () => {
     console.log(flag);
   }, [dispatch, flag, usersPage]);
 
-  useEffect(()=>{
-    dispatch(getAllMessages(messagePage))
-  },[dispatch, messagePage, flag])
   // if (isLoading) {
   //   return (
   //     <div>
@@ -87,7 +80,7 @@ const Admin = () => {
                       Agregar Admin
                     </button>
                     <button
-                      onClick={() => setOptionSelected(<PreguntasDirectas messagePage={messagePage} setMessagePage={setMessagePage}  />)}
+                      onClick={() => setOptionSelected(<PreguntasDirectas />)}
                       className="btn btn-warning"
                       data-toggle="button"
                       type="button"
