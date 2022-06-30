@@ -1,0 +1,51 @@
+.container{
+    display: flex;
+    flex-direction: column;
+    background: coral;
+    margin-bottom: 3vh;
+    border: 1px solid black;
+}
+
+.title{
+    font-weight: 500;
+}
+
+.title p{
+    padding: 0.5%;
+}
+
+.text{
+    border: 1px solid black;
+    height: 10vh;
+    font-weight: 500;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.text p{
+    background-color: white;
+    position: relative;
+    width: 93%;
+    border-radius: 15px;
+    overflow-wrap: break-word;
+}
+
+.info{
+    display: flex;
+    justify-content: space-around;
+    border: 1px solid black;
+    font-weight: 700;
+}
+
+.form{
+    display: flex;
+    justify-content: stretch;
+    border: 1px solid black;
+    padding: 0.2%;
+    gap: 2vw;
+}
+
+.input input{
+    width: 70vw;
+}
