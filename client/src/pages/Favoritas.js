@@ -8,6 +8,7 @@ import Paginated from "../components/Paginated";
 import CardQuestion from "../components/CardQuestion";
 import Fab from '@mui/material/Fab';
 import FavoriteIcon from '@mui/icons-material/Favorite';
+import Loading from "../components/Loading";
 
 const Favoritas = () => {
 
@@ -23,7 +24,16 @@ const Favoritas = () => {
   }, [userInfo, cant, page, dispatch])
 
 
-  const { isAuthenticated } = useAuth0();
+  const { isAuthenticated, isLoading } = useAuth0();
+
+  if (isLoading) {
+    return (
+      <div>
+        <Loading />
+      </div>
+    );
+  }
+
   return (
     <div className={style.fullContainer}>
       {isAuthenticated ? (
