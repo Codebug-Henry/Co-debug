@@ -1,0 +1,17 @@
+.container {
+    margin-bottom: 10vh;
+  }
+  
+.info {
+    background: #ff8800;
+    color: black;
+    border-radius: 15px;
+    font-weight: 700;
+    margin-bottom: 2vh;
+}
+  
+.info p {
+    position: relative;
+    top: 0.8vh;
+}
+  

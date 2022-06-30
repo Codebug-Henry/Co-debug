@@ -1,5 +1,6 @@
 const { User } = require('../db');
 const { paginate } = require('./generalControllers');
+const { Op } = require('sequelize');
 
 const getTopTen = async (req, res, next)=>{
     try {
@@ -40,6 +41,13 @@ const getUsers = async (req, res, next) =>{
             condition = {
                 ...condition,
                 statusAdmin: true
+            }
+        }
+
+        if (admin === "false") {
+            condition = {
+                ...condition,
+                statusAdmin: false
             }
         }
 
