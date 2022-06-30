@@ -34,6 +34,7 @@ export const getUserQuestionsOrderer = (sub, answered, page) =>
 // RUTAS ANSWER
 export const sendAnswer = (answer) => axios.post(`/answer`, answer);
 export const putAnswer = (answer) => axios.put(`/answer`, answer);
+
 export const deleteAnswer = (deleted) => axios.put(`/answer`, deleted);
 export const getUserAnswers = (sub, page) =>
   axios.get(`/answers/${sub}?page=${page}&limit=5`);
@@ -42,3 +43,8 @@ export const getUserAnswers = (sub, page) =>
 export const putMessage = (message) => axios.put(`/message`, message);
 export const getAllMessages = (sub, page) =>
   axios.get(`/messages/${sub}?page=${page}&limit=5`);
+
+
+// RUTA TAGS
+export const getAllTags = () => axios.get(`/tags`);
+

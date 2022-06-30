@@ -4,6 +4,7 @@ import axios from "axios";
 import { useSelector } from 'react-redux';
 import { useDispatch } from 'react-redux';
 import { putUserInfo } from "../redux/actions"
+import style from "./styles/Upload.module.css"
 
 
 
@@ -21,7 +22,7 @@ const Upload = () => {
       window.location.reload();
       }
       
-    },[image])
+    },[image, dispatch, todoElUser])
 
   
     console.log(todoElUser)
@@ -45,7 +46,7 @@ const Upload = () => {
   return (
     <div>
         <p>Cambia tu foto:</p>
-        <img src={todoElUser.picture} alt="foto usuario"></img>
+        <img src={todoElUser.picture} alt="foto usuario" className={style.foto}></img>
         <input type="file"
         name="file"
         placeholder='Click para elegir'

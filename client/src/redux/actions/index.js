@@ -17,8 +17,12 @@ import {
   DELETE_ANSWER,
   GET_USER_ANSWERS,
   GET_USER_QUESTIONS_ORDERER,
+
   PUT_MESSAGE,
   GET_ALL_MESSAGES,
+
+  GET_ALL_TAGS,
+
 } from "./actionTypes";
 
 import * as api from "../api";
@@ -236,6 +240,7 @@ export const getUserAnswers = (sub, page) => async (dispatch) => {
   }
 };
 
+
 // RUTAS Message/Messages
 export const putMessage = (message) => async (dispatch) => {
   try {
@@ -254,3 +259,16 @@ export const getAllMessages = (sub, page) => async (dispatch) => {
     console.log(error.message);
   }
 };
+
+
+// RUTA TAGS
+
+export const getAllTags = () => async (dispatch) => {
+  try {
+    const { data } = await api.getAllTags();
+    dispatch({ type: GET_ALL_TAGS, payload: data });
+  } catch (error) {
+    console.log(error.message);
+  }
+};
+

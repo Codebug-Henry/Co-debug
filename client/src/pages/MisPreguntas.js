@@ -9,9 +9,10 @@ import SearchBar from '../components/SearchBar';
 import { getUserQuestions, getUserQuestionsOrderer } from "../redux/actions";
 import FilterAltIcon from '@mui/icons-material/FilterAlt';
 import Paginated from "../components/Paginated";
+import Loading from "../components/Loading";
 
 const MisPreguntas = () => {
-  const { isAuthenticated } = useAuth0();
+  const { isAuthenticated, isLoading } = useAuth0();
 
   const userInfo = useSelector(state=> state.user);
   const questions = useSelector(state => state.userQuestions);
@@ -35,6 +36,13 @@ const MisPreguntas = () => {
       }
   }, [dispatch, cantFirstLast, page, userInfo.sub, totalPages])
 
+  if (isLoading) {
+    return (
+      <div>
+        <Loading />
+      </div>
+    );
+  }
 
   return (
     <div>

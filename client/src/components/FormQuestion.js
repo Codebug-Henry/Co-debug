@@ -1,21 +1,20 @@
 import React, {useEffect, useState} from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import {getUserInfo, sendQuestion } from '../redux/actions/index';
+import {getAllTags, getUserInfo, sendQuestion } from '../redux/actions/index';
 import style from './styles/FormQuestion.module.css';
 import InfoPopper from './InfoPopper';
 import { useNavigate } from 'react-router-dom';
-// import Alert from '@mui/material/Alert';
-// import AlertTitle from '@mui/material/AlertTitle';
+import deleteIcon from '../images/delete.png';
 
 const FormQuestion = () => {
 
     const dispatch = useDispatch()
     const userInfo = useSelector(state=> state.user);
-    // let microTags = useSelector(state.microTags); si se crea un modelo con los microtags
-    // let macroTags = useSelector(state.macroTags); si se crea un modelo con los macrotags
+    const tags = useSelector(state=> state.tags); 
 
     useEffect(()=> {
         dispatch(getUserInfo(userInfo.sub));
+        dispatch(getAllTags())
     }, [dispatch, userInfo.sub])
 
     const navigate = useNavigate()
@@ -27,20 +26,20 @@ const FormQuestion = () => {
         if(input.title && !/^[A-Za-z0-9\s]+$/.test(input.title)) errors.title = 'El título debe tener solo letras, números y espacios.'
         if(!input.text) errors.text = 'Se requiere una pregunta'
         if(input.text.length > 500) errors.title = 'La pregunta debe tener un máximo de 500 caracteres'
-        // if(input.microTag.length === 0) errors.microTag = 'Selecciona al menos un microTag'
-        // if(input.microTag.length > 5) errors.microTag = 'Selecciona como máximo 5 microTag'
-        // if(input.macroTag.length === 0) errors.macroTag = 'Selecciona al menos un macroTag'
-        // if(input.macroTag.length > 5) errors.macroTag = 'Selecciona como máximo 5 macroTag'
-        
+        if(input.macroTag.length === 0) errors.macroTag = 'Selecciona al menos un macroTag'
+        // if(input.macroTag.length !== 0 && input.macroTag.length > 3) errors.macroTag = 'Selecciona como máximo 3 macroTag'
+        if(input.microTag.length === 0) errors.microTag = 'Selecciona al menos un microTag'
+        if(input.microTag.length !== 0 && input.microTag.length > 3) errors.microTag = 'Selecciona como máximo 3 microTag'
+  
        return errors
     }
     let sub = userInfo.sub
 
     const [input, setInput] = useState({
         title: '',
-        text: ''
-        // microTag: [],
-        // macroTag: []
+        text: '',
+        macroTag: [],
+        microTag: ['hola']
     })
     
     const [errors, setErrors] = useState({})
@@ -56,51 +55,53 @@ const FormQuestion = () => {
         }))
     }
 
-    // function handleSelectMicroTag(e){
-    //     if (!input.microTag.includes(e.target.value)) {
-    //     setInput({
-    //         ...input,
-    //         microTag: [...input.microTag, e.target.value]
-    //     })
-    //     setErrors(validate({
-    //         ...input,
-    //         microTag: e.target.value
-    //     }))
-    //     }   
-    //     else{
-    //         alert('Ese Tag ya fue elegido')
-    //     }
-    // }
+    function handleSelectMicroTag(e){
+        if (!input.microTag.includes(e.target.value)) {
+        setInput({
+            ...input,
+            microTag: [...input.microTag, e.target.value]
+        })
+        setErrors(validate({
+            ...input,
+            microTag: e.target.value
+        }))
+        }   
+        else{
+            alert('Ese Tag ya fue elegido')
+        }
+    }
 
-    // function handleSelectMacroTag(e){
-    //     if (!input.macroTag.includes(e.target.value)) {
-    //     setInput({
-    //         ...input,
-    //         macroTag: [...input.macroTag, e.target.value]
-    //     })
-    //     setErrors(validate({
-    //         ...input,
-    //         macroTag: e.target.value
-    //     }))
-    //     }   
-    //     else{
-    //         alert('Ese Tag ya fue elegido')
-    //     }
-    // }
+    function handleSelectMacroTag(e){
+        if (!input.macroTag.includes(e.target.value)) {
+        setInput({
+            ...input,
+            macroTag: [...input.macroTag, e.target.value]
+        })
+        setErrors(validate({
+            ...input,
+            macroTag: e.target.value
+        }))
+        }   
+        else{
+            alert('Ese Tag ya fue elegido')
+        }
+    }
 
-    // function handleDeleteMicroTag(el){
-    //     setInput({
-    //         ...input,
-    //         microTag: input.microTag.filter(m=> m !== el)
-    //     })
-    // }
+    function handleDeleteMicroTag(e){
+        e.preventDefault()
+        setInput({
+            ...input,
+            microTag: input.microTag.filter(m=> m !== e)
+        })
+    }
 
-    // function handleDeleteMacroTag(el){
-    //     setInput({
-    //         ...input,
-    //         macroTag: input.macroTag.filter(m=> m !== el)
-    //     })
-    // }
+    function handleDeleteMacroTag(e){
+        e.preventDefault()
+        setInput({
+            ...input,
+            macroTag: input.macroTag.filter(m=> m !== e)
+        })
+    }
 
     function handleSubmit(e){
         e.preventDefault();
@@ -108,14 +109,17 @@ const FormQuestion = () => {
         dispatch(sendQuestion({
             sub,
             title: input.title,
-            text: input.text
+            text: input.text,
+            macroTags: input.macroTag,
+            microTags: input.microTag,
+            imgs: []
         }));
         alert('Pregunta creada');
         setInput({
             title: '',
-            text: ''
-            // microTag: [],
-            // macroTag: []
+            text: '',
+            macroTag: [],
+            microTag: []
         })
         navigate('/mispreguntas')
     }
@@ -160,17 +164,38 @@ const FormQuestion = () => {
                             )
                         }
                     </div>
-                    {/* <div id={style.div3}>
-                        <label> MacroTags: </label>
-                            <select value={input.macroTag} onChange={handleSelectMacroTag} >
-                                <option value="">Selecciona</option>
-                                {
-                                    macroTags && macroTags.map(macro=>(
-                                        <option value={macro.name} key={macro.id}> {macro.name} </option>
-                                    ))
-                                }
-                                ver como se va a llamar la prop del tag en modelo
-                        </select>
+                    <div id={style.div3}>
+                        <div className={style.macroTag1}>
+                            <div>
+                                <label> MacroTags: </label>
+                                <select value={input.macroTag} className={style.select} onChange={handleSelectMacroTag} >
+                                    <option value="">Selecciona</option>
+                                    {
+                                        tags && tags.map(tag=>(
+                                            <option value={tag.tag} key={tag.id}> {tag.tag} </option>
+                                        ))
+                                    }
+                                </select>
+                            </div>
+                            <div className={style.selected1}>
+                                <div className={style.selected}>
+                                    <span>Macrotags seleccionados: {input.macroTag.length}</span>
+                                </div>
+                                <div className={style.list}>
+                                    {input.macroTag.map(macro=>
+                                        <div key={macro}>
+                                            <span>
+                                                {macro}
+                                            </span>
+                                            <button className={style.btnDelete} onClick={()=>handleDeleteMacroTag(macro)}>
+                                                {/* <img src={deleteIcon} alt="X" width='15px' height='15px' /> */}
+                                                X
+                                            </button>
+                                        </div>
+                                    )}
+                                </div>     
+                            </div>   
+                        </div>
                         {   
                             errors.macroTag && (
                                 <div className={style.error}>
@@ -178,35 +203,58 @@ const FormQuestion = () => {
                                 </div>
                             )
                         }
-                        <div>
-                            <div className={style.selected}>
-                                <p>Macrotags seleccionados: {input.macroTag.length}</p>
-                            </div>
+                    </div>
+                    <div id={style.div3}>
+                        <div className={style.macroTag1}>
                             <div>
-                                {input.macroTag.map(macro=>
-                                        <div key={macro}>
+                                <label> MicroTags: </label>
+                                <select value={input.microTag} className={style.select} onChange={handleSelectMicroTag} >
+                                    <option value="">Selecciona</option>
+                                    {
+                                        input.macroTag.length > 0 && tags.filter(t=> t.tag === input.macroTag).forEach(e=>e.microTags.map(micro=>(
+                                        <option value={micro.tag} key={micro.id}> {micro.tag} </option>  
+                                        )))
+                                    }   
+                                </select>
+                            </div>
+                            <div className={style.selected1}>
+                                <div className={style.selected}>
+                                    <span>Microtags seleccionados: {input.microTag.length}</span>
+                                </div>
+                                <div className={style.list}>
+                                    {input.microTag.map(micro=>
+                                        <div key={micro}>
                                             <span>
-                                                {macro}
+                                                {micro}
                                             </span>
-                                            <button onClick={el=>handleDeleteMacroTag(el)}>
-                                                 X
+                                            <button className={style.btnDelete} onClick={()=>handleDeleteMicroTag(micro)}>
+                                                {/* <img src={deleteIcon} alt="X" width='15px' height='15px' /> */}
+                                                X
                                             </button>
                                         </div>
-                                    )
-                                }
-                            </div>        
+                                    )}
+                                </div>     
+                            </div>   
                         </div>
+                        {   
+                            errors.microTag && (
+                                <div className={style.error}>
+                                    <span> {errors.microTag}</span>
+                                </div>
+                            )
+                        }
                     </div>
-                    <div id={style.div4}>
+
+
+                    {/* <div id={style.div3}>
                         <label> MicroTags: </label>
                             <select value={input.microTag} onChange={handleSelectMicroTag} >
                                 <option value="">Selecciona</option>
                                  {
-                                    microTags && microTags.map(micro=>(
-                                        <option value={micro.name} key={micro.id}> {micro.name} </option>  
+                                    input.macroTag && tags.filter(t=> t.tag === input.macroTag).map(micro=>(
+                                        <option value={micro.tag} key={micro.id}> {micro.tag} </option>  
                                     ))
                                     }   
-                                ver como se va a llamar la prop del tag en modelo
                         </select>
                         {   
                             errors.microTag && (
@@ -237,10 +285,10 @@ const FormQuestion = () => {
                          
                     <button type='submit' 
                             onClick={e=> handleSubmit(e)}
-                            disabled={!input.title || !input.text || 
-                                    // input.microTag.length === 0 || input.macroTag.length === 0 || input.microTag.length > 5 || input.macroTag.length > 5 ||
-                                    errors.title || errors.text  
-                                    // || errors.microTag || errors.macroTag 
+                            disabled={!input.title || !input.text || input.macroTag.length === 0 || input.microTag.length > 3 ||
+                                    // input.macroTag.length > 3 || input.microTag.length === 0 ||
+                                    errors.title || errors.text || errors.macroTag 
+                                    // || errors.microTag 
                             }
                             className={style.btn}
                     >

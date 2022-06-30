@@ -1,3 +1,4 @@
+
 import { combineReducers } from "redux";
 import question from "./question";
 import questions from "./questions";
@@ -13,6 +14,7 @@ import users from "./users";
 import totalPages from "./totalPages";
 import message from "./message";
 import messages from "./messages";
+import tags from './tags';
 
 export default combineReducers({
   message,
@@ -29,4 +31,5 @@ export default combineReducers({
   totalPages,
   userQuestions,
   messages,
+  tags,
 });
