@@ -28,3 +28,6 @@ export const sendAnswer = (answer) => axios.post(`/answer`, answer);
 export const putAnswer = (answer) => axios.put(`/answer`, answer);
 export const deleteAnswer = (deleted) => axios.put(`/answer`, deleted)
 export const getUserAnswers = (sub, page) => axios.get(`/answers/${sub}?page=${page}&limit=5`)
+
+// RUTA TAGS
+export const getAllTags = () => axios.get(`/tags`);
