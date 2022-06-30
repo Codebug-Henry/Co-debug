@@ -21,6 +21,9 @@ import {
   GET_ALL_MESSAGES,
 
   GET_ALL_TAGS,
+  GET_ALL_ADMINS,
+  GET_SEARCH_USERS,
+  GET_ALL_USERS_NOADMIN
 
 } from "./actionTypes";
 
@@ -86,6 +89,33 @@ export const getAllUsers = (page) => async (dispatch) => {
   try {
     const { data } = await api.getAllUsers(page);
     dispatch({ type: GET_ALL_USERS, payload: data });
+  } catch (error) {
+    console.log(error.message);
+  }
+};
+
+export const getAllUsersNoAdmin = (page) => async (dispatch) => {
+  try {
+    const { data } = await api.getAllUsersNoAdmin(page);
+    dispatch({ type: GET_ALL_USERS_NOADMIN, payload: data });
+  } catch (error) {
+    console.log(error.message);
+  }
+};
+
+export const getAllAdmins = (page) => async (dispatch) => {
+  try {
+    const { data } = await api.getAllAdmins(page);
+    dispatch({ type: GET_ALL_ADMINS, payload: data });
+  } catch (error) {
+    console.log(error.message);
+  }
+};
+
+export const getSearchUsers = (page, search) => async (dispatch) => {
+  try {
+    const { data } = await api.getSearchUsers(page, search);
+    dispatch({ type: GET_SEARCH_USERS, payload: data });
   } catch (error) {
     console.log(error.message);
   }

@@ -15,6 +15,8 @@ import totalPages from "./totalPages";
 import message from "./message";
 import messages from "./messages";
 import tags from './tags';
+import admins from "./admins";
+import usersNoAdmin from "./usersNoAdmin";
 
 export default combineReducers({
   message,
@@ -32,4 +34,6 @@ export default combineReducers({
   userQuestions,
   messages,
   tags,
+  admins,
+  usersNoAdmin
 });
