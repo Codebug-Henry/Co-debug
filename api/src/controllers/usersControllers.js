@@ -26,18 +26,28 @@ const getTopTen = async (req, res, next)=>{
     }
 }
 
-const getRanking = async (req, res, next) =>{
+const getUsers = async (req, res, next) =>{
     
-    const {sort, page, limit, admin} = req.query
+    const {sort, page, limit, admin, all, search} = req.query
     
     try {
-        let condition = {
+        let condition = all === "true" ? {} : {
             statusDeleted: false,
             statusBanned: false
         }
 
         if (admin === "true") {
-            condition = {}
+            condition = {
+                ...condition,
+                statusAdmin: true
+            }
+        }
+
+        if (search) {
+            condition = {
+                ...condition,
+                email: {[Op.iLike]: `%${search}%`}
+            }
         }
 
         const allUsers = await User.findAll({
@@ -61,5 +71,5 @@ const getRanking = async (req, res, next) =>{
 
 module.exports={
     getTopTen,
-    getRanking
+    getUsers
 }
