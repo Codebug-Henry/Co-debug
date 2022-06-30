@@ -56,16 +56,17 @@ const Headerlogin = () => {
           <Link to="/preguntar" className={style.linksInt}>
             Preguntar
           </Link>
-        </div>
-
-        <div className={`col-lg ${style.col3}`}>
           <Link to="/ranking" className={style.linksInt}>
             Ranking
           </Link>
+        </div>
+
+        {/* <div className={`col-lg ${style.col3}`}>
+          
           <div className={style.linksInt}>
             Teach points {userInfo.myTeachPoints}
           </div>
-        </div>
+        </div> */}
 
         <div className={`col-lg ${style.col4} ${style.imgNameLogOut}`}>
           <Link to="/configuracion" className={style.contImagen}>

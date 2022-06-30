@@ -53,6 +53,7 @@ html{
 .rightRowUp {
   background-color: lightyellow;
   padding: 1%;
+  margin: 1%;
 }
 
 .rightRowMidle {
@@ -92,4 +93,18 @@ html{
 ::-webkit-scrollbar-thumb {
   background: rgba(0, 0, 0, 0.606);
   border-radius: 10px;
+}
+
+.datosUser{
+  background-color: white;
+  border-radius: 1vh;
+  box-shadow:2px 2px 2px 1px rgba(0,0,0,0.2);
+  padding: 4%;
+  margin: 5%;
+  width: 70%;
+}
+
+.estadisticas{
+  font-size: large;
+  font-weight: bolder;
 }
