@@ -11,5 +11,6 @@ import pages from './pages'
 import userQuestions from './userQuestions'
 import users from "./users"
 import totalPages from './totalPages';
+import tags from './tags';
 
-export default combineReducers({ users, question, questions, answer, answers, user, topTenRanking, favourites, ranking, pages, totalPages, userQuestions });
+export default combineReducers({ users, question, questions, answer, answers, user, topTenRanking, favourites, ranking, pages, totalPages, userQuestions, tags });

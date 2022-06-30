@@ -19,3 +19,4 @@ export const PUT_ANSWER = 'PUT_ANSWER';
 export const DELETE_ANSWER = 'DELETE_ANSWER';
 export const GET_USER_ANSWERS = 'GET_USER_ANSWERS';
 export const GET_ALL_USERS = "GET_ALL_USERS";
+export const GET_ALL_TAGS = "GET_ALL_TAGS"
