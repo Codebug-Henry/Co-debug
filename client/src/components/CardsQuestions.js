@@ -89,12 +89,12 @@ const CardsQuestions = () => {
                   </span>
                   <option value='desc' className="dropdown-item">
                       <span className="dropdown-item">
-                        Más antiguas
+                      Más nuevas
                       </span>
                     </option>
                     <option value='asc' className="dropdown-item">
                       <span className="dropdown-item">
-                        Más nuevas
+                      Más antiguas
                       </span>
                     </option>
                 </select>

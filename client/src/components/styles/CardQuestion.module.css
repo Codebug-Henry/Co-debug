@@ -4,6 +4,14 @@
   width:70%;
   margin-bottom: 2vh;
   box-shadow:2px 2px 2px 1px rgba(0,0,0,0.2);
+  transition-property: all;
+  transition-duration: 0.3s;
+  transition-timing-function: linear;
+}
+.total:hover{
+  
+  transform: scale(102%);
+
 }
 
 .TitleAndExtrasBox {
@@ -56,3 +64,5 @@
   width: 70%;
   padding-top: 2vh;
 }
+
+
