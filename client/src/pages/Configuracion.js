@@ -7,12 +7,13 @@ import { deleteUser, getUserInfo, putUserInfo } from "../redux/actions";
 import { useNavigate } from "react-router-dom";
 import CheckIcon from "@mui/icons-material/Check";
 import Upload from '../components/Upload.js'
+import Loading from "../components/Loading";
 // import StatsUser from '../components/StatsUser';
 // import TeachPoints from "../components/TeachPoints";
 
 
 const Configuracion = () => {
-  const { isAuthenticated } = useAuth0();
+  const { isAuthenticated, isLoading } = useAuth0();
   const userInfo = useSelector((state) => state.user);
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -21,7 +22,7 @@ const Configuracion = () => {
 
   useEffect(() => {
     dispatch(getUserInfo(userInfo.sub));
-  }, [dispatch]);
+  }, [dispatch, userInfo.sub]);
 
   function handlerConfirmEditName(e) {
     e.preventDefault();
@@ -53,6 +54,14 @@ const Configuracion = () => {
   }
 
   console.log(userInfo);
+
+  if (isLoading) {
+    return (
+      <div>
+        <Loading />
+      </div>
+    );
+  }
 
   return (
     <div className={style.fullContainer}>

@@ -3,9 +3,18 @@ import { useAuth0 } from '@auth0/auth0-react';
 import style from "./styles/Preguntar.module.css";
 import Footer from "../components/Footer.js";
 import FormQuestion from '../components/FormQuestion';
+import Loading from '../components/Loading';
 
 const Preguntar = () => {
-    const { isAuthenticated } = useAuth0();
+    const { isAuthenticated, isLoading } = useAuth0();
+
+    if (isLoading) {
+        return (
+          <div>
+            <Loading />
+          </div>
+        );
+      }
 
     return (
         <div className={style.fullContainer}>

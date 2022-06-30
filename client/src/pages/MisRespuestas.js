@@ -2,9 +2,19 @@ import React from "react";
 import { useAuth0 } from "@auth0/auth0-react";
 import style from "./styles/MisRespuestas.module.css";
 import Footer from "../components/Footer.js";
+import Loading from "../components/Loading";
 
 const MisRespuestas = () => {
-  const { isAuthenticated } = useAuth0();
+  const { isAuthenticated, isLoading } = useAuth0();
+
+  if (isLoading) {
+    return (
+      <div>
+        <Loading />
+      </div>
+    );
+  }
+  
   return (
     <div className={style.fullContainer}>
       {isAuthenticated ? (
