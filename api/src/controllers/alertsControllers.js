@@ -1,5 +1,6 @@
 const { Question, Answer, Alert } = require("../db");
 const { paginate } = require("./generalControllers");
+const { Op } = require('sequelize');
 
 const getAllAlerts = async (req, res, next) => {
 
@@ -9,16 +10,16 @@ const getAllAlerts = async (req, res, next) => {
         let condition = {}
         switch (resolved) {
             case "true":
-                condition = {...condition, statusResolved: true}
+                condition = {...condition, statusResolved: {[Op.is]: true}}
                 break
             case "false":
-                condition = {...condition, statusResolved: false}
+                condition = {...condition, statusResolved: {[Op.is]: false}}
                 break
             default:
                 break
         }
 
-        let allAlerts = await Alert.findAll({
+        let allAlerts = await Alert.findAll({where:condition,
             include: [
                 {model: Question, required: false},
                 {model: Answer, required: false},

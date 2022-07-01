@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import style from "./styles/Alertas.module.css"
 import AlertCard from "./AlertCard";
@@ -9,6 +9,14 @@ const Alertas = ({alertsPage, setAlertsPage, setAlertsFlag}) => {
   const alerts = useSelector((state)=>state.alerts)
   const totalPages = useSelector((state)=>state.totalPages)
   console.log(alerts)
+
+  const [temporalFlag, setTemporalFlag] = useState(true)
+
+  const [pato, setPato] = useState(null)
+
+  useEffect(()=>{
+    setPato(alerts)
+  },[alerts])
 
   return (
     <div className={style.container}>
@@ -26,7 +34,7 @@ const Alertas = ({alertsPage, setAlertsPage, setAlertsFlag}) => {
           </div>
           <div className={style.alerts}>
               {
-                alerts && alerts.map((e)=>{
+                pato && pato.map((e)=>{
                   return (
                     <div className={`row`} key={e.id}>
                       <AlertCard
@@ -38,6 +46,7 @@ const Alertas = ({alertsPage, setAlertsPage, setAlertsFlag}) => {
                         questionSub={e.question.userSub}
                         questionId={e.question.id}
                         setAlertsFlag={setAlertsFlag}
+                        setTemporalFlag={setTemporalFlag}
                       />
                     </div>
                   )
