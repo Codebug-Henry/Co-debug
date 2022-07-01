@@ -9,22 +9,18 @@ const CardsQuestsLogOut = () => {
   const questions = useSelector((state) => state.questions);
   const pages = useSelector((state) => state.pages);
   const [page, setPage] = useState(1);
-  const [setInput] = useState("");
+  const [search, setSearch] = useState('')
+  const [sort, setSort] = useState('desc')
 
   useEffect(() => {
-    dispatch(getAllQuestions(page));
+    dispatch(getAllQuestions(sort, page));
   }, [dispatch, page]);
 
   const onChangeSearch = (e) => {
-    setInput(e.target.value);
-    dispatch(getSearchQuestions(e.target.value, page));
+    setSearch(e.target.value)
+    setPage(1)
+    dispatch(getSearchQuestions(e.target.value, sort, page));
   };
-
-  // const handleRestart = (e)=>{
-  //     e.preventDefault();
-  //     setInput("");
-  //     dispatch(getAllQuestions(page));
-  // }
 
   const handleClick = (e) => {
     e.preventDefault();
@@ -35,7 +31,14 @@ const CardsQuestsLogOut = () => {
     window.location.reload(false);
   };
 
-  console.log(questions);
+  const handleSort = (e) => {
+    setSort(e.target.value)
+    if(search.length > 0){
+      dispatch(getSearchQuestions(search, e.target.value, page))
+    } else {
+      dispatch(getAllQuestions(e.target.value, page))
+    }
+  }
 
   return (
     <div className={style.questBox}>
@@ -58,7 +61,7 @@ const CardsQuestsLogOut = () => {
               id="navbarSupportedContent"
             >
               <ul className="navbar-nav me-auto mb-2 mb-lg-0">
-                <li className="nav-item dropdown">
+              <select value={sort} onChange={handleSort} className="nav-item dropdown">
                   <span
                     className="nav-link dropdown-toggle"
                     id="navbarDropdown"
@@ -68,22 +71,17 @@ const CardsQuestsLogOut = () => {
                   >
                     Antiguedad
                   </span>
-                  <ul
-                    className="dropdown-menu"
-                    aria-labelledby="navbarDropdown"
-                  >
-                    <li>
+                  <option value='desc' className="dropdown-item">
                       <span className="dropdown-item">
                         Más antiguas
                       </span>
-                    </li>
-                    <li>
+                    </option>
+                    <option value='asc' className="dropdown-item">
                       <span className="dropdown-item">
                         Más nuevas
                       </span>
-                    </li>
-                  </ul>
-                </li>
+                    </option>
+                </select>
                 <li className="nav-item dropdown">
                   <span
                     className="nav-link dropdown-toggle"
