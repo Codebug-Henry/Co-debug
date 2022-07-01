@@ -11,7 +11,8 @@ import {
   GET_ALL_MESSAGES,
   GET_ALL_ADMINS,
   GET_SEARCH_USERS,
-  GET_ALL_USERS_NOADMIN
+  GET_ALL_USERS_NOADMIN,
+  GET_ALL_ALERTS
 } from "../actions/actionTypes";
 
 export default function pages(state = [], action) {
@@ -39,6 +40,8 @@ export default function pages(state = [], action) {
     case GET_SEARCH_USERS:
       return action.payload.pages;
     case  GET_ALL_USERS_NOADMIN:
+      return action.payload.pages;
+    case GET_ALL_ALERTS:
       return action.payload.pages;
     default:
       return state;

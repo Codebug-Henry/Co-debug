@@ -22,6 +22,7 @@ import {
   GET_ALL_ADMINS,
   GET_SEARCH_USERS,
   GET_ALL_USERS_NOADMIN,
+  GET_ALL_ALERTS
 } from "./actionTypes";
 
 import * as api from "../api";
@@ -283,6 +284,17 @@ export const getAllTags = () => async (dispatch) => {
   try {
     const { data } = await api.getAllTags();
     dispatch({ type: GET_ALL_TAGS, payload: data });
+  } catch (error) {
+    console.log(error.message);
+  }
+};
+
+//RUTAS ALERTS
+
+export const getAllAlerts = (page) => async (dispatch) => {
+  try {
+    const { data } = await api.getAllAlerts(page);
+    dispatch({ type: GET_ALL_ALERTS, payload: data });
   } catch (error) {
     console.log(error.message);
   }
