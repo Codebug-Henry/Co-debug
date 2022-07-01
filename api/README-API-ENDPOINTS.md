@@ -30,7 +30,12 @@
     - [POST message](#post-message)
 8. [Rutas **messages**](#rutas-messages)
     - [GET all messages](#get-all-messages)
-9. [Observaciones](#observaciones)
+9. [Rutas **alert**](#rutas-alert)
+    - [POST alert question](#post-alert-question)
+    - [POST alert answer](#post-alert-answer)
+10. [Rutas **alerts**](#rutas-alerts)
+    - [GET all alerts](#get-all-alerts)
+11. [Observaciones](#observaciones)
 
 ***
 
@@ -175,12 +180,12 @@
 
 - **DESCRIPCION**: esta ruta es para obtener todos los usuarios para rankearlos
 
-- **REQUERIMIENTOS**: por query deberan enviar page, limit, sort para definir como ordenarlos (asc/desc), admin si solo se quieren obtener los usuarios que son admin, all si se quieren todos los usuarios incluidos los baneados/eliminados, y search si se quiere buscar por email
+- **REQUERIMIENTOS**: por query deberan enviar page, limit, sort para definir como ordenarlos (asc/desc), admin si solo se quieren obtener los usuarios que son o no son admin, all si se quieren todos los usuarios incluidos los baneados/eliminados, y search si se quiere buscar por email
 
         /?sort=asc/desc
         &page=(número de página)
         &limit=(cantidad de elementos por página)
-        &admin=true (o nada)
+        &admin=true/false
         &all=true (o nada)
         &search=(email que se desea buscar)
 
@@ -734,6 +739,109 @@
                     id,
                     title,
                     text,
+                }
+            ]
+        }
+
+***
+
+## RUTAS **alert**
+
+***
+
+### POST **alert question**
+
+- **RUTA**: router.post("/question", postAlertQuestion)
+
+- **DESCRIPCION**: esta ruta es para crear una alerta por parte del usuario sobre una pregunta para que le llegue a los admin.
+
+- **REQUERIMIENTOS**: por body enviar datos de la alerta. 
+
+        {
+            id,
+            message   //motivo de la alerta
+            subCreator,   //sub del usuario que generó la alerta
+        }
+
+- **RESPUESTA**: un objeto con la alerta creada y la info de la pregunta
+
+        {
+            id,
+            message,
+            subCreator,
+            question: {
+                (todas las propiedades de la pregunta)
+            }
+        }
+
+***
+
+### POST **alert answer**
+
+- **RUTA**: router.post("/answer", postAlertAnswer)
+
+- **DESCRIPCION**: esta ruta es para crear una alerta por parte del usuario sobre una respuesta para que le llegue a los admin.
+
+- **REQUERIMIENTOS**: por body enviar datos de la alerta. 
+
+        {
+            id,
+            message   //motivo de la alerta
+            subCreator,   //sub del usuario que generó la alerta
+        }
+
+- **RESPUESTA**: un objeto con la alerta creada y la info de la respuesta
+
+        {
+            id,
+            message,
+            subCreator,
+            answer: {
+                (todas las propiedades de la respuesta)
+            }
+        }
+
+***
+
+## RUTAS **alerts**
+
+***
+
+### GET **all alerts**
+
+- **RUTA**: router.get("/alerts",getAllAlerts)
+
+- **DESCRIPCION**: esta ruta es para que los admin puedan acceder a todas las alertas que enviaron los usuarios
+
+- **REQUERIMIENTOS**: debe traer por query ?page y ?limit
+
+        ?page=(número de página)
+        &limit=(cantidad de elementos por página)
+
+- **RESPUESTA**: un objeto con 3 propiedades: totalPages, pages, results (todos los mensajes)
+
+        {
+            totalPages: (cantidad de paginas totales),
+            pages: []     //rango de paginas habilitadas (máximo 5),
+            results: [
+                {
+                    id,
+                    title,
+                    text,
+                    (question/answer): {
+                        (todas las propiedades de la pregunta o respuesta según corresponda)
+                    },
+                },
+                .
+                .
+                .
+                {
+                    id,
+                    title,
+                    text,
+                    (question/answer): {
+                        (todas las propiedades de la pregunta o respuesta según corresponda)
+                    },
                 }
             ]
         }

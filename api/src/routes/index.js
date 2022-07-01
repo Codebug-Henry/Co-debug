@@ -14,6 +14,9 @@ const tagsRoutes = require("./tagsRoutes")
 const messageRoutes = require("./messageRoutes")
 const messagesRoutes = require("./messagesRoutes")
 
+const alertRoutes = require("./alertRoutes")
+const alertsRoutes = require("./alertsRoutes")
+
 
 const router = Router()
 
@@ -30,5 +33,8 @@ router.use("/tags", tagsRoutes)
 
 router.use("/message", messageRoutes)
 router.use("/messages", messagesRoutes)
+
+router.use("/alert", alertRoutes)
+router.use("/alerts", alertsRoutes)
 
 module.exports = router
