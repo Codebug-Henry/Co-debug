@@ -10,3 +10,73 @@ html{
     width: 100%;
     overflow:hidden;
   }
+  .BoxPaypalOne{
+    background-color: rgb(253, 246, 226);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 1vh;
+    box-shadow:2px 2px 2px 1px rgba(0,0,0,0.2);
+    background-size: 200%;
+    height: 100%;
+    width: 50%;
+    margin: 1%;
+    padding-left: 5%;
+    padding-right: 5%;
+    flex-direction: column;
+
+  }
+
+  .BigPaypalOne{
+
+    position: relative;
+    min-width: 100%;
+    width: 50vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin-bottom: 2%;
+    background-image: url(../../images/backgrounddonate.png);
+    background-size: cover;
+    opacity: 100%;
+  }
+  .titulo{
+    margin-top: 5%;
+    font-size: xx-large;
+    font-weight: bold;
+  }
+
+  .tituloYTexto{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width:40%;
+  }
+
+  .input{
+    width: 15%;
+  }
+  .plata{
+    font-size: 250%;
+  }
+
+  .setValor{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: row;
+  }
+
+.paypalLogo{
+  width: 20%;
+}
+.paypalArea{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+
+  flex-direction: column;
+}
