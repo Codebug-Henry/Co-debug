@@ -15,7 +15,9 @@ import {
   getAllUsers,
   getAllAdmins,
   getAllUsersNoAdmin,
+  getAllAlerts,
 } from "../redux/actions";
+import Paginated from "../components/Paginated.js";
 
 //Traemos "user.sub" que contiene el ID unico del usuario conectado para que podamos comparar el id y ver si puede estar acá.
 // import { useAuth0 } from '@auth0/auth0-react'
@@ -24,7 +26,7 @@ const Admin = () => {
   // const { user } = useAuth0();
   //const { isAuthenticated, isLoading } = useAuth0();
   const isAuthenticated = true;
-  const [optionSelected, setOptionSelected] = useState(<Alertas />);
+  const [optionSelected, setOptionSelected] = useState(null);
   //LISTA USUARIOS
   const [usersPage, setUsersPage] = useState(1);
   // const [flag, setFlag] = useState(true);
@@ -34,6 +36,9 @@ const Admin = () => {
   //ADMINS
   const [adminPage, setAdminPage] = useState(1);
   const [adminFlag, setAdminFlag] = useState(true);
+  //ALERTS
+  const [alertsPage, setAlertsPage] = useState(1)
+  const [alertsFlag, setAlertsFlag] = useState(true);
 
   const [noAdminFlag, setNoAdminFlag] = useState(true);
 
@@ -41,17 +46,9 @@ const Admin = () => {
   const userInfo = useSelector((state) => state.user);
   const navigate = useNavigate();
 
-  // useEffect(() => {
-  //   dispatch(getAllUsers(usersPage));
-  // }, [dispatch, flag, usersPage]);
-
   useEffect(() => {
     dispatch(getAllUsers(usersPage));
   }, [dispatch, banFlag, usersPage]);
-
-  // useEffect(() => {
-  //   dispatch(getAllMessages(messagePage));
-  // }, [dispatch, messagePage, flag]);
 
   useEffect(() => {
     dispatch(getAllMessages(messagePage));
@@ -64,6 +61,10 @@ const Admin = () => {
   useEffect(() => {
     dispatch(getAllUsersNoAdmin(usersPage));
   }, [dispatch, adminFlag, usersPage]);
+
+  useEffect(()=>{
+    dispatch(getAllAlerts(alertsPage))
+  }, [dispatch, alertsFlag, alertsPage])
   // if (isLoading) {
   //   return (
   //     <div>
@@ -76,14 +77,14 @@ const Admin = () => {
     <div className={style.fullContainer}>
       {isAuthenticated ? (
         <div className={style.middleRow}>
-          {!userInfo.statusAdmin ? (
+          {userInfo.statusAdmin ? (
             <div className={`container-fluid ${style.container}`}>
               <div className={`row ${style.middleRow}`}>
                 <div className={`col-lg-2 ${style.col1}`}>
                   <div className="d-grid gap-2 mx-auto">
                     <p className={style.tittleLeft}>Admin Options</p>
                     <button
-                      onClick={() => setOptionSelected(<Alertas />)}
+                      onClick={() => setOptionSelected(<Alertas alertsPage={alertsPage} setAlertsPage={setAlertsPage} setAlertsFlag={setAlertsFlag} />)}
                       className="btn btn-warning"
                       type="button"
                     >
@@ -138,7 +139,7 @@ const Admin = () => {
                 </div>
 
                 <div className={`col-lg-10 ${style.col2}`}>
-                  {optionSelected ? optionSelected : "Hola... "}
+                  {optionSelected ? optionSelected : <p>Panel de administrador</p>}
                 </div>
               </div>
             </div>

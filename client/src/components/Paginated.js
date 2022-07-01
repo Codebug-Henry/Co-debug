@@ -5,6 +5,7 @@ import style from "./styles/Paginated.module.css";
 export default function Paginated({ page, setPage }) {
   const pages = useSelector((state) => state.pages);
   const totalPages = useSelector((state) => state.totalPages);
+  
   const handleClick = (e) => {
     e.preventDefault();
     setPage(parseInt(e.target.value));
@@ -88,20 +89,6 @@ export default function Paginated({ page, setPage }) {
           </button>
         ) : null}
 
-        {/* {pages &&
-
-                    pages.map((pag) =>(
-                        <li key={pag}>
-                            <button id={style.number} 
-                                    className={page === pag ? style.active : null} 
-                                    onClick={(e)=> handleClick(e)}
-                                    value={pag}> 
-                                {pag}
-                            </button>
-                        </li>
-                    ))
-
-                } */}
         <button
           className={page < totalPages - 3 ? style.lastDot : style.notDisplay}
         >

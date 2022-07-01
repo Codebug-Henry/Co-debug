@@ -25,3 +25,4 @@ export const GET_ALL_TAGS = "GET_ALL_TAGS";
 export const GET_ALL_ADMINS = "GET_ALL_ADMINS";
 export const GET_SEARCH_USERS = "GET_SEARCH_USERS";
 export const GET_ALL_USERS_NOADMIN = " GET_ALL_USERS_NOADMIN";
+export const GET_ALL_ALERTS = "GET_ALL_ALERTS";

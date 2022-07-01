@@ -1,6 +1,9 @@
 const nodemailer = require('nodemailer')
 const { User } = require('../db')
 const { getUserPosition } = require('./generalControllers')
+const {
+    GMAIL, GPASS,
+  } = process.env;
 
 const getUserInfo = async (req, res, next) => {
     const sub = req.params.sub
@@ -23,8 +26,8 @@ const postUser = async (req, res, next) => {
                 port: 465,
                 secure: true,
                 auth: {
-                    user: "codebughenry@gmail.com",
-                    pass: "wjavomuxsocbxfnu",
+                    user: GMAIL,
+                    pass: GPASS,
                 },
             });
             const mailOptions = {
@@ -34,7 +37,7 @@ const postUser = async (req, res, next) => {
                 text: "Usted se ha logeado correctamente a Co-Debug"
             }
 
-            transporter.sendMail(mailOptions, (error, info) => {
+            transporter.sendMail(mailOptions, (error) => {
                 if (error) {
                     // res.status(500).send(error.message);
                 } else {
@@ -64,8 +67,8 @@ const putUserInfo = async (req, res, next) => {
                 port: 465,
                 secure: true,
                 auth: {
-                    user: "codebughenry@gmail.com",
-                    pass: "wjavomuxsocbxfnu",
+                    user: GMAIL,
+                    pass: GPASS,
                 },
             });
             const mailOptions = {
@@ -75,7 +78,7 @@ const putUserInfo = async (req, res, next) => {
                 text: "Su cuenta en Co-Debug ha sido eliminada correctamente"
             }
 
-            transporter.sendMail(mailOptions, (error, info) => {
+            transporter.sendMail(mailOptions, (error) => {
                 if (error) {
                     res.status(500).send(error.message);
                 } else {

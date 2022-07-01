@@ -131,11 +131,13 @@ const CardQuestion = ({
                 <FavoriteIcon fontSize="medium" 
                               color='error'
                               id='favorite'
+
                               className={ userInfo.favourites?.includes(id) ? style.fav : style.notFav }
                               onClick={e=> handleRemoveFavourite(e)}  />                
                 <FavoriteIcon fontSize="medium"
                               color='string'
                               className={ userInfo.favourites?.includes(id) ? style.notFav : style.fav } 
+
                               onClick={e=> handleAddFavourite(e)} />
 
             </div>
