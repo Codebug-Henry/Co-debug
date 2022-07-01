@@ -10,7 +10,12 @@ import AgregarAdmin from "../components/adminComponents/AgregarAdmin.js";
 import PreguntasDirectas from "../components/adminComponents/PreguntasDirectas.js";
 import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { getAllMessages, getAllUsers, getAllAdmins, getAllUsersNoAdmin } from "../redux/actions";
+import {
+  getAllMessages,
+  getAllUsers,
+  getAllAdmins,
+  getAllUsersNoAdmin,
+} from "../redux/actions";
 
 //Traemos "user.sub" que contiene el ID unico del usuario conectado para que podamos comparar el id y ver si puede estar acá.
 // import { useAuth0 } from '@auth0/auth0-react'
@@ -22,36 +27,44 @@ const Admin = () => {
   const [optionSelected, setOptionSelected] = useState(<Alertas />);
   //LISTA USUARIOS
   const [usersPage, setUsersPage] = useState(1);
-  const [flag, setFlag] = useState(true);
+  // const [flag, setFlag] = useState(true);
+  const [banFlag, setBanFlag] = useState(true);
   //CONTACTO
   const [messagePage, setMessagePage] = useState(1);
   //ADMINS
-  const [adminPage, setAdminPage] = useState(1)
-  const [adminFlag, setAdminFlag] = useState(true)
+  const [adminPage, setAdminPage] = useState(1);
+  const [adminFlag, setAdminFlag] = useState(true);
 
-  const [noAdminFlag, setNoAdminFlag] = useState(true)
-
+  const [noAdminFlag, setNoAdminFlag] = useState(true);
 
   const dispatch = useDispatch();
   const userInfo = useSelector((state) => state.user);
   const navigate = useNavigate();
 
+  // useEffect(() => {
+  //   dispatch(getAllUsers(usersPage));
+  // }, [dispatch, flag, usersPage]);
+
   useEffect(() => {
     dispatch(getAllUsers(usersPage));
-  }, [dispatch, flag, usersPage]);
+  }, [dispatch, banFlag, usersPage]);
 
-  useEffect(()=>{
-    dispatch(getAllMessages(messagePage))
-  },[dispatch, messagePage, flag])
+  // useEffect(() => {
+  //   dispatch(getAllMessages(messagePage));
+  // }, [dispatch, messagePage, flag]);
 
-  useEffect(()=>{
-    dispatch(getAllAdmins(adminPage))
-  },[dispatch, adminFlag,noAdminFlag, adminPage])
+  useEffect(() => {
+    dispatch(getAllMessages(messagePage));
+  }, [dispatch, messagePage]);
 
-  useEffect(()=>{
-    dispatch(getAllUsersNoAdmin(usersPage))
-  },[dispatch, adminFlag,usersPage])
-    // if (isLoading) {
+  useEffect(() => {
+    dispatch(getAllAdmins(adminPage));
+  }, [dispatch, adminFlag, noAdminFlag, adminPage]);
+
+  useEffect(() => {
+    dispatch(getAllUsersNoAdmin(usersPage));
+  }, [dispatch, adminFlag, usersPage]);
+  // if (isLoading) {
   //   return (
   //     <div>
   //       <Loading />
@@ -63,7 +76,7 @@ const Admin = () => {
     <div className={style.fullContainer}>
       {isAuthenticated ? (
         <div className={style.middleRow}>
-          {userInfo.statusAdmin ? (
+          {!userInfo.statusAdmin ? (
             <div className={`container-fluid ${style.container}`}>
               <div className={`row ${style.middleRow}`}>
                 <div className={`col-lg-2 ${style.col1}`}>
@@ -81,7 +94,8 @@ const Admin = () => {
                         setOptionSelected(
                           <ListaUsuarios
                             setUsersPage={setUsersPage}
-                            setFlag={setFlag}
+                            // setBanFlag={setBanFlag}
+                            setBanFlag={setBanFlag}
                             usersPage={usersPage}
                           />
                         )
@@ -92,14 +106,28 @@ const Admin = () => {
                       Lista usuarios
                     </button>
                     <button
-                      onClick={() => setOptionSelected(<AgregarAdmin setFlag={setAdminFlag} setNoAdminFlag={setNoAdminFlag}/>)}
+                      onClick={() =>
+                        setOptionSelected(
+                          <AgregarAdmin
+                            setFlag={setAdminFlag}
+                            setNoAdminFlag={setNoAdminFlag}
+                          />
+                        )
+                      }
                       className="btn btn-warning"
                       type="button"
                     >
                       Agregar Admin
                     </button>
                     <button
-                      onClick={() => setOptionSelected(<PreguntasDirectas messagePage={messagePage} setMessagePage={setMessagePage}  />)}
+                      onClick={() =>
+                        setOptionSelected(
+                          <PreguntasDirectas
+                            messagePage={messagePage}
+                            setMessagePage={setMessagePage}
+                          />
+                        )
+                      }
                       className="btn btn-warning"
                       data-toggle="button"
                       type="button"

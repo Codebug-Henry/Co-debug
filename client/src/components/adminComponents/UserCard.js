@@ -13,7 +13,8 @@ const UserCard = ({
   statusBanned,
   sub,
   points,
-  setFlag,
+  // setFlag,
+  setBanFlag,
 }) => {
   //const dispatch = useDispatch();
 
@@ -22,8 +23,7 @@ const UserCard = ({
     let modify = { statusBanned: !statusBanned };
     axios
       .put(`http://localhost:3001/user/${sub}`, modify)
-      .then((response) => setFlag((prevFlag) => !prevFlag));
-
+      .then((response) => setBanFlag((prevFlag) => !prevFlag));
   };
 
   return (
