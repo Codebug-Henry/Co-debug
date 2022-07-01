@@ -809,7 +809,7 @@
 
 ### GET **all alerts**
 
-- **RUTA**: router.get("/alerts",getAllAlerts)
+- **RUTA**: router.get("/",getAllAlerts)
 
 - **DESCRIPCION**: esta ruta es para que los admin puedan acceder a todas las alertas que enviaron los usuarios
 
