@@ -47,6 +47,7 @@ export const getUserAnswers = (sub, page) =>
 
 // RUTAS Message / Messages
 export const postMessage = (message) => axios.post(`/message`, message);
+export const putMessage = (message) => axios.put(`/message`, message);
 export const getAllMessages = (page) =>
   axios.get(`/messages?page=${page}&limit=3`);
 
@@ -54,4 +55,6 @@ export const getAllMessages = (page) =>
 export const getAllTags = () => axios.get(`/tags`);
 
 //RUTAS ALERTS
+
 export const getAllAlerts = (page)=> axios.get(`/alerts?page=${page}&limit=3&resolved=false`)
+

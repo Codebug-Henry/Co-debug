@@ -22,7 +22,8 @@ import {
   GET_ALL_ADMINS,
   GET_SEARCH_USERS,
   GET_ALL_USERS_NOADMIN,
-  GET_ALL_ALERTS
+  GET_ALL_ALERTS,
+  PUT_MESSAGE,
 } from "./actionTypes";
 
 import * as api from "../api";
@@ -273,6 +274,15 @@ export const getAllMessages = (sub, page) => async (dispatch) => {
   try {
     const { data } = await api.getAllMessages(sub, page);
     dispatch({ type: GET_ALL_MESSAGES, payload: data });
+  } catch (error) {
+    console.log(error.message);
+  }
+};
+
+export const putMessage = (message) => async (dispatch) => {
+  try {
+    const { data } = await api.putMessage(message);
+    dispatch({ type: PUT_MESSAGE, payload: data });
   } catch (error) {
     console.log(error.message);
   }

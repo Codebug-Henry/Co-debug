@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getAllQuestions, getSearchQuestions } from "../redux/actions/index.js";
+import { getUserInfo } from "../redux/api/index.js";
 import CardQuestion from "./CardQuestion.js";
 import Paginated from "./Paginated";
 import style from "./styles/CardsQuestions.module.css";
@@ -14,6 +15,7 @@ const CardsQuestions = () => {
 
   useEffect(() => {
     dispatch(getAllQuestions(sort, page));
+    // dispatch(getUserInfo())
   }, [dispatch, page]);
 
   const onChangeSearch = (e) => {
@@ -56,7 +58,7 @@ const CardsQuestions = () => {
                   Reiniciar
                 </button>
               </div>
-             */}
+              */}
 
         <nav
           className={`navbar navbar-expand-lg navbar-light bg-warning ${style.navbar}`}
