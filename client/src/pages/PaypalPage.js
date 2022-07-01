@@ -2,6 +2,7 @@ import React from 'react'
 import Paypal from '../components/Paypal'
 import { useState } from 'react';
 import Footer from '../components/Footer.js';
+import style from './styles/PaypalPage.module.css'
 
 const PaypalPage = () => {
 
@@ -26,7 +27,10 @@ const PaypalPage = () => {
           </div>
         ) 
       }
-      <Footer />
+      <div className={style.footer}>
+        <Footer />
+      </div>
+      
     </div>
 
 
