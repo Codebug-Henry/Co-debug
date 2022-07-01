@@ -7,7 +7,7 @@ import Paginated from "../Paginated";
 const PreguntasDirectas = ({ messagePage, setMessagePage }) => {
   const messages = useSelector((state) => state.messages);
   const totalPages = useSelector((state) => state.totalPages);
-
+  console.log(messages);
   return (
     <div className={style.container}>
       <div>
@@ -18,9 +18,7 @@ const PreguntasDirectas = ({ messagePage, setMessagePage }) => {
                 key={e.id}
                 title={e.title}
                 text={e.text}
-                email={e.user.email}
-                sub={e.userSub}
-                nickname={e.user.nickname}
+                email={e.email}
                 id={e.id}
               />
             );
