@@ -100,11 +100,6 @@
   cursor: pointer;
 }
 
-@media screen and (max-width: 993px){
-  .bajoTexto {
-    /* width: 98%; */
-  }
-}
 
 @media screen and (max-width: 670px){
   .total {
@@ -127,6 +122,3 @@
    }
 }
 
-
-
-  

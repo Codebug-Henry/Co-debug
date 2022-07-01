@@ -8,7 +8,7 @@ import CardsQuestsLogOut from "../components/CardsQuestsLogOut.js";
 import TopDiezRanking from "../components/TopDiezRanking";
 import { useSelector, useDispatch } from "react-redux";
 import { useEffect } from "react";
-import { sendUserInfo } from "../redux/actions";
+import { getUserInfo } from "../redux/actions";
 
 
 // import { useEffect, useState } from 'react'
@@ -27,10 +27,9 @@ const Landing = () => {
 
   useEffect(() => {
     if (isAuthenticated) {
-      dispatch(sendUserInfo(user));
+      dispatch(getUserInfo(user.sub));
     }
   }, [dispatch, user, isAuthenticated]);
-
 
 
   if (isLoading) {
