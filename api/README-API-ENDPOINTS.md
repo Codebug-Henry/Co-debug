@@ -751,7 +751,7 @@
 
 ### POST **alert question**
 
-- **RUTA**: router.post("/question", postAlertQuestion)
+- **RUTA**: router.post("/alert/question", postAlertQuestion)
 
 - **DESCRIPCION**: esta ruta es para crear una alerta por parte del usuario sobre una pregunta para que le llegue a los admin.
 
@@ -778,7 +778,7 @@
 
 ### POST **alert answer**
 
-- **RUTA**: router.post("/answer", postAlertAnswer)
+- **RUTA**: router.post("/alert/answer", postAlertAnswer)
 
 - **DESCRIPCION**: esta ruta es para crear una alerta por parte del usuario sobre una respuesta para que le llegue a los admin.
 
@@ -809,7 +809,7 @@
 
 ### GET **all alerts**
 
-- **RUTA**: router.get("/",getAllAlerts)
+- **RUTA**: router.get("/alerts",getAllAlerts)
 
 - **DESCRIPCION**: esta ruta es para que los admin puedan acceder a todas las alertas que enviaron los usuarios
 
