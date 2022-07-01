@@ -1,35 +1,35 @@
-
-html{
-    min-height: 100%;
-    position: relative;
+html {
+  min-height: 100%;
+  position: relative;
 }
 
-.footer{
-    position: absolute;
-    left: 0;
-    bottom: 0;
-    width: 100%;
-    overflow:hidden;
+.footer {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  overflow: hidden;
 }
 
-.fullContainer{
-    display: flex;
-    flex-direction: column;
+.fullContainer {
+  display: flex;
+  flex-direction: column;
+  background-color: lightyellow;
 }
 
-.middleRow{
-    margin-bottom: 10vh;
+.middleRow {
+  margin-bottom: 10vh;
 }
 
-.puestos{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background-color: cyan;
-    border-style: solid;
-    border-radius: 10px;
-    margin: 5vh;
-    padding: 1vh;
+.puestos {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: cyan;
+  border-style: solid;
+  border-radius: 10px;
+  margin: 5vh;
+  padding: 1vh;
 }
 
 .container {

@@ -1,7 +1,6 @@
 import React, { useState } from "react";
-import { putMessage } from "../redux/actions/index";
+import { postMessage } from "../redux/actions/index";
 import { useSelector, useDispatch } from "react-redux";
-import {} from "react-redux";
 import style from "./styles/FormContact.module.css";
 
 const FormContact = () => {
@@ -15,7 +14,12 @@ const FormContact = () => {
   function validate(input) {
     let errors = {};
     if (!input.title) errors.title = "Se requiere un título";
-    if (input.title && !/^[A-Za-z0-9\s]+$/.test(input.title))
+    if (
+      input.title &&
+      !/^[a-zA-ZÀ-ÿ\u00f1\u00d1]+(\s*[a-zA-ZÀ-ÿ\u00f1\u00d1]*)*[a-zA-ZÀ-ÿ\u00f1\u00d1]+$/.test(
+        input.title
+      )
+    )
       errors.title = "El título debe tener solo letras, números y espacios.";
     if (!input.email) errors.email = "Se requiere un email";
     if (
@@ -52,14 +56,19 @@ const FormContact = () => {
         [e.target.name]: e.target.value,
       })
     );
-    const property = e.target.name + "Contact"
+    const property = e.target.name + "Contact";
     localStorage[property] = e.target.value;
   }
 
   function handleSubmit(e) {
     e.preventDefault();
-    let message = {sub: user.sub, email: input.email, title: input.title, text: input.text};
-    dispatch(putMessage(message));
+    let message = {
+      sub: user.sub,
+      email: input.email,
+      title: input.title,
+      text: input.text,
+    };
+    dispatch(postMessage(message));
     alert("Mensaje enviado");
     setInput({
       email: "",

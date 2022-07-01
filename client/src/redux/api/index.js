@@ -8,12 +8,16 @@ export const getRanking = (sort, page) =>
 export const getUserInfo = (sub) => axios.get(`/user/${sub}`);
 export const putUserInfo = (sub, modify) => axios.put(`/user/${sub}`, modify);
 export const getAllUsers = (page) =>
-  axios.get(`/users?sort=asc&page=${page}&limit=16`);
-  export const getAllUsersNoAdmin = (page) =>
+  axios.get(`/users?sort=asc&page=${page}&limit=16&all=true`);
+export const getAllUsersNoAdmin = (page) =>
   axios.get(`/users?sort=asc&page=${page}&limit=16&admin=false`);
 export const deleteUser = (sub, status) => axios.put(`/user/${sub}`, status);
-export const getAllAdmins = (page) => axios.get(`/users?sort=asc&page=${page}&limit=16&admin=true`);
-export const getSearchUsers = (page, search) => axios.get(`/users?sort=asc&page=${page}&limit=10&search=${search}&admin=false`)
+export const getAllAdmins = (page) =>
+  axios.get(`/users?sort=asc&page=${page}&limit=16&admin=true`);
+export const getSearchUsers = (page, search) =>
+  axios.get(
+    `/users?sort=asc&page=${page}&limit=10&search=${search}&admin=false`
+  );
 
 // RUTAS question - questions
 export const sendQuestion = (question) => axios.post(`/question`, question);
@@ -42,11 +46,9 @@ export const getUserAnswers = (sub, page) =>
   axios.get(`/answers/${sub}?page=${page}&limit=5`);
 
 // RUTAS Message / Messages
-export const putMessage = (message) => axios.post(`/message`, message);
+export const postMessage = (message) => axios.post(`/message`, message);
 export const getAllMessages = (page) =>
   axios.get(`/messages?page=${page}&limit=3`);
 
-
 // RUTA TAGS
 export const getAllTags = () => axios.get(`/tags`);
-

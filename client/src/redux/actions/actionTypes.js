@@ -1,4 +1,3 @@
-
 export const SEND_USER_INFO = "SEND_USER_INFO";
 export const GET_TOPTEN_RANKING = "GET_TOPTEN_RANKING";
 export const GET_RANKING = "GET_RANKING";
@@ -20,10 +19,9 @@ export const PUT_ANSWER = "PUT_ANSWER";
 export const DELETE_ANSWER = "DELETE_ANSWER";
 export const GET_USER_ANSWERS = "GET_USER_ANSWERS";
 export const GET_ALL_USERS = "GET_ALL_USERS";
-export const PUT_MESSAGE = "PUT_MESSAGE";
+export const POST_MESSAGE = "POST_MESSAGE";
 export const GET_ALL_MESSAGES = "GET_ALL_MESSAGES";
-export const GET_ALL_TAGS = "GET_ALL_TAGS"
+export const GET_ALL_TAGS = "GET_ALL_TAGS";
 export const GET_ALL_ADMINS = "GET_ALL_ADMINS";
 export const GET_SEARCH_USERS = "GET_SEARCH_USERS";
 export const GET_ALL_USERS_NOADMIN = " GET_ALL_USERS_NOADMIN";
-

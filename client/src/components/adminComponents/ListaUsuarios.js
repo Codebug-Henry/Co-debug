@@ -7,7 +7,7 @@ import UserCard from "./UserCard";
 import style from "./styles/ListaUsuarios.module.css";
 import Paginated from "../Paginated";
 
-const ListaUsuarios = ({ setFlag, setUsersPage, usersPage }) => {
+const ListaUsuarios = ({ setBanFlag, setUsersPage, usersPage }) => {
   const users = useSelector((state) => state.users);
   //const pages = useSelector((state) => state.pages);
   const totalPages = useSelector((state) => state.totalPages);
@@ -19,7 +19,7 @@ const ListaUsuarios = ({ setFlag, setUsersPage, usersPage }) => {
   //   dispatch(deleteUser(3))
   // }
 
-  console.log(users);
+  console.log("Lista", users);
   return (
     <div className={`container-fluid ${style.container}`}>
       <div className={`row ${style.info}`}>
@@ -47,7 +47,8 @@ const ListaUsuarios = ({ setFlag, setUsersPage, usersPage }) => {
                   statusBanned={e.statusBanned}
                   sub={e.sub}
                   points={e.myTeachPoints}
-                  setFlag={setFlag}
+                  // setFlag={setFlag}
+                  setBanFlag={setBanFlag}
                 />
               </div>
             );
