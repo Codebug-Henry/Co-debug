@@ -1,16 +1,17 @@
 import React, { useState } from "react";
 import style from "./styles/Message.module.css";
 import { useDispatch } from "react-redux";
+import { putMessage } from "../../redux/api";
 
-const Message = ({ title, text, email, sub, nickname }) => {
+const Message = ({ title, text, email, sub, nickname, id }) => {
   const [input, setInput] = useState("");
   const dispatch = useDispatch();
 
   const handleSubmit = (e) => {
-    let text = input;
-    let paquete = { title, email, text };
+    let answer = input;
+    let paquete = { id, title, email, answer };
     e.preventDefault();
-    // dispatch(Accion(paquete));
+    putMessage(paquete);
     alert("El mensaje ha sido respondido");
     setInput("");
   };

@@ -14,17 +14,10 @@ const FormContact = () => {
   function validate(input) {
     let errors = {};
     if (!input.title) errors.title = "Se requiere un título";
-    if (
-      input.title &&
-      !/^[a-zA-ZÀ-ÿ\u00f1\u00d1]+(\s*[a-zA-ZÀ-ÿ\u00f1\u00d1]*)*[a-zA-ZÀ-ÿ\u00f1\u00d1]+$/.test(
-        input.title
-      )
-    )
-      errors.title = "El título debe tener solo letras, números y espacios.";
     if (!input.email) errors.email = "Se requiere un email";
     if (
       input.email &&
-      !/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/.test(
+      !/^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(
         input.email
       )
     )
