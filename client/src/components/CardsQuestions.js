@@ -9,16 +9,16 @@ const CardsQuestions = () => {
   const dispatch = useDispatch();
   const questions = useSelector((state) => state.questions);
   const [page, setPage] = useState(1);
-  const [search, setSearch] = useState('')
-  const [sort, setSort] = useState('desc')
+  const [search, setSearch] = useState("");
+  const [sort, setSort] = useState("desc");
 
   useEffect(() => {
     dispatch(getAllQuestions(sort, page));
   }, [dispatch, page]);
 
   const onChangeSearch = (e) => {
-    setSearch(e.target.value)
-    setPage(1)
+    setSearch(e.target.value);
+    setPage(1);
     dispatch(getSearchQuestions(e.target.value, sort, page));
   };
 
@@ -32,13 +32,13 @@ const CardsQuestions = () => {
   };
 
   const handleSort = (e) => {
-    setSort(e.target.value)
-    if(search.length > 0){
-      dispatch(getSearchQuestions(search, e.target.value, page))
+    setSort(e.target.value);
+    if (search.length > 0) {
+      dispatch(getSearchQuestions(search, e.target.value, page));
     } else {
-      dispatch(getAllQuestions(e.target.value, page))
+      dispatch(getAllQuestions(e.target.value, page));
     }
-  }
+  };
 
   return (
     <div className={style.questBox}>
@@ -58,12 +58,13 @@ const CardsQuestions = () => {
               </div>
              */}
 
-        <nav className="navbar navbar-expand-lg navbar-light bg-warning">
+        <nav
+          className={`navbar navbar-expand-lg navbar-light bg-warning ${style.navbar}`}
+        >
           <div className="container-fluid">
             <button
               className="navbar-toggler"
               type="button"
-
               data-bs-toggle="collapse"
               data-bs-target="#navbarSupportedContent"
               aria-controls="navbarSupportedContent"
@@ -77,6 +78,7 @@ const CardsQuestions = () => {
               id="navbarSupportedContent"
             >
               <ul className="navbar-nav me-auto mb-2 mb-lg-0">
+
                 <select value={sort} onChange={handleSort} className="nav-item dropdown">
                   <option
                     className="nav-link dropdown-toggle"
@@ -87,7 +89,9 @@ const CardsQuestions = () => {
                     hidden
                   >
                     Antiguedad
+
                   </option>
+
                   <option value='desc' className="dropdown-item">
                       
                       Más nuevas
@@ -98,6 +102,7 @@ const CardsQuestions = () => {
                       Más antiguas
                       
                     </option>
+
                 </select>
                 <li className="nav-item dropdown">
                   <span
@@ -114,39 +119,25 @@ const CardsQuestions = () => {
                     aria-labelledby="navbarDropdown"
                   >
                     <li>
-                      <span className="dropdown-item">
-                        js
-                      </span>
+                      <span className="dropdown-item">js</span>
                     </li>
                     <li>
-                      <span className="dropdown-item">
-                        python
-                      </span>
+                      <span className="dropdown-item">python</span>
                     </li>
                     <li>
-                      <span className="dropdown-item">
-                        react
-                      </span>
+                      <span className="dropdown-item">react</span>
                     </li>
                     <li>
-                      <span className="dropdown-item">
-                        redux
-                      </span>
+                      <span className="dropdown-item">redux</span>
                     </li>
                     <li>
-                      <span className="dropdown-item">
-                        github
-                      </span>
+                      <span className="dropdown-item">github</span>
                     </li>
                     <li>
-                      <span className="dropdown-item">
-                        html
-                      </span>
+                      <span className="dropdown-item">html</span>
                     </li>
                     <li>
-                      <span className="dropdown-item">
-                        css
-                      </span>
+                      <span className="dropdown-item">css</span>
                     </li>
                   </ul>
                 </li>

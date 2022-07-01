@@ -16,15 +16,13 @@ import {
   DELETE_ANSWER,
   GET_USER_ANSWERS,
   GET_USER_QUESTIONS_ORDERER,
-
-  PUT_MESSAGE,
+  POST_MESSAGE,
   GET_ALL_MESSAGES,
-
   GET_ALL_TAGS,
   GET_ALL_ADMINS,
   GET_SEARCH_USERS,
-  GET_ALL_USERS_NOADMIN
-
+  GET_ALL_USERS_NOADMIN,
+  GET_ALL_ALERTS
 } from "./actionTypes";
 
 import * as api from "../api";
@@ -70,7 +68,7 @@ export const putUserInfo = (sub, modify, setLoading) => async (dispatch) => {
   try {
     await api.putUserInfo(sub, modify);
     // dispatch({ type: MODIFY_USER, payload: data})
-    setLoading(false)
+    setLoading(false);
   } catch (error) {
     console.log(error.message);
   }
@@ -261,12 +259,11 @@ export const getUserAnswers = (sub, page) => async (dispatch) => {
   }
 };
 
-
 // RUTAS Message/Messages
-export const putMessage = (message) => async (dispatch) => {
+export const postMessage = (message) => async (dispatch) => {
   try {
-    const { data } = await api.putMessage(message);
-    dispatch({ type: PUT_MESSAGE, payload: data });
+    const { data } = await api.postMessage(message);
+    dispatch({ type: POST_MESSAGE, payload: data });
   } catch (error) {
     console.log(error.message);
   }
@@ -281,7 +278,6 @@ export const getAllMessages = (sub, page) => async (dispatch) => {
   }
 };
 
-
 // RUTA TAGS
 
 export const getAllTags = () => async (dispatch) => {
@@ -293,3 +289,13 @@ export const getAllTags = () => async (dispatch) => {
   }
 };
 
+//RUTAS ALERTS
+
+export const getAllAlerts = (page) => async (dispatch) => {
+  try {
+    const { data } = await api.getAllAlerts(page);
+    dispatch({ type: GET_ALL_ALERTS, payload: data });
+  } catch (error) {
+    console.log(error.message);
+  }
+};

@@ -2,12 +2,25 @@ import React from "react";
 import { Link, useLocation } from "react-router-dom";
 import { useSelector } from "react-redux";
 import style from "./styles/CardQuestion.module.css";
+
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import BlockIcon from '@mui/icons-material/Block';
 import ThumbUpIcon from '@mui/icons-material/ThumbUp';
 import ThumbDownIcon from '@mui/icons-material/ThumbDown';
-import { useDispatch } from "react-redux";
 import { addFavourites, getAllQuestions, getFavourites, modifyQuestion } from "../redux/actions";
+import Box from '@mui/material/Box';
+import Typography from '@mui/material/Typography';
+import Modal from '@mui/material/Modal';
+import { Checkbox } from "@mui/material";
+import FormGroup from '@mui/material/FormGroup';
+import FormControlLabel from '@mui/material/FormControlLabel';
+import Radio from '@mui/material/Radio';
+import RadioGroup from '@mui/material/RadioGroup';
+import FormLabel from '@mui/material/FormLabel';
+import FormControl from '@mui/material/FormControl';
+import { useDispatch, useSelector } from "react-redux";
+import axios from "axios";
+
 
 const CardQuestion = ({
   cantAnswers,
@@ -58,6 +71,25 @@ const CardQuestion = ({
     e.preventDefault()
     await dispatch(modifyQuestion({id: id, like: 'remove'}))
     dispatch(getAllQuestions('desc', page))
+    
+  //MODAL
+  const [open, setOpen] = React.useState(false);
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
+
+
+  const [selected, setSelected] = useState(null);
+
+  const handleChangeAlert = (e)=>{
+    setSelected(e.target.value)
+  }
+  //
+  const handleAlert = (e)=>{
+    e.preventDefault()
+    let pack = {id, message: selected, subCreator: userInfo.sub}
+    axios.post("http://localhost:3001/alert/question", pack)
+    .then(response=> null)
+    handleClose()
   }
 
   return (
@@ -112,11 +144,43 @@ const CardQuestion = ({
               <BlockIcon fontSize="medium" />
             </div>
             <div>
+              <img onClick={handleOpen} src={denuncia} alt="denuncia" className={style.delete} />
+                  <Modal
+                  open={open}
+                  onClose={handleClose}
+                  aria-labelledby="modal-modal-title"
+                  aria-describedby="modal-modal-description"
+                  >
+                  <Box className={style.box}>
+                    <Typography id="modal-modal-title" variant="h6" component="h2">
+                      Reportar pregunta
+                    </Typography>
+                    <Typography id="modal-modal-description" sx={{ mt: 2 }}>
+                      Eliga su motivo para reportar esta pregunta
+                    </Typography>
+                    <div>
+                          <FormControl>
+                              <FormLabel id="demo-radio-buttons-group-label">Opciones: </FormLabel>
+                          <RadioGroup
+                             aria-labelledby="demo-radio-buttons-group-label"
+                             defaultValue="inadecuado"
+                              name="radio-buttons-group"
+                              >
+                        <FormControlLabel  onChange={(e)=>handleChangeAlert(e)} value="inadecuado" control={<Radio />} label="Comportamiento inadecuado" />
+                        <FormControlLabel onChange={(e)=>handleChangeAlert(e)} value="incompleto" control={<Radio />} label="Pregunta incompleta" />
+                        <FormControlLabel onChange={(e)=>handleChangeAlert(e)} value="otro" control={<Radio />} label="Otro" />
+                                 </RadioGroup>
+                           </FormControl>
+                    </div>
+                      <button onClick={(e)=>handleAlert(e)}>Enviar</button>
+                  </Box>
+                </Modal>
+            </div>
+            <div>
               <Link to={`/responder/${id}`}>
                 <button className={style.answerIt}>Responder</button>
               </Link>
-            </div>
-            
+             </div>
           </div>
         </div>
       </div>

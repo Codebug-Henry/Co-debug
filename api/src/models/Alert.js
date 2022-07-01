@@ -2,23 +2,19 @@ const { DataTypes } = require('sequelize');
 
 module.exports = (sequelize) => {
 
-  sequelize.define('message', {
+  sequelize.define('alert', {
     id: {
       type: DataTypes.INTEGER,
       autoIncrement: true,
       primaryKey: true
     },
-    title: {
-      type: DataTypes.STRING,
-      allowNull: false,
-    },
-    text: {
+    message: {
       type: DataTypes.TEXT,
       allowNull: false,
     },
-    answer: {
+    subCreator: {
       type: DataTypes.TEXT,
-      allowNull: true,
+      allowNull: false,
     },
   });
 };

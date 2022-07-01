@@ -1,28 +1,29 @@
-
-html{
-    min-height: 100%;
-    position: relative;
+html {
+  min-height: 100%;
+  position: relative;
+  background-color: lightyellow;
 }
 
-.footer{
-    position: absolute;
-    left: 0;
-    bottom: 0;
-    width: 100%;
-    overflow:hidden;
+.footer {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  overflow: hidden;
 }
 
-.fullContainer{
-    display: flex;
-    flex-direction: column;
+.fullContainer {
+  display: flex;
+  flex-direction: column;
+  border: black solid 1px;
+  background-color: lightyellow;
 }
 
-.middleRow{
-    margin-top: 3vh;
-    margin-bottom: 10vh;
+.middleRow {
+  margin-top: 3vh;
+  margin-bottom: 10vh;
 }
 
 .container {
   background-color: lightyellow;
 }
-

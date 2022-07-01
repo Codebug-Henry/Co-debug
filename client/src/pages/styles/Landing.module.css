@@ -1,44 +1,45 @@
 /* landing LOGIN */
-html{
+html {
   min-height: 100%;
   position: relative;
+  background-color: lightyellow;
 }
 
-.footer{
+.footer {
   position: absolute;
   left: 0;
   bottom: 0;
   width: 100%;
-  overflow:hidden;
+  overflow: hidden;
+  background-color: lightyellow;
 }
 
-.fullContainer{
+.fullContainer {
   display: flex;
   flex-direction: column;
 }
 
-.middleRow{
-  margin-bottom: 5vh;
+.middleRow {
+  padding-bottom: 4vh;
 }
-
 
 .container {
   background-color: lightyellow;
 }
 
 .col1 {
-  border: 1px black solid;
+  /* border: 1px black solid; */
 }
 
 .col2 {
   display: flex;
-  border: 1px black solid;
+  /* border: 1px black solid; */
   align-items: initial;
 }
 
 .colOut {
   display: flex;
-  border: 1px black solid;
+  /* border: 1px black solid; */
   align-items: center;
 }
 
@@ -95,16 +96,16 @@ html{
   border-radius: 10px;
 }
 
-.datosUser{
+.datosUser {
   background-color: white;
   border-radius: 1vh;
-  box-shadow:2px 2px 2px 1px rgba(0,0,0,0.2);
+  box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
   padding: 4%;
   margin: 5%;
   width: 70%;
 }
 
-.estadisticas{
+.estadisticas {
   font-size: large;
   font-weight: bolder;
 }

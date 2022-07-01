@@ -1,22 +1,21 @@
+html {
+  min-height: 100%;
+  position: relative;
+}
+
+.footer {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  overflow: hidden;
+}
 
 .container {
   background-color: lightyellow;
 }
 
-html{
-  min-height: 100%;
-  position: relative;
-}
-
-.footer{
-  position: absolute;
-  left: 0;
-  bottom: 0;
-  width: 100%;
-  overflow:hidden;
-}
-
-.fullContainer{
+.fullContainer {
   display: flex;
   flex-direction: column;
 }
@@ -47,7 +46,7 @@ html{
   /* border: solid 1px black; */
   border-radius: 0% 5% 5% 4%;
   box-shadow: 3px 3px 3px grey;
-  background-color: rgba(255,136,0,255);
+  background-color: rgba(255, 136, 0, 255);
   height: 7vh;
   display: flex;
   flex-direction: row;
@@ -73,6 +72,6 @@ html{
   }
 
   .filterIcon {
-    display:none
+    display: none;
   }
 }
