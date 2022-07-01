@@ -5,6 +5,7 @@ import style from "./styles/Paginated.module.css";
 export default function Paginated({ page, setPage }) {
   const pages = useSelector((state) => state.pages);
   const totalPages = useSelector((state) => state.totalPages);
+  
   const handleClick = (e) => {
     e.preventDefault();
     setPage(parseInt(e.target.value));

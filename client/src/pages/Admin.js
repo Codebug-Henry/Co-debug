@@ -17,6 +17,7 @@ import {
   getAllUsersNoAdmin,
   getAllAlerts,
 } from "../redux/actions";
+import Paginated from "../components/Paginated.js";
 
 //Traemos "user.sub" que contiene el ID unico del usuario conectado para que podamos comparar el id y ver si puede estar acá.
 // import { useAuth0 } from '@auth0/auth0-react'
@@ -25,7 +26,7 @@ const Admin = () => {
   // const { user } = useAuth0();
   //const { isAuthenticated, isLoading } = useAuth0();
   const isAuthenticated = true;
-  const [optionSelected, setOptionSelected] = useState(<Alertas />);
+  const [optionSelected, setOptionSelected] = useState(null);
   //LISTA USUARIOS
   const [usersPage, setUsersPage] = useState(1);
   // const [flag, setFlag] = useState(true);
@@ -63,7 +64,7 @@ const Admin = () => {
 
   useEffect(()=>{
     dispatch(getAllAlerts(alertsPage))
-  },[dispatch, alertsFlag, alertsPage])
+  }, [dispatch, alertsFlag, alertsPage])
   // if (isLoading) {
   //   return (
   //     <div>
@@ -83,7 +84,7 @@ const Admin = () => {
                   <div className="d-grid gap-2 mx-auto">
                     <p className={style.tittleLeft}>Admin Options</p>
                     <button
-                      onClick={() => setOptionSelected(<Alertas setAlertsPage={setAlertsPage} alertsPage={alertsPage} />)}
+                      onClick={() => setOptionSelected(<Alertas alertsPage={alertsPage} setAlertsPage={setAlertsPage}  />)}
                       className="btn btn-warning"
                       type="button"
                     >
@@ -138,7 +139,7 @@ const Admin = () => {
                 </div>
 
                 <div className={`col-lg-10 ${style.col2}`}>
-                  {optionSelected ? optionSelected : "Hola... "}
+                  {optionSelected ? optionSelected : <p>Panel de administrador</p>}
                 </div>
               </div>
             </div>

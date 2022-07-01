@@ -12,34 +12,36 @@ const Alertas = ({alertsPage, setAlertsPage}) => {
 
   return (
     <div className={style.container}>
-      <div className={`container-fluid ${style.container}`}>
-          <div className={`row ${style.info}`}>
-            <p className={`col-lg`}>Id</p>
-            <p className={`col-lg-3`}>Sub Creador</p>
-            <p className={`col-lg-3`}>Sub Pregunta</p>
-            <p className={`col-lg`}>Mensaje</p>
-            <p className={`col-lg`}>Titulo</p>
-            <p className={`col-lg`}>Texto</p>
-            <p className={`col-lg`}>Borrar</p>
+      <div className={style.alertList}>
+        <div className={`container-fluid ${style.container}`}>
+            <div className={`row ${style.info}`}>
+              <p className={`col-lg`}>Id</p>
+              <p className={`col-lg-3`}>Sub Creador</p>
+              <p className={`col-lg-3`}>Sub Pregunta</p>
+              <p className={`col-lg`}>Mensaje</p>
+              <p className={`col-lg`}>Titulo</p>
+              <p className={`col-lg`}>Texto</p>
+              <p className={`col-lg`}>Borrar</p>
+            </div>
           </div>
-        </div>
-      <div className={style.alerts}>
-          {
-            alerts && alerts.map((e)=>{
-              return (
-                <div className={`row`} key={e.id}>
-                  <AlertCard
-                    id={e.id}
-                    title={e.question.title}
-                    text={e.question.text}
-                    message={e.message}
-                    subCreator={e.subCreator}
-                    questionSub={e.question.userSub}
-                  />
-                </div>
-              )
-            })
-          }
+          <div className={style.alerts}>
+              {
+                alerts && alerts.map((e)=>{
+                  return (
+                    <div className={`row`} key={e.id}>
+                      <AlertCard
+                        id={e.id}
+                        title={e.question.title}
+                        text={e.question.text}
+                        message={e.message}
+                        subCreator={e.subCreator}
+                        questionSub={e.question.userSub}
+                      />
+                    </div>
+                  )
+                })
+              }
+          </div>
       </div>
       <div>
           <Paginated
