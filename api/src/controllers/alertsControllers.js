@@ -3,9 +3,20 @@ const { paginate } = require("./generalControllers");
 
 const getAllAlerts = async (req, res, next) => {
 
-    const {page, limit} = req.query
+    const {page, limit, resolved} = req.query
 
     try {
+        let condition = {}
+        switch (resolved) {
+            case "true":
+                condition = {...condition, statusResolved: true}
+                break
+            case "false":
+                condition = {...condition, statusResolved: false}
+                break
+            default:
+                break
+        }
 
         let allAlerts = await Alert.findAll({
             include: [
