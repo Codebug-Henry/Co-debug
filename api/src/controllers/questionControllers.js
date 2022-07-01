@@ -20,7 +20,7 @@ const deleteUserQuestion = async (req, res, next) => {
 }
 
 const putUserQuestion = async (req, res, next) => {
-    let {id, text, title, like, statusDeleted,imgs,newMacroTags,newMicroTags} = req.body
+    let {id, text, title, like, statusDeleted,imgs,macroTags,microTags} = req.body
 
     const question = await Question.findByPk(id)
     let newLikes = question.likes
@@ -29,18 +29,20 @@ const putUserQuestion = async (req, res, next) => {
     else if (like === "remove") newLikes--
 
     try {
-        newMacroTags=await MacroTag.findAll({where:{id:newMacroTags}})
-        newMicroTags=await MicroTag.findAll({where:{id:newMicroTags}})
+        if(macroTags){
+            macroTags=await MacroTag.findAll({where:{id:macroTags}})
+            let oldMacroTags=await question.getMacroTags()
+            await question.removeMacroTags(oldMacroTags)
+            macroTags=await questionTags(macroTags, MacroTag, question)
+        }
+
+        if(microTags){
+            microTags=await MicroTag.findAll({where:{id:microTags}})
+            let oldMicroTags=await question.getMicroTags()
+            await question.removeMicroTags(oldMicroTags)
+            microTags=await questionTags(microTags, MicroTag, question)
+        }
         
-        let oldMacroTags=await question.getMacroTags()
-        let oldMicroTags=await question.getMicroTags()
-
-        await question.removeMacroTags(oldMacroTags)
-        await question.removeMicroTags(oldMicroTags)
-
-        newMacroTags=await questionTags(newMacroTags, MacroTag, question)
-        newMicroTags=await questionTags(newMicroTags, MicroTag, question)
-
         await Question.update({text, title, likes: newLikes, statusDeleted,imgs},{
             where:{
                 id:parseInt(id)
@@ -48,8 +50,8 @@ const putUserQuestion = async (req, res, next) => {
         })
 
         res.send({
-            newMacroTags,
-            newMicroTags,
+            macroTags,
+            microTags,
             text,
             title,
             likes: newLikes,
