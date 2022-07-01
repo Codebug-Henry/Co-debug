@@ -1,5 +1,8 @@
 const { User, Message } = require("../db.js")
 const nodemailer = require('nodemailer')
+const {
+    GMAIL, GPASS,
+  } = process.env;
 
 const postMessage = async (req, res, next) => {
    const {sub, title, text, email} = req.body
@@ -14,8 +17,8 @@ const postMessage = async (req, res, next) => {
             port: 465,
             secure: true,
             auth: {
-                user: "codebughenry@gmail.com",
-                pass: "wjavomuxsocbxfnu",
+                user: GMAIL,
+                pass: GPASS,
             },
         });
         const mailOptions = {
@@ -55,8 +58,8 @@ const putMessage = async (req, res, next) => {
             port: 465,
             secure: true,
             auth: {
-                user: "codebughenry@gmail.com",
-                pass: "wjavomuxsocbxfnu",
+                user: GMAIL,
+                pass: GPASS,
             },
         });
         const mailOptions = {
