@@ -34,7 +34,7 @@ const postUser = async (req, res, next) => {
                 text: "Usted se ha logeado correctamente a Co-Debug"
             }
 
-            transporter.sendMail(mailOptions, (error, info) => {
+            transporter.sendMail(mailOptions, (error) => {
                 if (error) {
                     res.status(500).send(error.message);
                 } else {
@@ -75,7 +75,7 @@ const putUserInfo = async (req, res, next) => {
                 text: "Su cuenta en Co-Debug ha sido eliminada correctamente"
             }
 
-            transporter.sendMail(mailOptions, (error, info) => {
+            transporter.sendMail(mailOptions, (error) => {
                 if (error) {
                     res.status(500).send(error.message);
                 } else {
