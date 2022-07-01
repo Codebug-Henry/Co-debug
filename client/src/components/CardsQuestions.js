@@ -2,12 +2,12 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getAllQuestions, getSearchQuestions } from "../redux/actions/index.js";
 import CardQuestion from "./CardQuestion.js";
+import Paginated from "./Paginated";
 import style from "./styles/CardsQuestions.module.css";
 
 const CardsQuestions = () => {
   const dispatch = useDispatch();
   const questions = useSelector((state) => state.questions);
-  const pages = useSelector((state) => state.pages);
   const [page, setPage] = useState(1);
   const [search, setSearch] = useState("");
   const [sort, setSort] = useState("desc");
@@ -22,10 +22,10 @@ const CardsQuestions = () => {
     dispatch(getSearchQuestions(e.target.value, sort, page));
   };
 
-  const handleClick = (e) => {
-    e.preventDefault();
-    setPage(parseInt(e.target.value));
-  };
+  // const handleClick = (e) => {
+  //   e.preventDefault();
+  //   setPage(parseInt(e.target.value));
+  // };
 
   const handlerRefresh = () => {
     window.location.reload(false);
@@ -78,32 +78,29 @@ const CardsQuestions = () => {
               id="navbarSupportedContent"
             >
               <ul className="navbar-nav me-auto mb-2 mb-lg-0">
-                <select
-                  value={sort}
-                  onChange={handleSort}
-                  className="nav-item dropdown"
-                >
-                  <span
+
+                <select value={sort} onChange={handleSort} className="nav-item dropdown">
+                  <option
                     className="nav-link dropdown-toggle"
                     id="navbarDropdown"
                     role="button"
                     data-bs-toggle="dropdown"
                     aria-expanded="false"
+                    hidden
                   >
                     Antiguedad
-                  </span>
 
-
+                  </option>
 
                   <option value='desc' className="dropdown-item">
-                      <span className="dropdown-item">
+                      
                       Más nuevas
-                      </span>
+          
                     </option>
                     <option value='asc' className="dropdown-item">
-                      <span className="dropdown-item">
+                      
                       Más antiguas
-                      </span>
+                      
                     </option>
 
                 </select>
@@ -193,18 +190,22 @@ const CardsQuestions = () => {
               text={e.text}
               teachPoints={e.teachPoints}
               picture={e.user.picture}
+              sort={sort}
+              page={page}
             />
           ))}
       </div>
 
-      <div className={style.paginado}>
+      <Paginated page={page} setPage={setPage}/>
+
+      {/* <div className={style.paginado}>
         {pages &&
           pages.map((pag) => (
             <button key={pag} onClick={(e) => handleClick(e)} value={pag}>
               {pag}
             </button>
           ))}
-      </div>
+      </div> */}
     </div>
   );
 };

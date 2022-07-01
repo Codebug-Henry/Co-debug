@@ -70,3 +70,10 @@
 .paginado {
   margin-bottom: 3%;
 }
+
+.boxQuestions {
+  display: flex;
+  flex-direction: column;
+  gap: 2.5vh;
+}
+

@@ -14,14 +14,17 @@ const Favoritas = () => {
 
   const userInfo = useSelector(state=> state.user);
   const favourites = useSelector(state => state.favourites);
-  const dispatch = useDispatch()
-  let cant = favourites.length
+  const dispatch = useDispatch();
+  let cant = favourites.length;
+
 
   const [page, setPage] = useState(1)
 
   useEffect(()=>{
+    if(isAuthenticated){
     dispatch(getFavourites(userInfo.sub, page))
-  }, [userInfo, cant, page, dispatch])
+    }
+  }, [cant, page, dispatch])
 
 
   const { isAuthenticated, isLoading } = useAuth0();
@@ -60,14 +63,16 @@ const Favoritas = () => {
                           return (
                             <CardQuestion
                                 cantAnswers={f.cantAnswers}
-                                // nickname={f.user.nickname}
+                                nickname={f.user.nickname}
                                 key={f.id}
                                 id={f.id}
                                 likes={f.likes}
                                 title={f.title}
                                 text={f.text}
                                 teachPoints={f.teachPoints}
-                                // picture={f.user.picture}
+                                picture={f.user.picture}
+                                page={page}
+                                setPage={setPage}
                               />
                           )
                       }) :

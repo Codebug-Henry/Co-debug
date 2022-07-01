@@ -3,24 +3,23 @@
     align-items:center;
     display:inline-flex;
     justify-content: center;
-    margin-top: 35px;
+    margin-top: 40px;
     font-size: 0.9rem;
 }
 
 .bar button{
-    height:2.1vw;
-    min-height: fit-content;
+    height:25px;
+    min-height: max-content;
     width:2.1vw;
     min-width: fit-content;
     margin-left: 0.3vh;
-    border-radius: 25%;
+    border-radius: 15%;
 }
 
 .number{
     border-radius: 25%;
     text-align: center;
 }
-
 
 .number:hover{
     cursor: pointer;
