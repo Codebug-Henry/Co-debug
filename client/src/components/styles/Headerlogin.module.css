@@ -61,11 +61,12 @@
 }
 
 .userImage {
-  border-radius: 30px;
-  width: 60px;
+  border-radius: 100%;
+  width: 8vh;
+  height: 8vh;
   border-style: solid;
-  border-color:#ffc07c;
-  border-width: 0.7vh;
+  border-color:#f9bf00;
+  border-width: 0.9vh;
   margin:1vh;
 }
 @media screen and (max-width: 600px) {
