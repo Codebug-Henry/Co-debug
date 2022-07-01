@@ -1,13 +1,18 @@
 import React, { useState } from "react";
 import style from "./styles/AlertCard.module.css";
 import { useDispatch } from "react-redux";
+import axios from "axios";
 
-const AlertCard = ({ id,message,title,text,subCreator,questionSub}) => {
+const AlertCard = ({ id,message,title,text,subCreator,questionSub,questionId,setAlertsFlag}) => {
   //const [input, setInput] = useState("");
   //const dispatch = useDispatch();
 
-  const handleSubmit = (e) => {
-    
+  const handleDelete = (e) => {
+    e.preventDefault()
+    let pack={id: questionId, statusDeleted: true}
+    axios.put(`http://localhost:3001/question`, pack)
+    .then(r=>alert("Pregunta borrada"))
+    setAlertsFlag(prevAlertsFlag => !prevAlertsFlag)
   };
 
   const handleChange = (e) => {
@@ -37,7 +42,10 @@ const AlertCard = ({ id,message,title,text,subCreator,questionSub}) => {
               <p>{text}</p>
             </div>
             <div className={`col-lg  ${style.column}`}>
-              <button className={style.button}>
+              <button 
+              className={style.button}
+              onClick={(e)=>handleDelete(e)}
+              >
                 Borrar
               </button>
             </div>

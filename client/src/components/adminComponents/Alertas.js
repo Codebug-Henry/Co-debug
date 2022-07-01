@@ -4,7 +4,7 @@ import style from "./styles/Alertas.module.css"
 import AlertCard from "./AlertCard";
 import Paginated from "../Paginated";
 
-const Alertas = ({alertsPage, setAlertsPage}) => {
+const Alertas = ({alertsPage, setAlertsPage, setAlertsFlag}) => {
 
   const alerts = useSelector((state)=>state.alerts)
   const totalPages = useSelector((state)=>state.totalPages)
@@ -36,6 +36,8 @@ const Alertas = ({alertsPage, setAlertsPage}) => {
                         message={e.message}
                         subCreator={e.subCreator}
                         questionSub={e.question.userSub}
+                        questionId={e.question.id}
+                        setAlertsFlag={setAlertsFlag}
                       />
                     </div>
                   )
