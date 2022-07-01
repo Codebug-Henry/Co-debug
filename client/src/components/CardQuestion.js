@@ -1,6 +1,5 @@
 import React from "react";
 import { Link, useLocation } from "react-router-dom";
-import { useSelector } from "react-redux";
 import style from "./styles/CardQuestion.module.css";
 
 import FavoriteIcon from '@mui/icons-material/Favorite';
@@ -71,6 +70,7 @@ const CardQuestion = ({
     e.preventDefault()
     await dispatch(modifyQuestion({id: id, like: 'remove'}))
     dispatch(getAllQuestions('desc', page))
+  }
     
   //MODAL
   const [open, setOpen] = React.useState(false);
@@ -78,7 +78,7 @@ const CardQuestion = ({
   const handleClose = () => setOpen(false);
 
 
-  const [selected, setSelected] = useState(null);
+  const [selected, setSelected] = React.useState(null);
 
   const handleChangeAlert = (e)=>{
     setSelected(e.target.value)
@@ -140,11 +140,7 @@ const CardQuestion = ({
 
             </div>
             <div>
-              {/* <img src={denuncia} alt="denuncia" className={style.like} /> */}
-              <BlockIcon fontSize="medium" />
-            </div>
-            <div>
-              <img onClick={handleOpen} src={denuncia} alt="denuncia" className={style.delete} />
+              <BlockIcon onClick={handleOpen} className={style.delete} fontSize="medium" />
                   <Modal
                   open={open}
                   onClose={handleClose}
