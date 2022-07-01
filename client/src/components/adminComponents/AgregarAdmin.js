@@ -35,7 +35,7 @@ const AgregarAdmin = ({ setFlag, setNoAdminFlag }) => {
           {admins &&
             admins.map((admin) => {
               return (
-                <div div className={`row`} key={admin.sub}>
+                <div className={`row`} key={admin.sub}>
                   <AdminCard
                     sub={admin.sub}
                     nickname={admin.nickname}

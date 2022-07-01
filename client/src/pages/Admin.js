@@ -15,6 +15,7 @@ import {
   getAllUsers,
   getAllAdmins,
   getAllUsersNoAdmin,
+  getAllAlerts,
 } from "../redux/actions";
 
 //Traemos "user.sub" que contiene el ID unico del usuario conectado para que podamos comparar el id y ver si puede estar acá.
@@ -34,6 +35,9 @@ const Admin = () => {
   //ADMINS
   const [adminPage, setAdminPage] = useState(1);
   const [adminFlag, setAdminFlag] = useState(true);
+  //ALERTS
+  const [alertsPage, setAlertsPage] = useState(1)
+  const [alertsFlag, setAlertsFlag] = useState(true);
 
   const [noAdminFlag, setNoAdminFlag] = useState(true);
 
@@ -41,17 +45,9 @@ const Admin = () => {
   const userInfo = useSelector((state) => state.user);
   const navigate = useNavigate();
 
-  // useEffect(() => {
-  //   dispatch(getAllUsers(usersPage));
-  // }, [dispatch, flag, usersPage]);
-
   useEffect(() => {
     dispatch(getAllUsers(usersPage));
   }, [dispatch, banFlag, usersPage]);
-
-  // useEffect(() => {
-  //   dispatch(getAllMessages(messagePage));
-  // }, [dispatch, messagePage, flag]);
 
   useEffect(() => {
     dispatch(getAllMessages(messagePage));
@@ -64,6 +60,10 @@ const Admin = () => {
   useEffect(() => {
     dispatch(getAllUsersNoAdmin(usersPage));
   }, [dispatch, adminFlag, usersPage]);
+
+  useEffect(()=>{
+    dispatch(getAllAlerts(alertsPage))
+  },[dispatch, alertsFlag, alertsPage])
   // if (isLoading) {
   //   return (
   //     <div>
@@ -76,14 +76,14 @@ const Admin = () => {
     <div className={style.fullContainer}>
       {isAuthenticated ? (
         <div className={style.middleRow}>
-          {!userInfo.statusAdmin ? (
+          {userInfo.statusAdmin ? (
             <div className={`container-fluid ${style.container}`}>
               <div className={`row ${style.middleRow}`}>
                 <div className={`col-lg-2 ${style.col1}`}>
                   <div className="d-grid gap-2 mx-auto">
                     <p className={style.tittleLeft}>Admin Options</p>
                     <button
-                      onClick={() => setOptionSelected(<Alertas />)}
+                      onClick={() => setOptionSelected(<Alertas setAlertsPage={setAlertsPage} alertsPage={alertsPage} />)}
                       className="btn btn-warning"
                       type="button"
                     >

@@ -17,6 +17,7 @@ import messages from "./messages";
 import tags from './tags';
 import admins from "./admins";
 import usersNoAdmin from "./usersNoAdmin";
+import alerts from "./alerts";
 
 export default combineReducers({
   message,
@@ -35,5 +36,6 @@ export default combineReducers({
   messages,
   tags,
   admins,
-  usersNoAdmin
+  usersNoAdmin,
+  alerts
 });
