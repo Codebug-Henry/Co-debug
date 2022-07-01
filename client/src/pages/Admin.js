@@ -84,7 +84,7 @@ const Admin = () => {
                   <div className="d-grid gap-2 mx-auto">
                     <p className={style.tittleLeft}>Admin Options</p>
                     <button
-                      onClick={() => setOptionSelected(<Alertas alertsPage={alertsPage} setAlertsPage={setAlertsPage}  />)}
+                      onClick={() => setOptionSelected(<Alertas alertsPage={alertsPage} setAlertsPage={setAlertsPage} setAlertsFlag={setAlertsFlag} />)}
                       className="btn btn-warning"
                       type="button"
                     >
