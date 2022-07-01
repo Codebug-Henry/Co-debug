@@ -1,7 +1,8 @@
 .total {
   background-color: rgb(255, 255, 255);
   border-radius: 1vh;
-  width:70%;
+  width:85%;
+  height: max-content;
   margin-bottom: 2vh;
   box-shadow:2px 2px 2px 1px rgba(0,0,0,0.2);
   transition-property: all;
@@ -15,54 +16,108 @@
 }
 
 .TitleAndExtrasBox {
+  /* border: solid 1px black; */
   padding-top: 1vh;
-  margin-left: 3vh;
+  margin-left: 2.5vh;
   display: flex;
   align-items: flex-start;
   flex-direction: row;
   justify-content: space-between;
-  gap: 6vh;
 }
-.leftbox {
-  display: flex;
-  justify-content: center;
-  flex-direction: column;
-}
+
 .rightBox {
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: row;
-  margin-right: 3vh;
+  margin-right: 0vh;
+  height: 20px;
+  /* border: solid 1px black; */
 }
+
 .questionText {
-  height: 60%;
+  height: 50%;
   background-color: rgb(255, 245, 211);
   box-shadow:2px 2px 2px 1px rgba(0,0,0,0.2);
   padding: 1vh;
   border-radius: 1vh;
   margin-left: 3vh;
-}
-.answerIt {
-  border-radius: 2vh;
-  margin-bottom: 2vh;
-}
-.likes {
-  margin-left: 3vh;
-  padding: 1vh;
+  margin-bottom: 0.5vh;
 }
 
 .bajoTexto {
   display: flex;
   flex-direction: row;
-  align-items: baseline;
-  gap: 5vh;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding-left: 2vw;
+  height: 5.5vh;
+  padding-top: 0.2vh;
+  /* border: 1px solid black */
 }
+
 .userImage {
   border-radius: 30px;
-  /* width: 60px; */
-  width: 70%;
+  width: 8vh;
   padding-top: 2vh;
 }
 
+.notFav {
+  visibility: hidden;
+  /* display: none */
+}
 
+.fav:hover{
+  cursor: pointer;
+}
+
+.answerIt {
+  border: solid 1px black;
+  border-radius: 1vh;
+  background-color: transparent;
+  position: relative;
+  right: 0%;
+}
+
+.answerIt:hover {
+  cursor: pointer;
+  background-color: rgb(240, 238, 238);
+}
+
+.box{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 400;
+  background-color: palegoldenrod;
+  border: 2px solid #000;
+  box-shadow: 24;
+}
+
+.delete{
+  cursor: pointer;
+}
+
+
+@media screen and (max-width: 670px){
+  .total {
+    width: 100%;
+  }
+
+  .bajoTexto {
+    margin-left: 1vh;
+    height: 9vh;
+    margin-top: 1vh;
+    align-items: flex-start;
+  }
+
+  .userImage {
+    width: 5vh;
+  }
+  .TitleAndExtrasBox {
+    /* border: solid 1px black; */
+    gap: 5vw;
+   }
+}
