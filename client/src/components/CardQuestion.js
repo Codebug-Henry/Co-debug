@@ -64,13 +64,13 @@ const CardQuestion = ({
 
   async function addLike(e){
     e.preventDefault()
-    await dispatch(modifyQuestion({id: id, like: 'add'}))
+    await dispatch(modifyQuestion({id: id, like: 'add', sub: userInfo.sub}))
     dispatch(getAllQuestions(sort, page))
   }
 
   async function removeLike(e){
     e.preventDefault()
-    await dispatch(modifyQuestion({id: id, like: 'remove'}))
+    await dispatch(modifyQuestion({id: id, like: 'remove', sub: userInfo.sub}))
     dispatch(getAllQuestions('desc', page))
   }
     
