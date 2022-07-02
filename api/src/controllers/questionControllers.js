@@ -20,13 +20,31 @@ const deleteUserQuestion = async (req, res, next) => {
 }
 
 const putUserQuestion = async (req, res, next) => {
-    let {id, text, title, like, statusDeleted,imgs,macroTags,microTags} = req.body
+    let {id, text, title, like, statusDeleted,imgs,macroTags,microTags,sub} = req.body
 
     const question = await Question.findByPk(id)
-    let newLikes = question.likes
 
-    if (like === "add") newLikes++
-    else if (like === "remove") newLikes--
+    let user = await User.findByPk(sub)
+    
+    let newLikes = question.likes
+    
+    // const newFavourites = [...user.favourites, id]
+
+    //         await user.update({
+    //             favourites: newFavourites,
+    //             cantFav: user.cantFav + 1
+    //         })
+
+    if (like === "add") {
+        newLikes++
+        let userLiked = [...user.liked,id]
+        await user.update({liked:userLiked})
+    }
+    else if (like === "remove"){
+        newLikes-- 
+        let userLiked = [...user.liked,id].filter(questId=>questId!==id)
+        await user.update({liked:userLiked})
+    } 
 
     try {
         if(macroTags){
