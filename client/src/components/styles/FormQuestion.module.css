@@ -51,6 +51,34 @@
   overflow-y: scroll;
 }
 
+#div3 {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 40%;
+  margin-bottom: 16px;
+}
+
+.btnCode {
+  /* width: 140px; */
+  height: 30px;
+  background-color: #ff8800;
+  border: #c0c0c0 solid 1.8px;
+  border-radius: 10%;
+  color: black;
+  font-family: "Source Serif Pro", serif;
+  font-weight: 300;
+  font-size: 17px;
+  justify-self: center;
+  align-self: center;
+}
+
+.btnCode:hover {
+  cursor: pointer;
+  color: black;
+  background-color: grey;
+}
+
 .error {
   margin-top: 0.5vh;
   font-size: 0.8rem;
