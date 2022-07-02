@@ -5,7 +5,7 @@ import Loading from "../components/Loading.js";
 import Footer from "../components/Footer.js";
 import CardsQuestions from "../components/CardsQuestions.js";
 import CardsQuestsLogOut from "../components/CardsQuestsLogOut.js";
-import TopDiezRanking from "../components/TopDiezRanking";
+// import TopDiezRanking from "../components/TopDiezRanking";
 import { useSelector, useDispatch } from "react-redux";
 import { useEffect } from "react";
 import { getUserInfo } from "../redux/actions";
@@ -65,8 +65,10 @@ const Landing = () => {
                   </div>
                   <div className={`row ${style.rightRowUp}`}>
                     <div>
-                      <p className={style.Titulo}>Hora de interactuar!</p>
-                      <p className={style.subTitulo}>tu sitio de confianza</p>
+                      <p className={style.TituloLog}>¡Hora de interactuar!</p>
+                      <p className={style.subTituloLog}>
+                        Tu sitio de confianza.
+                      </p>
                     </div>
                   </div>
                   <div className={`row ${style.rightRowMidle}`}>
@@ -75,14 +77,16 @@ const Landing = () => {
 
                     <div className={style.datosUser}>
                       <p className={style.estadisticas}>TOP TEN</p>
-                      <p>Mi posición en el Ranking: {position}</p>
-                      <p>Mis Teach-Points: {tpoints}</p>
-                      <p>Cuántas preguntas hice? {preguntas}</p>
-                      <p>Cuántas preguntas respondí? {respuestas}</p>
-                      <p>Mi posición en el Ranking: {position}</p>
-                      <p>Mis Teach-Points: {tpoints}</p>
-                      <p>Cuántas preguntas hice? {preguntas}</p>
-                      <p>Cuántas preguntas respondí? {respuestas}</p>
+                      <p>Juan Román Riquelme 1000 </p>
+                      <p>Diego Armando Maradona 950</p>
+                      <p>Martín Palermo 870</p>
+                      <p>Carlos Tevez 850</p>
+                      <p>Angel Clemente Rojas 810</p>
+                      <p>Francisco Varallo 790</p>
+                      <p>Guillermo Barros Schelotto 760</p>
+                      <p>Jorge Bermúdez 730</p>
+                      <p>Hugo Gatti 700</p>
+                      <p>Antonio Rattín 690</p>
                     </div>
                   </div>
                 </div>
@@ -94,44 +98,22 @@ const Landing = () => {
         <div className={style.total}>
           {/* Acá el contenido para no logueados */}
           <div className={`container-fluid ${style.container}`}>
+            <div className={`row ${style.navBar}`}>
+              <NavBar />
+            </div>
             <div className={`row ${style.middleRow}`}>
-              <div className={`col-lg-6 ${style.colOutLeft}`}>
+              <div className={`col-lg-8 ${style.colOutLeft}`}>
                 <CardsQuestsLogOut />
               </div>
-              <div className={`col-lg-6 ${style.colOutRigth}`}>
+              <div className={`col-lg-4 ${style.colOutRigth}`}>
                 <div className={`container-fluid${style.rigthContainer}`}>
                   <div className={`row ${style.rightRowUp}`}>
                     <div>
-                      <p className={style.Titulo}>Bienvenido a CoDebug!</p>
-                      <p className={style.subTitulo}>tu sitio de confianza</p>
+                      <p className={style.Titulo}>¡Bienvenido a CoDebug!</p>
+                      <p className={style.subTitulo}>Tu sitio de confianza.</p>
                     </div>
                   </div>
-                  <div className={`row ${style.rightRowMidle}`}>
-                    "Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-                    sed do eiusmod tempor incididunt ut labore et dolore magna
-                    aliqua. Ut enim ad minim veniam, quis nostrud exercitation
-                    ullamco laboris nisi ut aliquip ex ea commodo consequat.
-                    Duis aute irure dolor in reprehenderit in voluptate velit
-                    esse cillum dolore eu fugiat nulla pariatur. Excepteur sint
-                    occaecat cupidatat non proident, sunt in culpa qui officia
-                    deserunt mollit anim id est laborum." "Lorem ipsum dolor sit
-                    amet, consectetur adipiscing elit, sed do eiusmod tempor
-                    incididunt ut labore et dolore magna aliqua. Ut enim ad
-                    minim veniam, quis nostrud exercitation ullamco laboris nisi
-                    ut aliquip ex ea commodo consequat. Duis aute irure dolor in
-                    reprehenderit in voluptate velit esse cillum dolore eu
-                    fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-                    proident, sunt in culpa qui officia deserunt mollit anim id
-                    est laborum." "Lorem ipsum dolor sit amet, consectetur
-                    adipiscing elit, sed do eiusmod tempor incididunt ut labore
-                    et dolore magna aliqua. Ut enim ad minim veniam, quis
-                    nostrud exercitation ullamco laboris nisi ut aliquip ex ea
-                    commodo consequat. Duis aute irure dolor in reprehenderit in
-                    voluptate velit esse cillum dolore eu fugiat nulla pariatur.
-                    Excepteur sint occaecat cupidatat non proident, sunt in
-                    culpa qui officia deserunt mollit anim id est laborum."
-                  </div>
-                  <div className={`row ${style.rightRowDown}`}>
+                  <div className={`row ${style.rightRow}`}>
                     "Lorem ipsum dolor sit amet, consectetur adipiscing elit,
                     sed do eiusmod tempor incididunt ut labore et dolore magna
                     aliqua. Ut enim ad minim veniam, quis nostrud exercitation
