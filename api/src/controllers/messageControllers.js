@@ -31,10 +31,9 @@ const postMessage = async (req, res, next) => {
 
         transporter.sendMail(mailOptions, (error) => {
             if (error) {
-                res.status(500).send(error.message);
+                console.log(error.message);
             } else {
                 console.log("Email enviado")
-                res.status(200).json(req.body);
             }
         });
 
@@ -71,10 +70,9 @@ const putMessage = async (req, res, next) => {
 
         transporter.sendMail(mailOptions, (error) => {
             if (error) {
-                res.status(500).send(error.message);
+                console.log(error.message);
             } else {
                 console.log("Email enviado")
-                res.status(200).json(req.body);
             }
         });
 

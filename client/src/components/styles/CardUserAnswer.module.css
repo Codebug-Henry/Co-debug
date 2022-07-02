@@ -1,15 +1,3 @@
-.total{
-    background: coral;
-    margin-bottom: 2vh;
-    display: flex;
-    flex-direction: column;
-}
-
-.info{
-    display: flex;
-    background-color: grey;
-}
-
 .markdown {
   height: 100px;
   background-color: rgb(255, 245, 211);

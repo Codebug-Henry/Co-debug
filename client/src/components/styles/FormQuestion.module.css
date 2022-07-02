@@ -36,14 +36,19 @@
   color: black;
 }
 
-#div2 textarea {
+#div2 textarea,
+.markdown {
   width: 60%;
-  height: 80px;
+  height: 200px;
   border: solid 2px black;
   background-color: white;
   font-family: "Source Serif Pro", serif;
   font-weight: 400;
-  font-size: 14px;
+  font-size: 15px;
+}
+
+.markdown {
+  overflow-y: scroll;
 }
 
 .error {

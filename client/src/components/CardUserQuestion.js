@@ -11,7 +11,8 @@ import CheckIcon from '@mui/icons-material/Check';
 import Tooltip from '@mui/material/Tooltip';
 import { deleteQuestion, getUserQuestions, modifyQuestion,getUserQuestionsOrderer } from '../redux/actions';
 import { useNavigate } from 'react-router-dom';
-
+import ReactMarkdown from 'react-markdown';
+import Highlighter from './Highlighter';
 
 const CardUserQuestion = ({id, title, text, likes, cantAnswers, name, picture, sub, page, setCantFirstLast}) => {
 
@@ -100,7 +101,12 @@ const CardUserQuestion = ({id, title, text, likes, cantAnswers, name, picture, s
             </div>
             <div id={style1 === true ? style.question : style.question2}>
                 <div id={style1 === true ? style.divQuest : style.editFull}>
-                    <p> {text} </p>
+                    {/* <p> {text} </p> */}
+                    <ReactMarkdown
+                        children={text}
+                        className={style.markdown}
+                        components={{ code: Highlighter }}
+                    />
                 </div>
                 
                 <div id={style1 === true ? style.editBtn : style.editFull}>

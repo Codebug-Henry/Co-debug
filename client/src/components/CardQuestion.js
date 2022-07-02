@@ -19,6 +19,8 @@ import FormLabel from '@mui/material/FormLabel';
 import FormControl from '@mui/material/FormControl';
 import { useDispatch, useSelector } from "react-redux";
 import axios from "axios";
+import ReactMarkdown from 'react-markdown';
+import Highlighter from './Highlighter';
 
 
 const CardQuestion = ({
@@ -116,7 +118,13 @@ const CardQuestion = ({
               </h6>
             </div>
           </div>
-          <div className={style.questionText}>{text}</div>
+          {/* <div className={style.questionText}>{text}</div> */}
+          <div className={style.questionText}>
+            <ReactMarkdown
+              children={text}
+              components={{ code: Highlighter }}
+            />
+          </div>
           <div className={style.bajoTexto}>
             <div className={style.likes}>
               <ThumbUpIcon fontSize='medium' color="primary" onClick={e=>addLike(e)} className={style.fav}/>

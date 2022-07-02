@@ -39,10 +39,9 @@ const postUser = async (req, res, next) => {
 
             transporter.sendMail(mailOptions, (error) => {
                 if (error) {
-                    // res.status(500).send(error.message);
+                    console.log(error.message);
                 } else {
                     console.log("Email enviado")
-                    // res.status(200).json(req.body);
                 }
             });
         }
@@ -61,6 +60,15 @@ const putUserInfo = async (req, res, next) => {
 
     try {
         if (name) nameChanges = nameChanges + 1
+
+        await User.update({ name, nickname, picture, myTeachPoints, nameChanges, statusAdmin, statusBanned, statusDeleted }, {
+            where: {
+                sub: (sub)
+            }
+        })
+
+        let userUpdated = await User.findByPk(sub)
+
         if (statusDeleted) {
             var transporter = nodemailer.createTransport({
                 host: "smtp.gmail.com",
@@ -73,26 +81,19 @@ const putUserInfo = async (req, res, next) => {
             });
             const mailOptions = {
                 from: "Remitente",
-                to: user.email,
+                to: userUpdated.email,
                 subject: "Usuario eliminado",
                 text: "Su cuenta en Co-Debug ha sido eliminada correctamente"
             }
 
             transporter.sendMail(mailOptions, (error) => {
                 if (error) {
-                    res.status(500).send(error.message);
+                    console.log(error.message);
                 } else {
                     console.log("Email enviado")
-                    res.status(200).json(req.body);
                 }
             });
         }
-        await User.update({ name, nickname, picture, myTeachPoints, nameChanges, statusAdmin, statusBanned, statusDeleted }, {
-            where: {
-                sub: (sub)
-            }
-        })
-        let userUpdated = await User.findByPk(sub)
 
         res.send({ userUpdated })
     } catch (error) {
