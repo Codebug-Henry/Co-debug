@@ -143,6 +143,13 @@ const FormQuestion = () => {
         navigate('/mispreguntas')
     }
 
+    function handleClick() {
+        setInput({
+            ...input,
+            text: input.text + "\n```javascript\n(escribe tu código javascript aquí)\n```",
+        })
+    }
+
     return (
         <div id={style.all}>
             <div id={style.title}>
@@ -168,13 +175,16 @@ const FormQuestion = () => {
                         }
                     </div>
                     <div id={style.div2}>
-                        <p> Ingresa tu pregunta: </p>
-                            <textarea  type='text'
-                                    value={input.text} 
-                                    name='text' 
-                                    autoComplete='off'
-                                    onChange={handleChange}
-                            />
+                        <div id={style.div3}>
+                            <span> Ingresa tu pregunta: </span>
+                            <button type='button' className={style.btnCode} onClick={handleClick}> Agregar código javascript </button>
+                        </div>
+                        <textarea  type='text'
+                                value={input.text} 
+                                name='text' 
+                                autoComplete='off'
+                                onChange={handleChange}
+                        />
                         {   
                             errors.text && (
                                 <div className={style.error}>
@@ -195,8 +205,10 @@ const FormQuestion = () => {
                         <div className={style.macroTag1}>
                             <div>
                                 <label> MacroTags: </label>
-                                <select value={input.macroTag} className={style.select} onChange={handleSelectMacroTag} >
-                                    <option hidden value='' selected>Selecciona</option>
+                                {/* <select value={input.macroTag} className={style.select} onChange={handleSelectMacroTag} >
+                                    <option hidden value='' selected>Selecciona</option> */}
+                                <select defaultValue='' className={style.select} onChange={handleSelectMacroTag} >
+                                    <option hidden value='' >Selecciona</option>
                                     {
                                         tags && tags.map(tag=>(
                                             <option value={tag.tag} key={tag.id}> {tag.tag} </option>
@@ -235,7 +247,7 @@ const FormQuestion = () => {
                         <div className={style.macroTag1}>
                             <div>
                                 <label> MicroTags: </label>
-                                <select value={input.microTag} className={style.select} onChange={handleSelectMicroTag} >
+                                <select defaultValue='' className={style.select} onChange={handleSelectMicroTag} >
                                     <option hidden value=''>Selecciona</option>
                                     {
                                         input.macroTag.length && tags.filter(t=> input.macroTag.includes(t.tag)).map(e=>e.microTags.map(micro=>(
