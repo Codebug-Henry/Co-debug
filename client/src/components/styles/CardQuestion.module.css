@@ -53,8 +53,8 @@
   justify-content: space-between;
   width: 100%;
   padding-left: 2vw;
-  height: 5.5vh;
-  padding-top: 0.2vh;
+  height: 3.8vh;
+  padding-top: 1.5vh;
   /* border: 1px solid black */
 }
 
@@ -109,8 +109,9 @@
 
   .bajoTexto {
     margin-left: 1vh;
-    height: 9vh;
-    margin-top: 1vh;
+    /* height: 9vh; */
+    /* margin-top: 1vh; */
+    padding-top: 1vh;
     align-items: flex-start;
   }
 
