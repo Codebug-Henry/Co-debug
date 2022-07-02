@@ -77,7 +77,7 @@ const Headerlogin = () => {
           <Link to="/configuracion" className={style.contImagen}>
             <img
               className={style.userImage}
-              src={userInfo.picture}
+              src={user.picture ? user.picture : 'https://www.shareicon.net/data/512x512/2016/08/05/806962_user_512x512.png'}
               alt={userInfo.name}
             />
           </Link>

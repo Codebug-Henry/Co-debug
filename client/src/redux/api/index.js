@@ -32,10 +32,8 @@ export const getAllQuestions = (sort, page) =>
   axios.get(`/questions?sort=${sort}&page=${page}&limit=5`);
 export const getSearchQuestions = (search, sort, page) =>
   axios.get(`/questions?search=${search}&sort=${sort}&page=${page}&limit=5`);
-export const getUserQuestions = (sub, page, search) =>
-  axios.get(`/questions/${sub}?page=${page}&search=${search}&limit=5`);
-export const getUserQuestionsOrderer = (sub, answered, page) =>
-  axios.get(`/questions/${sub}?answered=${answered}&page=${page}&limit=5`); // answered puede ser true o false
+export const getUserQuestions = (sub, sort, page) => axios.get(`/questions/${sub}?answered=${sort}&page=${page}&limit=5`);
+export const getUserQuestionsSearch = (sub, sort, page, search) => axios.get(`/questions/${sub}?answered=${sort}&page=${page}&search=${search}&limit=5`); // answered puede ser true o false
 
 // RUTAS ANSWER
 export const sendAnswer = (answer) => axios.post(`/answer`, answer);
