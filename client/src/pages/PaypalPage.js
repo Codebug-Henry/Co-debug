@@ -12,11 +12,12 @@ const PaypalPage = () => {
 
   return (
     <div>
-      {/* { checkout ? (
+
+     { checkout ? (
         <div>
-          <div className={style.BigPaypalOne}>
-            <div className={style.tituloYTexto}>
-              <p className={style.titulo}>
+          <div >
+            <div >
+              <p >
                 Invirtiendo en Mejoras
               </p>
               <p>
@@ -29,25 +30,25 @@ const PaypalPage = () => {
               </p>
             </div>
 
-            <div className={style.BoxPaypalOne}>
+            <div>
               <Paypal val={val}/>
             </div>
 
-            <div className={style.sdevelopers}>
-            <img src={supportdevelopers}></img>
+            <div>
+            <img></img>
           </div>
         </div>
       </div>
 
           
+      ) : (
 
+      <div >
+        <div>
+          <p>
+            Invirtiendo en Mejoras
+          </p>
 
-
-      ) : ( */}
-
-      <div className={style.BigPaypalOne}>
-        <div className={style.tituloYTexto}>
-          <p className={style.titulo}>Invirtiendo en Mejoras</p>
           <p>
             Primeramente queremos agradecerte por considerar ayudar en nuestro
             proyecto. Nos parece justo contarte un poco para que será utilizada
@@ -59,28 +60,29 @@ const PaypalPage = () => {
             estamos agradecidos por tenerte en esta sección.
           </p>
         </div>
-        <div className={style.BoxPaypalOne}>
-          <div className={style.paypalArea}>
+        <div >
+          <div>
             <p>Powered By</p>
-            <img className={style.paypalLogo} src={paypal} />
+
+            <img/>
           </div>
-          <div className={style.setValor}>
-            <p className={style.plata}>R$ </p>
-            <input
-              className={style.input}
-              onChange={(e) => setVal(parseInt(e.target.value))}
-            ></input>
-            <button onClick={() => setCheckOut(true)}>Donar</button>
+          <div>
+            <p >R$ </p>
+            <input  onChange={(e)=>setVal(parseInt(e.target.value))} ></input>
+            <button onClick={()=> setCheckOut(true)}>Donar</button>
+
           </div>
         </div>
-        <div className={style.sdevelopers}>
-          <img src={supportdevelopers}></img>
+        <div >
+          <img></img>
         </div>
       </div>
 
-      {/* ) 
-      } */}
-      <div className={style.footer}>
+
+         ) 
+      }
+      <div>
+
         <Footer />
       </div>
     </div>
