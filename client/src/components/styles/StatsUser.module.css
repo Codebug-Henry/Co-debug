@@ -1,0 +1,26 @@
+.typo {
+    color: rgb(82, 80, 80);
+    font-style: small;
+    text-align: center;
+  }
+  
+#card1 {
+    background-color: rgb(244, 244, 205);
+    text-align: center;
+    border-radius: 0% 5% 5% 4%;
+    box-shadow: 10px 5px 5px grey;
+}
+  
+.btn {
+    text-align: center;
+    color: rgb(232, 176, 57);
+}
+
+.btn span{
+    color: rgb(82, 80, 80);
+}
+
+.card2 {
+    background-color: rgba(249, 164, 37, 0.788);
+    justify-content: center;  
+}
