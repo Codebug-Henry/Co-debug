@@ -141,6 +141,11 @@
     cursor: pointer;
 }
 
+.markdown {
+    height: 8vh;
+    overflow-y: scroll;
+}
+
 
 @media screen and (max-width: 670px){
     #first span{

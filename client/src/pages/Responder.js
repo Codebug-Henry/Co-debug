@@ -10,6 +10,8 @@ import { getQuestion, sendAnswer } from "../redux/actions/index";
 // import favorito from "../images/favorito2.png";
 import SimpleAnswer from "../components/SimpleAnswer";
 import Loading from "../components/Loading";
+import ReactMarkdown from 'react-markdown';
+import Highlighter from '../components/Highlighter';
 
 const Responder = () => {
   // const { isAuthenticated } = useAuth0();
@@ -82,7 +84,13 @@ const Responder = () => {
                         </p>
                       </div>
                     </div>
-                    <div className={style.questionText}>{question?.text}</div>
+                    {/* <div className={style.questionText}>{question?.text}</div> */}
+                    <div className={style.questionText}>
+                      <ReactMarkdown
+                        children={question?.text}
+                        components={{ code: Highlighter }}
+                      />
+                    </div>
                     {/* <div className={style.bajoTexto}>
                       <div className={style.likes}>
                         {question?.likes}
@@ -139,6 +147,14 @@ const Responder = () => {
                           </div>
                         )}
                       </div>
+                      <div>
+                        <p> Vista previa: </p>
+                        <ReactMarkdown
+                          children={input}
+                          className={style.markdown}
+                          components={{ code: Highlighter }}
+                        />
+                      </div>
                     </form>
                   </div>
 
@@ -162,7 +178,7 @@ const Responder = () => {
                         key={e.id}
                         text={e.text}
                         likes={e.likes}
-                        userSub={e.userSub}
+                        name={e.user.name}
                       />
                     ))}
                 </div>

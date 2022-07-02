@@ -5,6 +5,8 @@ import style from './styles/FormQuestion.module.css';
 import InfoPopper from './InfoPopper';
 import { useNavigate } from 'react-router-dom';
 import deleteIcon from '../images/delete.png';
+import ReactMarkdown from 'react-markdown';
+import Highlighter from './Highlighter';
 
 const FormQuestion = () => {
 
@@ -151,12 +153,12 @@ const FormQuestion = () => {
                 <form id={style.form}>
                     <div id={style.div1}>
                         <p> Elige un título: </p>
-                        <input  type='text'
-                                value={input.title} 
-                                name='title' 
-                                autoComplete='off'
-                                onChange={handleChange}
-                        />      
+                            <input  type='text'
+                                    value={input.title} 
+                                    name='title' 
+                                    autoComplete='off'
+                                    onChange={handleChange}
+                            />
                         {   
                             errors.title && (
                                 <div className={style.error}>
@@ -167,12 +169,12 @@ const FormQuestion = () => {
                     </div>
                     <div id={style.div2}>
                         <p> Ingresa tu pregunta: </p>
-                        <textarea  type='text'
-                                value={input.text} 
-                                name='text' 
-                                autoComplete='off'
-                                onChange={handleChange}
-                        />      
+                            <textarea  type='text'
+                                    value={input.text} 
+                                    name='text' 
+                                    autoComplete='off'
+                                    onChange={handleChange}
+                            />
                         {   
                             errors.text && (
                                 <div className={style.error}>
@@ -180,6 +182,14 @@ const FormQuestion = () => {
                                 </div>
                             )
                         }
+                    </div>
+                    <div>
+                        <p> Vista previa: </p>
+                        <ReactMarkdown 
+                            children={input.text}
+                            className={style.markdown}
+                            components={{code: Highlighter}}
+                        />
                     </div>
                     <div id={style.div3}>
                         <div className={style.macroTag1}>

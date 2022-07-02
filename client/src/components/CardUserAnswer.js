@@ -1,6 +1,9 @@
 import React from 'react'
 import { useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
+import style from "./styles/CardUserAnswer.module.css";
+import ReactMarkdown from 'react-markdown';
+import Highlighter from './Highlighter';
 
 const CardUserAnswer = () => {
   const answers = useSelector(state => state.answers)
@@ -20,7 +23,12 @@ const CardUserAnswer = () => {
             </div>
             <div>
                 <img src={user.picture} alt='Mi foto'/>
-                <h2>{e.text}</h2>
+                {/* <h2>{e.text}</h2> */}
+                <ReactMarkdown
+                  children={e.text}
+                  className={style.markdown}
+                  components={{ code: Highlighter }}
+                />
                 <p>{e.teachPoints}</p>
             </div>
         </div>
