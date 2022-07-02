@@ -16,9 +16,34 @@ const PaypalPage = () => {
     
     <div>
      { checkout ? (
+        <div>
+          <div className={style.BigPaypalOne}>
+        <div className={style.tituloYTexto}>
+          <p className={style.titulo}>
+            Invirtiendo en Mejoras
+          </p>
+          <p>
+            Primeramente queremos agradecerte por considerar ayudar en nuestro proyecto. Nos parece justo contarte un poco para que será utilizada tu donación.
+            Este es un proyecto totalmente gratuito para todo usuario que lo necesite. Independientemente de eso, las mejoras y desarrollo de esta herramienta conlleva muchas horas de trabajo.
+            Queremos poder invertir ese tiempo y el dinero que nos facilitas para poder mejorar todos los aspectos de este sitio.
+            Desde ya estamos agradecidos por tenerte en esta sección.
 
 
-          <Paypal val={val} />
+          </p>
+        </div>
+
+
+          <div className={style.BoxPaypalOne}>
+            <Paypal val={val}/>
+          </div>
+
+        <div className={style.sdevelopers}>
+          <img src={supportdevelopers}></img>
+        </div>
+      </div>
+        </div>
+
+          
 
 
 
