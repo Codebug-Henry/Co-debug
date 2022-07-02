@@ -15,15 +15,16 @@ html {
 .fullContainer {
   display: flex;
   flex-direction: column;
-  border: black solid 1px;
+  /* border: black solid 1px; */
   background-color: lightyellow;
 }
 
 .middleRow {
-  margin-top: 3vh;
-  margin-bottom: 10vh;
+  margin-top: 0.5vh;
+  margin-bottom: 3vh;
 }
 
 .container {
   background-color: lightyellow;
 }
+
