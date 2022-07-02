@@ -1,0 +1,97 @@
+/* searchBar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-top: 2vh;
+  margin-bottom: 2vh;
+} */
+
+/* Tope de cards - donde van las opciones de orden filtro y searchbar */
+
+/* .tags {
+  background-color: aqua;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.searchBar {
+  background-color: darkolivegreen;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.refresh {
+  background-color: darkmagenta;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.orderTime {
+  background-color: gold;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.fixSeachBar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: row;
+  gap: 1%;
+}
+.optionSearch {
+  margin: 4%;
+} */
+
+.optionSearch {
+  margin: 0px;
+  padding: 0px;
+}
+
+/* .fullPage {
+  border: 1px solid red;
+  margin: 0px;
+  width: 100%;
+} */
+
+/* .navbar {
+  width: 100%;
+  float: left;
+  margin: 0 0 1em 0;
+  padding: 0;
+  background-color: #f2f2f2;
+  border-bottom: 1px solid #ccc;
+}
+
+.nav ul {
+  list-style: none;
+  width: 800px;
+  margin: 0 auto;
+  padding: 0;
+}
+
+.nav li {
+  float: left;
+}
+
+.nav li a {
+  display: block;
+  padding: 8px 15px;
+  text-decoration: none;
+  font-weight: bold;
+  color: #069;
+  border-right: 1px solid #ccc;
+}
+
+.nav li:first-child a {
+  border-left: 1px solid #ccc;
+}
+
+.nav li a:hover {
+  color: #c00;
+  background-color: #fff;
+} */

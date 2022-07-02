@@ -27,10 +27,6 @@ html {
   background-color: lightyellow;
 }
 
-.col1 {
-  /* border: 1px black solid; */
-}
-
 .col2 {
   display: flex;
   /* border: 1px black solid; */

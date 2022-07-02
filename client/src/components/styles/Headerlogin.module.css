@@ -1,5 +1,13 @@
 .container {
   background-color: lightyellow;
+  /* margin: 1.5%; */
+  padding: 1.5%;
+}
+
+.col1 {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
 }
 
 .col2 {
@@ -21,11 +29,11 @@
 }
 
 .logo {
-  width: 25vw;
+  width: 13vw;
 }
 
 .logo:hover {
-  width: 25vw;
+  width: 13vw;
   opacity: 70%;
 }
 
@@ -65,9 +73,9 @@
   width: 8vh;
   height: 8vh;
   border-style: solid;
-  border-color:#f9bf00;
+  border-color: #f9bf00;
   border-width: 0.9vh;
-  margin:1vh;
+  margin: 1vh;
 }
 @media screen and (max-width: 600px) {
   .userImage {
@@ -87,8 +95,8 @@
 .linkDesp {
   text-decoration: none;
 }
-.imgNameLogOut{
+.imgNameLogOut {
   display: flex;
   align-items: center;
-  justify-content: center
+  justify-content: center;
 }
