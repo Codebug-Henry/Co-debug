@@ -1,24 +1,18 @@
 import React from 'react';
-import { useDispatch } from 'react-redux';
-import { getUserQuestions } from '../redux/actions';
 import style from './styles/SearchBar.module.css'
 
 
-export default function SearchBar({userInfo, page, input, setInput}) {
-
-    const dispatch = useDispatch();
+export default function SearchBar({setInput, setPage}) {
     
     const onChangeSearch = (e)=>{
-        setInput(e.target.value);
-        document.getElementById("selectAnswered").getElementsByTagName('option')[0].selected = 'selected';
-        dispatch(getUserQuestions(userInfo.sub, page, e.target.value,));
+      setPage(1)
+      setInput(e.target.value);        
     }
 
-    const handleRestart = (e)=>{
+    const handleRestart = (e)=> {
         e.preventDefault();
         setInput("");
-        document.getElementById("selectAnswered").getElementsByTagName('option')[0].selected = 'selected';
-        dispatch(getUserQuestions(userInfo.sub, page, ''));
+        setPage(1)
     }
 
 
@@ -27,14 +21,13 @@ export default function SearchBar({userInfo, page, input, setInput}) {
           <div className={style.searchBar}>
             <input
               type="text"
-              value={input}
-              onChange={(e) => onChangeSearch(e)}
+              onChange={onChangeSearch}
               placeholder="Buscar..."
               autoComplete='off'
               className={style.input1}
               id='searchInput'
             />
-            <button onClick={(e) => handleRestart(e)} value={input}>
+            <button onClick={handleRestart}>
               Reiniciar
             </button>
           </div>

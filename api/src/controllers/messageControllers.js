@@ -1,35 +1,34 @@
-const { User, Message } = require("../db.js")
-const nodemailer = require('nodemailer')
-const {
-    GMAIL, GPASS,
-  } = process.env;
+const { User, Message } = require("../db.js");
+const nodemailer = require("nodemailer");
+const { GMAIL, GPASS } = process.env;
 
 const postMessage = async (req, res, next) => {
-   const {sub, title, text, email} = req.body
-    
-    try {
-        const user = await User.findByPk(sub)
-        const newMessage = await Message.create({title, text})
-        newMessage.setUser(user)
+  const { sub, title, text, email } = req.body;
 
-        var transporter = nodemailer.createTransport({
-            host: "smtp.gmail.com",
-            port: 465,
-            secure: true,
-            auth: {
-                user: GMAIL,
-                pass: GPASS,
-            },
-        });
-        const mailOptions = {
-            from: "Remitente",
-            to: email,
-            subject: title,
-            text: `Tu consulta se envio correctamente con el siguiente mensaje:
-            ${text}`
-        }
+  try {
+    const user = await User.findByPk(sub);
+    const newMessage = await Message.create({ title, text, email });
+    newMessage.setUser(user);
 
-        transporter.sendMail(mailOptions, (error) => {
+
+    var transporter = nodemailer.createTransport({
+      host: "smtp.gmail.com",
+      port: 465,
+      secure: true,
+      auth: {
+        user: GMAIL,
+        pass: GPASS,
+      },
+    });
+    const mailOptions = {
+      from: "Remitente",
+      to: email,
+      subject: title,
+      text: `Tu consulta se envio correctamente con el siguiente mensaje:
+            ${text}`,
+    };
+
+    transporter.sendMail(mailOptions, (error) => {
             if (error) {
                 console.log(error.message);
             } else {
@@ -37,38 +36,39 @@ const postMessage = async (req, res, next) => {
             }
         });
 
-        res.send({user, ...newMessage.dataValues})
-
-   } catch (error) {
-        next(error)
-   }
-}
+    res.send({ user, ...newMessage.dataValues });
+  } catch (error) {
+    next(error);
+  }
+};
 
 const putMessage = async (req, res, next) => {
-    const {id, title, answer, email} = req.body
-     
-     try {
-         const message = await Message.findByPk(id)
-         console.log(message);
-         await message.update({answer})
+  const { id, title, answer, email } = req.body;
 
-         var transporter = nodemailer.createTransport({
-            host: "smtp.gmail.com",
-            port: 465,
-            secure: true,
-            auth: {
-                user: GMAIL,
-                pass: GPASS,
-            },
-        });
-        const mailOptions = {
-            from: "Remitente",
-            to: email,
-            subject: title,
-            text: answer
-        }
+  try {
+    const message = await Message.findByPk(id);
+    console.log("T", title, "I", id, "A", answer, "E", email, "M", message);
+    await message.update({ answer });
+);
 
-        transporter.sendMail(mailOptions, (error) => {
+    var transporter = nodemailer.createTransport({
+      host: "smtp.gmail.com",
+      port: 465,
+      secure: true,
+      auth: {
+        user: GMAIL,
+        pass: GPASS,
+      },
+    });
+    const mailOptions = {
+      from: "Remitente",
+      to: email,
+      subject: title,
+      text: answer,
+    };
+
+
+    transporter.sendMail(mailOptions, (error) => {
             if (error) {
                 console.log(error.message);
             } else {
@@ -76,14 +76,13 @@ const putMessage = async (req, res, next) => {
             }
         });
 
-         res.send({message})
- 
-    } catch (error) {
-         next(error)
-    }
- }
+    res.send({ message });
+  } catch (error) {
+    next(error);
+  }
+};
 
 module.exports = {
-    postMessage,
-    putMessage
-}
+  postMessage,
+  putMessage,
+};

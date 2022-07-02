@@ -37,7 +37,7 @@ const Admin = () => {
   const [adminPage, setAdminPage] = useState(1);
   const [adminFlag, setAdminFlag] = useState(true);
   //ALERTS
-  const [alertsPage, setAlertsPage] = useState(1)
+  const [alertsPage, setAlertsPage] = useState(1);
   const [alertsFlag, setAlertsFlag] = useState(true);
 
   const [noAdminFlag, setNoAdminFlag] = useState(true);
@@ -64,7 +64,9 @@ const Admin = () => {
 
   useEffect(()=>{
     dispatch(getAllAlerts(alertsPage))
+    console.log(alertsFlag)
   }, [dispatch, alertsFlag, alertsPage])
+
   // if (isLoading) {
   //   return (
   //     <div>
@@ -77,14 +79,22 @@ const Admin = () => {
     <div className={style.fullContainer}>
       {isAuthenticated ? (
         <div className={style.middleRow}>
-          {userInfo.statusAdmin ? (
+          {!userInfo.statusAdmin ? (
             <div className={`container-fluid ${style.container}`}>
               <div className={`row ${style.middleRow}`}>
                 <div className={`col-lg-2 ${style.col1}`}>
                   <div className="d-grid gap-2 mx-auto">
                     <p className={style.tittleLeft}>Admin Options</p>
                     <button
-                      onClick={() => setOptionSelected(<Alertas alertsPage={alertsPage} setAlertsPage={setAlertsPage} setAlertsFlag={setAlertsFlag} />)}
+                      onClick={() =>
+                        setOptionSelected(
+                          <Alertas
+                            alertsPage={alertsPage}
+                            setAlertsPage={setAlertsPage}
+                            setAlertsFlag={setAlertsFlag}
+                          />
+                        )
+                      }
                       className="btn btn-warning"
                       type="button"
                     >
@@ -139,7 +149,11 @@ const Admin = () => {
                 </div>
 
                 <div className={`col-lg-10 ${style.col2}`}>
-                  {optionSelected ? optionSelected : <p>Panel de administrador</p>}
+                  {optionSelected ? (
+                    optionSelected
+                  ) : (
+                    <p>Panel de administrador</p>
+                  )}
                 </div>
               </div>
             </div>

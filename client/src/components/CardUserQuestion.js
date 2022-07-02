@@ -9,12 +9,12 @@ import TextField from '@mui/material/TextField';
 import Avatar from '@mui/material/Avatar';
 import CheckIcon from '@mui/icons-material/Check';
 import Tooltip from '@mui/material/Tooltip';
-import { deleteQuestion, getUserQuestions, modifyQuestion,getUserQuestionsOrderer } from '../redux/actions';
+import { deleteQuestion, modifyQuestion } from '../redux/actions';
 import { useNavigate } from 'react-router-dom';
 import ReactMarkdown from 'react-markdown';
 import Highlighter from './Highlighter';
 
-const CardUserQuestion = ({id, title, text, likes, cantAnswers, name, picture, sub, page, setCantFirstLast}) => {
+const CardUserQuestion = ({id, title, text, likes, cantAnswers, name, picture, setCantFirstLast, setIsModify}) => {
 
     const dispatch = useDispatch();
     const questions = useSelector(state=> state.userQuestions);
@@ -33,8 +33,8 @@ const CardUserQuestion = ({id, title, text, likes, cantAnswers, name, picture, s
 
     function handleDeleteQuestion(e){
         e.preventDefault();
-        // document.getElementById("selectAnswered").getElementsByTagName('option')[0] = 'selected'
-        dispatch(deleteQuestion({id: id, statusDeleted: true}));
+        setIsModify(true)
+        dispatch(deleteQuestion({id: id, statusDeleted: true}, setIsModify));
         setCantFirstLast([questions.length, questions[1], questions[4]])
     }
 
@@ -43,18 +43,10 @@ const CardUserQuestion = ({id, title, text, likes, cantAnswers, name, picture, s
         toRender()
     }
 
-    async function handleConfirmQuestion(e){
+    const handleConfirmQuestion = (e) => {
         e.preventDefault();
-        await dispatch(modifyQuestion(newQuestion));
-        if(document.getElementById("selectAnswered").value === 'false'){
-            dispatch(getUserQuestionsOrderer(sub, 'false', page));
-          }
-        if(document.getElementById("selectAnswered").value === 'true'){
-        dispatch(getUserQuestionsOrderer(sub, 'true', page));
-        }
-        if(document.getElementById("selectAnswered").value === 'All'){
-          dispatch(getUserQuestions(sub, page, ''))
-        }
+        setIsModify(true)
+        dispatch(modifyQuestion(newQuestion, setIsModify));
         toRender()
     }
 
@@ -129,7 +121,7 @@ const CardUserQuestion = ({id, title, text, likes, cantAnswers, name, picture, s
                     <CheckIcon  fontSize='large' 
                                 color='primary' 
                                 cursor='pointer'
-                                onClick={e=> handleConfirmQuestion(e)}/> 
+                                onClick={handleConfirmQuestion}/> 
                 </div>
             </div>
             
