@@ -1,16 +1,15 @@
-//import { useDispatch } from 'react-redux'
-import { useState } from "react";
 import React from "react";
 import style from "./styles/CardQuestion.module.css";
-import like from "../images/like2.png";
-import dislike from "../images/dislike2.png";
-import denuncia from "../images/denuncia2.png";
-import favorito from "../images/favorito2.png";
 import { useAuth0 } from "@auth0/auth0-react";
+import FavoriteIcon from '@mui/icons-material/Favorite';
+import BlockIcon from '@mui/icons-material/Block';
+import ThumbUpIcon from '@mui/icons-material/ThumbUp';
+import ThumbDownIcon from '@mui/icons-material/ThumbDown';
 import ReactMarkdown from 'react-markdown';
 import Highlighter from './Highlighter';
 
-const CardQuestLogOut = ({
+
+const CardQuestionLogOut = ({
   cantAnswers,
   nickname,
   picture,
@@ -19,23 +18,20 @@ const CardQuestLogOut = ({
   text,
   teachPoints,
 }) => {
+
   const { loginWithRedirect } = useAuth0();
-
-  //const dispatch = useDispatch()
-
-  const [likeOnScreen] = useState(likes);
 
   return (
     <div className={`container-fluid ${style.total}`}>
       <div className={`row ${style.fila}`}>
-        <div className={`col-lg-2 ${style.pictureBox}`}>
+        <div className={`col-lg-1 ${style.pictureBox}`}>
           <img
             className={style.userImage}
             src={picture}
-            alt="imagen de usuario"
+            alt="imagen user"
           />
         </div>
-        <div className={`col-lg-8 ${style.leftBox}`}>
+        <div className={`col-lg-11 ${style.leftBox}`}>
           <div className={style.TitleAndExtrasBox}>
             <div className={style.userPreg}>
               <h6>{nickname} pregunta:</h6>
@@ -49,7 +45,6 @@ const CardQuestLogOut = ({
               </h6>
             </div>
           </div>
-          {/* <div className={style.questionText}>{text}</div> */}
           <div className={style.questionText}>
             <ReactMarkdown
               children={text}
@@ -58,50 +53,35 @@ const CardQuestLogOut = ({
           </div>
           <div className={style.bajoTexto}>
             <div className={style.likes}>
-              {likeOnScreen}
-              <img
-                onClick={() => loginWithRedirect()}
-                src={like}
-                alt="mano arriba"
-                className={style.like}
-              />
-              <img
-                onClick={() => loginWithRedirect()}
-                src={dislike}
-                alt="mano abajo"
-                className={style.dislike}
-              />
+              <ThumbUpIcon fontSize='medium' color="primary" onClick={() => loginWithRedirect()} className={style.fav}/>
+              {likes}
+              <ThumbDownIcon fontSize='medium' color="error" onClick={() => loginWithRedirect()} className={style.fav} />
             </div>
 
             <div>
-              <img
-                onClick={() => loginWithRedirect()}
-                src={favorito}
-                alt="favorito"
-                className={style.like}
-              />
+              {/* <img src={favorito} alt="favorito" className={style.like} /> */}
+                <FavoriteIcon fontSize="medium" 
+                              color='error'
+                              id='favorite'
+
+                              className={style.fav}
+                              onClick={() => loginWithRedirect()} />                
+
             </div>
             <div>
-              <img
-                onClick={() => loginWithRedirect()}
-                src={denuncia}
-                alt="denuncia"
-                className={style.like}
-              />
+              <BlockIcon onClick={() => loginWithRedirect()} className={style.delete} fontSize="medium" />
             </div>
+            <div>
+                <button className={style.answerIt} onClick={() => loginWithRedirect()} >Responder</button>
+             </div>
           </div>
         </div>
-        <div className={`col-lg-2 ${style.rightBox}`}>
-          <button
-            onClick={() => loginWithRedirect()}
-            className={style.answerIt}
-          >
-            Responder
-          </button>
-        </div>
+      </div>
+      <div className={`col-lg-0 ${style.rightBox}`}>
+       
       </div>
     </div>
   );
 };
 
-export default CardQuestLogOut;
+export default CardQuestionLogOut;
