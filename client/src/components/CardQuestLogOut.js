@@ -7,6 +7,8 @@ import dislike from "../images/dislike2.png";
 import denuncia from "../images/denuncia2.png";
 import favorito from "../images/favorito2.png";
 import { useAuth0 } from "@auth0/auth0-react";
+import ReactMarkdown from 'react-markdown';
+import Highlighter from './Highlighter';
 
 const CardQuestLogOut = ({
   cantAnswers,
@@ -47,7 +49,13 @@ const CardQuestLogOut = ({
               </h6>
             </div>
           </div>
-          <div className={style.questionText}>{text}</div>
+          {/* <div className={style.questionText}>{text}</div> */}
+          <div className={style.questionText}>
+            <ReactMarkdown
+              children={text}
+              components={{ code: Highlighter }}
+            />
+          </div>
           <div className={style.bajoTexto}>
             <div className={style.likes}>
               {likeOnScreen}
@@ -88,7 +96,7 @@ const CardQuestLogOut = ({
             onClick={() => loginWithRedirect()}
             className={style.answerIt}
           >
-            Logueate para responder :D
+            Responder
           </button>
         </div>
       </div>

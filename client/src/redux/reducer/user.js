@@ -1,4 +1,4 @@
-import { GET_USER_INFO, DELETE_USER } from "../actions/actionTypes"
+import { GET_USER_INFO, MODIFY_USER, DELETE_USER } from "../actions/actionTypes"
 
 export default function user (state = {}, action){
     switch(action.type){
@@ -6,6 +6,8 @@ export default function user (state = {}, action){
             return action.payload
         case DELETE_USER:
             return {}
+        case MODIFY_USER:
+            return action.payload
         default:
             return state            
     }

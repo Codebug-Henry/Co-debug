@@ -1,0 +1,8 @@
+.download {
+    cursor: pointer;
+    z-index: -1; 
+    position: relative;
+    float: right;
+    top: 1vh; 
+    right: 0.5vw
+}

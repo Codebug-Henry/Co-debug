@@ -49,8 +49,8 @@ html{
 }
 .questionText {
   background-color: rgb(255, 255, 255);
-  font-weight: bold;
-  font-size: 200%;
+  /* font-weight: bold; */
+  /* font-size: 200%; */
   padding: 1vh;
   border-radius: 1vh;
   margin-left: 3vh;
@@ -79,13 +79,29 @@ html{
 
 #text textarea {
   width: 100%;
-  height: 30%;
+  height: 100px;
   border: solid 2px grey;
   background-color: white;
+  font-family: "Source Serif Pro", serif;
+  font-weight: 400;
+  font-size: 15px;
+}
+
+.markdown {
+  width: 100%;
+  height: 100px;
+  border: solid 2px grey;
+  background-color: white;
+  font-family: "Source Serif Pro", serif;
+  font-weight: 400;
+  font-size: 15px;
+  padding: 2px;
+  overflow-y: scroll;
 }
 
 .button {
   display: flex;
   align-items: center;
   height: 30%;
+  margin-top: 20px;
 }

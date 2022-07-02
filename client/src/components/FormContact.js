@@ -1,11 +1,11 @@
 import React, { useState } from "react";
-// import { useDispatch, useSelector } from 'react-redux';
-// import {getUserInfo, sendConsult? } from '../redux/actions/index';
+import { postMessage } from "../redux/actions/index";
+import { useSelector, useDispatch } from "react-redux";
 import style from "./styles/FormContact.module.css";
 
 const FormContact = () => {
-  // const dispatch = useDispatch()
-  // let user = useSelector(state=> state.user);
+  const dispatch = useDispatch();
+  let user = useSelector((state) => state.user);
 
   // useEffect(()=> {
   //     dispatch(getUserInfo());
@@ -14,12 +14,10 @@ const FormContact = () => {
   function validate(input) {
     let errors = {};
     if (!input.title) errors.title = "Se requiere un título";
-    if (input.title && !/^[A-Za-z0-9\s]+$/.test(input.title))
-      errors.title = "El título debe tener solo letras, números y espacios.";
     if (!input.email) errors.email = "Se requiere un email";
     if (
       input.email &&
-      !/^[a-zA-Z0-9.! #$%&'*+/=? ^_`{|}~-]+@[a-zA-Z0-9-]+(?:\. [a-zA-Z0-9-]+)*$/.test(
+      !/^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(
         input.email
       )
     )
@@ -33,11 +31,9 @@ const FormContact = () => {
   }
 
   const [input, setInput] = useState({
-    sub: 1,
-    // sub: user.sub,
-    email: "",
-    title: "",
-    text: "",
+    email: localStorage.emailContact || "",
+    title: localStorage.titleContact || "",
+    text: localStorage.textContact || "",
   });
 
   const [errors, setErrors] = useState({});
@@ -53,19 +49,28 @@ const FormContact = () => {
         [e.target.name]: e.target.value,
       })
     );
+    const property = e.target.name + "Contact";
+    localStorage[property] = e.target.value;
   }
 
   function handleSubmit(e) {
     e.preventDefault();
-    console.log(input);
-    // dispatch(sendQuestion(input))
-    alert("Actividad creada");
+    let message = {
+      sub: user.sub,
+      email: input.email,
+      title: input.title,
+      text: input.text,
+    };
+    dispatch(postMessage(message));
+    alert("Mensaje enviado");
     setInput({
       email: "",
       title: "",
       text: "",
     });
-    // ver donde redirigir
+    localStorage.removeItem("emailContact");
+    localStorage.removeItem("titleContact");
+    localStorage.removeItem("textContact");
   }
 
   return (
@@ -134,7 +139,7 @@ const FormContact = () => {
             }
             className={style.btn}
           >
-            Crear Consulta
+            Enviar mensaje
           </button>
         </form>
       </div>

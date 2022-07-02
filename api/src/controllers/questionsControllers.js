@@ -72,7 +72,6 @@ const getAllQuestions = async (req, res, next) => {
             searchArr.forEach((word, i, arr) => {
                 arr[i] = word ? `%${word}%` : ""
             })
-            console.log(searchArr)
             condition = {
                 ...condition,
                 [Op.or]:
@@ -165,14 +164,14 @@ const putFavourites = async (req, res, next) => {
         
         if (add === "true") {
 
-            const newFavourites = [...user.favourites, id]
+            const newFavourites = [...user.favourites, parseInt(id)]
 
             await user.update({
                 favourites: newFavourites,
                 cantFav: user.cantFav + 1
             })
 
-            res.send("Question added to favourites")
+            res.send(newFavourites)
 
         } else {
 

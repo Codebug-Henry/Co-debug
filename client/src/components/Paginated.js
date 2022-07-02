@@ -1,50 +1,119 @@
-import React from 'react';
-import { useSelector } from 'react-redux';
-import style from './styles/Paginated.module.css'
+import React from "react";
+import { useSelector } from "react-redux";
+import style from "./styles/Paginated.module.css";
 
+export default function Paginated({ page, setPage }) {
+  const pages = useSelector((state) => state.pages);
+  const totalPages = useSelector((state) => state.totalPages);
+  
+  const handleClick = (e) => {
+    e.preventDefault();
+    setPage(parseInt(e.target.value));
+  };
 
-export default function Paginated({page, setPage, totalPages}) {
+  function handlePrev(e) {
+    e.preventDefault();
+    setPage((prev) => prev - 1);
+  }
 
-    const pages = useSelector((state) => state.pages);
+  function handleNext(e) {
+    e.preventDefault();
+    setPage((prev) => prev + 1);
+  }
 
-    const handleClick = (e) => {
-        e.preventDefault();
-        setPage(parseInt(e.target.value));
-    };
+  return (
+    <div className={style.bar}>
+      <ul>
+        <button
+          className={
+            page === 1 || pages.length === 0 ? style.notDisplay : style.prev
+          }
+          onClick={(e) => handlePrev(e)}
+        >
+          {" "}
+          Anterior{" "}
+        </button>
+        <button
+          className={page > 3 ? style.one : style.notDisplay}
+          onClick={(e) => setPage(1)}
+        >
+          {" "}
+          1{" "}
+        </button>
+        <button className={page > 4 ? style.firstDot : style.notDisplay}>
+          {" "}
+          ...{" "}
+        </button>
 
-    function handlePrev(e){
-        e.preventDefault();
-        setPage(prev => prev -1);
-    }
+        {page && page > 2 ? (
+          <button
+            className={style.number}
+            onClick={(e) => handleClick(e)}
+            value={page - 2}
+          >
+            {page - 2}
+          </button>
+        ) : null}
+        {page && page > 1 ? (
+          <button
+            className={style.number}
+            onClick={(e) => handleClick(e)}
+            value={page - 1}
+          >
+            {page - 1}
+          </button>
+        ) : null}
+        <button
+          className={style.active}
+          onClick={(e) => handleClick(e)}
+          value={page}
+        >
+          {page}
+        </button>
+        {page && page + 1 <= totalPages ? (
+          <button
+            className={style.number}
+            onClick={(e) => handleClick(e)}
+            value={page + 1}
+          >
+            {page + 1}
+          </button>
+        ) : null}
+        {page && page + 2 <= totalPages ? (
+          <button
+            className={style.number}
+            onClick={(e) => handleClick(e)}
+            value={page + 2}
+          >
+            {page + 2}
+          </button>
+        ) : null}
 
-    function handleNext(e){
-        e.preventDefault();
-        setPage(prev => prev +1);
-    }
-
-    console.log(totalPages)
-    return(
-        <div className={style.bar}>
-            <ul> 
-                <button className={page - 1 === 0 || pages.length === 0 ? style.not : style.prev} onClick={e=>handlePrev(e)} > Anterior </button>
-                <button className={page > 3 ? style.one : style.not} onClick={e=>setPage(1)}> 1 </button>
-                <button className={page > 4 ?style.firstDot : style.not}> ... </button>
-                {pages &&
-                    pages.map((pag) =>(
-                        <li key={pag}>
-                            <button id={style.number} 
-                                    className={page === pag ? style.active : null} 
-                                    onClick={(e)=> handleClick(e)}
-                                    value={pag}> 
-                                {pag}
-                            </button>
-                        </li>
-                    ))
-                }
-                <button className={page < totalPages -3 ? style.lastDot : style.not}> ... </button>
-                <button className={page < totalPages -2 ? style.last : style.not} onClick={e=>setPage(totalPages)}> {totalPages} </button>
-                <button className={page === totalPages || pages.length === 0 ? style.not : style.next} onClick={e=> handleNext(e)} > Siguiente </button>
-            </ul>
-        </div>
-    )
+        <button
+          className={page < totalPages - 3 ? style.lastDot : style.notDisplay}
+        >
+          {" "}
+          ...{" "}
+        </button>
+        <button
+          className={page < totalPages - 2 ? style.last : style.notDisplay}
+          onClick={(e) => setPage(totalPages)}
+        >
+          {" "}
+          {totalPages}{" "}
+        </button>
+        <button
+          className={
+            page === totalPages || pages.length === 0
+              ? style.notDisplay
+              : style.next
+          }
+          onClick={(e) => handleNext(e)}
+        >
+          {" "}
+          Siguiente{" "}
+        </button>
+      </ul>
+    </div>
+  );
 }

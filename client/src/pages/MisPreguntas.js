@@ -6,35 +6,37 @@ import Footer from "../components/Footer.js";
 import CardUserQuestion from "../components/CardUserQuestion";
 import FilterBar from "../components/FilterBar";
 import SearchBar from '../components/SearchBar';
-import { getUserQuestions, getUserQuestionsOrderer } from "../redux/actions";
+import { getUserQuestions, getUserQuestionsSearch } from "../redux/actions";
 import FilterAltIcon from '@mui/icons-material/FilterAlt';
 import Paginated from "../components/Paginated";
+import Loading from "../components/Loading";
 
 const MisPreguntas = () => {
-  const { isAuthenticated } = useAuth0();
-
-  const userInfo = useSelector(state=> state.user);
+  const { isAuthenticated, isLoading } = useAuth0();
+  const user = useSelector(state=> state.user);
   const questions = useSelector(state => state.userQuestions);
   const dispatch = useDispatch();
-  const pages = useSelector((state) => state.pages);
   const totalPages = useSelector(state => state.totalPages);
   const [input, setInput] = useState("");
   const [page, setPage] = useState(1)
-  const [cantFirstLast, setCantFirstLast] = useState([questions.length, questions[1], questions[4]])
+  const [sort, setSort] = useState('All')
+  const [cantFirstLast, setCantFirstLast] = useState([questions.length, questions[0], questions[4]])
+  const [isModify, setIsModify] = useState(false)
   
-
   useEffect( () =>{
+      if(page > 1 && page > totalPages) setPage(prev => prev-1)
+      if(input.length > 0) {
+        dispatch(getUserQuestionsSearch(user.sub, sort, page, input))
+      } else dispatch(getUserQuestions(user.sub, sort, page))
+  }, [dispatch, sort, cantFirstLast, page, user.sub, totalPages, input, isModify])
 
-      if(document.getElementById("selectAnswered") && document.getElementById("selectAnswered").value === 'false'){
-        dispatch(getUserQuestionsOrderer(userInfo.sub, 'false', page));
-      }
-      if(document.getElementById("selectAnswered") && document.getElementById("selectAnswered").value === 'true'){
-        dispatch(getUserQuestionsOrderer(userInfo.sub, 'true', page));
-      }
-      else{
-      dispatch(getUserQuestions(userInfo.sub, page, ''))
-      }
-  }, [cantFirstLast, page, dispatch, userInfo.sub])
+  if (isLoading) {
+    return (
+      <div>
+        <Loading />
+      </div>
+    );
+  }
 
   return (
     <div>
@@ -49,9 +51,11 @@ const MisPreguntas = () => {
                     <p> Mis preguntas</p>
                   </div>
                   <div id={style.filters}>
-                      <FilterAltIcon fontSize='medium'/>
-                      <SearchBar page={page} userInfo={userInfo} pages={pages} input={input} setInput={setInput} />
-                      <FilterBar page={page} setPage={setPage} pages={pages} setInput={setInput}/>
+                      <div className={style.filterIcon}>
+                        <FilterAltIcon fontSize='medium' />
+                      </div>
+                      <SearchBar setInput={setInput} setPage={setPage} />
+                      <FilterBar sort={sort} setSort={setSort} setPage={setPage} />
                   </div>
                   <div id={style.myQuestions}>
                     {
@@ -59,8 +63,7 @@ const MisPreguntas = () => {
                       questions.map(q => {
                           return (
                             <CardUserQuestion key={q.id} id={q.id} title={q.title} text={q.text} likes={q.likes} cantAnswers={q.cantAnswers} 
-                                              name={userInfo.nickname} picture={userInfo.picture} sub={userInfo.sub} page={page}
-                                              setCantFirstLast={setCantFirstLast}/>
+                                              name={user.nickname} picture={user.picture} setCantFirstLast={setCantFirstLast} setIsModify={setIsModify} />
                           )
                       }) :
                       <div>

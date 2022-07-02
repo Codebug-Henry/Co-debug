@@ -7,10 +7,11 @@ import { useAuth0 } from "@auth0/auth0-react";
 import style from "./styles/Headerlogin.module.css";
 import { sendUserInfo } from "../redux/actions";
 import Header from "./Header";
+import HeaderLoading from "./HeaderLoading";
 
 const Headerlogin = () => {
   const { user } = useAuth0();
-  const { isAuthenticated } = useAuth0();
+  const { isAuthenticated, isLoading } = useAuth0();
   const { logout } = useAuth0();
   const dispatch = useDispatch();
   const userInfo = useSelector((state) => state.user);
@@ -30,113 +31,129 @@ const Headerlogin = () => {
     setWidth(window.innerWidth);
   };
 
+  const handleLogOut = () => {
+    logout()
+    localStorage.clear()
+  };
+
+
+  if (isLoading) {
+    return (
+      <div>
+        <HeaderLoading />
+      </div>
+    );
+  }
+
   return isAuthenticated ? (
     <div className={`container-fluid ${style.container}`}>
       <div className={`row ${style.row1}`}>
-        <div className={`col-lg ${style.col1}`}>
+        <div className={`col-lg-3 ${style.col1}`}>
           <Link to="/">
             <img className={style.logo} src={logo} alt="logo" />
           </Link>
         </div>
 
-        <div className={`col-lg ${style.col2}`}>
+        <div className={`col-lg-2 ${style.colPrin}`}>
           <Link to="/" className={style.linksInt}>
             Principal
           </Link>
+        </div>
+        <div className={`col-lg-2 ${style.colPreg}`}>
           <Link to="/preguntar" className={style.linksInt}>
             Preguntar
           </Link>
         </div>
-
-        <div className={`col-lg ${style.col3}`}>
+        <div className={`col-lg-2 ${style.colRank}`}>
           <Link to="/ranking" className={style.linksInt}>
             Ranking
           </Link>
-          <div className={style.linksInt}>
-            Teach points {userInfo.myTeachPoints}
-          </div>
         </div>
 
-        <div className={`col-lg ${style.col4} ${style.imgNameLogOut}`}>
-          <Link to="/configuracion" className={style.contImagen}>
-            <img
-              className={style.userImage}
-              src={userInfo.picture}
-              alt={userInfo.name}
-            />
-          </Link>
-          <div className="dropdown">
-            <button
-              className={`
-                ${
-                  width > 600
-                    ? "btn btn-warning btn-secondary dropdown-toggle"
-                    : "btn btn-warning btn-secondary btn-sm"
-                }
-              `}
-              type="button"
-              id="dropdownMenuButton2"
-              data-bs-toggle="dropdown"
-              aria-expanded="false"
-            >
-              {userInfo.name}
-            </button>
-            <ul
-              className="dropdown-menu dropdown-menu-dark"
-              aria-labelledby="dropdownMenuButton2"
-            >
-              <li>
-                <Link className={style.linkDesp} to="/mispreguntas">
-                  <p className="dropdown-item" href="#">
-                    Mis preguntas
-                  </p>
-                </Link>
-              </li>
-              <li>
-                <Link className={style.linkDesp} to="/misrespuestas">
-                  <p className="dropdown-item" href="#">
-                    Mis respuestas
-                  </p>
-                </Link>
-              </li>
-              <li>
-                <Link className={style.linkDesp} to="/favoritas">
-                  <p className="dropdown-item" href="#">
-                    Favoritos
-                  </p>
-                </Link>
-              </li>
-              <li>
-                <Link className={style.linkDesp} to="/preguntar">
-                  <p className="dropdown-item" href="#">
-                    Preguntar
-                  </p>
-                </Link>
-              </li>
-              <li>
-                <Link className={style.linkDesp} to="/admin">
+        <div className={`col-lg-3 ${style.col4} ${style.imgNameLogOut}`}>
+          <div className={style.padreDivs}>
+            <Link to="/configuracion" className={style.contImagen}>
+              <img
+                className={style.userImage}
+                src={user.picture ? user.picture : 'https://www.shareicon.net/data/512x512/2016/08/05/806962_user_512x512.png'}
+                alt={userInfo.name}
+              />
+            </Link>
+            <div className="dropdown">
+              <button
+                className={`
+                  ${
+                    width > 600
+                      ? "btn btn-warning btn-secondary dropdown-toggle"
+                      : "btn btn-warning btn-secondary btn-sm"
+                  }
+                `}
+                type="button"
+                id="dropdownMenuButton2"
+                data-bs-toggle="dropdown"
+                aria-expanded="false"
+              >
+                {userInfo.name}
+              </button>
+              <ul
+                className="dropdown-menu dropdown-menu-dark"
+                aria-labelledby="dropdownMenuButton2"
+              >
+                <li>
+                  <Link className={style.linkDesp} to="/mispreguntas">
+                    <p className="dropdown-item" href="#">
+                      Mis preguntas
+                    </p>
+                  </Link>
+                </li>
+                <li>
+                  <Link className={style.linkDesp} to="/misrespuestas">
+                    <p className="dropdown-item" href="#">
+                      Mis respuestas
+                    </p>
+                  </Link>
+                </li>
+                <li>
+                  <Link className={style.linkDesp} to="/favoritas">
+                    <p className="dropdown-item" href="#">
+                      Favoritos
+                    </p>
+                  </Link>
+                </li>
+                <li>
+                  <Link className={style.linkDesp} to="/preguntar">
+                    <p className="dropdown-item" href="#">
+                      Preguntar
+                    </p>
+                  </Link>
+                </li>
+                <li>
+                  {userInfo.statusAdmin ? 
+                  <Link className={style.linkDesp} to="/admin">
                   <p className="dropdown-item" href="#">
                     Admin
                   </p>
-                </Link>
-              </li>
-              <li>
-                <Link className={style.linkDesp} to="/configuracion">
-                  <p className="dropdown-item" href="#">
-                    Configuración
-                  </p>
-                </Link>
-              </li>
+                </Link> : ""}
+                  
+                </li>
+                <li>
+                  <Link className={style.linkDesp} to="/configuracion">
+                    <p className="dropdown-item" href="#">
+                      Configuración
+                    </p>
+                  </Link>
+                </li>
 
-              <li>
-                <hr className="dropdown-divider"></hr>
-              </li>
-              <li>
-                <p onClick={() => logout()} className="dropdown-item" href="#">
-                  Log Out
-                </p>
-              </li>
-            </ul>
+                <li>
+                  <hr className="dropdown-divider"></hr>
+                </li>
+                <li>
+                  <p onClick={handleLogOut} className="dropdown-item" href="#">
+                    Log Out
+                  </p>
+                </li>
+              </ul>
+            </div>
           </div>
         </div>
       </div>

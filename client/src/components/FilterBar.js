@@ -1,37 +1,19 @@
 import React from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { getUserQuestions, getUserQuestionsOrderer } from '../redux/actions';
 import style from './styles/FilterBar.module.css'
 
 
-export default function FilterBar({page, setPage, setInput}) {
-
-    const userInfo = useSelector(state=> state.user)
-    const dispatch = useDispatch()
-
-    async function handleSelectAnswered(e){
+export default function FilterBar({sort, setSort, setPage}) {
+    
+    const handleSort = (e) => {
         e.preventDefault()
-        if(e.target.value === 'All') {
-            setInput('');
-            await setPage(1);
-            dispatch(getUserQuestions(userInfo.sub, 1, ''));
-        } 
-        if(e.target.value === 'true') {
-            setInput('');
-            await setPage(1);
-            dispatch(getUserQuestionsOrderer(userInfo.sub, e.target.value, 1));
-        }    
-        if(e.target.value === 'false') {
-            setInput('');
-            await setPage(1);
-            dispatch(getUserQuestionsOrderer(userInfo.sub, e.target.value, 1));
-        }    
+        setPage(1)
+        setSort(e.target.value)
     }
 
     return(
             <div>
-                <select className={style.select} id='selectAnswered' onChange={e=> handleSelectAnswered(e)}>
-                    <option defaultValue value='All'>Todas las preguntas</option>
+                <select value={sort} className={style.select} onChange={handleSort}>
+                    <option value='All'>Todas las preguntas</option>
                     <option value='true'>Respondidas</option>
                     <option value='false'>No Respondidas</option>
                 </select>

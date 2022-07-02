@@ -1,0 +1,10 @@
+.markdown {
+  height: 100px;
+  background-color: rgb(255, 245, 211);
+  box-shadow:2px 2px 2px 1px rgba(0,0,0,0.2);
+  padding: 1vh;
+  border-radius: 1vh;
+  margin-left: 3vh;
+  margin-bottom: 0.5vh;
+  overflow-y: scroll;
+}

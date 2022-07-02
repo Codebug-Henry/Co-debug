@@ -71,6 +71,10 @@ module.exports = (sequelize) => {
       type: DataTypes.INTEGER,
       defaultValue:0
     },
+    liked:{
+      type: DataTypes.ARRAY(DataTypes.INTEGER),
+      defaultValue:[]
+    }
   },{
     timestamps:false
   });

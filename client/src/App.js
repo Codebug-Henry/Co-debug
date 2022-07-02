@@ -5,7 +5,6 @@ import Landing from "./pages/Landing.js";
 import MisPreguntas from "./pages/MisPreguntas.js";
 import Preguntar from "./pages/Preguntar.js";
 import MisRespuestas from "./pages/MisRespuestas.js";
-import Responder from "./pages/Responder.js";
 import Favoritas from "./pages/Favoritas.js";
 import Ranking from "./pages/Ranking.js";
 import Admin from "./pages/Admin.js";
@@ -17,6 +16,9 @@ import NotFound from "./pages/NotFound";
 import Terminos from "./pages/Terminos.js";
 import Headerlogin from "./components/Headerlogin.js";
 import Contacto from "./pages/Contacto.js";
+import ResponderPDF from "./pages/ResponderPDF"
+import PaypalPage from "./pages/PaypalPage.js";
+import PagoListo from "./pages/PagoListo.js";
 
 function App() {
   return (
@@ -27,7 +29,7 @@ function App() {
         <Route path={"/mispreguntas"} element={<MisPreguntas />} />
         <Route path={"/preguntar"} element={<Preguntar />} />
         <Route path={"/misrespuestas"} element={<MisRespuestas />} />
-        <Route path={"/responder/:questionId"} element={<Responder />} />
+        <Route path={"/responder/:questionId"} element={<ResponderPDF />} />
         <Route path={"/favoritas"} element={<Favoritas />} />
         <Route path={"/ranking"} element={<Ranking />} />
         <Route path={"/admin"} element={<Admin />} />
@@ -37,6 +39,8 @@ function App() {
         <Route path={"/configuracion"} element={<Configuracion />} />
         <Route path={"/delete"} element={<Delete />} />
         <Route path={"/contacto"} element={<Contacto />} />
+        <Route path={"/donacion"} element={<PaypalPage />}/>
+        <Route path={"/pagolisto"} element={<PagoListo />}/>
         <Route path={"*"} element={<NotFound />} />
       </Routes>
     </BrowserRouter>

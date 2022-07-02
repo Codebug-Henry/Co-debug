@@ -1,0 +1,30 @@
+html{
+    min-height: 100%;
+    position: relative;
+  }
+  
+  .footer{
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    overflow:hidden;
+  }
+  .totalPagoListo{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    height: 85vh;
+    background-size: cover;
+    background-image: url("../../images/backgrounddonate.png");
+  }
+  .texto{
+    font-size: x-large;
+    font-weight: bold;
+    
+  }
+  .titulo{
+    font-size: xx-large;
+    font-weight: bold;
+  }

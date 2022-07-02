@@ -30,7 +30,12 @@
     - [POST message](#post-message)
 8. [Rutas **messages**](#rutas-messages)
     - [GET all messages](#get-all-messages)
-9. [Observaciones](#observaciones)
+9. [Rutas **alert**](#rutas-alert)
+    - [POST alert question](#post-alert-question)
+    - [POST alert answer](#post-alert-answer)
+10. [Rutas **alerts**](#rutas-alerts)
+    - [GET all alerts](#get-all-alerts)
+11. [Observaciones](#observaciones)
 
 ***
 
@@ -171,17 +176,20 @@
 
 ### GET **users**
 
-- **RUTA**: router.get("/users", getRanking)
+- **RUTA**: router.get("/users", getUsers)
 
 - **DESCRIPCION**: esta ruta es para obtener todos los usuarios para rankearlos
 
-- **REQUERIMIENTOS**: por query deberan enviar page, limit y sort para definir como ordenarlos (asc/desc)
+- **REQUERIMIENTOS**: por query deberan enviar page, limit, sort para definir como ordenarlos (asc/desc), admin si solo se quieren obtener los usuarios que son o no son admin, all si se quieren todos los usuarios incluidos los baneados/eliminados, y search si se quiere buscar por email
 
         /?sort=asc/desc
         &page=(número de página)
         &limit=(cantidad de elementos por página)
+        &admin=true/false
+        &all=true (o nada)
+        &search=(email que se desea buscar)
 
-- **RESPUESTA**: un objeto con 3 propiedades: totalPages, pages, results (todos los usuarios, en un principio acomodados de mayor a menos puntaje)
+- **RESPUESTA**: un objeto con 3 propiedades: totalPages, pages, results (todos los usuarios, en un principio acomodados de mayor a menor puntaje). Se incluye la posición en el ranking como una propiedad dentro de cada objeto del arreglo results.
 
         {
             totalPages: (cantidad de paginas totales),
@@ -194,7 +202,8 @@
                     picture,
                     cantAns,
                     statusDeleted,
-                    sub
+                    sub,
+                    myPosition
                 },
                 .
                 .
@@ -206,7 +215,8 @@
                     picture,
                     cantAns,
                     statusDeleted,
-                    sub
+                    sub,
+                    myPosition
                 }
             ]
         }
@@ -221,7 +231,7 @@
 
 - **REQUERIMIENTOS**: ninguno
 
-- **RESPUESTA**: un arreglo de tamaño 10, con dichos usuarios ordenado por puntos de mayor a menor
+- **RESPUESTA**: un arreglo de tamaño 10, con dichos usuarios ordenado por puntos de mayor a menor (se incluye la posición en el ranking como una propiedad dentro de cada objeto del areglo)
 
         [
             {
@@ -230,7 +240,8 @@
                 nickname,
                 picture,
                 statusDeleted,
-                sub
+                sub,
+                myPosition
             },
             .
             .
@@ -241,7 +252,8 @@
                 nickname,
                 picture,
                 statusDeleted,
-                sub
+                sub,
+                myPosition
             }
         ]
 
@@ -727,6 +739,109 @@
                     id,
                     title,
                     text,
+                }
+            ]
+        }
+
+***
+
+## RUTAS **alert**
+
+***
+
+### POST **alert question**
+
+- **RUTA**: router.post("/alert/question", postAlertQuestion)
+
+- **DESCRIPCION**: esta ruta es para crear una alerta por parte del usuario sobre una pregunta para que le llegue a los admin.
+
+- **REQUERIMIENTOS**: por body enviar datos de la alerta. 
+
+        {
+            id,
+            message   //motivo de la alerta
+            subCreator,   //sub del usuario que generó la alerta
+        }
+
+- **RESPUESTA**: un objeto con la alerta creada y la info de la pregunta
+
+        {
+            id,
+            message,
+            subCreator,
+            question: {
+                (todas las propiedades de la pregunta)
+            }
+        }
+
+***
+
+### POST **alert answer**
+
+- **RUTA**: router.post("/alert/answer", postAlertAnswer)
+
+- **DESCRIPCION**: esta ruta es para crear una alerta por parte del usuario sobre una respuesta para que le llegue a los admin.
+
+- **REQUERIMIENTOS**: por body enviar datos de la alerta. 
+
+        {
+            id,
+            message   //motivo de la alerta
+            subCreator,   //sub del usuario que generó la alerta
+        }
+
+- **RESPUESTA**: un objeto con la alerta creada y la info de la respuesta
+
+        {
+            id,
+            message,
+            subCreator,
+            answer: {
+                (todas las propiedades de la respuesta)
+            }
+        }
+
+***
+
+## RUTAS **alerts**
+
+***
+
+### GET **all alerts**
+
+- **RUTA**: router.get("/alerts",getAllAlerts)
+
+- **DESCRIPCION**: esta ruta es para que los admin puedan acceder a todas las alertas que enviaron los usuarios
+
+- **REQUERIMIENTOS**: debe traer por query ?page y ?limit
+
+        ?page=(número de página)
+        &limit=(cantidad de elementos por página)
+
+- **RESPUESTA**: un objeto con 3 propiedades: totalPages, pages, results (todos los mensajes)
+
+        {
+            totalPages: (cantidad de paginas totales),
+            pages: []     //rango de paginas habilitadas (máximo 5),
+            results: [
+                {
+                    id,
+                    title,
+                    text,
+                    (question/answer): {
+                        (todas las propiedades de la pregunta o respuesta según corresponda)
+                    },
+                },
+                .
+                .
+                .
+                {
+                    id,
+                    title,
+                    text,
+                    (question/answer): {
+                        (todas las propiedades de la pregunta o respuesta según corresponda)
+                    },
                 }
             ]
         }

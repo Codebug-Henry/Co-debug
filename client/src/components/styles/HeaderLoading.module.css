@@ -1,0 +1,197 @@
+/* .container {
+    background-color: lightyellow;
+    border: 2px solid black;
+  }
+  
+  .row1 {
+    display: flex;
+    align-items: center;
+  }
+  
+  .col1 {
+    display: flex;
+    justify-content: flex-start;
+  }
+  
+  .col2 {
+    background-size: cover;
+  
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .col3 {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .logo {
+    width: 25vw;
+  }
+  
+  .logo:hover {
+    width: 25vw;
+    opacity: 70%;
+  }
+  
+  .linksInt {
+    width: 30%;
+    font-size: 1.7vw;
+    text-decoration: none;
+    color: black;
+  }
+  @media screen and (max-width: 900px) {
+    .linksInt {
+      font-size: 2vw;
+    }
+  }
+  @media screen and (max-width: 720px) {
+    .linksInt {
+      font-size: 2.5vw;
+    }
+  }
+  @media screen and (max-width: 600px) {
+    .linksInt {
+      font-size: 3vw;
+    }
+  }
+  @media screen and (max-width: 450px) {
+    .linksInt {
+      font-size: 4vw;
+    }
+  }
+   */
+   .container {
+    background-color: lightyellow;
+    /* margin: 1.5%; */
+    padding: 2.4%;
+  }
+  
+  .col1 {
+    display: flex;
+    align-items: center;
+    justify-content: left;
+
+  
+  }
+  
+  .col2 {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  
+  }
+  
+  .col3 {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+  }
+  
+  .col4 {
+    display: flex;
+    align-items: center;
+    justify-content: right;
+    gap:3%;
+  }
+  
+  .logo {
+    width: 40%;
+    margin-left: 22%;
+  }
+  
+  .logo:hover {
+    width: 40%;
+    opacity: 70%;
+  }
+  
+  .linksInt {
+    display: flex;
+    align-items: center;
+    font-weight: bold;
+    width: 30%;
+    font-size: 90%;
+    text-decoration: none;
+    color: black;
+  }
+  @media screen and (max-width: 900px) {
+    .linksInt {
+      font-size: 2vw;
+    }
+  }
+  @media screen and (max-width: 720px) {
+    .linksInt {
+      font-size: 2.5vw;
+    }
+  }
+  @media screen and (max-width: 600px) {
+    .linksInt {
+      font-size: 3vw;
+    }
+  }
+  @media screen and (max-width: 450px) {
+    .linksInt {
+      font-size: 4vw;
+    }
+  }
+  
+  .name {
+    font-size: 1.2vw;
+  
+  }
+  
+  .userImage {
+    border-radius: 100%;
+    width: 100%;
+    height: 8vh;
+    border-style: solid;
+    border-color: #f9bf00;
+    border-width: 0.9vh;
+  }
+  @media screen and (max-width: 600px) {
+    .userImage {
+      width: 30px;
+    }
+  }
+  
+  .cajaLogReg {
+    font-size: 20 px;
+  }
+  
+  .middleRow {
+    height: 25vw;
+    color: blue;
+  }
+  
+  .linkDesp {
+    text-decoration: none;
+  }
+  .imgNameLogOut {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .colPrin{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .colPreg{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .colRank{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .padreDivs{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    margin-right: 7%;
+  }

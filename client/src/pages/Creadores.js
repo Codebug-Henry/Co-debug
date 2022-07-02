@@ -36,7 +36,7 @@ let luciano = {
     profesion: 'Desarrollador Full Stack',
     email: 'patriciogabrielcolella@gmail.com',
     linkedin: 'https://www.linkedin.com/in/patricio-colella-728212200/',
-    photo: 'https://media-exp1.licdn.com/dms/image/D4D35AQFZmGrAaKPK8A/profile-framedphoto-shrink_800_800/0/1655595844858?e=1656561600&v=beta&t=r8P2z2IiLGH3Q9AElsDQogOe0ftn4GHv4SurIE1DjlA',
+    photo: 'https://res.cloudinary.com/codebugers/image/upload/v1656702863/codebug/mr9jd9vwljre9fdu5yzp.jpg',
     github: 'https://github.com/Patricio-Colella'
   }
 
@@ -45,7 +45,7 @@ let luciano = {
     profesion: 'Desarrollador Full Stack',
     email: 'felipe.guitelman@gmail.com',
     linkedin: 'https://www.linkedin.com/in/felipe-guitelman-b83427145/',
-    photo: 'https://media-exp1.licdn.com/dms/image/C5635AQHNLEX3mjDpTQ/profile-framedphoto-shrink_800_800/0/1601474459223?e=1656561600&v=beta&t=HQIOWqWDdrSylVr6bW0eaGuBjLJN5HEmhNbrkylu750',
+    photo: 'https://res.cloudinary.com/codebugers/image/upload/v1656642327/codebug/ls3q6jh4b7nnkstdjvnc.jpg',
     github: 'https://github.com/FelipeGuitelman'
   }
 
@@ -54,7 +54,7 @@ let luciano = {
     profesion: 'Desarrollador Full Stack',
     email: 'regenerik@gmail.com',
     linkedin: 'https://www.linkedin.com/in/david-cunha-quinteros/',
-    photo: 'https://media-exp1.licdn.com/dms/image/D4D35AQFCuw75x8_2MA/profile-framedphoto-shrink_400_400/0/1643486623169?e=1656561600&v=beta&t=sIToL6P8CIpObL7r8LSdMemnSvH5hgq_zYwJ-dBwdLA',
+    photo: 'https://res.cloudinary.com/codebugers/image/upload/v1656702881/codebug/xrtq44h5y2u9ikokkrg8.jpg',
     github: 'https://github.com/regenerik'
   }
 
