@@ -9,7 +9,7 @@ import ReactMarkdown from 'react-markdown';
 import Highlighter from './Highlighter';
 
 
-const CardQuestionLogOut = ({
+const CardQuestLogOut = ({
   cantAnswers,
   nickname,
   picture,
@@ -84,4 +84,4 @@ const CardQuestionLogOut = ({
   );
 };
 
-export default CardQuestionLogOut;
+export default CardQuestLogOut;
