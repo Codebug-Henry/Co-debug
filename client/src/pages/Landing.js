@@ -9,28 +9,26 @@ import TopDiezRanking from "../components/TopDiezRanking";
 import { useSelector, useDispatch } from "react-redux";
 import { useEffect } from "react";
 import { getUserInfo } from "../redux/actions";
-
+import NavBar from "../components/NavBar";
 
 // import { useEffect, useState } from 'react'
 // import { useDispatch, useSelector } from "react-redux"
 // //Mandar pedido useEffect dispatch mi action >> pedido back >> res new object >
 
 const Landing = () => {
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
   const { isAuthenticated, isLoading, user } = useAuth0();
-  const infoUsuario = useSelector(state=>state.user)
-  const preguntas = infoUsuario.cantQuest
-  const respuestas = infoUsuario.cantAns
-  const position = infoUsuario.myPosition
-  const tpoints = infoUsuario.myTeachPoints
-
+  const infoUsuario = useSelector((state) => state.user);
+  const preguntas = infoUsuario.cantQuest;
+  const respuestas = infoUsuario.cantAns;
+  const position = infoUsuario.myPosition;
+  const tpoints = infoUsuario.myTeachPoints;
 
   useEffect(() => {
     if (isAuthenticated) {
       dispatch(getUserInfo(user.sub));
     }
   }, [dispatch, user, isAuthenticated]);
-
 
   if (isLoading) {
     return (
@@ -46,6 +44,9 @@ const Landing = () => {
         <div className={style.middleRow}>
           {/* Acá el contenido para logueados */}
           <div className={`container-fluid ${style.container}`}>
+            <div className={`row ${style.navBar}`}>
+              <NavBar />
+            </div>
             <div className={`row ${style.middleRow}`}>
               <div className={`col-lg-8 ${style.col1}`}>
                 <CardsQuestions />
@@ -58,8 +59,8 @@ const Landing = () => {
                       <p className={style.estadisticas}>Mis estadísticas:</p>
                       <p>Mi posición en el Ranking: {position}</p>
                       <p>Mis Teach-Points: {tpoints}</p>
-                      <p>Cuántas preguntas hice?   {preguntas}</p>
-                      <p>Cuántas preguntas respondí?  {respuestas}</p>
+                      <p>Cuántas preguntas hice? {preguntas}</p>
+                      <p>Cuántas preguntas respondí? {respuestas}</p>
                     </div>
                   </div>
                   <div className={`row ${style.rightRowUp}`}>
@@ -69,33 +70,20 @@ const Landing = () => {
                     </div>
                   </div>
                   <div className={`row ${style.rightRowMidle}`}>
-                    <TopDiezRanking />
-                  </div>
-                  <div className={`row ${style.rightRowDown}`}>
-                    "Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-                    sed do eiusmod tempor incididunt ut labore et dolore magna
-                    aliqua. Ut enim ad minim veniam, quis nostrud exercitation
-                    ullamco laboris nisi ut aliquip ex ea commodo consequat.
-                    Duis aute irure dolor in reprehenderit in voluptate velit
-                    esse cillum dolore eu fugiat nulla pariatur. Excepteur sint
-                    occaecat cupidatat non proident, sunt in culpa qui officia
-                    deserunt mollit anim id est laborum." "Lorem ipsum dolor sit
-                    amet, consectetur adipiscing elit, sed do eiusmod tempor
-                    incididunt ut labore et dolore magna aliqua. Ut enim ad
-                    minim veniam, quis nostrud exercitation ullamco laboris nisi
-                    ut aliquip ex ea commodo consequat. Duis aute irure dolor in
-                    reprehenderit in voluptate velit esse cillum dolore eu
-                    fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-                    proident, sunt in culpa qui officia deserunt mollit anim id
-                    est laborum." "Lorem ipsum dolor sit amet, consectetur
-                    adipiscing elit, sed do eiusmod tempor incididunt ut labore
-                    et dolore magna aliqua. Ut enim ad minim veniam, quis
-                    nostrud exercitation ullamco laboris nisi ut aliquip ex ea
-                    commodo consequat. Duis aute irure dolor in reprehenderit in
-                    voluptate velit esse cillum dolore eu fugiat nulla pariatur.
-                    Excepteur sint occaecat cupidatat non proident, sunt in
-                    culpa qui officia deserunt mollit anim id est laborum."
-                    
+                    {/* <TopDiezRanking />
+                  </div> */}
+
+                    <div className={style.datosUser}>
+                      <p className={style.estadisticas}>TOP TEN</p>
+                      <p>Mi posición en el Ranking: {position}</p>
+                      <p>Mis Teach-Points: {tpoints}</p>
+                      <p>Cuántas preguntas hice? {preguntas}</p>
+                      <p>Cuántas preguntas respondí? {respuestas}</p>
+                      <p>Mi posición en el Ranking: {position}</p>
+                      <p>Mis Teach-Points: {tpoints}</p>
+                      <p>Cuántas preguntas hice? {preguntas}</p>
+                      <p>Cuántas preguntas respondí? {respuestas}</p>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -142,7 +130,6 @@ const Landing = () => {
                     voluptate velit esse cillum dolore eu fugiat nulla pariatur.
                     Excepteur sint occaecat cupidatat non proident, sunt in
                     culpa qui officia deserunt mollit anim id est laborum."
-                    
                   </div>
                   <div className={`row ${style.rightRowDown}`}>
                     "Lorem ipsum dolor sit amet, consectetur adipiscing elit,
