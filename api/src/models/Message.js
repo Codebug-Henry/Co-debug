@@ -1,12 +1,11 @@
-const { DataTypes } = require('sequelize');
+const { DataTypes } = require("sequelize");
 
 module.exports = (sequelize) => {
-
-  sequelize.define('message', {
+  sequelize.define("message", {
     id: {
       type: DataTypes.INTEGER,
       autoIncrement: true,
-      primaryKey: true
+      primaryKey: true,
     },
     title: {
       type: DataTypes.STRING,
@@ -14,6 +13,10 @@ module.exports = (sequelize) => {
     },
     text: {
       type: DataTypes.TEXT,
+      allowNull: false,
+    },
+    email: {
+      type: DataTypes.STRING,
       allowNull: false,
     },
     answer: {
