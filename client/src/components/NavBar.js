@@ -46,7 +46,7 @@ const NavBar = () => {
             <span className="navbar-toggler-icon"></span>
           </button>
 
-          <form className="d-flex">
+          <form className={`d-flex ${style.navSearch}`}>
             <input
               onChange={(e) => onChangeSearch(e)}
               className="form-control me-2"
@@ -81,7 +81,7 @@ const NavBar = () => {
                   Más antiguas
                 </option>
               </select>
-              <li className={`nav-item dropdown" ${style.li}`}>
+              <li className={`nav-item dropdown" ${style.gralTags}`}>
                 <span
                   className="nav-link dropdown-toggle"
                   id="navbarDropdown"
@@ -171,7 +171,7 @@ const NavBar = () => {
 
             <button
               onClick={() => handlerRefresh()}
-              className="btn btn-outline-dark"
+              className={`btn btn-outline-dark ${style.refresh}`}
               type="submit"
             >
               Refresh

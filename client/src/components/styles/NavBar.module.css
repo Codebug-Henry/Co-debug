@@ -51,7 +51,17 @@
   margin: 0px;
   padding: 0px;
 }
-
+.navSearch{
+  margin-left: 5.9%;
+  margin-right: 3%;
+}
+.gralTags{
+  margin-left: 10.5%;
+  margin-right: 10.5%;
+}
+.refresh{
+  margin-right: 9%;
+}
 /* .fullPage {
   border: 1px solid red;
   margin: 0px;
