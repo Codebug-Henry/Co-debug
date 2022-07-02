@@ -161,7 +161,7 @@ const CardQuestion = ({
                               <FormLabel id="demo-radio-buttons-group-label">Opciones: </FormLabel>
                           <RadioGroup
                              aria-labelledby="demo-radio-buttons-group-label"
-                             defaultValue="inadecuado"
+                             defaultValue=""
                               name="radio-buttons-group"
                               >
                         <FormControlLabel  onChange={(e)=>handleChangeAlert(e)} value="inadecuado" control={<Radio />} label="Comportamiento inadecuado" />

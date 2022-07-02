@@ -62,9 +62,11 @@ const Admin = () => {
     dispatch(getAllUsersNoAdmin(usersPage));
   }, [dispatch, adminFlag, usersPage]);
 
-  useEffect(() => {
-    dispatch(getAllAlerts(alertsPage));
-  }, [dispatch, alertsFlag, alertsPage]);
+  useEffect(()=>{
+    dispatch(getAllAlerts(alertsPage))
+    console.log(alertsFlag)
+  }, [dispatch, alertsFlag, alertsPage])
+
   // if (isLoading) {
   //   return (
   //     <div>

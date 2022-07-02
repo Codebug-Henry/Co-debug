@@ -55,4 +55,6 @@ export const getAllMessages = (page) =>
 export const getAllTags = () => axios.get(`/tags`);
 
 //RUTAS ALERTS
-export const getAllAlerts = (page) => axios.get(`/alerts?page=${page}&limit=3`);
+
+export const getAllAlerts = (page)=> axios.get(`/alerts?page=${page}&limit=3&resolved=false`)
+

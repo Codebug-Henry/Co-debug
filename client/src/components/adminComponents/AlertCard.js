@@ -3,20 +3,29 @@ import style from "./styles/AlertCard.module.css";
 import { useDispatch } from "react-redux";
 import axios from "axios";
 
-const AlertCard = ({ id,message,title,text,subCreator,questionSub,questionId,setAlertsFlag}) => {
+const AlertCard = ({ id,message,title,text,subCreator,questionSub,questionId,setAlertsFlag,setTemporalFlag}) => {
   //const [input, setInput] = useState("");
   //const dispatch = useDispatch();
 
   const handleDelete = (e) => {
     e.preventDefault()
     let pack={id: questionId, statusDeleted: true}
+    let resolvedPack ={id, statusResolved: true}
+    axios.put(`http://localhost:3001/alert`,resolvedPack )
+    .then(r=>alert("Alerta resuelta"))
     axios.put(`http://localhost:3001/question`, pack)
-    .then(r=>alert("Pregunta borrada"))
+    .then(r=> alert("Pregunta borrada"))
     setAlertsFlag(prevAlertsFlag => !prevAlertsFlag)
+    setTemporalFlag(prevTemporalFlag=>!prevTemporalFlag)
   };
 
-  const handleChange = (e) => {
-    
+  const handleResolve = (e) => {
+    e.preventDefault()
+    let pack={id, statusResolved: true}
+    axios.put(`http://localhost:3001/alert`,pack )
+    .then(r=> alert("Alerta resuelta"))
+    setAlertsFlag(prevAlertsFlag => !prevAlertsFlag)
+    setTemporalFlag(prevTemporalFlag=>!prevTemporalFlag)
   };
 
   return (
@@ -47,6 +56,14 @@ const AlertCard = ({ id,message,title,text,subCreator,questionSub,questionId,set
               onClick={(e)=>handleDelete(e)}
               >
                 Borrar
+              </button>
+            </div>
+            <div className={`col-lg  ${style.column}`}>
+              <button 
+              className={style.button}
+              onClick={(e)=>handleResolve(e)}
+              >
+                Resolver
               </button>
             </div>
         </div>
