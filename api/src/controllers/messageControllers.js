@@ -49,7 +49,6 @@ const putMessage = async (req, res, next) => {
     const message = await Message.findByPk(id);
     console.log("T", title, "I", id, "A", answer, "E", email, "M", message);
     await message.update({ answer });
-);
 
     var transporter = nodemailer.createTransport({
       host: "smtp.gmail.com",
