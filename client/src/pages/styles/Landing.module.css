@@ -53,18 +53,32 @@ html {
   margin: 1%;
 }
 
-.rightRowMidle {
+.rightRow {
   background-color: lightyellow;
   padding: 1%;
+  text-align: justify;
+  margin-right: 15%;
+  margin-bottom: 5%;
 }
-.rightRowDown {
-  background-color: lightyellow;
-  padding: 1%;
+
+.TituloLog {
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  font-size: 400%;
+  margin-right: 15%;
+}
+
+.subTituloLog {
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  font-size: 200%;
+  letter-spacing: 2px;
+  text-align: justify;
 }
 
 .Titulo {
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
   font-size: 400%;
+  margin-right: 15%;
+  text-align: justify;
 }
 .rigthContainer {
   padding: 0;
@@ -73,7 +87,8 @@ html {
 .subTitulo {
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
   font-size: 200%;
-  letter-spacing: 13px;
+  letter-spacing: 2px;
+  text-align: justify;
 }
 
 /*Scrollbar*/
@@ -104,4 +119,5 @@ html {
 .estadisticas {
   font-size: large;
   font-weight: bolder;
+  text-align: center;
 }
