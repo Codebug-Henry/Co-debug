@@ -43,7 +43,7 @@ export const getTopTenRanking = () => async (dispatch) => {
     const { data } = await api.getTopTenRanking();
     dispatch({ type: GET_TOPTEN_RANKING, payload: data });
   } catch (error) {
-    console.log("ActionError", error.message);
+    console.log("texto", error.message);
   }
 };
 
