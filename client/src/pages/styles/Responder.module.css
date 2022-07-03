@@ -17,6 +17,7 @@ html {
     display: flex;
     flex-direction: column;
     background-color: lightyellow;
+    padding-left: 6.3%;
 }
 
 .total{
@@ -29,12 +30,18 @@ html {
 
 .TitleAndExtrasBox {
   padding-top: 1vh;
-  margin-left: 3vh;
+  /* margin-left: 3vh; */
   display: flex;
   align-items: flex-start;
   flex-direction: row;
   justify-content: space-between;
   gap: 6vh;
+}
+
+.middleRow {
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: flex-end;
 }
 
 .leftbox {
@@ -57,7 +64,7 @@ html {
   padding: 1vh;
   border: solid 2px grey;
   border-radius: 1vh;
-  margin-left: 3vh;
+  /* margin-left: 3vh; */
 }
 .answerIt {
   border-radius: 2vh;
@@ -116,16 +123,18 @@ html {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  align-items: center;
   width: 100%;
+  margin-bottom: 1.8%;
 }
 
 .btnCode {
   width: fit-content;
   height: 30px;
-  background-color: transparent;
+  background-color: #f9bf00;
+  color: lightyellow;
   border: #f9bf00 solid 0.5px;
   border-radius: 5%;
-  color: rgb(75, 71, 71);
   font-weight: 300;
   font-size: 15px;
   justify-self: center;
@@ -134,8 +143,14 @@ html {
 
 .btnCode:hover {
   cursor: pointer;
-  color: lightyellow;
-  background-color: #f9bf00;
+  background-color: transparent;
+  color: rgb(75, 71, 71);
+}
+
+.pictureBox {
+  display: flex;
+  align-items: flex-end;
+  margin-bottom: 0.5%;
 }
 
 .answers {
@@ -144,4 +159,29 @@ html {
 
 .answerForm {
   margin-top: 3%;
+}
+
+.form {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  justify-content: space-between;
+  gap: 2%;
+}
+
+.input1 {
+  width: 100%;
+}
+
+.input2 {
+  width: 100%;
+}
+
+@media screen and (max-width: 740px) {
+
+  .form {
+    display: flex;
+    flex-direction: column;
+  }
+
 }
