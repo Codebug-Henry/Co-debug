@@ -1,7 +1,8 @@
 
-html{
+html {
     min-height: 100%;
     position: relative;
+    background-color: lightyellow;
 }
 
 .footer{
@@ -15,8 +16,8 @@ html{
 .fullContainer{
     display: flex;
     flex-direction: column;
+    background-color: lightyellow;
 }
-
 
 .total{
 
@@ -35,11 +36,13 @@ html{
   justify-content: space-between;
   gap: 6vh;
 }
+
 .leftbox {
   display: flex;
   justify-content: center;
   flex-direction: column;
 }
+
 .rightBox {
   display: flex;
   justify-content: center;
@@ -52,6 +55,7 @@ html{
   /* font-weight: bold; */
   /* font-size: 200%; */
   padding: 1vh;
+  border: solid 2px grey;
   border-radius: 1vh;
   margin-left: 3vh;
 }
@@ -85,6 +89,7 @@ html{
   font-family: "Source Serif Pro", serif;
   font-weight: 400;
   font-size: 15px;
+  border-radius: 1vh;
 }
 
 .markdown {
@@ -97,6 +102,7 @@ html{
   font-size: 15px;
   padding: 2px;
   overflow-y: scroll;
+  border-radius: 1vh;
 }
 
 .button {
@@ -104,4 +110,38 @@ html{
   align-items: center;
   height: 30%;
   margin-top: 20px;
+}
+
+.pregBtn {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.btnCode {
+  width: fit-content;
+  height: 30px;
+  background-color: transparent;
+  border: #f9bf00 solid 0.5px;
+  border-radius: 5%;
+  color: rgb(75, 71, 71);
+  font-weight: 300;
+  font-size: 15px;
+  justify-self: center;
+  align-self: center;
+}
+
+.btnCode:hover {
+  cursor: pointer;
+  color: lightyellow;
+  background-color: #f9bf00;
+}
+
+.answers {
+  margin-bottom: 5%;
+}
+
+.answerForm {
+  margin-top: 3%;
 }
