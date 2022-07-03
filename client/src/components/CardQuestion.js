@@ -80,7 +80,7 @@ const CardQuestion = ({
     e.preventDefault();
     let pack = { id, message: selected, subCreator: userInfo.sub };
     axios
-      .post("http://localhost:3001/alert/question", pack)
+      .post("/alert/question", pack)
       .then((response) => null);
     handleClose();
   };
