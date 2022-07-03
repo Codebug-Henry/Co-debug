@@ -40,15 +40,26 @@ const Upload = () => {
   return (
     <div>
         {loading ? <h5>Cargando...</h5> : (
-        <div>
-        <p>Cambia tu foto:</p>
-        <img src={image || todoElUser.picture} alt="foto usuario" className={style.foto} />
-        <input type="file"
-        name="file"
-        placeholder='Click para elegir'
-        onChange={(e)=>uploadImage(e)}
-        />
-        <button onClick={handleClick}>Confirmar</button>
+        <div className={style.fullContainer}>
+          <div className={`col-lg-4 ${style.col2}`}>
+            <p>Cambia tu foto:</p>
+          </div>
+          <div className={`col-lg-4 ${style.col2} ${style.photo}`}>
+            <div>
+              <img src={image || todoElUser.picture} alt="foto usuario" className={style.foto} />
+            </div>
+            <div className={style.btn}>
+              <input  type="file"
+                      name="file"
+                      placeholder='Click para elegir'
+                    onChange={(e)=>uploadImage(e)}
+              />
+            </div>
+            <div id="archivoseleccionado"></div>
+          </div>
+          <div className={`col-lg-4 ${style.col2}`}>
+            <button onClick={handleClick} className={style.btnPhoto}>Confirmar</button>
+          </div>
         </div>)
         }
     </div>

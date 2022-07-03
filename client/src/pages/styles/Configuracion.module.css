@@ -7,6 +7,18 @@ html{
     position: relative;
 }
 
+.middleRow{
+  background-color: lightyellow;
+  align-self: center;
+  width: 85%;
+  margin: auto;
+  margin-bottom: 2vh;
+}
+
+.middleRow2 {
+  height: 50%;
+}
+
 .footer{
     position: absolute;
     left: 0;
@@ -18,13 +30,34 @@ html{
 .fullContainer{
     display: flex;
     flex-direction: column;
+    background-color: lightyellow;
 }
 
 .row {
   padding: 2vh;
-  background-color: rgb(255, 192, 124);
-  border: 1px black solid;
+  background-color: lightyellow;
+  border-bottom: 1px rgb(189, 186, 186) solid;
+  border-top: 1px rgb(189, 186, 186) solid;
+  /* border-radius: 1vh; */
+}
+
+.rowTitle {
+  text-align: center;
+  font-size: 5vh;
+  /* margin: auto; */
+  color: rgb(53, 49, 43);
+  border: none;
+}
+
+.row2 {
+  padding: 2vh;
+  background-color: lightyellow;
+  /* border: 1px black solid; */
   border-radius: 1vh;
+}
+
+.col11 {
+  padding-top: 5vh;
 }
 
 .col2 {
@@ -37,18 +70,36 @@ html{
   display: none;
 }
 
+.col3{
+  text-align: center;
+  font-size: 5vh;
+  margin: auto;
+  color: rgb(53, 49, 43);
+}
+
 .text {
   font-weight: 700;
 }
 
+.inputs {
+  border-radius: 1vh;
+  border: solid 1.5px grey;
+}
+
 .buttonUpdate {
-  border-radius: 2vh;
+  border-radius: 1vh;
+  background-color: rgb(240, 238, 238);
+  border: solid 2px black
+}
+
+.buttonUpdate:hover {
+  background-color: rgb(215, 212, 212);
 }
 
 .userImage {
   border-radius: 50%;
-  /* width: 100px; */
 }
+
 @media screen and (max-width: 600px) {
   .userImage {
     width: 30px;

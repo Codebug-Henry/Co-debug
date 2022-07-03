@@ -17,7 +17,7 @@ import {
   getAllUsersNoAdmin,
   getAllAlerts,
 } from "../redux/actions";
-import Paginated from "../components/Paginated.js";
+// import Paginated from "../components/Paginated.js";
 
 //Traemos "user.sub" que contiene el ID unico del usuario conectado para que podamos comparar el id y ver si puede estar acá.
 // import { useAuth0 } from '@auth0/auth0-react'
@@ -62,10 +62,10 @@ const Admin = () => {
     dispatch(getAllUsersNoAdmin(usersPage));
   }, [dispatch, adminFlag, usersPage]);
 
-  useEffect(()=>{
-    dispatch(getAllAlerts(alertsPage))
-    console.log(alertsFlag)
-  }, [dispatch, alertsFlag, alertsPage])
+  useEffect(() => {
+    dispatch(getAllAlerts(alertsPage));
+    console.log(alertsFlag);
+  }, [dispatch, alertsFlag, alertsPage]);
 
   // if (isLoading) {
   //   return (

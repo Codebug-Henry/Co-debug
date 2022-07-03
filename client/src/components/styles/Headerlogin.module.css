@@ -1,6 +1,5 @@
 .container {
   background-color: lightyellow;
-  /* margin: 1.5%; */
   padding: 1.5%;
 }
 
@@ -8,14 +7,12 @@
   display: flex;
   align-items: center;
   justify-content: center;
-
 }
 
 .col2 {
   display: flex;
   align-items: center;
   justify-content: space-between;
-
 }
 
 .col3 {
@@ -28,23 +25,23 @@
   display: flex;
   align-items: center;
   justify-content: right;
-  gap:3%;
+  gap: 3%;
 }
 
 .logo {
-  width: 40%;
+  width: 45%;
   margin-left: 25%;
 }
 
 .logo:hover {
-  width: 40%;
+  width: 45%;
   opacity: 70%;
 }
 
 .linksInt {
   font-weight: bold;
   width: 30%;
-  font-size: 90%;
+  font-size: 100%;
   text-decoration: none;
   color: black;
 }
@@ -71,7 +68,6 @@
 
 .name {
   font-size: 1.2vw;
-
 }
 
 .userImage {
@@ -106,22 +102,22 @@
   justify-content: center;
 }
 
-.colPrin{
+.colPrin {
   display: flex;
   align-items: center;
   justify-content: center;
 }
-.colPreg{
+.colPreg {
   display: flex;
   align-items: center;
   justify-content: center;
 }
-.colRank{
+.colRank {
   display: flex;
   align-items: center;
   justify-content: center;
 }
-.padreDivs{
+.padreDivs {
   display: flex;
   justify-content: center;
   align-items: center;

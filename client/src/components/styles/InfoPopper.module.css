@@ -1,6 +1,13 @@
 .button {
-  margin-top: 2vh;
-  border-radius: 20px;
-  background: orange;
-  border: 0.5px solid;
+  margin-top: 1vh;
+  border-radius: 5%;
+  background: #f9bf00;
+  color: lightyellow;
+  border: #f9bf00 solid 2px;
+}
+
+.button:hover {
+  cursor: pointer;
+  color: #f9bf00;
+  background-color: lightyellow;
 }

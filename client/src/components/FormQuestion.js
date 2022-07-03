@@ -4,7 +4,7 @@ import {getAllTags, getUserInfo, sendQuestion } from '../redux/actions/index';
 import style from './styles/FormQuestion.module.css';
 import InfoPopper from './InfoPopper';
 import { useNavigate } from 'react-router-dom';
-import deleteIcon from '../images/delete.png';
+import Button from '@mui/material/Button';
 import ReactMarkdown from 'react-markdown';
 import Highlighter from './Highlighter';
 
@@ -174,32 +174,35 @@ const FormQuestion = () => {
                             )
                         }
                     </div>
-                    <div id={style.div2}>
-                        <div id={style.div3}>
-                            <span> Ingresa tu pregunta: </span>
-                            <button type='button' className={style.btnCode} onClick={handleClick}> Agregar código javascript </button>
+                    <div className={style.view} >
+                        <div className={style.div2}>
+                            <div className={style.pregBtn}>
+                                <p> Ingresa tu pregunta: </p>
+                                <button type='button' className={style.btnCode} onClick={handleClick}> Código Javascript </button>
+                            </div>
+                            
+                            <textarea  type='text'
+                                    value={input.text} 
+                                    name='text' 
+                                    autoComplete='off'
+                                    onChange={handleChange}
+                            />
+                            {   
+                                errors.text && (
+                                    <div className={style.error}>
+                                        <span> {errors.text}</span>
+                                    </div>
+                                )
+                            }
                         </div>
-                        <textarea  type='text'
-                                value={input.text} 
-                                name='text' 
-                                autoComplete='off'
-                                onChange={handleChange}
-                        />
-                        {   
-                            errors.text && (
-                                <div className={style.error}>
-                                    <span> {errors.text}</span>
-                                </div>
-                            )
-                        }
-                    </div>
-                    <div>
-                        <p> Vista previa: </p>
-                        <ReactMarkdown 
-                            children={input.text}
-                            className={style.markdown}
-                            components={{code: Highlighter}}
-                        />
+                        <div className={style.div2}>
+                            <p> Vista previa: </p>
+                            <ReactMarkdown 
+                                children={input.text}
+                                className={style.markdown}
+                                components={{code: Highlighter}}
+                            />
+                        </div>
                     </div>
                     <div id={style.div3}>
                         <div className={style.macroTag1}>
@@ -227,7 +230,6 @@ const FormQuestion = () => {
                                                 {macro}
                                             </span>
                                             <button type='button' className={style.btnDelete} onClick={()=>handleDeleteMacroTag(macro)}>
-                                                {/* <img src={deleteIcon} alt="X" width='15px' height='15px' /> */}
                                                 X
                                             </button>
                                         </div>
@@ -292,7 +294,7 @@ const FormQuestion = () => {
                             }
                             className={style.btn}
                     >
-                            Crear Pregunta
+                            Enviar Pregunta
                     </button>     
                 </form>
             </div>
