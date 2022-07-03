@@ -49,6 +49,10 @@ const Responder = () => {
     alert("Respuesta enviada");
   };
 
+  function handleClick() {
+    setInput("\n```javascript\n(escribe tu código javascript aquí)\n```")
+}
+
   return (
 
     <div className={style.fullContainer}>
@@ -69,6 +73,7 @@ const Responder = () => {
                       alt="imagen de usuario"
                     />
                   </div>
+
                   <div className={`col-lg-6 ${style.leftBox}`}>
                     <div className={style.TitleAndExtrasBox}>
                       <div className={style.userPreg}>
@@ -121,15 +126,19 @@ const Responder = () => {
                       </div>
                     </div> */}
                   </div>
+
                 </div>
 
                 {/*----------------FORMULARIO*--------------------*/}
 
                 <div className={`row ${style.answerForm}`}>
                   <div className={`col-lg-6 ${style.form}`}>
-                    <form>
-                      <div className={style.write}>
-                        <p>Escribe una respuesta aqui: </p>
+                    {/* <form> */}
+                    <div className={style.input1}>
+
+                      <div className={style.pregBtn}>
+                        <div>Escribe una respuesta aqui: </div>
+                        <button type='button' className={style.btnCode} onClick={handleClick}> Código Javascript </button>
                       </div>
                       <div id={style.text}>
                         <textarea
@@ -147,15 +156,21 @@ const Responder = () => {
                           </div>
                         )}
                       </div>
-                      <div>
-                        <p> Vista previa: </p>
-                        <ReactMarkdown
-                          children={input}
-                          className={style.markdown}
-                          components={{ code: Highlighter }}
-                        />
-                      </div>
-                    </form>
+
+                    </div>
+
+
+                    <div className={style.input2}>
+                      <p> Vista previa: </p>
+                      <ReactMarkdown
+                        children={input}
+                        className={style.markdown}
+                        components={{ code: Highlighter }}
+                      />
+                    </div>
+
+
+                    {/* </form> */}
                   </div>
 
                   <div className={style.button}>

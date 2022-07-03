@@ -79,7 +79,7 @@ const Admin = () => {
     <div className={style.fullContainer}>
       {isAuthenticated ? (
         <div className={style.middleRow}>
-          {!userInfo.statusAdmin ? (
+          {userInfo.statusAdmin ? (
             <div className={`container-fluid ${style.container}`}>
               <div className={`row ${style.middleRow}`}>
                 <div className={`col-lg-2 ${style.col1}`}>

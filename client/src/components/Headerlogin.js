@@ -148,7 +148,7 @@ const Headerlogin = () => {
                   <hr className="dropdown-divider"></hr>
                 </li>
                 <li>
-                  <p onClick={handleLogOut} className="dropdown-item" href="#">
+                  <p onClick={handleLogOut} className={`dropdown-item ${style.logOut}`} href="#">
                     Log Out
                   </p>
                 </li>

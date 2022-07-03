@@ -27,11 +27,11 @@
 #div1 input {
   width: 35%;
   height: 30px;
-  border: solid 2px black;
+  border: solid 2px grey;
   background-color: white;
   font-weight: 400;
   font-size: 16px;
-  border-radius: 3%;
+  border-radius: 1vh;
 }
 
 #div2 p {
@@ -53,11 +53,11 @@
 .markdown {
   width: 90%;
   height: 200px;
-  border: solid 2px black;
+  border: solid 2px grey;
   background-color: white;
   font-weight: 400;
   font-size: 15px;
-  border-radius: 1.5%;
+  border-radius: 1vh;
 }
 
 .markdown {
@@ -81,10 +81,10 @@
 .btnCode {
   width: fit-content;
   height: 30px;
-  background-color: transparent;
+  background-color: #f9bf00;
+  color: lightyellow;
   border: #f9bf00 solid 0.5px;
   border-radius: 5%;
-  color: rgb(75, 71, 71);
   font-weight: 300;
   font-size: 15px;
   justify-self: center;
@@ -93,8 +93,8 @@
 
 .btnCode:hover {
   cursor: pointer;
-  color: lightyellow;
-  background-color: #f9bf00;
+  background-color: transparent;
+  color: rgb(75, 71, 71);
 }
 
 .error {

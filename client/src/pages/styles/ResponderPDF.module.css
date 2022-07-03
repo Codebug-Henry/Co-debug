@@ -1,3 +1,7 @@
+.AppResponder {
+    background-color: lightyellow;
+}
+
 .download {
     cursor: pointer;
     z-index: -1; 

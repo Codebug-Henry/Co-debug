@@ -1,27 +1,27 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import style from "./styles/TopTenRanking.module.css";
-// import { getTopTenRanking } from "../redux/api";
-// import { useEffect } from "react";
+import { getTopTenRanking } from "../redux/actions";
+import { useEffect } from "react";
 import TopTenCard from "./TopTenCard";
 
 const TopTenRanking = () => {
-  // const dispatch = useDispatch();
+  const dispatch = useDispatch();
   const topTen = useSelector((state) => state.topTenRanking);
   console.log(topTen);
 
-  // useEffect(() => {
-  //   dispatch(getTopTenRanking());
-  // }, [dispatch]);
+  useEffect(() => {
+    dispatch(getTopTenRanking());
+  }, [dispatch]);
 
   return (
     <div>
       <div>
         <div className={`container-fluid ${style.container}`}>
           <div className={`row ${style.info}`}>
-            <p className={`col-lg-2`}>Posición</p>
-            <p className={`col-lg-7`}>Nickname</p>
-            <p className={`col-lg-3`}>Puntos</p>
+            <p className={`col-2 ${style.nro}`}>Nro</p>
+            <p className={`col-7 ${style.nick}`}>Nickname</p>
+            <p className={`col-3 ${style.puntos}`}>Puntos</p>
           </div>
         </div>
 
