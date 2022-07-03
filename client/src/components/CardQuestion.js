@@ -93,9 +93,7 @@ const CardQuestion = ({
   const handleAlert = (e) => {
     e.preventDefault();
     let pack = { id, message: selected, subCreator: userInfo.sub };
-    axios
-      .post("http://localhost:3001/alert/question", pack)
-      .then((response) => null);
+    axios.post("/question", pack).then((response) => null);
     handleClose();
   };
 
