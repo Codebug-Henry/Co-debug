@@ -1,5 +1,5 @@
 import React from "react";
-import { Link, useLocation } from "react-router-dom";
+import { Link } from "react-router-dom";
 import style from "./styles/CardQuestion.module.css";
 
 import FavoriteIcon from "@mui/icons-material/Favorite";
@@ -9,7 +9,6 @@ import ThumbDownIcon from "@mui/icons-material/ThumbDown";
 import {
   addFavourites,
   getAllQuestions,
-  getFavourites,
   modifyQuestion,
 } from "../redux/actions";
 import Box from "@mui/material/Box";
@@ -38,31 +37,18 @@ const CardQuestion = ({
   id,
   sort,
   page,
-  setPage,
+  setIsFavorite
 }) => {
   const dispatch = useDispatch();
   const userInfo = useSelector((state) => state.user);
-  const location = useLocation();
-  const totalPages = useSelector((state) => state.totalPages);
-
   function handleAddFavourite(e) {
     e.preventDefault();
-    addFavourites(userInfo.sub, id, true);
-    dispatch(getAllQuestions(sort, page));
+    addFavourites(userInfo.sub, id, true, setIsFavorite);
   }
 
   function handleRemoveFavourite(e) {
     e.preventDefault();
-    addFavourites(userInfo.sub, id, false);
-    if (location.pathname === "/") {
-      dispatch(getAllQuestions(sort, page));
-    }
-    if (location.pathname === "/favoritas") {
-      dispatch(getFavourites(userInfo.sub, page));
-    }
-    if (page > totalPages && page !== 1) {
-      setPage((page) => page - 1);
-    }
+    addFavourites(userInfo.sub, id, false, setIsFavorite);
   }
 
   async function addLike(e) {
@@ -93,7 +79,9 @@ const CardQuestion = ({
   const handleAlert = (e) => {
     e.preventDefault();
     let pack = { id, message: selected, subCreator: userInfo.sub };
-    axios.post("/question", pack).then((response) => null);
+    axios
+      .post("/alert/question", pack)
+      .then((response) => null);
     handleClose();
   };
 
@@ -141,24 +129,18 @@ const CardQuestion = ({
             </div>
 
             <div>
-              {/* <img src={favorito} alt="favorito" className={style.like} /> */}
-              <FavoriteIcon
+              {userInfo.favourites?.includes(id) ? <FavoriteIcon
                 fontSize="medium"
                 color="error"
                 id="favorite"
-                className={
-                  userInfo.favourites?.includes(id) ? style.fav : style.notFav
-                }
+                className={style.fav}
                 onClick={(e) => handleRemoveFavourite(e)}
-              />
-              <FavoriteIcon
-                fontSize="medium"
-                color="string"
-                className={
-                  userInfo.favourites?.includes(id) ? style.notFav : style.fav
-                }
-                onClick={(e) => handleAddFavourite(e)}
-              />
+              /> : <FavoriteIcon
+              fontSize="medium"
+              color="string"
+              className={style.fav}
+              onClick={(e) => handleAddFavourite(e)}
+            />}
             </div>
             <div>
               <BlockIcon

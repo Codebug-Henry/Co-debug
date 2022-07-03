@@ -5,16 +5,15 @@ import CardQuestion from "./CardQuestion.js";
 import Paginated from "./Paginated";
 import style from "./styles/CardsQuestions.module.css";
 
-const CardsQuestions = () => {
+const CardsQuestions = ({isFavorite, setIsFavorite}) => {
   const dispatch = useDispatch();
   const questions = useSelector((state) => state.questions);
   const [page, setPage] = useState(1);
-
   const [sort, setSort] = useState("desc");
 
   useEffect(() => {
     dispatch(getAllQuestions(sort, page));
-  }, [dispatch, page]);
+  }, [dispatch, page, isFavorite]);
 
   return (
     <div className={style.questBox}>
@@ -33,6 +32,7 @@ const CardsQuestions = () => {
               picture={e.user.picture}
               sort={sort}
               page={page}
+              setIsFavorite={setIsFavorite}
             />
           ))}
       </div>
