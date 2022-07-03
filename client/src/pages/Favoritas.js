@@ -12,23 +12,21 @@ import Loading from "../components/Loading";
 
 const Favoritas = () => {
 
+  const { isAuthenticated, isLoading } = useAuth0();
   const userInfo = useSelector(state=> state.user);
   const favourites = useSelector(state => state.favourites);
   const dispatch = useDispatch();
+  const [page, setPage] = useState(1);
+  const [isFavorite, setIsFavorite] = useState(false)
   let cant = favourites.length;
-
-
-  const [page, setPage] = useState(1)
 
   useEffect(()=>{
     if(isAuthenticated){
     dispatch(getFavourites(userInfo.sub, page))
     }
-  }, [cant, page, dispatch])
+  }, [cant, page, dispatch, isFavorite])
 
-
-  const { isAuthenticated, isLoading } = useAuth0();
-
+  
   if (isLoading) {
     return (
       <div>
@@ -73,6 +71,7 @@ const Favoritas = () => {
                                 picture={f.user.picture}
                                 page={page}
                                 setPage={setPage}
+                                setIsFavorite={setIsFavorite}
                               />
                           )
                       }) :

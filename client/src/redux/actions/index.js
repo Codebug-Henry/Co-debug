@@ -161,9 +161,10 @@ export const deleteQuestion = (question, setIsModify) => async (dispatch) => {
   }
 };
 
-export const addFavourites = async (sub, qId, boolean) => {
+export const addFavourites = async (sub, qId, boolean, setIsLiked) => {
   try {
     await api.addFavourites(sub, qId, boolean);
+    setIsLiked(prevIsLiked => !prevIsLiked)
   } catch (error) {
     console.log(error.message);
   }
