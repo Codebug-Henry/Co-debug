@@ -21,12 +21,8 @@ const AlertCard = ({
     e.preventDefault();
     let pack = { id: questionId, statusDeleted: true };
     let resolvedPack = { id, statusResolved: true };
-    axios
-      .put(`http://localhost:3001/alert`, resolvedPack)
-      .then((r) => alert("Alerta resuelta"));
-    axios
-      .put(`http://localhost:3001/question`, pack)
-      .then((r) => alert("Pregunta borrada"));
+    axios.put(`/alert`, resolvedPack).then((r) => alert("Alerta resuelta"));
+    axios.put(`/question`, pack).then((r) => alert("Pregunta borrada"));
     setAlertsFlag((prevAlertsFlag) => !prevAlertsFlag);
     setTemporalFlag((prevTemporalFlag) => !prevTemporalFlag);
   };
@@ -34,9 +30,7 @@ const AlertCard = ({
   const handleResolve = (e) => {
     e.preventDefault();
     let pack = { id, statusResolved: true };
-    axios
-      .put(`http://localhost:3001/alert`, pack)
-      .then((r) => alert("Alerta resuelta"));
+    axios.put(`/alert`, pack).then((r) => alert("Alerta resuelta"));
     setAlertsFlag((prevAlertsFlag) => !prevAlertsFlag);
     setTemporalFlag((prevTemporalFlag) => !prevTemporalFlag);
   };

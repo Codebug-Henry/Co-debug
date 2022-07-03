@@ -7,7 +7,7 @@ const AdminCard = ({ sub, nickname, email, setFlag, setNoAdminFlag }) => {
     e.preventDefault();
     let modify = { statusAdmin: false };
     axios
-      .put(`http://localhost:3001/user/${sub}`, modify)
+      .put(`/user/${sub}`, modify)
       .then((response) => setFlag((prevFlag) => !prevFlag));
   };
 
