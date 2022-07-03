@@ -195,6 +195,20 @@ const paginate = (limit, page, arr)=>{
     }
 }
 
+const checkEmailAdmin = (obj) => {
+    const emails = [
+        "matibalbi@gmail.com",
+        "gonzalogdv@gmail.com",
+        "felipe.guitelman@gmail.com",
+        "lucianommorea@gmail.com",
+        "patriciogabrielcolella@gmail.com",
+        "regenerik@gmail.com",
+        "santiagotrabucco@gmail.com",
+        "tutemaposo2016@gmail.com"
+    ]
+    return emails.includes(obj.email)
+}
+
 // Callback function for descending sort
 // const sortByPointsDesc = (a, b) => {
 //     return b.teachPoints - a.teachPoints
@@ -210,6 +224,7 @@ module.exports={
     paginate,
     getUserPosition,
     questionTags,
+    checkEmailAdmin,
     // sortByPointsDesc,
     // sortByPointsAsc,
 }
