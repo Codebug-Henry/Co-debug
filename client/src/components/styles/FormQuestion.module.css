@@ -27,11 +27,11 @@
 #div1 input {
   width: 35%;
   height: 30px;
-  border: solid 2px black;
+  border: solid 2px grey;
   background-color: white;
   font-weight: 400;
   font-size: 16px;
-  border-radius: 3%;
+  border-radius: 1vh;
 }
 
 #div2 p {
@@ -53,11 +53,11 @@
 .markdown {
   width: 90%;
   height: 200px;
-  border: solid 2px black;
+  border: solid 2px grey;
   background-color: white;
   font-weight: 400;
   font-size: 15px;
-  border-radius: 1.5%;
+  border-radius: 1vh;
 }
 
 .markdown {

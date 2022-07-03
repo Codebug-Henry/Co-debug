@@ -49,6 +49,10 @@ const Responder = () => {
     alert("Respuesta enviada");
   };
 
+  function handleClick() {
+    setInput("\n```javascript\n(escribe tu código javascript aquí)\n```")
+}
+
   return (
 
     <div className={style.fullContainer}>
@@ -128,8 +132,9 @@ const Responder = () => {
                 <div className={`row ${style.answerForm}`}>
                   <div className={`col-lg-6 ${style.form}`}>
                     <form>
-                      <div className={style.write}>
+                      <div className={style.pregBtn}>
                         <p>Escribe una respuesta aqui: </p>
+                        <button type='button' className={style.btnCode} onClick={handleClick}> Código Javascript </button>
                       </div>
                       <div id={style.text}>
                         <textarea
