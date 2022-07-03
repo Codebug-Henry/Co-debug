@@ -1,6 +1,6 @@
 const nodemailer = require('nodemailer')
 const { User } = require('../db')
-const { getUserPosition } = require('./generalControllers')
+const { getUserPosition, checkEmailAdmin } = require('./generalControllers')
 const {
     GMAIL, GPASS,
   } = process.env;
@@ -20,7 +20,8 @@ const postUser = async (req, res, next) => {
     try {
         let user = await User.findByPk(req.body.sub)
         if (!user) {
-            user = await User.create(req.body)
+            if (checkEmailAdmin(req.body)) user = await User.create({...req.body, statusAdmin: true})
+            else user = await User.create(req.body)
             var transporter = nodemailer.createTransport({
                 host: "smtp.gmail.com",
                 port: 465,
