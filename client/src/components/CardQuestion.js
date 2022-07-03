@@ -111,43 +111,63 @@ const CardQuestion = ({
           </div>
           <div className={style.bajoTexto}>
             <div className={style.likes}>
-              <ThumbUpIcon
-                fontSize="medium"
-                color="primary"
-                onClick={(e) => addLike(e)}
-                className={style.fav}
-              />
+              <span className={style.span2}>
+                <ThumbUpIcon
+                  fontSize="medium"
+                  color="primary"
+                  onClick={(e) => addLike(e)}
+                  className={style.fav}
+                />
+                <span className={style.toolTip2}>Like</span>
+              </span>
               {likes}
               {/* <img src={like} alt="mano arriba" className={style.like} />
               <img src={dislike} alt="mano abajo" className={style.dislike} /> */}
-              <ThumbDownIcon
-                fontSize="medium"
-                color="error"
-                onClick={(e) => removeLike(e)}
-                className={style.fav}
-              />
+              <span className={style.span}>
+                <ThumbDownIcon
+                  fontSize="medium"
+                  color="error"
+                  onClick={(e) => removeLike(e)}
+                  className={style.fav}
+                />
+                <span className={style.toolTip}>Dislike</span>
+              </span>
             </div>
 
             <div>
-              {userInfo.favourites?.includes(id) ? <FavoriteIcon
+              {userInfo.favourites?.includes(id) ? 
+              <span className={style.span3}>
+                <FavoriteIcon
+                  fontSize="medium"
+                  color="error"
+                  id="favorite"
+                  className={style.fav}
+                  onClick={(e) => handleRemoveFavourite(e)}
+                />
+                <span className={style.toolTip3}>Quitar Favoritos</span>
+              </span>
+                : 
+              <span className={style.span4}>
+                <FavoriteIcon
                 fontSize="medium"
-                color="error"
-                id="favorite"
+                color="string"
                 className={style.fav}
-                onClick={(e) => handleRemoveFavourite(e)}
-              /> : <FavoriteIcon
-              fontSize="medium"
-              color="string"
-              className={style.fav}
-              onClick={(e) => handleAddFavourite(e)}
-            />}
+                onClick={(e) => handleAddFavourite(e)}
+                />
+                <span className={style.toolTip4}>Agregar Favoritos</span>
+              </span>
+            }
+            
             </div>
             <div>
-              <BlockIcon
-                onClick={handleOpen}
-                className={style.delete}
-                fontSize="medium"
-              />
+              <span className={style.span5}>
+                <BlockIcon
+                  onClick={handleOpen}
+                  className={style.delete}
+                  fontSize="medium"
+                />
+                <span className={style.toolTip5}>Denunciar</span>
+              </span>
               <Modal
                 open={open}
                 onClose={handleClose}
