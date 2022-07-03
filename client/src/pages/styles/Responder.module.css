@@ -1,7 +1,8 @@
 
-html{
+html {
     min-height: 100%;
     position: relative;
+    background-color: lightyellow;
 }
 
 .footer{
@@ -15,8 +16,9 @@ html{
 .fullContainer{
     display: flex;
     flex-direction: column;
+    background-color: lightyellow;
+    padding-left: 6.3%;
 }
-
 
 .total{
 
@@ -28,18 +30,26 @@ html{
 
 .TitleAndExtrasBox {
   padding-top: 1vh;
-  margin-left: 3vh;
+  /* margin-left: 3vh; */
   display: flex;
   align-items: flex-start;
   flex-direction: row;
   justify-content: space-between;
   gap: 6vh;
 }
+
+.middleRow {
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: flex-end;
+}
+
 .leftbox {
   display: flex;
   justify-content: center;
   flex-direction: column;
 }
+
 .rightBox {
   display: flex;
   justify-content: center;
@@ -52,8 +62,9 @@ html{
   /* font-weight: bold; */
   /* font-size: 200%; */
   padding: 1vh;
+  border: solid 2px grey;
   border-radius: 1vh;
-  margin-left: 3vh;
+  /* margin-left: 3vh; */
 }
 .answerIt {
   border-radius: 2vh;
@@ -85,6 +96,7 @@ html{
   font-family: "Source Serif Pro", serif;
   font-weight: 400;
   font-size: 15px;
+  border-radius: 1vh;
 }
 
 .markdown {
@@ -97,6 +109,7 @@ html{
   font-size: 15px;
   padding: 2px;
   overflow-y: scroll;
+  border-radius: 1vh;
 }
 
 .button {
@@ -104,4 +117,71 @@ html{
   align-items: center;
   height: 30%;
   margin-top: 20px;
+}
+
+.pregBtn {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  margin-bottom: 1.8%;
+}
+
+.btnCode {
+  width: fit-content;
+  height: 30px;
+  background-color: #f9bf00;
+  color: lightyellow;
+  border: #f9bf00 solid 0.5px;
+  border-radius: 5%;
+  font-weight: 300;
+  font-size: 15px;
+  justify-self: center;
+  align-self: center;
+}
+
+.btnCode:hover {
+  cursor: pointer;
+  background-color: transparent;
+  color: rgb(75, 71, 71);
+}
+
+.pictureBox {
+  display: flex;
+  align-items: flex-end;
+  margin-bottom: 0.5%;
+}
+
+.answers {
+  margin-bottom: 5%;
+}
+
+.answerForm {
+  margin-top: 3%;
+}
+
+.form {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  justify-content: space-between;
+  gap: 2%;
+}
+
+.input1 {
+  width: 100%;
+}
+
+.input2 {
+  width: 100%;
+}
+
+@media screen and (max-width: 740px) {
+
+  .form {
+    display: flex;
+    flex-direction: column;
+  }
+
 }

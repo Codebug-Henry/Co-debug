@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import style from "./styles/Landing.module.css";
 import { useAuth0 } from "@auth0/auth0-react";
 import Loading from "../components/Loading.js";
@@ -20,6 +20,7 @@ const Landing = () => {
   const dispatch = useDispatch();
   const { isAuthenticated, isLoading, user } = useAuth0();
   const infoUsuario = useSelector((state) => state.user);
+  const [isFavorite, setIsFavorite] = useState(false)
   const preguntas = infoUsuario.cantQuest;
   const respuestas = infoUsuario.cantAns;
   const position = infoUsuario.myPosition;
@@ -31,7 +32,7 @@ const Landing = () => {
     if (isAuthenticated) {
       dispatch(getUserInfo(user.sub));
     }
-  }, [dispatch, user, isAuthenticated]);
+  }, [dispatch, user, isAuthenticated, isFavorite]);
 
   // useEffect(() => {
   //   dispatch(getTopTenRanking());
@@ -56,7 +57,7 @@ const Landing = () => {
             </div>
             <div className={`row ${style.middleRow}`}>
               <div className={`col-lg-8 ${style.col1}`}>
-                <CardsQuestions />
+                <CardsQuestions isFavorite={isFavorite} setIsFavorite={setIsFavorite}/>
               </div>
 
               <div className={`col-lg-4 ${style.col2}`}>

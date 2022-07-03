@@ -21,11 +21,11 @@ function Pdf() {
     }
     
     return (
-        <div className="AppResponder">
+        <div className={style.AppResponder}>
           {/* <button onClick={()=> exportPDF()}>Print PDF</button> */}
-          <Fab color="#ff9800" variant='extended' aria-label="FileDownoladIcon" size="small" onClick={()=> exportPDF()} className={style.download}>
-            <FileDownloadIcon  /> 
-          </Fab>
+            <Fab color="#ff9800" variant='extended' aria-label="FileDownoladIcon" size="small" onClick={()=> exportPDF()} className={style.download}>
+              <FileDownloadIcon  /> 
+            </Fab>
           <header id="AppResponder" className="App-header">
             {/* Acá va el componente que quiero guardar en PDF */}
             <Responder />
