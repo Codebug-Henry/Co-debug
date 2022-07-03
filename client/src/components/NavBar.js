@@ -81,7 +81,7 @@ const NavBar = () => {
                   Más antiguas
                 </option>
               </select>
-              <li className={`nav-item dropdown" ${style.gralTags}`}>
+              {/* <li className={`nav-item dropdown" ${style.gralTags}`}>
                 <span
                   className="nav-link dropdown-toggle"
                   id="navbarDropdown"
@@ -112,6 +112,49 @@ const NavBar = () => {
                   </li>
                   <li>
                     <span className="dropdown-item">css</span>
+                  </li>
+                </ul>
+              </li> */}
+              {/* <li className="nav-item">
+                <span
+                  className="nav-link disabled"
+                  tabIndex="-1"
+                  aria-disabled="true"
+                >
+                  tag
+                </span>
+              </li> */}
+              <li className="nav-item dropdown">
+                <span
+                  className="nav-link dropdown-toggle"
+                  id="navbarDropdown"
+                  role="button"
+                  data-bs-toggle="dropdown"
+                  aria-expanded="false"
+                >
+                  Gral tag's
+                </span>
+                <ul className="dropdown-menu" aria-labelledby="navbarDropdown">
+                  <li>
+                    <span className="dropdown-item">JS</span>
+                  </li>
+                  <li>
+                    <span className="dropdown-item">Redux</span>
+                  </li>
+                  <li>
+                    <span className="dropdown-item">React</span>
+                  </li>
+                  <li>
+                    <span className="dropdown-item">HTML</span>
+                  </li>
+                  <li>
+                    <span className="dropdown-item">GitHub</span>
+                  </li>
+                  <li>
+                    <span className="dropdown-item">CSS</span>
+                  </li>
+                  <li>
+                    <span className="dropdown-item">Sequelize</span>
                   </li>
                 </ul>
               </li>
