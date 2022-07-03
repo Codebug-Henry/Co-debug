@@ -1,65 +1,81 @@
-
-html{
-    min-height: 100%;
-    position: relative;
+html {
+  min-height: 100%;
+  position: relative;
 }
 
-.footer{
-    position: absolute;
-    left: 0;
-    bottom: 0;
-    width: 100%;
-    overflow:hidden;
+.containerTotal {
+  gap: 5%;
+  background-color: lightyellow;
 }
 
-.fullContainer{
-    display: flex;
-    flex-direction: column;
-}
+/* .container {
+  margin-bottom: 4%;
+} */
 
-
-.help{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    font-family: "Roboto" ,sans-serif;
-    background-color: lightyellow;
-   }
-
-.help h1 {
-  text-align: center;
-}
-
-.help h2 {
-  background-color: orange;
-  border-radius: 20px 2px 25px 3px;
-}
-
-.help h3 {
-  background-color: orange;
-  border-radius: 10px;
-}
-
-.questions {
+.title {
   display: flex;
+  font-size: 200%;
   justify-content: center;
-  margin-left: 0vw;
-  gap: 6vw;
+  align-items: center;
 }
 
-.leftQuestions {
-  width: 50%;
+.row1 {
+  padding-left: 1%;
+  padding-right: 1%;
+  padding-top: 0.5%;
+  padding-bottom: 0.5%;
 }
 
-.rightQuestions {
-  width: 50%;
+.row2 {
+  padding-left: 1%;
+  padding-right: 1%;
+  padding-top: 0.5%;
+  padding-bottom: 0.5%;
 }
 
-.questions h2 {
-  font-size: 250%;
-  margin-top: -1vh;
+.row3 {
+  padding-left: 1%;
+  padding-right: 1%;
+  padding-top: 0.5%;
+  padding-bottom: 0.5%;
 }
 
-.questions h3 {
-  font-size: 130%;
+.col1 {
+  margin: 1%;
+  padding-top: 0.5%;
+  padding-bottom: 0.5%;
+  background-color: white;
+  border-radius: 1vh;
+  box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
+}
+
+.col2 {
+  margin: 1%;
+  padding-top: 0.5%;
+  padding-bottom: 0.5%;
+  background-color: white;
+  border-radius: 1vh;
+  box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
+}
+
+.questionContainer {
+  display: flex;
+  font-size: 100%;
+  text-align: justify;
+  font-weight: bold;
+  justify-content: center;
+  padding-bottom: 0.5%;
+}
+
+.answerContainer {
+  font-size: 100%;
+  text-align: justify;
+}
+
+.footer {
+  /* position: absolute; */
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  overflow: hidden;
 }
