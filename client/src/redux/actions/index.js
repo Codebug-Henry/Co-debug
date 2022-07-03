@@ -43,7 +43,7 @@ export const getTopTenRanking = () => async (dispatch) => {
     const { data } = await api.getTopTenRanking();
     dispatch({ type: GET_TOPTEN_RANKING, payload: data });
   } catch (error) {
-    console.log(error.message);
+    console.log("ActionError", error.message);
   }
 };
 
@@ -145,7 +145,7 @@ export const modifyQuestion = (question, setIsModify) => async (dispatch) => {
   try {
     const { data } = await api.modifyQuestion(question);
     dispatch({ type: MODIFY_QUESTION, payload: data });
-    setIsModify && setIsModify(false)
+    setIsModify && setIsModify(false);
   } catch (error) {
     console.log(error.message);
   }
@@ -155,7 +155,7 @@ export const deleteQuestion = (question, setIsModify) => async (dispatch) => {
   try {
     const { data } = await api.deleteQuestion(question);
     dispatch({ type: DELETE_QUESTION, payload: data });
-    setIsModify && setIsModify(false)
+    setIsModify && setIsModify(false);
   } catch (error) {
     console.log(error.message);
   }
@@ -205,9 +205,15 @@ export const getUserQuestions = (sub, sort, page) => async (dispatch) => {
   }
 };
 
-export const getUserQuestionsSearch = (sub, answered, page, search) => async (dispatch) => {
+export const getUserQuestionsSearch =
+  (sub, answered, page, search) => async (dispatch) => {
     try {
-      const { data } = await api.getUserQuestionsSearch(sub, answered, page, search);
+      const { data } = await api.getUserQuestionsSearch(
+        sub,
+        answered,
+        page,
+        search
+      );
       dispatch({ type: GET_USER_QUESTIONS_ORDERER, payload: data });
     } catch (error) {
       console.log(error.message);

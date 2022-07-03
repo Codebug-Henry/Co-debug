@@ -5,11 +5,12 @@ import Loading from "../components/Loading.js";
 import Footer from "../components/Footer.js";
 import CardsQuestions from "../components/CardsQuestions.js";
 import CardsQuestsLogOut from "../components/CardsQuestsLogOut.js";
-// import TopDiezRanking from "../components/TopDiezRanking";
+import TopTenRanking from "../components/TopTenRanking";
 import { useSelector, useDispatch } from "react-redux";
 import { useEffect } from "react";
 import { getUserInfo } from "../redux/actions";
 import NavBar from "../components/NavBar";
+// import { getTopTenRanking } from "../redux/actions";
 
 // import { useEffect, useState } from 'react'
 // import { useDispatch, useSelector } from "react-redux"
@@ -23,12 +24,18 @@ const Landing = () => {
   const respuestas = infoUsuario.cantAns;
   const position = infoUsuario.myPosition;
   const tpoints = infoUsuario.myTeachPoints;
+  // const topTen = useSelector((state) => state.topTenRanking);
+  // console.log(topTen);
 
   useEffect(() => {
     if (isAuthenticated) {
       dispatch(getUserInfo(user.sub));
     }
   }, [dispatch, user, isAuthenticated]);
+
+  // useEffect(() => {
+  //   dispatch(getTopTenRanking());
+  // }, [dispatch]);
 
   if (isLoading) {
     return (
@@ -72,21 +79,9 @@ const Landing = () => {
                     </div>
                   </div>
                   <div className={`row ${style.rightRowMidle}`}>
-                    {/* <TopDiezRanking />
-                  </div> */}
-
                     <div className={style.datosUser}>
-                      <p className={style.estadisticas}>TOP TEN</p>
-                      <p>Juan Román Riquelme 1000 </p>
-                      <p>Diego Armando Maradona 950</p>
-                      <p>Martín Palermo 870</p>
-                      <p>Carlos Tevez 850</p>
-                      <p>Angel Clemente Rojas 810</p>
-                      <p>Francisco Varallo 790</p>
-                      <p>Guillermo Barros Schelotto 760</p>
-                      <p>Jorge Bermúdez 730</p>
-                      <p>Hugo Gatti 700</p>
-                      <p>Antonio Rattín 690</p>
+                      <p className={style.estadisticas}>TOP TEN USUARIOS</p>
+                      <TopTenRanking />
                     </div>
                   </div>
                 </div>
