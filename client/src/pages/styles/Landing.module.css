@@ -17,6 +17,7 @@ html {
 .fullContainer {
   display: flex;
   flex-direction: column;
+  background-color: lightyellow;
 }
 
 .middleRow {

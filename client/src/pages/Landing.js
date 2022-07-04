@@ -10,33 +10,22 @@ import { useSelector, useDispatch } from "react-redux";
 import { useEffect } from "react";
 import { getUserInfo } from "../redux/actions";
 import NavBar from "../components/NavBar";
-// import { getTopTenRanking } from "../redux/actions";
-
-// import { useEffect, useState } from 'react'
-// import { useDispatch, useSelector } from "react-redux"
-// //Mandar pedido useEffect dispatch mi action >> pedido back >> res new object >
 
 const Landing = () => {
   const dispatch = useDispatch();
   const { isAuthenticated, isLoading, user } = useAuth0();
   const infoUsuario = useSelector((state) => state.user);
-  const [isFavorite, setIsFavorite] = useState(false)
+  const [isFavorite, setIsFavorite] = useState(false);
   const preguntas = infoUsuario.cantQuest;
   const respuestas = infoUsuario.cantAns;
   const position = infoUsuario.myPosition;
   const tpoints = infoUsuario.myTeachPoints;
-  // const topTen = useSelector((state) => state.topTenRanking);
-  // console.log(topTen);
 
   useEffect(() => {
     if (isAuthenticated) {
       dispatch(getUserInfo(user.sub));
     }
   }, [dispatch, user, isAuthenticated, isFavorite]);
-
-  // useEffect(() => {
-  //   dispatch(getTopTenRanking());
-  // }, [dispatch]);
 
   if (isLoading) {
     return (
@@ -57,9 +46,11 @@ const Landing = () => {
             </div>
             <div className={`row ${style.middleRow}`}>
               <div className={`col-lg-8 ${style.col1}`}>
-                <CardsQuestions isFavorite={isFavorite} setIsFavorite={setIsFavorite}/>
+                <CardsQuestions
+                  isFavorite={isFavorite}
+                  setIsFavorite={setIsFavorite}
+                />
               </div>
-
               <div className={`col-lg-4 ${style.col2}`}>
                 <div className={`container-fluid${style.rigthContainer}`}>
                   <div className={`row ${style.rightRowTop}`}>
