@@ -1,8 +1,6 @@
 import React from "react";
 import Footer from "../components/Footer.js";
-//import { useAuth0 } from "@auth0/auth0-react";
 import style from "./styles/Admin.module.css";
-//import Loading from "../components/Loading.js";
 import { useState, useEffect } from "react";
 import Alertas from "../components/adminComponents/Alertas.js";
 import ListaUsuarios from "../components/adminComponents/ListaUsuarios.js";
@@ -17,19 +15,12 @@ import {
   getAllUsersNoAdmin,
   getAllAlerts,
 } from "../redux/actions";
-// import Paginated from "../components/Paginated.js";
-
-//Traemos "user.sub" que contiene el ID unico del usuario conectado para que podamos comparar el id y ver si puede estar acá.
-// import { useAuth0 } from '@auth0/auth0-react'
 
 const Admin = () => {
-  // const { user } = useAuth0();
-  //const { isAuthenticated, isLoading } = useAuth0();
   const isAuthenticated = true;
   const [optionSelected, setOptionSelected] = useState(null);
   //LISTA USUARIOS
   const [usersPage, setUsersPage] = useState(1);
-  // const [flag, setFlag] = useState(true);
   const [banFlag, setBanFlag] = useState(true);
   //CONTACTO
   const [messagePage, setMessagePage] = useState(1);
@@ -66,14 +57,6 @@ const Admin = () => {
     dispatch(getAllAlerts(alertsPage));
     console.log(alertsFlag);
   }, [dispatch, alertsFlag, alertsPage]);
-
-  // if (isLoading) {
-  //   return (
-  //     <div>
-  //       <Loading />
-  //     </div>
-  //   );
-  // }
 
   return (
     <div className={style.fullContainer}>
