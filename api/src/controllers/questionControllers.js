@@ -26,24 +26,38 @@ const putUserQuestion = async (req, res, next) => {
 
     let user = await User.findByPk(sub)
     
-    let newLikes = question.likes
-    
     // const newFavourites = [...user.favourites, id]
-
+    
     //         await user.update({
-    //             favourites: newFavourites,
-    //             cantFav: user.cantFav + 1
-    //         })
-
+        //             favourites: newFavourites,
+        //             cantFav: user.cantFav + 1
+        //         })
+    
+        let newLikes = question.likes
+        
     if (like === "add") {
-        newLikes++
-        let userLiked = [...user.liked,id]
-        await user.update({liked:userLiked})
+        if (user.disliked.includes(id)) {
+            newLikes++
+            let userDisliked = user.disliked.filter(questId => questId !== id)
+            await user.update({disliked: userDisliked})
+        }
+        else if (!user.liked.includes(id)) {
+            newLikes++
+            let userLiked = [...user.liked, id]
+            await user.update({liked: userLiked})
+        }
     }
     else if (like === "remove"){
-        newLikes-- 
-        let userLiked = [...user.liked,id].filter(questId=>questId!==id)
-        await user.update({liked:userLiked})
+        if (user.liked.includes(id)) {
+            newLikes--
+            let userLiked = user.liked.filter(questId => questId !== id)
+            await user.update({liked: userLiked})
+        }
+        else if (!user.disliked.includes(id)) {
+            newLikes--
+            let userDisliked = [...user.disliked, id]
+            await user.update({disliked: userDisliked})
+        }
     } 
 
     try {

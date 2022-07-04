@@ -58,6 +58,12 @@
   /* border: 1px solid black */
 }
 
+.likes {
+  display: flex;
+  justify-content: space-between;
+  width: 12%;
+}
+
 .userImage {
   border-radius: 30px;
   width: 8vh;

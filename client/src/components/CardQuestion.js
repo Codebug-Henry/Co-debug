@@ -120,7 +120,9 @@ const CardQuestion = ({
                 />
                 <span className={style.toolTip2}>Like</span>
               </span>
-              {likes}
+              <span className={style.spanLikes}>
+                {likes}
+              </span>
               {/* <img src={like} alt="mano arriba" className={style.like} />
               <img src={dislike} alt="mano abajo" className={style.dislike} /> */}
               <span className={style.span}>
