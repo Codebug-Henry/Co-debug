@@ -24,8 +24,8 @@ const FormQuestion = () => {
     function validate(input){
         let errors = {}
         if(!input.title) errors.title = 'Se requiere un título'
-        if(input.title.length > 25) errors.title = 'Título debe tener un máximo de 25 caracteres'
-        if(input.title && !/^[A-Za-z0-9\s]+$/.test(input.title)) errors.title = 'El título debe tener solo letras, números y espacios.'
+        if(input.title.length > 80) errors.title = 'Título debe tener un máximo de 80 caracteres'
+        // if(input.title && !/^[A-Za-z0-9\s]+$/.test(input.title)) errors.title = 'El título debe tener solo letras, números y espacios.'
         if(!input.text) errors.text = 'Se requiere una pregunta'
         if(input.text.length > 500) errors.title = 'La pregunta debe tener un máximo de 500 caracteres'
         if(input.macroTag.length === 0) errors.macroTag = 'Selecciona al menos un macroTag'

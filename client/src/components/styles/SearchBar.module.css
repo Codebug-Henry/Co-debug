@@ -1,7 +1,7 @@
 .input1{
     width: 180px;
     height: 30px;
-    border-radius: 10%;
+    border-radius: 0.5vh;
     background: rgba(233, 236, 239, 0.8);
     font-family: 'Source Serif Pro', serif;
 }
@@ -16,7 +16,7 @@
     height: 30px;
     background-color: rgba(233, 236, 239, 0.8);
     border: #c0c0c0 solid 1.8px;
-    border-radius: 10%;
+    border-radius: 0.5vh;
     color: #2c383e;
     font-family: 'Source Serif Pro', serif;
     font-weight: 400;

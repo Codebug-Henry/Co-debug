@@ -1,7 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import style from "./styles/CardQuestion.module.css";
-
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import BlockIcon from "@mui/icons-material/Block";
 import ThumbUpIcon from "@mui/icons-material/ThumbUp";
@@ -92,19 +91,24 @@ const CardQuestion = ({
           <img className={style.userImage} src={picture} alt="imagen user" />
         </div>
         <div className={`col-lg-11 ${style.leftBox}`}>
+
           <div className={style.TitleAndExtrasBox}>
-            <div className={style.userPreg}>
-              <h6>{nickname} pregunta:</h6>
+            <div className={style.firstRow}>
+              <div className={style.userPreg}>
+                <h6>{nickname} pregunta:</h6>
+              </div>
+              
+              <div className={style.Extras}>
+                <h6>
+                  Respuestas: {cantAnswers} - T. Points: {teachPoints}
+                </h6>
+              </div>
             </div>
             <div className={style.Title}>
               <h6>{title}</h6>
             </div>
-            <div className={style.Extras}>
-              <h6>
-                Respuestas:{cantAnswers} - T.Points:{teachPoints}
-              </h6>
-            </div>
           </div>
+
           {/* <div className={style.questionText}>{text}</div> */}
           <div className={style.questionText}>
             <ReactMarkdown children={text} components={{ code: Highlighter }} />
