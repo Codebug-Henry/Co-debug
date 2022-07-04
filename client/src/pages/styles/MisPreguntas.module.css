@@ -13,11 +13,13 @@ html {
 
 .container {
   background-color: lightyellow;
+  width: 91%;
 }
 
 .fullContainer {
   display: flex;
   flex-direction: column;
+  background-color: lightyellow;
 }
 
 .col1 {
@@ -28,25 +30,21 @@ html {
 #all {
   width: 96%;
   margin-left: 2%;
+  margin-bottom: 5%;
 }
 
 #explore {
-  /* border: solid 1px black; */
-  height: 6vh;
+  font-weight: 600;
+  text-align: center;
+  font-size: 2.5vw;
 }
 
-#explore p {
-  position: relative;
-  text-align: center;
-  margin-top: 1vh;
-  font-size: x-large;
-}
 
 #filters {
   /* border: solid 1px black; */
-  border-radius: 0% 5% 5% 4%;
+  border-radius: 1vh;
   box-shadow: 3px 3px 3px grey;
-  background-color: rgba(255, 136, 0, 255);
+  background-color: #f9bf00;
   height: 7vh;
   display: flex;
   flex-direction: row;
@@ -65,6 +63,12 @@ html {
   /* z-index: -1;        esto lo puse para que el boton de delete no quede por encima del dropdown cuando se abre */
 }
 
+@media screen and (max-width: 1000px) {
+  #all {
+    margin-bottom: 16%;
+  }
+}
+
 @media screen and (max-width: 500px) {
   #filters {
     flex-direction: column;
@@ -74,4 +78,27 @@ html {
   .filterIcon {
     display: none;
   }
+
+  .container {
+    width: 98%;
+  }
 }
+
+.btnCreate {
+  background-color: transparent;
+  border: none;
+  border-radius: 1vh;
+  font-size: 2.5vh;
+}
+
+.btnCreate:hover {
+  cursor: pointer;
+  color: #f9bf00fb;
+  /* background-color: rgb(244, 244, 209); */
+}
+
+.imgQuest {
+  margin-left: 5px;
+  margin-top: -5px;
+}
+

@@ -1,43 +1,44 @@
 #questionCard{
     /* border: solid 1px black; */
-    border-radius: 0% 5% 5% 4%;
-    box-shadow: 10px 5px 5px black;
-    height: 19.5vh;
+    border-radius: 0% 1vh 2vh 1vh;
+    box-shadow: 10px 5px 5px;
+    /* height: 190px; */
+    height: min-content;
     display: flex;
     flex-direction: row;
     color: #2d3032;
-    background-color:rgb(244, 244, 213);
+    background-color:rgb(255, 255, 255);
 }
 
 #left{
-    /* border: solid 1px red; */
-    height: 20vh;
+    /* height: 190px; */
     width: 100%;
 }
 
 #first{
     display: flex;
     flex-direction: row;
-    height: 6.5vh;
+    /* height: 45px; */
     align-items: center;
 }
 
 #name{
     /* border: solid 1px blue; */
-    width: 60%;
+    width: 45%;
     display: flex;
     flex-direction: row;
+    font-weight: 500;
 }
 
 #photo{
     /* border: solid 1px black; */
     width: 25%;
-    height: 4.2vh;
+    height: 32px;
 }
 
 #avatar{
-    width: 4vh;
-    height: 4vh;
+    width: 32px;
+    height: 32px;
     float: right;
     margin-top: 0.1vh;
 }
@@ -45,49 +46,53 @@
 #user{
     /* border: solid 1px black; */
     width: 75%;
-    height: 4vh;
-    position: relative;
-    left: 1vh;
+    margin-top: 0.5vh;
+    margin-left: 1vh;
 }
 
 #theme{
     /* border: solid 1px blue; */
-    width: 40%;
-    text-align: center;
+    width: 52%;
+    font-weight: 500;
+    /* text-align: center; */
 }
 
 #question{
-    /* border: solid 1px rgb(50, 52, 72); */
     border-radius: 2%;
-    height: 9vh;
-    width: 94%;
-    margin-left: 3%;
-    display: grid;
-    grid-template-columns: 18fr 1fr;
-    background-color: rgb(231, 231, 216);
+    /* height: 115px; */
+    width: 95%;
+    margin-left: 2.5%;
+    display: flex;
+    flex-direction: row;
 }
 
 #question2{
     border: none;
     border-radius: 2%;
-    height: 9vh;
-    width: 94%;
-    margin-left: 3%;
-    display: grid;
-    grid-template-columns: 16fr 1fr;
+    /* height: 115px; */
+    width: 96%;
+    margin-left: 2%;
+    display: flex;
+    flex-direction: row;
 }
 
 #divQuest{
-    height: 8vh;
+    /* border: 1px solid red; */
+    /* height: 110px; */
     margin-top: 0.5vh;
-    width: 92%;
+    margin-left: 1.5vh;
+    width: 98%;
     color: #292a2b;
-    align-self: center;
+    background-color: rgb(255, 245, 211);
+}
+
+.confirmEdit {
+    margin-top: 35px;
 }
 
 .editBtn{
-    position: relative;
-    top: 1.6vh;
+    top: 35px;
+    left: 10px
 }
 
 .editFull{
@@ -99,38 +104,86 @@
 }
 
 .editFull2{
-    display: flex;
+    /* height: 100px; */
+    margin-left: 1.5vh;
+    width: 98%;
+    color: #292a2b;
+    align-self: center;
 }
 
 .editTitle{
+    align-self: flex-start;
+    /* justify-content: flex-end; */
+    /* border: 1px solid red; */
+    width: 47.8%;
+    justify-content: space-between;
+    display: flex;
+    flex-direction: row;
+}
+
+.btnJS {
     align-self: flex-end;
 }
 
+.btnCode {
+    width: fit-content;
+    height: 30px;
+    background-color: #f9bf00;
+    color: lightyellow;
+    border: #f9bf00 solid 0.5px;
+    border-radius: 5%;
+    font-weight: 300;
+    font-size: 15px;
+    justify-self: center;
+    align-self: center;
+}
+  
+.btnCode:hover {
+    cursor: pointer;
+    background-color: transparent;
+    color: rgb(75, 71, 71);
+}
+
+.resp {
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.editText {
+    width: 98%;
+    height: 100px;
+    background-color: rgb(255, 245, 211);
+}
+
 #tags{
-    height: 4vh;
+    height: 30px;
     width: 92%;
     margin-left: auto;
     margin-right: auto;
+    margin-top: 1px;
 }
 
 #right{
     /* border-left: solid 1px black; */
     border-radius: 5%;
-    padding-top: 1vh;
-    height: 19.5vh;
+    /* padding-top: 20px; */
+    /* height: 90%; */
+    align-items: center;
     width: 20%;
-    align-items: space-between;
     display: grid;
-    grid-template-rows: 1fr 1fr 1.5fr;
-    background-color: darkgrey;
+    grid-template-rows: 1fr 1fr 1fr;
+    background-color: #f9bf00;
     text-align: center;
+    margin: 1.5%;
+    border-radius: 5% 5% 5% 5%;
+    /* box-shadow: 4px 2px 2px 0px; */
 }
 
 .btns{
     display: flex;
     flex-direction: row;
     justify-self: center;
-    gap: 2vh
+    gap: 2vw;
 }
 
 .moreBtn:hover{
@@ -142,8 +195,42 @@
 }
 
 .markdown {
-    height: 8vh;
+    height: 108px;
     overflow-y: scroll;
+}
+
+@media screen and (max-width: 1000px){
+    .btnCode {
+        font-size: 12px;
+    }
+    .editTitle{
+        margin-left: 4.5%;
+        width: 83.5%;
+    }
+    #theme {
+        width: 92%; 
+        font-weight: 450;
+    }
+    #name {
+        width: 100%;
+        font-weight: 500;
+    }
+
+    #first{
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+    }
+    
+}
+
+@media screen and (max-width: 800px){
+    .btnCode {
+        font-size: 10px;
+    }
+    .markdown {
+        font-size: small;
+    }
 }
 
 
@@ -157,6 +244,14 @@
     #tags span{
         font-size: small;
     }
+    .editTitle{
+        margin-left: 4.5%;
+        width: 90%;
+    }
+    .btnCode {
+        font-size: 9px;
+        height: 30px;
+    }
 }
 
 @media screen and (max-width: 500px){
@@ -167,8 +262,6 @@
         width: 30%;
     }
     #avatar{
-        width: 3vh;
-        height: 3vh;
         float: right;
         margin-top: 0.3vh;
     }
@@ -180,9 +273,18 @@
     }
     #theme{
         /* border: solid 1px blue; */
-        width: 35%;
+        /* width: 35%; */
         text-align: flex-end;
     }
+    .editBtn{
+        left: 3px
+    }
+
+    .btnCode {
+        font-size: 8px;
+        height: 35px;
+    }
+    
     #first span{
         font-size: smaller;
     }
@@ -199,9 +301,9 @@
 
 @media screen and (max-width: 400px){
     #right span{
-        font-size: 9.5px;
+        font-size: 9px;
     }
     .btns{
-        gap: 0vh
+        gap: 0vh;
     }
 }

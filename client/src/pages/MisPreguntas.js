@@ -10,6 +10,8 @@ import { getUserQuestions, getUserQuestionsSearch } from "../redux/actions";
 import FilterAltIcon from '@mui/icons-material/FilterAlt';
 import Paginated from "../components/Paginated";
 import Loading from "../components/Loading";
+import quest from '../images/question.png';
+import { useNavigate } from "react-router-dom";
 
 const MisPreguntas = () => {
   const { isAuthenticated, isLoading } = useAuth0();
@@ -18,10 +20,11 @@ const MisPreguntas = () => {
   const dispatch = useDispatch();
   const totalPages = useSelector(state => state.totalPages);
   const [input, setInput] = useState("");
-  const [page, setPage] = useState(1)
-  const [sort, setSort] = useState('All')
-  const [cantFirstLast, setCantFirstLast] = useState([questions.length, questions[0], questions[4]])
-  const [isModify, setIsModify] = useState(false)
+  const [page, setPage] = useState(1);
+  const [sort, setSort] = useState('All');
+  const [cantFirstLast, setCantFirstLast] = useState([questions.length, questions[0], questions[4]]);
+  const [isModify, setIsModify] = useState(false);
+  const navigate = useNavigate()
   
   useEffect( () =>{
       if(page > 1 && page > totalPages) setPage(prev => prev-1)
@@ -29,6 +32,11 @@ const MisPreguntas = () => {
         dispatch(getUserQuestionsSearch(user.sub, sort, page, input))
       } else dispatch(getUserQuestions(user.sub, sort, page))
   }, [dispatch, sort, cantFirstLast, page, user.sub, totalPages, input, isModify])
+
+  
+  function redirectQuest () {
+    navigate('/preguntar')
+  }
 
   if (isLoading) {
     return (
@@ -41,7 +49,7 @@ const MisPreguntas = () => {
   return (
     <div>
       {isAuthenticated ? (
-        <div>
+        <div className={style.fullContainer}>
           {/* Acá el contenido para logueados */}
           <div className={`container-fluid ${style.container}`}>
             <div className={`row ${style.middleRow}`}>
@@ -67,9 +75,10 @@ const MisPreguntas = () => {
                           )
                       }) :
                       <div>
-                          <p>
-                            Crea una nueva pregunta ...
-                          </p>
+                          <button className={style.btnCreate} onClick={redirectQuest}>
+                            Crea una nueva pregunta 
+                            <img src={quest} alt='' className={style.imgQuest} height='20px' width='20px' />
+                          </button>
                       </div>
                     }
 

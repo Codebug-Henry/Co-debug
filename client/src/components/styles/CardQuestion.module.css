@@ -15,14 +15,35 @@
 
 }
 
+.userPreg h6 {
+  font-weight: 700;
+}
+
+.Title{
+  margin-bottom: 1%;
+  /* margin-right: 10px;
+  margin-left: 10px; */
+}
+
 .TitleAndExtrasBox {
   /* border: solid 1px black; */
   padding-top: 1vh;
-  margin-left: 2.5vh;
+  /* margin-left: 2.5vh; */
+  /* margin-right: 10px; */
+  margin-left: 20px;
   display: flex;
   align-items: flex-start;
-  flex-direction: row;
+  flex-direction: column;
   justify-content: space-between;
+}
+
+.firstRow {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  width: 100%;
+  justify-content: space-between;
+  /* gap: 100%; */
 }
 
 .rightBox {
