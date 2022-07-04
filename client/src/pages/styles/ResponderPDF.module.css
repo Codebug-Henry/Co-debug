@@ -10,3 +10,12 @@
     top: 1vh; 
     right: 0.5vw
 }
+
+.pdfdownload{
+    cursor: pointer;
+    width: 3%;
+    position: relative;
+    float: right;
+    top: 1vh; 
+    right: 8vw
+}
