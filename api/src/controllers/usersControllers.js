@@ -14,6 +14,7 @@ const getTopTen = async (req, res, next)=>{
                 ['myTeachPoints', 'DESC'],
                 ['cantAns', 'DESC'],
                 ['cantQuest', 'DESC'],
+                ['name', 'DESC'],
             ],
             limit: 10
         })
@@ -64,6 +65,7 @@ const getUsers = async (req, res, next) =>{
             ['myTeachPoints', sort || 'DESC'],
             ['cantAns', sort || 'DESC'],
             ['cantQuest', sort || 'DESC'],
+            ['name', sort || 'DESC'],
         ]})
 
         const length = allUsers.length
