@@ -29,6 +29,7 @@ const CardQuestLogOut = ({
             className={style.userImage}
             src={picture}
             alt="imagen user"
+            referrerpolicy="no-referrer"
           />
         </div>
         <div className={`col-lg-11 ${style.leftBox}`}>

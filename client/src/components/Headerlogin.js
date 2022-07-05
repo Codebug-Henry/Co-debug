@@ -76,10 +76,11 @@ const Headerlogin = () => {
                 className={style.userImage}
                 src={
                   userInfo.picture
-                    ? userInfo.picture
-                    : "https://www.shareicon.net/data/512x512/2016/08/05/806962_user_512x512.png"
+                    // ? userInfo.picture
+                    // : "https://www.shareicon.net/data/512x512/2016/08/05/806962_user_512x512.png"
                 }
                 alt={userInfo.name}
+                referrerpolicy="no-referrer"
               />
             </Link>
             <div className="dropdown">
