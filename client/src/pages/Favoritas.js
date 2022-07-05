@@ -50,7 +50,7 @@ const Favoritas = () => {
                         <FavoriteIcon />
                       </Fab>
                     </div>
-                    <div clas>
+                    <div>
                       <p> Mis preguntas favoritas</p>
                     </div>
                   </div>

@@ -157,7 +157,6 @@ const CardUserQuestion = ({id, title, text, likes, cantAnswers, name, picture, s
                 <div>
                     <Tooltip title="Editar">
                         <EditIcon fontSize="medium" className={style.moreBtn} onClick={e=> handleEditQuestion(e)}/>
-                        {/* <AddIcon fontSize="large" color='disabled' className={style.moreBtn} onClick={(e) => onClickAdd(e)} /> */}
                     </Tooltip>
                 </div>
                 <div>
