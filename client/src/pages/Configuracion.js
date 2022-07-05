@@ -55,12 +55,12 @@ const Configuracion = () => {
 
   function handlerEditName(e) {
     e.preventDefault();
-    // if(userInfo.nameChanges > 2) {
-    //   alert('No podes cambiar el nombre en más de dos oportunidades.');
-    // }
-    // else{
+    if(userInfo.nameChanges > 2) {
+      alert('No podes cambiar el nombre en más de dos oportunidades.');
+    }
+    else{
       setNameUser(true);
-    // }
+    }
   }
 
   function handlerEditNickname(e) {
