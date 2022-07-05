@@ -79,7 +79,7 @@ const AgregarAdmin = ({ setFlag, setNoAdminFlag }) => {
                 {usersNoAdmin &&
                   usersNoAdmin.map((user) => {
                     return (
-                      <div div className={`row`} key={user.sub}>
+                      <div className={`row`} key={user.sub}>
                         <UserAdminCard
                           sub={user.sub}
                           nickname={user.nickname}

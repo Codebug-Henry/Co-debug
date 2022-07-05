@@ -10,6 +10,7 @@ import Upload from "../components/Upload.js";
 import Loading from "../components/Loading";
 import StatsUser from "../components/StatsUser";
 import TeachPoints from "../components/TeachPoints";
+import { confirm } from "react-confirm-box";
 
 const Configuracion = () => {
   const { isAuthenticated, isLoading } = useAuth0();
@@ -20,6 +21,13 @@ const Configuracion = () => {
   const [newName, setNewName] = useState(userInfo.name);
   const [nicknameUser, setNicknameUser] = useState(false);
   const [newNickname, setNewNickname] = useState(userInfo.nickname);
+  const optionsWithLabelChange = {
+    closeOnOverlayClick: false,
+    labels: {
+      confirmable: "Confirmar",
+      cancellable: "Cancelar",
+    },
+  };
 
   useEffect(() => {
     dispatch(getUserInfo(userInfo.sub));
@@ -78,6 +86,16 @@ const Configuracion = () => {
       </div>
     );
   }
+
+  const onClick = async (options) => {
+    const result = await confirm(
+      "La cuenta se dará de baja definitivamente?",
+      options
+    );
+    if (result) {
+      handlerDeleteAccount();
+    }
+  };
 
   return (
     <div className={style.fullContainer}>
@@ -218,7 +236,9 @@ const Configuracion = () => {
                     <div className={`col-lg-12 ${style.col2}`}>
                       <button
                         className={style.buttonUpdate}
-                        onClick={handlerDeleteAccount}
+                        onClick={() => {
+                          onClick(optionsWithLabelChange);
+                        }}
                       >
                         Dar de baja mi cuenta
                       </button>

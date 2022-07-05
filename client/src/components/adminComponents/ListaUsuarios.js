@@ -8,7 +8,6 @@ const ListaUsuarios = ({ setBanFlag, setUsersPage, usersPage }) => {
 
   const totalPages = useSelector((state) => state.totalPages);
 
-  console.log("Lista", users);
   return (
     <div className={`container-fluid ${style.container}`}>
       <div className={`row ${style.info}`}>

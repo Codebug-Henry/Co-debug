@@ -1,32 +1,30 @@
-import React, {useEffect, useState} from "react";
-import { useDispatch, useSelector } from "react-redux"
+import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { useAuth0 } from "@auth0/auth0-react";
 import style from "./styles/Favoritas.module.css";
 import Footer from "../components/Footer.js";
 import { getFavourites } from "../redux/actions";
 import Paginated from "../components/Paginated";
 import CardQuestion from "../components/CardQuestion";
-import Fab from '@mui/material/Fab';
-import FavoriteIcon from '@mui/icons-material/Favorite';
+import Fab from "@mui/material/Fab";
+import FavoriteIcon from "@mui/icons-material/Favorite";
 import Loading from "../components/Loading";
 
 const Favoritas = () => {
-
   const { isAuthenticated, isLoading } = useAuth0();
-  const userInfo = useSelector(state=> state.user);
-  const favourites = useSelector(state => state.favourites);
+  const userInfo = useSelector((state) => state.user);
+  const favourites = useSelector((state) => state.favourites);
   const dispatch = useDispatch();
   const [page, setPage] = useState(1);
-  const [isFavorite, setIsFavorite] = useState(false)
+  const [isFavorite, setIsFavorite] = useState(false);
   let cant = favourites.length;
 
-  useEffect(()=>{
-    if(isAuthenticated){
-    dispatch(getFavourites(userInfo.sub, page))
+  useEffect(() => {
+    if (isAuthenticated) {
+      dispatch(getFavourites(userInfo.sub, page));
     }
-  }, [cant, page, dispatch, isFavorite])
+  }, [cant, page, dispatch, isFavorite]);
 
-  
   if (isLoading) {
     return (
       <div>
@@ -43,47 +41,48 @@ const Favoritas = () => {
           <div className={`container-fluid ${style.container}`}>
             <div className={`row ${style.middleRow}`}>
               <div className={`col-lg-12 ${style.col1}`}>
-              <div id={style.all}>
+                <div id={style.all}>
                   <div id={style.explore}>
                     <div>
-                      <Fab color='error' aria-label="FavoriteIcon" size="medium" >
+                      <Fab
+                        color="error"
+                        aria-label="FavoriteIcon"
+                        size="medium"
+                      >
                         <FavoriteIcon />
                       </Fab>
                     </div>
-                    <div clas>
+                    <div>
                       <p> Mis preguntas favoritas</p>
                     </div>
                   </div>
                   <div id={style.myQuestions}>
-                    {
-                      favourites.length > 0 ?
-                      favourites.map(f => {
-                          return (
-                            <CardQuestion
-                                cantAnswers={f.cantAnswers}
-                                nickname={f.user.nickname}
-                                key={f.id}
-                                id={f.id}
-                                likes={f.likes}
-                                title={f.title}
-                                text={f.text}
-                                teachPoints={f.teachPoints}
-                                picture={f.user.picture}
-                                page={page}
-                                setPage={setPage}
-                                setIsFavorite={setIsFavorite}
-                              />
-                          )
-                      }) :
+                    {favourites.length > 0 ? (
+                      favourites.map((f) => {
+                        return (
+                          <CardQuestion
+                            cantAnswers={f.cantAnswers}
+                            nickname={f.user.nickname}
+                            key={f.id}
+                            id={f.id}
+                            likes={f.likes}
+                            title={f.title}
+                            text={f.text}
+                            teachPoints={f.teachPoints}
+                            picture={f.user.picture}
+                            page={page}
+                            setPage={setPage}
+                            setIsFavorite={setIsFavorite}
+                          />
+                        );
+                      })
+                    ) : (
                       <div>
-                          <p>
-                            Aún no agregaste favoritos ...
-                          </p>
+                        <p>Aún no agregaste favoritos ...</p>
                       </div>
-                    }
-
+                    )}
                   </div>
-                  <Paginated page={page} setPage={setPage}/>
+                  <Paginated page={page} setPage={setPage} />
                 </div>
               </div>
 

@@ -55,7 +55,6 @@ const Admin = () => {
 
   useEffect(() => {
     dispatch(getAllAlerts(alertsPage));
-    console.log(alertsFlag);
   }, [dispatch, alertsFlag, alertsPage]);
 
   return (
