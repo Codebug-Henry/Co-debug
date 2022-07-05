@@ -21,28 +21,48 @@ html {
   margin-bottom: 10vh;
 }
 
-.puestos {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background-color: cyan;
-  border-style: solid;
-  border-radius: 10px;
-  margin: 5vh;
-  padding: 1vh;
+.filterbar { 
+  background-color: #ffc107;
+  padding: 9px;
+}
+
+.select {
+  background-color: transparent;
+  border: 1px solid transparent;
+  font-size: 16px;
+  color: #4e4e4e;
+  margin-left: 5vh;
+  padding: 0.8vh;
 }
 
 .container {
-  background-color: lightyellow;
+  background-color: white;
+  border-radius: 1vh;
+  box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
+  padding: 2%;
+  margin-top: 1%;
+  width: 70%;
 }
 
-.puestos {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background-color: orange;
-  border-style: solid;
-  border-radius: 10px;
-  margin: 5vh;
-  padding: 1vh;
+.columnsname {
+  margin: 0px;
+  padding: 0px;
+  font-weight: 600;
+}
+
+.info {
+  margin: 0px;
+  margin-left: 1vw;
+  padding: 0px;
+}
+
+.info p{
+  margin-top: 2.5vh;
+  margin-left: 1.5vw;
+}
+
+.userImage {
+  border-radius: 30px;
+  width: 8vh;
+  padding-top: 1vh;
 }

@@ -27,3 +27,4 @@ export const GET_SEARCH_USERS = "GET_SEARCH_USERS";
 export const GET_ALL_USERS_NOADMIN = " GET_ALL_USERS_NOADMIN";
 export const GET_ALL_ALERTS = "GET_ALL_ALERTS";
 export const PUT_MESSAGE = "PUT_MESSAGE";
+export const SET_SORT = "SET_SORT";

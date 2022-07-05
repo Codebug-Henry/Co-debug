@@ -1,18 +1,22 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getAllQuestions } from "../redux/actions/index.js";
+import { getAllQuestions, getSearchQuestions } from "../redux/actions/index.js";
 import CardQuestion from "./CardQuestion.js";
 import Paginated from "./Paginated";
 import style from "./styles/CardsQuestions.module.css";
 
-const CardsQuestions = ({isFavorite, setIsFavorite}) => {
+const CardsQuestions = ({ isFavorite, setIsFavorite, search }) => {
   const dispatch = useDispatch();
   const questions = useSelector((state) => state.questions);
+  const sort = useSelector(state => state.sort)
   const [page, setPage] = useState(1);
-  const [sort, setSort] = useState("desc");
-
+  
   useEffect(() => {
-    dispatch(getAllQuestions(sort, page));
+    if (search.length > 0) {
+      dispatch(getSearchQuestions(search, sort, page));
+    } else {
+      dispatch(getAllQuestions(sort, page))
+    }
   }, [dispatch, page, isFavorite]);
 
   return (
@@ -30,8 +34,6 @@ const CardsQuestions = ({isFavorite, setIsFavorite}) => {
               text={e.text}
               teachPoints={e.teachPoints}
               picture={e.user.picture}
-              sort={sort}
-              page={page}
               setIsFavorite={setIsFavorite}
             />
           ))}

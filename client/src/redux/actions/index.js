@@ -24,6 +24,7 @@ import {
   GET_ALL_USERS_NOADMIN,
   GET_ALL_ALERTS,
   PUT_MESSAGE,
+  SET_SORT,
 } from "./actionTypes";
 
 import * as api from "../api";
@@ -319,3 +320,10 @@ export const getAllAlerts = (page) => async (dispatch) => {
     console.log(error.message);
   }
 };
+
+
+// SORT
+
+export const setSort = (sort) => {
+  return { type: SET_SORT, payload: sort}
+}
