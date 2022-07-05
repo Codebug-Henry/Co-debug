@@ -30,7 +30,6 @@ html {
 #all {
   width: 96%;
   margin-left: 2%;
-  margin-bottom: 5%;
 }
 
 #explore {
@@ -38,7 +37,6 @@ html {
   text-align: center;
   font-size: 2.5vw;
 }
-
 
 #filters {
   /* border: solid 1px black; */
@@ -63,27 +61,6 @@ html {
   /* z-index: -1;        esto lo puse para que el boton de delete no quede por encima del dropdown cuando se abre */
 }
 
-@media screen and (max-width: 1000px) {
-  #all {
-    margin-bottom: 16%;
-  }
-}
-
-@media screen and (max-width: 500px) {
-  #filters {
-    flex-direction: column;
-    height: 9vh;
-  }
-
-  .filterIcon {
-    display: none;
-  }
-
-  .container {
-    width: 98%;
-  }
-}
-
 .btnCreate {
   background-color: transparent;
   border: none;
@@ -100,5 +77,27 @@ html {
 .imgQuest {
   margin-left: 5px;
   margin-top: -5px;
+}
+
+
+@media screen and (max-width: 950px) {
+  #explore {
+  font-size: 24px;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  #filters {
+    flex-direction: column;
+    height: 9vh;
+  }
+
+  .filterIcon {
+    display: none;
+  }
+
+  .container {
+    width: 98%;
+  }
 }
 

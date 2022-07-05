@@ -7,6 +7,7 @@ import Footer from "../components/Footer.js";
 import Loading from "../components/Loading";
 import CardUserAnswer from "../components/CardUserAnswer";
 import Paginated from "../components/Paginated";
+import { useNavigate } from "react-router-dom";
 
 const MisRespuestas = () => {
   const { isAuthenticated, isLoading } = useAuth0();
@@ -15,11 +16,15 @@ const MisRespuestas = () => {
   const answers = useSelector(state=> state.answers);
   const totalPages = useSelector(state=> state.totalPages);
   const [page, setPage] = useState(1);
+  const navigate = useNavigate()
 
   useEffect(() => {
     dispatch(getUserAnswers(user.sub, 1))
   }, [dispatch, user.sub])
-  
+
+  function redirectAnswer () {
+    navigate('/')
+  }
 
   if (isLoading) {
     return (
@@ -51,7 +56,7 @@ const MisRespuestas = () => {
                           )
                       }) :
                       <div>
-                          <button className={style.btnCreate} >
+                          <button className={style.btnCreate} onClick={redirectAnswer}>
                             Responde una pregunta 
                             {/* <img src={quest} alt='' className={style.imgQuest} height='20px' width='20px' /> */}
                           </button>

@@ -1,11 +1,16 @@
-#explore {
-    font-weight: 600;
-    text-align: center;
-    font-size: 2.5vw;
+.fullContainer {
+    background-color: lightyellow;
 }
 
 .container {
   background-color: lightyellow;
+  width: 91%
+}
+
+#explore {
+    font-weight: 600;
+    text-align: center;
+    font-size: 2.5vw;
 }
 
 .html{
@@ -24,5 +29,29 @@
 .fullContainer{
     display: flex;
     flex-direction: column;
+}
 
+#myQuestions{
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.btnCreate {
+    background-color: transparent;
+    border: none;
+    border-radius: 1vh;
+    font-size: 2.5vh;
+}
+  
+.btnCreate:hover {
+    cursor: pointer;
+    color: #f9bf00fb;
+    /* background-color: rgb(244, 244, 209); */
+}
+
+@media screen and (max-width: 950px) {
+    #explore {
+    font-size: 24px;
+    }
 }

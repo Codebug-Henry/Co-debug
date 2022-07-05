@@ -22,6 +22,9 @@ export default function Paginated({ page, setPage }) {
   }
 
   return (
+    <>
+    {
+      pages.length ?
     <div className={style.bar}>
       <ul>
         <button
@@ -114,6 +117,9 @@ export default function Paginated({ page, setPage }) {
           Siguiente{" "}
         </button>
       </ul>
-    </div>
+    </div> :
+    null
+  }
+  </>
   );
 }
