@@ -46,7 +46,7 @@ const Upload = () => {
           </div>
           <div className={`col-lg-4 ${style.col2} ${style.photo}`}>
             <div>
-              <img src={image || todoElUser.picture} alt="foto usuario" className={style.foto} referrerpolicy="no-referrer"/>
+              <img src={image || todoElUser.picture} alt="foto usuario" className={style.foto} referrerPolicy="no-referrer"/>
             </div>
             <div className={style.btn}>
               <input  type="file"
