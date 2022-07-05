@@ -1,4 +1,4 @@
-const { Question, Answer,MacroTag, MicroTag } = require("../db");
+const { User, Question, Answer, MacroTag, MicroTag } = require("../db");
 const { paginate } = require("./generalControllers");
 
 const getAnswers = async (req, res, next) => {
@@ -9,11 +9,12 @@ const getAnswers = async (req, res, next) => {
 
   try {
     const myAnswers = await Answer.findAll({where: {statusDeleted: false, userSub: sub}, 
-      include:[
-        {model:Question,
-        include:[
-          {model:MacroTag},
-          {model:MicroTag}
+      include: [
+        {model: Question,
+        include: [
+          {model: User},
+          {model: MacroTag},
+          {model: MicroTag}
         ]},
       ]
     })

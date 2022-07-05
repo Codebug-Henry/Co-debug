@@ -79,7 +79,7 @@ const CardUserQuestion = ({id, title, text, likes, cantAnswers, name, picture, s
             <div id={style.first}>
                 <div id={style.name}>
                     <div id={style.photo}>
-                        <Avatar alt={name} src={picture} id={style.avatar} />
+                        <Avatar alt={name} src={picture} id={style.avatar} referrerpolicy="no-referrer"/>
                     </div>
                     <div id={style.user}> 
                         <span>{name}</span>
@@ -111,7 +111,7 @@ const CardUserQuestion = ({id, title, text, likes, cantAnswers, name, picture, s
 
                 <div className= {style1 === true ? style.editFull : style.editFull2}>
                     <textarea   type='text'
-                                defaultValue={text} 
+                                // defaultValue={text} 
                                 value={newQuestion.text} 
                                 name='text' 
                                 autoComplete='off'
