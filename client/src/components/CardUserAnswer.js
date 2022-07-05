@@ -61,7 +61,7 @@ const CardUserAnswer = ({id, qid, title, text, likes, tPoints, name, picture, se
     <div className={`container-fluid ${style.total}`}>
       <div className={`row ${style.fila}`}>
         <div className={`col-lg-1 ${style.pictureBox}`}>
-          <img className={style.userImage} src={user.picture} alt="imagen user" referrerpolicy="no-referrer"/>
+          <img className={style.userImage} src={user.picture} alt="imagen user" referrerPolicy="no-referrer"/>
         </div>
         <div className={`col-lg-11 ${style.leftBox}`}>
 

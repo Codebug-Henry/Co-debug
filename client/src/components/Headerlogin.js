@@ -80,7 +80,7 @@ const Headerlogin = () => {
                     // : "https://www.shareicon.net/data/512x512/2016/08/05/806962_user_512x512.png"
                 }
                 alt={userInfo.name}
-                referrerpolicy="no-referrer"
+                referrerPolicy="no-referrer"
               />
             </Link>
             <div className="dropdown">

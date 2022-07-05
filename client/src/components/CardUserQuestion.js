@@ -79,7 +79,7 @@ const CardUserQuestion = ({id, title, text, likes, cantAnswers, name, picture, s
             <div id={style.first}>
                 <div id={style.name}>
                     <div id={style.photo}>
-                        <Avatar alt={name} src={picture} id={style.avatar} referrerpolicy="no-referrer"/>
+                        <Avatar alt={name} src={picture} id={style.avatar} referrerPolicy="no-referrer"/>
                     </div>
                     <div id={style.user}> 
                         <span>{name}</span>
