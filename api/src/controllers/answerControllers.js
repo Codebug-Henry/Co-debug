@@ -45,6 +45,10 @@ const putAnswer = async (req, res, next) => {
          await user.update({myTeachPoints: user.myTeachPoints + answer.teachPoints})
       }
 
+      if (statusDeleted) {
+         await user.update({cantAns: user.cantAns - 1})
+     }
+
       res.send({
          text,
          imgs,
