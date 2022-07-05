@@ -28,7 +28,7 @@ const CardUserAnswer = ({id, title, text, likes, tPoints, name, picture}) => {
               
               <div className={style.Extras}>
                 <h6>
-                  T. Points: {tPoints}
+                  Teach Points: {tPoints}
                 </h6>
               </div>
             </div>

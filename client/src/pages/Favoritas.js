@@ -42,7 +42,7 @@ const Favoritas = () => {
           {/* Acá el contenido para logueados */}
           <div className={`container-fluid ${style.container}`}>
             <div className={`row ${style.middleRow}`}>
-              <div className={`col-lg-11 ${style.col1}`}>
+              <div className={`col-lg-12 ${style.col1}`}>
               <div id={style.all}>
                   <div id={style.explore}>
                     <div>
@@ -50,7 +50,7 @@ const Favoritas = () => {
                         <FavoriteIcon />
                       </Fab>
                     </div>
-                    <div>
+                    <div clas>
                       <p> Mis preguntas favoritas</p>
                     </div>
                   </div>
@@ -87,7 +87,7 @@ const Favoritas = () => {
                 </div>
               </div>
 
-              <div className={`col-lg-1 ${style.col2}`}>
+              <div className={`col-lg-0 ${style.col2}`}>
                 {/* "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
                 eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
                 enim ad minim veniam, quis nostrud exercitation ullamco laboris

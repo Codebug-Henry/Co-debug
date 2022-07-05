@@ -26,7 +26,7 @@
 .searchBar button:hover {
     cursor: pointer;
     color: rgb(75, 71, 71);
-    background-color: darkgrey;
+    background-color: rgb(215, 212, 212);;
 }
 
 @media screen and (max-width: 670px){
