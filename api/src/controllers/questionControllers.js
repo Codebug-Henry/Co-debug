@@ -23,8 +23,8 @@ const putUserQuestion = async (req, res, next) => {
     let {id, text, title, like, statusDeleted,imgs,macroTags,microTags,sub} = req.body
 
     const question = await Question.findByPk(id)
-
-    let user = await User.findByPk(sub)
+    const user = await question.getUser()
+    const answers = await question.getAnswers()
     
     // const newFavourites = [...user.favourites, id]
     
@@ -73,6 +73,18 @@ const putUserQuestion = async (req, res, next) => {
             microTags=await questionTags(microTags, MicroTag, question)
         }
         
+        if (statusDeleted) {
+            let promise = user.update({cantQuest: user.cantQuest - 1})
+            let arrPromises1 = answers.map(ans => {
+                ans.update({statusDeleted: true})
+            })
+            let arrPromises2 = answers.map(ans => {
+                ans.getUser().then(userAns => userAns.update({cantAns: userAns.cantAns - 1}))
+            })
+            let arrPromises = [promise, ...arrPromises1, ...arrPromises2]
+            await Promise.all(arrPromises)
+        }
+
         await Question.update({text, title, likes: newLikes, statusDeleted,imgs},{
             where:{
                 id:parseInt(id)
