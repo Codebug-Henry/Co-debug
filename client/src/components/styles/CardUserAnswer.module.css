@@ -11,7 +11,7 @@
 
 .total {
   background-color: rgb(255, 255, 255);
-  border-radius: 1vh;
+  border-radius: 0.5vh;
   width:85%;
   height: max-content;
   margin-bottom: 2vh;
@@ -27,7 +27,7 @@
 }
 
 .userPreg h6 {
-  font-weight: 700;
+  font-weight: 600;
 }
 
 .Title{
@@ -71,15 +71,76 @@
   /* border: solid 1px black; */
 }
 
-.questionText {
+#question{
+  border-radius: 0.5vh;
+  /* height: 115px; */
+  width: 95%;
+  margin-left: 2%;
+  display: flex;
+  flex-direction: row;
+}
+
+#question2{
+  border: none;
+  border-radius: 0.5vh;
+  /* height: 115px; */
+  width: 96%;
+  margin-left: 2%;
+  display: flex;
+  flex-direction: row;
+}
+
+#divQuest{
+  /* border: 1px solid red; */
+  /* height: 110px; */
+  width: 98%;
+  color: #292a2b;
+  background-color: rgb(255, 245, 211);
+  border-radius: 0.5vh;
+}
+
+.confirmEdit {
+  margin-left: 18px; 
+}
+
+.editFull{
+  display: none;
+}
+
+#editFull{
+  display: none;
+}
+
+.editFull2{
+  /* height: 100px; */
+  /* margin-left: 1.5vh; */
+  width: 98%;
+  color: #292a2b;
+  align-self: center;
+  border-radius: 0.5vh;
+}
+
+.editTitle{
+  align-self: flex-start;
+  /* justify-content: flex-end; */
+  /* border: 1px solid red; */
+  width: 47.8%;
+  justify-content: space-between;
+  display: flex;
+  flex-direction: row;
+}
+
+.editText {
+  width: 98%;
   height: 100px;
   background-color: rgb(255, 245, 211);
-  box-shadow:2px 2px 2px 1px rgba(0,0,0,0.2);
-  padding: 1vh;
-  border-radius: 1vh;
-  margin-left: 3vh;
-  margin-bottom: 0.5vh;
+  border-radius: 0.5vh;
+}
+
+.markdown {
+  height: 105px;
   overflow-y: scroll;
+  border-radius: 0.5vh;
 }
 
 .bajoTexto {
@@ -87,11 +148,14 @@
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
-  width: 100%;
-  padding-left: 2vw;
+  width: 95.2%;
+  padding-left: 1.5vw;
   height: 3.8vh;
   padding-top: 1.5vh;
-  /* border: 1px solid black */
+}
+
+.cantLikes {
+  font-weight: 600;
 }
 
 .userImage {
@@ -100,18 +164,9 @@
   padding-top: 2vh;
 }
 
-.notFav {
-  visibility: hidden;
-  /* display: none */
-}
-
-.fav:hover{
-  cursor: pointer;
-}
-
 .answerIt {
   border: solid 1px black;
-  border-radius: 1vh;
+  border-radius: 0.5vh;
   background-color: transparent;
   position: relative;
   right: 0%;
@@ -133,10 +188,34 @@
   box-shadow: 24;
 }
 
-.delete{
+.moreBtn:hover{
   cursor: pointer;
 }
 
+.deleteBtn:hover{
+  cursor: pointer;
+}
+
+.btnCode {
+  width: fit-content;
+  height: 30px;
+  background-color: #f9bf00;
+  color: lightyellow;
+  border: #f9bf00 solid 0.5px;
+  border-radius: 0.5vh;
+  font-weight: 300;
+  font-size: 15px;
+  justify-self: center;
+  align-self: center;
+  position: relative;
+  top: -30px;
+}
+
+.btnCode:hover {
+  cursor: pointer;
+  background-color: transparent;
+  color: rgb(75, 71, 71);
+}
 
 @media screen and (max-width: 670px){
   .total {
@@ -158,184 +237,4 @@
     /* border: solid 1px black; */
     gap: 5vw;
    }
-}
-/* ------------------TooLTipDislike---------------------------- */
-.span{
-  position: relative;
-}
-
-.toolTip{
-  position: absolute;
-  border: none;
-  background-color: #f5bf07;
-  width:240%;
-  min-height: 30%;
-  color: white;
-  padding: .3rem;
-  text-align: center;
-  border-radius: .5rem;
-  font-size: 1rem;
-  bottom: -3rem;
-  right:-2rem;
-  visibility: hidden;
-}
-
-.toolTip::after{
-  content: "";
-  position: absolute;
-  border-left: 10px solid transparent;
-  border-bottom: 10px solid #f5bf07;
-  border-right: 10px solid transparent;
-  border-top: 10px solid transparent;
-  top: -17px;
-  left: 10px;
-
-}
-
-.span:hover .toolTip{
-  visibility: visible;
-}
-/* ------------------TooLTipLike---------------------------- */
-.span2{
-  position: relative;
-}
-
-.toolTip2{
-  position: absolute;
-  border: none;
-  background-color: #f5bf07;
-  width:240%;
-  min-height: 30%;
-  color: white;
-  padding: .3rem;
-  text-align: center;
-  border-radius: .5rem;
-  font-size: 1rem;
-  bottom: -3rem;
-  right:-0.5rem;
-  visibility: hidden;
-}
-
-.toolTip2::after{
-  content: "";
-  position: absolute;
-  border-left: 10px solid transparent;
-  border-bottom: 10px solid #f5bf07;
-  border-right: 10px solid transparent;
-  border-top: 10px solid transparent;
-  top: -17px;
-  left: 30px;
-
-}
-
-.span2:hover .toolTip2{
-  visibility: visible;
-}
-/* ------------------TooLTipFav1---------------------------- */
-.span3{
-  position: relative;
-}
-
-.toolTip3{
-  position: absolute;
-  border: none;
-  background-color: #f5bf07;
-  width:320%;
-  min-height: 30%;
-  color: white;
-  padding: .3rem;
-  text-align: center;
-  border-radius: .5rem;
-  font-size: 1rem;
-  bottom: -4.7rem;
-  right:-1.5rem;
-  visibility: hidden;
-}
-
-.toolTip3::after{
-  content: "";
-  position: absolute;
-  border-left: 10px solid transparent;
-  border-bottom: 10px solid #f5bf07;
-  border-right: 10px solid transparent;
-  border-top: 10px solid transparent;
-  top: -17px;
-  left: 30px;
-
-}
-
-.span3:hover .toolTip3{
-  visibility: visible;
-}
-/* ------------------TooLTipFav2---------------------------- */
-.span4{
-  position: relative;
-}
-
-.toolTip4{
-  position: absolute;
-  border: none;
-  background-color: #f5bf07;
-  width:320%;
-  min-height: 30%;
-  color: white;
-  padding: .3rem;
-  text-align: center;
-  border-radius: .5rem;
-  font-size: 1rem;
-  bottom: -4.7rem;
-  right:-1.5rem;
-  visibility: hidden;
-}
-
-.toolTip4::after{
-  content: "";
-  position: absolute;
-  border-left: 10px solid transparent;
-  border-bottom: 10px solid #f5bf07;
-  border-right: 10px solid transparent;
-  border-top: 10px solid transparent;
-  top: -17px;
-  left: 30px;
-
-}
-
-.span4:hover .toolTip4{
-  visibility: visible;
-}
-/* ------------------TooLTipDenunciar---------------------------- */
-.span5{
-  position: relative;
-}
-
-.toolTip5{
-  position: absolute;
-  border: none;
-  background-color: #f5bf07;
-  width:340%;
-  min-height: 30%;
-  color: white;
-  padding: .3rem;
-  text-align: center;
-  border-radius: .5rem;
-  font-size: 1rem;
-  bottom: -3.2rem;
-  right:-1.9rem;
-  visibility: hidden;
-}
-
-.toolTip5::after{
-  content: "";
-  position: absolute;
-  border-left: 10px solid transparent;
-  border-bottom: 10px solid #f5bf07;
-  border-right: 10px solid transparent;
-  border-top: 10px solid transparent;
-  top: -17px;
-  left: 30px;
-
-}
-
-.span5:hover .toolTip5{
-  visibility: visible;
 }

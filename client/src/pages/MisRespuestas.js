@@ -16,11 +16,12 @@ const MisRespuestas = () => {
   const answers = useSelector(state=> state.answers);
   const totalPages = useSelector(state=> state.totalPages);
   const [page, setPage] = useState(1);
+  const [isModify, setIsModify] = useState(false);
   const navigate = useNavigate()
 
   useEffect(() => {
-    dispatch(getUserAnswers(user.sub, 1))
-  }, [dispatch, user.sub])
+    dispatch(getUserAnswers(user.sub, page))
+  }, [dispatch, user.sub, page, totalPages, isModify])
 
   function redirectAnswer () {
     navigate('/')
@@ -51,8 +52,8 @@ const MisRespuestas = () => {
                       answers.length > 0 ?
                       answers.map(r => {
                           return (
-                            <CardUserAnswer key={r.id} id={r.question.id} title={r.question.title} text={r.text} likes={r.likes} tPoints={r.teachPoints}
-                                            name={user.nickname} picture={user.picture}  />
+                            <CardUserAnswer key={r.id} id={r.id} qid={r.question.id} title={r.question.title} text={r.text} likes={r.likes} 
+                                            tPoints={r.teachPoints} name={user.nickname} picture={user.picture} setIsModify={setIsModify} />
                           )
                       }) :
                       <div>

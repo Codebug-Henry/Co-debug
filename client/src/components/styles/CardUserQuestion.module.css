@@ -58,7 +58,7 @@
 }
 
 #question{
-    border-radius: 2%;
+    border-radius: 0.5vh;
     /* height: 115px; */
     width: 95%;
     margin-left: 2.5%;
@@ -68,7 +68,7 @@
 
 #question2{
     border: none;
-    border-radius: 2%;
+    border-radius: 0.5vh;
     /* height: 115px; */
     width: 96%;
     margin-left: 2%;
@@ -84,6 +84,7 @@
     width: 98%;
     color: #292a2b;
     background-color: rgb(255, 245, 211);
+    border-radius: 0.5vh;
 }
 
 .confirmEdit {
@@ -109,6 +110,7 @@
     width: 98%;
     color: #292a2b;
     align-self: center;
+    border-radius: 0.5vh;
 }
 
 .editTitle{
@@ -131,7 +133,7 @@
     background-color: #f9bf00;
     color: lightyellow;
     border: #f9bf00 solid 0.5px;
-    border-radius: 5%;
+    border-radius: 0.5vh;
     font-weight: 300;
     font-size: 15px;
     justify-self: center;
@@ -153,6 +155,7 @@
     width: 98%;
     height: 100px;
     background-color: rgb(255, 245, 211);
+    border-radius: 0.5vh;
 }
 
 #tags{
@@ -165,7 +168,7 @@
 
 #right{
     /* border-left: solid 1px black; */
-    border-radius: 5%;
+    border-radius: 0.5vh;
     /* padding-top: 20px; */
     /* height: 90%; */
     align-items: center;
@@ -197,6 +200,7 @@
 .markdown {
     height: 108px;
     overflow-y: scroll;
+    border-radius: 0.5vh;
 }
 
 @media screen and (max-width: 1000px){
