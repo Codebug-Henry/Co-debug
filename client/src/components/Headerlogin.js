@@ -71,7 +71,7 @@ const Headerlogin = () => {
 
         <div className={`col-lg-3 ${style.col4} ${style.imgNameLogOut}`}>
           <div className={style.padreDivs}>
-            <Link to="/configuracion" className={style.contImagen}>
+            <Link to={`/configuracion/${userInfo.sub}`} className={style.contImagen}>
               <img
                 className={style.userImage}
                 src={
@@ -143,7 +143,7 @@ const Headerlogin = () => {
                   )}
                 </li>
                 <li>
-                  <Link className={style.linkDesp} to="/configuracion">
+                  <Link className={style.linkDesp} to={`/configuracion/${userInfo.sub}`}>
                     <p className="dropdown-item" href="#">
                       Configuración
                     </p>

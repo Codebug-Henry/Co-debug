@@ -9,7 +9,7 @@ const TeachPoints = ({number, characteristic}) => {
     return (
     <div>
         <div>
-            <Card sx={{ width: 250, height: 130 }} id={style.card1}>
+            <Card sx={{ width: 220, height: 130 }} id={style.card1}>
                 <CardContent >
                     <Typography gutterBottom variant="h3" component="div" className={style.typo} >
                         {number}
