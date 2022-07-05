@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@1,100&display=swap');
 
 html{
   min-height: 100%;
@@ -21,15 +22,26 @@ html{
 
 .container {
   background-color: lightyellow;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 
 .middleRow {
-  display: flex;
-  justify-content: center;
+ max-width: 60vw;
 }
 
 .col1{
   margin-top: 15vh;
   margin-bottom: 15vh;
+}
+
+.colOut{
+  font-family: "Roboto", sans-serif;
+}
+
+.title{
+  margin-bottom: 1.5vh;
 }
