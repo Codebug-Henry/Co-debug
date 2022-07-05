@@ -69,7 +69,7 @@ export const putUserInfo = (sub, modify, setLoading) => async (dispatch) => {
   try {
     await api.putUserInfo(sub, modify);
     // dispatch({ type: MODIFY_USER, payload: data})
-    setLoading(false);
+    setLoading && setLoading(false);
   } catch (error) {
     console.log(error.message);
   }
