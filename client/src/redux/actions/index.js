@@ -141,11 +141,12 @@ export const getQuestion = (id, setLoad) => async (dispatch) => {
   }
 };
 
-export const modifyQuestion = (question, setIsModify) => async (dispatch) => {
+export const modifyQuestion = (question, setIsModify, setIsLiked) => async (dispatch) => {
   try {
     const { data } = await api.modifyQuestion(question);
     dispatch({ type: MODIFY_QUESTION, payload: data });
     setIsModify && setIsModify(false);
+    setIsLiked && setIsLiked(prevIsLiked => !prevIsLiked)
   } catch (error) {
     console.log(error.message);
   }

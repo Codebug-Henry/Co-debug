@@ -38,8 +38,12 @@ const CardQuestion = ({
   page,
   setIsFavorite
 }) => {
+
   const dispatch = useDispatch();
   const userInfo = useSelector((state) => state.user);
+  const liked = userInfo?.liked.includes(id)
+  const disliked = userInfo?.disliked.includes(id)
+
   function handleAddFavourite(e) {
     e.preventDefault();
     addFavourites(userInfo.sub, id, true, setIsFavorite);
@@ -52,16 +56,16 @@ const CardQuestion = ({
 
   async function addLike(e) {
     e.preventDefault();
-    await dispatch(modifyQuestion({ id: id, like: "add", sub: userInfo.sub }));
-    dispatch(getAllQuestions(sort, page));
+    if (!liked) {
+      dispatch(modifyQuestion({ id: id, like: "add", sub: userInfo.sub }, null, setIsFavorite));
+    }
   }
 
   async function removeLike(e) {
     e.preventDefault();
-    await dispatch(
-      modifyQuestion({ id: id, like: "remove", sub: userInfo.sub })
-    );
-    dispatch(getAllQuestions("desc", page));
+    if (!disliked) {
+      dispatch(modifyQuestion({ id: id, like: "remove", sub: userInfo.sub }, null, setIsFavorite));
+    }
   }
 
   //MODAL
@@ -118,7 +122,7 @@ const CardQuestion = ({
               <span className={style.span2}>
                 <ThumbUpIcon
                   fontSize="medium"
-                  color="primary"
+                  color={liked ? "primary" : "action"}
                   onClick={(e) => addLike(e)}
                   className={style.fav}
                 />
@@ -132,7 +136,7 @@ const CardQuestion = ({
               <span className={style.span}>
                 <ThumbDownIcon
                   fontSize="medium"
-                  color="error"
+                  color={disliked ? "error" : "action"}
                   onClick={(e) => removeLike(e)}
                   className={style.fav}
                 />
@@ -156,7 +160,7 @@ const CardQuestion = ({
               <span className={style.span4}>
                 <FavoriteIcon
                 fontSize="medium"
-                color="string"
+                color="action"
                 className={style.fav}
                 onClick={(e) => handleAddFavourite(e)}
                 />
@@ -171,6 +175,7 @@ const CardQuestion = ({
                   onClick={handleOpen}
                   className={style.delete}
                   fontSize="medium"
+                  color="action"
                 />
                 <span className={style.toolTip5}>Denunciar</span>
               </span>

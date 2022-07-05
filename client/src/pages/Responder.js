@@ -50,7 +50,7 @@ const Responder = () => {
   };
 
   function handleClick() {
-    setInput("\n```javascript\n(escribe tu código javascript aquí)\n```")
+    setInput(input + "\n```javascript\n(escribe tu código javascript aquí)\n```")
 }
 
   return (
