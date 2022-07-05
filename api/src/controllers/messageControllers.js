@@ -10,7 +10,6 @@ const postMessage = async (req, res, next) => {
     const newMessage = await Message.create({ title, text, email });
     newMessage.setUser(user);
 
-
     var transporter = nodemailer.createTransport({
       host: "smtp.gmail.com",
       port: 465,
@@ -29,12 +28,12 @@ const postMessage = async (req, res, next) => {
     };
 
     transporter.sendMail(mailOptions, (error) => {
-            if (error) {
-                console.log(error.message);
-            } else {
-                console.log("Email enviado")
-            }
-        });
+      if (error) {
+        console.log(error.message);
+      } else {
+        console.log("Email enviado");
+      }
+    });
 
     res.send({ user, ...newMessage.dataValues });
   } catch (error) {
@@ -47,7 +46,6 @@ const putMessage = async (req, res, next) => {
 
   try {
     const message = await Message.findByPk(id);
-    console.log("T", title, "I", id, "A", answer, "E", email, "M", message);
     await message.update({ answer });
 
     var transporter = nodemailer.createTransport({
@@ -66,14 +64,13 @@ const putMessage = async (req, res, next) => {
       text: answer,
     };
 
-
     transporter.sendMail(mailOptions, (error) => {
-            if (error) {
-                console.log(error.message);
-            } else {
-                console.log("Email enviado")
-            }
-        });
+      if (error) {
+        console.log(error.message);
+      } else {
+        console.log("Email enviado");
+      }
+    });
 
     res.send({ message });
   } catch (error) {
