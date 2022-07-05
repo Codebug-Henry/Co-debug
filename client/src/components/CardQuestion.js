@@ -92,7 +92,7 @@ const CardQuestion = ({
     <div className={`container-fluid ${style.total}`}>
       <div className={`row ${style.fila}`}>
         <div className={`col-lg-1 ${style.pictureBox}`}>
-          <img className={style.userImage} src={picture} alt="imagen user" />
+          <img className={style.userImage} src={picture} alt="imagen user" referrerpolicy="no-referrer"/>
         </div>
         <div className={`col-lg-11 ${style.leftBox}`}>
 

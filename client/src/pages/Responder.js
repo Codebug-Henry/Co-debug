@@ -71,6 +71,7 @@ const Responder = () => {
                       className={style.userImage}
                       src={question?.user.picture}
                       alt="imagen de usuario"
+                      referrerpolicy="no-referrer"
                     />
                   </div>
 
