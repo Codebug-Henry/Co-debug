@@ -100,12 +100,7 @@
     width: 40%;
     margin-left: 22%;
   }
-  
-  .logo:hover {
-    width: 40%;
-    opacity: 70%;
-  }
-  
+
   .linksInt {
     display: flex;
     align-items: center;
