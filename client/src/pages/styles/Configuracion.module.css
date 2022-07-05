@@ -2,12 +2,12 @@
   background-color: lightyellow;
 }
 
-html{
-    min-height: 100%;
-    position: relative;
+html {
+  min-height: 100%;
+  position: relative;
 }
 
-.middleRow{
+.middleRow {
   background-color: lightyellow;
   align-self: center;
   width: 85%;
@@ -19,18 +19,18 @@ html{
   height: 50%;
 }
 
-.footer{
-    position: absolute;
-    left: 0;
-    bottom: 0;
-    width: 100%;
-    overflow:hidden;
+.footer {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  overflow: hidden;
 }
 
-.fullContainer{
-    display: flex;
-    flex-direction: column;
-    background-color: lightyellow;
+.fullContainer {
+  display: flex;
+  flex-direction: column;
+  background-color: lightyellow;
 }
 
 .row {
@@ -70,7 +70,7 @@ html{
   display: none;
 }
 
-.col3{
+.col3 {
   text-align: center;
   font-size: 5vh;
   margin: auto;
@@ -89,7 +89,7 @@ html{
 .buttonUpdate {
   border-radius: 1vh;
   background-color: rgb(240, 238, 238);
-  border: solid 2px black
+  border: solid 2px black;
 }
 
 .buttonUpdate:hover {

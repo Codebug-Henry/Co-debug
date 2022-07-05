@@ -43,7 +43,7 @@ export const getTopTenRanking = () => async (dispatch) => {
     const { data } = await api.getTopTenRanking();
     dispatch({ type: GET_TOPTEN_RANKING, payload: data });
   } catch (error) {
-    console.log("texto", error.message);
+    console.log(error.message);
   }
 };
 
@@ -164,7 +164,7 @@ export const deleteQuestion = (question, setIsModify) => async (dispatch) => {
 export const addFavourites = async (sub, qId, boolean, setIsLiked) => {
   try {
     await api.addFavourites(sub, qId, boolean);
-    setIsLiked(prevIsLiked => !prevIsLiked)
+    setIsLiked((prevIsLiked) => !prevIsLiked);
   } catch (error) {
     console.log(error.message);
   }
