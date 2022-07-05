@@ -28,7 +28,7 @@
 
 .logo:hover {
   width: 45%;
-  opacity: 70%;
+  opacity: 71% !important;
 }
 
 .linksInt {
