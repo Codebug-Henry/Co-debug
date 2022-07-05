@@ -25,7 +25,8 @@ const Landing = () => {
     if (isAuthenticated) {
       dispatch(getUserInfo(user.sub));
     }
-  }, [dispatch, user, isAuthenticated, isFavorite]);
+  }, [isFavorite]);
+  // }, [dispatch, user, isAuthenticated, isFavorite]);
 
   if (isLoading) {
     return (

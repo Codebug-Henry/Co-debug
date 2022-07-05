@@ -36,25 +36,23 @@ const putUserQuestion = async (req, res, next) => {
         let newLikes = question.likes
         
     if (like === "add") {
+        newLikes++
         if (user.disliked.includes(id)) {
-            newLikes++
             let userDisliked = user.disliked.filter(questId => questId !== id)
             await user.update({disliked: userDisliked})
         }
-        else if (!user.liked.includes(id)) {
-            newLikes++
+        else {
             let userLiked = [...user.liked, id]
             await user.update({liked: userLiked})
         }
     }
     else if (like === "remove"){
+        newLikes--
         if (user.liked.includes(id)) {
-            newLikes--
             let userLiked = user.liked.filter(questId => questId !== id)
             await user.update({liked: userLiked})
         }
-        else if (!user.disliked.includes(id)) {
-            newLikes--
+        else {
             let userDisliked = [...user.disliked, id]
             await user.update({disliked: userDisliked})
         }
