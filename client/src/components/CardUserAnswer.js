@@ -93,7 +93,7 @@ const CardUserAnswer = ({id, qid, title, text, likes, tPoints, name, picture, se
 
                 <div className= {style1 === true ? style.editFull : style.editFull2}>
                     <textarea   type='text'
-                                defaultValue={text} 
+                                // defaultValue={text} 
                                 value={newAnswer.text} 
                                 name='text' 
                                 autoComplete='off'

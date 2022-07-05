@@ -111,7 +111,7 @@ const CardUserQuestion = ({id, title, text, likes, cantAnswers, name, picture, s
 
                 <div className= {style1 === true ? style.editFull : style.editFull2}>
                     <textarea   type='text'
-                                defaultValue={text} 
+                                // defaultValue={text} 
                                 value={newQuestion.text} 
                                 name='text' 
                                 autoComplete='off'
