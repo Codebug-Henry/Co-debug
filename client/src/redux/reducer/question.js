@@ -1,4 +1,4 @@
-import { DELETE_QUESTION, GET_QUESTION, MODIFY_QUESTION } from "../actions/actionTypes"
+import { DELETE_QUESTION, GET_QUESTION, MODIFY_QUESTION, CLEAN_QUESTION } from "../actions/actionTypes"
 
 export default function question (state = {}, action){
     switch(action.type){
@@ -7,6 +7,8 @@ export default function question (state = {}, action){
         case MODIFY_QUESTION:
             return action.payload
         case DELETE_QUESTION:
+            return {}
+        case CLEAN_QUESTION:
             return {}
         default:
             return state            

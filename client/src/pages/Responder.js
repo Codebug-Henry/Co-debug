@@ -3,7 +3,7 @@ import style from "./styles/Responder.module.css";
 import Footer from "../components/Footer.js";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
-import { getQuestion, sendAnswer } from "../redux/actions/index";
+import { cleanQuestion, getQuestion, sendAnswer } from "../redux/actions/index";
 // import like from "../images/like2.png";
 // import dislike from "../images/dislike2.png";
 // import denuncia from "../images/denuncia2.png";
@@ -27,6 +27,7 @@ const Responder = () => {
 
   useEffect(() => {
     dispatch(getQuestion(parseInt(questionId), setLoad));
+    return () => dispatch(cleanQuestion())
   }, [dispatch, load, questionId]);
 
   const handleChange = (e) => {
@@ -39,6 +40,8 @@ const Responder = () => {
     if (!input) error = "Se requiere escribir una respuesta";
     if (input.length < 10)
       error = "La respuesta debe tener minimo 10 caracteres";
+    if (input.length > 500)
+      error = "La respuesta debe tener como máximo 500 caracteres";
     return error;
   };
 

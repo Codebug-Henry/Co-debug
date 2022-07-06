@@ -169,6 +169,12 @@
   width: 100%;
 }
 
+.errorMessage {
+  margin-bottom: 0.5vh;
+  font-size: 1.8vh;
+  color: #f9bf00;;
+}
+
 @media screen and (max-width: 740px) {
   .fullContainer{
     font-size: 12px;

@@ -7,9 +7,11 @@ import ThumbUpIcon from '@mui/icons-material/ThumbUp';
 import ThumbDownIcon from '@mui/icons-material/ThumbDown';
 import ReactMarkdown from 'react-markdown';
 import Highlighter from './Highlighter';
+import { Link } from "react-router-dom";
 
 
 const CardQuestLogOut = ({
+  id,
   cantAnswers,
   nickname,
   picture,
@@ -25,25 +27,29 @@ const CardQuestLogOut = ({
     <div className={`container-fluid ${style.total}`}>
       <div className={`row ${style.fila}`}>
         <div className={`col-lg-1 ${style.pictureBox}`}>
-          <img
-            className={style.userImage}
-            src={picture}
-            alt="imagen user"
-            referrerPolicy="no-referrer"
-          />
+          <img className={style.userImage} src={picture} alt="imagen user" referrerPolicy="no-referrer"/>
         </div>
         <div className={`col-lg-11 ${style.leftBox}`}>
+
           <div className={style.TitleAndExtrasBox}>
-            <div className={style.userPreg}>
-              <h6>{nickname} pregunta:</h6>
+            <div className={style.firstRow}>
+              <div className={style.userPreg}>
+                <span>{nickname} pregunta:</span>
+              </div>
+              
+              <div className={style.Extras}>
+                <Link to={`/responder/${id}`} className={style.botonResp}>
+                  <span>
+                    {cantAnswers} respuestas
+                  </span>
+                </Link> 
+                  <span>
+                    - T. Points: {teachPoints}
+                  </span>  
+              </div>
             </div>
             <div className={style.Title}>
-              <h6>{title}</h6>
-            </div>
-            <div className={style.Extras}>
-              <h6>
-                Respuestas:{cantAnswers} - T.Points:{teachPoints}
-              </h6>
+              <span>{title}</span>
             </div>
           </div>
           <div className={style.questionText}>
