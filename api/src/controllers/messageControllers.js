@@ -1,6 +1,5 @@
 const { User, Message } = require("../db.js");
-const nodemailer = require("nodemailer");
-const { GMAIL, GPASS } = process.env;
+const { sendEmail } = require('./generalControllers')
 
 const postMessage = async (req, res, next) => {
   const { sub, title, text, email } = req.body;
@@ -10,30 +9,11 @@ const postMessage = async (req, res, next) => {
     const newMessage = await Message.create({ title, text, email });
     newMessage.setUser(user);
 
-    var transporter = nodemailer.createTransport({
-      host: "smtp.gmail.com",
-      port: 465,
-      secure: true,
-      auth: {
-        user: GMAIL,
-        pass: GPASS,
-      },
-    });
-    const mailOptions = {
-      from: "Remitente",
-      to: email,
-      subject: title,
-      text: `Tu consulta se envio correctamente con el siguiente mensaje:
-            ${text}`,
-    };
+    let to = email
+    let subject = title
+    let textEmail = `Tu consulta se envió correctamente con el siguiente mensaje:\n\n${text}`
 
-    transporter.sendMail(mailOptions, (error) => {
-      if (error) {
-        console.log(error.message);
-      } else {
-        console.log("Email enviado");
-      }
-    });
+    sendEmail(to, subject, textEmail)
 
     res.send({ user, ...newMessage.dataValues });
   } catch (error) {
@@ -48,29 +28,11 @@ const putMessage = async (req, res, next) => {
     const message = await Message.findByPk(id);
     await message.update({ answer });
 
-    var transporter = nodemailer.createTransport({
-      host: "smtp.gmail.com",
-      port: 465,
-      secure: true,
-      auth: {
-        user: GMAIL,
-        pass: GPASS,
-      },
-    });
-    const mailOptions = {
-      from: "Remitente",
-      to: email,
-      subject: title,
-      text: answer,
-    };
+    let to = email
+    let subject = title
+    let text = answer
 
-    transporter.sendMail(mailOptions, (error) => {
-      if (error) {
-        console.log(error.message);
-      } else {
-        console.log("Email enviado");
-      }
-    });
+    sendEmail(to, subject, text)
 
     res.send({ message });
   } catch (error) {
