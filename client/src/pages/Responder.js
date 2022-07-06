@@ -63,10 +63,10 @@ const Responder = () => {
           {question && (
             <div className={style.question}>
               <div className={`container ${style.container}`}>
-                <div className={`row ${style.middleRow}`}>
+                <div className={`row ${style.middleRow1}`}>
                   {/* <div className={`col-lg ${style.col1}`}> */}
 
-                  <div className={`col-lg-2 ${style.pictureBox}`}>
+                  <div className={`col-lg-1 ${style.pictureBox}`}>
                     <img
                       className={style.userImage}
                       src={question?.user.picture}
@@ -75,7 +75,7 @@ const Responder = () => {
                     />
                   </div>
 
-                  <div className={`col-lg-6 ${style.leftBox}`}>
+                  <div className={`col-lg-9 ${style.leftBox}`}>
                     <div className={style.TitleAndExtrasBox}>
                       <div className={style.userPreg}>
                         <p>{question?.user.name} pregunta:</p>
@@ -85,7 +85,7 @@ const Responder = () => {
                       </div>
                       <div className={style.Extras}>
                         <p>
-                          Respuestas: {question?.cantAnswers} - T.Points:{" "}
+                          Respuestas: {question?.cantAnswers} - T. Points:{" "}
                           {question?.teachPoints}
                         </p>
                       </div>
