@@ -35,8 +35,8 @@ const CardQuestion = ({
 
   const dispatch = useDispatch();
   const userInfo = useSelector((state) => state.user);
-  const liked = userInfo?.liked?.includes(id)
-  const disliked = userInfo?.disliked?.includes(id)
+  const liked = userInfo.liked?.includes(id)
+  const disliked = userInfo.disliked?.includes(id)
 
   function handleAddFavourite(e) {
     e.preventDefault();
