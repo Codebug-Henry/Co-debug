@@ -4,7 +4,7 @@ import Message from "./Message";
 import style from "./styles/PreguntasDirectas.module.css";
 import Paginated from "../Paginated";
 
-const PreguntasDirectas = ({ messagePage, setMessagePage }) => {
+const PreguntasDirectas = ({ messagePage, setMessagePage, setMessageFlag }) => {
   const messages = useSelector((state) => state.messages);
   const totalPages = useSelector((state) => state.totalPages);
   return (
@@ -19,6 +19,7 @@ const PreguntasDirectas = ({ messagePage, setMessagePage }) => {
                 text={e.text}
                 email={e.email}
                 id={e.id}
+                setMessageFlag={setMessageFlag}
               />
             );
           })}

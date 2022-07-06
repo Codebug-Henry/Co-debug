@@ -47,7 +47,7 @@ export const getUserAnswers = (sub, page) =>
 export const postMessage = (message) => axios.post(`/message`, message);
 export const putMessage = (message) => axios.put(`/message`, message);
 export const getAllMessages = (page) =>
-  axios.get(`/messages?page=${page}&limit=3`);
+  axios.get(`/messages?page=${page}&limit=3&answered=false`);
 
 // RUTA TAGS
 export const getAllTags = () => axios.get(`/tags`);
