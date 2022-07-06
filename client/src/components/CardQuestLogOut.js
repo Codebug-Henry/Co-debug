@@ -54,15 +54,15 @@ const CardQuestLogOut = ({
           </div>
           <div className={style.bajoTexto}>
             <div className={style.likes}>
-              <ThumbUpIcon fontSize='medium' color="primary" onClick={() => loginWithRedirect()} className={style.fav}/>
+              <ThumbUpIcon fontSize='medium' color="action" onClick={() => loginWithRedirect()} className={style.fav}/>
               {likes}
-              <ThumbDownIcon fontSize='medium' color="error" onClick={() => loginWithRedirect()} className={style.fav} />
+              <ThumbDownIcon fontSize='medium' color="action" onClick={() => loginWithRedirect()} className={style.fav} />
             </div>
 
             <div>
               {/* <img src={favorito} alt="favorito" className={style.like} /> */}
                 <FavoriteIcon fontSize="medium" 
-                              color='error'
+                              color='action'
                               id='favorite'
 
                               className={style.fav}
@@ -70,7 +70,7 @@ const CardQuestLogOut = ({
 
             </div>
             <div>
-              <BlockIcon onClick={() => loginWithRedirect()} className={style.delete} fontSize="medium" />
+              <BlockIcon onClick={() => loginWithRedirect()} className={style.delete} fontSize="medium" color='action'/>
             </div>
             <div>
                 <button className={style.answerIt} onClick={() => loginWithRedirect()} >Responder</button>
