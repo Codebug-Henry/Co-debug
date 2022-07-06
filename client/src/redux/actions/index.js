@@ -312,19 +312,20 @@ export const postMessage = (message) => async (dispatch) => {
   }
 };
 
-export const getAllMessages = (sub, page) => async (dispatch) => {
+export const getAllMessages = (page) => async (dispatch) => {
   try {
-    const { data } = await api.getAllMessages(sub, page);
+    const { data } = await api.getAllMessages(page);
     dispatch({ type: GET_ALL_MESSAGES, payload: data });
   } catch (error) {
     console.log(error.message);
   }
 };
 
-export const putMessage = (message) => async (dispatch) => {
+export const putMessage = (message, setMessageFlag) => async (dispatch) => {
   try {
     const { data } = await api.putMessage(message);
     dispatch({ type: PUT_MESSAGE, payload: data });
+    setMessageFlag && setMessageFlag(prevFlag => !prevFlag);
   } catch (error) {
     console.log(error.message);
   }
