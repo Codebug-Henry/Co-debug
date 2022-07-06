@@ -1,28 +1,25 @@
-
-html{
-    min-height: 100%;
-    position: relative;
+html {
+  min-height: 100%;
+  position: relative;
 }
 
-.footer{
-    position: absolute;
-    left: 0;
-    bottom: 0;
-    width: 100%;
-    overflow:hidden;
+.footer {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  overflow: hidden;
 }
 
-.fullContainer{
-    display: flex;
-    flex-direction: column;
+.fullContainer {
+  display: flex;
+  flex-direction: column;
 }
 
-
-.col1{
-    margin-bottom: 10vh;
+.col1 {
+  margin-bottom: 10vh;
 }
 
 .container {
   background-color: lightyellow;
 }
-

@@ -59,18 +59,35 @@ const getUsers = async (req, res, next) =>{
             }
         }
 
+        let sortCondition = [['myTeachPoints', 'DESC'], ['cantAns', 'DESC'], ['cantQuest', 'DESC'], ['name', 'DESC']]
+        
+        let [sortType, sortDir] = sort.split("-")
+
+        switch (sortType) {
+            case "points":
+                sortCondition = [['myTeachPoints', sortDir], ['cantAns', sortDir], ['cantQuest', sortDir], ['name', sortDir]]
+                break
+            case "quest":
+                sortCondition = [['cantQuest', sortDir], ['myTeachPoints', sortDir], ['cantAns', sortDir], ['name', sortDir]]
+                break
+            case "answ":
+                sortCondition = [['cantAns', sortDir], ['myTeachPoints', sortDir], ['cantQuest', sortDir], ['name', sortDir]]
+                break
+            case "name":
+                sortCondition = [['name', sortDir], ['myTeachPoints', sortDir], ['cantAns', sortDir], ['cantQuest', sortDir]]
+                break
+            default:
+                break
+        }
+
         const allUsers = await User.findAll({
             where: condition,
-            order: [
-            ['myTeachPoints', sort || 'DESC'],
-            ['cantAns', sort || 'DESC'],
-            ['cantQuest', sort || 'DESC'],
-            ['name', sort || 'DESC'],
-        ]})
+            order: sortCondition
+        })
 
         const length = allUsers.length
         
-        allUsers.forEach((e, i) => e.dataValues.myPosition = sort === "asc" ? length - i : i + 1)
+        allUsers.forEach((e, i) => e.dataValues.myPosition = sortDir === "asc" ? length - i : i + 1)
 
         res.send (paginate(parseInt(limit), parseInt(page), allUsers))
 
