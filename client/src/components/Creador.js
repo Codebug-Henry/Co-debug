@@ -12,7 +12,7 @@ const Creador = ({photo, name, profesion, email, github, linkedin}) => {
     return (
         <div id={style.card}>
             <div id={style.photo}>
-                <img src={photo} alt={name} />
+                <img src={photo} alt={name} referrerPolicy="no-referrer"/>
             </div>
             <div id={style.cont}>
                 <div >

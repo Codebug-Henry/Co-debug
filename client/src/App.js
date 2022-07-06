@@ -36,7 +36,7 @@ function App() {
         <Route path={"/creadores"} element={<Creadores />} />
         <Route path={"/ayuda"} element={<Ayuda />} />
         <Route path={"/terminos"} element={<Terminos />} />
-        <Route path={"/configuracion"} element={<Configuracion />} />
+        <Route path={"/configuracion/:sub"} element={<Configuracion />} />
         <Route path={"/delete"} element={<Delete />} />
         <Route path={"/contacto"} element={<Contacto />} />
         <Route path={"/donacion"} element={<PaypalPage />} />

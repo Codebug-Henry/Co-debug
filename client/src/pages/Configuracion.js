@@ -12,15 +12,21 @@ import StatsUser from "../components/StatsUser";
 import TeachPoints from "../components/TeachPoints";
 import { confirmAlert } from "react-confirm-alert";
 import "react-confirm-alert/src/react-confirm-alert.css";
+import { useParams} from "react-router-dom";
+
 
 const Configuracion = () => {
-  const { isAuthenticated, isLoading } = useAuth0();
+  const { user, isAuthenticated, isLoading } = useAuth0();
+  const { sub } = useParams()
   const userInfo = useSelector((state) => state.user);
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [nameUser, setNameUser] = useState(false);
-  const [newName, setNewName] = useState(userInfo.name);
+  const [input, setInput] = useState({
+    name: '',
+    nickname: ''});
   const [nicknameUser, setNicknameUser] = useState(false);
+
   const [newNickname, setNewNickname] = useState(userInfo.nickname);
 
   const handlerSubmit = () => {
@@ -38,41 +44,36 @@ const Configuracion = () => {
         },
       ],
     });
-  };
+
 
   useEffect(() => {
-    dispatch(getUserInfo(userInfo.sub));
-  }, [dispatch, userInfo.sub]);
+    dispatch(getUserInfo(sub));
+  }, [sub]);
 
-  async function handlerConfirmEditName() {
-    await dispatch(
-      putUserInfo(userInfo.sub, {
-        name: newName,
-        nameChanges: userInfo.nameChanges,
-      })
-    );
-    dispatch(getUserInfo(userInfo.sub));
-    setNameUser(false);
+  useEffect(() => {
+    setInput({
+      name: userInfo.name,
+      nickname: userInfo.nickname
+    })
+  }, [userInfo]);
+
+  function validate(input){
+    let errors = {}
+    if(!input.name) errors.name = 'Se requiere un Nombre'
+    if(input.name.length > 20) errors.name = 'Máximo 20 caracteres'
+    if(!input.nickname) errors.nickname = 'Se requiere un Nickname'
+    if(input.nickname.length > 20) errors.nickname = 'Máximo 20 caracteres'
+    return errors
   }
 
   function handlerEditName(e) {
     e.preventDefault();
-    setNameUser(true);
-  }
-
-  function handlerChangeName(e) {
-    e.preventDefault();
-    setNewName(e.target.value);
-  }
-
-  async function handlerConfirmEditNickname() {
-    await dispatch(
-      putUserInfo(userInfo.sub, {
-        nickname: newNickname,
-      })
-    );
-    dispatch(getUserInfo(userInfo.sub));
-    setNicknameUser(false);
+    if(userInfo.nameChanges > 2) {
+      alert('No podes cambiar el nombre en más de dos oportunidades.');
+    }
+    else{
+      setNameUser(true);
+    }
   }
 
   function handlerEditNickname(e) {
@@ -80,16 +81,45 @@ const Configuracion = () => {
     setNicknameUser(true);
   }
 
-  function handlerChangeNickname(e) {
+  function handlerChange(e) {
     e.preventDefault();
-    setNewNickname(e.target.value);
+    setInput({
+      ...input,
+      [e.target.name]: e.target.value,
+    })
+    setErrors(validate({
+        ...input,
+        [e.target.name]: e.target.value
+    }))
+  }
+
+  async function handlerConfirmEditName() {
+    await dispatch(
+      putUserInfo(userInfo.sub, {
+        name: input.name,
+        nameChanges: userInfo.nameChanges,
+      })
+    );
+    dispatch(getUserInfo(userInfo.sub));
+    setNameUser(false);
+    setErrors({})
+  }
+
+  async function handlerConfirmEditNickname() {
+    await dispatch(
+      putUserInfo(userInfo.sub, {
+        nickname: input.nickname,
+      })
+    );
+    dispatch(getUserInfo(userInfo.sub));
+    setNicknameUser(false);
+    setErrors({})
   }
 
   function handlerDeleteAccount() {
     dispatch(putUserInfo(userInfo.sub, { statusDeleted: true }));
     navigate("/");
   }
-
   if (isLoading) {
     return (
       <div>
@@ -131,12 +161,20 @@ const Configuracion = () => {
                       }
                     >
                       <input
-                        className={style.inputs}
+                        className={errors.name ? style.errorInputs : style.inputs}
+                        name='name'
                         type="text"
                         autoComplete="off"
                         defaultValue={userInfo.name}
-                        onChange={(e) => handlerChangeName(e)}
+                        onChange={(e) => handlerChange(e)}
                       />
+                        {   
+                          errors.name && (
+                            <div className={style.error}>
+                                <span> {errors.name}</span>
+                            </div>
+                          )
+                        }
                     </div>
 
                     <div
@@ -160,12 +198,14 @@ const Configuracion = () => {
                           : style.col2modify
                       }
                     >
-                      <CheckIcon
-                        fontSize="large"
-                        color="primary"
-                        cursor="pointer"
-                        onClick={handlerConfirmEditName}
-                      />
+                      <div className={errors.name ? style.col2modify : style.check}>
+                         <CheckIcon
+                          fontSize="large"
+                          color="primary"
+                          cursor="pointer"
+                          onClick={handlerConfirmEditName}
+                          />
+                      </div>
                     </div>
                   </div>
 
@@ -191,12 +231,20 @@ const Configuracion = () => {
                       }
                     >
                       <input
-                        className={style.inputs}
+                        className={errors.nickname ? style.errorInputs : style.inputs}
+                        name='nickname'
                         type="text"
                         autoComplete="off"
                         defaultValue={userInfo.nickname}
-                        onChange={(e) => handlerChangeNickname(e)}
+                        onChange={(e) => handlerChange(e)}
                       />
+                      {   
+                        errors.nickname && (
+                          <div className={style.error}>
+                              <span> {errors.nickname}</span>
+                          </div>
+                        )
+                      }
                     </div>
 
                     <div
@@ -220,12 +268,14 @@ const Configuracion = () => {
                           : style.col2modify
                       }
                     >
-                      <CheckIcon
-                        fontSize="large"
-                        color="primary"
-                        cursor="pointer"
-                        onClick={handlerConfirmEditNickname}
-                      />
+                      <div className={errors.nickname ? style.col2modify : style.check}>
+                        <CheckIcon
+                          fontSize="large"
+                          color="primary"
+                          cursor="pointer"
+                          onClick={handlerConfirmEditNickname}
+                        />
+                      </div>
                     </div>
                   </div>
 

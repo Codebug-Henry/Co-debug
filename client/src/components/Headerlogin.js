@@ -71,15 +71,16 @@ const Headerlogin = () => {
 
         <div className={`col-lg-3 ${style.col4} ${style.imgNameLogOut}`}>
           <div className={style.padreDivs}>
-            <Link to="/configuracion" className={style.contImagen}>
+            <Link to={`/configuracion/${userInfo.sub}`} className={style.contImagen}>
               <img
                 className={style.userImage}
                 src={
                   userInfo.picture
-                    ? userInfo.picture
-                    : "https://www.shareicon.net/data/512x512/2016/08/05/806962_user_512x512.png"
+                    // ? userInfo.picture
+                    // : "https://www.shareicon.net/data/512x512/2016/08/05/806962_user_512x512.png"
                 }
                 alt={userInfo.name}
+                referrerPolicy="no-referrer"
               />
             </Link>
             <div className="dropdown">
@@ -142,7 +143,7 @@ const Headerlogin = () => {
                   )}
                 </li>
                 <li>
-                  <Link className={style.linkDesp} to="/configuracion">
+                  <Link className={style.linkDesp} to={`/configuracion/${userInfo.sub}`}>
                     <p className="dropdown-item" href="#">
                       Configuración
                     </p>

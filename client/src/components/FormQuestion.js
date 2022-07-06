@@ -153,8 +153,8 @@ const FormQuestion = () => {
     return (
         <div id={style.all}>
             <div id={style.title}>
-                <h1>Ingresa una pregunta</h1>
-                <InfoPopper/>
+                <span>Ingresa una pregunta</span>
+                <InfoPopper className={style.popper}/>
             </div>
             <div id={style.contenedor}>
                 <form id={style.form}>
@@ -206,7 +206,7 @@ const FormQuestion = () => {
                     </div>
                     <div id={style.div3}>
                         <div className={style.macroTag1}>
-                            <div>
+                            <div className={style.macro}>
                                 <label> MacroTags: </label>
                                 {/* <select value={input.macroTag} className={style.select} onChange={handleSelectMacroTag} >
                                     <option hidden value='' selected>Selecciona</option> */}
@@ -247,7 +247,7 @@ const FormQuestion = () => {
                     </div>
                     <div id={style.div3}>
                         <div className={style.macroTag1}>
-                            <div>
+                            <div className={style.macro}>
                                 <label> MicroTags: </label>
                                 <select defaultValue='' className={style.select} onChange={handleSelectMicroTag} >
                                     <option hidden value=''>Selecciona</option>

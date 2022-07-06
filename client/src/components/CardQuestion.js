@@ -1,15 +1,11 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import style from "./styles/CardQuestion.module.css";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import BlockIcon from "@mui/icons-material/Block";
 import ThumbUpIcon from "@mui/icons-material/ThumbUp";
 import ThumbDownIcon from "@mui/icons-material/ThumbDown";
-import {
-  addFavourites,
-  getAllQuestions,
-  modifyQuestion,
-} from "../redux/actions";
+import { addFavourites, modifyQuestion } from "../redux/actions";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import Modal from "@mui/material/Modal";
@@ -34,15 +30,13 @@ const CardQuestion = ({
   text,
   teachPoints,
   id,
-  sort,
-  page,
   setIsFavorite
 }) => {
 
   const dispatch = useDispatch();
   const userInfo = useSelector((state) => state.user);
-  const liked = userInfo?.liked.includes(id)
-  const disliked = userInfo?.disliked.includes(id)
+  const liked = userInfo.liked?.includes(id)
+  const disliked = userInfo.disliked?.includes(id)
 
   function handleAddFavourite(e) {
     e.preventDefault();
@@ -69,11 +63,11 @@ const CardQuestion = ({
   }
 
   //MODAL
-  const [open, setOpen] = React.useState(false);
+  const [open, setOpen] = useState(false);
+  const [selected, setSelected] = useState(null);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
 
-  const [selected, setSelected] = React.useState(null);
 
   const handleChangeAlert = (e) => {
     setSelected(e.target.value);
@@ -92,7 +86,7 @@ const CardQuestion = ({
     <div className={`container-fluid ${style.total}`}>
       <div className={`row ${style.fila}`}>
         <div className={`col-lg-1 ${style.pictureBox}`}>
-          <img className={style.userImage} src={picture} alt="imagen user" />
+          <img className={style.userImage} src={picture} alt="imagen user" referrerPolicy="no-referrer"/>
         </div>
         <div className={`col-lg-11 ${style.leftBox}`}>
 
@@ -104,7 +98,7 @@ const CardQuestion = ({
               
               <div className={style.Extras}>
                 <h6>
-                  Respuestas: {cantAnswers} - T. Points: {teachPoints}
+                <Link to={`/responder/${id}`} className={style.botonResp}>Ver {cantAnswers} respuestas</Link>  - T. Points: {teachPoints}
                 </h6>
               </div>
             </div>
