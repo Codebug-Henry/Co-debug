@@ -98,7 +98,7 @@ const CardQuestion = ({
               
               <div className={style.Extras}>
                 <h6>
-                  Respuestas: {cantAnswers} - T. Points: {teachPoints}
+                <Link to={`/responder/${id}`} className={style.botonResp}>Ver {cantAnswers} respuestas</Link>  - T. Points: {teachPoints}
                 </h6>
               </div>
             </div>

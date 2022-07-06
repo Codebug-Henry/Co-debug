@@ -11,6 +11,7 @@ import { deleteQuestion, modifyQuestion } from '../redux/actions';
 import { useNavigate } from 'react-router-dom';
 import ReactMarkdown from 'react-markdown';
 import Highlighter from './Highlighter';
+import WhatsPop from './WhatsPop';
 
 const CardUserQuestion = ({id, title, text, likes, cantAnswers, name, picture, setCantFirstLast, setIsModify}) => {
 
@@ -147,6 +148,9 @@ const CardUserQuestion = ({id, title, text, likes, cantAnswers, name, picture, s
         <div id={style.right}>
             <div>
                 <span>Likes: {likes}</span>
+            </div>
+            <div>
+                <WhatsPop idUser={id}/>
             </div>
             <div> 
                 <Tooltip title="Click para ver">

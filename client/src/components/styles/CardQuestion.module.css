@@ -330,3 +330,23 @@
 .span5:hover .toolTip5{
   visibility: visible;
 }
+
+.botonResp{
+  border: solid 1px black;
+  border-radius: 1vh;
+  background-color: transparent;
+  position: relative;
+  text-decoration: none;
+  color: black;
+  padding-left: 3px;
+  padding-right: 3px;
+  padding-bottom: 2px;
+  height: 90%;
+  font-weight: 400;
+}
+
+.botonResp:hover {
+  cursor: pointer;
+  background-color: rgb(240, 238, 238);
+  color: black;
+}
