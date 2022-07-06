@@ -16,7 +16,7 @@ import { useParams} from "react-router-dom";
 
 
 const Configuracion = () => {
-  const { user, isAuthenticated, isLoading } = useAuth0();
+  const { isAuthenticated, isLoading } = useAuth0();
   const { sub } = useParams()
   const userInfo = useSelector((state) => state.user);
   const dispatch = useDispatch();
@@ -26,9 +26,7 @@ const Configuracion = () => {
     name: '',
     nickname: ''});
   const [nicknameUser, setNicknameUser] = useState(false);
-   const [errors, setErrors] = useState({})
-
-  const [newNickname, setNewNickname] = useState(userInfo.nickname);
+  const [errors, setErrors] = useState({})
 
   const handlerSubmit = () => {
     confirmAlert({
@@ -50,14 +48,14 @@ const Configuracion = () => {
 
   useEffect(() => {
     dispatch(getUserInfo(sub));
-  }, [sub]);
+  }, [dispatch, sub]);
 
   useEffect(() => {
     setInput({
       name: userInfo.name,
       nickname: userInfo.nickname
     })
-  }, [userInfo]);
+  }, [dispatch, userInfo]);
 
   function validate(input){
     let errors = {}

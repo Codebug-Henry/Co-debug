@@ -4,7 +4,6 @@ import {getAllTags, getUserInfo, sendQuestion } from '../redux/actions/index';
 import style from './styles/FormQuestion.module.css';
 import InfoPopper from './InfoPopper';
 import { useNavigate } from 'react-router-dom';
-import Button from '@mui/material/Button';
 import ReactMarkdown from 'react-markdown';
 import Highlighter from './Highlighter';
 

@@ -17,6 +17,7 @@ const CardsQuestions = ({ isFavorite, setIsFavorite, search }) => {
     } else {
       dispatch(getAllQuestions(sort, page))
     }
+    // eslint-disable-next-line
   }, [dispatch, page, isFavorite]);
 
   return (

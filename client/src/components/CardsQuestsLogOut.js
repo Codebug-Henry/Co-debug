@@ -17,6 +17,7 @@ const CardsQuestsLogOut = ({ search }) => {
     } else {
       dispatch(getAllQuestions(sort, page))
     }
+    // eslint-disable-next-line
   }, [dispatch, page]);
 
   return (
