@@ -10,11 +10,11 @@ import Tooltip from '@mui/material/Tooltip';
 import CheckIcon from '@mui/icons-material/Check';
 import { putAnswer } from '../redux/actions';
 
-const CardUserAnswer = ({id, qid, title, text, likes, tPoints, name, picture, setIsModify}) => {
+const CardUserAnswer = ({id, qid, title, text, likes, tPoints, setIsModify}) => {
 
   const user = useSelector(state => state.user);
   const dispatch = useDispatch();
-  const answers = useSelector(state=> state.answers);
+  // const answers = useSelector(state=> state.answers);
   const [style1, setStyle1] = useState(true)
   const [newAnswer, setNewAnswer] = useState({
     id: id,

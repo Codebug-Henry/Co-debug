@@ -22,6 +22,7 @@ const Landing = () => {
     if (isAuthenticated) {
       dispatch(getUserInfo(user.sub));
     }
+    // eslint-disable-next-line
   }, [isFavorite]);
   // }, [dispatch, user, isAuthenticated, isFavorite]);
 

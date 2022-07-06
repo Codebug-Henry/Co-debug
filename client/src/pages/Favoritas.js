@@ -23,6 +23,7 @@ const Favoritas = () => {
     if (isAuthenticated) {
       dispatch(getFavourites(userInfo.sub, page));
     }
+    // eslint-disable-next-line
   }, [cant, page, dispatch, isFavorite]);
 
   if (isLoading) {

@@ -25,7 +25,7 @@ const Admin = () => {
   //CONTACTO
   const [messagePage, setMessagePage] = useState(1);
   //ADMINS
-  const [adminPage, setAdminPage] = useState(1);
+  const adminPage = 1
   const [adminFlag, setAdminFlag] = useState(true);
   //ALERTS
   const [alertsPage, setAlertsPage] = useState(1);

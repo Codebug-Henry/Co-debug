@@ -2,8 +2,6 @@ import React from 'react'
 import Responder from './Responder';
 import html2canvas from "html2canvas";
 import jsPDF from "jspdf";
-import { Fab } from '@mui/material';
-import FileDownloadIcon from '@mui/icons-material/FileDownload';
 import style from "./styles/ResponderPDF.module.css"
 import pdfdownload from "../images/pdfdownload.png"
 

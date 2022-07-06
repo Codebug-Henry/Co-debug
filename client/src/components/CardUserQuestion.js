@@ -50,7 +50,6 @@ const CardUserQuestion = ({id, title, text, likes, cantAnswers, name, picture, s
     }
 
     function handleDeleteQuestion(e){
-        e.preventDefault();
         setIsModify(true)
         dispatch(deleteQuestion({id: id, statusDeleted: true}, setIsModify));
         setCantFirstLast([questions.length, questions[1], questions[4]])
