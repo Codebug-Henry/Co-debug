@@ -12,6 +12,8 @@ import { useNavigate } from 'react-router-dom';
 import ReactMarkdown from 'react-markdown';
 import Highlighter from './Highlighter';
 import WhatsPop from './WhatsPop';
+import { confirmAlert } from "react-confirm-alert";
+import "react-confirm-alert/src/react-confirm-alert.css";
 
 const CardUserQuestion = ({id, title, text, likes, cantAnswers, name, picture, setCantFirstLast, setIsModify}) => {
 
@@ -25,6 +27,23 @@ const CardUserQuestion = ({id, title, text, likes, cantAnswers, name, picture, s
         title: title,
         text: text
     })
+    
+    const onClick = (e) => {
+    confirmAlert({
+      title: "Confirma borrar la pregunta",
+      message: "Está seguro de esto?",
+      buttons: [
+        {
+          label: "Si",
+          onClick: (e) => handleDeleteQuestion(e),
+        },
+        {
+          label: "No",
+          onClick: () => alert("Canceló el borrado"),
+        },
+      ],
+    });
+  };
 
     function toRender(){
         style1 === true ? setStyle1(false) : setStyle1(true)
@@ -127,23 +146,17 @@ const CardUserQuestion = ({id, title, text, likes, cantAnswers, name, picture, s
                             <EditIcon fontSize="small"  />
                         </Fab>
                     </Tooltip> */}
-                </div>
+          </div>
 
-                
-                <div className= {style1 === true ? style.editFull : style.editBtn}>
-                    <CheckIcon  fontSize='large' 
-                                color='primary' 
-                                cursor='pointer'
-                                className={style.confirmEdit}
-                                onClick={handleConfirmQuestion}/> 
-                </div>
-            </div>
-            
-            <div id={style.tags}>
-                <span> #for </span>
-                <span> #while </span>
-                <span> #Javascript </span>
-            </div>
+          <div className={style1 === true ? style.editFull : style.editBtn}>
+            <CheckIcon
+              fontSize="large"
+              color="primary"
+              cursor="pointer"
+              className={style.confirmEdit}
+              onClick={handleConfirmQuestion}
+            />
+          </div>
         </div>
         <div id={style.right}>
             <div>
@@ -165,13 +178,14 @@ const CardUserQuestion = ({id, title, text, likes, cantAnswers, name, picture, s
                 </div>
                 <div>
                     <Tooltip title="Eliminar">
-                        <DeleteIcon fontSize="medium" className={style.deleteBtn} onClick={e=> handleDeleteQuestion(e)}/>
+                        <DeleteIcon fontSize="medium" className={style.deleteBtn} onClick={(e) => onClick(e)}/>
                     </Tooltip>
                 </div>
             </div>
         </div>
+      </div>
     </div>
-  )
-}
+  );
+};
 
-export default CardUserQuestion
+export default CardUserQuestion;

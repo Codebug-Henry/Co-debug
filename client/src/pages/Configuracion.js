@@ -10,8 +10,10 @@ import Upload from "../components/Upload.js";
 import Loading from "../components/Loading";
 import StatsUser from "../components/StatsUser";
 import TeachPoints from "../components/TeachPoints";
-import { confirm } from "react-confirm-box";
-import { useParams } from "react-router-dom";
+import { confirmAlert } from "react-confirm-alert";
+import "react-confirm-alert/src/react-confirm-alert.css";
+import { useParams} from "react-router-dom";
+
 
 const Configuracion = () => {
   const { user, isAuthenticated, isLoading } = useAuth0();
@@ -24,14 +26,27 @@ const Configuracion = () => {
     name: '',
     nickname: ''});
   const [nicknameUser, setNicknameUser] = useState(false);
-  const [errors, setErrors] = useState({})
-  const optionsWithLabelChange = {
-    closeOnOverlayClick: false,
-    labels: {
-      confirmable: "Confirmar",
-      cancellable: "Cancelar",
-    },
-  };
+   const [errors, setErrors] = useState({})
+
+  const [newNickname, setNewNickname] = useState(userInfo.nickname);
+
+  const handlerSubmit = () => {
+    confirmAlert({
+      title: "Confirma borrar su cuenta",
+      message: "Está seguro de esto?",
+      buttons: [
+        {
+          label: "Si",
+          onClick: () => handlerDeleteAccount(),
+        },
+        {
+          label: "No",
+          onClick: () => alert("Canceló el borrado"),
+        },
+      ],
+    });
+    }
+
 
   useEffect(() => {
     dispatch(getUserInfo(sub));
@@ -107,17 +122,6 @@ const Configuracion = () => {
     dispatch(putUserInfo(userInfo.sub, { statusDeleted: true }));
     navigate("/");
   }
-
-  const onClick = async (options) => {
-    const result = await confirm(
-      "La cuenta se dará de baja definitivamente?",
-      options
-    );
-    if (result) {
-      handlerDeleteAccount();
-    }
-  };
-
   if (isLoading) {
     return (
       <div>
@@ -285,9 +289,11 @@ const Configuracion = () => {
                     <div className={`col-lg-12 ${style.col2}`}>
                       <button
                         className={style.buttonUpdate}
-                        onClick={() => {
-                          onClick(optionsWithLabelChange);
-                        }}
+                        // onClick={() => {
+                        //   onClick(optionsWithLabelChange);
+
+                        // }}
+                        onClick={handlerSubmit}
                       >
                         Dar de baja mi cuenta
                       </button>
