@@ -39,30 +39,30 @@ const AlertCard = ({
     <div>
       <div className={`container-fluid ${style.container}`}>
         <div className={`row ${style.row}`}>
-          <div className={`col-lg ${style.column}`}>
+          <div className={`col ${style.column}`}>
             <p>{id}</p>
           </div>
-          <div className={`col-lg-3 ${style.column}`}>
+          <div className={`col-2 ${style.column}`}>
             <p>{subCreator}</p>
           </div>
-          <div className={`col-lg-3 ${style.column}`}>
+          <div className={`col-3 ${style.column}`}>
             <p>{questionSub}</p>
           </div>
-          <div className={`col-lg ${style.column}`}>
+          <div className={`col ${style.column}`}>
             <p>{message}</p>
           </div>
-          <div className={`col-lg ${style.column}`}>
+          <div className={`col ${style.column}`}>
             <p>{title}</p>
           </div>
-          <div className={`col-lg ${style.column}`}>
+          <div className={`col-2 ${style.column}`}>
             <p>{text}</p>
           </div>
-          <div className={`col-lg  ${style.column}`}>
+          <div className={`col  ${style.column}`}>
             <button className={style.button} onClick={(e) => handleDelete(e)}>
               Borrar
             </button>
           </div>
-          <div className={`col-lg  ${style.column}`}>
+          <div className={`col ${style.column}`}>
             <button className={style.button} onClick={(e) => handleResolve(e)}>
               Resolver
             </button>

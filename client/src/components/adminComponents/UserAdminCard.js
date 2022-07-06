@@ -18,16 +18,16 @@ const UserAdminCard = ({ sub, nickname, email, setFlag, setNoAdminFlag }) => {
   return (
     <div className={`container-fluid ${style.container}`}>
       <div className={`row ${style.row}`}>
-        <div className={`col-lg ${style.column}`}>
+        <div className={`col ${style.column}`}>
           <p>{nickname}</p>
         </div>
-        <div className={`col-lg ${style.column}`}>
+        <div className={`col ${style.column}`}>
           <p>{sub}</p>
         </div>
-        <div className={`col-lg ${style.column}`}>
+        <div className={`col ${style.column}`}>
           <p>{email}</p>
         </div>
-        <div className={`col-lg  ${style.column}`}>
+        <div className={`col  ${style.column}`}>
           <button className={style.button} onClick={(e) => addAdmin(e)}>
             Agregar Admin
           </button>

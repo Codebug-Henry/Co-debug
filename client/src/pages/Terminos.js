@@ -335,7 +335,7 @@ const Terminos = () => {
             la parte redactora. <b>SECCIÓN 18:</b> LEY APLICABLE Los presentes
             Términos del servicio y cualquier acuerdo por separado por el cual
             le proporcionemos Servicios se regirán e interpretarán de acuerdo
-            con las leyes de, Argentina. <b>SECCIÓN 19:</b>
+            con las leyes de Argentina. <b>SECCIÓN 19:</b>
             CAMBIOS EN LOS TÉRMINOS DEL SERVICIO Puede revisar la versión más
             reciente de los Términos del servicio en cualquier momento en esta
             página. Nos reservamos el derecho, a nuestra entera discreción, de
