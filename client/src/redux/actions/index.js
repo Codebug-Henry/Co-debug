@@ -186,10 +186,11 @@ export const addFavourites = async (sub, qId, boolean, setIsLiked) => {
   }
 };
 
-export const getFavourites = (sub, page) => async (dispatch) => {
+export const getFavourites = (sub, page, setLoading) => async (dispatch) => {
   try {
     const { data } = await api.getFavourites(sub, page);
     dispatch({ type: GET_FAVOURITES, payload: data });
+    setLoading && setLoading(false)
   } catch (error) {
     console.log(error.message);
   }
@@ -199,19 +200,21 @@ export const cleanFavourites = () => {
   return {type: CLEAN_FAVOURITES}
 }
 
-export const getAllQuestions = (sort, page) => async (dispatch) => {
+export const getAllQuestions = (sort, page, setLoading) => async (dispatch) => {
   try {
     const { data } = await api.getAllQuestions(sort, page);
     dispatch({ type: GET_ALL_QUESTIONS, payload: data });
+    setLoading && setLoading(false)
   } catch (error) {
     console.log(error.message);
   }
 };
 
-export const getSearchQuestions = (search, sort, page) => async (dispatch) => {
+export const getSearchQuestions = (search, sort, page, setLoading) => async (dispatch) => {
   try {
     const { data } = await api.getSearchQuestions(search, sort, page);
     dispatch({ type: GET_SEARCH_QUESTIONS, payload: data });
+    setLoading && setLoading(false)
   } catch (error) {
     console.log(error.message);
   }

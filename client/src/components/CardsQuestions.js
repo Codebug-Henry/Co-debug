@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { getAllQuestions, getSearchQuestions } from "../redux/actions/index.js";
 import CardQuestion from "./CardQuestion.js";
 import Paginated from "./Paginated";
+import Loading from './Loading'
 import style from "./styles/CardsQuestions.module.css";
 
 const CardsQuestions = ({ isFavorite, setIsFavorite, search }) => {
@@ -10,17 +11,24 @@ const CardsQuestions = ({ isFavorite, setIsFavorite, search }) => {
   const questions = useSelector((state) => state.questions);
   const sort = useSelector(state => state.sort)
   const [page, setPage] = useState(1);
+  const [loading, setLoading] = useState(true)
   
   useEffect(() => {
     if (search.length > 0) {
-      dispatch(getSearchQuestions(search, sort, page));
+      dispatch(getSearchQuestions(search, sort, page, setLoading));
     } else {
-      dispatch(getAllQuestions(sort, page))
+      dispatch(getAllQuestions(sort, page, setLoading))
     }
     // eslint-disable-next-line
   }, [dispatch, page, isFavorite]);
 
-  return (
+  if(loading){
+    return (
+      <>
+        <Loading />
+      </>
+    )
+  } else return (
     <div className={style.questBox}>
       <div className={style.boxQuestions}>
         {questions &&
