@@ -1,24 +1,22 @@
-@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@1,100&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@1,100&display=swap");
 
-html{
+html {
   min-height: 100%;
   position: relative;
 }
 
-.footer{
+.footer {
   position: absolute;
   left: 0;
   bottom: 0;
   width: 100%;
-  overflow:hidden;
+  overflow: hidden;
 }
 
-.fullContainer{
+.fullContainer {
   display: flex;
   flex-direction: column;
 }
-
-
 
 .container {
   background-color: lightyellow;
@@ -28,20 +26,25 @@ html{
   align-items: center;
 }
 
-
 .middleRow {
- max-width: 60vw;
+  display: flex;
+  justify-content: center;
+  max-width: 100vw;
 }
 
-.col1{
+.col {
   margin-top: 15vh;
   margin-bottom: 15vh;
-}
-
-.colOut{
+  text-align: justify;
   font-family: "Roboto", sans-serif;
+  margin-left: 0;
+  margin-right: 0;
+  padding-left: 0;
+  padding-right: 0;
 }
 
-.title{
-  margin-bottom: 1.5vh;
+.title {
+  display: flex;
+  justify-content: center;
+  max-width: 100vw;
 }

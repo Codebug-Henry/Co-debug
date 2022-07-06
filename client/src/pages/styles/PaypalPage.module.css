@@ -1,16 +1,81 @@
-html{
-    min-height: 100%;
-    position: relative;
-  }
-  
-  .footer{
-    position: absolute;
-    left: 0;
-    bottom: 0;
-    width: 100%;
-    overflow:hidden;
-  }
-  .BoxPaypalOne{
+html {
+  min-height: 100%;
+  position: relative;
+}
+
+.container {
+  background-color: lightyellow;
+  display: flex;
+  justify-content: center;
+}
+
+.tandt {
+  background-color: lightyellow;
+  display: flex;
+  justify-content: center;
+}
+
+.col {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.title {
+  display: flex;
+  justify-content: center;
+  font-size: xx-large;
+  font-weight: bold;
+}
+
+.text {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  padding-left: 10vw;
+  padding-right: 10vw;
+  text-align: justify;
+}
+
+.extra {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+  gap: 1%;
+}
+
+.currency {
+  display: flex;
+  justify-content: center;
+  font-size: 250%;
+}
+
+.input {
+  display: flex;
+  justify-content: center;
+}
+
+.button {
+  display: flex;
+  justify-content: center;
+  border-radius: 1vh;
+}
+
+.footer {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  overflow: hidden;
+}
+
+.paypalbox {
+  display: flex;
+  justify-content: center;
+}
+
+/* .BoxPaypalOne{
     background-color: rgb(253, 246, 226);
     display: flex;
     justify-content: center;
@@ -41,24 +106,9 @@ html{
     background-image: url(../../images/backgrounddonate.png);
     background-size: cover;
     opacity: 100%;
-  }
-  .titulo{
-    margin-top: 5%;
-    font-size: xx-large;
-    font-weight: bold;
-  }
+  } */
 
-  .tituloYTexto{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    width:40%;
-  }
-
-  .input{
-    width: 15%;
-  }
+/*   
   .plata{
     font-size: 250%;
   }
@@ -80,4 +130,4 @@ html{
 
 
   flex-direction: column;
-}
+} */
