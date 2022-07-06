@@ -62,6 +62,11 @@
 .refresh{
   margin-right: 9%;
 }
+
+.order{
+  border-radius: 5px;
+  border: 1px solid lightgray;
+}
 /* .fullPage {
   border: 1px solid red;
   margin: 0px;
