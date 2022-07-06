@@ -93,17 +93,22 @@ const CardQuestion = ({
           <div className={style.TitleAndExtrasBox}>
             <div className={style.firstRow}>
               <div className={style.userPreg}>
-                <h6>{nickname} pregunta:</h6>
+                <span>{nickname} pregunta:</span>
               </div>
               
               <div className={style.Extras}>
-                <h6>
-                <Link to={`/responder/${id}`} className={style.botonResp}>Ver {cantAnswers} respuestas</Link>  - T. Points: {teachPoints}
-                </h6>
+                <Link to={`/responder/${id}`} className={style.botonResp}>
+                  <span>
+                    {cantAnswers} respuestas
+                  </span>
+                </Link> 
+                  <span>
+                    - T. Points: {teachPoints}
+                  </span>  
               </div>
             </div>
             <div className={style.Title}>
-              <h6>{title}</h6>
+              <span>{title}</span>
             </div>
           </div>
 

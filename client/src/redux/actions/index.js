@@ -1,5 +1,6 @@
 import {
   GET_RANKING,
+  CLEAN_RANKING,
   GET_ALL_USERS,
   GET_TOPTEN_RANKING,
   GET_USER_INFO,
@@ -8,13 +9,17 @@ import {
   DELETE_QUESTION,
   SEND_QUESTION,
   GET_QUESTION,
+  CLEAN_QUESTION,
   GET_FAVOURITES,
+  CLEAN_FAVOURITES,
   GET_ALL_QUESTIONS,
   GET_SEARCH_QUESTIONS,
   GET_USER_QUESTIONS,
+  CLEAN_USER_QUESTIONS,
   PUT_ANSWER,
   DELETE_ANSWER,
   GET_USER_ANSWERS,
+  CLEAN_ANSWERS,
   GET_USER_QUESTIONS_ORDERER,
   POST_MESSAGE,
   GET_ALL_MESSAGES,
@@ -25,6 +30,7 @@ import {
   GET_ALL_ALERTS,
   PUT_MESSAGE,
   SET_SORT,
+  CLEAN_QUESTIONS
 } from "./actionTypes";
 
 import * as api from "../api";
@@ -56,6 +62,10 @@ export const getRanking = (sort, page) => async (dispatch) => {
     console.log(error.message);
   }
 };
+
+export const cleanRanking = () => {
+  return {type: CLEAN_RANKING}
+}
 
 export const getUserInfo = (sub) => async (dispatch) => {
   try {
@@ -163,6 +173,10 @@ export const deleteQuestion = (question, setIsModify) => async (dispatch) => {
   }
 };
 
+export const cleanQuestion = () => {
+  return {type: CLEAN_QUESTION}
+}
+
 export const addFavourites = async (sub, qId, boolean, setIsLiked) => {
   try {
     await api.addFavourites(sub, qId, boolean);
@@ -180,6 +194,10 @@ export const getFavourites = (sub, page) => async (dispatch) => {
     console.log(error.message);
   }
 };
+
+export const cleanFavourites = () => {
+  return {type: CLEAN_FAVOURITES}
+}
 
 export const getAllQuestions = (sort, page) => async (dispatch) => {
   try {
@@ -222,6 +240,14 @@ export const getUserQuestionsSearch =
       console.log(error.message);
     }
   };
+
+export const cleanUserQuestion = () => {
+  return {type: CLEAN_USER_QUESTIONS}
+}
+
+export const cleanQuestions = () => {
+  return {type: CLEAN_QUESTIONS}
+}
 
 // RUTAS ANSWER
 
@@ -270,6 +296,11 @@ export const getUserAnswers = (sub, page) => async (dispatch) => {
     console.log(error.message);
   }
 };
+
+export const cleanAnswers = () => {
+  return {type: CLEAN_ANSWERS}
+}
+
 
 // RUTAS Message/Messages
 export const postMessage = (message) => async (dispatch) => {
