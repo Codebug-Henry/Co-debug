@@ -189,7 +189,7 @@ const Responder = () => {
                       (<div className={style.button}>
                         <button
                           type="submit"
-                          onClick={(e) => loginWithRedirect()}
+                          onClick={async(e) => await loginWithRedirect()}
                           className={style.submit}
                         >
                           Logueate para responder
