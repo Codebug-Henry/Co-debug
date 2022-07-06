@@ -8,7 +8,7 @@ import { getRanking } from "../redux/actions";
 const Ranking = () => {
   const dispatch = useDispatch()
   const ranking = useSelector(state => state.ranking)
-  const [sort, setSort] = useState('desc')
+  const [sort, setSort] = useState('points-desc')
   const [page, setPage] = useState(1)
 
   useEffect(() => {
@@ -25,8 +25,8 @@ const Ranking = () => {
           {/* Acá el contenido para logueados */}
           <div className={style.filterbar}>
             <select className={style.select} value={sort} onChange={handleSort}>
-              <option value='asc'>Ascendente</option>
-              <option value='desc'>Descendente</option>
+              <option value='points-desc'>Descendente</option>
+              <option value='points-asc'>Ascendente</option>
             </select>
           </div>
           <div className={`container-fluid ${style.container}`}>
