@@ -1,14 +1,12 @@
 import React, { useState } from "react";
-import { useDispatch } from "react-redux";
-import { getAllQuestions, getSearchQuestions } from "../redux/actions/index.js";
+import { useDispatch, useSelector } from "react-redux";
+import { getAllQuestions, getSearchQuestions, setSort } from "../redux/actions/index.js";
 import style from "./styles/NavBar.module.css";
 
-const NavBar = () => {
+const NavBar = ({ search, setSearch }) => {
   const dispatch = useDispatch();
-
   const [page, setPage] = useState(1);
-  const [search, setSearch] = useState("");
-  const [sort, setSort] = useState("desc");
+  const sort = useSelector(state => state.sort)
 
   const onChangeSearch = (e) => {
     setSearch(e.target.value);
@@ -21,13 +19,14 @@ const NavBar = () => {
   };
 
   const handleSort = (e) => {
-    setSort(e.target.value);
+    dispatch(setSort(e.target.value))
     if (search.length > 0) {
       dispatch(getSearchQuestions(search, e.target.value, page));
     } else {
       dispatch(getAllQuestions(e.target.value, page));
     }
   };
+
   return (
     <div className={`container-fluid ${style.optionSearch}`}>
       <nav

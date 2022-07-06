@@ -4,7 +4,6 @@ import {getAllTags, getUserInfo, sendQuestion } from '../redux/actions/index';
 import style from './styles/FormQuestion.module.css';
 import InfoPopper from './InfoPopper';
 import { useNavigate } from 'react-router-dom';
-import Button from '@mui/material/Button';
 import ReactMarkdown from 'react-markdown';
 import Highlighter from './Highlighter';
 
@@ -24,8 +23,8 @@ const FormQuestion = () => {
     function validate(input){
         let errors = {}
         if(!input.title) errors.title = 'Se requiere un título'
-        if(input.title.length > 25) errors.title = 'Título debe tener un máximo de 25 caracteres'
-        if(input.title && !/^[A-Za-z0-9\s]+$/.test(input.title)) errors.title = 'El título debe tener solo letras, números y espacios.'
+        if(input.title.length > 80) errors.title = 'Título debe tener un máximo de 80 caracteres'
+        // if(input.title && !/^[A-Za-z0-9\s]+$/.test(input.title)) errors.title = 'El título debe tener solo letras, números y espacios.'
         if(!input.text) errors.text = 'Se requiere una pregunta'
         if(input.text.length > 500) errors.title = 'La pregunta debe tener un máximo de 500 caracteres'
         if(input.macroTag.length === 0) errors.macroTag = 'Selecciona al menos un macroTag'
@@ -153,8 +152,8 @@ const FormQuestion = () => {
     return (
         <div id={style.all}>
             <div id={style.title}>
-                <h1>Ingresa una pregunta</h1>
-                <InfoPopper/>
+                <span>Ingresa una pregunta</span>
+                <InfoPopper className={style.popper}/>
             </div>
             <div id={style.contenedor}>
                 <form id={style.form}>
@@ -206,7 +205,7 @@ const FormQuestion = () => {
                     </div>
                     <div id={style.div3}>
                         <div className={style.macroTag1}>
-                            <div>
+                            <div className={style.macro}>
                                 <label> MacroTags: </label>
                                 {/* <select value={input.macroTag} className={style.select} onChange={handleSelectMacroTag} >
                                     <option hidden value='' selected>Selecciona</option> */}
@@ -247,7 +246,7 @@ const FormQuestion = () => {
                     </div>
                     <div id={style.div3}>
                         <div className={style.macroTag1}>
-                            <div>
+                            <div className={style.macro}>
                                 <label> MicroTags: </label>
                                 <select defaultValue='' className={style.select} onChange={handleSelectMicroTag} >
                                     <option hidden value=''>Selecciona</option>

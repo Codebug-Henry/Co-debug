@@ -32,10 +32,9 @@ const Headerlogin = () => {
   };
 
   const handleLogOut = () => {
-    logout()
-    localStorage.clear()
+    logout();
+    localStorage.clear();
   };
-
 
   if (isLoading) {
     return (
@@ -72,11 +71,16 @@ const Headerlogin = () => {
 
         <div className={`col-lg-3 ${style.col4} ${style.imgNameLogOut}`}>
           <div className={style.padreDivs}>
-            <Link to="/configuracion" className={style.contImagen}>
+            <Link to={`/configuracion/${userInfo.sub}`} className={style.contImagen}>
               <img
                 className={style.userImage}
-                src={userInfo.picture ? userInfo.picture : 'https://www.shareicon.net/data/512x512/2016/08/05/806962_user_512x512.png'}
+                src={
+                  userInfo.picture
+                    // ? userInfo.picture
+                    // : "https://www.shareicon.net/data/512x512/2016/08/05/806962_user_512x512.png"
+                }
                 alt={userInfo.name}
+                referrerPolicy="no-referrer"
               />
             </Link>
             <div className="dropdown">
@@ -128,16 +132,18 @@ const Headerlogin = () => {
                   </Link>
                 </li>
                 <li>
-                  {userInfo.statusAdmin ? 
-                  <Link className={style.linkDesp} to="/admin">
-                  <p className="dropdown-item" href="#">
-                    Admin
-                  </p>
-                </Link> : ""}
-                  
+                  {userInfo.statusAdmin ? (
+                    <Link className={style.linkDesp} to="/codenothere">
+                      <p className="dropdown-item" href="#">
+                        Admin
+                      </p>
+                    </Link>
+                  ) : (
+                    ""
+                  )}
                 </li>
                 <li>
-                  <Link className={style.linkDesp} to="/configuracion">
+                  <Link className={style.linkDesp} to={`/configuracion/${userInfo.sub}`}>
                     <p className="dropdown-item" href="#">
                       Configuración
                     </p>
@@ -148,7 +154,11 @@ const Headerlogin = () => {
                   <hr className="dropdown-divider"></hr>
                 </li>
                 <li>
-                  <p onClick={handleLogOut} className={`dropdown-item ${style.logOut}`} href="#">
+                  <p
+                    onClick={handleLogOut}
+                    className={`dropdown-item ${style.logOut}`}
+                    href="#"
+                  >
                     Log Out
                   </p>
                 </li>

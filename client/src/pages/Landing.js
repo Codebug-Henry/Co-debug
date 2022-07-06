@@ -10,33 +10,21 @@ import { useSelector, useDispatch } from "react-redux";
 import { useEffect } from "react";
 import { getUserInfo } from "../redux/actions";
 import NavBar from "../components/NavBar";
-// import { getTopTenRanking } from "../redux/actions";
-
-// import { useEffect, useState } from 'react'
-// import { useDispatch, useSelector } from "react-redux"
-// //Mandar pedido useEffect dispatch mi action >> pedido back >> res new object >
 
 const Landing = () => {
   const dispatch = useDispatch();
   const { isAuthenticated, isLoading, user } = useAuth0();
-  const infoUsuario = useSelector((state) => state.user);
-  const [isFavorite, setIsFavorite] = useState(false)
-  const preguntas = infoUsuario.cantQuest;
-  const respuestas = infoUsuario.cantAns;
-  const position = infoUsuario.myPosition;
-  const tpoints = infoUsuario.myTeachPoints;
-  // const topTen = useSelector((state) => state.topTenRanking);
-  // console.log(topTen);
+  const { cantQuest, cantAns, myPosition, myTeachPoints } = useSelector((state) => state.user);
+  const [isFavorite, setIsFavorite] = useState(false);
+  const [search, setSearch] = useState("");
 
   useEffect(() => {
     if (isAuthenticated) {
       dispatch(getUserInfo(user.sub));
     }
-  }, [dispatch, user, isAuthenticated, isFavorite]);
-
-  // useEffect(() => {
-  //   dispatch(getTopTenRanking());
-  // }, [dispatch]);
+    // eslint-disable-next-line
+  }, [isFavorite]);
+  // }, [dispatch, user, isAuthenticated, isFavorite]);
 
   if (isLoading) {
     return (
@@ -53,22 +41,25 @@ const Landing = () => {
           {/* Acá el contenido para logueados */}
           <div className={`container-fluid ${style.container}`}>
             <div className={`row ${style.navBar}`}>
-              <NavBar />
+              <NavBar search={search} setSearch={setSearch} />
             </div>
             <div className={`row ${style.middleRow}`}>
               <div className={`col-lg-8 ${style.col1}`}>
-                <CardsQuestions isFavorite={isFavorite} setIsFavorite={setIsFavorite}/>
+                <CardsQuestions
+                  isFavorite={isFavorite}
+                  setIsFavorite={setIsFavorite}
+                  search={search}
+                />
               </div>
-
               <div className={`col-lg-4 ${style.col2}`}>
                 <div className={`container-fluid${style.rigthContainer}`}>
                   <div className={`row ${style.rightRowTop}`}>
                     <div className={style.datosUser}>
                       <p className={style.estadisticas}>Mis estadísticas:</p>
-                      <p>Mi posición en el Ranking: {position}</p>
-                      <p>Mis Teach-Points: {tpoints}</p>
-                      <p>Cuántas preguntas hice? {preguntas}</p>
-                      <p>Cuántas preguntas respondí? {respuestas}</p>
+                      <p>Mi posición en el Ranking: {myPosition}</p>
+                      <p>Mis Teach-Points: {myTeachPoints}</p>
+                      <p>Cuántas preguntas hice? {cantQuest}</p>
+                      <p>Cuántas preguntas respondí? {cantAns}</p>
                     </div>
                   </div>
                   <div className={`row ${style.rightRowUp}`}>
@@ -95,11 +86,11 @@ const Landing = () => {
           {/* Acá el contenido para no logueados */}
           <div className={`container-fluid ${style.container}`}>
             <div className={`row ${style.navBar}`}>
-              <NavBar />
+              <NavBar search={search} setSearch={setSearch} />
             </div>
             <div className={`row ${style.middleRow}`}>
               <div className={`col-lg-8 ${style.colOutLeft}`}>
-                <CardsQuestsLogOut />
+                <CardsQuestsLogOut search={search} />
               </div>
               <div className={`col-lg-4 ${style.colOutRigth}`}>
                 <div className={`container-fluid${style.rigthContainer}`}>

@@ -20,30 +20,43 @@ const deleteUserQuestion = async (req, res, next) => {
 }
 
 const putUserQuestion = async (req, res, next) => {
-    let {id, text, title, like, statusDeleted,imgs,macroTags,microTags,sub} = req.body
+    let {id, text, title, like, statusDeleted, imgs, macroTags, microTags, sub} = req.body
 
     const question = await Question.findByPk(id)
-
-    let user = await User.findByPk(sub)
-    
-    let newLikes = question.likes
+    const userQues = await question.getUser()
+    const answersQues = await question.getAnswers()
+    const userLogged = await User.findByPk(sub)
     
     // const newFavourites = [...user.favourites, id]
-
+    
     //         await user.update({
-    //             favourites: newFavourites,
-    //             cantFav: user.cantFav + 1
-    //         })
-
+        //             favourites: newFavourites,
+        //             cantFav: user.cantFav + 1
+        //         })
+    
+        let newLikes = question.likes
+        
     if (like === "add") {
         newLikes++
-        let userLiked = [...user.liked,id]
-        await user.update({liked:userLiked})
+        if (userLogged.disliked.includes(id)) {
+            let userLoggedDisliked = userLogged.disliked.filter(questId => questId !== id)
+            await userLogged.update({disliked: userLoggedDisliked})
+        }
+        else {
+            let userLoggedLiked = [...userLogged.liked, id]
+            await userLogged.update({liked: userLoggedLiked})
+        }
     }
     else if (like === "remove"){
-        newLikes-- 
-        let userLiked = [...user.liked,id].filter(questId=>questId!==id)
-        await user.update({liked:userLiked})
+        newLikes--
+        if (userLogged.liked.includes(id)) {
+            let userLoggedLiked = userLogged.liked.filter(questId => questId !== id)
+            await userLogged.update({liked: userLoggedLiked})
+        }
+        else {
+            let userLoggedDisliked = [...userLogged.disliked, id]
+            await userLogged.update({disliked: userLoggedDisliked})
+        }
     } 
 
     try {
@@ -61,7 +74,19 @@ const putUserQuestion = async (req, res, next) => {
             microTags=await questionTags(microTags, MicroTag, question)
         }
         
-        await Question.update({text, title, likes: newLikes, statusDeleted,imgs},{
+        if (statusDeleted) {
+            let promise = userQues.update({cantQuest: userQues.cantQuest - 1})
+            let arrPromises1 = answersQues.map(ans => {
+                ans.update({statusDeleted: true})
+            })
+            let arrPromises2 = answersQues.map(ans => {
+                ans.getUser().then(userAns => userAns.update({cantAns: userAns.cantAns - 1}))
+            })
+            let arrPromises = [promise, ...arrPromises1, ...arrPromises2]
+            await Promise.all(arrPromises)
+        }
+
+        await Question.update({text, title, likes: newLikes, statusDeleted, imgs}, {
             where:{
                 id:parseInt(id)
             }

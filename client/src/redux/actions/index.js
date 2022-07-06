@@ -24,6 +24,7 @@ import {
   GET_ALL_USERS_NOADMIN,
   GET_ALL_ALERTS,
   PUT_MESSAGE,
+  SET_SORT,
 } from "./actionTypes";
 
 import * as api from "../api";
@@ -43,7 +44,7 @@ export const getTopTenRanking = () => async (dispatch) => {
     const { data } = await api.getTopTenRanking();
     dispatch({ type: GET_TOPTEN_RANKING, payload: data });
   } catch (error) {
-    console.log("texto", error.message);
+    console.log(error.message);
   }
 };
 
@@ -69,7 +70,7 @@ export const putUserInfo = (sub, modify, setLoading) => async (dispatch) => {
   try {
     await api.putUserInfo(sub, modify);
     // dispatch({ type: MODIFY_USER, payload: data})
-    setLoading(false);
+    setLoading && setLoading(false);
   } catch (error) {
     console.log(error.message);
   }
@@ -141,11 +142,12 @@ export const getQuestion = (id, setLoad) => async (dispatch) => {
   }
 };
 
-export const modifyQuestion = (question, setIsModify) => async (dispatch) => {
+export const modifyQuestion = (question, setIsModify, setIsLiked) => async (dispatch) => {
   try {
     const { data } = await api.modifyQuestion(question);
     dispatch({ type: MODIFY_QUESTION, payload: data });
     setIsModify && setIsModify(false);
+    setIsLiked && setIsLiked(prevIsLiked => !prevIsLiked)
   } catch (error) {
     console.log(error.message);
   }
@@ -164,7 +166,7 @@ export const deleteQuestion = (question, setIsModify) => async (dispatch) => {
 export const addFavourites = async (sub, qId, boolean, setIsLiked) => {
   try {
     await api.addFavourites(sub, qId, boolean);
-    setIsLiked(prevIsLiked => !prevIsLiked)
+    setIsLiked((prevIsLiked) => !prevIsLiked);
   } catch (error) {
     console.log(error.message);
   }
@@ -241,10 +243,11 @@ export const sendAnswer = (answer) => async (dispatch) => {
 //     }
 // }
 
-export const putAnswer = (answer) => async (dispatch) => {
+export const putAnswer = (answer, setIsModify) => async (dispatch) => {
   try {
     const { data } = await api.putAnswer(answer);
     dispatch({ type: PUT_ANSWER, payload: data });
+    setIsModify && setIsModify(false);
   } catch (error) {
     console.log(error.message);
   }
@@ -317,3 +320,10 @@ export const getAllAlerts = (page) => async (dispatch) => {
     console.log(error.message);
   }
 };
+
+
+// SORT
+
+export const setSort = (sort) => {
+  return { type: SET_SORT, payload: sort}
+}

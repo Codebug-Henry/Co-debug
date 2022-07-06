@@ -1,6 +1,7 @@
 html {
   min-height: 100%;
   position: relative;
+  padding-bottom: 15vh;
 }
 
 .containerTotal {
@@ -73,7 +74,7 @@ html {
 }
 
 .footer {
-  /* position: absolute; */
+  position: absolute;
   left: 0;
   bottom: 0;
   width: 100%;

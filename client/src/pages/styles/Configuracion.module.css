@@ -2,35 +2,35 @@
   background-color: lightyellow;
 }
 
-html{
-    min-height: 100%;
-    position: relative;
+html {
+  min-height: 100%;
+  position: relative;
 }
 
-.middleRow{
+.middleRow {
   background-color: lightyellow;
   align-self: center;
   width: 85%;
   margin: auto;
-  margin-bottom: 2vh;
+  /* margin-bottom: 2vh; */
 }
 
 .middleRow2 {
   height: 50%;
 }
 
-.footer{
-    position: absolute;
-    left: 0;
-    bottom: 0;
-    width: 100%;
-    overflow:hidden;
+.footer {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  overflow: hidden;
 }
 
-.fullContainer{
-    display: flex;
-    flex-direction: column;
-    background-color: lightyellow;
+.fullContainer {
+  display: flex;
+  flex-direction: column;
+  background-color: lightyellow;
 }
 
 .row {
@@ -62,15 +62,38 @@ html{
 
 .col2 {
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
+}
+
+.check {
+  display: flex;
+}
+
+.error {
+  margin-top: 0.5vh;
+  font-size: 1.4vh;
+  color: #f9bf00;;
+  width: 140%;
+  text-align: center;
+}
+
+.errorInputs {
+  border-radius: 1vh;
+  border: solid 2px #f9bf00;;
+}
+
+.errorInputs:hover {
+  border-radius: 1vh;
+  border: solid 2px #f9bf00;;
 }
 
 .col2modify {
   display: none;
 }
 
-.col3{
+.col3 {
   text-align: center;
   font-size: 5vh;
   margin: auto;
@@ -84,12 +107,13 @@ html{
 .inputs {
   border-radius: 1vh;
   border: solid 1.5px grey;
+  width: 165px;
 }
 
 .buttonUpdate {
   border-radius: 1vh;
   background-color: rgb(240, 238, 238);
-  border: solid 2px black
+  border: solid 2px black;
 }
 
 .buttonUpdate:hover {

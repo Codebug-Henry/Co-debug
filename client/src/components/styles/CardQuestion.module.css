@@ -15,14 +15,35 @@
 
 }
 
+.userPreg h6 {
+  font-weight: 700;
+}
+
+.Title{
+  margin-bottom: 1%;
+  /* margin-right: 10px;
+  margin-left: 10px; */
+}
+
 .TitleAndExtrasBox {
   /* border: solid 1px black; */
   padding-top: 1vh;
-  margin-left: 2.5vh;
+  /* margin-left: 2.5vh; */
+  /* margin-right: 10px; */
+  margin-left: 20px;
   display: flex;
   align-items: flex-start;
-  flex-direction: row;
+  flex-direction: column;
   justify-content: space-between;
+}
+
+.firstRow {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  width: 100%;
+  justify-content: space-between;
+  /* gap: 100%; */
 }
 
 .rightBox {
@@ -56,6 +77,12 @@
   height: 3.8vh;
   padding-top: 1.5vh;
   /* border: 1px solid black */
+}
+
+.likes {
+  display: flex;
+  justify-content: space-between;
+  width: 14%;
 }
 
 .userImage {
@@ -302,4 +329,24 @@
 
 .span5:hover .toolTip5{
   visibility: visible;
+}
+
+.botonResp{
+  border: solid 1px black;
+  border-radius: 1vh;
+  background-color: transparent;
+  position: relative;
+  text-decoration: none;
+  color: black;
+  padding-left: 3px;
+  padding-right: 3px;
+  padding-bottom: 2px;
+  height: 90%;
+  font-weight: 400;
+}
+
+.botonResp:hover {
+  cursor: pointer;
+  background-color: rgb(240, 238, 238);
+  color: black;
 }

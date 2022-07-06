@@ -2,9 +2,9 @@ import React from 'react'
 import Paypal from '../components/Paypal'
 import { useState } from 'react';
 import Footer from '../components/Footer.js';
-import style from './styles/PaypalPage.module.css'
-import supportdevelopers from '../images/supportdevelopers.png'
-import paypal from '../images/paypal2.png'
+// import style from './styles/PaypalPage.module.css'
+// import supportdevelopers from '../images/supportdevelopers.png'
+// import paypal from '../images/paypal2.png'
 
 const PaypalPage = () => {
 
@@ -37,7 +37,7 @@ const PaypalPage = () => {
             </div>
 
             <div>
-            <img></img>
+            {/* <img></img> */}
           </div>
         </div>
       </div>
@@ -60,7 +60,7 @@ const PaypalPage = () => {
         <div >
           <div>
             <p>Powered By</p>
-            <img/>
+            {/* <img/> */}
           </div>
           <div>
             <p >R$ </p>
@@ -69,7 +69,7 @@ const PaypalPage = () => {
           </div>
         </div>
         <div >
-          <img></img>
+          {/* <img></img> */}
         </div>
       </div>
 

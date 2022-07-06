@@ -3,7 +3,9 @@
   border-style: solid;
   border-radius: 1%;
   border-color: black; */
-  margin: 3%;
+  margin-left: 3%;
+  margin-right: 3%;
+  margin-top: 3%;
   /* display: flex;
     align-items: center;
     justify-content: center; */
@@ -65,10 +67,6 @@
 }
 .optionSearch {
   margin: 4%;
-}
-
-.paginado {
-  margin-bottom: 3%;
 }
 
 .boxQuestions {

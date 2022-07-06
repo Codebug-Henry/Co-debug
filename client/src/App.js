@@ -16,7 +16,7 @@ import NotFound from "./pages/NotFound";
 import Terminos from "./pages/Terminos.js";
 import Headerlogin from "./components/Headerlogin.js";
 import Contacto from "./pages/Contacto.js";
-import ResponderPDF from "./pages/ResponderPDF"
+import ResponderPDF from "./pages/ResponderPDF";
 import PaypalPage from "./pages/PaypalPage.js";
 import PagoListo from "./pages/PagoListo.js";
 
@@ -32,15 +32,15 @@ function App() {
         <Route path={"/responder/:questionId"} element={<ResponderPDF />} />
         <Route path={"/favoritas"} element={<Favoritas />} />
         <Route path={"/ranking"} element={<Ranking />} />
-        <Route path={"/admin"} element={<Admin />} />
+        <Route path={"/codenothere"} element={<Admin />} />
         <Route path={"/creadores"} element={<Creadores />} />
         <Route path={"/ayuda"} element={<Ayuda />} />
         <Route path={"/terminos"} element={<Terminos />} />
-        <Route path={"/configuracion"} element={<Configuracion />} />
+        <Route path={"/configuracion/:sub"} element={<Configuracion />} />
         <Route path={"/delete"} element={<Delete />} />
         <Route path={"/contacto"} element={<Contacto />} />
-        <Route path={"/donacion"} element={<PaypalPage />}/>
-        <Route path={"/pagolisto"} element={<PagoListo />}/>
+        <Route path={"/donacion"} element={<PaypalPage />} />
+        <Route path={"/pagolisto"} element={<PagoListo />} />
         <Route path={"*"} element={<NotFound />} />
       </Routes>
     </BrowserRouter>

@@ -1,10 +1,3 @@
-
-html {
-    min-height: 100%;
-    position: relative;
-    background-color: lightyellow;
-}
-
 .footer{
     position: absolute;
     left: 0;
@@ -17,11 +10,9 @@ html {
     display: flex;
     flex-direction: column;
     background-color: lightyellow;
-    padding-left: 6.3%;
 }
 
 .total{
-
     background-color: rgb(255, 192, 124);
     border-radius: 1vh;
     border: solid 1px black;
@@ -30,24 +21,17 @@ html {
 
 .TitleAndExtrasBox {
   padding-top: 1vh;
-  /* margin-left: 3vh; */
   display: flex;
   align-items: flex-start;
   flex-direction: row;
   justify-content: space-between;
-  gap: 6vh;
+  gap: 2vh;
 }
 
 .middleRow {
-  display: flex;
-  flex-direction: row-reverse;
-  justify-content: flex-end;
-}
-
-.leftbox {
-  display: flex;
-  justify-content: center;
-  flex-direction: column;
+  width: 88%;
+  margin-left: 6%;
+  margin-top: 1%;
 }
 
 .rightBox {
@@ -57,24 +41,27 @@ html {
   flex-direction: row;
   margin-right: 3vh;
 }
+
 .questionText {
   background-color: rgb(255, 255, 255);
   /* font-weight: bold; */
   /* font-size: 200%; */
+  min-height: 100px;
   padding: 1vh;
   border: solid 2px grey;
   border-radius: 1vh;
   /* margin-left: 3vh; */
 }
+
 .answerIt {
   border-radius: 2vh;
   margin-bottom: 2vh;
 }
+
 .likes {
   margin-left: 3vh;
   padding: 1vh;
 }
-
 
 .bajoTexto {
   display: flex;
@@ -82,10 +69,15 @@ html {
   align-items: baseline;
   gap: 5vh;
 }
+
 .userImage {
   border-radius: 30px;
   width: 60px;
   padding-top: 2vh;
+}
+
+.userPreg {
+  font-weight: 600;
 }
 
 #text textarea {
@@ -136,7 +128,7 @@ html {
   border: #f9bf00 solid 0.5px;
   border-radius: 5%;
   font-weight: 300;
-  font-size: 15px;
+  font-size: 14px;
   justify-self: center;
   align-self: center;
 }
@@ -149,8 +141,8 @@ html {
 
 .pictureBox {
   display: flex;
-  align-items: flex-end;
-  margin-bottom: 0.5%;
+  align-items: flex-start;
+  margin-left: 5%;
 }
 
 .answers {
@@ -178,10 +170,24 @@ html {
 }
 
 @media screen and (max-width: 740px) {
+  .fullContainer{
+    font-size: 12px;
+  }
 
   .form {
     display: flex;
     flex-direction: column;
+  }
+
+  .userImage {
+    border-radius: 30px;
+    width: 50px;
+    padding-top: 2vh;
+  }
+
+  .btnCode {
+    font-size: 11px;
+    height: 25px;
   }
 
 }

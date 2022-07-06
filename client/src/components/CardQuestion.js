@@ -1,16 +1,11 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import style from "./styles/CardQuestion.module.css";
-
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import BlockIcon from "@mui/icons-material/Block";
 import ThumbUpIcon from "@mui/icons-material/ThumbUp";
 import ThumbDownIcon from "@mui/icons-material/ThumbDown";
-import {
-  addFavourites,
-  getAllQuestions,
-  modifyQuestion,
-} from "../redux/actions";
+import { addFavourites, modifyQuestion } from "../redux/actions";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import Modal from "@mui/material/Modal";
@@ -35,12 +30,14 @@ const CardQuestion = ({
   text,
   teachPoints,
   id,
-  sort,
-  page,
   setIsFavorite
 }) => {
+
   const dispatch = useDispatch();
   const userInfo = useSelector((state) => state.user);
+  const liked = userInfo.liked?.includes(id)
+  const disliked = userInfo.disliked?.includes(id)
+
   function handleAddFavourite(e) {
     e.preventDefault();
     addFavourites(userInfo.sub, id, true, setIsFavorite);
@@ -53,24 +50,24 @@ const CardQuestion = ({
 
   async function addLike(e) {
     e.preventDefault();
-    await dispatch(modifyQuestion({ id: id, like: "add", sub: userInfo.sub }));
-    dispatch(getAllQuestions(sort, page));
+    if (!liked) {
+      dispatch(modifyQuestion({ id: id, like: "add", sub: userInfo.sub }, null, setIsFavorite));
+    }
   }
 
   async function removeLike(e) {
     e.preventDefault();
-    await dispatch(
-      modifyQuestion({ id: id, like: "remove", sub: userInfo.sub })
-    );
-    dispatch(getAllQuestions("desc", page));
+    if (!disliked) {
+      dispatch(modifyQuestion({ id: id, like: "remove", sub: userInfo.sub }, null, setIsFavorite));
+    }
   }
 
   //MODAL
-  const [open, setOpen] = React.useState(false);
+  const [open, setOpen] = useState(false);
+  const [selected, setSelected] = useState(null);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
 
-  const [selected, setSelected] = React.useState(null);
 
   const handleChangeAlert = (e) => {
     setSelected(e.target.value);
@@ -89,22 +86,27 @@ const CardQuestion = ({
     <div className={`container-fluid ${style.total}`}>
       <div className={`row ${style.fila}`}>
         <div className={`col-lg-1 ${style.pictureBox}`}>
-          <img className={style.userImage} src={picture} alt="imagen user" />
+          <img className={style.userImage} src={picture} alt="imagen user" referrerPolicy="no-referrer"/>
         </div>
         <div className={`col-lg-11 ${style.leftBox}`}>
+
           <div className={style.TitleAndExtrasBox}>
-            <div className={style.userPreg}>
-              <h6>{nickname} pregunta:</h6>
+            <div className={style.firstRow}>
+              <div className={style.userPreg}>
+                <h6>{nickname} pregunta:</h6>
+              </div>
+              
+              <div className={style.Extras}>
+                <h6>
+                <Link to={`/responder/${id}`} className={style.botonResp}>Ver {cantAnswers} respuestas</Link>  - T. Points: {teachPoints}
+                </h6>
+              </div>
             </div>
             <div className={style.Title}>
               <h6>{title}</h6>
             </div>
-            <div className={style.Extras}>
-              <h6>
-                Respuestas:{cantAnswers} - T.Points:{teachPoints}
-              </h6>
-            </div>
           </div>
+
           {/* <div className={style.questionText}>{text}</div> */}
           <div className={style.questionText}>
             <ReactMarkdown children={text} components={{ code: Highlighter }} />
@@ -114,19 +116,21 @@ const CardQuestion = ({
               <span className={style.span2}>
                 <ThumbUpIcon
                   fontSize="medium"
-                  color="primary"
+                  color={liked ? "primary" : "action"}
                   onClick={(e) => addLike(e)}
                   className={style.fav}
                 />
                 <span className={style.toolTip2}>Like</span>
               </span>
-              {likes}
+              <span className={style.spanLikes}>
+                {likes}
+              </span>
               {/* <img src={like} alt="mano arriba" className={style.like} />
               <img src={dislike} alt="mano abajo" className={style.dislike} /> */}
               <span className={style.span}>
                 <ThumbDownIcon
                   fontSize="medium"
-                  color="error"
+                  color={disliked ? "error" : "action"}
                   onClick={(e) => removeLike(e)}
                   className={style.fav}
                 />
@@ -150,7 +154,7 @@ const CardQuestion = ({
               <span className={style.span4}>
                 <FavoriteIcon
                 fontSize="medium"
-                color="string"
+                color="action"
                 className={style.fav}
                 onClick={(e) => handleAddFavourite(e)}
                 />
@@ -165,6 +169,7 @@ const CardQuestion = ({
                   onClick={handleOpen}
                   className={style.delete}
                   fontSize="medium"
+                  color="action"
                 />
                 <span className={style.toolTip5}>Denunciar</span>
               </span>

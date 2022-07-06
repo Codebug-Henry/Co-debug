@@ -1,0 +1,29 @@
+.icoWhats {
+    border: none;
+    background: none;
+}
+
+.titleWhats{
+    margin-bottom: 10px;
+    font-weight: 700;
+}
+
+.input{
+    margin-right: 5px;
+    border: none;
+    border-radius: 1vh;
+}
+
+.enviar{
+    font-family:Helvetica;
+    font-weight: 700;
+    text-decoration: none;
+    color: white;
+    border-radius: 1vh;
+    background-color: #25d366;
+    padding: 6px;
+    margin-bottom: 2vh;
+}
+.enviar:hover{
+    color: white;
+}

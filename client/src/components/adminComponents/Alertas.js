@@ -1,68 +1,65 @@
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
-import style from "./styles/Alertas.module.css"
+import style from "./styles/Alertas.module.css";
 import AlertCard from "./AlertCard";
 import Paginated from "../Paginated";
 
-const Alertas = ({alertsPage, setAlertsPage, setAlertsFlag}) => {
+const Alertas = ({ alertsPage, setAlertsPage, setAlertsFlag }) => {
+  const alerts = useSelector((state) => state.alerts);
+  const totalPages = useSelector((state) => state.totalPages);
 
-  const alerts = useSelector((state)=>state.alerts)
-  const totalPages = useSelector((state)=>state.totalPages)
-  console.log(alerts)
+  const [temporalFlag, setTemporalFlag] = useState(true);
 
-  const [temporalFlag, setTemporalFlag] = useState(true)
+  const [pato, setPato] = useState(null);
 
-  const [pato, setPato] = useState(null)
-
-  useEffect(()=>{
-    setPato(alerts)
-  },[alerts])
+  useEffect(() => {
+    setPato(alerts);
+  }, [alerts]);
 
   return (
     <div className={style.container}>
       <div className={style.alertList}>
         <div className={`container-fluid ${style.container}`}>
-            <div className={`row ${style.info}`}>
-              <p className={`col-lg`}>Id</p>
-              <p className={`col-lg-3`}>Sub Creador</p>
-              <p className={`col-lg-3`}>Sub Pregunta</p>
-              <p className={`col-lg`}>Mensaje</p>
-              <p className={`col-lg`}>Titulo</p>
-              <p className={`col-lg`}>Texto</p>
-              <p className={`col-lg`}>Borrar</p>
-            </div>
+          <div className={`row ${style.info}`}>
+            <p className={`col-lg`}>Id</p>
+            <p className={`col-lg-3`}>Sub Creador</p>
+            <p className={`col-lg-3`}>Sub Pregunta</p>
+            <p className={`col-lg`}>Mensaje</p>
+            <p className={`col-lg`}>Titulo</p>
+            <p className={`col-lg`}>Texto</p>
+            <p className={`col-lg`}>Borrar</p>
           </div>
-          <div className={style.alerts}>
-              {
-                pato && pato.map((e)=>{
-                  return (
-                    <div className={`row`} key={e.id}>
-                      <AlertCard
-                        id={e.id}
-                        title={e.question.title}
-                        text={e.question.text}
-                        message={e.message}
-                        subCreator={e.subCreator}
-                        questionSub={e.question.userSub}
-                        questionId={e.question.id}
-                        setAlertsFlag={setAlertsFlag}
-                        setTemporalFlag={setTemporalFlag}
-                      />
-                    </div>
-                  )
-                })
-              }
-          </div>
+        </div>
+        <div className={style.alerts}>
+          {pato &&
+            pato.map((e) => {
+              return (
+                <div className={`row`} key={e.id}>
+                  <AlertCard
+                    id={e.id}
+                    title={e.question.title}
+                    text={e.question.text}
+                    message={e.message}
+                    subCreator={e.subCreator}
+                    questionSub={e.question.userSub}
+                    questionId={e.question.id}
+                    setAlertsFlag={setAlertsFlag}
+                    setTemporalFlag={setTemporalFlag}
+                  />
+                </div>
+              );
+            })}
+        </div>
       </div>
       <div>
-          <Paginated
+        <Paginated
           page={alertsPage}
           setPage={setAlertsPage}
           totalPages={totalPages}
-          />
-        </div>
+        />
+      </div>
     </div>
-  )
+  );
 };
 
 export default Alertas;

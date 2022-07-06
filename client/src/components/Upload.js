@@ -9,18 +9,19 @@ import style from "./styles/Upload.module.css"
 
 
 const Upload = () => {
-    const todoElUser = useSelector((state)=>state.user)
+    const user = useSelector((state)=>state.user)
     const [ image, setImage ] = useState(null);
     const [ loading, setLoading ] = useState(false)
     const dispatch = useDispatch()
 
     useEffect(() => {
-      dispatch(getUserInfo(todoElUser.sub))
+      dispatch(getUserInfo(user.sub))
+      // eslint-disable-next-line
     }, [loading])
 
     const handleClick = () => {
       setLoading(true)
-      dispatch(putUserInfo(todoElUser.sub,{
+      dispatch(putUserInfo(user.sub,{
         picture:image
       }, setLoading))
     }
@@ -46,7 +47,7 @@ const Upload = () => {
           </div>
           <div className={`col-lg-4 ${style.col2} ${style.photo}`}>
             <div>
-              <img src={image || todoElUser.picture} alt="foto usuario" className={style.foto} />
+              <img src={image || user.picture} alt="foto usuario" className={style.foto} referrerPolicy="no-referrer"/>
             </div>
             <div className={style.btn}>
               <input  type="file"

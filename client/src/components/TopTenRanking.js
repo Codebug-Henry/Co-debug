@@ -8,7 +8,6 @@ import TopTenCard from "./TopTenCard";
 const TopTenRanking = () => {
   const dispatch = useDispatch();
   const topTen = useSelector((state) => state.topTenRanking);
-  console.log(topTen);
 
   useEffect(() => {
     dispatch(getTopTenRanking());

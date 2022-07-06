@@ -2,9 +2,8 @@ import React from 'react'
 import Responder from './Responder';
 import html2canvas from "html2canvas";
 import jsPDF from "jspdf";
-import { Fab } from '@mui/material';
-import FileDownloadIcon from '@mui/icons-material/FileDownload';
 import style from "./styles/ResponderPDF.module.css"
+import pdfdownload from "../images/pdfdownload.png"
 
 function Pdf() {
 
@@ -23,9 +22,10 @@ function Pdf() {
     return (
         <div className={style.AppResponder}>
           {/* <button onClick={()=> exportPDF()}>Print PDF</button> */}
-            <Fab color="#ff9800" variant='extended' aria-label="FileDownoladIcon" size="small" onClick={()=> exportPDF()} className={style.download}>
+            {/* <Fab color="#ff9800" variant='extended' aria-label="FileDownoladIcon" size="small" onClick={()=> exportPDF()} className={style.download}>
               <FileDownloadIcon  /> 
-            </Fab>
+            </Fab> */}
+            <img src={pdfdownload} onClick={()=> exportPDF()} alt="download" className={style.pdfdownload}/>
           <header id="AppResponder" className="App-header">
             {/* Acá va el componente que quiero guardar en PDF */}
             <Responder />

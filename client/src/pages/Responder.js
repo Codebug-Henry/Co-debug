@@ -12,9 +12,10 @@ import SimpleAnswer from "../components/SimpleAnswer";
 import Loading from "../components/Loading";
 import ReactMarkdown from 'react-markdown';
 import Highlighter from '../components/Highlighter';
+import { useAuth0 } from "@auth0/auth0-react";
 
 const Responder = () => {
-  // const { isAuthenticated } = useAuth0();
+  const { isAuthenticated, loginWithRedirect } = useAuth0();
   const dispatch = useDispatch();
   const { questionId } = useParams();
   const question = useSelector((state) => state.question);
@@ -50,7 +51,7 @@ const Responder = () => {
   };
 
   function handleClick() {
-    setInput("\n```javascript\n(escribe tu código javascript aquí)\n```")
+    setInput(input + "\n```javascript\n(escribe tu código javascript aquí)\n```")
 }
 
   return (
@@ -63,18 +64,19 @@ const Responder = () => {
           {question && (
             <div className={style.question}>
               <div className={`container ${style.container}`}>
-                <div className={`row ${style.middleRow}`}>
+                <div className={`row ${style.middleRow1}`}>
                   {/* <div className={`col-lg ${style.col1}`}> */}
 
-                  <div className={`col-lg-2 ${style.pictureBox}`}>
+                  <div className={`col-lg-1 ${style.pictureBox}`}>
                     <img
                       className={style.userImage}
                       src={question?.user.picture}
                       alt="imagen de usuario"
+                      referrerPolicy="no-referrer"
                     />
                   </div>
 
-                  <div className={`col-lg-6 ${style.leftBox}`}>
+                  <div className={`col-lg-9 ${style.leftBox}`}>
                     <div className={style.TitleAndExtrasBox}>
                       <div className={style.userPreg}>
                         <p>{question?.user.name} pregunta:</p>
@@ -84,7 +86,7 @@ const Responder = () => {
                       </div>
                       <div className={style.Extras}>
                         <p>
-                          Respuestas: {question?.cantAnswers} - T.Points:{" "}
+                          Respuestas: {question?.cantAnswers} - T. Points:{" "}
                           {question?.teachPoints}
                         </p>
                       </div>
@@ -172,17 +174,29 @@ const Responder = () => {
 
                     {/* </form> */}
                   </div>
+                  {isAuthenticated?
+                    (<div className={style.button}>
+                      <button
+                        type="submit"
+                        onClick={(e) => handleSubmit(e)}
+                        className={style.submit}
+                        disabled={!input || error}
+                      >
+                        Enviar
+                      </button>
+                    </div> ) : (
 
-                  <div className={style.button}>
-                    <button
-                      type="submit"
-                      onClick={(e) => handleSubmit(e)}
-                      className={style.submit}
-                      disabled={!input || error}
-                    >
-                      Enviar
-                    </button>
-                  </div>
+                      (<div className={style.button}>
+                        <button
+                          type="submit"
+                          onClick={async(e) => await loginWithRedirect()}
+                          className={style.submit}
+                        >
+                          Logueate para responder
+                        </button>
+                      </div> )
+                    )
+                  }
                 </div>
                 <br></br>
                 <div className={style.answers}>

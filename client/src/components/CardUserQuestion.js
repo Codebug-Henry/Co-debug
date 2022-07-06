@@ -1,8 +1,6 @@
 import React, { useState } from 'react'
 import {useSelector, useDispatch} from 'react-redux';
 import style from "./styles/CardUserQuestion.module.css"
-import AddIcon from '@mui/icons-material/Add';
-import { Fab } from '@mui/material';
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
 import TextField from '@mui/material/TextField';
@@ -13,6 +11,9 @@ import { deleteQuestion, modifyQuestion } from '../redux/actions';
 import { useNavigate } from 'react-router-dom';
 import ReactMarkdown from 'react-markdown';
 import Highlighter from './Highlighter';
+import WhatsPop from './WhatsPop';
+import { confirmAlert } from "react-confirm-alert";
+import "react-confirm-alert/src/react-confirm-alert.css";
 
 const CardUserQuestion = ({id, title, text, likes, cantAnswers, name, picture, setCantFirstLast, setIsModify}) => {
 
@@ -26,13 +27,29 @@ const CardUserQuestion = ({id, title, text, likes, cantAnswers, name, picture, s
         title: title,
         text: text
     })
+    
+    const onClick = (e) => {
+    confirmAlert({
+      title: "Confirma borrar la pregunta",
+      message: "Está seguro de esto?",
+      buttons: [
+        {
+          label: "Si",
+          onClick: (e) => handleDeleteQuestion(e),
+        },
+        {
+          label: "No",
+          onClick: () => alert("Canceló el borrado"),
+        },
+      ],
+    });
+  };
 
     function toRender(){
         style1 === true ? setStyle1(false) : setStyle1(true)
     }
 
     function handleDeleteQuestion(e){
-        e.preventDefault();
         setIsModify(true)
         dispatch(deleteQuestion({id: id, statusDeleted: true}, setIsModify));
         setCantFirstLast([questions.length, questions[1], questions[4]])
@@ -68,13 +85,20 @@ const CardUserQuestion = ({id, title, text, likes, cantAnswers, name, picture, s
         navigate(`/responder/${id}`)
     }
 
+    function handleClick() {
+        setnewQuestion({
+            ...newQuestion,
+            text: newQuestion.text + "\n```javascript\n(escribe tu código javascript aquí)\n```",
+        })
+    }
+
   return (
     <div id={style.questionCard}>
         <div id={style.left}>
             <div id={style.first}>
                 <div id={style.name}>
                     <div id={style.photo}>
-                        <Avatar alt={name} src={picture} id={style.avatar} />
+                        <Avatar alt={name} src={picture} id={style.avatar} referrerPolicy="no-referrer"/>
                     </div>
                     <div id={style.user}> 
                         <span>{name}</span>
@@ -89,6 +113,9 @@ const CardUserQuestion = ({id, title, text, likes, cantAnswers, name, picture, s
                                 variant="standard" 
                                 defaultValue={title} 
                                 onChange={e=> onChangeInputTitle(e)} />
+                    <div className={style.btnJS}>
+                        <button type='button' className={style.btnCode} onClick={handleClick}> Código Javascript </button>
+                    </div>
                 </div>
             </div>
             <div id={style1 === true ? style.question : style.question2}>
@@ -100,59 +127,61 @@ const CardUserQuestion = ({id, title, text, likes, cantAnswers, name, picture, s
                         components={{ code: Highlighter }}
                     />
                 </div>
-                
-                <div id={style1 === true ? style.editBtn : style.editFull}>
-                    <Tooltip title="Editar">
-                        <Fab color='action' aria-label="edit" size="small" className={style.editBtn} id='editButton' onClick={e=> handleEditQuestion(e)}>
-                            <EditIcon fontSize="small"  />
-                        </Fab>
-                    </Tooltip>
-                </div>
 
                 <div className= {style1 === true ? style.editFull : style.editFull2}>
-                    <TextField  fullWidth 
-                                label="Edita la pregunta" 
-                                id="fullWidth" 
-                                defaultValue={text} 
-                                multiline={true}
-                                onChange={e=> onChangeInputText(e)}/> 
+                    <textarea   type='text'
+                                // defaultValue={text} 
+                                value={newQuestion.text} 
+                                name='text' 
+                                autoComplete='off'
+                                className={style.editText}
+                                onChange={e=> onChangeInputText(e)}
+                    />
                 </div>
-                <div className= {style1 === true ? style.editFull : style.editBtn}>
-                    <CheckIcon  fontSize='large' 
-                                color='primary' 
-                                cursor='pointer'
-                                onClick={handleConfirmQuestion}/> 
+                <div className={style1 === true ? style.editFull : style.editBtn}>
+                    <CheckIcon
+                    fontSize="large"
+                    color="primary"
+                    cursor="pointer"
+                    className={style.confirmEdit}
+                    onClick={handleConfirmQuestion}
+                    />
                 </div>
             </div>
-            
             <div id={style.tags}>
                 <span> #for </span>
                 <span> #while </span>
                 <span> #Javascript </span>
-            </div>
+            </div>           
         </div>
+        
         <div id={style.right}>
-            <div>
-                <span>Respuestas: {cantAnswers}</span>
-            </div>
             <div>
                 <span>Likes: {likes}</span>
             </div>
+            <div>
+                <WhatsPop idUser={id}/>
+            </div>
+            <div> 
+                <Tooltip title="Click para ver">
+                    <span onClick={(e) => onClickAdd(e)} className={style.resp} > Ver {cantAnswers} respuestas </span>
+                </Tooltip>
+            </div>
             <div className={style.btns}>
                 <div>
-                    <Tooltip title="Ver respuestas">
-                        <AddIcon fontSize="large" color='disabled' className={style.moreBtn} onClick={(e) => onClickAdd(e)} />
+                    <Tooltip title="Editar">
+                        <EditIcon fontSize="medium" className={style.moreBtn} onClick={e=> handleEditQuestion(e)}/>
                     </Tooltip>
                 </div>
                 <div>
                     <Tooltip title="Eliminar">
-                        <DeleteIcon fontSize="large" color='disabled' className={style.deleteBtn} onClick={e=> handleDeleteQuestion(e)}/>
+                        <DeleteIcon fontSize="medium" className={style.deleteBtn} onClick={(e) => onClick(e)}/>
                     </Tooltip>
                 </div>
             </div>
         </div>
     </div>
-  )
-}
+  );
+};
 
-export default CardUserQuestion
+export default CardUserQuestion;
