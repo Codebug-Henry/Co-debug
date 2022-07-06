@@ -26,6 +26,7 @@ const Configuracion = () => {
     name: '',
     nickname: ''});
   const [nicknameUser, setNicknameUser] = useState(false);
+   const [errors, setErrors] = useState({})
 
   const [newNickname, setNewNickname] = useState(userInfo.nickname);
 
