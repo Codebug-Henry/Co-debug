@@ -2,17 +2,14 @@ import React from "react";
 import style from "./styles/UserAdminCard.module.css";
 import axios from "axios";
 
-const UserAdminCard = ({ sub, nickname, email, setFlag, setNoAdminFlag }) => {
+const UserAdminCard = ({ sub, nickname, email, setAdminFlag, setNoAdminFlag }) => {
   //const dispatch = useDispatch();
 
-  const addAdmin = (e) => {
+  const addAdmin = async (e) => {
     e.preventDefault();
     let modify = { statusAdmin: true };
-    axios
-      .put(`/user/${sub}`, modify)
-      .then((response) =>
-        setNoAdminFlag((prevNoAdminFlag) => !prevNoAdminFlag)
-      );
+    await axios.put(`/user/${sub}`, modify)
+    setAdminFlag((prevAdminFlag) => !prevAdminFlag)
   };
 
   return (

@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import style from "./styles/Ranking.module.css";
 import Footer from "../components/Footer.js";
 import Paginated from "../components/Paginated";
-import { getRanking } from "../redux/actions";
+import { cleanRanking, getRanking } from "../redux/actions";
 
 const Ranking = () => {
   const dispatch = useDispatch()
@@ -13,6 +13,7 @@ const Ranking = () => {
 
   useEffect(() => {
     dispatch(getRanking(sort, page))
+    return () => dispatch(cleanRanking())
   }, [dispatch, sort, page])
 
   const handleSort = (e) => {

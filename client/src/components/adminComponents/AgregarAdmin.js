@@ -5,7 +5,7 @@ import AdminCard from "./AdminCard";
 import { getSearchUsers } from "../../redux/actions";
 import UserAdminCard from "./UserAdminCard";
 
-const AgregarAdmin = ({ setFlag, setNoAdminFlag }) => {
+const AgregarAdmin = ({ setAdminFlag, setNoAdminFlag }) => {
   const dispatch = useDispatch();
   const admins = useSelector((state) => state.admins);
   const [input, setInput] = useState("");
@@ -39,7 +39,7 @@ const AgregarAdmin = ({ setFlag, setNoAdminFlag }) => {
                     sub={admin.sub}
                     nickname={admin.nickname}
                     email={admin.email}
-                    setFlag={setFlag}
+                    setAdminFlag={setAdminFlag}
                   />
                 </div>
               );
@@ -83,7 +83,7 @@ const AgregarAdmin = ({ setFlag, setNoAdminFlag }) => {
                           sub={user.sub}
                           nickname={user.nickname}
                           email={user.email}
-                          setFlag={setFlag}
+                          setAdminFlag={setAdminFlag}
                           setNoAdminFlag={setNoAdminFlag}
                         />
                       </div>

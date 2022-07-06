@@ -1,13 +1,13 @@
 import axios from "axios";
 import style from "./styles/AdminCard.module.css";
 
-const AdminCard = ({ sub, nickname, email, setFlag, setNoAdminFlag }) => {
+const AdminCard = ({ sub, nickname, email, setAdminFlag, setNoAdminFlag }) => {
   const removeAdmin = (e) => {
     e.preventDefault();
     let modify = { statusAdmin: false };
     axios
       .put(`/user/${sub}`, modify)
-      .then((response) => setFlag((prevFlag) => !prevFlag));
+      .then((response) => setAdminFlag((prevAdminFlag) => !prevAdminFlag));
   };
 
   return (

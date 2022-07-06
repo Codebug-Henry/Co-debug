@@ -8,14 +8,6 @@ const Alertas = ({ alertsPage, setAlertsPage, setAlertsFlag }) => {
   const alerts = useSelector((state) => state.alerts);
   const totalPages = useSelector((state) => state.totalPages);
 
-  const [temporalFlag, setTemporalFlag] = useState(true);
-
-  const [pato, setPato] = useState(null);
-
-  useEffect(() => {
-    setPato(alerts);
-  }, [alerts]);
-
   return (
     <div className={style.container}>
       <div className={style.alertList}>
@@ -32,8 +24,8 @@ const Alertas = ({ alertsPage, setAlertsPage, setAlertsFlag }) => {
           </div>
         </div>
         <div className={style.alerts}>
-          {pato &&
-            pato.map((e) => {
+          {alerts &&
+            alerts.map((e) => {
               return (
                 <div className={`row`} key={e.id}>
                   <AlertCard
@@ -45,7 +37,6 @@ const Alertas = ({ alertsPage, setAlertsPage, setAlertsFlag }) => {
                     questionSub={e.question.userSub}
                     questionId={e.question.id}
                     setAlertsFlag={setAlertsFlag}
-                    setTemporalFlag={setTemporalFlag}
                   />
                 </div>
               );

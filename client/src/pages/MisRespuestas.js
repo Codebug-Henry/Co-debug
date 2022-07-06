@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from 'react-redux'
 import { useAuth0 } from "@auth0/auth0-react";
-import { getUserAnswers } from '../redux/actions'
+import { cleanAnswers, getUserAnswers } from '../redux/actions'
 import style from "./styles/MisRespuestas.module.css";
 import Footer from "../components/Footer.js";
 import Loading from "../components/Loading";
@@ -20,7 +20,8 @@ const MisRespuestas = () => {
   const navigate = useNavigate()
 
   useEffect(() => {
-    dispatch(getUserAnswers(user.sub, page))
+    dispatch(getUserAnswers(user.sub, page));
+    return () => dispatch(cleanAnswers())
   }, [dispatch, user.sub, page, totalPages, isModify])
 
   function redirectAnswer () {

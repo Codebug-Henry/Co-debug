@@ -31,7 +31,6 @@ const Admin = () => {
   const [alertsPage, setAlertsPage] = useState(1);
   const [alertsFlag, setAlertsFlag] = useState(true);
 
-  const [noAdminFlag, setNoAdminFlag] = useState(true);
 
   const dispatch = useDispatch();
   const userInfo = useSelector((state) => state.user);
@@ -47,7 +46,7 @@ const Admin = () => {
 
   useEffect(() => {
     dispatch(getAllAdmins(adminPage));
-  }, [dispatch, adminFlag, noAdminFlag, adminPage]);
+  }, [dispatch, adminFlag, adminPage]);
 
   useEffect(() => {
     dispatch(getAllUsersNoAdmin(usersPage));
@@ -102,8 +101,7 @@ const Admin = () => {
                       onClick={() =>
                         setOptionSelected(
                           <AgregarAdmin
-                            setFlag={setAdminFlag}
-                            setNoAdminFlag={setNoAdminFlag}
+                            setAdminFlag={setAdminFlag}
                           />
                         )
                       }
@@ -145,7 +143,9 @@ const Admin = () => {
           ) : (
             <div>
               {navigate("/")}
+
               <p className={style.cargando}>Cargando...</p>
+
             </div>
           )}
         </div>
