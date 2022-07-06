@@ -1,22 +1,22 @@
-html{
+html {
   min-height: 100%;
   position: relative;
   background-color: lightyellow;
 }
 
-.footer{
+.footer {
   position: absolute;
   left: 0;
   bottom: 0;
   width: 100%;
-  overflow:hidden;
+  overflow: hidden;
 }
 
-.fullContainer{
+.fullContainer {
   display: flex;
   flex-direction: column;
+  background-color: lightyellow;
 }
-
 
 .container {
   background-color: lightyellow;
@@ -29,4 +29,16 @@ html{
   font-size: 2vw;
   display: flex;
   justify-content: center;
+}
+
+.cargando {
+  background-color: lightyellow;
+}
+
+.panel {
+  font-size: 2vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 10vh;
 }

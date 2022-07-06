@@ -25,7 +25,7 @@ const Admin = () => {
   //CONTACTO
   const [messagePage, setMessagePage] = useState(1);
   //ADMINS
-  const adminPage = 1
+  const adminPage = 1;
   const [adminFlag, setAdminFlag] = useState(true);
   //ALERTS
   const [alertsPage, setAlertsPage] = useState(1);
@@ -62,8 +62,8 @@ const Admin = () => {
         <div className={style.middleRow}>
           {userInfo.statusAdmin ? (
             <div className={`container-fluid ${style.container}`}>
-              <div className={`row ${style.middleRow}`}>
-                <div className={`col-lg-2 ${style.col1}`}>
+              <div className={`row ${style.row1}`}>
+                <div className={`col-lg ${style.colRow1}`}>
                   <div className="d-grid gap-2 mx-auto">
                     <p className={style.tittleLeft}>Admin Options</p>
                     <button
@@ -127,20 +127,25 @@ const Admin = () => {
                     </button>
                   </div>
                 </div>
-
-                <div className={`col-lg-10 ${style.col2}`}>
-                  {optionSelected ? (
-                    optionSelected
-                  ) : (
-                    <p>Panel de administrador</p>
-                  )}
+                <div className={`row ${style.row2}`}>
+                  <div className={`col-lg ${style.col2}`}>
+                    {optionSelected ? (
+                      optionSelected
+                    ) : (
+                      <p className={style.panel}>
+                        Bienvenido! Elegir la opción deseada
+                      </p>
+                    )}
+                  </div>
                 </div>
               </div>
             </div>
           ) : (
             <div>
               {navigate("/")}
-              <p>CARGANDO</p>
+
+              <p className={style.cargando}>Cargando...</p>
+
             </div>
           )}
         </div>

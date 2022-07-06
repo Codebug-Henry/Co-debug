@@ -1,11 +1,9 @@
 import React, { useState } from "react";
 import style from "./styles/Message.module.css";
-// import { useDispatch } from "react-redux";
 import { putMessage } from "../../redux/api";
 
 const Message = ({ title, text, email, sub, nickname, id }) => {
   const [input, setInput] = useState("");
-  // const dispatch = useDispatch();
 
   const handleSubmit = (e) => {
     let answer = input;
@@ -39,7 +37,9 @@ const Message = ({ title, text, email, sub, nickname, id }) => {
           <input type="text" onChange={(e) => handleChange(e)} value={input} />
         </div>
         <div>
-          <button onClick={(e) => handleSubmit(e)}>Responder</button>
+          <button className={style.button} onClick={(e) => handleSubmit(e)}>
+            Responder
+          </button>
         </div>
       </div>
     </div>

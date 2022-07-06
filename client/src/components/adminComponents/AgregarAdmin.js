@@ -9,7 +9,6 @@ const AgregarAdmin = ({ setAdminFlag, setNoAdminFlag }) => {
   const dispatch = useDispatch();
   const admins = useSelector((state) => state.admins);
   const [input, setInput] = useState("");
-  //const users = useSelector((state)=>state.users)
   const usersNoAdmin = useSelector((state) => state.usersNoAdmin);
 
   const onChangeSearch = (e) => {
@@ -25,10 +24,10 @@ const AgregarAdmin = ({ setAdminFlag, setNoAdminFlag }) => {
       <div className={style.adminList}>
         <div className={`container-fluid ${style.container}`}>
           <div className={`row ${style.info}`}>
-            <p className={`col-lg`}>Nickname</p>
-            <p className={`col-lg`}>Sub</p>
-            <p className={`col-lg`}>Email</p>
-            <p className={`col-lg`}>Quitar</p>
+            <p className={"col"}>Admin(nick)</p>
+            <p className={"col"}>Sub</p>
+            <p className={"col"}>Email</p>
+            <p className={"col"}>Quitar</p>
           </div>
         </div>
         <div className={style.adminRenders}>
@@ -52,14 +51,14 @@ const AgregarAdmin = ({ setAdminFlag, setNoAdminFlag }) => {
           <form className="d-flex">
             <input
               onChange={(e) => onChangeSearch(e)}
-              className="form-control me-2"
+              className={`form-control me-2 ${style.input}`}
               type="search"
               placeholder="Buscar..."
               aria-label="Search"
             />
             <button
               onClick={() => handlerRefresh()}
-              className="btn btn-outline-dark"
+              className={`btn btn-outline-dark ${style.button}`}
               type="submit"
             >
               Refresh
@@ -69,10 +68,10 @@ const AgregarAdmin = ({ setAdminFlag, setNoAdminFlag }) => {
         <div className={style.allUsers}>
           <div className={`container-fluid ${style.container}`}>
             <div className={`row ${style.info}`}>
-              <p className={`col-lg`}>Nickname</p>
-              <p className={`col-lg`}>Sub</p>
-              <p className={`col-lg`}>Email</p>
-              <p className={`col-lg`}>Agregar</p>
+              <p className={"col"}>User(nick)</p>
+              <p className={"col"}>Sub</p>
+              <p className={"col"}>Email</p>
+              <p className={"col"}>Agregar</p>
             </div>
             <div>
               <div className={style.adminRenders}>

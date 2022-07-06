@@ -1,13 +1,7 @@
 .container {
-  /* display: flex;
-    background-color: orange;
-    margin-bottom: 2vh;
-    color: black;
-    border-radius: 15px;
-    justify-content: space-around; */
-}
-
-.column {
+  border: 1px black solid;
+  border-radius: 1vh;
+  margin-bottom: 0.2vh;
 }
 
 .unbanButton {
@@ -16,6 +10,7 @@
   border-radius: 3px;
   border: 0px;
   position: relative;
+  margin-top: 1vh;
 }
 
 .banButton {
@@ -24,4 +19,5 @@
   border-radius: 3px;
   border: 0px;
   position: relative;
+  margin-top: 1vh;
 }

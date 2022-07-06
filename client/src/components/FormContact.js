@@ -14,7 +14,9 @@ const FormContact = () => {
   function validate(input) {
     let errors = {};
     if (!input.title) errors.title = "Se requiere un título";
+    if (input.title.length > 30) errors.title = "Máximo 30 caracteres";
     if (!input.email) errors.email = "Se requiere un email";
+    if (input.email.length > 30) errors.email = "Máximo 30 caracteres";
     if (
       input.email &&
       !/^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(

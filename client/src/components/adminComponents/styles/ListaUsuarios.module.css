@@ -1,5 +1,7 @@
 .container {
   margin-bottom: 10vh;
+  padding: 0;
+  margin: 0;
 }
 
 .info {
@@ -8,6 +10,7 @@
   border-radius: 15px;
   font-weight: 700;
   margin-bottom: 2vh;
+  margin-top: 2vh;
 }
 
 .info p {

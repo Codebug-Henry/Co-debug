@@ -1,5 +1,4 @@
 import axios from "axios";
-//import React, { useState } from "react";
 import style from "./styles/AdminCard.module.css";
 
 const AdminCard = ({ sub, nickname, email, setAdminFlag, setNoAdminFlag }) => {
@@ -15,16 +14,16 @@ const AdminCard = ({ sub, nickname, email, setAdminFlag, setNoAdminFlag }) => {
     <div>
       <div className={`container-fluid ${style.container}`}>
         <div className={`row ${style.row}`}>
-          <div className={`col-lg ${style.column}`}>
+          <div className={`col ${style.column}`}>
             <p>{nickname}</p>
           </div>
-          <div className={`col-lg ${style.column}`}>
+          <div className={`col ${style.column}`}>
             <p>{sub}</p>
           </div>
-          <div className={`col-lg ${style.column}`}>
+          <div className={`col ${style.column}`}>
             <p>{email}</p>
           </div>
-          <div className={`col-lg  ${style.column}`}>
+          <div className={`col ${style.column}`}>
             <button className={style.button} onClick={(e) => removeAdmin(e)}>
               Remover
             </button>

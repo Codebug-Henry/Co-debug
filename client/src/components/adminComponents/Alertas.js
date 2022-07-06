@@ -13,13 +13,14 @@ const Alertas = ({ alertsPage, setAlertsPage, setAlertsFlag }) => {
       <div className={style.alertList}>
         <div className={`container-fluid ${style.container}`}>
           <div className={`row ${style.info}`}>
-            <p className={`col-lg`}>Id</p>
-            <p className={`col-lg-3`}>Sub Creador</p>
-            <p className={`col-lg-3`}>Sub Pregunta</p>
-            <p className={`col-lg`}>Mensaje</p>
-            <p className={`col-lg`}>Titulo</p>
-            <p className={`col-lg`}>Texto</p>
-            <p className={`col-lg`}>Borrar</p>
+            <p className={`col`}>Id</p>
+            <p className={`col-2`}>Sub Creador</p>
+            <p className={`col-3`}>Sub Pregunta</p>
+            <p className={`col`}>Mensaje</p>
+            <p className={`col`}>Titulo</p>
+            <p className={`col-2`}>Texto</p>
+            <p className={`col`}>Borrar</p>
+            <p className={`col`}>Resolver</p>
           </div>
         </div>
         <div className={style.alerts}>
