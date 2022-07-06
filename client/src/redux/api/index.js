@@ -8,15 +8,15 @@ export const getRanking = (sort, page) =>
 export const getUserInfo = (sub) => axios.get(`/user/${sub}`);
 export const putUserInfo = (sub, modify) => axios.put(`/user/${sub}`, modify);
 export const getAllUsers = (page) =>
-  axios.get(`/users?sort=asc&page=${page}&limit=16&all=true`);
+  axios.get(`/users?sort=points-asc&page=${page}&limit=16&all=true`);
 export const getAllUsersNoAdmin = (page) =>
-  axios.get(`/users?sort=asc&page=${page}&limit=16&admin=false`);
+  axios.get(`/users?sort=points-asc&page=${page}&limit=16&admin=false`);
 export const deleteUser = (sub, status) => axios.put(`/user/${sub}`, status);
 export const getAllAdmins = (page) =>
-  axios.get(`/users?sort=asc&page=${page}&limit=16&admin=true`);
+  axios.get(`/users?sort=points-asc&page=${page}&limit=16&admin=true`);
 export const getSearchUsers = (page, search) =>
   axios.get(
-    `/users?sort=asc&page=${page}&limit=10&search=${search}&admin=false`
+    `/users?sort=points-asc&page=${page}&limit=10&search=${search}&admin=false`
   );
 
 // RUTAS question - questions
