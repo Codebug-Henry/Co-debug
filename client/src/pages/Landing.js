@@ -22,7 +22,7 @@ const Landing = () => {
     if (isAuthenticated) {
       dispatch(getUserInfo(user.sub));
     }
-    return () => dispatch(cleanQuestions())
+    // return () => dispatch(cleanQuestions())
     // eslint-disable-next-line
   }, [isFavorite]);
   // }, [dispatch, user, isAuthenticated, isFavorite]);
