@@ -1,10 +1,8 @@
 import React from "react";
-// import { useAuth0 } from "@auth0/auth0-react";
 import style from "./styles/Ayuda.module.css";
 import Footer from "../components/Footer.js";
 
 const Ayuda = () => {
-  // const { isAuthenticated } = useAuth0();
   return (
     <div className={style.containerTotal}>
       <div className={`container-fluid ${style.container}`}>
