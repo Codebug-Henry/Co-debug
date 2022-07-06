@@ -174,10 +174,10 @@
     align-items: center;
     width: 20%;
     display: grid;
-    grid-template-rows: 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr 1fr;
     background-color: #f9bf00;
     text-align: center;
-    margin: 1.5%;
+    margin: 0.8%;
     border-radius: 5% 5% 5% 5%;
     /* box-shadow: 4px 2px 2px 0px; */
 }

@@ -139,25 +139,23 @@ const CardUserQuestion = ({id, title, text, likes, cantAnswers, name, picture, s
                                 onChange={e=> onChangeInputText(e)}
                     />
                 </div>
-                
-                <div id={style1 === true ? style.editBtn : style.editFull}>
-                    {/* <Tooltip title="Editar">
-                        <Fab color='action' aria-label="edit" size="small" className={style.editBtn} id='editButton' onClick={e=> handleEditQuestion(e)}>
-                            <EditIcon fontSize="small"  />
-                        </Fab>
-                    </Tooltip> */}
-          </div>
-
-          <div className={style1 === true ? style.editFull : style.editBtn}>
-            <CheckIcon
-              fontSize="large"
-              color="primary"
-              cursor="pointer"
-              className={style.confirmEdit}
-              onClick={handleConfirmQuestion}
-            />
-          </div>
+                <div className={style1 === true ? style.editFull : style.editBtn}>
+                    <CheckIcon
+                    fontSize="large"
+                    color="primary"
+                    cursor="pointer"
+                    className={style.confirmEdit}
+                    onClick={handleConfirmQuestion}
+                    />
+                </div>
+            </div>
+            <div id={style.tags}>
+                <span> #for </span>
+                <span> #while </span>
+                <span> #Javascript </span>
+            </div>           
         </div>
+        
         <div id={style.right}>
             <div>
                 <span>Likes: {likes}</span>
@@ -183,7 +181,6 @@ const CardUserQuestion = ({id, title, text, likes, cantAnswers, name, picture, s
                 </div>
             </div>
         </div>
-      </div>
     </div>
   );
 };

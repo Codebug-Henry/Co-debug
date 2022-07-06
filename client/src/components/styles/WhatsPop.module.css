@@ -11,6 +11,7 @@
 .input{
     margin-right: 5px;
     border: none;
+    border-radius: 1vh;
 }
 
 .enviar{
@@ -18,7 +19,7 @@
     font-weight: 700;
     text-decoration: none;
     color: white;
-    border-radius: 2vh;
+    border-radius: 1vh;
     background-color: #25d366;
     padding: 6px;
     margin-bottom: 2vh;
