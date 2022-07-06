@@ -24,6 +24,7 @@ const Admin = () => {
   const [banFlag, setBanFlag] = useState(true);
   //CONTACTO
   const [messagePage, setMessagePage] = useState(1);
+  const [messageFlag, setMessageFlag] = useState(false);
   //ADMINS
   const adminPage = 1;
   const [adminFlag, setAdminFlag] = useState(true);
@@ -42,7 +43,7 @@ const Admin = () => {
 
   useEffect(() => {
     dispatch(getAllMessages(messagePage));
-  }, [dispatch, messagePage]);
+  }, [dispatch, messageFlag, messagePage]);
 
   useEffect(() => {
     dispatch(getAllAdmins(adminPage));
@@ -116,6 +117,7 @@ const Admin = () => {
                           <PreguntasDirectas
                             messagePage={messagePage}
                             setMessagePage={setMessagePage}
+                            setMessageFlag={setMessageFlag}
                           />
                         )
                       }
