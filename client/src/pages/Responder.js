@@ -12,9 +12,10 @@ import SimpleAnswer from "../components/SimpleAnswer";
 import Loading from "../components/Loading";
 import ReactMarkdown from 'react-markdown';
 import Highlighter from '../components/Highlighter';
+import { useAuth0 } from "@auth0/auth0-react";
 
 const Responder = () => {
-  // const { isAuthenticated } = useAuth0();
+  const { isAuthenticated, loginWithRedirect } = useAuth0();
   const dispatch = useDispatch();
   const { questionId } = useParams();
   const question = useSelector((state) => state.question);
@@ -173,17 +174,29 @@ const Responder = () => {
 
                     {/* </form> */}
                   </div>
+                  {isAuthenticated?
+                    (<div className={style.button}>
+                      <button
+                        type="submit"
+                        onClick={(e) => handleSubmit(e)}
+                        className={style.submit}
+                        disabled={!input || error}
+                      >
+                        Enviar
+                      </button>
+                    </div> ) : (
 
-                  <div className={style.button}>
-                    <button
-                      type="submit"
-                      onClick={(e) => handleSubmit(e)}
-                      className={style.submit}
-                      disabled={!input || error}
-                    >
-                      Enviar
-                    </button>
-                  </div>
+                      (<div className={style.button}>
+                        <button
+                          type="submit"
+                          onClick={(e) => loginWithRedirect()}
+                          className={style.submit}
+                        >
+                          Logueate para responder
+                        </button>
+                      </div> )
+                    )
+                  }
                 </div>
                 <br></br>
                 <div className={style.answers}>
