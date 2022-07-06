@@ -26,8 +26,12 @@ const Ranking = () => {
           {/* Acá el contenido para logueados */}
           <div className={style.filterbar}>
             <select className={style.select} value={sort} onChange={handleSort}>
-              <option value='points-desc'>Descendente</option>
-              <option value='points-asc'>Ascendente</option>
+              <option value='points-desc'>Teach Points descendente</option>
+              <option value='points-asc'>Teach Points ascendente</option>
+              <option value='quest-desc'>Preguntas descendente</option>
+              <option value='quest-asc'>Preguntas ascendente</option>
+              <option value='answ-desc'>Respuestas descendente</option>
+              <option value='answ-asc'>Resputas ascendente</option>
             </select>
           </div>
           <div className={`container-fluid ${style.container}`}>
