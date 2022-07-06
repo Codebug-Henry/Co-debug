@@ -61,10 +61,10 @@ const NavBar = ({ search, setSearch }) => {
 
           <div className="collapse navbar-collapse" id="navbarSupportedContent">
             <ul className={`navbar-nav me-auto mb-2 mb-lg-0 ${style.ul}`}>
-              <select
+              <select 
                 value={sort}
                 onChange={handleSort}
-                className="nav-item dropdown"
+                className={`nav-item dropdown ${style.order}`}
               >
                 <option
                   className="nav-link dropdown-toggle"
