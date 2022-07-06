@@ -73,6 +73,9 @@ const getUsers = async (req, res, next) =>{
             case "answ":
                 sortCondition = [['cantAns', sortDir], ['myTeachPoints', sortDir], ['cantQuest', sortDir], ['name', sortDir]]
                 break
+            case "name":
+                sortCondition = [['name', sortDir], ['myTeachPoints', sortDir], ['cantAns', sortDir], ['cantQuest', sortDir]]
+                break
             default:
                 break
         }
