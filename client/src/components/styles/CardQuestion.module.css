@@ -1,10 +1,10 @@
 .total {
   background-color: rgb(255, 255, 255);
   border-radius: 1vh;
-  width:85%;
+  width: 85%;
   height: max-content;
   margin-bottom: 2vh;
-  box-shadow:2px 2px 2px 1px rgba(0,0,0,0.2);
+  box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
   transition-property: all;
   transition-duration: 0.3s;
   transition-timing-function: linear;
@@ -14,29 +14,28 @@
   border: 3px solid #2e7d32;
   background-color: rgb(255, 255, 255);
   border-radius: 1vh;
-  width:85%;
+  width: 85%;
   height: max-content;
   margin-bottom: 2vh;
-  box-shadow:2px 2px 2px 1px rgba(0,0,0,0.2);
+  box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
   transition-property: all;
   transition-duration: 0.3s;
   transition-timing-function: linear;
 }
 
-.total:hover{
+.total:hover {
   transform: scale(102%);
 }
 
-.validated:hover{
+.validated:hover {
   transform: scale(102%);
 }
 
-.pictureBox{
+.pictureBox {
   display: flex;
   flex-direction: column;
-  justify-content: space-between
+  justify-content: space-between;
 }
-
 
 .none {
   display: none;
@@ -46,20 +45,16 @@
   font-weight: 650;
 }
 
-.Title{
+.Title {
   margin-bottom: 1%;
 }
 
-.Title span{
+.Title span {
   font-weight: 600;
 }
 
-
 .TitleAndExtrasBox {
-  /* border: solid 1px black; */
   padding-top: 1vh;
-  /* margin-left: 2.5vh; */
-  /* margin-right: 10px; */
   margin-left: 20px;
   display: flex;
   align-items: flex-start;
@@ -77,7 +72,6 @@
   align-items: center;
   width: 100%;
   justify-content: space-between;
-  /* gap: 100%; */
 }
 
 .rightBox {
@@ -87,13 +81,12 @@
   flex-direction: row;
   margin-right: 0vh;
   height: 20px;
-  /* border: solid 1px black; */
 }
 
 .questionText {
   height: 100px;
   background-color: rgb(255, 245, 211);
-  box-shadow:2px 2px 2px 1px rgba(0,0,0,0.2);
+  box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
   padding: 1vh;
   border-radius: 1vh;
   margin-left: 3vh;
@@ -110,7 +103,6 @@
   padding-left: 2vw;
   height: 3.8vh;
   padding-top: 1.5vh;
-  /* border: 1px solid black */
 }
 
 .likes {
@@ -125,7 +117,7 @@
   padding-top: 2vh;
 }
 
-.fav:hover{
+.fav:hover {
   cursor: pointer;
 }
 
@@ -142,7 +134,7 @@
   background-color: rgb(240, 238, 238);
 }
 
-.box{
+.box {
   position: absolute;
   top: 50%;
   left: 50%;
@@ -164,19 +156,19 @@
   font-style: italic;
 }
 
-.delete{
+.delete {
   cursor: pointer;
 }
 
-@media screen and (max-width: 980px){
+@media screen and (max-width: 980px) {
   .pictureBox {
     display: flex;
     flex-direction: row;
-    justify-content: space-between
+    justify-content: space-between;
   }
 }
 
-@media screen and (max-width: 670px){
+@media screen and (max-width: 670px) {
   .total {
     width: 100%;
     font-size: 12px;
@@ -189,8 +181,6 @@
 
   .bajoTexto {
     margin-left: 1vh;
-    /* height: 9vh; */
-    /* margin-top: 1vh; */
     padding-top: 1vh;
     align-items: flex-start;
   }
@@ -199,32 +189,31 @@
     width: 5vh;
   }
   .TitleAndExtrasBox {
-    /* border: solid 1px black; */
     gap: 5vw;
-   }
+  }
 }
 /* ------------------TooLTipDislike---------------------------- */
-.span{
+.span {
   position: relative;
 }
 
-.toolTip{
+.toolTip {
   position: absolute;
   border: none;
   background-color: #f5bf07;
-  width:240%;
+  width: 240%;
   min-height: 30%;
   color: white;
-  padding: .3rem;
+  padding: 0.3rem;
   text-align: center;
-  border-radius: .5rem;
+  border-radius: 0.5rem;
   font-size: 1rem;
   bottom: -3rem;
-  right:-2rem;
+  right: -2rem;
   visibility: hidden;
 }
 
-.toolTip::after{
+.toolTip::after {
   content: "";
   position: absolute;
   border-left: 10px solid transparent;
@@ -233,34 +222,33 @@
   border-top: 10px solid transparent;
   top: -17px;
   left: 10px;
-
 }
 
-.span:hover .toolTip{
+.span:hover .toolTip {
   visibility: visible;
 }
 /* ------------------TooLTipLike---------------------------- */
-.span2{
+.span2 {
   position: relative;
 }
 
-.toolTip2{
+.toolTip2 {
   position: absolute;
   border: none;
   background-color: #f5bf07;
-  width:240%;
+  width: 240%;
   min-height: 30%;
   color: white;
-  padding: .3rem;
+  padding: 0.3rem;
   text-align: center;
-  border-radius: .5rem;
+  border-radius: 0.5rem;
   font-size: 1rem;
   bottom: -3rem;
-  right:-0.5rem;
+  right: -0.5rem;
   visibility: hidden;
 }
 
-.toolTip2::after{
+.toolTip2::after {
   content: "";
   position: absolute;
   border-left: 10px solid transparent;
@@ -269,34 +257,33 @@
   border-top: 10px solid transparent;
   top: -17px;
   left: 30px;
-
 }
 
-.span2:hover .toolTip2{
+.span2:hover .toolTip2 {
   visibility: visible;
 }
 /* ------------------TooLTipFav1---------------------------- */
-.span3{
+.span3 {
   position: relative;
 }
 
-.toolTip3{
+.toolTip3 {
   position: absolute;
   border: none;
   background-color: #f5bf07;
-  width:320%;
+  width: 320%;
   min-height: 30%;
   color: white;
-  padding: .3rem;
+  padding: 0.3rem;
   text-align: center;
-  border-radius: .5rem;
+  border-radius: 0.5rem;
   font-size: 1rem;
   bottom: -4.7rem;
-  right:-1.5rem;
+  right: -1.5rem;
   visibility: hidden;
 }
 
-.toolTip3::after{
+.toolTip3::after {
   content: "";
   position: absolute;
   border-left: 10px solid transparent;
@@ -305,34 +292,33 @@
   border-top: 10px solid transparent;
   top: -17px;
   left: 30px;
-
 }
 
-.span3:hover .toolTip3{
+.span3:hover .toolTip3 {
   visibility: visible;
 }
 /* ------------------TooLTipFav2---------------------------- */
-.span4{
+.span4 {
   position: relative;
 }
 
-.toolTip4{
+.toolTip4 {
   position: absolute;
   border: none;
   background-color: #f5bf07;
-  width:320%;
+  width: 320%;
   min-height: 30%;
   color: white;
-  padding: .3rem;
+  padding: 0.3rem;
   text-align: center;
-  border-radius: .5rem;
+  border-radius: 0.5rem;
   font-size: 1rem;
   bottom: -4.7rem;
-  right:-1.5rem;
+  right: -1.5rem;
   visibility: hidden;
 }
 
-.toolTip4::after{
+.toolTip4::after {
   content: "";
   position: absolute;
   border-left: 10px solid transparent;
@@ -341,34 +327,33 @@
   border-top: 10px solid transparent;
   top: -17px;
   left: 30px;
-
 }
 
-.span4:hover .toolTip4{
+.span4:hover .toolTip4 {
   visibility: visible;
 }
 /* ------------------TooLTipDenunciar---------------------------- */
-.span5{
+.span5 {
   position: relative;
 }
 
-.toolTip5{
+.toolTip5 {
   position: absolute;
   border: none;
   background-color: #f5bf07;
-  width:340%;
+  width: 340%;
   min-height: 30%;
   color: white;
-  padding: .3rem;
+  padding: 0.3rem;
   text-align: center;
-  border-radius: .5rem;
+  border-radius: 0.5rem;
   font-size: 1rem;
   bottom: -3.2rem;
-  right:-1.9rem;
+  right: -1.9rem;
   visibility: hidden;
 }
 
-.toolTip5::after{
+.toolTip5::after {
   content: "";
   position: absolute;
   border-left: 10px solid transparent;
@@ -377,15 +362,13 @@
   border-top: 10px solid transparent;
   top: -17px;
   left: 30px;
-
 }
 
-.span5:hover .toolTip5{
+.span5:hover .toolTip5 {
   visibility: visible;
 }
 
-.botonResp{
-  /* border: solid 1px black; */
+.botonResp {
   background-color: transparent;
   position: relative;
   text-decoration: none;
@@ -394,40 +377,39 @@
   padding-right: 3px;
   padding-bottom: 2px;
   height: 90%;
-  /* font-weight: 500; */
 }
 
 .botonResp:hover {
   cursor: pointer;
   font-weight: 650;
-  color: black
+  color: black;
 }
 
-.span4{
+.span4 {
   position: relative;
 }
 /* --------------------------------------------------------------------- */
-.span6{
+.span6 {
   position: relative;
 }
 
-.toolTip6{
+.toolTip6 {
   position: absolute;
   border: none;
   background-color: #f5bf07;
-  width:320%;
+  width: 320%;
   min-height: 30%;
   color: white;
-  padding: .3rem;
+  padding: 0.3rem;
   text-align: center;
-  border-radius: .5rem;
+  border-radius: 0.5rem;
   font-size: 1rem;
   bottom: -4.7rem;
-  right:-1.5rem;
+  right: -1.5rem;
   visibility: hidden;
 }
 
-.toolTip6::after{
+.toolTip6::after {
   content: "";
   position: absolute;
   border-left: 10px solid transparent;
@@ -436,9 +418,8 @@
   border-top: 10px solid transparent;
   top: -17px;
   left: 60.7px;
-
 }
 
-.span6:hover .toolTip6{
+.span6:hover .toolTip6 {
   visibility: visible;
 }
