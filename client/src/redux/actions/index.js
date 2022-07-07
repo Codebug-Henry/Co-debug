@@ -30,7 +30,8 @@ import {
   GET_ALL_ALERTS,
   PUT_MESSAGE,
   SET_SORT,
-  CLEAN_QUESTIONS
+  CLEAN_QUESTIONS,
+  SET_SORTVALIDATE
 } from "./actionTypes";
 
 import * as api from "../api";
@@ -203,9 +204,9 @@ export const cleanFavourites = () => {
   return {type: CLEAN_FAVOURITES}
 }
 
-export const getAllQuestions = (sort, page, setLoading) => async (dispatch) => {
+export const getAllQuestions = (sort, page, validated, setLoading) => async (dispatch) => {
   try {
-    const { data } = await api.getAllQuestions(sort, page);
+    const { data } = await api.getAllQuestions(sort, page, validated);
     dispatch({ type: GET_ALL_QUESTIONS, payload: data });
     setLoading && setLoading(false)
   } catch (error) {
@@ -213,9 +214,9 @@ export const getAllQuestions = (sort, page, setLoading) => async (dispatch) => {
   }
 };
 
-export const getSearchQuestions = (search, sort, page, setLoading) => async (dispatch) => {
+export const getSearchQuestions = (search, sort, page, validated, setLoading) => async (dispatch) => {
   try {
-    const { data } = await api.getSearchQuestions(search, sort, page);
+    const { data } = await api.getSearchQuestions(search, sort, page, validated);
     dispatch({ type: GET_SEARCH_QUESTIONS, payload: data });
     setLoading && setLoading(false)
   } catch (error) {
@@ -271,11 +272,12 @@ export const sendAnswer = (answer) => async (dispatch) => {
 //     }
 // }
 
-export const putAnswer = (answer, setIsModify) => async (dispatch) => {
+export const putAnswer = (answer, setIsModify, setFlag) => async (dispatch) => {
   try {
     const { data } = await api.putAnswer(answer);
     dispatch({ type: PUT_ANSWER, payload: data });
     setIsModify && setIsModify(prevState=> !prevState);
+    setFlag && setFlag(true)
   } catch (error) {
     console.log(error.message);
   }
@@ -361,4 +363,8 @@ export const getAllAlerts = (page) => async (dispatch) => {
 
 export const setSort = (sort) => {
   return { type: SET_SORT, payload: sort}
+}
+
+export const setSortValidate = (sort) => {
+  return { type: SET_SORTVALIDATE, payload: sort}
 }

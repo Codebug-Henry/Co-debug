@@ -37,25 +37,27 @@ const putAnswer = async (req, res, next) => {
       let newLikes = answer.likes
 
       if (like === "add") {
-         newLikes++
          if (userLogged.ansDisliked.includes(id)) {
-             let userLoggedDisliked = userLogged.ansDisliked.filter(questId => questId !== id)
-             await userLogged.update({ansDisliked: userLoggedDisliked})
+            let userLoggedDisliked = userLogged.ansDisliked.filter(questId => questId !== id)
+            await userLogged.update({ansDisliked: userLoggedDisliked})
+            newLikes++
          }
-         else {
-             let userLoggedLiked = [...userLogged.ansLiked, id]
-             await userLogged.update({ansLiked: userLoggedLiked})
+         else if (!userLogged.ansLiked.includes(id)) {
+            let userLoggedLiked = [...userLogged.ansLiked, id]
+            await userLogged.update({ansLiked: userLoggedLiked})
+            newLikes++
          }
       }
       else if (like === "remove"){
-         newLikes--
          if (userLogged.ansLiked.includes(id)) {
-             let userLoggedLiked = userLogged.ansLiked.filter(questId => questId !== id)
-             await userLogged.update({ansLiked: userLoggedLiked})
+            let userLoggedLiked = userLogged.ansLiked.filter(questId => questId !== id)
+            await userLogged.update({ansLiked: userLoggedLiked})
+            newLikes--
          }
-         else {
-             let userLoggedDisliked = [...userLogged.ansDisliked, id]
-             await userLogged.update({ansDisliked: userLoggedDisliked})
+         else if (!userLogged.ansDisliked.includes(id)) {
+            let userLoggedDisliked = [...userLogged.ansDisliked, id]
+            await userLogged.update({ansDisliked: userLoggedDisliked})
+            newLikes--
          }
      } 
 
