@@ -54,10 +54,11 @@ export const getTopTenRanking = () => async (dispatch) => {
   }
 };
 
-export const getRanking = (sort, page) => async (dispatch) => {
+export const getRanking = (sort, page, setLoading) => async (dispatch) => {
   try {
     const { data } = await api.getRanking(sort, page);
     dispatch({ type: GET_RANKING, payload: data });
+    setLoading && setLoading(false)
   } catch (error) {
     console.log(error.message);
   }
@@ -142,22 +143,24 @@ export const sendQuestion = (question) => async (dispatch) => {
   }
 };
 
-export const getQuestion = (id, setLoad) => async (dispatch) => {
+export const getQuestion = (id, setLoad, setLoading) => async (dispatch) => {
   try {
     const { data } = await api.getQuestion(id);
     dispatch({ type: GET_QUESTION, payload: data });
     setLoad && setLoad(false);
+    setLoading && setLoading(false)
   } catch (error) {
     console.log(error.message);
   }
 };
 
-export const modifyQuestion = (question, setIsModify, setIsLiked) => async (dispatch) => {
+export const modifyQuestion = (question, setIsModify, setIsLiked, setFlag) => async (dispatch) => {
   try {
     const { data } = await api.modifyQuestion(question);
     dispatch({ type: MODIFY_QUESTION, payload: data });
     setIsModify && setIsModify(false);
     setIsLiked && setIsLiked(prevIsLiked => !prevIsLiked)
+    setFlag && setFlag(true)
   } catch (error) {
     console.log(error.message);
   }
@@ -220,25 +223,21 @@ export const getSearchQuestions = (search, sort, page, setLoading) => async (dis
   }
 };
 
-export const getUserQuestions = (sub, sort, page) => async (dispatch) => {
+export const getUserQuestions = (sub, sort, page, setLoading) => async (dispatch) => {
   try {
     const { data } = await api.getUserQuestions(sub, sort, page);
     dispatch({ type: GET_USER_QUESTIONS, payload: data });
+    setLoading && setLoading(false)
   } catch (error) {
     console.log(error.message);
   }
 };
 
-export const getUserQuestionsSearch =
-  (sub, answered, page, search) => async (dispatch) => {
+export const getUserQuestionsSearch = (sub, answered, page, search, setLoading) => async (dispatch) => {
     try {
-      const { data } = await api.getUserQuestionsSearch(
-        sub,
-        answered,
-        page,
-        search
-      );
+      const { data } = await api.getUserQuestionsSearch(sub, answered, page, search);
       dispatch({ type: GET_USER_QUESTIONS_ORDERER, payload: data });
+      setLoading && setLoading(false)
     } catch (error) {
       console.log(error.message);
     }
@@ -291,10 +290,11 @@ export const deleteAnswer = (deleted) => async (dispatch) => {
   }
 };
 
-export const getUserAnswers = (sub, page) => async (dispatch) => {
+export const getUserAnswers = (sub, page, setLoading) => async (dispatch) => {
   try {
     const { data } = await api.getUserAnswers(sub, page);
     dispatch({ type: GET_USER_ANSWERS, payload: data });
+    setLoading && setLoading(false)
   } catch (error) {
     console.log(error.message);
   }

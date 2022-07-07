@@ -6,7 +6,7 @@ import Footer from "../components/Footer.js";
 import CardUserQuestion from "../components/CardUserQuestion";
 import FilterBar from "../components/FilterBar";
 import SearchBar from '../components/SearchBar';
-import { cleanUserQuestion, getUserQuestions, getUserQuestionsSearch } from "../redux/actions";
+import { getUserQuestions, getUserQuestionsSearch } from "../redux/actions";
 import FilterAltIcon from '@mui/icons-material/FilterAlt';
 import Paginated from "../components/Paginated";
 import Loading from "../components/Loading";
@@ -24,14 +24,14 @@ const MisPreguntas = () => {
   const [sort, setSort] = useState('All');
   const [cantFirstLast, setCantFirstLast] = useState([questions.length, questions[0], questions[4]]);
   const [isModify, setIsModify] = useState(false);
+  const [loading, setLoading] = useState(true)
   const navigate = useNavigate()
   
   useEffect( () =>{
       if(page > 1 && page > totalPages) setPage(prev => prev-1)
       if(input.length > 0) {
-        dispatch(getUserQuestionsSearch(user.sub, sort, page, input))
-      } else dispatch(getUserQuestions(user.sub, sort, page))
-      return () => dispatch(cleanUserQuestion())
+        dispatch(getUserQuestionsSearch(user.sub, sort, page, input, setLoading))
+      } else dispatch(getUserQuestions(user.sub, sort, page, setLoading))
   }, [dispatch, sort, cantFirstLast, page, user.sub, totalPages, input, isModify])
 
   
@@ -47,7 +47,13 @@ const MisPreguntas = () => {
     );
   }
 
-  return (
+  if(loading){
+    return (
+      <div>
+        <Loading />
+      </div>
+    );
+  } else return (
     <div>
       {isAuthenticated ? (
         <div className={style.fullContainer}>

@@ -40,6 +40,8 @@ const CardQuestion = ({
   const liked = userInfo.questLiked?.includes(id)
   const disliked = userInfo.questDisliked?.includes(id)
 
+  const [flag, setFlag] = useState(true);
+
   function handleAddFavourite(e) {
     e.preventDefault();
     addFavourites(userInfo.sub, id, true, setIsFavorite);
@@ -51,16 +53,17 @@ const CardQuestion = ({
   }
 
   async function addLike(e) {
-    e.preventDefault();
-    if (!liked) {
-      dispatch(modifyQuestion({ id: id, like: "add", sub: userInfo.sub }, null, setIsFavorite));
+    if (!liked && flag) {
+      setFlag(false)
+      dispatch(modifyQuestion({ id: id, like: "add", sub: userInfo.sub }, null, setIsFavorite, setFlag));
     }
   }
 
   async function removeLike(e) {
     e.preventDefault();
-    if (!disliked) {
-      dispatch(modifyQuestion({ id: id, like: "remove", sub: userInfo.sub }, null, setIsFavorite));
+    if (!disliked && flag) {
+      setFlag(false)
+      dispatch(modifyQuestion({ id: id, like: "remove", sub: userInfo.sub }, null, setIsFavorite, setFlag));
     }
   }
 
