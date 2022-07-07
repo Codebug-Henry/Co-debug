@@ -188,6 +188,13 @@
   color: rgb(75, 71, 71);
 }
 
+.submit:disabled {
+  cursor: text;
+  border: #f9bf00 solid 0.5px;
+  background-color: white;
+  color: rgb(75, 71, 71);
+}
+
 .errorMessage {
   margin-bottom: 0.5vh;
   font-size: 1.8vh;
