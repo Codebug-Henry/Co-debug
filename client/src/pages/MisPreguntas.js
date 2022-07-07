@@ -71,8 +71,10 @@ const MisPreguntas = () => {
                       questions.length > 0 ?
                       questions.map(q => {
                           return (
-                            <CardUserQuestion key={q.id} id={q.id} title={q.title} text={q.text} likes={q.likes} cantAnswers={q.cantAnswers} 
-                                              name={user.nickname} picture={user.picture} setCantFirstLast={setCantFirstLast} setIsModify={setIsModify} />
+                            <CardUserQuestion key={q.id} id={q.id} title={q.title} text={q.text} likes={q.likes} 
+                                              cantAnswers={q.cantAnswers} name={user.nickname}
+                                              picture={user.picture} setCantFirstLast={setCantFirstLast}
+                                              setIsModify={setIsModify} statusValidated={q.statusValidated} />
                           )
                       }) :
                       <div>

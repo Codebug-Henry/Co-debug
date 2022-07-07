@@ -54,7 +54,8 @@ const MisRespuestas = () => {
                       answers.map(r => {
                           return (
                             <CardUserAnswer key={r.id} id={r.id} qid={r.question.id} title={r.question.title} text={r.text} likes={r.likes} 
-                                            tPoints={r.teachPoints} setIsModify={setIsModify} />
+                                            tPoints={r.teachPoints} setIsModify={setIsModify} statusValidated={r.statusValidated}
+                                            nickname={r.question.user.nickname} picture={r.question.user.picture}/>
                           )
                       }) :
                       <div>

@@ -75,6 +75,7 @@ const Favoritas = () => {
                             page={page}
                             setPage={setPage}
                             setIsFavorite={setIsFavorite}
+                            statusValidated={f.statusValidated}
                           />
                         );
                       })

@@ -9,14 +9,16 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import Tooltip from '@mui/material/Tooltip';
 import CheckIcon from '@mui/icons-material/Check';
 import { putAnswer } from '../redux/actions';
+import TaskAltIcon from '@mui/icons-material/TaskAlt';
 
-const CardUserAnswer = ({id, qid, title, text, likes, tPoints, setIsModify}) => {
+const CardUserAnswer = ({id, qid, title, text, likes, tPoints, setIsModify, statusValidated, nickname, picture}) => {
 
   const user = useSelector(state => state.user);
   const dispatch = useDispatch();
   // const answers = useSelector(state=> state.answers);
   const [style1, setStyle1] = useState(true)
   const [newAnswer, setNewAnswer] = useState({
+    sub: user.sub,
     id: id,
     text: text
   })
@@ -28,7 +30,7 @@ const CardUserAnswer = ({id, qid, title, text, likes, tPoints, setIsModify}) => 
   function handleDeleteAnswer(e){
     e.preventDefault();
     setIsModify(true)
-    dispatch(putAnswer({id: id, statusDeleted: true}, setIsModify));
+    dispatch(putAnswer({id: id, statusDeleted: true, sub: user.sub}, setIsModify));
   }
 
   function handleEditAnswer(e){
@@ -58,27 +60,30 @@ const CardUserAnswer = ({id, qid, title, text, likes, tPoints, setIsModify}) => 
   }
 
   return (
-    <div className={`container-fluid ${style.total}`}>
+    <div className={statusValidated ? `container-fluid ${style.validated}` : `container-fluid ${style.total}`}>
       <div className={`row ${style.fila}`}>
         <div className={`col-lg-1 ${style.pictureBox}`}>
-          <img className={style.userImage} src={user.picture} alt="imagen user" referrerPolicy="no-referrer"/>
+          <img className={style.userImage} src={picture} alt={nickname} referrerPolicy="no-referrer"/>
+          <div className={statusValidated ? style.success : style.none}>
+            <TaskAltIcon color='success' fontSize='large' />
+          </div>
         </div>
         <div className={`col-lg-11 ${style.leftBox}`}>
 
           <div className={style.TitleAndExtrasBox}>
             <div className={style.firstRow}>
               <div className={style.userPreg}>
-                <h6>{user.nickname} pregunta:</h6>
+                <span>{nickname} pregunta:</span>
               </div>
               
               <div className={style.Extras}>
-                <h6>
+                <span>
                   Teach Points: {tPoints}
-                </h6>
+                </span>
               </div>
             </div>
             <div className={style.Title}>
-              <h6>{title}</h6>
+              <span>{title}</span>
             </div>
           </div>
 

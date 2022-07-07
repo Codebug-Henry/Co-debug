@@ -14,8 +14,9 @@ import Highlighter from './Highlighter';
 import WhatsPop from './WhatsPop';
 import { confirmAlert } from "react-confirm-alert";
 import "react-confirm-alert/src/react-confirm-alert.css";
+import TaskAltIcon from '@mui/icons-material/TaskAlt';
 
-const CardUserQuestion = ({id, title, text, likes, cantAnswers, name, picture, setCantFirstLast, setIsModify}) => {
+const CardUserQuestion = ({id, title, text, likes, cantAnswers, name, picture, setCantFirstLast, setIsModify, statusValidated}) => {
 
     const dispatch = useDispatch();
     const questions = useSelector(state=> state.userQuestions);
@@ -93,10 +94,13 @@ const CardUserQuestion = ({id, title, text, likes, cantAnswers, name, picture, s
     }
 
   return (
-    <div id={style.questionCard}>
+    <div id={statusValidated ? style.validated : style.questionCard}>
         <div id={style.left}>
             <div id={style.first}>
                 <div id={style.name}>
+                    <div className={statusValidated ? style.success : style.none}>
+                        <TaskAltIcon color='success' fontSize='large' />
+                    </div>
                     <div id={style.photo}>
                         <Avatar alt={name} src={picture} id={style.avatar} referrerPolicy="no-referrer"/>
                     </div>
