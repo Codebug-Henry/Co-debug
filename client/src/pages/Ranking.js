@@ -31,7 +31,7 @@ const Ranking = () => {
               <option value='quest-desc'>Preguntas descendente</option>
               <option value='quest-asc'>Preguntas ascendente</option>
               <option value='answ-desc'>Respuestas descendente</option>
-              <option value='answ-asc'>Resputas ascendente</option>
+              <option value='answ-asc'>Respuestas ascendente</option>
             </select>
           </div>
           <div className={`container-fluid ${style.container}`}>
