@@ -14,10 +14,10 @@ const Alertas = ({ alertsPage, setAlertsPage, setAlertsFlag }) => {
         <div className={`container-fluid ${style.container}`}>
           <div className={`row ${style.info}`}>
             <p className={`col`}>Id</p>
-            <p className={`col-2`}>Sub Creador</p>
-            <p className={`col-3`}>Sub Pregunta</p>
-            <p className={`col`}>Mensaje</p>
-            <p className={`col`}>Titulo</p>
+            <p className={`col-2`}>Sub creador alerta</p>
+            <p className={`col-3`}>Sub pregunta / respuesta</p>
+            <p className={`col`}>Tipo alerta</p>
+            <p className={`col`}>Título</p>
             <p className={`col-2`}>Texto</p>
             <p className={`col`}>Borrar</p>
             <p className={`col`}>Resolver</p>
@@ -34,7 +34,9 @@ const Alertas = ({ alertsPage, setAlertsPage, setAlertsFlag }) => {
                     text={e.questionId ? e.question.text : e.answer.text}
                     message={e.message}
                     subCreator={e.subCreator}
-                    questionSub={e.questionId ? e.question.userSub : e.answer.userSub}
+                    questionSub={
+                      e.questionId ? e.question.userSub : e.answer.userSub
+                    }
                     questionId={e.questionId ? e.question.id : null}
                     answerId={e.answerId ? e.answer.id : null}
                     setAlertsFlag={setAlertsFlag}

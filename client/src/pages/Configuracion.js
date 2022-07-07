@@ -12,21 +12,21 @@ import StatsUser from "../components/StatsUser";
 import TeachPoints from "../components/TeachPoints";
 import { confirmAlert } from "react-confirm-alert";
 import "react-confirm-alert/src/react-confirm-alert.css";
-import { useParams} from "react-router-dom";
-
+import { useParams } from "react-router-dom";
 
 const Configuracion = () => {
   const { isAuthenticated, isLoading } = useAuth0();
-  const { sub } = useParams()
+  const { sub } = useParams();
   const userInfo = useSelector((state) => state.user);
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [nameUser, setNameUser] = useState(false);
   const [input, setInput] = useState({
-    name: '',
-    nickname: ''});
+    name: "",
+    nickname: "",
+  });
   const [nicknameUser, setNicknameUser] = useState(false);
-  const [errors, setErrors] = useState({})
+  const [errors, setErrors] = useState({});
 
   const handlerSubmit = () => {
     confirmAlert({
@@ -34,7 +34,7 @@ const Configuracion = () => {
       message: "Está seguro de esto?",
       buttons: [
         {
-          label: "Si",
+          label: "Sí",
           onClick: () => handlerDeleteAccount(),
         },
         {
@@ -43,8 +43,7 @@ const Configuracion = () => {
         },
       ],
     });
-    }
-
+  };
 
   useEffect(() => {
     dispatch(getUserInfo(sub));
@@ -53,25 +52,24 @@ const Configuracion = () => {
   useEffect(() => {
     setInput({
       name: userInfo.name,
-      nickname: userInfo.nickname
-    })
+      nickname: userInfo.nickname,
+    });
   }, [dispatch, userInfo]);
 
-  function validate(input){
-    let errors = {}
-    if(!input.name) errors.name = 'Se requiere un Nombre'
-    if(input.name.length > 20) errors.name = 'Máximo 20 caracteres'
-    if(!input.nickname) errors.nickname = 'Se requiere un Nickname'
-    if(input.nickname.length > 20) errors.nickname = 'Máximo 20 caracteres'
-    return errors
+  function validate(input) {
+    let errors = {};
+    if (!input.name) errors.name = "Se requiere un Nombre";
+    if (input.name.length > 20) errors.name = "Máximo 20 caracteres";
+    if (!input.nickname) errors.nickname = "Se requiere un Nickname";
+    if (input.nickname.length > 20) errors.nickname = "Máximo 20 caracteres";
+    return errors;
   }
 
   function handlerEditName(e) {
     e.preventDefault();
-    if(userInfo.nameChanges > 2) {
-      alert('No podes cambiar el nombre en más de dos oportunidades.');
-    }
-    else{
+    if (userInfo.nameChanges > 2) {
+      alert("No podes cambiar el nombre en más de dos oportunidades.");
+    } else {
       setNameUser(true);
     }
   }
@@ -86,11 +84,13 @@ const Configuracion = () => {
     setInput({
       ...input,
       [e.target.name]: e.target.value,
-    })
-    setErrors(validate({
+    });
+    setErrors(
+      validate({
         ...input,
-        [e.target.name]: e.target.value
-    }))
+        [e.target.name]: e.target.value,
+      })
+    );
   }
 
   async function handlerConfirmEditName() {
@@ -102,7 +102,7 @@ const Configuracion = () => {
     );
     dispatch(getUserInfo(userInfo.sub));
     setNameUser(false);
-    setErrors({})
+    setErrors({});
   }
 
   async function handlerConfirmEditNickname() {
@@ -113,7 +113,7 @@ const Configuracion = () => {
     );
     dispatch(getUserInfo(userInfo.sub));
     setNicknameUser(false);
-    setErrors({})
+    setErrors({});
   }
 
   function handlerDeleteAccount() {
@@ -161,20 +161,20 @@ const Configuracion = () => {
                       }
                     >
                       <input
-                        className={errors.name ? style.errorInputs : style.inputs}
-                        name='name'
+                        className={
+                          errors.name ? style.errorInputs : style.inputs
+                        }
+                        name="name"
                         type="text"
                         autoComplete="off"
                         defaultValue={userInfo.name}
                         onChange={(e) => handlerChange(e)}
                       />
-                        {   
-                          errors.name && (
-                            <div className={style.error}>
-                                <span> {errors.name}</span>
-                            </div>
-                          )
-                        }
+                      {errors.name && (
+                        <div className={style.error}>
+                          <span> {errors.name}</span>
+                        </div>
+                      )}
                     </div>
 
                     <div
@@ -198,13 +198,15 @@ const Configuracion = () => {
                           : style.col2modify
                       }
                     >
-                      <div className={errors.name ? style.col2modify : style.check}>
-                         <CheckIcon
+                      <div
+                        className={errors.name ? style.col2modify : style.check}
+                      >
+                        <CheckIcon
                           fontSize="large"
                           color="primary"
                           cursor="pointer"
                           onClick={handlerConfirmEditName}
-                          />
+                        />
                       </div>
                     </div>
                   </div>
@@ -231,20 +233,20 @@ const Configuracion = () => {
                       }
                     >
                       <input
-                        className={errors.nickname ? style.errorInputs : style.inputs}
-                        name='nickname'
+                        className={
+                          errors.nickname ? style.errorInputs : style.inputs
+                        }
+                        name="nickname"
                         type="text"
                         autoComplete="off"
                         defaultValue={userInfo.nickname}
                         onChange={(e) => handlerChange(e)}
                       />
-                      {   
-                        errors.nickname && (
-                          <div className={style.error}>
-                              <span> {errors.nickname}</span>
-                          </div>
-                        )
-                      }
+                      {errors.nickname && (
+                        <div className={style.error}>
+                          <span> {errors.nickname}</span>
+                        </div>
+                      )}
                     </div>
 
                     <div
@@ -268,7 +270,11 @@ const Configuracion = () => {
                           : style.col2modify
                       }
                     >
-                      <div className={errors.nickname ? style.col2modify : style.check}>
+                      <div
+                        className={
+                          errors.nickname ? style.col2modify : style.check
+                        }
+                      >
                         <CheckIcon
                           fontSize="large"
                           color="primary"
@@ -287,10 +293,6 @@ const Configuracion = () => {
                     <div className={`col-lg-12 ${style.col2}`}>
                       <button
                         className={style.buttonUpdate}
-                        // onClick={() => {
-                        //   onClick(optionsWithLabelChange);
-
-                        // }}
                         onClick={handlerSubmit}
                       >
                         Dar de baja mi cuenta
