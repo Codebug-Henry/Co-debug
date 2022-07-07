@@ -18,6 +18,10 @@ import FormControl from "@mui/material/FormControl";
 import axios from "axios";
 import { Avatar } from '@mui/material';
 import TaskAltIcon from '@mui/icons-material/TaskAlt';
+import EditIcon from '@mui/icons-material/Edit';
+import DeleteIcon from '@mui/icons-material/Delete';
+import Tooltip from '@mui/material/Tooltip';
+import CheckIcon from '@mui/icons-material/Check';
 
 const SimpleAnswer = ({id, text, likes, name, picture, subQ, subR, statusValidated, setIsModify}) => {
 
@@ -26,6 +30,12 @@ const SimpleAnswer = ({id, text, likes, name, picture, subQ, subR, statusValidat
   const question = useSelector(state=> state.question)
   const liked = userInfo.ansLiked?.includes(id);
   const disliked = userInfo.ansDisliked?.includes(id);
+  const [style1, setStyle1] = useState(true);
+  const [newAnswer, setNewAnswer] = useState({
+    sub: userInfo.sub,
+    id: id,
+    text: text
+  });
 
   function addLike(e) {
     e.preventDefault();
@@ -44,6 +54,42 @@ const SimpleAnswer = ({id, text, likes, name, picture, subQ, subR, statusValidat
   function validateAnswer () {
     dispatch(putAnswer({id: id, statusValidated: true, sub: userInfo.sub }, setIsModify))
   }
+
+  function toRender(){
+    style1 === true ? setStyle1(false) : setStyle1(true)
+  }
+
+  function handleDeleteAnswer(e){
+    e.preventDefault();
+    setIsModify(true)
+    dispatch(putAnswer({id: id, statusDeleted: true, sub: userInfo.sub}, setIsModify));
+  }
+
+  function handleEditAnswer(e){
+      e.preventDefault();
+      toRender()
+  }
+
+  const handleConfirmAnswer = (e) => {
+    e.preventDefault();
+    setIsModify(true)
+    dispatch(putAnswer(newAnswer, setIsModify));
+    toRender()
+}
+
+function onChangeInputText(e){
+    setNewAnswer({
+        ...newAnswer,
+        text: e.target.value
+    })
+}
+
+function handleClick() {
+    setNewAnswer({
+        ...newAnswer,
+        text: newAnswer.text + "\n```javascript\n(escribe tu código javascript aquí)\n```",
+    })
+}
 
   const [open, setOpen] = useState(false);
   const [selected, setSelected] = useState(null);
@@ -86,15 +132,46 @@ const SimpleAnswer = ({id, text, likes, name, picture, subQ, subR, statusValidat
             <TaskAltIcon color='success' fontSize='large' />
           </div>
         </div>
-        <div className={style.answerText}>
-                {/* Respuesta: {text} */}
+
+        <div id={style1 === true ? style.question : style.question2}>
+                <div id={style1 === true ? style.divQuest : style.editFull}>
+                    <ReactMarkdown
+                        children={text}
+                        className={style.markdown}
+                        components={{ code: Highlighter }}
+                    />
+                </div>
+
+                <div className= {style1 === true ? style.editFull : style.editFull2}>
+                    <textarea   type='text'
+                                // defaultValue={text} 
+                                value={newAnswer.text} 
+                                name='text' 
+                                autoComplete='off'
+                                className={style.editText}
+                                onChange={e=> onChangeInputText(e)}
+                    />
+                </div>
+
+
+                
+                <div className= {style1 === true ? style.editFull : style.editBtn}>
+                    <button type='button' className={style.btnCode} onClick={handleClick}> Javascript </button>
+                    <CheckIcon  fontSize='large' 
+                                color='primary' 
+                                cursor='pointer'
+                                className={style.confirmEdit}
+                                onClick={handleConfirmAnswer}/> 
+                </div>
+            </div>
+        {/* <div className={style.answerText}>
                 <span>Respuesta:</span>
                 <ReactMarkdown
                   children={text}
                   className={style.markdown}
                   components={{ code: Highlighter }}
                 />
-        </div>
+        </div> */}
         <div className={style.bajoTexto}>
             <div className={style.likes}>
               <span className={style.span2}>
@@ -117,14 +194,26 @@ const SimpleAnswer = ({id, text, likes, name, picture, subQ, subR, statusValidat
                 />
               </span>
             </div>
-            <div>
+            <div className={userInfo.sub === subR ? null : style.none}>
+                  <Tooltip title="Editar">
+                      <EditIcon fontSize="medium" className={style.moreBtn} onClick={handleEditAnswer} />
+                  </Tooltip>
+            </div>
+            <div className={userInfo.sub === subR ? null : style.none} id={style1 ? null : style.hidden}>
+                <Tooltip title="Eliminar">
+                    <DeleteIcon fontSize="medium" className={style.deleteBtn} onClick={handleDeleteAnswer} />
+                </Tooltip>
+            </div>
+            <div className={userInfo.sub === subR ? style.none : null}>
               <span className={style.span5}>
+              <Tooltip title="Reportar">
                 <BlockIcon
                   onClick={handleOpen}
                   className={style.delete}
                   fontSize="medium"
                   color="action"
                 />
+              </Tooltip>
               </span>
               <Modal
                 open={open}

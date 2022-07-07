@@ -46,7 +46,7 @@ const Responder = () => {
     let error = "";
     if (!input) error = "Se requiere escribir una respuesta";
     if (input.length < 10)
-      error = "La respuesta debe tener minimo 10 caracteres";
+      error = "La respuesta debe tener como mínimo 10 caracteres";
     if (input.length > 500)
       error = "La respuesta debe tener como máximo 500 caracteres";
     return error;
@@ -209,7 +209,9 @@ const Responder = () => {
                           onClick={async(e) => await loginWithRedirect()}
                           className={style.submit}
                         >
-                          Logueate para responder
+                          <span>
+                            Log in () => Responder
+                          </span>
                         </button>
                       </div> )
                     )
