@@ -30,12 +30,13 @@ const Alertas = ({ alertsPage, setAlertsPage, setAlertsFlag }) => {
                 <div className={`row`} key={e.id}>
                   <AlertCard
                     id={e.id}
-                    title={e.question.title}
-                    text={e.question.text}
+                    title={e.questionId ? e.question.title : null}
+                    text={e.questionId ? e.question.text : e.answer.text}
                     message={e.message}
                     subCreator={e.subCreator}
-                    questionSub={e.question.userSub}
-                    questionId={e.question.id}
+                    questionSub={e.questionId ? e.question.userSub : e.answer.userSub}
+                    questionId={e.questionId ? e.question.id : null}
+                    answerId={e.answerId ? e.answer.id : null}
                     setAlertsFlag={setAlertsFlag}
                   />
                 </div>

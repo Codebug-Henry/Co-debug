@@ -199,7 +199,7 @@ const Responder = () => {
                         className={style.submit}
                         disabled={!input || error}
                       >
-                        Enviar
+                        Enviar respuesta
                       </button>
                     </div> ) : (
 
