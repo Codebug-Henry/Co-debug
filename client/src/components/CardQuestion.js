@@ -53,6 +53,7 @@ const CardQuestion = ({
   }
 
   async function addLike(e) {
+    e.preventDefault();
     if (!liked && flag) {
       setFlag(false)
       dispatch(modifyQuestion({ id: id, like: "add", sub: userInfo.sub }, null, setIsFavorite, setFlag));
