@@ -1,0 +1,88 @@
+.everyReal{
+    background-color: rgb(77, 77, 77);
+    background-size: cover;
+}
+
+.elTodo{
+    background-image: url("../../images/wtf.png");
+    background-size: cover;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    padding: 0;
+}
+.header{
+    position: sticky;
+}
+.tituloYCosas{
+
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 3%;
+}
+
+
+
+.titulo{
+    display: flex;
+    justify-content: center;
+    font-family: 'Lucida Sans';
+    font-weight: 800;
+    font-size: xx-large;
+    color:rgb(0, 0, 0);
+    margin:5%;
+}
+
+.parrafo{
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    font-weight: 600;
+    opacity: 150%;
+    color: red;
+
+}
+
+.cajaParrafo{
+    opacity: 80%;
+    background-color: rgb(255, 255, 255);
+    border-radius: 1vh;
+    width: 40%;
+    box-shadow: 3px 3px 1px 3px;
+    padding: 2vh;
+    margin-bottom: 5%;
+
+}
+.elMeme{
+    height: 14vw;
+}
+.primerBloque{
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    justify-content: center;
+    background-color: rgb(77, 77, 77);
+    height: 100%;
+    margin-bottom: 0;
+}
+html {
+  min-height: 100%;
+  position: relative;
+  background-color: rgb(78, 78, 78);
+}
+.segundoBloque{
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    overflow:hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 4vh;
+}
+.masMemes{
+    color:white
+}
