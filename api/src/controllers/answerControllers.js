@@ -37,30 +37,36 @@ const putAnswer = async (req, res, next) => {
       let newLikes = answer.likes
 
       if (like === "add") {
-         if (userLogged.ansDisliked.includes(id)) {
-            let userLoggedDisliked = userLogged.ansDisliked.filter(questId => questId !== id)
-            await userLogged.update({ansDisliked: userLoggedDisliked})
+         let likedSet = new Set(userLogged.ansLiked)
+         let dislikedSet = new Set(userLogged.ansDisliked)
+ 
+         if (dislikedSet.has(id)) {
+            dislikedSet.delete(id)
+            await userLogged.update({ansDisliked: [...dislikedSet]})
             newLikes++
          }
-         else if (!userLogged.ansLiked.includes(id)) {
-            let userLoggedLiked = [...userLogged.ansLiked, id]
-            await userLogged.update({ansLiked: userLoggedLiked})
+         else if (!likedSet.has(id)) {
+            likedSet.add(id)
+            await userLogged.update({ansLiked: [...likedSet]})
             newLikes++
          }
-      }
-      else if (like === "remove"){
-         if (userLogged.ansLiked.includes(id)) {
-            let userLoggedLiked = userLogged.ansLiked.filter(questId => questId !== id)
-            await userLogged.update({ansLiked: userLoggedLiked})
+     }
+     else if (like === "remove"){
+         let likedSet = new Set(userLogged.ansLiked)
+         let dislikedSet = new Set(userLogged.ansDisliked)
+         
+         if (likedSet.has(id)) {
+            likedSet.delete(id)
+            await userLogged.update({ansLiked: [...likedSet]})
             newLikes--
          }
-         else if (!userLogged.ansDisliked.includes(id)) {
-            let userLoggedDisliked = [...userLogged.ansDisliked, id]
-            await userLogged.update({ansDisliked: userLoggedDisliked})
+         else if (!dislikedSet.has(id)) {
+            dislikedSet.add(id)
+            await userLogged.update({ansDisliked: [...dislikedSet]})
             newLikes--
          }
      } 
-
+ 
       await answer.update({text, imgs, likes: newLikes, statusDeleted, statusValidated})
       
       if (statusValidated) {
