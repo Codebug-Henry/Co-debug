@@ -31,10 +31,6 @@ html {
   justify-content: center;
 }
 
-.cargando {
-  background-color: lightyellow;
-}
-
 .panel {
   font-size: 2vw;
   display: flex;
