@@ -42,10 +42,10 @@ const CardUserQuestion = ({
   const onClick = (e) => {
     confirmAlert({
       title: "Confirma borrar la pregunta",
-      message: "Está seguro de esto?",
+      message: "¿Está seguro de esto?",
       buttons: [
         {
-          label: "Si",
+          label: "Sí",
           onClick: (e) => handleDeleteQuestion(e),
         },
         {

@@ -4,6 +4,16 @@
   margin-bottom: 0.2vh;
 }
 
-.button {
+.buttonBorrar {
   margin-top: 1vh;
+  border-radius: 1vh;
+  background-color: red;
+  color: white;
+}
+
+.buttonResolver {
+  margin-top: 1vh;
+  border-radius: 1vh;
+  background-color: green;
+  color: white;
 }

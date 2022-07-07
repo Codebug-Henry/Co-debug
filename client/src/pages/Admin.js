@@ -32,10 +32,10 @@ const Admin = () => {
   const [alertsPage, setAlertsPage] = useState(1);
   const [alertsFlag, setAlertsFlag] = useState(true);
 
-
   const dispatch = useDispatch();
   const userInfo = useSelector((state) => state.user);
   const navigate = useNavigate();
+  // const totalPages = useSelector((state) => state.totalPages);
 
   useEffect(() => {
     dispatch(getAllUsers(usersPage));
@@ -54,6 +54,8 @@ const Admin = () => {
   }, [dispatch, adminFlag, usersPage]);
 
   useEffect(() => {
+    // if (alertsPage > 1 && alertsPage > totalPages)
+    // setAlertsPage((prev) => prev - 1);
     dispatch(getAllAlerts(alertsPage));
   }, [dispatch, alertsFlag, alertsPage]);
 
@@ -101,9 +103,7 @@ const Admin = () => {
                     <button
                       onClick={() =>
                         setOptionSelected(
-                          <AgregarAdmin
-                            setAdminFlag={setAdminFlag}
-                          />
+                          <AgregarAdmin setAdminFlag={setAdminFlag} />
                         )
                       }
                       className="btn btn-warning"
@@ -143,12 +143,7 @@ const Admin = () => {
               </div>
             </div>
           ) : (
-            <div>
-              {navigate("/")}
-
-              <p className={style.cargando}>Cargando...</p>
-
-            </div>
+            <div>{navigate("/")}</div>
           )}
         </div>
       ) : (

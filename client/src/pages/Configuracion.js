@@ -31,7 +31,7 @@ const Configuracion = () => {
   const handlerSubmit = () => {
     confirmAlert({
       title: "Confirma borrar su cuenta",
-      message: "Está seguro de esto?",
+      message: "¿Está seguro de esto?",
       buttons: [
         {
           label: "Sí",

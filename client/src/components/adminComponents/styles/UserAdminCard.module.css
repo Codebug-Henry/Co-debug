@@ -6,4 +6,7 @@
 
 .button {
   margin-top: 1vh;
+  border-radius: 1vh;
+  background-color: green;
+  color: white;
 }
