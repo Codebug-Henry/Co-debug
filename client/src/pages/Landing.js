@@ -8,7 +8,7 @@ import CardsQuestsLogOut from "../components/CardsQuestsLogOut.js";
 import TopTenRanking from "../components/TopTenRanking";
 import { useSelector, useDispatch } from "react-redux";
 import { useEffect } from "react";
-import { getUserInfo, cleanQuestions } from "../redux/actions";
+import { getUserInfo } from "../redux/actions";
 import NavBar from "../components/NavBar";
 import { useNavigate } from "react-router-dom";
 
@@ -25,10 +25,8 @@ const Landing = () => {
     if (isAuthenticated) {
       dispatch(getUserInfo(user.sub));
     }
-    // return () => dispatch(cleanQuestions())
     // eslint-disable-next-line
   }, [isFavorite]);
-  // }, [dispatch, user, isAuthenticated, isFavorite]);
 
   const handleEaster = () => {
     setEaster(easter+1)

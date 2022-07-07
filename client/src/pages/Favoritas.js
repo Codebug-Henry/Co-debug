@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useAuth0 } from "@auth0/auth0-react";
 import style from "./styles/Favoritas.module.css";
 import Footer from "../components/Footer.js";
-import { cleanFavourites, getFavourites } from "../redux/actions";
+import { getFavourites } from "../redux/actions";
 import Paginated from "../components/Paginated";
 import CardQuestion from "../components/CardQuestion";
 import Fab from "@mui/material/Fab";
@@ -17,12 +17,11 @@ const Favoritas = () => {
   const dispatch = useDispatch();
   const [page, setPage] = useState(1);
   const [isFavorite, setIsFavorite] = useState(false);
-  // let cant = favourites.length;
+  const [loading, setLoading] = useState(true)
 
   useEffect(() => {
     if (isAuthenticated) {
-      dispatch(getFavourites(userInfo.sub, page));
-      return () => dispatch(cleanFavourites())
+      dispatch(getFavourites(userInfo.sub, page, setLoading));
     }
     // eslint-disable-next-line
   }, [page, dispatch, isFavorite]);
@@ -35,7 +34,13 @@ const Favoritas = () => {
     );
   }
 
-  return (
+  if(loading){
+    return (
+      <div>
+        <Loading />
+      </div>
+    );
+  } else return (
     <div className={style.fullContainer}>
       {isAuthenticated ? (
         <div className={style.middleRow}>
