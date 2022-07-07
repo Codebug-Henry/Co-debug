@@ -67,11 +67,11 @@
     height: 100%;
     margin-bottom: 0;
 }
-html {
+/* html {
   min-height: 100%;
   position: relative;
   background-color: rgb(78, 78, 78);
-}
+} */
 .segundoBloque{
     position: absolute;
     left: 0;
