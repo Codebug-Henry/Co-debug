@@ -83,7 +83,12 @@ const SimpleAnswer = ({id, text, likes, name, picture, subQ, subR, statusValidat
             </button>
           </div>
           <div className={statusValidated ? null : style.none}>
-            <TaskAltIcon color='success' fontSize='large' />
+
+            <span className={style.spn1}>
+              <TaskAltIcon color='success' fontSize='large' />
+              <span className={style.toolTip1}>Respuesta Validada</span>
+            </span>
+
           </div>
         </div>
         <div className={style.answerText}>
