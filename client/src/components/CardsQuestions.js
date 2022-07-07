@@ -10,14 +10,15 @@ const CardsQuestions = ({ isFavorite, setIsFavorite, search }) => {
   const dispatch = useDispatch();
   const questions = useSelector((state) => state.questions);
   const sort = useSelector(state => state.sort)
+  const validated = useSelector(state => state.sortValidate)
   const [page, setPage] = useState(1);
   const [loading, setLoading] = useState(true)
   
   useEffect(() => {
     if (search.length > 0) {
-      dispatch(getSearchQuestions(search, sort, page, setLoading));
+      dispatch(getSearchQuestions(search, sort, page, validated, setLoading));
     } else {
-      dispatch(getAllQuestions(sort, page, setLoading))
+      dispatch(getAllQuestions(sort, page, validated, setLoading))
     }
     // eslint-disable-next-line
   }, [dispatch, page, isFavorite]);

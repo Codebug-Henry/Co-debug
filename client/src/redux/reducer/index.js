@@ -19,6 +19,7 @@ import admins from "./admins";
 import usersNoAdmin from "./usersNoAdmin";
 import alerts from "./alerts";
 import sort from "./sort";
+import sortValidate from "./sortValidate";
 
 export default combineReducers({
   message,
@@ -39,5 +40,6 @@ export default combineReducers({
   admins,
   usersNoAdmin,
   alerts,
-  sort
+  sort,
+  sortValidate
 });
