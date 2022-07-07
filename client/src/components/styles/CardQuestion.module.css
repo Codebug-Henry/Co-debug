@@ -402,3 +402,43 @@
   font-weight: 650;
   color: black
 }
+
+.span4{
+  position: relative;
+}
+/* --------------------------------------------------------------------- */
+.span6{
+  position: relative;
+}
+
+.toolTip6{
+  position: absolute;
+  border: none;
+  background-color: #f5bf07;
+  width:320%;
+  min-height: 30%;
+  color: white;
+  padding: .3rem;
+  text-align: center;
+  border-radius: .5rem;
+  font-size: 1rem;
+  bottom: -4.7rem;
+  right:-1.5rem;
+  visibility: hidden;
+}
+
+.toolTip6::after{
+  content: "";
+  position: absolute;
+  border-left: 10px solid transparent;
+  border-bottom: 10px solid #f5bf07;
+  border-right: 10px solid transparent;
+  border-top: 10px solid transparent;
+  top: -17px;
+  left: 60.7px;
+
+}
+
+.span6:hover .toolTip6{
+  visibility: visible;
+}

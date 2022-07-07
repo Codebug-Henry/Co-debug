@@ -96,7 +96,12 @@ const CardQuestion = ({
         <div className={`col-lg-1 ${style.pictureBox}`}>
           <img className={style.userImage} src={picture} alt="imagen user" referrerPolicy="no-referrer"/>
           <div className={statusValidated ? style.success : style.none}>
-            <TaskAltIcon color='success' fontSize='large' />
+
+            <span className={style.span6}>
+              <TaskAltIcon color='success' fontSize='large' />
+              <span className={style.toolTip6}>Respuesta Validada</span>
+            </span>
+
           </div>
         </div>
         <div className={`col-lg-11 ${style.leftBox}`}>
