@@ -11,6 +11,7 @@ import Admin from "./pages/Admin.js";
 import Creadores from "./pages/Creadores.js";
 import Ayuda from "./pages/Ayuda.js";
 import Configuracion from "./pages/Configuracion.js";
+import ProtectedRoute from './components/ProtectedRoute.js'
 import Delete from "./pages/Delete.js";
 import NotFound from "./pages/NotFound";
 import Terminos from "./pages/Terminos.js";
@@ -27,17 +28,17 @@ function App() {
       <Headerlogin />
       <Routes>
         <Route path={"/"} element={<Landing />} />
-        <Route path={"/mispreguntas"} element={<MisPreguntas />} />
+        <Route path={"/mispreguntas"} element={<ProtectedRoute component={MisPreguntas}/>} />
         <Route path={"/preguntar"} element={<Preguntar />} />
-        <Route path={"/misrespuestas"} element={<MisRespuestas />} />
+        <Route path={"/misrespuestas"} element={<ProtectedRoute component={MisRespuestas} />} />
         <Route path={"/responder/:questionId"} element={<ResponderPDF />} />
-        <Route path={"/favoritas"} element={<Favoritas />} />
+        <Route path={"/favoritas"} element={<ProtectedRoute component={Favoritas} />} />
         <Route path={"/ranking"} element={<Ranking />} />
         <Route path={"/codenothere"} element={<Admin />} />
         <Route path={"/creadores"} element={<Creadores />} />
         <Route path={"/ayuda"} element={<Ayuda />} />
         <Route path={"/terminos"} element={<Terminos />} />
-        <Route path={"/configuracion/:sub"} element={<Configuracion />} />
+        <Route path={"/configuracion/:sub"} element={<ProtectedRoute component={Configuracion} />} />
         <Route path={"/delete"} element={<Delete />} />
         <Route path={"/contacto"} element={<Contacto />} />
         <Route path={"/donacion"} element={<PaypalPage />} />
