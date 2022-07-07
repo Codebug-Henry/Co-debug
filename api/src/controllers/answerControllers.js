@@ -70,6 +70,7 @@ const putAnswer = async (req, res, next) => {
 
       if (statusDeleted) {
          await user.update({cantAns: user.cantAns - 1})
+         await question.update({cantAnswers: question.cantAnswers - 1})
      }
 
       res.send({
@@ -97,7 +98,7 @@ const deleteAnswer  =async (req, res, next) => {
 
       await userDeleter.update({cantAns: userDeleter.cantAns - 1})
 
-      await question.update({cantAnswer: question.cantAnswer - 1})
+      await question.update({cantAnswers: question.cantAnswers - 1})
 
       await answerDeleted.destroy()
       
