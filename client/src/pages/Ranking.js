@@ -3,24 +3,31 @@ import { useDispatch, useSelector } from 'react-redux';
 import style from "./styles/Ranking.module.css";
 import Footer from "../components/Footer.js";
 import Paginated from "../components/Paginated";
-import { cleanRanking, getRanking } from "../redux/actions";
+import { getRanking } from "../redux/actions";
+import Loading from "../components/Loading";
 
 const Ranking = () => {
   const dispatch = useDispatch()
   const ranking = useSelector(state => state.ranking)
   const [sort, setSort] = useState('points-desc')
   const [page, setPage] = useState(1)
+  const [loading, setLoading] = useState(true)
 
   useEffect(() => {
-    dispatch(getRanking(sort, page))
-    return () => dispatch(cleanRanking())
+    dispatch(getRanking(sort, page, setLoading))
   }, [dispatch, sort, page])
 
   const handleSort = (e) => {
     setSort(e.target.value)
   }
 
-  return (
+  if(loading){
+    return(
+      <>
+        <Loading />
+      </>
+    )
+  } else return (
     <div className={style.fullContainer}>
         <div className={style.middleRow}>
           {/* Acá el contenido para logueados */}

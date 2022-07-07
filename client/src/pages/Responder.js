@@ -3,7 +3,7 @@ import style from "./styles/Responder.module.css";
 import Footer from "../components/Footer.js";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
-import { cleanQuestion, getQuestion, sendAnswer, getUserInfo } from "../redux/actions/index";
+import { getQuestion, sendAnswer, getUserInfo } from "../redux/actions/index";
 // import like from "../images/like2.png";
 // import dislike from "../images/dislike2.png";
 // import denuncia from "../images/denuncia2.png";
@@ -20,6 +20,7 @@ const Responder = () => {
   const { questionId } = useParams();
   const question = useSelector((state) => state.question);
   const [load, setLoad] = useState(false);
+  const [loading, setLoading] = useState(true)
   const [isModify, setIsModify] = useState(false);
   //form
   const user = useSelector((state) => state.user);
@@ -27,8 +28,7 @@ const Responder = () => {
   const [error, setError] = useState("");
 
   useEffect(() => {
-    dispatch(getQuestion(parseInt(questionId), setLoad));
-    return () => dispatch(cleanQuestion())
+    dispatch(getQuestion(parseInt(questionId), setLoad, setLoading));
   }, [dispatch, load, questionId, isModify]);
 
   
@@ -64,7 +64,14 @@ const Responder = () => {
     setInput(input + "\n```javascript\n(escribe tu código javascript aquí)\n```")
 }
 
-  return (
+
+  if(loading){
+    return (
+      <>
+        <Loading />
+      </>
+    )
+  } else return (
 
     <div className={style.fullContainer}>
       {question.user ? 

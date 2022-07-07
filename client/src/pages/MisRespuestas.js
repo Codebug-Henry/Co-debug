@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from 'react-redux'
 import { useAuth0 } from "@auth0/auth0-react";
-import { cleanAnswers, getUserAnswers } from '../redux/actions'
+import { getUserAnswers } from '../redux/actions'
 import style from "./styles/MisRespuestas.module.css";
 import Footer from "../components/Footer.js";
 import Loading from "../components/Loading";
@@ -17,11 +17,11 @@ const MisRespuestas = () => {
   const totalPages = useSelector(state=> state.totalPages);
   const [page, setPage] = useState(1);
   const [isModify, setIsModify] = useState(false);
+  const [loading, setLoading] = useState(true)
   const navigate = useNavigate()
 
   useEffect(() => {
-    dispatch(getUserAnswers(user.sub, page));
-    return () => dispatch(cleanAnswers())
+    dispatch(getUserAnswers(user.sub, page, setLoading));
   }, [dispatch, user.sub, page, totalPages, isModify])
 
   function redirectAnswer () {
@@ -36,7 +36,13 @@ const MisRespuestas = () => {
     );
   }
   
-  return (
+  if(loading){
+    return (
+      <div>
+        <Loading />
+      </div>
+    );
+  } else return (
     <div>
       {isAuthenticated ? (
         <div className={style.fullContainer}>
