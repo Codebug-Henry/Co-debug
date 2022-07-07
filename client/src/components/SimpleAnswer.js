@@ -59,7 +59,7 @@ const SimpleAnswer = ({id, text, likes, name, picture, subQ, subR, statusValidat
     e.preventDefault();
     let pack = { id, message: selected, subCreator: userInfo.sub };
     axios
-      .post("/alert/question", pack)
+      .post("/alert/answer", pack)
       .then((response) => null);
     handleClose();
   };
@@ -141,7 +141,7 @@ const SimpleAnswer = ({id, text, likes, name, picture, subQ, subR, statusValidat
                   >
                     Reportar respuesta
                   </Typography>
-                  <Typography id="modal-modal-description" sx={{ mt: 2, marginLeft: '1vw', marginRight: '0.5vw' }}>
+                  <Typography id="modal-modal-description" sx={{ mt: 2, marginLeft: '1vw', marginRight: '0.5vw', fontStyle: 'normal' }}>
                     Eliga su motivo para reportar esta respuesta
                   </Typography>
                   <div>

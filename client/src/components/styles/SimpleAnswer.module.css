@@ -19,7 +19,6 @@
   border-radius: 1vh;
 }
 
-
 .info{
     display: flex;
     gap: 3%;
@@ -129,11 +128,11 @@
 .enviar {
   margin-left: 42%;
   margin-bottom: 1vh;
-  border: 1px solid #3f51b5;
+  border: 1px solid black;
   background-color: transparent;
   color: rgb(67, 64, 64);
   border-radius: 0.5vh;
-  font-style: normal;
+  font-style: italic;
 }
 
 
