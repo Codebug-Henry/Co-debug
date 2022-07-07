@@ -169,6 +169,25 @@
   width: 100%;
 }
 
+.submit {
+  width: fit-content;
+  height: fit-content;
+  background-color: #f9bf00;
+  color: lightyellow;
+  border: #f9bf00 solid 0.5px;
+  border-radius: 5%;
+  font-weight: 300;
+  font-size: 19px;
+  justify-self: center;
+  align-self: center;
+}
+
+.submit:hover {
+  cursor: pointer;
+  background-color: transparent;
+  color: rgb(75, 71, 71);
+}
+
 .errorMessage {
   margin-bottom: 0.5vh;
   font-size: 1.8vh;
@@ -194,6 +213,17 @@
   .btnCode {
     font-size: 11px;
     height: 25px;
+  }
+
+  .button {
+    justify-content: center;
+  }
+  
+  .submit {
+    height: 30px;
+    border-radius: 5%;
+    font-weight: 400;
+    font-size: 13px;
   }
 
 }

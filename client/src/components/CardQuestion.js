@@ -53,6 +53,7 @@ const CardQuestion = ({
   }
 
   async function addLike(e) {
+    e.preventDefault();
     if (!liked && flag) {
       setFlag(false)
       dispatch(modifyQuestion({ id: id, like: "add", sub: userInfo.sub }, null, setIsFavorite, setFlag));
@@ -140,8 +141,6 @@ const CardQuestion = ({
               <span className={style.spanLikes}>
                 {likes}
               </span>
-              {/* <img src={like} alt="mano arriba" className={style.like} />
-              <img src={dislike} alt="mano abajo" className={style.dislike} /> */}
               <span className={style.span}>
                 <ThumbDownIcon
                   fontSize="medium"
@@ -199,21 +198,24 @@ const CardQuestion = ({
                     id="modal-modal-title"
                     variant="h6"
                     component="h2"
+                    sx={{ mt: 2, marginLeft: '1vw', marginRight: '0.5vw' }}
                   >
                     Reportar pregunta
                   </Typography>
-                  <Typography id="modal-modal-description" sx={{ mt: 2 }}>
+                  <Typography id="modal-modal-description" sx={{ mt: 2, marginLeft: '1vw', marginRight: '0.5vw', fontStyle: 'normal' }}>
                     Eliga su motivo para reportar esta pregunta
                   </Typography>
                   <div>
                     <FormControl>
-                      <FormLabel id="demo-radio-buttons-group-label">
+                      <FormLabel id="demo-radio-buttons-group-label"
+                                  sx={{ fontStyle: 'normal', mt: 2, marginLeft: '1vw', marginRight: '0.5vw' }}>
                         Opciones:{" "}
                       </FormLabel>
                       <RadioGroup
                         aria-labelledby="demo-radio-buttons-group-label"
                         defaultValue=""
                         name="radio-buttons-group"
+                        sx={{ mt: 2, marginLeft: '1vw', marginRight: '0.5vw' }}
                       >
                         <FormControlLabel
                           onChange={(e) => handleChangeAlert(e)}
@@ -236,7 +238,7 @@ const CardQuestion = ({
                       </RadioGroup>
                     </FormControl>
                   </div>
-                  <button onClick={(e) => handleAlert(e)}>Enviar</button>
+                  <button className={style.enviar} onClick={(e) => handleAlert(e)}>Enviar</button>
                 </Box>
               </Modal>
             </div>
