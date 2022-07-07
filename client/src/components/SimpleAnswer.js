@@ -27,17 +27,21 @@ const SimpleAnswer = ({id, text, likes, name, picture, subQ, subR, statusValidat
   const liked = userInfo.ansLiked?.includes(id);
   const disliked = userInfo.ansDisliked?.includes(id);
 
+  const [flag, setFlag] = useState(true);
+
   function addLike(e) {
     e.preventDefault();
-    if (!liked) {
-      dispatch(putAnswer({id: id, like: "add", sub: userInfo.sub }, setIsModify));
+    if (!liked && flag) {
+      setFlag(false)
+      dispatch(putAnswer({id: id, like: "add", sub: userInfo.sub }, setIsModify, setFlag));
     }
   }
 
   function removeLike(e) {
     e.preventDefault();
-    if (!disliked) {
-      dispatch(putAnswer({id: id, like: "remove", sub: userInfo.sub }, setIsModify));
+    if (!disliked && flag) {
+      setFlag(false)
+      dispatch(putAnswer({id: id, like: "remove", sub: userInfo.sub }, setIsModify, setFlag));
     }
   }
 
