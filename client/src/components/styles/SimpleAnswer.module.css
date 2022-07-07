@@ -101,8 +101,14 @@
   display: none;
 }
 
-.likes span{
+/* .likes span{
   margin-right: 1vw;
+} */
+
+.likes {
+  display: flex;
+  justify-content: space-between;
+  width: 7.5%;
 }
 
 .fav:hover{

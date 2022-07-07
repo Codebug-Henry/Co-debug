@@ -34,7 +34,7 @@ const putUserQuestion = async (req, res, next) => {
         //             cantFav: user.cantFav + 1
         //         })
     
-        let newLikes = question.likes
+    let newLikes = question.likes
         
     if (like === "add") {
         if (userLogged.questDisliked.includes(id)) {
@@ -43,9 +43,6 @@ const putUserQuestion = async (req, res, next) => {
             newLikes++
         }
         else if (!userLogged.questLiked.includes(id)) {
-            // const mySet1 = new Set()
-            // mySet1 = [...userLogged.questLiked]
-            // mySet1.add(id)
             let userLoggedLiked = [...userLogged.questLiked, id]
             await userLogged.update({questLiked: userLoggedLiked})
             newLikes++

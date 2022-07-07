@@ -272,11 +272,12 @@ export const sendAnswer = (answer) => async (dispatch) => {
 //     }
 // }
 
-export const putAnswer = (answer, setIsModify) => async (dispatch) => {
+export const putAnswer = (answer, setIsModify, setFlag) => async (dispatch) => {
   try {
     const { data } = await api.putAnswer(answer);
     dispatch({ type: PUT_ANSWER, payload: data });
     setIsModify && setIsModify(prevState=> !prevState);
+    setFlag && setFlag(true)
   } catch (error) {
     console.log(error.message);
   }
