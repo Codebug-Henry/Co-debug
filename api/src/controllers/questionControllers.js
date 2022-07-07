@@ -38,24 +38,24 @@ const putUserQuestion = async (req, res, next) => {
         
     if (like === "add") {
         newLikes++
-        if (userLogged.disliked.includes(id)) {
-            let userLoggedDisliked = userLogged.disliked.filter(questId => questId !== id)
-            await userLogged.update({disliked: userLoggedDisliked})
+        if (userLogged.questDisliked.includes(id)) {
+            let userLoggedDisliked = userLogged.questDisliked.filter(questId => questId !== id)
+            await userLogged.update({questDisliked: userLoggedDisliked})
         }
         else {
-            let userLoggedLiked = [...userLogged.liked, id]
-            await userLogged.update({liked: userLoggedLiked})
+            let userLoggedLiked = [...userLogged.questLiked, id]
+            await userLogged.update({questLiked: userLoggedLiked})
         }
     }
     else if (like === "remove"){
         newLikes--
-        if (userLogged.liked.includes(id)) {
-            let userLoggedLiked = userLogged.liked.filter(questId => questId !== id)
-            await userLogged.update({liked: userLoggedLiked})
+        if (userLogged.questLiked.includes(id)) {
+            let userLoggedLiked = userLogged.questLiked.filter(questId => questId !== id)
+            await userLogged.update({questLiked: userLoggedLiked})
         }
         else {
-            let userLoggedDisliked = [...userLogged.disliked, id]
-            await userLogged.update({disliked: userLoggedDisliked})
+            let userLoggedDisliked = [...userLogged.questDisliked, id]
+            await userLogged.update({questDisliked: userLoggedDisliked})
         }
     } 
 
@@ -135,6 +135,10 @@ const getSingleQuestion = async (req, res, next) => {
                 {model: Answer, required: false, where: {statusDeleted: false}, include: User},
                 {model: MacroTag},
                 {model: MicroTag}
+            ], order: [
+                [Answer, 'statusValidated', 'DESC'],
+                [Answer, 'createdAt', 'ASC'], 
+                [Answer, 'text', 'DESC'], 
             ]
         })        
 

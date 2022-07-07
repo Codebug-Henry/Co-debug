@@ -276,7 +276,7 @@ export const putAnswer = (answer, setIsModify) => async (dispatch) => {
   try {
     const { data } = await api.putAnswer(answer);
     dispatch({ type: PUT_ANSWER, payload: data });
-    setIsModify && setIsModify(false);
+    setIsModify && setIsModify(prevState=> !prevState);
   } catch (error) {
     console.log(error.message);
   }

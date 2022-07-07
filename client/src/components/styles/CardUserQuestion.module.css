@@ -2,7 +2,17 @@
     /* border: solid 1px black; */
     border-radius: 0% 1vh 2vh 1vh;
     box-shadow: 10px 5px 5px;
-    /* height: 190px; */
+    height: min-content;
+    display: flex;
+    flex-direction: row;
+    color: #2d3032;
+    background-color:rgb(255, 255, 255);
+}
+
+#validated{
+    border: 3px solid #2e7d32;
+    border-radius: 0% 1vh 2vh 1vh;
+    box-shadow: 10px 5px 5px;
     height: min-content;
     display: flex;
     flex-direction: row;
@@ -28,6 +38,10 @@
     display: flex;
     flex-direction: row;
     font-weight: 500;
+}
+
+.none {
+    display: none
 }
 
 #photo{
@@ -260,10 +274,13 @@
 
 @media screen and (max-width: 500px){
     #name{
-        width: 65%;
+        width: 100%;
+    }
+    .success {
+        width: 20%
     }
     #photo{
-        width: 30%;
+        width: 20%;
     }
     #avatar{
         float: right;

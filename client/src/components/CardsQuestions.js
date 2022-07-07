@@ -44,6 +44,7 @@ const CardsQuestions = ({ isFavorite, setIsFavorite, search }) => {
               teachPoints={e.teachPoints}
               picture={e.user.picture}
               setIsFavorite={setIsFavorite}
+              statusValidated={e.statusValidated}
             />
           ))}
       </div>

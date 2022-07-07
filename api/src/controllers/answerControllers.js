@@ -26,17 +26,38 @@ const postAnswer = async (req, res, next) => {
 
 const putAnswer = async (req, res, next) => {
 
-   const {id, text, like, statusDeleted, statusValidated, imgs} = req.body
+   const {id, text, like, statusDeleted, statusValidated, imgs, sub} = req.body
 
    try {
       const answer = await Answer.findByPk(id)
       const question = await answer.getQuestion()
       const user = await answer.getUser()
+      const userLogged = await User.findByPk(sub)
 
       let newLikes = answer.likes
 
-      if (like === "add") newLikes++
-      else if (like === "remove") newLikes--
+      if (like === "add") {
+         newLikes++
+         if (userLogged.ansDisliked.includes(id)) {
+             let userLoggedDisliked = userLogged.ansDisliked.filter(questId => questId !== id)
+             await userLogged.update({ansDisliked: userLoggedDisliked})
+         }
+         else {
+             let userLoggedLiked = [...userLogged.ansLiked, id]
+             await userLogged.update({ansLiked: userLoggedLiked})
+         }
+      }
+      else if (like === "remove"){
+         newLikes--
+         if (userLogged.ansLiked.includes(id)) {
+             let userLoggedLiked = userLogged.ansLiked.filter(questId => questId !== id)
+             await userLogged.update({ansLiked: userLoggedLiked})
+         }
+         else {
+             let userLoggedDisliked = [...userLogged.ansDisliked, id]
+             await userLogged.update({ansDisliked: userLoggedDisliked})
+         }
+     } 
 
       await answer.update({text, imgs, likes: newLikes, statusDeleted, statusValidated})
       
