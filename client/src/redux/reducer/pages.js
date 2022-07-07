@@ -12,7 +12,13 @@ import {
   GET_ALL_ADMINS,
   GET_SEARCH_USERS,
   GET_ALL_USERS_NOADMIN,
-  GET_ALL_ALERTS
+  GET_ALL_ALERTS,
+  CLEAN_ANSWERS,
+  CLEAN_FAVOURITES,
+  CLEAN_QUESTION,
+  CLEAN_QUESTIONS,
+  CLEAN_RANKING,
+  CLEAN_USER_QUESTIONS
 } from "../actions/actionTypes";
 
 export default function pages(state = [], action) {
@@ -43,6 +49,18 @@ export default function pages(state = [], action) {
       return action.payload.pages;
     case GET_ALL_ALERTS:
       return action.payload.pages;
+    case CLEAN_ANSWERS:
+      return [];
+    case CLEAN_FAVOURITES:
+      return [];
+    case CLEAN_QUESTION:
+      return [];
+    case CLEAN_QUESTIONS:
+      return [];
+    case CLEAN_RANKING:
+      return [];
+    case CLEAN_USER_QUESTIONS:
+      return [];
     default:
       return state;
   }

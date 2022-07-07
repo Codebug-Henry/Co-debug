@@ -20,6 +20,7 @@ import { useDispatch, useSelector } from "react-redux";
 import axios from "axios";
 import ReactMarkdown from "react-markdown";
 import Highlighter from "./Highlighter";
+import TaskAltIcon from '@mui/icons-material/TaskAlt';
 
 const CardQuestion = ({
   cantAnswers,
@@ -30,13 +31,14 @@ const CardQuestion = ({
   text,
   teachPoints,
   id,
-  setIsFavorite
+  setIsFavorite,
+  statusValidated
 }) => {
 
   const dispatch = useDispatch();
   const userInfo = useSelector((state) => state.user);
-  const liked = userInfo.liked?.includes(id)
-  const disliked = userInfo.disliked?.includes(id)
+  const liked = userInfo.questLiked?.includes(id)
+  const disliked = userInfo.questDisliked?.includes(id)
 
   function handleAddFavourite(e) {
     e.preventDefault();
@@ -83,27 +85,37 @@ const CardQuestion = ({
   };
 
   return (
-    <div className={`container-fluid ${style.total}`}>
+    <div className={statusValidated ?
+                    `container-fluid ${style.validated}`:
+                     `container-fluid ${style.total}`}>
       <div className={`row ${style.fila}`}>
         <div className={`col-lg-1 ${style.pictureBox}`}>
           <img className={style.userImage} src={picture} alt="imagen user" referrerPolicy="no-referrer"/>
+          <div className={statusValidated ? style.success : style.none}>
+            <TaskAltIcon color='success' fontSize='large' />
+          </div>
         </div>
         <div className={`col-lg-11 ${style.leftBox}`}>
 
           <div className={style.TitleAndExtrasBox}>
             <div className={style.firstRow}>
               <div className={style.userPreg}>
-                <h6>{nickname} pregunta:</h6>
+                <span>{nickname} pregunta:</span>
               </div>
               
               <div className={style.Extras}>
-                <h6>
-                <Link to={`/responder/${id}`} className={style.botonResp}>Ver {cantAnswers} respuestas</Link>  - T. Points: {teachPoints}
-                </h6>
+                <Link to={`/responder/${id}`} className={style.botonResp}>
+                  <span>
+                    {cantAnswers} respuestas
+                  </span>
+                </Link> 
+                  <span>
+                    - T. Points: {teachPoints}
+                  </span>  
               </div>
             </div>
             <div className={style.Title}>
-              <h6>{title}</h6>
+              <span>{title}</span>
             </div>
           </div>
 

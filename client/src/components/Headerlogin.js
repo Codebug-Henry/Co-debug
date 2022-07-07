@@ -9,6 +9,7 @@ import { sendUserInfo } from "../redux/actions";
 import Header from "./Header";
 import HeaderLoading from "./HeaderLoading";
 
+
 const Headerlogin = () => {
   const { user } = useAuth0();
   const { isAuthenticated, isLoading } = useAuth0();
@@ -16,6 +17,7 @@ const Headerlogin = () => {
   const dispatch = useDispatch();
   const userInfo = useSelector((state) => state.user);
   const [width, setWidth] = useState(window.innerWitdh);
+ 
 
   useEffect(() => {
     window.addEventListener("resize", handleResize, false);
@@ -35,6 +37,10 @@ const Headerlogin = () => {
     logout();
     localStorage.clear();
   };
+
+  
+
+  
 
   if (isLoading) {
     return (

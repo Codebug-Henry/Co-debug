@@ -71,13 +71,21 @@ module.exports = (sequelize) => {
       type: DataTypes.INTEGER,
       defaultValue:0
     },
-    liked:{
+    questLiked: {
       type: DataTypes.ARRAY(DataTypes.INTEGER),
-      defaultValue:[]
+      defaultValue: []
     },
-    disliked:{
+    questDisliked: {
       type: DataTypes.ARRAY(DataTypes.INTEGER),
-      defaultValue:[]
+      defaultValue: []
+    },
+    ansLiked: {
+      type: DataTypes.ARRAY(DataTypes.INTEGER),
+      defaultValue: []
+    },
+    ansDisliked: {
+      type: DataTypes.ARRAY(DataTypes.INTEGER),
+      defaultValue: []
     }
   });
 };

@@ -9,21 +9,51 @@
   transition-duration: 0.3s;
   transition-timing-function: linear;
 }
-.total:hover{
-  
-  transform: scale(102%);
 
+.validated {
+  border: 3px solid #2e7d32;
+  background-color: rgb(255, 255, 255);
+  border-radius: 1vh;
+  width:85%;
+  height: max-content;
+  margin-bottom: 2vh;
+  box-shadow:2px 2px 2px 1px rgba(0,0,0,0.2);
+  transition-property: all;
+  transition-duration: 0.3s;
+  transition-timing-function: linear;
 }
 
-.userPreg h6 {
-  font-weight: 700;
+.total:hover{
+  transform: scale(102%);
+}
+
+.validated:hover{
+  transform: scale(102%);
+}
+
+.pictureBox{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between
+}
+
+
+.none {
+  display: none;
+}
+
+.userPreg span {
+  font-weight: 650;
 }
 
 .Title{
   margin-bottom: 1%;
-  /* margin-right: 10px;
-  margin-left: 10px; */
 }
+
+.Title span{
+  font-weight: 600;
+}
+
 
 .TitleAndExtrasBox {
   /* border: solid 1px black; */
@@ -35,6 +65,10 @@
   align-items: flex-start;
   flex-direction: column;
   justify-content: space-between;
+}
+
+.Extras {
+  font-weight: 500;
 }
 
 .firstRow {
@@ -91,11 +125,6 @@
   padding-top: 2vh;
 }
 
-.notFav {
-  visibility: hidden;
-  /* display: none */
-}
-
 .fav:hover{
   cursor: pointer;
 }
@@ -128,10 +157,23 @@
   cursor: pointer;
 }
 
+@media screen and (max-width: 980px){
+  .pictureBox {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between
+  }
+}
 
 @media screen and (max-width: 670px){
   .total {
     width: 100%;
+    font-size: 12px;
+  }
+
+  .validated {
+    width: 100%;
+    font-size: 12px;
   }
 
   .bajoTexto {
@@ -332,8 +374,7 @@
 }
 
 .botonResp{
-  border: solid 1px black;
-  border-radius: 1vh;
+  /* border: solid 1px black; */
   background-color: transparent;
   position: relative;
   text-decoration: none;
@@ -342,11 +383,11 @@
   padding-right: 3px;
   padding-bottom: 2px;
   height: 90%;
-  font-weight: 400;
+  /* font-weight: 500; */
 }
 
 .botonResp:hover {
   cursor: pointer;
-  background-color: rgb(240, 238, 238);
-  color: black;
+  font-weight: 650;
+  color: black
 }

@@ -3,7 +3,7 @@ import style from "./styles/Responder.module.css";
 import Footer from "../components/Footer.js";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
-import { getQuestion, sendAnswer } from "../redux/actions/index";
+import { cleanQuestion, getQuestion, sendAnswer, getUserInfo } from "../redux/actions/index";
 // import like from "../images/like2.png";
 // import dislike from "../images/dislike2.png";
 // import denuncia from "../images/denuncia2.png";
@@ -20,6 +20,7 @@ const Responder = () => {
   const { questionId } = useParams();
   const question = useSelector((state) => state.question);
   const [load, setLoad] = useState(false);
+  const [isModify, setIsModify] = useState(false);
   //form
   const user = useSelector((state) => state.user);
   const [input, setInput] = useState("");
@@ -27,7 +28,14 @@ const Responder = () => {
 
   useEffect(() => {
     dispatch(getQuestion(parseInt(questionId), setLoad));
-  }, [dispatch, load, questionId]);
+    return () => dispatch(cleanQuestion())
+  }, [dispatch, load, questionId, isModify]);
+
+  
+  useEffect(() => {
+    if (isAuthenticated)
+    dispatch(getUserInfo(user.sub));
+  }, [isModify]);
 
   const handleChange = (e) => {
     setInput(e.target.value);
@@ -39,6 +47,8 @@ const Responder = () => {
     if (!input) error = "Se requiere escribir una respuesta";
     if (input.length < 10)
       error = "La respuesta debe tener minimo 10 caracteres";
+    if (input.length > 500)
+      error = "La respuesta debe tener como máximo 500 caracteres";
     return error;
   };
 
@@ -205,9 +215,15 @@ const Responder = () => {
                     question?.answers.map((e) => (
                       <SimpleAnswer
                         key={e.id}
+                        id={e.id}
                         text={e.text}
                         likes={e.likes}
                         name={e.user.name}
+                        subQ={question.userSub}
+                        subR={e.userSub}
+                        picture={e.user.picture}
+                        statusValidated={e.statusValidated}
+                        setIsModify={setIsModify}
                       />
                     ))}
                 </div>

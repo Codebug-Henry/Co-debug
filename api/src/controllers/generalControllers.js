@@ -1,5 +1,7 @@
-const { User, Question, Answer,MicroTag,MacroTag } = require('../db.js');
-
+const nodemailer = require('nodemailer')
+const { GMAIL, GPASS } = process.env;
+const { User, Question, Answer, MicroTag, MacroTag } = require('../db.js');
+  
 //Get user position in ranking
 const getUserPosition = async (sub) => {
     try {
@@ -209,6 +211,32 @@ const checkEmailAdmin = (obj) => {
     return emails.includes(obj.email)
 }
 
+const sendEmail = (to, subject, text) => {
+    var transporter = nodemailer.createTransport({
+        host: "smtp.gmail.com",
+        port: 465,
+        secure: true,
+        auth: {
+            user: GMAIL,
+            pass: GPASS,
+        },
+    });
+    const mailOptions = {
+        from: "Remitente",
+        to,
+        subject,
+        text
+    }
+
+    transporter.sendMail(mailOptions, (error) => {
+        if (error) {
+            console.log(error.message);
+        } else {
+            console.log("Email enviado")
+        }
+    });
+}
+
 // Callback function for descending sort
 // const sortByPointsDesc = (a, b) => {
 //     return b.teachPoints - a.teachPoints
@@ -225,6 +253,7 @@ module.exports={
     getUserPosition,
     questionTags,
     checkEmailAdmin,
+    sendEmail,
     // sortByPointsDesc,
     // sortByPointsAsc,
 }

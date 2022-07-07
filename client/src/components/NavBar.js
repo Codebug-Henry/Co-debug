@@ -1,12 +1,16 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getAllQuestions, getSearchQuestions, setSort } from "../redux/actions/index.js";
+import {
+  getAllQuestions,
+  getSearchQuestions,
+  setSort,
+} from "../redux/actions/index.js";
 import style from "./styles/NavBar.module.css";
 
 const NavBar = ({ search, setSearch }) => {
   const dispatch = useDispatch();
   const [page, setPage] = useState(1);
-  const sort = useSelector(state => state.sort)
+  const sort = useSelector((state) => state.sort);
 
   const onChangeSearch = (e) => {
     setSearch(e.target.value);
@@ -19,7 +23,7 @@ const NavBar = ({ search, setSearch }) => {
   };
 
   const handleSort = (e) => {
-    dispatch(setSort(e.target.value))
+    dispatch(setSort(e.target.value));
     if (search.length > 0) {
       dispatch(getSearchQuestions(search, e.target.value, page));
     } else {
@@ -57,10 +61,10 @@ const NavBar = ({ search, setSearch }) => {
 
           <div className="collapse navbar-collapse" id="navbarSupportedContent">
             <ul className={`navbar-nav me-auto mb-2 mb-lg-0 ${style.ul}`}>
-              <select
+              <select 
                 value={sort}
                 onChange={handleSort}
-                className="nav-item dropdown"
+                className={`nav-item dropdown ${style.order}`}
               >
                 <option
                   className="nav-link dropdown-toggle"
@@ -80,49 +84,6 @@ const NavBar = ({ search, setSearch }) => {
                   Más antiguas
                 </option>
               </select>
-              {/* <li className={`nav-item dropdown" ${style.gralTags}`}>
-                <span
-                  className="nav-link dropdown-toggle"
-                  id="navbarDropdown"
-                  role="button"
-                  data-bs-toggle="dropdown"
-                  aria-expanded="false"
-                >
-                  Tag's General
-                </span>
-                <ul className="dropdown-menu" aria-labelledby="navbarDropdown">
-                  <li>
-                    <span className="dropdown-item">js</span>
-                  </li>
-                  <li>
-                    <span className="dropdown-item">python</span>
-                  </li>
-                  <li>
-                    <span className="dropdown-item">react</span>
-                  </li>
-                  <li>
-                    <span className="dropdown-item">redux</span>
-                  </li>
-                  <li>
-                    <span className="dropdown-item">github</span>
-                  </li>
-                  <li>
-                    <span className="dropdown-item">html</span>
-                  </li>
-                  <li>
-                    <span className="dropdown-item">css</span>
-                  </li>
-                </ul>
-              </li> */}
-              {/* <li className="nav-item">
-                <span
-                  className="nav-link disabled"
-                  tabIndex="-1"
-                  aria-disabled="true"
-                >
-                  tag
-                </span>
-              </li> */}
               <li className="nav-item dropdown">
                 <span
                   className="nav-link dropdown-toggle"

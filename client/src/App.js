@@ -19,6 +19,7 @@ import Contacto from "./pages/Contacto.js";
 import ResponderPDF from "./pages/ResponderPDF";
 import PaypalPage from "./pages/PaypalPage.js";
 import PagoListo from "./pages/PagoListo.js";
+import Easter from "./pages/Easter.js";
 
 function App() {
   return (
@@ -42,6 +43,7 @@ function App() {
         <Route path={"/donacion"} element={<PaypalPage />} />
         <Route path={"/pagolisto"} element={<PagoListo />} />
         <Route path={"*"} element={<NotFound />} />
+        <Route path={"/easter"} element={<Easter />} />
       </Routes>
     </BrowserRouter>
   );

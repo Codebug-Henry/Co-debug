@@ -6,7 +6,7 @@ import Footer from "../components/Footer.js";
 import CardUserQuestion from "../components/CardUserQuestion";
 import FilterBar from "../components/FilterBar";
 import SearchBar from '../components/SearchBar';
-import { getUserQuestions, getUserQuestionsSearch } from "../redux/actions";
+import { cleanUserQuestion, getUserQuestions, getUserQuestionsSearch } from "../redux/actions";
 import FilterAltIcon from '@mui/icons-material/FilterAlt';
 import Paginated from "../components/Paginated";
 import Loading from "../components/Loading";
@@ -31,6 +31,7 @@ const MisPreguntas = () => {
       if(input.length > 0) {
         dispatch(getUserQuestionsSearch(user.sub, sort, page, input))
       } else dispatch(getUserQuestions(user.sub, sort, page))
+      return () => dispatch(cleanUserQuestion())
   }, [dispatch, sort, cantFirstLast, page, user.sub, totalPages, input, isModify])
 
   
@@ -70,8 +71,10 @@ const MisPreguntas = () => {
                       questions.length > 0 ?
                       questions.map(q => {
                           return (
-                            <CardUserQuestion key={q.id} id={q.id} title={q.title} text={q.text} likes={q.likes} cantAnswers={q.cantAnswers} 
-                                              name={user.nickname} picture={user.picture} setCantFirstLast={setCantFirstLast} setIsModify={setIsModify} />
+                            <CardUserQuestion key={q.id} id={q.id} title={q.title} text={q.text} likes={q.likes} 
+                                              cantAnswers={q.cantAnswers} name={user.nickname}
+                                              picture={user.picture} setCantFirstLast={setCantFirstLast}
+                                              setIsModify={setIsModify} statusValidated={q.statusValidated} />
                           )
                       }) :
                       <div>

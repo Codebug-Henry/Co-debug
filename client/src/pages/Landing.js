@@ -8,8 +8,9 @@ import CardsQuestsLogOut from "../components/CardsQuestsLogOut.js";
 import TopTenRanking from "../components/TopTenRanking";
 import { useSelector, useDispatch } from "react-redux";
 import { useEffect } from "react";
-import { getUserInfo } from "../redux/actions";
+import { getUserInfo, cleanQuestions } from "../redux/actions";
 import NavBar from "../components/NavBar";
+import { useNavigate } from "react-router-dom";
 
 const Landing = () => {
   const dispatch = useDispatch();
@@ -17,14 +18,26 @@ const Landing = () => {
   const { cantQuest, cantAns, myPosition, myTeachPoints } = useSelector((state) => state.user);
   const [isFavorite, setIsFavorite] = useState(false);
   const [search, setSearch] = useState("");
+  const [easter, setEaster] = useState(0);
+  const navigate = useNavigate();
 
   useEffect(() => {
     if (isAuthenticated) {
       dispatch(getUserInfo(user.sub));
     }
+    // return () => dispatch(cleanQuestions())
     // eslint-disable-next-line
   }, [isFavorite]);
   // }, [dispatch, user, isAuthenticated, isFavorite]);
+
+  const handleEaster = () => {
+    setEaster(easter+1)
+    console.log(easter)
+    if(easter >= 10){
+      console.log("Pará con la manitoo")
+      navigate('/easter')
+    }
+  }
 
   if (isLoading) {
     return (
@@ -54,7 +67,7 @@ const Landing = () => {
               <div className={`col-lg-4 ${style.col2}`}>
                 <div className={`container-fluid${style.rigthContainer}`}>
                   <div className={`row ${style.rightRowTop}`}>
-                    <div className={style.datosUser}>
+                    <div className={style.datosUser} onClick={()=>handleEaster()} >
                       <p className={style.estadisticas}>Mis estadísticas:</p>
                       <p>Mi posición en el Ranking: {myPosition}</p>
                       <p>Mis Teach-Points: {myTeachPoints}</p>

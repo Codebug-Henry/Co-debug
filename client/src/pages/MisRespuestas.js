@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from 'react-redux'
 import { useAuth0 } from "@auth0/auth0-react";
-import { getUserAnswers } from '../redux/actions'
+import { cleanAnswers, getUserAnswers } from '../redux/actions'
 import style from "./styles/MisRespuestas.module.css";
 import Footer from "../components/Footer.js";
 import Loading from "../components/Loading";
@@ -20,7 +20,8 @@ const MisRespuestas = () => {
   const navigate = useNavigate()
 
   useEffect(() => {
-    dispatch(getUserAnswers(user.sub, page))
+    dispatch(getUserAnswers(user.sub, page));
+    return () => dispatch(cleanAnswers())
   }, [dispatch, user.sub, page, totalPages, isModify])
 
   function redirectAnswer () {
@@ -53,7 +54,8 @@ const MisRespuestas = () => {
                       answers.map(r => {
                           return (
                             <CardUserAnswer key={r.id} id={r.id} qid={r.question.id} title={r.question.title} text={r.text} likes={r.likes} 
-                                            tPoints={r.teachPoints} setIsModify={setIsModify} />
+                                            tPoints={r.teachPoints} setIsModify={setIsModify} statusValidated={r.statusValidated}
+                                            nickname={r.question.user.nickname} picture={r.question.user.picture}/>
                           )
                       }) :
                       <div>

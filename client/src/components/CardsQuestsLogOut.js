@@ -35,6 +35,7 @@ const CardsQuestsLogOut = ({ search }) => {
               text={e.text}
               teachPoints={e.teachPoints}
               picture={e.user.picture}
+              statusValidated={e.statusValidated}
             />
           ))}
       </div>

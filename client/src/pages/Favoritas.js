@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useAuth0 } from "@auth0/auth0-react";
 import style from "./styles/Favoritas.module.css";
 import Footer from "../components/Footer.js";
-import { getFavourites } from "../redux/actions";
+import { cleanFavourites, getFavourites } from "../redux/actions";
 import Paginated from "../components/Paginated";
 import CardQuestion from "../components/CardQuestion";
 import Fab from "@mui/material/Fab";
@@ -17,14 +17,15 @@ const Favoritas = () => {
   const dispatch = useDispatch();
   const [page, setPage] = useState(1);
   const [isFavorite, setIsFavorite] = useState(false);
-  let cant = favourites.length;
+  // let cant = favourites.length;
 
   useEffect(() => {
     if (isAuthenticated) {
       dispatch(getFavourites(userInfo.sub, page));
+      return () => dispatch(cleanFavourites())
     }
     // eslint-disable-next-line
-  }, [cant, page, dispatch, isFavorite]);
+  }, [page, dispatch, isFavorite]);
 
   if (isLoading) {
     return (
@@ -74,6 +75,7 @@ const Favoritas = () => {
                             page={page}
                             setPage={setPage}
                             setIsFavorite={setIsFavorite}
+                            statusValidated={f.statusValidated}
                           />
                         );
                       })
