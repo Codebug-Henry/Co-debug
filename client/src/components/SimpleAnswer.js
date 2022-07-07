@@ -22,6 +22,8 @@ import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
 import Tooltip from '@mui/material/Tooltip';
 import CheckIcon from '@mui/icons-material/Check';
+import { confirmAlert } from "react-confirm-alert";
+import "react-confirm-alert/src/react-confirm-alert.css";
 
 const SimpleAnswer = ({id, text, likes, name, picture, subQ, subR, statusValidated, setIsModify}) => {
 
@@ -36,22 +38,35 @@ const SimpleAnswer = ({id, text, likes, name, picture, subQ, subR, statusValidat
     id: id,
     text: text
   });
-
-  const [flag, setFlag] = useState(true);
+  
+  const handlerSubmit = () => {
+    confirmAlert({
+      title: "Confirma elegir pregunta favorita",
+      message: "Está seguro de esto?",
+      buttons: [
+        {
+          label: "Sí",
+          onClick: () => validateAnswer(),
+        },
+        {
+          label: "No",
+          onClick: () => alert("Canceló la elección"),
+        },
+      ],
+    });
+  };
 
   function addLike(e) {
     e.preventDefault();
-    if (!liked && flag) {
-      setFlag(false)
-      dispatch(putAnswer({id: id, like: "add", sub: userInfo.sub }, setIsModify, setFlag));
+    if (!liked) {
+      dispatch(putAnswer({id: id, like: "add", sub: userInfo.sub }, setIsModify));
     }
   }
 
   function removeLike(e) {
     e.preventDefault();
-    if (!disliked && flag) {
-      setFlag(false)
-      dispatch(putAnswer({id: id, like: "remove", sub: userInfo.sub }, setIsModify, setFlag));
+    if (!disliked) {
+      dispatch(putAnswer({id: id, like: "remove", sub: userInfo.sub }, setIsModify));
     }
   }
 
@@ -127,18 +142,13 @@ function handleClick() {
           </div>
           <div className={style.validate}>
             <button className={userInfo.sub === subQ && userInfo.sub !== subR && question.statusValidated === false ? style.btnValidate: style.none}
-                    onClick={validateAnswer}
+                    onClick={handlerSubmit}
             > 
               Validar respuesta 
             </button>
           </div>
           <div className={statusValidated ? null : style.none}>
-
-            <span className={style.spn1}>
-              <TaskAltIcon color='success' fontSize='large' />
-              <span className={style.toolTip1}>Respuesta Validada</span>
-            </span>
-
+            <TaskAltIcon color='success' fontSize='large' />
           </div>
         </div>
 
