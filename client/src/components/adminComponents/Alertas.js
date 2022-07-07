@@ -39,6 +39,8 @@ const Alertas = ({ alertsPage, setAlertsPage, setAlertsFlag }) => {
                     }
                     questionId={e.questionId ? e.question.id : null}
                     answerId={e.answerId ? e.answer.id : null}
+                    qStatusDeleted={e.questionId ? e.question.statusDeleted : null}
+                    aStatusDeleted={e.answerId ? e.answer.statusDeleted : null}
                     setAlertsFlag={setAlertsFlag}
                   />
                 </div>
