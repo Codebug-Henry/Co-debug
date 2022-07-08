@@ -11,8 +11,7 @@ import FavoriteIcon from "@mui/icons-material/Favorite";
 import Loading from "../components/Loading";
 
 const Favoritas = () => {
-  const { isAuthenticated, isLoading } = useAuth0();
-  const userInfo = useSelector((state) => state.user);
+  const { isAuthenticated, isLoading, user } = useAuth0();
   const favourites = useSelector((state) => state.favourites);
   const dispatch = useDispatch();
   const [page, setPage] = useState(1);
@@ -21,7 +20,7 @@ const Favoritas = () => {
 
   useEffect(() => {
     if (isAuthenticated) {
-      dispatch(getFavourites(userInfo.sub, page, setLoading));
+      dispatch(getFavourites(user.sub, page, setLoading));
     }
     // eslint-disable-next-line
   }, [page, dispatch, isFavorite]);

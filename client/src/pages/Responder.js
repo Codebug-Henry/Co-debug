@@ -31,6 +31,7 @@ const Responder = () => {
 
   useEffect(() => {
     if (isAuthenticated) dispatch(getUserInfo(user.sub));
+    // eslint-disable-next-line
   }, [isModify]);
 
   const handleChange = (e) => {

@@ -72,11 +72,11 @@ Answer.belongsTo(User)
 Question.hasMany(Answer)
 Answer.belongsTo(Question)
 
-Question.belongsToMany(MacroTag, {through: 'questions_macroTags'})
-MacroTag.belongsToMany(Question, {through: 'questions_macroTags'})
+// Question.belongsToMany(MacroTag, {through: 'questions_macroTags'})
+// MacroTag.belongsToMany(Question, {through: 'questions_macroTags'})
 
-Question.belongsToMany(MicroTag, {through: 'questions_microTags'})
-MicroTag.belongsToMany(Question, {through: 'questions_microTags'})
+// Question.belongsToMany(MicroTag, {through: 'questions_microTags'})
+// MicroTag.belongsToMany(Question, {through: 'questions_microTags'})
 
 MacroTag.hasMany(MicroTag)
 MicroTag.belongsTo(MacroTag)

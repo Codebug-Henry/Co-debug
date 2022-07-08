@@ -68,19 +68,19 @@ const putUserQuestion = async (req, res, next) => {
     } 
 
     try {
-        if(macroTags){
-            macroTags=await MacroTag.findAll({where:{id:macroTags}})
-            let oldMacroTags=await question.getMacroTags()
-            await question.removeMacroTags(oldMacroTags)
-            macroTags=await questionTags(macroTags, MacroTag, question)
-        }
+        // if(macroTags){
+        //     macroTags=await MacroTag.findAll({where:{id:macroTags}})
+        //     let oldMacroTags=await question.getMacroTags()
+        //     await question.removeMacroTags(oldMacroTags)
+        //     macroTags=await questionTags(macroTags, MacroTag, question)
+        // }
 
-        if(microTags){
-            microTags=await MicroTag.findAll({where:{id:microTags}})
-            let oldMicroTags=await question.getMicroTags()
-            await question.removeMicroTags(oldMicroTags)
-            microTags=await questionTags(microTags, MicroTag, question)
-        }
+        // if(microTags){
+        //     microTags=await MicroTag.findAll({where:{id:microTags}})
+        //     let oldMicroTags=await question.getMicroTags()
+        //     await question.removeMicroTags(oldMicroTags)
+        //     microTags=await questionTags(microTags, MicroTag, question)
+        // }
         
         if (statusDeleted) {
             let promise = userQues.update({cantQuest: userQues.cantQuest - 1})
@@ -122,8 +122,8 @@ const postQuestion = async (req, res, next) => {
         await user.update({cantQuest: user.cantQuest + 1})
         const newQuestion = await Question.create({text, title,imgs})
         // console.group(macrotag)
-        macroTags=await questionTags(macroTags, MacroTag, newQuestion)
-        microTags=await questionTags(microTags, MicroTag, newQuestion)
+        // macroTags=await questionTags(macroTags, MacroTag, newQuestion)
+        // microTags=await questionTags(microTags, MicroTag, newQuestion)
 
         newQuestion.setUser(user)
         res.send({user, ...newQuestion.dataValues, macroTags, microTags})
@@ -141,8 +141,8 @@ const getSingleQuestion = async (req, res, next) => {
             include: [
                 {model: User},
                 {model: Answer, required: false, where: {statusDeleted: false}, include: User},
-                {model: MacroTag},
-                {model: MicroTag}
+                // {model: MacroTag},
+                // {model: MicroTag}
             ], order: [
                 [Answer, 'statusValidated', 'DESC'],
                 [Answer, 'createdAt', 'ASC'], 

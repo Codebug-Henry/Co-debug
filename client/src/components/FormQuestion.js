@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getAllTags, getUserInfo, sendQuestion } from "../redux/actions/index";
+import { getAllTags, sendQuestion } from "../redux/actions/index";
 import style from "./styles/FormQuestion.module.css";
 import InfoPopper from "./InfoPopper";
 import { useNavigate } from "react-router-dom";
@@ -14,9 +14,8 @@ const FormQuestion = () => {
   const tags = useSelector((state) => state.tags);
 
   useEffect(() => {
-    dispatch(getUserInfo(userInfo.sub));
     dispatch(getAllTags());
-  }, [dispatch, userInfo.sub]);
+  }, [dispatch]);
 
   const navigate = useNavigate();
 

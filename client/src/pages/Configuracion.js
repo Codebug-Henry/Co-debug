@@ -12,11 +12,11 @@ import StatsUser from "../components/StatsUser";
 import TeachPoints from "../components/TeachPoints";
 import { confirmAlert } from "react-confirm-alert";
 import "react-confirm-alert/src/react-confirm-alert.css";
-import { useParams } from "react-router-dom";
+// import { useParams } from "react-router-dom";
 
 const Configuracion = () => {
   const { isAuthenticated, isLoading } = useAuth0();
-  const { sub } = useParams();
+  // const { sub } = useParams();
   const userInfo = useSelector((state) => state.user);
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -44,10 +44,6 @@ const Configuracion = () => {
       ],
     });
   };
-
-  useEffect(() => {
-    dispatch(getUserInfo(sub));
-  }, [dispatch, sub]);
 
   useEffect(() => {
     setInput({

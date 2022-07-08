@@ -13,8 +13,8 @@ const getAnswers = async (req, res, next) => {
         {model: Question,
         include: [
           {model: User},
-          {model: MacroTag},
-          {model: MicroTag}
+          // {model: MacroTag},
+          // {model: MicroTag}
         ]},
       ]
     })
