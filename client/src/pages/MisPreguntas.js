@@ -14,7 +14,7 @@ import quest from "../images/question.png";
 import { useNavigate } from "react-router-dom";
 
 const MisPreguntas = () => {
-  const { isAuthenticated, isLoading } = useAuth0();
+  const { isAuthenticated } = useAuth0();
   const user = useSelector((state) => state.user);
   const questions = useSelector((state) => state.userQuestions);
   const dispatch = useDispatch();

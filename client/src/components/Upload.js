@@ -5,21 +5,25 @@ import { useSelector } from 'react-redux';
 import { useDispatch } from 'react-redux';
 import { getUserInfo, putUserInfo } from "../redux/actions"
 import style from "./styles/Upload.module.css"
+import { useAuth0 } from "@auth0/auth0-react";
 
 const Upload = () => {
-    const user = useSelector((state)=>state.user)
+    const { isAuthenticated, user } = useAuth0();
+    const userInfo = useSelector((state) => state.user)
     const [ image, setImage ] = useState(null);
     const [ loading, setLoading ] = useState(false)
     const [ isModify, setIsModify ] = useState(false);
     const dispatch = useDispatch()
 
     useEffect(() => {
-      dispatch(getUserInfo(user.sub))
+      if (isAuthenticated) {
+        dispatch(getUserInfo(user.sub));
+      }
       // eslint-disable-next-line
     }, [isModify])
 
     const handleClick = () => {
-      dispatch(putUserInfo(user.sub, {
+      dispatch(putUserInfo(userInfo.sub, {
         picture: image
       }, null, setIsModify))
     }
@@ -48,7 +52,7 @@ const Upload = () => {
             <div className={style.loader}>
               {loading
               ? <h6>Cargando...</h6>
-              : <img src={image || user.picture} alt="foto usuario" className={style.foto} referrerPolicy="no-referrer"/>}
+              : <img src={image || userInfo.picture} alt="foto usuario" className={style.foto} referrerPolicy="no-referrer"/>}
             </div>
             <div className={style.btn}>
               <input  type="file"
