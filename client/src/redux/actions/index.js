@@ -78,11 +78,12 @@ export const getUserInfo = (sub) => async (dispatch) => {
   }
 };
 
-export const putUserInfo = (sub, modify, setLoading) => async (dispatch) => {
+export const putUserInfo = (sub, modify, setLoading, setIsModify) => async (dispatch) => {
   try {
     await api.putUserInfo(sub, modify);
     // dispatch({ type: MODIFY_USER, payload: data})
     setLoading && setLoading(false);
+    setIsModify && setIsModify(prevState => !prevState);
   } catch (error) {
     console.log(error.message);
   }
