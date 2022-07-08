@@ -289,19 +289,35 @@
             statusDeleted,
             statusValidated,
             cantAnswers,
-            respuestas: [
-                {
-                    text,
-                    likes,
-                },
-                .
-                .
-                .
-                {
-                    text,
-                    likes,
-                }
-            ]
+            respuestas: {
+                totalPages: (cantidad de paginas totales),
+                pages: []     //rango de paginas habilitadas (máximo 5),
+                results: [
+                    {
+                        id,
+                        text,
+                        likes,
+                        teachPoints,
+                        teachPoints,
+                        statusValidated,
+                        userSub,
+                        questionId
+                    },
+                    .
+                    .
+                    .
+                    {
+                        id,
+                        text,
+                        likes,
+                        teachPoints,
+                        teachPoints,
+                        statusValidated,
+                        userSub,
+                        questionId
+                    }
+                ]
+            }
         }
 
 ***
