@@ -3,6 +3,72 @@ html {
   position: relative;
 }
 
+.userImageTop {
+  display: flex;
+  justify-content: center;
+  margin-right: 2vh;
+}
+
+.colunmNroTop {
+  display: flex;
+  justify-content: center;
+  margin-right: 2.5vh;
+}
+
+.colunmNickTop {
+  display: flex;
+  justify-content: center;
+  margin-right: 2vh;
+}
+
+.colunmTeachTop {
+  display: flex;
+  justify-content: center;
+  margin-right: 2vh;
+}
+
+.colunmRespTop {
+  display: flex;
+  justify-content: center;
+  margin-right: 2vh;
+}
+
+.colunmPregTop {
+  display: flex;
+  justify-content: center;
+}
+
+.userImage {
+  border-radius: 30px;
+  width: 8vh;
+  padding-top: 1vh;
+}
+
+.colunmNro {
+  display: flex;
+  justify-content: center;
+}
+
+.colunmNick {
+  display: flex;
+  justify-content: center;
+}
+
+.colunmTeach {
+  display: flex;
+  justify-content: center;
+}
+
+.colunmResp {
+  display: flex;
+  justify-content: center;
+}
+
+.colunmPreg {
+  display: flex;
+  justify-content: center;
+}
+
 .footer {
   position: absolute;
   left: 0;
@@ -21,7 +87,7 @@ html {
   margin-bottom: 10vh;
 }
 
-.filterbar { 
+.filterbar {
   background-color: #ffc107;
   padding: 9px;
 }
@@ -37,11 +103,23 @@ html {
 
 .container {
   background-color: white;
-  border-radius: 1vh;
+  border-radius: 0.5vh;
   box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
   padding: 2%;
   margin-top: 1%;
   width: 70%;
+}
+
+@media screen and (max-width: 900px) {
+  .container {
+    width: 90%;
+  }
+}
+
+@media screen and (max-width: 700px) {
+  .container {
+    width: 96%;
+  }
 }
 
 .columnsname {
@@ -57,13 +135,7 @@ html {
   border-top: 1px solid grey;
 }
 
-.info p{
+.info p {
   margin-top: 2.5vh;
   margin-left: 1.5vw;
-}
-
-.userImage {
-  border-radius: 30px;
-  width: 8vh;
-  padding-top: 1vh;
 }

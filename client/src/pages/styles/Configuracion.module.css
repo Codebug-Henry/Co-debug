@@ -53,7 +53,7 @@ html {
   padding: 2vh;
   background-color: lightyellow;
   /* border: 1px black solid; */
-  border-radius: 1vh;
+  border-radius: 0.5vh;
 }
 
 .col11 {
@@ -80,12 +80,12 @@ html {
 }
 
 .errorInputs {
-  border-radius: 1vh;
+  border-radius: 0.5vh;
   border: solid 2px #f9bf00;;
 }
 
 .errorInputs:hover {
-  border-radius: 1vh;
+  border-radius: 0.5vh;
   border: solid 2px #f9bf00;;
 }
 
@@ -105,13 +105,15 @@ html {
 }
 
 .inputs {
-  border-radius: 1vh;
+  border-radius: 0.5vh;
   border: solid 1.5px grey;
   width: 165px;
+  height: 28px;
+  font-size: 14px;
 }
 
 .buttonUpdate {
-  border-radius: 1vh;
+  border-radius: 0.5vh;
   background-color: rgb(240, 238, 238);
   border: solid 2px black;
 }

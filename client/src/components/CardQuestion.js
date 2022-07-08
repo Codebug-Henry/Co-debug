@@ -9,8 +9,6 @@ import { addFavourites, modifyQuestion } from "../redux/actions";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import Modal from "@mui/material/Modal";
-// import { Checkbox } from "@mui/material";
-// import FormGroup from '@mui/material/FormGroup';
 import FormControlLabel from "@mui/material/FormControlLabel";
 import Radio from "@mui/material/Radio";
 import RadioGroup from "@mui/material/RadioGroup";
@@ -20,7 +18,7 @@ import { useDispatch, useSelector } from "react-redux";
 import axios from "axios";
 import ReactMarkdown from "react-markdown";
 import Highlighter from "./Highlighter";
-import TaskAltIcon from '@mui/icons-material/TaskAlt';
+import TaskAltIcon from "@mui/icons-material/TaskAlt";
 
 const CardQuestion = ({
   cantAnswers,
@@ -32,13 +30,12 @@ const CardQuestion = ({
   teachPoints,
   id,
   setIsFavorite,
-  statusValidated
+  statusValidated,
 }) => {
-
   const dispatch = useDispatch();
   const userInfo = useSelector((state) => state.user);
-  const liked = userInfo.questLiked?.includes(id)
-  const disliked = userInfo.questDisliked?.includes(id)
+  const liked = userInfo.questLiked?.includes(id);
+  const disliked = userInfo.questDisliked?.includes(id);
 
   const [flag, setFlag] = useState(true);
 
@@ -55,16 +52,30 @@ const CardQuestion = ({
   async function addLike(e) {
     e.preventDefault();
     if (!liked && flag) {
-      setFlag(false)
-      dispatch(modifyQuestion({ id: id, like: "add", sub: userInfo.sub }, null, setIsFavorite, setFlag));
+      setFlag(false);
+      dispatch(
+        modifyQuestion(
+          { id: id, like: "add", sub: userInfo.sub },
+          null,
+          setIsFavorite,
+          setFlag
+        )
+      );
     }
   }
 
   async function removeLike(e) {
     e.preventDefault();
     if (!disliked && flag) {
-      setFlag(false)
-      dispatch(modifyQuestion({ id: id, like: "remove", sub: userInfo.sub }, null, setIsFavorite, setFlag));
+      setFlag(false);
+      dispatch(
+        modifyQuestion(
+          { id: id, like: "remove", sub: userInfo.sub },
+          null,
+          setIsFavorite,
+          setFlag
+        )
+      );
     }
   }
 
@@ -74,7 +85,6 @@ const CardQuestion = ({
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
 
-
   const handleChangeAlert = (e) => {
     setSelected(e.target.value);
   };
@@ -82,48 +92,51 @@ const CardQuestion = ({
   const handleAlert = (e) => {
     e.preventDefault();
     let pack = { id, message: selected, subCreator: userInfo.sub };
-    axios
-      .post("/alert/question", pack)
-      .then((response) => null);
+    axios.post("/alert/question", pack).then((response) => null);
     handleClose();
   };
 
   return (
-    <div className={statusValidated ?
-                    `container-fluid ${style.validated}`:
-                     `container-fluid ${style.total}`}>
+    <div
+      className={
+        statusValidated
+          ? `container-fluid ${style.validated}`
+          : `container-fluid ${style.total}`
+      }
+    >
       <div className={`row ${style.fila}`}>
         <div className={`col-lg-1 ${style.pictureBox}`}>
-          <img className={style.userImage} src={picture} alt="imagen user" referrerPolicy="no-referrer"/>
+          <img
+            className={style.userImage}
+            src={picture}
+            alt="imagen user"
+            referrerPolicy="no-referrer"
+          />
           <div className={statusValidated ? style.success : style.none}>
-            <TaskAltIcon color='success' fontSize='large' />
+            <span className={style.span6}>
+              <TaskAltIcon color="success" fontSize="large" />
+              <span className={style.toolTip6}>Respuesta Validada</span>
+            </span>
           </div>
         </div>
         <div className={`col-lg-11 ${style.leftBox}`}>
-
           <div className={style.TitleAndExtrasBox}>
             <div className={style.firstRow}>
               <div className={style.userPreg}>
                 <span>{nickname} pregunta:</span>
               </div>
-              
+
               <div className={style.Extras}>
                 <Link to={`/responder/${id}`} className={style.botonResp}>
-                  <span>
-                    {cantAnswers} respuestas
-                  </span>
-                </Link> 
-                  <span>
-                    - T. Points: {teachPoints}
-                  </span>  
+                  <span>{cantAnswers} respuestas</span>
+                </Link>
+                <span>- T. Points: {teachPoints}</span>
               </div>
             </div>
             <div className={style.Title}>
               <span>{title}</span>
             </div>
           </div>
-
-          {/* <div className={style.questionText}>{text}</div> */}
           <div className={style.questionText}>
             <ReactMarkdown children={text} components={{ code: Highlighter }} />
           </div>
@@ -138,9 +151,7 @@ const CardQuestion = ({
                 />
                 <span className={style.toolTip2}>Like</span>
               </span>
-              <span className={style.spanLikes}>
-                {likes}
-              </span>
+              <span className={style.spanLikes}>{likes}</span>
               <span className={style.span}>
                 <ThumbDownIcon
                   fontSize="medium"
@@ -153,29 +164,28 @@ const CardQuestion = ({
             </div>
 
             <div>
-              {userInfo.favourites?.includes(id) ? 
-              <span className={style.span3}>
-                <FavoriteIcon
-                  fontSize="medium"
-                  color="error"
-                  id="favorite"
-                  className={style.fav}
-                  onClick={(e) => handleRemoveFavourite(e)}
-                />
-                <span className={style.toolTip3}>Quitar Favoritos</span>
-              </span>
-                : 
-              <span className={style.span4}>
-                <FavoriteIcon
-                fontSize="medium"
-                color="action"
-                className={style.fav}
-                onClick={(e) => handleAddFavourite(e)}
-                />
-                <span className={style.toolTip4}>Agregar Favoritos</span>
-              </span>
-            }
-            
+              {userInfo.favourites?.includes(id) ? (
+                <span className={style.span3}>
+                  <FavoriteIcon
+                    fontSize="medium"
+                    color="error"
+                    id="favorite"
+                    className={style.fav}
+                    onClick={(e) => handleRemoveFavourite(e)}
+                  />
+                  <span className={style.toolTip3}>Quitar Favoritos</span>
+                </span>
+              ) : (
+                <span className={style.span4}>
+                  <FavoriteIcon
+                    fontSize="medium"
+                    color="action"
+                    className={style.fav}
+                    onClick={(e) => handleAddFavourite(e)}
+                  />
+                  <span className={style.toolTip4}>Agregar Favoritos</span>
+                </span>
+              )}
             </div>
             <div>
               <span className={style.span5}>
@@ -198,24 +208,39 @@ const CardQuestion = ({
                     id="modal-modal-title"
                     variant="h6"
                     component="h2"
-                    sx={{ mt: 2, marginLeft: '1vw', marginRight: '0.5vw' }}
+                    sx={{ mt: 2, marginLeft: "1vw", marginRight: "0.5vw" }}
                   >
                     Reportar pregunta
                   </Typography>
-                  <Typography id="modal-modal-description" sx={{ mt: 2, marginLeft: '1vw', marginRight: '0.5vw', fontStyle: 'normal' }}>
+                  <Typography
+                    id="modal-modal-description"
+                    sx={{
+                      mt: 2,
+                      marginLeft: "1vw",
+                      marginRight: "0.5vw",
+                      fontStyle: "normal",
+                    }}
+                  >
                     Eliga su motivo para reportar esta pregunta
                   </Typography>
                   <div>
                     <FormControl>
-                      <FormLabel id="demo-radio-buttons-group-label"
-                                  sx={{ fontStyle: 'normal', mt: 2, marginLeft: '1vw', marginRight: '0.5vw' }}>
+                      <FormLabel
+                        id="demo-radio-buttons-group-label"
+                        sx={{
+                          fontStyle: "normal",
+                          mt: 2,
+                          marginLeft: "1vw",
+                          marginRight: "0.5vw",
+                        }}
+                      >
                         Opciones:{" "}
                       </FormLabel>
                       <RadioGroup
                         aria-labelledby="demo-radio-buttons-group-label"
                         defaultValue=""
                         name="radio-buttons-group"
-                        sx={{ mt: 2, marginLeft: '1vw', marginRight: '0.5vw' }}
+                        sx={{ mt: 2, marginLeft: "1vw", marginRight: "0.5vw" }}
                       >
                         <FormControlLabel
                           onChange={(e) => handleChangeAlert(e)}
@@ -238,7 +263,12 @@ const CardQuestion = ({
                       </RadioGroup>
                     </FormControl>
                   </div>
-                  <button className={style.enviar} onClick={(e) => handleAlert(e)}>Enviar</button>
+                  <button
+                    className={style.enviar}
+                    onClick={(e) => handleAlert(e)}
+                  >
+                    Enviar
+                  </button>
                 </Box>
               </Modal>
             </div>

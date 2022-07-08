@@ -6,54 +6,56 @@ import { useDispatch } from 'react-redux';
 import { getUserInfo, putUserInfo } from "../redux/actions"
 import style from "./styles/Upload.module.css"
 
-
-
 const Upload = () => {
     const user = useSelector((state)=>state.user)
     const [ image, setImage ] = useState(null);
     const [ loading, setLoading ] = useState(false)
+    const [ isModify, setIsModify ] = useState(false);
     const dispatch = useDispatch()
 
     useEffect(() => {
       dispatch(getUserInfo(user.sub))
       // eslint-disable-next-line
-    }, [loading])
+    }, [isModify])
 
     const handleClick = () => {
-      setLoading(true)
-      dispatch(putUserInfo(user.sub,{
-        picture:image
-      }, setLoading))
+      dispatch(putUserInfo(user.sub, {
+        picture: image
+      }, null, setIsModify))
     }
 
-    const uploadImage = async (e)=>{
+    const uploadImage = async (e) => {
+      const files = e.target.files
+      if (files[0]) {
         setLoading(true)
-        const files = e.target.files
         const data = new FormData()
         data.append('file', files[0])
-        data.append('upload_preset','codebug')
-        const res = await axios.post("https://api.cloudinary.com/v1_1/codebugers/image/upload",data)
+        data.append('upload_preset', 'codebug')
+        const res = await axios.post("https://api.cloudinary.com/v1_1/codebugers/image/upload", data)
         const file = res.data
         setImage(file.secure_url)
         setLoading(false)
+      }
     }
 
   return (
     <div>
-        {loading ? <h5>Cargando...</h5> : (
         <div className={style.fullContainer}>
           <div className={`col-lg-4 ${style.col2}`}>
-            <p>Cambia tu foto:</p>
+            Cambia tu foto:
           </div>
           <div className={`col-lg-4 ${style.col2} ${style.photo}`}>
-            <div>
-              <img src={image || user.picture} alt="foto usuario" className={style.foto} referrerPolicy="no-referrer"/>
+            <div className={style.loader}>
+              {loading
+              ? <h6>Cargando...</h6>
+              : <img src={image || user.picture} alt="foto usuario" className={style.foto} referrerPolicy="no-referrer"/>}
             </div>
             <div className={style.btn}>
               <input  type="file"
                       name="file"
                       placeholder='Click para elegir'
-                    onChange={(e)=>uploadImage(e)}
+                      accept=".jpg, .jpeg, .png"
+                      onChange={(e)=>uploadImage(e)}
               />
             </div>
             <div id="archivoseleccionado"></div>
@@ -61,8 +63,7 @@ const Upload = () => {
           <div className={`col-lg-4 ${style.col2}`}>
             <button onClick={handleClick} className={style.btnPhoto}>Confirmar</button>
           </div>
-        </div>)
-        }
+        </div>
     </div>
   );
 }

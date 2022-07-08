@@ -161,26 +161,30 @@ const putFavourites = async (req, res, next) => {
     try {
 
         const user = await User.findByPk(sub)
-        
+        const parsedId = parseInt(id)
+        let favouritesSet = new Set(user.favourites)
+
         if (add === "true") {
 
-            const newFavourites = [...user.favourites, parseInt(id)]
+            if (!favouritesSet.has(parsedId)) {
+                favouritesSet.add(parsedId)
+                await user.update({
+                    favourites: [...favouritesSet],
+                    cantFav: user.cantFav + 1
+                })
+            }
 
-            await user.update({
-                favourites: newFavourites,
-                cantFav: user.cantFav + 1
-            })
-
-            res.send(newFavourites)
+            res.send([...favouritesSet])
 
         } else {
 
-            const filteredFavourites = user.favourites.filter(e => e !== parseInt(id))
-            
-            await user.update({
-                favourites: filteredFavourites,
-                cantFav: user.cantFav - 1
-            })
+            if (favouritesSet.has(parsedId)) {
+                favouritesSet.delete(parsedId)
+                await user.update({
+                    favourites: [...favouritesSet],
+                    cantFav: user.cantFav - 1
+                })
+            }
 
             res.send("Question removed from favourites")
 

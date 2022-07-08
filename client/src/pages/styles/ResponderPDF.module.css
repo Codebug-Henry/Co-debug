@@ -13,9 +13,10 @@
 
 .pdfdownload{
     cursor: pointer;
-    width: 3%;
+    width: 2.9%;
+    min-width: 33px;
     position: relative;
     float: right;
     top: 1vh; 
-    right: 8vw
+    right: 8vw;
 }

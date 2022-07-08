@@ -6,6 +6,7 @@ import InfoPopper from "./InfoPopper";
 import { useNavigate } from "react-router-dom";
 import ReactMarkdown from "react-markdown";
 import Highlighter from "./Highlighter";
+import axios from "axios";
 
 const FormQuestion = () => {
   const dispatch = useDispatch();
@@ -52,6 +53,8 @@ const FormQuestion = () => {
   });
 
   const [errors, setErrors] = useState({});
+
+  const [loading, setLoading] = useState(false)
 
   function handleChange(e) {
     setInput({
@@ -175,6 +178,25 @@ const FormQuestion = () => {
     });
   }
 
+  async function uploadImage(e) {
+    const files = e.target.files
+    if (files[0]) {
+      setLoading(true)
+      const data = new FormData()
+      data.append('file', files[0])
+      data.append('upload_preset', 'codebug')
+      const res = await axios.post("https://api.cloudinary.com/v1_1/codebugers/image/upload", data)
+      const file = res.data
+      setInput({
+        ...input,
+        text:
+          input.text +
+          `\n\n![image](${file.secure_url})\n\n`,
+      });
+      setLoading(false)
+    }
+  }
+
   return (
     <div id={style.all}>
       <div id={style.title}>
@@ -184,12 +206,13 @@ const FormQuestion = () => {
       <div id={style.contenedor}>
         <form id={style.form}>
           <div id={style.div1}>
-            <p> Elige un título: </p>
+            <div className={style.labelTitle}> Elige un título: </div>
             <input
               type="text"
               value={input.title}
               name="title"
               autoComplete="off"
+              className={style.inputTitle}
               onChange={handleChange}
             />
             {errors.title && (
@@ -201,7 +224,7 @@ const FormQuestion = () => {
           <div className={style.view}>
             <div className={style.div2}>
               <div className={style.pregBtn}>
-                <p> Ingresa tu pregunta: </p>
+                <div> Ingresa tu pregunta: </div>
                 <button
                   type="button"
                   className={style.btnCode}
@@ -233,6 +256,17 @@ const FormQuestion = () => {
                 components={{ code: Highlighter }}
               />
             </div>
+          </div>
+          <div className={style.adjBox}>
+            <span className={style.adjText}>Adjuntar imagen:</span>
+            <input 
+              type="file"
+              name="file"
+              placeholder='Click para elegir'
+              accept=".jpg, .jpeg, .png"
+              onChange={(e) => uploadImage(e)}
+            />
+            {loading && <span className={style.loader}>Cargando...</span>}
           </div>
           <div id={style.div3}>
             <div className={style.macroTag1}>

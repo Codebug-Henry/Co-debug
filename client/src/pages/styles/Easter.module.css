@@ -48,7 +48,7 @@
 .cajaParrafo{
     opacity: 80%;
     background-color: rgb(255, 255, 255);
-    border-radius: 1vh;
+    border-radius: 0.5vh;
     width: 40%;
     box-shadow: 3px 3px 1px 3px;
     padding: 2vh;

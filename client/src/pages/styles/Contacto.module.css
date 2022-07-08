@@ -23,3 +23,10 @@ html {
 .container {
   background-color: lightyellow;
 }
+
+.email {
+  width: 88%;
+  background-color: lightyellow;
+  margin: auto;
+  font-size: 14px;
+}

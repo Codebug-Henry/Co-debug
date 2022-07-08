@@ -34,32 +34,35 @@ const putUserQuestion = async (req, res, next) => {
         //             cantFav: user.cantFav + 1
         //         })
     
-        let newLikes = question.likes
+    let newLikes = question.likes
         
     if (like === "add") {
-        if (userLogged.questDisliked.includes(id)) {
-            let userLoggedDisliked = userLogged.questDisliked.filter(questId => questId !== id)
-            await userLogged.update({questDisliked: userLoggedDisliked})
+        let likedSet = new Set(userLogged.questLiked)
+        let dislikedSet = new Set(userLogged.questDisliked)
+
+        if (dislikedSet.has(id)) {
+            dislikedSet.delete(id)
+            await userLogged.update({questDisliked: [...dislikedSet]})
             newLikes++
         }
-        else if (!userLogged.questLiked.includes(id)) {
-            // const mySet1 = new Set()
-            // mySet1 = [...userLogged.questLiked]
-            // mySet1.add(id)
-            let userLoggedLiked = [...userLogged.questLiked, id]
-            await userLogged.update({questLiked: userLoggedLiked})
+        else if (!likedSet.has(id)) {
+            likedSet.add(id)
+            await userLogged.update({questLiked: [...likedSet]})
             newLikes++
         }
     }
     else if (like === "remove"){
-        if (userLogged.questLiked.includes(id)) {
-            let userLoggedLiked = userLogged.questLiked.filter(questId => questId !== id)
-            await userLogged.update({questLiked: userLoggedLiked})
+        let likedSet = new Set(userLogged.questLiked)
+        let dislikedSet = new Set(userLogged.questDisliked)
+        
+        if (likedSet.has(id)) {
+            likedSet.delete(id)
+            await userLogged.update({questLiked: [...likedSet]})
             newLikes--
         }
-        else if (!userLogged.questDisliked.includes(id)) {
-            let userLoggedDisliked = [...userLogged.questDisliked, id]
-            await userLogged.update({questDisliked: userLoggedDisliked})
+        else if (!dislikedSet.has(id)) {
+            dislikedSet.add(id)
+            await userLogged.update({questDisliked: [...dislikedSet]})
             newLikes--
         }
     } 

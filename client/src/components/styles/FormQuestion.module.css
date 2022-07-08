@@ -42,11 +42,20 @@
   width: 100%;
 }
 
+.labelTitle {
+  margin-bottom: 10px;
+}
+
+.inputTitle {
+  margin: 0px;
+}
+
 .pregBtn {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   width: 95%;
+  margin-bottom: 5px;
 }
 
 .div2 textarea,
@@ -62,6 +71,7 @@
 
 .markdown {
   overflow-y: scroll;
+  padding: 2px;
 }
 
 .view {
@@ -193,6 +203,18 @@
   color: #c0c0c0;
   cursor: none;
   border: black solid 0.5px;
+}
+
+.adjBox {
+  margin-bottom: 2vh;
+}
+
+.adjText {
+  margin-right: 2vh;
+}
+
+.loader {
+  font-size: 14px;
 }
 
 #title {

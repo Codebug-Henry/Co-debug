@@ -4,6 +4,7 @@ import {
   getAllQuestions,
   getSearchQuestions,
   setSort,
+  setSortValidate,
 } from "../redux/actions/index.js";
 import style from "./styles/NavBar.module.css";
 
@@ -11,11 +12,12 @@ const NavBar = ({ search, setSearch }) => {
   const dispatch = useDispatch();
   const [page, setPage] = useState(1);
   const sort = useSelector((state) => state.sort);
+  const validated = useSelector((state) => state.sortValidate);
 
   const onChangeSearch = (e) => {
     setSearch(e.target.value);
     setPage(1);
-    dispatch(getSearchQuestions(e.target.value, sort, page));
+    dispatch(getSearchQuestions(e.target.value, sort, page, validated));
   };
 
   const handlerRefresh = () => {
@@ -25,9 +27,18 @@ const NavBar = ({ search, setSearch }) => {
   const handleSort = (e) => {
     dispatch(setSort(e.target.value));
     if (search.length > 0) {
-      dispatch(getSearchQuestions(search, e.target.value, page));
+      dispatch(getSearchQuestions(search, e.target.value, page, validated));
     } else {
-      dispatch(getAllQuestions(e.target.value, page));
+      dispatch(getAllQuestions(e.target.value, page, validated));
+    }
+  };
+
+  const handleSortValidate = (e) => {
+    dispatch(setSortValidate(e.target.value));
+    if (search.length > 0) {
+      dispatch(getSearchQuestions(search, sort, page, e.target.value));
+    } else {
+      dispatch(getAllQuestions(sort, page, e.target.value));
     }
   };
 
@@ -61,7 +72,7 @@ const NavBar = ({ search, setSearch }) => {
 
           <div className="collapse navbar-collapse" id="navbarSupportedContent">
             <ul className={`navbar-nav me-auto mb-2 mb-lg-0 ${style.ul}`}>
-              <select 
+              <select
                 value={sort}
                 onChange={handleSort}
                 className={`nav-item dropdown ${style.order}`}
@@ -84,6 +95,31 @@ const NavBar = ({ search, setSearch }) => {
                   Más antiguas
                 </option>
               </select>
+              <select
+                value={validated}
+                onChange={handleSortValidate}
+                className={`nav-item dropdown ${style.order}`}
+              >
+                <option
+                  className="nav-link dropdown-toggle"
+                  id="navbarDropdown"
+                  role="button"
+                  data-bs-toggle="dropdown"
+                  aria-expanded="false"
+                  hidden
+                >
+                  Antiguedad
+                </option>
+                <option value="All" className="dropdown-item">
+                  Todas
+                </option>
+                <option value="true" className="dropdown-item">
+                  Validadas
+                </option>
+                <option value="false" className="dropdown-item">
+                  No Validadas
+                </option>
+              </select>
               <li className="nav-item dropdown">
                 <span
                   className="nav-link dropdown-toggle"
@@ -92,7 +128,7 @@ const NavBar = ({ search, setSearch }) => {
                   data-bs-toggle="dropdown"
                   aria-expanded="false"
                 >
-                  Gral tag's
+                  MacroTags
                 </span>
                 <ul className="dropdown-menu" aria-labelledby="navbarDropdown">
                   <li>
@@ -135,7 +171,7 @@ const NavBar = ({ search, setSearch }) => {
                   data-bs-toggle="dropdown"
                   aria-expanded="false"
                 >
-                  Micro tag's
+                  MicroTags
                 </span>
                 <ul className="dropdown-menu" aria-labelledby="navbarDropdown">
                   <li>

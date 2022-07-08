@@ -54,6 +54,7 @@
 .navSearch{
   margin-left: 5.9%;
   margin-right: 3%;
+  border-radius: 0.5vh;
 }
 .gralTags{
   margin-left: 10.5%;
@@ -61,11 +62,15 @@
 }
 .refresh{
   margin-right: 9%;
+  border-radius: 0.5vh;
 }
 
 .order{
-  border-radius: 5px;
-  border: 1px solid lightgray;
+  background-color: transparent;
+  border: 1px solid transparent;
+  font-size: 16px;
+  color: #4e4e4e;
+  margin: 4px;
 }
 /* .fullPage {
   border: 1px solid red;

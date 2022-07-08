@@ -86,7 +86,9 @@ const CardQuestLogOut = ({
               <BlockIcon onClick={() => loginWithRedirect()} className={style.delete} fontSize="medium" color='action'/>
             </div>
             <div>
-                <button className={style.answerIt} onClick={() => loginWithRedirect()} >Responder</button>
+              <Link to={`/responder/${id}`}>
+                <button className={style.answerIt}>Responder</button>
+              </Link>
              </div>
           </div>
         </div>
