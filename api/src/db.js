@@ -61,9 +61,8 @@ sequelize.models = Object.fromEntries(capsEntries);
 
 const { User, Question, Answer, Message, MacroTag, MicroTag, Alert } = sequelize.models;
 
-
 // Aca vendrian las relaciones
-//User.addQuestion(pregunta nueva)
+
 User.hasMany(Question)
 Question.belongsTo(User)
 
@@ -73,14 +72,17 @@ Answer.belongsTo(User)
 Question.hasMany(Answer)
 Answer.belongsTo(Question)
 
-User.hasMany(Message)
-Message.belongsTo(User)
+Question.belongsToMany(MacroTag, {through: 'questions_macroTags'})
+MacroTag.belongsToMany(Question, {through: 'questions_macroTags'})
 
-Question.hasMany(MicroTag)
-Question.hasMany(MacroTag)
+Question.belongsToMany(MicroTag, {through: 'questions_microTags'})
+MicroTag.belongsToMany(Question, {through: 'questions_microTags'})
 
 MacroTag.hasMany(MicroTag)
 MicroTag.belongsTo(MacroTag)
+
+User.hasMany(Message)
+Message.belongsTo(User)
 
 Question.hasMany(Alert)
 Alert.belongsTo(Question)
