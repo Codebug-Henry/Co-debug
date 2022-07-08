@@ -54,6 +54,7 @@ const Upload = () => {
               <input  type="file"
                       name="file"
                       placeholder='Click para elegir'
+                      accept=".jpg, .jpeg, .png"
                       onChange={(e)=>uploadImage(e)}
               />
             </div>
