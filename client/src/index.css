@@ -1,0 +1,18 @@
+/* :root {
+  --text-color: red;
+  --bg-color: blue;
+}
+
+[data-theme="dark"] {
+  --text-color: blue;
+  --bg-color: red;
+}
+
+h4 {
+  color: var(--text-color);
+}
+
+.container {
+  background-color: var(--bg-color);
+  padding: 2.4%;
+} */
