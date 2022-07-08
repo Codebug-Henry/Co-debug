@@ -269,7 +269,11 @@
 
 - **DESCRIPCION**: esta ruta es para acceder al detalle de una pregunta con todas sus respuestas.
 
-- **REQUERIMIENTOS**: por params enviar id de pregunta. 
+- **REQUERIMIENTOS**: por params enviar id de pregunta y por query enviar page y limit para el paginado de las respuestas.
+
+/:id    (id de la pregunta)
+?page=(número de página)
+&limit=(cantidad de elementos por página)
 
 - **RESPUESTA**: devuelvo un objeto con la info de la pregunta.
 
