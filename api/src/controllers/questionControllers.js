@@ -1,5 +1,5 @@
 const {User, Question, Answer, MacroTag, MicroTag} = require("../db.js")
-const { questionTags } = require("./generalControllers.js")
+const { questionTags, paginate } = require("./generalControllers.js")
 
 const deleteUserQuestion = async (req, res, next) => {
     const {id} = req.params
@@ -135,9 +135,10 @@ const postQuestion = async (req, res, next) => {
 
 const getSingleQuestion = async (req, res, next) => {
     const id = req.params.id
+    const {page, limit} = req.query
 
     try {
-        const question = await Question.findByPk(id, {
+        let question = await Question.findByPk(id, {
             include: [
                 {model: User},
                 {model: Answer, required: false, where: {statusDeleted: false}, include: User},
@@ -148,7 +149,14 @@ const getSingleQuestion = async (req, res, next) => {
                 [Answer, 'createdAt', 'ASC'], 
                 [Answer, 'text', 'DESC'], 
             ]
-        })        
+        })
+
+        const answers = paginate(parseInt(limit), parseInt(page), question.answers)
+
+        question = {
+            ...question.dataValues,
+            answers
+        }
 
         res.send(question)
 
