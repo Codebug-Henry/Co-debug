@@ -3,7 +3,7 @@
   flex-direction: column;
   background: orange;
   border: 1px solid black;
-  border-radius: 1vh;
+  border-radius: 0.5vh;
   margin-top: 3vh;
 }
 
@@ -28,7 +28,7 @@
   background-color: white;
   position: relative;
   width: 93%;
-  border-radius: 15px;
+  border-radius: 0.5vh;
   overflow-wrap: break-word;
 }
 
@@ -49,9 +49,9 @@
 
 .input input {
   width: 70vw;
-  border-radius: 1vh;
+  border-radius: 0.5vh;
 }
 
 .button {
-  border-radius: 1vh;
+  border-radius: 0.5vh;
 }

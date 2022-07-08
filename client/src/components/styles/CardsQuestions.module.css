@@ -11,15 +11,6 @@
     justify-content: center; */
 }
 
-.navbar {
-  border-radius: 8px;
-}
-
-.paginado {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
 .searchBar {
   display: flex;
   align-items: center;

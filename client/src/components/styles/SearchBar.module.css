@@ -3,7 +3,8 @@
     height: 30px;
     border-radius: 0.5vh;
     background: rgba(233, 236, 239, 0.8);
-    font-family: 'Source Serif Pro', serif;
+    font-size: small;
+    /* font-family: 'Source Serif Pro', serif; */
 }
 
 .input1:hover {
@@ -18,7 +19,7 @@
     border: #c0c0c0 solid 1.8px;
     border-radius: 0.5vh;
     color: #2c383e;
-    font-family: 'Source Serif Pro', serif;
+    /* font-family: 'Source Serif Pro', serif; */
     font-weight: 400;
     font-size: 15px;
 }

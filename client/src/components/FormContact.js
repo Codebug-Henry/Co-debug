@@ -78,7 +78,7 @@ const FormContact = () => {
   return (
     <div id={style.all}>
       <div id={style.title}>
-        <h1>Ingresa una consulta, sugerencia o reclamo</h1>
+        <h2>Ingresa una consulta, sugerencia o reclamo</h2>
       </div>
       <div id={style.contenedor}>
         <form id={style.form}>

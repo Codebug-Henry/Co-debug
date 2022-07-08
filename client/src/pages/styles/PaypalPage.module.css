@@ -59,7 +59,7 @@ html {
 .button {
   display: flex;
   justify-content: center;
-  border-radius: 1vh;
+  border-radius: 0.5vh;
 }
 
 .footer {
@@ -80,7 +80,7 @@ html {
     display: flex;
     justify-content: center;
     align-items: center;
-    border-radius: 1vh;
+    border-radius: 0.5vh;
     box-shadow:2px 2px 2px 1px rgba(0,0,0,0.2);
     background-size: 200%;
     height: 100%;
