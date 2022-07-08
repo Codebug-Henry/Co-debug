@@ -1,7 +1,18 @@
 .foto{
+    border-radius: 1vh;
+}
+
+.loader {
+    display: flex;
+    align-items: center;
+    justify-content: center;
     width: 100px;
     height: 100px;
-    border-radius: 1vh;
+}
+
+.loadingGif {
+    width: 100px;
+    height: 100px;
 }
 
 .fullContainer{
@@ -23,10 +34,9 @@
     flex-direction: column;
 }
 
-.btn input {
+input {
     margin-top: 1vh;
     font-size: 0.6rem;
-    border-radius: 5%;
 }
 
 .btnPhoto{

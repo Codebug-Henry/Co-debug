@@ -46,15 +46,7 @@ module.exports = (sequelize) => {
     imgs:{
       type: DataTypes.ARRAY(DataTypes.TEXT),
       defaultValue:[]
-    }
-    // tagMacro: {
-    //   type: DataTypes.STRING,
-    //   allowNull:false
-    // },
-    // tagsMicro: {
-    //   type: DataTypes.STRING,
-    //   allowNull:false
-    // },
+    },
   });
 };
 
