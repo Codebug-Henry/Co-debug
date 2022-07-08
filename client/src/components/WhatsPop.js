@@ -50,13 +50,13 @@ const WhatsPop = ({ idUser }) => {
         <ClickAwayListener onClickAway={handleClickAway}>
           <Box
             sx={{
-              border: 0.5,
+              border: 1,
               p: 1,
               bgcolor: "background.paper",
               fontSize: "small",
               width: 300,
-              backgroundColor: "#fed756",
-              borderRadius: 2,
+              backgroundColor: "#ede1a1",
+              borderRadius: 1,
               marginTop: -13,
               marginLeft: -10,
             }}

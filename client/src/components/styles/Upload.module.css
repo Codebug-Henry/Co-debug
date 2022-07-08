@@ -1,5 +1,5 @@
 .foto{
-    border-radius: 1vh;
+    border-radius: 0.5vh;
 }
 
 .loader {
@@ -40,7 +40,7 @@ input {
 }
 
 .btnPhoto{
-    border-radius: 1vh;
+    border-radius: 0.5vh;
     background-color: rgb(240, 238, 238);
     margin-left: 2vh;
 }

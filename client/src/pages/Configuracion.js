@@ -67,7 +67,7 @@ const Configuracion = () => {
 
   function handlerEditName(e) {
     e.preventDefault();
-    if (userInfo.nameChanges > 2) {
+    if (userInfo.nameChanges >= 2) {
       alert("No podes cambiar el nombre en más de dos oportunidades.");
     } else {
       setNameUser(true);

@@ -40,7 +40,7 @@ html {
 
 #filters {
   /* border: solid 1px black; */
-  border-radius: 1vh;
+  border-radius: 0.5vh;
   box-shadow: 3px 3px 3px grey;
   background-color: #f9bf00;
   height: 7vh;
@@ -64,7 +64,7 @@ html {
 .btnCreate {
   background-color: transparent;
   border: none;
-  border-radius: 1vh;
+  border-radius: 0.5vh;
   font-size: 2.5vh;
 }
 

@@ -1,6 +1,6 @@
 .total {
   background-color: rgb(255, 255, 255);
-  border-radius: 1vh;
+  border-radius: 0.5vh;
   width: 85%;
   height: max-content;
   margin-bottom: 2vh;
@@ -13,7 +13,7 @@
 .validated {
   border: 3px solid #2e7d32;
   background-color: rgb(255, 255, 255);
-  border-radius: 1vh;
+  border-radius: 0.5vh;
   width: 85%;
   height: max-content;
   margin-bottom: 2vh;
@@ -88,7 +88,7 @@
   background-color: rgb(255, 245, 211);
   box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
   padding: 1vh;
-  border-radius: 1vh;
+  border-radius: 0.5vh;
   margin-left: 3vh;
   margin-bottom: 0.5vh;
   overflow-y: scroll;
@@ -123,7 +123,7 @@
 
 .answerIt {
   border: solid 1px black;
-  border-radius: 1vh;
+  border-radius: 0.5vh;
   background-color: transparent;
   position: relative;
   right: 0%;
@@ -201,13 +201,13 @@
   position: absolute;
   border: none;
   background-color: #f5bf07;
-  width: 240%;
+  width: fit-content;
   min-height: 30%;
   color: white;
   padding: 0.3rem;
   text-align: center;
-  border-radius: 0.5rem;
-  font-size: 1rem;
+  border-radius: 0.5vh;
+  font-size: 15px;
   bottom: -3rem;
   right: -2rem;
   visibility: hidden;
@@ -236,13 +236,13 @@
   position: absolute;
   border: none;
   background-color: #f5bf07;
-  width: 240%;
-  min-height: 30%;
+  width: fit-content;
+  height: fit-content;
   color: white;
   padding: 0.3rem;
   text-align: center;
-  border-radius: 0.5rem;
-  font-size: 1rem;
+  border-radius: 0.5vh;
+  font-size: 15px;
   bottom: -3rem;
   right: -0.5rem;
   visibility: hidden;
@@ -256,7 +256,7 @@
   border-right: 10px solid transparent;
   border-top: 10px solid transparent;
   top: -17px;
-  left: 30px;
+  left: 10px;
 }
 
 .span2:hover .toolTip2 {
@@ -271,13 +271,13 @@
   position: absolute;
   border: none;
   background-color: #f5bf07;
-  width: 320%;
-  min-height: 30%;
+  width: fit-content;
+  height: fit-content;
   color: white;
   padding: 0.3rem;
   text-align: center;
-  border-radius: 0.5rem;
-  font-size: 1rem;
+  border-radius: 0.5vh;
+  font-size: 15px;
   bottom: -4.7rem;
   right: -1.5rem;
   visibility: hidden;
@@ -306,13 +306,13 @@
   position: absolute;
   border: none;
   background-color: #f5bf07;
-  width: 320%;
-  min-height: 30%;
+  width: fit-content;
+  height: fit-content;
   color: white;
   padding: 0.3rem;
   text-align: center;
-  border-radius: 0.5rem;
-  font-size: 1rem;
+  border-radius: 0.5vh;
+  font-size: 15px;
   bottom: -4.7rem;
   right: -1.5rem;
   visibility: hidden;
@@ -341,13 +341,13 @@
   position: absolute;
   border: none;
   background-color: #f5bf07;
-  width: 340%;
-  min-height: 30%;
+  width: fit-content;
+  height: fit-content;
   color: white;
   padding: 0.3rem;
   text-align: center;
-  border-radius: 0.5rem;
-  font-size: 1rem;
+  border-radius: 0.5vh;
+  font-size: 15px;
   bottom: -3.2rem;
   right: -1.9rem;
   visibility: hidden;
@@ -397,12 +397,12 @@
   position: absolute;
   border: none;
   background-color: #f5bf07;
-  width: 320%;
-  min-height: 30%;
+  width: fit-content;
+  height: fit-content;
   color: white;
   padding: 0.3rem;
   text-align: center;
-  border-radius: 0.5rem;
+  border-radius: 0.5vh;
   font-size: 1rem;
   bottom: -4.7rem;
   right: -1.5rem;

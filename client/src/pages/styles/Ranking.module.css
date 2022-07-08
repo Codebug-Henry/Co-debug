@@ -103,7 +103,7 @@ html {
 
 .container {
   background-color: white;
-  border-radius: 1vh;
+  border-radius: 0.5vh;
   box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
   padding: 2%;
   margin-top: 1%;

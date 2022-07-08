@@ -13,17 +13,17 @@
     width:2.1vw;
     min-width: fit-content;
     margin-left: 0.3vh;
-    border-radius: 15%;
+    border-radius: 0.5vh;
 }
 
 .number{
-    border-radius: 25%;
+    border-radius: 0.5vh;
     text-align: center;
 }
 
 .number:hover{
     cursor: pointer;
-    background-color: grey;
+    background-color: rgb(184, 183, 183);
 }
 
 .active{
@@ -31,15 +31,20 @@
 }
 
 .prev{
-    border-radius: 15%;
+    border-radius: 0.5vh;
     margin-right: 0.5vh;
     align-content: flex-start;
 }
 
 .one{
-    border-radius: 25%;
+    border-radius: 0.5vh;
     text-align: center;
     margin-left: 1px;
+}
+
+.one:hover{
+    cursor: pointer;
+    background-color: rgb(184, 183, 183);
 }
 
 .firstDot{
@@ -61,23 +66,28 @@
 }
 
 .last{
-    border-radius: 25%;
+    border-radius: 0.5vh;
     margin-right: 2px;
     text-align: center;
 }
 
+.last:hover{
+    cursor: pointer;
+    background-color: rgb(184, 183, 183);
+}
+
 .next{
-    border-radius: 15%;
+    border-radius: 0.5vh;
     margin-left: 1px;
 }
 
 .next:hover{
     cursor: pointer;
-    background-color: grey;
+    background-color: rgb(184, 183, 183);
 }
 .prev:hover{
     cursor: pointer;
-    background-color: grey;
+    background-color: rgb(184, 183, 183);
 }
 
 .notDisplay {
