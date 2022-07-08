@@ -22,7 +22,10 @@ export default function InfoPopper() {
       </button>
       <Popper id={id} open={open} anchorEl={anchorEl}>
         <Box sx={{ border: 0.5, p: 1, bgcolor: 'background.paper', fontSize:'small', width: 300,backgroundColor: "#f9bf00", borderRadius: 2, marginTop:0.5, marginLeft: -20 }}>
-          Para crear una pregunta se debe ingresar un título y una explicación de la misma. Se debe elegir al menos un Macro Tag que generalice la temática de la pregunta y al menos un Micro Tag para ser más específico. Una vez completo, hacer click en 'Enviar Pregunta' para finalizar.
+          <p>Para crear una pregunta se debe ingresar un título y una explicación de la misma.</p>
+          <p>Se pueden agregar líneas de código y/o adjuntar imágenes al cuerpo de la pregunta si se lo desea.</p>
+          <p>Se debe elegir al menos un Macro Tag que generalice la temática de la pregunta y al menos un Micro Tag para ser más específico.</p>
+          <p>Una vez completo, hacer click en 'Enviar Pregunta' para finalizar.</p>
         </Box>
       </Popper>
     </div>

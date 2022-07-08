@@ -13,6 +13,7 @@ import Loading from "../components/Loading";
 import ReactMarkdown from "react-markdown";
 import Highlighter from "../components/Highlighter";
 import { useAuth0 } from "@auth0/auth0-react";
+import axios from "axios";
 
 const Responder = () => {
   const { isAuthenticated, loginWithRedirect } = useAuth0();
@@ -21,6 +22,7 @@ const Responder = () => {
   const question = useSelector((state) => state.question);
   const [load, setLoad] = useState(false);
   const [loading, setLoading] = useState(true);
+  const [loadingImg, setLoadingImg] = useState(false);
   const [isModify, setIsModify] = useState(false);
   //form
   const user = useSelector((state) => state.user);
@@ -62,6 +64,22 @@ const Responder = () => {
     setInput(
       input + "\n```javascript\n(escribe tu código javascript aquí)\n```"
     );
+  }
+
+  async function uploadImage(e) {
+    const files = e.target.files
+    if (files[0]) {
+      setLoadingImg(true)
+      const data = new FormData()
+      data.append('file', files[0])
+      data.append('upload_preset', 'codebug')
+      const res = await axios.post("https://api.cloudinary.com/v1_1/codebugers/image/upload", data)
+      const file = res.data
+      setInput(
+          input + `\n\n![image](${file.secure_url})\n\n`
+      );
+      setLoadingImg(false)
+    }
   }
 
   if (loading) {
@@ -149,7 +167,6 @@ const Responder = () => {
 
                   <div className={`row ${style.answerForm}`}>
                     <div className={`col-lg-6 ${style.form}`}>
-                      {/* <form> */}
                       <div className={style.input1}>
                         <div className={style.pregBtn}>
                           <div>Escribe una respuesta aqui: </div>
@@ -189,8 +206,20 @@ const Responder = () => {
                         />
                       </div>
 
-                      {/* </form> */}
                     </div>
+
+                    <div className={style.adjBox}>
+                      <span className={style.adjText}>Adjuntar imagen:</span>
+                      <input
+                        type="file"
+                        name="file"
+                        placeholder='Click para elegir'
+                        accept=".jpg, .jpeg, .png"
+                        onChange={(e) => uploadImage(e)}
+                      />
+                      {loadingImg && <span className={style.loaderImg}>Cargando...</span>}
+                    </div>
+
                     {isAuthenticated ? (
                       <div className={style.button}>
                         <button
@@ -209,7 +238,7 @@ const Responder = () => {
                           onClick={async (e) => await loginWithRedirect()}
                           className={style.submit}
                         >
-                          <span>Log in () => Responder</span>
+                          <span>Logueate para responder</span>
                         </button>
                       </div>
                     )}
