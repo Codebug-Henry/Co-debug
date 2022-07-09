@@ -2,11 +2,11 @@
 import { useSelector } from "react-redux";
 import style from "./styles/Alertas.module.css";
 import AlertCard from "./AlertCard";
-import Paginated from "../Paginated";
+import PaginatedAdmin from "../PaginatedAdmin";
 
 const Alertas = ({ alertsPage, setAlertsPage, setAlertsFlag }) => {
   const alerts = useSelector((state) => state.alerts);
-  const totalPages = useSelector((state) => state.totalPages);
+  const pages = useSelector((state) => state.pages);
 
   return (
     <div className={style.container}>
@@ -49,10 +49,9 @@ const Alertas = ({ alertsPage, setAlertsPage, setAlertsFlag }) => {
         </div>
       </div>
       <div>
-        <Paginated
-          page={alertsPage}
+        <PaginatedAdmin
           setPage={setAlertsPage}
-          totalPages={totalPages}
+          pages={pages}
         />
       </div>
     </div>

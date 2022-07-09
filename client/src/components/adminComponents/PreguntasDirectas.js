@@ -2,11 +2,12 @@ import React from "react";
 import { useSelector } from "react-redux";
 import Message from "./Message";
 import style from "./styles/PreguntasDirectas.module.css";
-import Paginated from "../Paginated";
+import PaginatedAdmin from "../PaginatedAdmin";
 
 const PreguntasDirectas = ({ messagePage, setMessagePage, setMessageFlag }) => {
   const messages = useSelector((state) => state.messages);
-  const totalPages = useSelector((state) => state.totalPages);
+  const pages = useSelector((state) => state.pages3);
+
   return (
     <div className={style.container}>
       <div>
@@ -25,10 +26,9 @@ const PreguntasDirectas = ({ messagePage, setMessagePage, setMessageFlag }) => {
           })}
       </div>
       <div>
-        <Paginated
-          page={messagePage}
+        <PaginatedAdmin
           setPage={setMessagePage}
-          totalPages={totalPages}
+          pages={pages}
         />
       </div>
     </div>
