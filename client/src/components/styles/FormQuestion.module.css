@@ -41,6 +41,10 @@
 .div2 {
   width: 100%;
 }
+.vistaPrevia{
+  margin-bottom: 0.5vh;
+  margin-top:0.8vh;
+}
 
 .labelTitle {
   margin-bottom: 10px;
