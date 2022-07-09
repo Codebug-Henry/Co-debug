@@ -259,7 +259,7 @@ const SimpleAnswer = ({
           <Tooltip title="Editar">
             <EditIcon
               fontSize="medium"
-              className={style.moreBtn}
+              className={statusValidated ? style.hidden : style.moreBtn}
               onClick={handleEditAnswer}
             />
           </Tooltip>

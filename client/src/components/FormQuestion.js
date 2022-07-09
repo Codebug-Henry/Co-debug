@@ -25,8 +25,8 @@ const FormQuestion = () => {
     if (input.title.length > 80)
       errors.title = "Título debe tener un máximo de 80 caracteres";
     if (!input.text) errors.text = "Se requiere una pregunta";
-    if (input.text.length > 500)
-      errors.title = "La pregunta debe tener un máximo de 500 caracteres";
+    if (input.text.length > 600)
+      errors.title = "La pregunta debe tener un máximo de 600 caracteres";
     if (input.macroTag.length === 0)
       errors.macroTag = "Selecciona al menos un macroTag";
     if (input.macroTag.length && input.macroTag.length > 3)
