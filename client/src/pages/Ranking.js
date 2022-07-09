@@ -5,6 +5,8 @@ import Footer from "../components/Footer.js";
 import Paginated from "../components/Paginated";
 import { getRanking } from "../redux/actions";
 import Loading from "../components/Loading";
+import { useAuth0 } from '@auth0/auth0-react';
+import { getNotifications } from "../redux/actions";
 
 const Ranking = () => {
   const dispatch = useDispatch();
@@ -12,10 +14,17 @@ const Ranking = () => {
   const [sort, setSort] = useState("points-desc");
   const [page, setPage] = useState(1);
   const [loading, setLoading] = useState(true);
+  const { isAuthenticated, user } = useAuth0();
 
   useEffect(() => {
     dispatch(getRanking(sort, page, setLoading));
   }, [dispatch, sort, page]);
+
+  useEffect(() => {
+    if (isAuthenticated) {
+      dispatch(getNotifications(user.sub))
+    }
+}, [dispatch, user, isAuthenticated]);
 
   const handleSort = (e) => {
     setSort(e.target.value);

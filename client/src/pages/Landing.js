@@ -8,7 +8,7 @@ import CardsQuestsLogOut from "../components/CardsQuestsLogOut.js";
 import TopTenRanking from "../components/TopTenRanking";
 import { useSelector, useDispatch } from "react-redux";
 import { useEffect } from "react";
-import { getUserInfo } from "../redux/actions";
+import { getUserInfo, getNotifications } from "../redux/actions";
 import NavBar from "../components/NavBar";
 import { useNavigate } from "react-router-dom";
 
@@ -24,6 +24,7 @@ const Landing = () => {
   useEffect(() => {
     if (isAuthenticated) {
       dispatch(getUserInfo(user.sub));
+      dispatch(getNotifications(user.sub))
     }
     // eslint-disable-next-line
   }, [isFavorite]);

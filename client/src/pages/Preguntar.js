@@ -1,16 +1,33 @@
-import React from "react";
-import { useAuth0 } from "@auth0/auth0-react";
+import React from 'react';
 import style from "./styles/Preguntar.module.css";
 import Footer from "../components/Footer.js";
-import FormQuestion from "../components/FormQuestion";
-import Loading from "../components/Loading";
+import FormQuestion from '../components/FormQuestion';
+import Loading from '../components/Loading';
+import { useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { useAuth0 } from '@auth0/auth0-react';
+import { getNotifications } from "../redux/actions";
 import NotVerified from "../components/NotVerified";
 import BannedUser from "../components/BannedUser";
-import { useSelector } from "react-redux";
 
 const Preguntar = () => {
-  const { user, isLoading } = useAuth0();
-  const userInfo = useSelector(state => state.user)
+    const { isAuthenticated, isLoading, user } = useAuth0();
+    const userInfo = useSelector(state => state.user)
+    const dispatch = useDispatch();
+
+    useEffect(() => {
+        if (isAuthenticated) {
+          dispatch(getNotifications(user.sub))
+        }
+    }, [dispatch, user, isAuthenticated]);
+
+    if (isLoading) {
+        return (
+          <div>
+            <Loading />
+          </div>
+        );
+      }
 
   if (isLoading) {
     return (

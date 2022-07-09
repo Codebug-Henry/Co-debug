@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useAuth0 } from "@auth0/auth0-react";
 import style from "./styles/Favoritas.module.css";
 import Footer from "../components/Footer.js";
-import { getFavourites } from "../redux/actions";
+import { getFavourites, getNotifications } from "../redux/actions";
 import Paginated from "../components/Paginated";
 import CardQuestion from "../components/CardQuestion";
 import NotVerified from "../components/NotVerified";
@@ -24,6 +24,7 @@ const Favoritas = () => {
   useEffect(() => {
     if (isAuthenticated) {
       dispatch(getFavourites(user.sub, page, setLoading));
+      dispatch(getNotifications(user.sub))
     }
     // eslint-disable-next-line
   }, [page, dispatch, isFavorite]);

@@ -1,10 +1,13 @@
 import React from "react";
 import Paypal from "../components/Paypal";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Footer from "../components/Footer.js";
 import style from "./styles/PaypalPage.module.css";
 // import supportdevelopers from '../images/supportdevelopers.png'
 // import paypal from '../images/paypal2.png'
+import { useDispatch } from "react-redux";
+import { useAuth0 } from '@auth0/auth0-react';
+import { getNotifications } from "../redux/actions";
 
 const PaypalPage = () => {
   const [val, setVal] = useState(1);
@@ -19,6 +22,15 @@ const PaypalPage = () => {
   const handleBoton = () => {
     val >= 1? setCheckOut(true): setMensaje("El mínimo es 1")
   }
+
+  const { isAuthenticated, user } = useAuth0();
+    const dispatch = useDispatch();
+
+    useEffect(() => {
+        if (isAuthenticated) {
+          dispatch(getNotifications(user.sub))
+        }
+    }, [dispatch, user, isAuthenticated]);
 
   return (
     <div>
