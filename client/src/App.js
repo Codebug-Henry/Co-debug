@@ -24,12 +24,12 @@ import Easter from "./pages/Easter.js";
 
 function App() {
   return (
-    <BrowserRouter>
-      <Headerlogin />
+    <>
+    <Headerlogin />
       <Routes>
         <Route path={"/"} element={<Landing />} />
         <Route path={"/mispreguntas"} element={<ProtectedRoute component={MisPreguntas}/>} />
-        <Route path={"/preguntar"} element={<Preguntar />} />
+        <Route path={"/preguntar"} element={<ProtectedRoute component={Preguntar} />} />
         <Route path={"/misrespuestas"} element={<ProtectedRoute component={MisRespuestas} />} />
         <Route path={"/responder/:questionId"} element={<ResponderPDF />} />
         <Route path={"/favoritas"} element={<ProtectedRoute component={Favoritas} />} />
@@ -46,7 +46,7 @@ function App() {
         <Route path={"*"} element={<NotFound />} />
         <Route path={"/easter"} element={<Easter />} />
       </Routes>
-    </BrowserRouter>
+    </>
   );
 }
 
