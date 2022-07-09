@@ -18,16 +18,11 @@ const HeaderLogout = () => {
         </div>
 
         <div className={`col-lg-6 ${style.colPreg}`}>
-          {/* <Link to={onClick={() => loginWithRedirect()}} className={style.linksInt}>
-            Preguntar
-          </Link> */}
-
-          <button
-            onClick={() => loginWithRedirect()}
-            className={style.linksInt}
-          >
+          <Link to='/preguntar'>          
+          <button className={style.linksInt}>
             Preguntar
           </button>
+          </Link>
         </div>
         <div className={`col-lg-3 ${style.col4}`}>
           <div className={style.botonLogIn}>
