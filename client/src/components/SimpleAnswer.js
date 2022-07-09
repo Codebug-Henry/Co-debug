@@ -59,7 +59,6 @@ const SimpleAnswer = ({
         },
         {
           label: "No",
-          onClick: () => alert("Canceló la elección"),
         },
       ],
     });
@@ -76,7 +75,6 @@ const SimpleAnswer = ({
         },
         {
           label: "No",
-          onClick: () => alert("Canceló el borrado"),
         },
       ],
     });

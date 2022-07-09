@@ -11,6 +11,8 @@ import Highlighter from "../components/Highlighter";
 import { useAuth0 } from "@auth0/auth0-react";
 import axios from "axios";
 import Paginated from "../components/Paginated";
+import MensajeAlerta from "../components/MensajeAlerta";
+
 
 const Responder = () => {
   const { isAuthenticated, loginWithRedirect } = useAuth0();
@@ -52,13 +54,13 @@ const Responder = () => {
       error = "La respuesta debe tener como máximo 600 caracteres";
     return error;
   };
-
+  const textAlerta = "Respuesta enviada";
   const handleSubmit = (e) => {
     e.preventDefault();
     dispatch(sendAnswer({ sub: user.sub, id: questionId, text: input }));
     setLoad(true);
     setInput("");
-    alert("Respuesta enviada");
+    MensajeAlerta({ textAlerta });
   };
 
   function handleClick() {
@@ -68,18 +70,19 @@ const Responder = () => {
   }
 
   async function uploadImage(e) {
-    const files = e.target.files
+    const files = e.target.files;
     if (files[0]) {
-      setLoadingImg(true)
-      const data = new FormData()
-      data.append('file', files[0])
-      data.append('upload_preset', 'codebug')
-      const res = await axios.post("https://api.cloudinary.com/v1_1/codebugers/image/upload", data)
-      const file = res.data
-      setInput(
-          input + `\n\n![image](${file.secure_url})\n\n`
+      setLoadingImg(true);
+      const data = new FormData();
+      data.append("file", files[0]);
+      data.append("upload_preset", "codebug");
+      const res = await axios.post(
+        "https://api.cloudinary.com/v1_1/codebugers/image/upload",
+        data
       );
-      setLoadingImg(false)
+      const file = res.data;
+      setInput(input + `\n\n![image](${file.secure_url})\n\n`);
+      setLoadingImg(false);
     }
   }
 
@@ -177,7 +180,6 @@ const Responder = () => {
                           components={{ code: Highlighter }}
                         />
                       </div>
-
                     </div>
 
                     <div className={style.adjBox}>
@@ -185,11 +187,13 @@ const Responder = () => {
                       <input
                         type="file"
                         name="file"
-                        placeholder='Click para elegir'
+                        placeholder="Click para elegir"
                         accept=".jpg, .jpeg, .png"
                         onChange={(e) => uploadImage(e)}
                       />
-                      {loadingImg && <span className={style.loaderImg}>Cargando...</span>}
+                      {loadingImg && (
+                        <span className={style.loaderImg}>Cargando...</span>
+                      )}
                     </div>
 
                     {isAuthenticated ? (
