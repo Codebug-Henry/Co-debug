@@ -1,4 +1,4 @@
-const {Answer, Question, User} = require("../db")
+const {Answer, Question, User, Notification} = require("../db")
 
 const postAnswer = async (req, res, next) => {
 
@@ -17,6 +17,12 @@ const postAnswer = async (req, res, next) => {
       await question.update({cantAnswers: question.cantAnswers + 1})
       await newAnswer.setQuestion(question)
       await newAnswer.setUser(user)
+
+      // Notifications
+
+      const userReceiver = await question.getUser()
+      let textNotif = `${user.name} respondió tu pregunta!`
+      await userReceiver.createNotification({text: textNotif, subCreator: sub, questId: id})
 
       res.send(newAnswer)
    } catch (error) {
@@ -72,6 +78,9 @@ const putAnswer = async (req, res, next) => {
       if (statusValidated) {
          await question.update({statusValidated})
          await user.update({myTeachPoints: user.myTeachPoints + answer.teachPoints})
+         // Notifications
+         let textNotif = `${userLogged.name} validó tu respuesta!\nSumas ${answer.teachPoints} Teach Points a tu cuenta personal!`
+         await user.createNotification({text: textNotif, subCreator: sub, questId: question.id})
       }
 
       if (statusDeleted) {

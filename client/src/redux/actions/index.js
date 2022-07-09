@@ -31,7 +31,9 @@ import {
   PUT_MESSAGE,
   SET_SORT,
   CLEAN_QUESTIONS,
-  SET_SORTVALIDATE
+  SET_SORTVALIDATE,
+  GET_NOTIFICATIONS,
+  PUT_NOTIFICATION
 } from "./actionTypes";
 
 import * as api from "../api";
@@ -359,7 +361,6 @@ export const getAllAlerts = (page) => async (dispatch) => {
   }
 };
 
-
 // SORT
 
 export const setSort = (sort) => {
@@ -369,3 +370,24 @@ export const setSort = (sort) => {
 export const setSortValidate = (sort) => {
   return { type: SET_SORTVALIDATE, payload: sort}
 }
+
+// NOTIFICATIONS
+
+export const getNotifications = (sub) => async (dispatch) => {
+  try {
+    const { data } = await api.getNotifications(sub);
+    dispatch({ type: GET_NOTIFICATIONS, payload: data });
+  } catch (error) {
+    console.log(error.message);
+  }
+};
+
+export const putNotification = (notification) => async (dispatch) => {
+  try {
+    const { data } = await api.putNotification(notification);
+    dispatch({ type: PUT_NOTIFICATION, payload: data });
+    // setMessageFlag && setMessageFlag(prevFlag => !prevFlag);
+  } catch (error) {
+    console.log(error.message);
+  }
+};

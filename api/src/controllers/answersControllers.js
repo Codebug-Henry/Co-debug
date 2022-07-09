@@ -8,7 +8,9 @@ const getAnswers = async (req, res, next) => {
   const {page, limit} = req.query
 
   try {
-    const myAnswers = await Answer.findAll({where: {statusDeleted: false, userSub: sub}, 
+    const myAnswers = await Answer.findAll({
+      where: {statusDeleted: false, userSub: sub}, 
+      order: [['createdAt', 'DESC']],
       include: [
         {model: Question,
         include: [
