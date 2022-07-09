@@ -5,7 +5,7 @@ import { useAuth0 } from "@auth0/auth0-react";
 import Loading from "../components/Loading.js";
 
 const NotFound = () => {
-  const { isAuthenticated, isLoading } = useAuth0();
+  const { isLoading } = useAuth0();
 
   if (isLoading) {
     return (

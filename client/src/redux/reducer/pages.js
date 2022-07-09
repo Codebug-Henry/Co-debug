@@ -18,7 +18,8 @@ import {
   CLEAN_QUESTION,
   CLEAN_QUESTIONS,
   CLEAN_RANKING,
-  CLEAN_USER_QUESTIONS
+  CLEAN_USER_QUESTIONS,
+  GET_QUESTION
 } from "../actions/actionTypes";
 
 export default function pages(state = [], action) {
@@ -61,6 +62,8 @@ export default function pages(state = [], action) {
       return [];
     case CLEAN_USER_QUESTIONS:
       return [];
+    case GET_QUESTION:
+      return action.payload.answers.pages;
     default:
       return state;
   }

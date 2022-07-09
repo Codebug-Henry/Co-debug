@@ -1,12 +1,13 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getAllTags, getUserInfo, sendQuestion } from "../redux/actions/index";
+import { getAllTags, sendQuestion } from "../redux/actions/index";
 import style from "./styles/FormQuestion.module.css";
 import InfoPopper from "./InfoPopper";
 import { useNavigate } from "react-router-dom";
 import ReactMarkdown from "react-markdown";
 import Highlighter from "./Highlighter";
 import axios from "axios";
+import MensajeAlerta from "./MensajeAlerta";
 
 const FormQuestion = () => {
   const dispatch = useDispatch();
@@ -14,9 +15,8 @@ const FormQuestion = () => {
   const tags = useSelector((state) => state.tags);
 
   useEffect(() => {
-    dispatch(getUserInfo(userInfo.sub));
     dispatch(getAllTags());
-  }, [dispatch, userInfo.sub]);
+  }, [dispatch]);
 
   const navigate = useNavigate();
 
@@ -26,8 +26,8 @@ const FormQuestion = () => {
     if (input.title.length > 80)
       errors.title = "Título debe tener un máximo de 80 caracteres";
     if (!input.text) errors.text = "Se requiere una pregunta";
-    if (input.text.length > 500)
-      errors.title = "La pregunta debe tener un máximo de 500 caracteres";
+    if (input.text.length > 600)
+      errors.title = "La pregunta debe tener un máximo de 600 caracteres";
     if (input.macroTag.length === 0)
       errors.macroTag = "Selecciona al menos un macroTag";
     if (input.macroTag.length && input.macroTag.length > 3)
@@ -54,7 +54,7 @@ const FormQuestion = () => {
 
   const [errors, setErrors] = useState({});
 
-  const [loading, setLoading] = useState(false)
+  const [loading, setLoading] = useState(false);
 
   function handleChange(e) {
     setInput({
@@ -88,10 +88,10 @@ const FormQuestion = () => {
         e.target.value,
       ]);
     } else {
-      alert("Ese Tag ya fue elegido");
+      MensajeAlerta({ textAlerta });
     }
   }
-
+  const textAlerta = "Ese Tag ya fue elegido";
   function handleSelectMacroTag(e) {
     if (!input.macroTag.includes(e.target.value)) {
       setInput({
@@ -109,7 +109,7 @@ const FormQuestion = () => {
         e.target.value,
       ]);
     } else {
-      alert("Ese Tag ya fue elegido");
+      MensajeAlerta({ textAlerta });
     }
   }
 
@@ -144,6 +144,7 @@ const FormQuestion = () => {
   }
 
   function handleSubmit(e) {
+    const textAlerta = "Pregunta creada";
     e.preventDefault();
     dispatch(
       sendQuestion({
@@ -155,7 +156,7 @@ const FormQuestion = () => {
         imgs: [],
       })
     );
-    alert("Pregunta creada");
+    MensajeAlerta({ textAlerta });
     setInput({
       title: "",
       text: "",
@@ -172,28 +173,27 @@ const FormQuestion = () => {
   function handleClick() {
     setInput({
       ...input,
-      text:
-        input.text +
-        "\n```javascript\n(escribe tu código javascript aquí)\n```",
+      text: input.text + "\njavascript\n(escribe tu código javascript aquí)\n",
     });
   }
 
   async function uploadImage(e) {
-    const files = e.target.files
+    const files = e.target.files;
     if (files[0]) {
-      setLoading(true)
-      const data = new FormData()
-      data.append('file', files[0])
-      data.append('upload_preset', 'codebug')
-      const res = await axios.post("https://api.cloudinary.com/v1_1/codebugers/image/upload", data)
-      const file = res.data
+      setLoading(true);
+      const data = new FormData();
+      data.append("file", files[0]);
+      data.append("upload_preset", "codebug");
+      const res = await axios.post(
+        "https://api.cloudinary.com/v1_1/codebugers/image/upload",
+        data
+      );
+      const file = res.data;
       setInput({
         ...input,
-        text:
-          input.text +
-          `\n\n![image](${file.secure_url})\n\n`,
+        text: input.text + `\n\n![image](${file.secure_url})\n\n`,
       });
-      setLoading(false)
+      setLoading(false);
     }
   }
 
@@ -259,10 +259,10 @@ const FormQuestion = () => {
           </div>
           <div className={style.adjBox}>
             <span className={style.adjText}>Adjuntar imagen:</span>
-            <input 
+            <input
               type="file"
               name="file"
-              placeholder='Click para elegir'
+              placeholder="Click para elegir"
               accept=".jpg, .jpeg, .png"
               onChange={(e) => uploadImage(e)}
             />

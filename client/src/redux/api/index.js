@@ -21,7 +21,7 @@ export const getSearchUsers = (page, search) =>
 
 // RUTAS question - questions
 export const sendQuestion = (question) => axios.post(`/question`, question);
-export const getQuestion = (id) => axios.get(`/question/${id}`);
+export const getQuestion = (id, page) => axios.get(`/question/${id}?page=${page}&limit=5`);
 export const modifyQuestion = (modify) => axios.put(`/question`, modify);
 export const deleteQuestion = (question) => axios.put(`/question`, question);
 export const addFavourites = (sub, qId, boolean) =>
@@ -56,3 +56,7 @@ export const getAllTags = () => axios.get(`/tags`);
 
 export const getAllAlerts = (page)=> axios.get(`/alerts?page=${page}&limit=3&resolved=false`)
 
+//RUTAS NOTIFICATIONS
+
+export const getNotifications = (sub) => axios.get(`/notifications/${sub}`);
+export const putNotification = (notification) => axios.put(`/message`, notification);

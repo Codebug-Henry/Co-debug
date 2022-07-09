@@ -28,7 +28,7 @@
 #first{
     display: flex;
     flex-direction: row;
-    /* height: 45px; */
+    /* height: 40px; */
     align-items: center;
 }
 
@@ -42,6 +42,10 @@
 
 .none {
     display: none
+}
+
+.hidden {
+    visibility: hidden;
 }
 
 #photo{
@@ -78,6 +82,9 @@
     margin-left: 2.5%;
     display: flex;
     flex-direction: row;
+    min-height: 100px;
+    height: fit-content;
+    max-height: 200px;
 }
 
 #question2{
@@ -88,6 +95,7 @@
     margin-left: 2%;
     display: flex;
     flex-direction: row;
+    height: 200px;
 }
 
 #divQuest{
@@ -99,10 +107,13 @@
     color: #292a2b;
     background-color: rgb(255, 245, 211);
     border-radius: 0.5vh;
+    min-height: 100px;
+    height: fit-content;
+    max-height: 200px;
 }
 
 .confirmEdit {
-    margin-top: 35px;
+    margin-top: 80px;
 }
 
 .editBtn{
@@ -120,7 +131,7 @@
 
 .editFull2{
     /* height: 100px; */
-    margin-left: 1.5vh;
+    margin-left: 1vh;
     width: 98%;
     color: #292a2b;
     align-self: center;
@@ -131,7 +142,7 @@
     align-self: flex-start;
     /* justify-content: flex-end; */
     /* border: 1px solid red; */
-    width: 47.8%;
+    width: 50%;
     justify-content: space-between;
     display: flex;
     flex-direction: row;
@@ -139,6 +150,7 @@
 
 .btnJS {
     align-self: flex-end;
+    margin-right: 1.5vw;
 }
 
 .btnCode {
@@ -167,9 +179,10 @@
 
 .editText {
     width: 98%;
-    height: 100px;
     background-color: rgb(255, 245, 211);
     border-radius: 0.5vh;
+    height: 200px;
+    margin-top: 10px;
 }
 
 #tags{
@@ -177,7 +190,7 @@
     width: 92%;
     margin-left: auto;
     margin-right: auto;
-    margin-top: 1px;
+    margin-top: 0.8vh;
 }
 
 #right{
@@ -212,7 +225,9 @@
 }
 
 .markdown {
-    height: 108px;
+    min-height: 100px;
+    height: fit-content;
+    max-height: 200px;
     overflow-y: scroll;
     border-radius: 0.5vh;
 }
@@ -227,7 +242,8 @@
     }
     #theme {
         width: 92%; 
-        font-weight: 450;
+        margin-left: 1.5vh;
+        font-weight: 500;
     }
     #name {
         width: 100%;
@@ -253,16 +269,11 @@
 
 
 @media screen and (max-width: 670px){
-    #first span{
-        font-size: small;
-    }
-    #questionCard p{
-        font-size: small;
-    }
-    #tags span{
+    #questionCard {
         font-size: small;
     }
     .editTitle{
+        margin-top: 1vh;
         margin-left: 4.5%;
         width: 90%;
     }
@@ -302,8 +313,8 @@
     }
 
     .btnCode {
-        font-size: 8px;
-        height: 35px;
+        font-size: 9px;
+        height: 30px;
     }
     
     #first span{

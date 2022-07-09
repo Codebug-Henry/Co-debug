@@ -31,10 +31,9 @@ const postAlertAnswer = async (req, res, next) => {
       
       try {
           const alert = await Alert.findByPk(id)
-          console.log(alert);
           await alert.update({statusResolved})
 
-          res.send({alert})
+          res.send(alert)
   
      } catch (error) {
           next(error)

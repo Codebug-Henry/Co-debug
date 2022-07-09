@@ -59,7 +59,7 @@ sequelize.models = Object.fromEntries(capsEntries);
 // En sequelize.models están todos los modelos importados como propiedades
 // Para relacionarlos hacemos un destructuring
 
-const { User, Question, Answer, Message, MacroTag, MicroTag, Alert } = sequelize.models;
+const { User, Question, Answer, Message, MacroTag, MicroTag, Alert, Notification } = sequelize.models;
 
 // Aca vendrian las relaciones
 
@@ -72,11 +72,11 @@ Answer.belongsTo(User)
 Question.hasMany(Answer)
 Answer.belongsTo(Question)
 
-Question.belongsToMany(MacroTag, {through: 'questions_macroTags'})
-MacroTag.belongsToMany(Question, {through: 'questions_macroTags'})
+// Question.belongsToMany(MacroTag, {through: 'questions_macroTags'})
+// MacroTag.belongsToMany(Question, {through: 'questions_macroTags'})
 
-Question.belongsToMany(MicroTag, {through: 'questions_microTags'})
-MicroTag.belongsToMany(Question, {through: 'questions_microTags'})
+// Question.belongsToMany(MicroTag, {through: 'questions_microTags'})
+// MicroTag.belongsToMany(Question, {through: 'questions_microTags'})
 
 MacroTag.hasMany(MicroTag)
 MicroTag.belongsTo(MacroTag)
@@ -89,6 +89,9 @@ Alert.belongsTo(Question)
 
 Answer.hasMany(Alert)
 Alert.belongsTo(Answer)
+
+User.hasMany(Notification)
+Notification.belongsTo(User)
 
 
 module.exports = {

@@ -12,6 +12,7 @@ import {
   GET_FAVOURITES,
   GET_USER_QUESTIONS_ORDERER,
   GET_RANKING,
+  GET_QUESTION,
 } from "../actions/actionTypes";
 
 export default function totalPages(state = 0, action) {
@@ -42,6 +43,8 @@ export default function totalPages(state = 0, action) {
       return action.payload.totalPages;
     case GET_RANKING:
       return action.payload.totalPages;
+    case GET_QUESTION:
+      return action.payload.answers.totalPages;
     default:
       return state;
   }

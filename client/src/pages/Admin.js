@@ -35,7 +35,7 @@ const Admin = () => {
   const dispatch = useDispatch();
   const userInfo = useSelector((state) => state.user);
   const navigate = useNavigate();
-  // const totalPages = useSelector((state) => state.totalPages);
+  const totalPages = useSelector((state) => state.totalPages);
 
   useEffect(() => {
     dispatch(getAllUsers(usersPage));
@@ -54,10 +54,11 @@ const Admin = () => {
   }, [dispatch, adminFlag, usersPage]);
 
   useEffect(() => {
-    // if (alertsPage > 1 && alertsPage > totalPages)
-    // setAlertsPage((prev) => prev - 1);
+    if (alertsPage > 1 && alertsPage > totalPages) {
+      setAlertsPage((prev) => prev - 1);
+    }
     dispatch(getAllAlerts(alertsPage));
-  }, [dispatch, alertsFlag, alertsPage]);
+  }, [dispatch, alertsFlag, alertsPage, totalPages]);
 
   return (
     <div className={style.fullContainer}>

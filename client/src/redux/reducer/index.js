@@ -20,6 +20,7 @@ import usersNoAdmin from "./usersNoAdmin";
 import alerts from "./alerts";
 import sort from "./sort";
 import sortValidate from "./sortValidate";
+import notifications from "./notifications";
 
 export default combineReducers({
   message,
@@ -41,5 +42,6 @@ export default combineReducers({
   usersNoAdmin,
   alerts,
   sort,
-  sortValidate
+  sortValidate,
+  notifications
 });
