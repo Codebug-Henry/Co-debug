@@ -223,7 +223,7 @@
   border-right: 10px solid transparent;
   border-top: 10px solid transparent;
   top: -17px;
-  left: 10px;
+  left: 2px;
 }
 
 .span:hover .toolTip {
@@ -258,7 +258,7 @@
   border-right: 10px solid transparent;
   border-top: 10px solid transparent;
   top: -17px;
-  left: 10px;
+  left: 7px;
 }
 
 .span2:hover .toolTip2 {
@@ -293,7 +293,7 @@
   border-right: 10px solid transparent;
   border-top: 10px solid transparent;
   top: -17px;
-  left: 30px;
+  left: 24px;
 }
 
 .span3:hover .toolTip3 {
@@ -328,7 +328,7 @@
   border-right: 10px solid transparent;
   border-top: 10px solid transparent;
   top: -17px;
-  left: 30px;
+  left: 24px;
 }
 
 .span4:hover .toolTip4 {
@@ -363,7 +363,7 @@
   border-right: 10px solid transparent;
   border-top: 10px solid transparent;
   top: -17px;
-  left: 30px;
+  left: 28px;
 }
 
 .span5:hover .toolTip5 {
@@ -419,7 +419,7 @@
   border-right: 10px solid transparent;
   border-top: 10px solid transparent;
   top: -17px;
-  left: 60.7px;
+  left: 28.7px;
 }
 
 .span6:hover .toolTip6 {
