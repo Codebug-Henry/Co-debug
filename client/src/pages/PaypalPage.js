@@ -12,6 +12,16 @@ import { getNotifications } from "../redux/actions";
 const PaypalPage = () => {
   const [val, setVal] = useState(1);
   const [checkout, setCheckOut] = useState(false);
+  const [ mensaje, setMensaje ] = useState("")
+
+
+  const handleValor = (e) => {
+    setVal(Number(e.target.value))
+  }
+
+  const handleBoton = () => {
+    val >= 1? setCheckOut(true): setMensaje("El mínimo es 1")
+  }
 
   const { isAuthenticated, user } = useAuth0();
     const dispatch = useDispatch();
@@ -68,12 +78,14 @@ const PaypalPage = () => {
               <div className={style.extra}>
                 <p className={style.currency}>R$ </p>
                 <input
-                  onChange={(e) => setVal(parseInt(e.target.value))}
+                type="number"
+                  onChange={(e)=>handleValor(e)}
                   className={style.input}
                 ></input>
+                <p className={style.advertencia}>{mensaje}</p>
                 <button
                   className={style.button}
-                  onClick={() => setCheckOut(true)}
+                  onClick={()=>handleBoton()}
                 >
                   Donar
                 </button>

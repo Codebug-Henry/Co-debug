@@ -85,7 +85,7 @@ const Responder = () => {
       setLoadingImg(true);
       const data = new FormData();
       data.append("file", files[0]);
-      data.append("upload_preset", "codebug");
+      data.append("upload_preset", "codebugImages");
       const res = await axios.post(
         "https://api.cloudinary.com/v1_1/codebugers/image/upload",
         data

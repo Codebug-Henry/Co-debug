@@ -8,6 +8,8 @@ import { useNavigate } from "react-router-dom";
 import CheckIcon from "@mui/icons-material/Check";
 import Upload from "../components/Upload.js";
 import Loading from "../components/Loading";
+import NotVerified from "../components/NotVerified";
+import BannedUser from "../components/BannedUser";
 import StatsUser from "../components/StatsUser";
 import TeachPoints from "../components/TeachPoints";
 import { confirmAlert } from "react-confirm-alert";
@@ -15,6 +17,7 @@ import "react-confirm-alert/src/react-confirm-alert.css";
 import MensajeAlerta from "../components/MensajeAlerta";
 
 const Configuracion = () => {
+
   const { isAuthenticated, isLoading, user } = useAuth0();
   const userInfo = useSelector((state) => state.user);
   const dispatch = useDispatch();
@@ -127,11 +130,20 @@ const Configuracion = () => {
         <Loading />
       </div>
     );
-  }
-
-  return (
+  } else if (user.email_verified === false) {
+    return (
+      <>
+        <NotVerified />
+      </>
+    );
+  } else if (userInfo.statusBanned === true) {
+    return (
+      <>
+        <BannedUser />
+      </>
+    );
+  } else return (
     <div className={style.fullContainer}>
-      {isAuthenticated ? (
         <div className="row">
           <div className="col">
             <div className={style.middleRow}>
@@ -362,61 +374,6 @@ const Configuracion = () => {
             </div>
           </div>
         </div>
-      ) : (
-        <div className={style.middleRow}>
-          {/* Acá el contenido para no logueados */}
-          <div className={`container-fluid ${style.container}`}>
-            <div className={`col-lg-6 ${style.col1}`}>
-              <div className={`row ${style.row}`}>
-                <div className={`col-lg-6 ${style.col3}`}>Mis logros</div>
-
-                <div className={`col-lg-6 ${style.col2}`}>
-                  <TeachPoints
-                    number={userInfo.myTeachPoints}
-                    characteristic="Teach Points"
-                  />
-                </div>
-              </div>
-
-              <div className={`row ${style.row}`}>
-                <div className={`col-lg-6 ${style.col2} ${style.text}`}>
-                  <StatsUser
-                    number={userInfo.myPosition}
-                    characteristic="Mi Ranking"
-                    link="Ver Ranking"
-                  />
-                </div>
-
-                <div className={`col-lg-6 ${style.col2}`}>
-                  <StatsUser
-                    number={userInfo.cantFav}
-                    characteristic="Mis Favoritos"
-                    link="Ver Favoritos"
-                  />
-                </div>
-              </div>
-
-              <div className={`row ${style.row}`}>
-                <div className={`col-lg-6 ${style.col2} ${style.text}`}>
-                  <StatsUser
-                    number={userInfo.cantQuest}
-                    characteristic="Mis preguntas"
-                    link="Ver Mis Preguntas"
-                  />
-                </div>
-
-                <div className={`col-lg-6 ${style.col2}`}>
-                  <StatsUser
-                    number={userInfo.cantAns}
-                    characteristic="Mis Respuestas"
-                    link="Ver Mis Respuestas"
-                  />
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      )}
       <div className={style.footer}>
         <Footer />
       </div>
