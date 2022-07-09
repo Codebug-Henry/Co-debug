@@ -3,10 +3,8 @@ import logo from "../images/logo_codebug.png";
 import React from "react";
 import style from "./styles/Header.module.css";
 import Butlog from "./Butlog";
-import { useAuth0 } from "@auth0/auth0-react";
 
 const HeaderLogout = () => {
-  const { loginWithRedirect } = useAuth0();
 
   return (
     <div className={`container-fluid ${style.container}`}>
