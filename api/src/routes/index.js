@@ -17,6 +17,9 @@ const messagesRoutes = require("./messagesRoutes")
 const alertRoutes = require("./alertRoutes")
 const alertsRoutes = require("./alertsRoutes")
 
+const notificationRoutes = require("./notificationRoutes")
+const notificationsRoutes = require("./notificationsRoutes")
+
 
 const router = Router()
 
@@ -36,5 +39,8 @@ router.use("/messages", messagesRoutes)
 
 router.use("/alert", alertRoutes)
 router.use("/alerts", alertsRoutes)
+
+router.use("/notification", notificationRoutes)
+router.use("/notifications", notificationsRoutes)
 
 module.exports = router
