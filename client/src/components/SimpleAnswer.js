@@ -59,7 +59,6 @@ const SimpleAnswer = ({
         },
         {
           label: "No",
-          onClick: () => alert("Canceló la elección"),
         },
       ],
     });
@@ -76,7 +75,6 @@ const SimpleAnswer = ({
         },
         {
           label: "No",
-          onClick: () => alert("Canceló el borrado"),
         },
       ],
     });
@@ -259,7 +257,7 @@ const SimpleAnswer = ({
           <Tooltip title="Editar">
             <EditIcon
               fontSize="medium"
-              className={style.moreBtn}
+              className={statusValidated ? style.hidden : style.moreBtn}
               onClick={handleEditAnswer}
             />
           </Tooltip>

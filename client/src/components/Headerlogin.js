@@ -10,6 +10,8 @@ import Header from "./Header";
 import HeaderLoading from "./HeaderLoading";
 import NotificationsIcon from '@mui/icons-material/Notifications';
 import Badge from '@mui/material/Badge';
+// import "../index.css";
+// import useLocalStorage from "use-local-storage";
 
 const Headerlogin = () => {
   const { user } = useAuth0();
@@ -19,6 +21,13 @@ const Headerlogin = () => {
   const userInfo = useSelector((state) => state.user);
   const [width, setWidth] = useState(window.innerWitdh);
   const notifications = useSelector((state) => state.notifications);
+
+  // const [theme, setTheme] = useLocalStorage("theme" ? "dark" : "light");
+
+  // const switchTheme = () => {
+  //   const newTheme = theme === "light" ? "dark" : "light";
+  //   setTheme(newTheme);
+  // };
 
   useEffect(() => {
     window.addEventListener("resize", handleResize, false);
@@ -49,6 +58,7 @@ const Headerlogin = () => {
   }
 
   return isAuthenticated ? (
+    // <div className="app" data-theme={theme}>
     <div className={`container-fluid ${style.container}`}>
       <div className={`row ${style.row1}`}>
         <div className={`col-lg-3 ${style.col1}`}>
@@ -61,6 +71,7 @@ const Headerlogin = () => {
           <Link to="/" className={style.linksInt}>
             Principal
           </Link>
+          {/* <h4>Texto prueba</h4> */}
         </div>
         <div className={`col-lg-2 ${style.colPreg}`}>
           <Link to="/preguntar" className={style.linksInt}>
@@ -189,11 +200,17 @@ const Headerlogin = () => {
                 </li>
               </ul>
             </div>
+            {/* <div className={`col-lg-1 ${style.colButton}`}>
+              <button onClick={switchTheme} className="button">
+                Dark
+              </button>
+            </div> */}
           </div>
         </div>
       </div>
     </div>
   ) : (
+    // </div>
     <Header />
   );
 };

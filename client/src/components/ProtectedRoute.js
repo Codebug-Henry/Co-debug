@@ -3,8 +3,10 @@ import React from "react";
 import Loading from "./Loading";
 
 export default function ProtectedRoute({ component }) {
+  let url = window.location.pathname
+
   const Component = withAuthenticationRequired(component, {
-    returnTo: '/',
+    returnTo: url,
     onRedirecting: () => <Loading />
   });
 

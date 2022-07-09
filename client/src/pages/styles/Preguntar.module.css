@@ -15,7 +15,6 @@ html {
 .fullContainer {
   display: flex;
   flex-direction: column;
-  /* border: black solid 1px; */
   background-color: lightyellow;
 }
 
@@ -26,4 +25,3 @@ html {
 .container {
   background-color: lightyellow;
 }
-

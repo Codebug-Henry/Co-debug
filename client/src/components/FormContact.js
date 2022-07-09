@@ -2,6 +2,9 @@ import React, { useState } from "react";
 import { postMessage } from "../redux/actions/index";
 import { useSelector, useDispatch } from "react-redux";
 import style from "./styles/FormContact.module.css";
+// import { confirmAlert } from "react-confirm-alert";
+// import "react-confirm-alert/src/react-confirm-alert.css";
+import MensajeAlerta from "./MensajeAlerta";
 
 const FormContact = () => {
   const dispatch = useDispatch();
@@ -55,6 +58,8 @@ const FormContact = () => {
     localStorage[property] = e.target.value;
   }
 
+  const textAlerta = "Mensaje enviado";
+
   function handleSubmit(e) {
     e.preventDefault();
     let message = {
@@ -64,7 +69,7 @@ const FormContact = () => {
       text: input.text,
     };
     dispatch(postMessage(message));
-    alert("Mensaje enviado");
+    MensajeAlerta({ textAlerta });
     setInput({
       email: "",
       title: "",

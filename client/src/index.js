@@ -1,17 +1,12 @@
 import { Provider } from "react-redux"
 import React from 'react';
-//import ReactDOM from 'react-dom';
+import { BrowserRouter } from "react-router-dom";
+import Auth0ProviderWithHistory from './auth/auth0-provider-with-history.js'
 import ReactDOMClient from "react-dom/client"
 import App from './App';
 import store from "./redux/store"
 import axios from 'axios';
-import { Auth0Provider } from "@auth0/auth0-react"
 require('dotenv').config();
-// const {
-//   REACT_APP_AUTH0_DOMAIN, REACT_APP_AUTH0_CLIENT_ID, REACT_APP_API
-// } = process.env;
-const domain = process.env.REACT_APP_AUTH0_DOMAIN ;
-const clientId = process.env.REACT_APP_AUTH0_CLIENT_ID ;
 
 const container = document.getElementById("root")
 const root = ReactDOMClient.createRoot(container);
@@ -19,10 +14,11 @@ const root = ReactDOMClient.createRoot(container);
 axios.defaults.baseURL = process.env.REACT_APP_API || "http://localhost:3001"
 
 root.render(
-  <Auth0Provider domain={domain} clientId={clientId} redirectUri={window.location.origin}>
-    <Provider store={store}>
-      <App />
-    </Provider>
-  </Auth0Provider>//,
-//  document.getElementById('root')
+<BrowserRouter>
+  <Auth0ProviderWithHistory>
+      <Provider store={store}>
+        <App />
+      </Provider>
+    </Auth0ProviderWithHistory>
+</BrowserRouter>
 );
