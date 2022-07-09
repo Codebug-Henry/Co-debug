@@ -1,0 +1,26 @@
+.custom {
+  background: lightyellow;
+  width: 150%;
+  height: 30%;
+  text-align: center;
+  color: black;
+  box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
+  border-radius: 1vh;
+  gap: 0;
+  padding: 1.5rem;
+}
+
+.title {
+  font-size: 1.5rem;
+}
+
+.button {
+  background-color: orange;
+  width: 33%;
+  height: 3.5rem;
+  margin: 1rem;
+  font-size: 2rem;
+  color: black;
+  border: 1px solid black;
+  border-radius: 1vh;
+}
