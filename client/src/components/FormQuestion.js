@@ -183,7 +183,7 @@ const FormQuestion = () => {
       setLoading(true);
       const data = new FormData();
       data.append("file", files[0]);
-      data.append("upload_preset", "codebug");
+      data.append("upload_preset", "codebugImages");
       const res = await axios.post(
         "https://api.cloudinary.com/v1_1/codebugers/image/upload",
         data
@@ -249,7 +249,7 @@ const FormQuestion = () => {
               )}
             </div>
             <div className={style.div2}>
-              <p> Vista previa: </p>
+              <p className={style.vistaPrevia}> Vista previa: </p>
               <ReactMarkdown
                 children={input.text}
                 className={style.markdown}
