@@ -173,7 +173,7 @@ const FormQuestion = () => {
   function handleClick() {
     setInput({
       ...input,
-      text: input.text + "\njavascript\n(escribe tu código javascript aquí)\n",
+      text: input.text + "\n```javascript\n(escribe tu código javascript aquí)\n```",
     });
   }
 

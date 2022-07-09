@@ -1,8 +1,21 @@
 import React from "react";
 import style from "./styles/Ayuda.module.css";
 import Footer from "../components/Footer.js";
+import { useEffect } from "react";
+import { useDispatch } from "react-redux";
+import { useAuth0 } from '@auth0/auth0-react';
+import { getNotifications } from "../redux/actions";
 
 const Ayuda = () => {
+  const { isAuthenticated, user } = useAuth0();
+    const dispatch = useDispatch();
+
+    useEffect(() => {
+        if (isAuthenticated) {
+          dispatch(getNotifications(user.sub))
+        }
+    }, [dispatch, user, isAuthenticated]);
+
   return (
     <div className={style.containerTotal}>
       <div className={`container-fluid ${style.container}`}>

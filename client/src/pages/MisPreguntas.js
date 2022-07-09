@@ -6,7 +6,7 @@ import Footer from "../components/Footer.js";
 import CardUserQuestion from "../components/CardUserQuestion";
 import FilterBar from "../components/FilterBar";
 import SearchBar from "../components/SearchBar";
-import { getUserQuestions, getUserQuestionsSearch } from "../redux/actions";
+import { getUserQuestions, getUserQuestionsSearch, getNotifications } from "../redux/actions";
 import FilterAltIcon from "@mui/icons-material/FilterAlt";
 import Paginated from "../components/Paginated";
 import Loading from "../components/Loading";
@@ -14,8 +14,8 @@ import quest from "../images/question.png";
 import { useNavigate } from "react-router-dom";
 
 const MisPreguntas = () => {
-  const { isAuthenticated } = useAuth0();
-  const user = useSelector((state) => state.user);
+  const { isAuthenticated, user } = useAuth0();
+  const userInfo = useSelector((state) => state.user);
   const questions = useSelector((state) => state.userQuestions);
   const dispatch = useDispatch();
   const totalPages = useSelector((state) => state.totalPages);
@@ -34,18 +34,24 @@ const MisPreguntas = () => {
   useEffect(() => {
     if (page > 1 && page > totalPages) setPage((prev) => prev - 1);
     if (input.length > 0) {
-      dispatch(getUserQuestionsSearch(user.sub, sort, page, input, setLoading));
-    } else dispatch(getUserQuestions(user.sub, sort, page, setLoading));
+      dispatch(getUserQuestionsSearch(userInfo.sub, sort, page, input, setLoading));
+    } else dispatch(getUserQuestions(userInfo.sub, sort, page, setLoading));
   }, [
     dispatch,
     sort,
     cantFirstLast,
     page,
-    user.sub,
+    userInfo.sub,
     totalPages,
     input,
     isModify,
   ]);
+
+  useEffect(() => {
+    if (isAuthenticated) {
+      dispatch(getNotifications(user.sub))
+    }
+  }, [dispatch, user, isAuthenticated]);
 
   function redirectQuest() {
     navigate("/preguntar");

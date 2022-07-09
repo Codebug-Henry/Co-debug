@@ -3,7 +3,7 @@ import style from "./styles/Responder.module.css";
 import Footer from "../components/Footer.js";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
-import { getQuestion, sendAnswer, getUserInfo } from "../redux/actions/index";
+import { getQuestion, sendAnswer, getUserInfo, getNotifications } from "../redux/actions/index";
 import SimpleAnswer from "../components/SimpleAnswer";
 import Loading from "../components/Loading";
 import ReactMarkdown from "react-markdown";
@@ -15,7 +15,7 @@ import MensajeAlerta from "../components/MensajeAlerta";
 
 
 const Responder = () => {
-  const { isAuthenticated, loginWithRedirect } = useAuth0();
+  const { isAuthenticated, loginWithRedirect, user } = useAuth0();
   const dispatch = useDispatch();
   const { questionId } = useParams();
   const question = useSelector((state) => state.question);
@@ -26,7 +26,7 @@ const Responder = () => {
   const [page, setPage] = useState(1)
   const totalPages = useSelector((state)=> state.totalPages)
   //form
-  const user = useSelector((state) => state.user);
+  const userInfo = useSelector((state) => state.user);
   const [input, setInput] = useState("");
   const [error, setError] = useState("");
 
@@ -36,7 +36,10 @@ const Responder = () => {
   }, [dispatch, load, questionId, isModify, page, totalPages]);
 
   useEffect(() => {
-    if (isAuthenticated) dispatch(getUserInfo(user.sub));
+    if (isAuthenticated) {
+      dispatch(getUserInfo(user.sub));
+      dispatch(getNotifications(user.sub))
+    }
     // eslint-disable-next-line
   }, [isModify]);
 
@@ -57,7 +60,7 @@ const Responder = () => {
   const textAlerta = "Respuesta enviada";
   const handleSubmit = (e) => {
     e.preventDefault();
-    dispatch(sendAnswer({ sub: user.sub, id: questionId, text: input }));
+    dispatch(sendAnswer({ sub: userInfo.sub, id: questionId, text: input }));
     setLoad(true);
     setInput("");
     MensajeAlerta({ textAlerta });

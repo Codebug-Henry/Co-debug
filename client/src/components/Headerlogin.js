@@ -2,20 +2,21 @@ import { Link } from "react-router-dom";
 import logo from "../images/logo_codebug.png";
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { useAuth0 } from "@auth0/auth0-react";
 import style from "./styles/Headerlogin.module.css";
 import { getNotifications, sendUserInfo } from "../redux/actions";
 import Header from "./Header";
 import HeaderLoading from "./HeaderLoading";
 import NotificationsIcon from '@mui/icons-material/Notifications';
+import NotificationsNoneIcon from '@mui/icons-material/NotificationsNone';
 import Badge from '@mui/material/Badge';
+import axios from "axios";
 // import "../index.css";
 // import useLocalStorage from "use-local-storage";
 
 const Headerlogin = () => {
-  const { user } = useAuth0();
-  const { isAuthenticated, isLoading } = useAuth0();
+  const { isAuthenticated, isLoading, user } = useAuth0();
   const { logout } = useAuth0();
   const dispatch = useDispatch();
   const userInfo = useSelector((state) => state.user);
@@ -28,6 +29,21 @@ const Headerlogin = () => {
   //   const newTheme = theme === "light" ? "dark" : "light";
   //   setTheme(newTheme);
   // };
+
+  const [open, setOpen] = useState(false)
+
+  const myRef = useRef();
+
+  const handleClickOutside = e => {
+      if (open && !myRef.current.contains(e.target)) {
+        setOpen(false)
+      }
+  };
+
+  useEffect(() => {
+      document.addEventListener('mousedown', handleClickOutside);
+      return () => document.removeEventListener('mousedown', handleClickOutside);
+  });
 
   useEffect(() => {
     window.addEventListener("resize", handleResize, false);
@@ -49,6 +65,17 @@ const Headerlogin = () => {
     localStorage.clear();
   };
 
+  const handleOpen = () => {
+    setOpen(!open)
+  };
+
+  const handleRead = async (id) => {
+    let readPack = { id, statusRead: true };
+    await axios.put(`/notification`, readPack);
+    dispatch(getNotifications(user.sub))
+    setOpen(false)
+  };
+  
   if (isLoading) {
     return (
       <div>
@@ -85,20 +112,50 @@ const Headerlogin = () => {
         </div>
 
         <div className={`col-lg-3 ${style.col4} ${style.imgNameLogOut}`}>
-          <div className={style.colNotif}>
-            <Badge
-              badgeContent={notifications.total}
-              sx={{
-                "& .MuiBadge-badge": {
-                  backgroundColor: '#f9bf00'
+          <div className={style.badgeNotifBox} ref={myRef}>
+            <div className={style.badge} onClick={handleOpen}>
+              <Badge
+                badgeContent={notifications.total}
+                sx={{
+                  "& .MuiBadge-badge": {
+                    backgroundColor: '#f9bf00'
+                  }
+                }}
+              >
+                {open
+                  ? <NotificationsNoneIcon
+                      sx={{ fontSize: 28 }}
+                    />
+                  : <NotificationsIcon
+                      sx={{ fontSize: 28 }}
+                    />
                 }
-              }}
-            >
-              <NotificationsIcon
-                sx={{ fontSize: 28 }}
-              />
-            </Badge>
+              </Badge>
+            </div>
+            
+            {/* Notifications */}
+            {open && (
+              <div className={style.notifBox}>
+                {notifications.total 
+                ? notifications.results?.map((n, i) => (
+                  <Link to={`/responder/${n.questId}`} key={i} className={style.notification} onClick={() => handleRead(n.id)}>
+                      {n.text}
+                  </Link>
+                ))
+                : <span className={style.noNotif}>
+                    No tienes nuevas notificaciones
+                  </span>
+              }
+                
+              </div>
+            )}
           </div>
+
+            {/* <div className={style.notifBtnBox}>
+              <button className={style.notifBtn} onClick={handleReadAll}>
+                Marcar como leídas
+              </button>
+            </div> */}
 
           <div className={style.padreDivs}>
             <Link

@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { useAuth0 } from "@auth0/auth0-react";
 import style from "./styles/Configuracion.module.css";
 import Footer from "../components/Footer.js";
-import { getUserInfo, putUserInfo } from "../redux/actions";
+import { getUserInfo, putUserInfo, getNotifications } from "../redux/actions";
 import { useNavigate } from "react-router-dom";
 import CheckIcon from "@mui/icons-material/Check";
 import Upload from "../components/Upload.js";
@@ -15,7 +15,7 @@ import "react-confirm-alert/src/react-confirm-alert.css";
 import MensajeAlerta from "../components/MensajeAlerta";
 
 const Configuracion = () => {
-  const { isAuthenticated, isLoading } = useAuth0();
+  const { isAuthenticated, isLoading, user } = useAuth0();
   const userInfo = useSelector((state) => state.user);
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -26,6 +26,12 @@ const Configuracion = () => {
   });
   const [nicknameUser, setNicknameUser] = useState(false);
   const [errors, setErrors] = useState({});
+
+  useEffect(() => {
+    if (isAuthenticated) {
+      dispatch(getNotifications(user.sub))
+    }
+  }, [dispatch, user, isAuthenticated]);
 
   const handlerSubmit = () => {
     confirmAlert({

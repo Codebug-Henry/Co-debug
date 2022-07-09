@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useAuth0 } from "@auth0/auth0-react";
-import { getUserAnswers } from "../redux/actions";
+import { getUserAnswers, getNotifications } from "../redux/actions";
 import style from "./styles/MisRespuestas.module.css";
 import Footer from "../components/Footer.js";
 import Loading from "../components/Loading";
@@ -11,8 +11,8 @@ import { useNavigate } from "react-router-dom";
 import quest from "../images/question.png";
 
 const MisRespuestas = () => {
-  const { isAuthenticated } = useAuth0();
-  const user = useSelector((state) => state.user);
+  const { isAuthenticated, user } = useAuth0();
+  const userInfo = useSelector((state) => state.user);
   const dispatch = useDispatch();
   const answers = useSelector((state) => state.answers);
   const totalPages = useSelector((state) => state.totalPages);
@@ -22,8 +22,14 @@ const MisRespuestas = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    dispatch(getUserAnswers(user.sub, page, setLoading));
-  }, [dispatch, user.sub, page, totalPages, isModify]);
+    dispatch(getUserAnswers(userInfo.sub, page, setLoading));
+  }, [dispatch, userInfo.sub, page, totalPages, isModify]);
+
+  useEffect(() => {
+    if (isAuthenticated) {
+      dispatch(getNotifications(user.sub))
+    }
+  }, [dispatch, user, isAuthenticated]);
 
   function redirectAnswer() {
     navigate("/");
