@@ -50,7 +50,7 @@ const CardUserQuestion = ({
         },
         {
           label: "No",
-          onClick: () => alert("Canceló el borrado"),
+          onClick: null,
         },
       ],
     });

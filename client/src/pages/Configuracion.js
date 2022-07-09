@@ -12,11 +12,10 @@ import StatsUser from "../components/StatsUser";
 import TeachPoints from "../components/TeachPoints";
 import { confirmAlert } from "react-confirm-alert";
 import "react-confirm-alert/src/react-confirm-alert.css";
-// import { useParams } from "react-router-dom";
+import MensajeAlerta from "../components/MensajeAlerta";
 
 const Configuracion = () => {
   const { isAuthenticated, isLoading } = useAuth0();
-  // const { sub } = useParams();
   const userInfo = useSelector((state) => state.user);
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -39,7 +38,6 @@ const Configuracion = () => {
         },
         {
           label: "No",
-          onClick: () => alert("Canceló el borrado"),
         },
       ],
     });
@@ -61,10 +59,11 @@ const Configuracion = () => {
     return errors;
   }
 
+  const textAlerta = "No podes cambiar el nombre en más de dos oportunidades.";
   function handlerEditName(e) {
     e.preventDefault();
     if (userInfo.nameChanges >= 2) {
-      alert("No podes cambiar el nombre en más de dos oportunidades.");
+      MensajeAlerta({ textAlerta });
     } else {
       setNameUser(true);
     }
