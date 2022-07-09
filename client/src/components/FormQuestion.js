@@ -130,18 +130,42 @@ const FormQuestion = () => {
 
   function handleDeleteMacroTag(e) {
     const filteredMacroTags = input.macroTag.filter((m) => m !== e);
+    const deletedMacroTag = input.macroTag.filter((m) => m === e).toString();
+    const deletedMicroTags = tags.filter(e=> e.tag === deletedMacroTag).map(e=>e.microTags)
+    const deletedMicroTags2 = deletedMicroTags[0].map(e=>e.tag);
+    const micros = input.microTag
+    var deleted = [];
+    for (let i = 0; i < deletedMicroTags2.length; i++) {
+        for (let j = 0; j < micros.length; j++) {
+            if(deletedMicroTags2[i] === micros[j]) 
+            deleted.push(deletedMicroTags2[i])
+        }
+    }
+    var newInput = [];
+    for (var i = 0; i < micros.length; i++) {
+        var igual=false;
+         for (let j = 0; j < deleted.length & !igual; j++) {
+             if(micros[i] === deleted[j])
+                     igual=true;
+         }
+        if(!igual)newInput.push(micros[i]);
+    }
     setInput({
       ...input,
       macroTag: filteredMacroTags,
+      microTag: newInput
     });
     setErrors(
       validate({
         ...input,
         macroTag: filteredMacroTags,
+        microTag: newInput
       })
     );
     localStorage.macroTagQuestion = JSON.stringify(filteredMacroTags);
+    localStorage.microTagQuestion = JSON.stringify(newInput);
   }
+
 
   function handleSubmit(e) {
     const textAlerta = "Pregunta creada";
