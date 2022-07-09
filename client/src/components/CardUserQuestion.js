@@ -133,6 +133,7 @@ const CardUserQuestion = ({
               id="standard-basic"
               label="Edita el título"
               variant="standard"
+              size="small"
               defaultValue={title}
               onChange={(e) => onChangeInputTitle(e)}
             />
@@ -200,7 +201,7 @@ const CardUserQuestion = ({
           </Tooltip>
         </div>
         <div className={style.btns}>
-          <div>
+          <div className={statusValidated ? style.none : null}>
             <Tooltip title="Editar">
               <EditIcon
                 fontSize="medium"

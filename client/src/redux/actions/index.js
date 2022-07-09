@@ -145,9 +145,9 @@ export const sendQuestion = (question) => async (dispatch) => {
   }
 };
 
-export const getQuestion = (id, setLoad, setLoading) => async (dispatch) => {
+export const getQuestion = (id, page, setLoad, setLoading) => async (dispatch) => {
   try {
-    const { data } = await api.getQuestion(id);
+    const { data } = await api.getQuestion(id, page);
     dispatch({ type: GET_QUESTION, payload: data });
     setLoad && setLoad(false);
     setLoading && setLoading(false)

@@ -21,7 +21,7 @@ export const getSearchUsers = (page, search) =>
 
 // RUTAS question - questions
 export const sendQuestion = (question) => axios.post(`/question`, question);
-export const getQuestion = (id) => axios.get(`/question/${id}`);
+export const getQuestion = (id, page) => axios.get(`/question/${id}?page=${page}&limit=5`);
 export const modifyQuestion = (modify) => axios.put(`/question`, modify);
 export const deleteQuestion = (question) => axios.put(`/question`, question);
 export const addFavourites = (sub, qId, boolean) =>

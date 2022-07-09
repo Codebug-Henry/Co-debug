@@ -10,7 +10,9 @@ import ReactMarkdown from "react-markdown";
 import Highlighter from "../components/Highlighter";
 import { useAuth0 } from "@auth0/auth0-react";
 import axios from "axios";
+import Paginated from "../components/Paginated";
 import MensajeAlerta from "../components/MensajeAlerta";
+
 
 const Responder = () => {
   const { isAuthenticated, loginWithRedirect } = useAuth0();
@@ -21,14 +23,17 @@ const Responder = () => {
   const [loading, setLoading] = useState(true);
   const [loadingImg, setLoadingImg] = useState(false);
   const [isModify, setIsModify] = useState(false);
+  const [page, setPage] = useState(1)
+  const totalPages = useSelector((state)=> state.totalPages)
   //form
   const user = useSelector((state) => state.user);
   const [input, setInput] = useState("");
   const [error, setError] = useState("");
 
   useEffect(() => {
-    dispatch(getQuestion(parseInt(questionId), setLoad, setLoading));
-  }, [dispatch, load, questionId, isModify]);
+    if (page > 1 && page > totalPages) setPage((prev) => prev - 1);
+    dispatch(getQuestion(parseInt(questionId), page, setLoad, setLoading));
+  }, [dispatch, load, questionId, isModify, page, totalPages]);
 
   useEffect(() => {
     if (isAuthenticated) dispatch(getUserInfo(user.sub));
@@ -45,8 +50,8 @@ const Responder = () => {
     if (!input) error = "Se requiere escribir una respuesta";
     if (input.length < 10)
       error = "La respuesta debe tener como mínimo 10 caracteres";
-    if (input.length > 500)
-      error = "La respuesta debe tener como máximo 500 caracteres";
+    if (input.length > 600)
+      error = "La respuesta debe tener como máximo 600 caracteres";
     return error;
   };
   const textAlerta = "Respuesta enviada";
@@ -130,35 +135,6 @@ const Responder = () => {
                           components={{ code: Highlighter }}
                         />
                       </div>
-                      {/* <div className={style.bajoTexto}>
-                      <div className={style.likes}>
-                        {question?.likes}
-                        <img
-                          onClick={()=> handlerLike()} src={like}
-                          alt="mano arriba"
-                          className={style.like}
-                        />
-                        <img
-                          onClick={()=> handlerDislike()} src={dislike}
-                          alt="mano abajo"
-                          className={style.dislike}
-                        />
-                      </div>
-                      <div>
-                        <img
-                          src={favorito}
-                          alt="favorito"
-                          className={style.like}
-                        />
-                      </div>
-                      <div>
-                        <img
-                          src={denuncia}
-                          alt="denuncia"
-                          className={style.like}
-                        />
-                      </div>
-                    </div> */}
                     </div>
                   </div>
 
@@ -247,7 +223,7 @@ const Responder = () => {
                   <div className={style.answers}>
                     <p>Respuestas: </p>
                     {question &&
-                      question?.answers.map((e) => (
+                      question?.answers.results.map((e) => (
                         <SimpleAnswer
                           key={e.id}
                           id={e.id}
@@ -263,6 +239,10 @@ const Responder = () => {
                       ))}
                   </div>
                   {/* </div> */}
+                  <Paginated
+                      page={page}
+                      setPage={setPage}
+                    />
                 </div>
               </div>
             )}{" "}
