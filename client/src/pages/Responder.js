@@ -57,6 +57,13 @@ const Responder = () => {
     alert("Respuesta enviada");
   };
 
+  const handleLogIn = (e) => {
+    e.preventDefault()
+    loginWithRedirect({appState: {
+      returnTo: window.location.pathname
+   }})
+  }
+
   function handleClick() {
     setInput(
       input + "\n```javascript\n(escribe tu código javascript aquí)\n```"
@@ -232,7 +239,7 @@ const Responder = () => {
                       <div className={style.button}>
                         <button
                           type="submit"
-                          onClick={async (e) => await loginWithRedirect()}
+                          onClick={handleLogIn}
                           className={style.submit}
                         >
                           <span>Logueate para responder</span>
