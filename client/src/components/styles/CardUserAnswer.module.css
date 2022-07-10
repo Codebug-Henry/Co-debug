@@ -167,9 +167,17 @@
 
 .editText {
   width: 100%;
-  height: 200px;
+  height: 180px;
   background-color: rgb(255, 245, 211);
   border-radius: 0.5vh;
+}
+
+.error {
+  margin-left: 0.5vh;
+  margin-top: -0.7vh;
+  margin-bottom: 0.5vh;
+  font-size: 0.8rem;
+  color: #f9bf00;
 }
 
 .markdown {
@@ -295,5 +303,10 @@
   .TitleAndExtrasBox {
     /* border: solid 1px black; */
     gap: 5vw;
-   }
+  }
+
+  .error {
+    font-size: 11px;
+  }
+  
 }

@@ -42,11 +42,19 @@ const SimpleAnswer = ({
   const liked = userInfo.ansLiked?.includes(id);
   const disliked = userInfo.ansDisliked?.includes(id);
   const [style1, setStyle1] = useState(true);
+  const [errors, setErrors] = useState({});
   const [newAnswer, setNewAnswer] = useState({
     sub: userInfo.sub,
     id: id,
     text: text,
   });
+
+  function validate(newAnswer) {
+    let errors = {};
+    if (!newAnswer.text) errors.text = "Se requiere una respuesta";
+    if (newAnswer.text.length > 600) errors.text = "La respuesta debe tener un máximo de 600 caracteres";
+    return errors;
+  }
 
   const handlerChooseQuestion = () => {
     confirmAlert({
@@ -124,10 +132,10 @@ const SimpleAnswer = ({
     toRender();
   }
 
-  const handleConfirmAnswer = (e) => {
+  async function handleConfirmAnswer(e) {
     e.preventDefault();
     setIsModify(true);
-    dispatch(putAnswer(newAnswer, setIsModify));
+    await dispatch(putAnswer(newAnswer, setIsModify));
     toRender();
   };
 
@@ -136,6 +144,11 @@ const SimpleAnswer = ({
       ...newAnswer,
       text: e.target.value,
     });
+    setErrors(
+      validate({
+        text: e.target.value,
+      })
+    );
   }
 
   function handleClick() {
@@ -210,16 +223,20 @@ const SimpleAnswer = ({
         <div className={style1 === true ? style.editFull : style.editFull2}>
           <textarea
             type="text"
-            // defaultValue={text}
             value={newAnswer.text}
             name="text"
             autoComplete="off"
             className={style.editText}
             onChange={(e) => onChangeInputText(e)}
           />
+           {errors.text && (
+                <div className={style.error}>
+                  <span> {errors.text}</span>
+                </div>
+            )}
         </div>
 
-        <div className={style1 === true ? style.editFull : style.editBtn}>
+        <div className={style1 === true || errors.text ? style.editFull : style.editBtn}>
           <button type="button" className={style.btnCode} onClick={handleClick}>
             {" "}
             Javascript{" "}
