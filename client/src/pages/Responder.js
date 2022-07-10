@@ -91,7 +91,7 @@ const Responder = () => {
         data
       );
       const file = res.data;
-      setInput(input + `\n\n![image](${file.secure_url})\n\n`);
+      setInput(input + `\n\n![image](${file.secure_url})=250x\n\n`);
       setLoadingImg(false);
     }
   }

@@ -121,6 +121,8 @@ const MisPreguntas = () => {
                             setCantFirstLast={setCantFirstLast}
                             setIsModify={setIsModify}
                             statusValidated={q.statusValidated}
+                            macroTags={q.macroTags}
+                            microTags={q.microTags}
                           />
                         );
                       })

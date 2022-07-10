@@ -24,6 +24,8 @@ import ReactMarkdown from "react-markdown";
 import Highlighter from "./Highlighter";
 import TaskAltIcon from "@mui/icons-material/TaskAlt";
 import DeleteIcon from "@mui/icons-material/Delete";
+import { confirmAlert } from "react-confirm-alert";
+import "react-confirm-alert/src/react-confirm-alert.css";
 
 const CardQuestion = ({
   cantAnswers,
@@ -43,6 +45,7 @@ const CardQuestion = ({
   const userInfo = useSelector((state) => state.user);
   const liked = userInfo.questLiked?.includes(id);
   const disliked = userInfo.questDisliked?.includes(id);
+  const questions = useSelector((state) => state.questions);
 
   const [flag, setFlag] = useState(true);
 
@@ -85,6 +88,23 @@ const CardQuestion = ({
       );
     }
   }
+
+  const onClick = (e) => {
+    confirmAlert({
+      title: "Confirma borrar la pregunta",
+      message: "¿Está seguro de esto?",
+      buttons: [
+        {
+          label: "Sí",
+          onClick: (e) => handleDeleteQuestion(e),
+        },
+        {
+          label: "No",
+          onClick: null,
+        },
+      ],
+    });
+  };
 
   function handleDeleteQuestion(e) {
     setIsModify(true);
@@ -213,7 +233,7 @@ const CardQuestion = ({
                 <DeleteIcon
                   fontSize="medium"
                   className={style.deleteBtn}
-                  onClick={handleDeleteQuestion}
+                  onClick={(e) => onClick(e)}
                   color="action"
                 />
               </span>
