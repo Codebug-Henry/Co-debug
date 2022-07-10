@@ -33,10 +33,10 @@ const getUserPosition = async (sub) => {
 };
 
 async function questionTags(tagArr, tagType, question) {
-  await newQuestion.addMicroTags(microTags);
-  microTags = await newQuestion.getMicroTags();
+  // await newQuestion.addMicroTags(microTags);
+  // microTags = await newQuestion.getMicroTags();
 
-  let tagPromises = tagArr.map((tag) => tagType.findByPk(tag.id));
+  let tagPromises = tagArr.map((tag) => tagType.findOne({where: {tag}}));
   //[{"tag":"React","id":1}]
   let tags = await Promise.all(tagPromises);
   //[tags de]
@@ -551,16 +551,22 @@ const populateDB = async () => {
     let mixins = allMicros[88];
     let store = allMicros[65];
 
-    // await Question[0].addMacroTag(Js);
-    // await Question[0].addMicroTag(bucles);
-    // await Question[1].addMacroTag(GH);
-    // await Question[1].addMicroTag(comandos);
-    // await Question[2].addMacroTag(React);
-    // await Question[2].addMicroTag(hooks);
-    // await Question[3].addMacroTag(Sequelize);
-    // await Question[3].addMicroTag(mixins);
-    // await Question[4].addMacroTag(Redux);
-    // await Question[4].addMicroTag(store);
+    let question1 = await Question.findByPk(1)
+    let question2 = await Question.findByPk(2)
+    let question3 = await Question.findByPk(3)
+    let question5 = await Question.findByPk(5)
+    let question6 = await Question.findByPk(6)
+
+    await question1.addMacroTag(Js);
+    await question1.addMicroTag(bucles);
+    await question2.addMacroTag(GH);
+    await question2.addMicroTag(comandos);
+    await question3.addMacroTag(React);
+    await question3.addMicroTag(hooks);
+    await question5.addMacroTag(Sequelize);
+    await question5.addMicroTag(mixins);
+    await question6.addMacroTag(Redux);
+    await question6.addMicroTag(store);
 
     console.log("DB populated correctly");
   } catch (error) {

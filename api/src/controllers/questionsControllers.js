@@ -60,6 +60,11 @@ const getAllQuestions = async (req, res, next) => {
 
   try {
     let condition = { statusDeleted: false };
+    let conditionMacroTag = {}
+    let conditionMicroTag = {}
+
+    if (macroTag) conditionMacroTag = {tag: macroTag}
+    if (microTag) conditionMicroTag = {tag: microTag}
 
     if (search) {
       let searchArr = search.split(" ");
@@ -97,9 +102,11 @@ const getAllQuestions = async (req, res, next) => {
         },
         {
           model: MacroTag,
+          where: conditionMacroTag
         },
         {
           model: MicroTag,
+          where: conditionMicroTag
         },
       ],
     });

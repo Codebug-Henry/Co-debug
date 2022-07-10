@@ -116,15 +116,13 @@ const putUserQuestion = async (req, res, next) => {
 
 const postQuestion = async (req, res, next) => {
    let {sub, text, title,imgs,macroTags,microTags} = req.body
-    
     try {
         const user = await User.findByPk(sub)
         await user.update({cantQuest: user.cantQuest + 1})
         const newQuestion = await Question.create({text, title,imgs})
-        // console.group(macrotag)
-        // macroTags=await questionTags(macroTags, MacroTag, newQuestion)
-        // microTags=await questionTags(microTags, MicroTag, newQuestion)
 
+        macroTags=await questionTags(macroTags, MacroTag, newQuestion)
+        microTags=await questionTags(microTags, MicroTag, newQuestion)
         newQuestion.setUser(user)
         res.send({user, ...newQuestion.dataValues, macroTags, microTags})
 
