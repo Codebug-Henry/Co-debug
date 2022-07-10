@@ -43,10 +43,7 @@ const getUserQuestions = async (req, res, next) => {
         ["createdAt", "DESC"],
         ["title", "ASC"],
       ],
-      include:[
-          {model:MacroTag},
-          {model:MicroTag}
-      ]
+      include: [{ model: MacroTag }, { model: MicroTag }],
     });
 
     res.send(paginate(parseInt(limit), parseInt(page), myQuestions));
@@ -60,11 +57,11 @@ const getAllQuestions = async (req, res, next) => {
 
   try {
     let condition = { statusDeleted: false };
-    let conditionMacroTag = {}
-    let conditionMicroTag = {}
+    let conditionMacroTag = {};
+    let conditionMicroTag = {};
 
-    if (macroTag) conditionMacroTag = {tag: macroTag}
-    if (microTag) conditionMicroTag = {tag: microTag}
+    if (macroTag) conditionMacroTag = { tag: macroTag };
+    if (microTag) conditionMicroTag = { tag: microTag };
 
     if (search) {
       let searchArr = search.split(" ");
@@ -102,11 +99,13 @@ const getAllQuestions = async (req, res, next) => {
         },
         {
           model: MacroTag,
-          where: conditionMacroTag
+          required: false,
+          where: conditionMacroTag,
         },
         {
           model: MicroTag,
-          where: conditionMicroTag
+          required: false,
+          where: conditionMicroTag,
         },
       ],
     });
