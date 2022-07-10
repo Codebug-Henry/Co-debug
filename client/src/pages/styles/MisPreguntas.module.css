@@ -13,7 +13,6 @@ html {
 
 .container {
   background-color: lightyellow;
-  width: 91%;
 }
 
 .fullContainer {
@@ -25,11 +24,14 @@ html {
 .col1 {
   display: flex;
   flex-direction: column;
+  margin-left: 0;
+  margin-right: 0;
+  padding-left: 0;
+  padding-right: 0;
 }
 
 #all {
-  width: 96%;
-  margin-left: 2%;
+  width: 100%;
 }
 
 #explore {
@@ -39,7 +41,7 @@ html {
 }
 
 #filters {
-  /* border: solid 1px black; */
+  border: solid 1px black;
   border-radius: 0.5vh;
   box-shadow: 3px 3px 3px grey;
   background-color: #f9bf00;
@@ -79,10 +81,9 @@ html {
   margin-top: -5px;
 }
 
-
 @media screen and (max-width: 950px) {
   #explore {
-  font-size: 24px;
+    font-size: 24px;
   }
 }
 
@@ -100,4 +101,3 @@ html {
     width: 98%;
   }
 }
-

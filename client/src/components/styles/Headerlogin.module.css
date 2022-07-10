@@ -29,6 +29,17 @@
   /* margin-right: 25% */
 }
 
+.bell {
+  display: flex;
+  align-items: center;
+  justify-content: right;
+}
+@media screen and (max-width: 991px) {
+  .bell {
+    justify-content: center;
+  }
+}
+
 .logo {
   width: 45%;
   margin-left: 25%;

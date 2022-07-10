@@ -8,9 +8,9 @@ import style from "./styles/Headerlogin.module.css";
 import { getNotifications, sendUserInfo } from "../redux/actions";
 import Header from "./Header";
 import HeaderLoading from "./HeaderLoading";
-import NotificationsIcon from '@mui/icons-material/Notifications';
-import NotificationsNoneIcon from '@mui/icons-material/NotificationsNone';
-import Badge from '@mui/material/Badge';
+import NotificationsIcon from "@mui/icons-material/Notifications";
+import NotificationsNoneIcon from "@mui/icons-material/NotificationsNone";
+import Badge from "@mui/material/Badge";
 import axios from "axios";
 // import "../index.css";
 // import useLocalStorage from "use-local-storage";
@@ -30,19 +30,19 @@ const Headerlogin = () => {
   //   setTheme(newTheme);
   // };
 
-  const [open, setOpen] = useState(false)
+  const [open, setOpen] = useState(false);
 
   const myRef = useRef();
 
-  const handleClickOutside = e => {
-      if (open && !myRef.current.contains(e.target)) {
-        setOpen(false)
-      }
+  const handleClickOutside = (e) => {
+    if (open && !myRef.current.contains(e.target)) {
+      setOpen(false);
+    }
   };
 
   useEffect(() => {
-      document.addEventListener('mousedown', handleClickOutside);
-      return () => document.removeEventListener('mousedown', handleClickOutside);
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
   });
 
   useEffect(() => {
@@ -52,7 +52,7 @@ const Headerlogin = () => {
   useEffect(() => {
     if (isAuthenticated) {
       dispatch(sendUserInfo(user));
-      dispatch(getNotifications(user.sub))
+      dispatch(getNotifications(user.sub));
     }
   }, [dispatch, user, isAuthenticated]);
 
@@ -66,16 +66,16 @@ const Headerlogin = () => {
   };
 
   const handleOpen = () => {
-    setOpen(!open)
+    setOpen(!open);
   };
 
   const handleRead = async (id) => {
     let readPack = { id, statusRead: true };
     await axios.put(`/notification`, readPack);
-    dispatch(getNotifications(user.sub))
-    setOpen(false)
+    dispatch(getNotifications(user.sub));
+    setOpen(false);
   };
-  
+
   if (isLoading) {
     return (
       <div>
@@ -94,12 +94,11 @@ const Headerlogin = () => {
           </Link>
         </div>
 
-        <div className={`col-lg-2 ${style.colPrin}`}>
+        {/* <div className={`col-lg-2 ${style.colPrin}`}>
           <Link to="/" className={style.linksInt}>
             Principal
           </Link>
-          {/* <h4>Texto prueba</h4> */}
-        </div>
+        </div> */}
         <div className={`col-lg-2 ${style.colPreg}`}>
           <Link to="/preguntar" className={style.linksInt}>
             Preguntar
@@ -111,52 +110,55 @@ const Headerlogin = () => {
           </Link>
         </div>
 
-        <div className={`col-lg-3 ${style.col4} ${style.imgNameLogOut}`}>
+        <div className={`col-lg-2 ${style.bell}`}>
           <div className={style.badgeNotifBox} ref={myRef}>
             <div className={style.badge} onClick={handleOpen}>
               <Badge
                 badgeContent={notifications.total}
                 sx={{
                   "& .MuiBadge-badge": {
-                    backgroundColor: '#f9bf00'
-                  }
+                    backgroundColor: "#f9bf00",
+                  },
                 }}
               >
-                {open
-                  ? <NotificationsNoneIcon
-                      sx={{ fontSize: 28 }}
-                    />
-                  : <NotificationsIcon
-                      sx={{ fontSize: 28 }}
-                    />
-                }
+                {open ? (
+                  <NotificationsNoneIcon sx={{ fontSize: 28 }} />
+                ) : (
+                  <NotificationsIcon sx={{ fontSize: 28 }} />
+                )}
               </Badge>
             </div>
-            
+
             {/* Notifications */}
             {open && (
               <div className={style.notifBox}>
-                {notifications.total 
-                ? notifications.results?.map((n, i) => (
-                  <Link to={`/responder/${n.questId}`} key={i} className={style.notification} onClick={() => handleRead(n.id)}>
+                {notifications.total ? (
+                  notifications.results?.map((n, i) => (
+                    <Link
+                      to={`/responder/${n.questId}`}
+                      key={i}
+                      className={style.notification}
+                      onClick={() => handleRead(n.id)}
+                    >
                       {n.text}
-                  </Link>
-                ))
-                : <span className={style.noNotif}>
+                    </Link>
+                  ))
+                ) : (
+                  <span className={style.noNotif}>
                     No tienes nuevas notificaciones
                   </span>
-              }
-                
+                )}
               </div>
             )}
           </div>
 
-            {/* <div className={style.notifBtnBox}>
+          {/* <div className={style.notifBtnBox}>
               <button className={style.notifBtn} onClick={handleReadAll}>
                 Marcar como leídas
               </button>
             </div> */}
-
+        </div>
+        <div className={`col-lg-3 ${style.col4} ${style.imgNameLogOut}`}>
           <div className={style.padreDivs}>
             <Link
               to={`/configuracion/${userInfo.sub}`}
@@ -211,13 +213,6 @@ const Headerlogin = () => {
                   <Link className={style.linkDesp} to="/favoritas">
                     <p className="dropdown-item" href="#">
                       Favoritas
-                    </p>
-                  </Link>
-                </li>
-                <li>
-                  <Link className={style.linkDesp} to="/preguntar">
-                    <p className="dropdown-item" href="#">
-                      Preguntar
                     </p>
                   </Link>
                 </li>
