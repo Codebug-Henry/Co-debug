@@ -123,8 +123,6 @@ const postQuestion = async (req, res, next) => {
 
         macroTags=await questionTags(macroTags, MacroTag, newQuestion)
         microTags=await questionTags(microTags, MicroTag, newQuestion)
-        console.log(macroTags)
-        console.log(microTags)
         newQuestion.setUser(user)
         res.send({user, ...newQuestion.dataValues, macroTags, microTags})
 
