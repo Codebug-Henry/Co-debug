@@ -145,6 +145,18 @@ const Responder = () => {
                           components={{ code: Highlighter }}
                         />
                       </div>
+                      <div id={style.tags}>
+                      {
+                        question.macroTags.map((macro)=> (
+                          <span key={macro.tag} className={style.tag}>{" "}#{macro.tag}{" "}</span>
+                        ))
+                      }
+                      {
+                        question.microTags.map((micro)=> (
+                          <span key={micro.tag} className={style.tag}>{" "}#{micro.tag}{" "}</span>
+                        ))
+                      }
+                      </div>
                     </div>
                   </div>
 

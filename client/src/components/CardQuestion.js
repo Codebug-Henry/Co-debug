@@ -45,7 +45,7 @@ const CardQuestion = ({
   const userInfo = useSelector((state) => state.user);
   const liked = userInfo.questLiked?.includes(id);
   const disliked = userInfo.questDisliked?.includes(id);
-  const questions = useSelector((state) => state.questions);
+  // const questions = useSelector((state) => state.questions);
 
   const [flag, setFlag] = useState(true);
 

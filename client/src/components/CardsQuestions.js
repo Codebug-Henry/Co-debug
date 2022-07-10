@@ -5,6 +5,7 @@ import CardQuestion from "./CardQuestion.js";
 import Paginated from "./Paginated";
 import Loading from "./Loading";
 import style from "./styles/CardsQuestions.module.css";
+import CardNotFound from "./CardNotFound.js";
 
 const CardsQuestions = ({ isFavorite, setIsFavorite, search }) => {
   const dispatch = useDispatch();
@@ -35,7 +36,7 @@ const CardsQuestions = ({ isFavorite, setIsFavorite, search }) => {
     return (
       <div className={style.questBox}>
         <div className={style.boxQuestions}>
-          {questions &&
+          {questions.length > 0 ?
             questions.map((e) => (
               <CardQuestion
                 cantAnswers={e.cantAnswers}
@@ -52,7 +53,9 @@ const CardsQuestions = ({ isFavorite, setIsFavorite, search }) => {
                 statusValidated={e.statusValidated}
                 setIsModify={setIsModify}
               />
-            ))}
+            )) :
+            <CardNotFound />
+          }
         </div>
 
         <Paginated page={page} setPage={setPage} />

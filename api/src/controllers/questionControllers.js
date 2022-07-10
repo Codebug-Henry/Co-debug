@@ -140,8 +140,8 @@ const getSingleQuestion = async (req, res, next) => {
             include: [
                 {model: User},
                 {model: Answer, required: false, where: {statusDeleted: false}, include: User},
-                // {model: MacroTag},
-                // {model: MicroTag}
+                {model: MacroTag},
+                {model: MicroTag}
             ], order: [
                 [Answer, 'statusValidated', 'DESC'],
                 [Answer, 'createdAt', 'ASC'], 

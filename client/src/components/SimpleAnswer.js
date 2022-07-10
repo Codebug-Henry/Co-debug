@@ -24,6 +24,7 @@ import Tooltip from "@mui/material/Tooltip";
 import CheckIcon from "@mui/icons-material/Check";
 import { confirmAlert } from "react-confirm-alert";
 import "react-confirm-alert/src/react-confirm-alert.css";
+import DownloadIcon from '@mui/icons-material/Download';
 
 const SimpleAnswer = ({
   id,
@@ -205,27 +206,7 @@ const SimpleAnswer = ({
     }
   }
 
-  // const newText = toString(text)
-  // const separado =	newText.split("(https://res.cloudinary.com")
-  // const listo1 = "https://res.cloudinary.com"+separado[1]
-  // const variable = `)=250x`
-  // const listo2 = listo1.split(`${variable}`)
-  // const listo3 = listo2[0]+")=250x"
-  // console.log(listo3)
-  // setUrl(listo3)
 
-  // const segundo = listo3.split("/")
-  // const tamanhoSegundo = segundo.length-1
-  // const casiFinal = segundo[tamanhoSegundo]
-  // const anteUltimo = casiFinal.split(")")
-  // const ultimo = anteUltimo[0]
-  // console.log(ultimo)
-  // setNameFile(ultimo)
-
-
-
-
-  //------------------------------------
   return (
     <div className={statusValidated ? style.validated : style.total}>
       <div className={style.first}>
@@ -320,10 +301,21 @@ const SimpleAnswer = ({
             />
           </span>
         </div>
-
+{/* 
         <div>
           <a className={style.descarga} onClick={(e)=>handleseparar(e)} href={url} download={nameFile} target="_blank" rel="noreferrer">
               Abrir imagen adjunta
+          </a>
+        </div> */}
+
+        <div>
+          <a className={style.descarga} onClick={(e)=>handleseparar(e)} href={url} download={nameFile} target="_blank" rel="noreferrer">
+          <Tooltip title="Descargar imagen">
+            <DownloadIcon 
+              fontSize="medium"
+              color='active'
+            />
+          </Tooltip>
           </a>
         </div>
 
