@@ -201,6 +201,7 @@
   font-size: 0.8rem;
   color: rgb(241, 55, 55);
 }
+img[alt=image] { width: 200px; }
 
 @media screen and (max-width: 740px) {
   .fullContainer{
