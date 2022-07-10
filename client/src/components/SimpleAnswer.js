@@ -36,6 +36,7 @@ const SimpleAnswer = ({
   statusValidated,
   setIsModify,
 }) => {
+
   const dispatch = useDispatch();
   const userInfo = useSelector((state) => state.user);
   const question = useSelector((state) => state.question);
@@ -176,6 +177,55 @@ const SimpleAnswer = ({
     handleClose();
   };
 
+
+
+//Rescue URL-Image from text to download
+  const [ url , setUrl ] = useState("")
+  const [ nameFile, setNameFile ] = useState("")
+
+  const handleseparar = ()=> {
+
+    if (text.includes("(https://res.cloudinary.com")){
+        
+        const separado =	text.split("(https://res.cloudinary.com")
+        const listo1 = "https://res.cloudinary.com"+separado[1]
+        const variable = `)=250x`
+        const listo2 = listo1.split(`${variable}`)
+        const listo3 = listo2[0]
+        console.log(listo3)
+        setUrl(listo3)
+
+        const segundo = listo3.split("/")
+        const tamanhoSegundo = segundo.length-1
+        const casiFinal = segundo[tamanhoSegundo]
+        const anteUltimo = casiFinal.split(")")
+        const ultimo = anteUltimo[0]
+        console.log(ultimo)
+        setNameFile(ultimo)
+    }
+  }
+
+  // const newText = toString(text)
+  // const separado =	newText.split("(https://res.cloudinary.com")
+  // const listo1 = "https://res.cloudinary.com"+separado[1]
+  // const variable = `)=250x`
+  // const listo2 = listo1.split(`${variable}`)
+  // const listo3 = listo2[0]+")=250x"
+  // console.log(listo3)
+  // setUrl(listo3)
+
+  // const segundo = listo3.split("/")
+  // const tamanhoSegundo = segundo.length-1
+  // const casiFinal = segundo[tamanhoSegundo]
+  // const anteUltimo = casiFinal.split(")")
+  // const ultimo = anteUltimo[0]
+  // console.log(ultimo)
+  // setNameFile(ultimo)
+
+
+
+
+  //------------------------------------
   return (
     <div className={statusValidated ? style.validated : style.total}>
       <div className={style.first}>
@@ -270,6 +320,13 @@ const SimpleAnswer = ({
             />
           </span>
         </div>
+
+        <div>
+          <a className={style.descarga} onClick={(e)=>handleseparar(e)} href={url} download={nameFile} target="_blank" rel="noreferrer">
+              Abrir imagen adjunta
+          </a>
+        </div>
+
         <div className={userInfo.sub === subR ? null : style.none}>
           <Tooltip title="Editar">
             <EditIcon
