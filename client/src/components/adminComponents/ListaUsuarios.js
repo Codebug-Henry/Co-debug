@@ -1,12 +1,11 @@
 import { useSelector } from "react-redux";
 import UserCard from "./UserCard";
 import style from "./styles/ListaUsuarios.module.css";
-import Paginated from "../Paginated";
+import PaginatedAdmin from "../PaginatedAdmin";
 
 const ListaUsuarios = ({ setBanFlag, setUsersPage, usersPage }) => {
   const users = useSelector((state) => state.users);
-
-  const totalPages = useSelector((state) => state.totalPages);
+  const pages = useSelector((state) => state.pages2);
 
   return (
     <div className={`container-fluid ${style.container}`}>
@@ -45,11 +44,10 @@ const ListaUsuarios = ({ setBanFlag, setUsersPage, usersPage }) => {
       ) : (
         <div>No se encontraron usuarios</div>
       )}
-      <Paginated
-        page={usersPage}
-        setPage={setUsersPage}
-        totalPages={totalPages}
-      />
+        <PaginatedAdmin
+          setPage={setUsersPage}
+          pages={pages}
+        />
     </div>
   );
 };

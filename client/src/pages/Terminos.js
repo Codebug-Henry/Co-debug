@@ -3,9 +3,19 @@ import Footer from "../components/Footer.js";
 import style from "./styles/Terminos.module.css";
 import { useAuth0 } from "@auth0/auth0-react";
 import Loading from "../components/Loading.js";
+import { useEffect } from "react";
+import { useDispatch } from "react-redux";
+import { getNotifications } from "../redux/actions";
 
 const Terminos = () => {
-  const { isLoading } = useAuth0();
+  const { isAuthenticated, isLoading, user } = useAuth0();
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    if (isAuthenticated) {
+      dispatch(getNotifications(user.sub))
+    }
+  }, [dispatch, user, isAuthenticated]);
 
   if (isLoading) {
     return (

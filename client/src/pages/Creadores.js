@@ -2,6 +2,10 @@ import React from "react";
 import style from "./styles/Creadores.module.css";
 import Footer from "../components/Footer.js";
 import Creador from "../components/Creador";
+import { useEffect } from "react";
+import { useDispatch } from "react-redux";
+import { useAuth0 } from '@auth0/auth0-react';
+import { getNotifications } from "../redux/actions";
 
 let luciano = {
   name: "Luciano Morea",
@@ -84,6 +88,15 @@ let santiago = {
 };
 
 const Creadores = () => {
+  const { isAuthenticated, user } = useAuth0();
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+      if (isAuthenticated) {
+        dispatch(getNotifications(user.sub))
+      }
+  }, [dispatch, user, isAuthenticated]);
+  
   return (
     <div className={style.fullContainer}>
       <div>

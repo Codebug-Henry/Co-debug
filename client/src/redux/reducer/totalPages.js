@@ -2,10 +2,8 @@ import {
   GET_ALL_ALERTS,
   GET_SEARCH_USERS,
   GET_ALL_ADMINS,
-  GET_ALL_MESSAGES,
   GET_ALL_QUESTIONS,
   GET_SEARCH_QUESTIONS,
-  GET_ALL_USERS,
   GET_ALL_QUESTIONS_SORTED,
   GET_USER_QUESTIONS,
   GET_USER_ANSWERS,
@@ -30,10 +28,6 @@ export default function totalPages(state = 0, action) {
     case GET_FAVOURITES:
       return action.payload.totalPages;
     case GET_USER_QUESTIONS_ORDERER:
-      return action.payload.totalPages;
-    case GET_ALL_USERS:
-      return action.payload.totalPages;
-    case GET_ALL_MESSAGES:
       return action.payload.totalPages;
     case GET_ALL_ADMINS:
       return action.payload.totalPages;

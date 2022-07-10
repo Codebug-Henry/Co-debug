@@ -5,6 +5,8 @@ import Footer from "../components/Footer.js";
 import Paginated from "../components/Paginated";
 import { getRanking } from "../redux/actions";
 import Loading from "../components/Loading";
+import { useAuth0 } from "@auth0/auth0-react";
+import { getNotifications } from "../redux/actions";
 
 const Ranking = () => {
   const dispatch = useDispatch();
@@ -12,10 +14,26 @@ const Ranking = () => {
   const [sort, setSort] = useState("points-desc");
   const [page, setPage] = useState(1);
   const [loading, setLoading] = useState(true);
+  const { isAuthenticated, user } = useAuth0();
+  const [width, setWidth] = useState(window.innerWitdh);
 
   useEffect(() => {
     dispatch(getRanking(sort, page, setLoading));
   }, [dispatch, sort, page]);
+
+  useEffect(() => {
+    if (isAuthenticated) {
+      dispatch(getNotifications(user.sub));
+    }
+  }, [dispatch, user, isAuthenticated]);
+
+  useEffect(() => {
+    window.addEventListener("resize", handleResize, false);
+  }, []);
+
+  const handleResize = () => {
+    setWidth(window.innerWidth);
+  };
 
   const handleSort = (e) => {
     setSort(e.target.value);
@@ -46,10 +64,26 @@ const Ranking = () => {
             <div className={`row align-items-start ${style.columnsname}`}>
               <p className={`col-1 ${style.userImageTop}`}></p>
               <p className={`col-1 ${style.colunmNroTop}`}>Nro.</p>
-              <p className={`col ${style.colunmNickTop}`}>Nickname</p>
-              <p className={`col ${style.colunmTeachTop}`}>Teach Points</p>
-              <p className={`col ${style.colunmRespTop}`}>Respuestas</p>
-              <p className={`col ${style.colunmPregTop}`}>Preguntas</p>
+              {width > 800 ? (
+                <p className={`col ${style.colunmNickTop}`}>Nickname</p>
+              ) : (
+                <p className={`col ${style.colunmNickTop}`}>Nick</p>
+              )}
+              {width > 800 ? (
+                <p className={`col ${style.colunmTeachTop}`}>Teach Points</p>
+              ) : (
+                <p className={`col ${style.colunmNickTop}`}>Points</p>
+              )}
+              {width > 800 ? (
+                <p className={`col ${style.colunmRespTop}`}>Respuestas</p>
+              ) : (
+                <p className={`col ${style.colunmNickTop}`}>Rptas</p>
+              )}
+              {width > 800 ? (
+                <p className={`col ${style.colunmRespTop}`}>Preguntas</p>
+              ) : (
+                <p className={`col ${style.colunmNickTop}`}>Pregs</p>
+              )}
             </div>
             {ranking.map((e) => (
               <div
