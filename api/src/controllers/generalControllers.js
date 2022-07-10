@@ -36,7 +36,7 @@ async function questionTags(tagArr, tagType, question) {
   // await newQuestion.addMicroTags(microTags);
   // microTags = await newQuestion.getMicroTags();
 
-  let tagPromises = tagArr.map((tag) => tagType.findOne({where: {tag}}));
+  let tagPromises = tagArr.map((tag) => tagType.findOne({ where: { tag } }));
   //[{"tag":"React","id":1}]
   let tags = await Promise.all(tagPromises);
   //[tags de]
@@ -519,6 +519,8 @@ const populateDB = async () => {
     { id: 91, tag: "otro", macroTagId: 10 },
   ];
 
+  const microsOtro = [{ id: 92, tag: "otro", macroTagId: 11 }];
+
   try {
     await User.bulkCreate(users);
     await Question.bulkCreate(questions);
@@ -536,6 +538,7 @@ const populateDB = async () => {
       ...microsRedux,
       ...microsGitHub,
       ...microsSequelize,
+      ...microsOtro,
     ];
     let allMicros = await MicroTag.bulkCreate(micros);
 
@@ -551,11 +554,11 @@ const populateDB = async () => {
     let mixins = allMicros[88];
     let store = allMicros[65];
 
-    let question1 = await Question.findByPk(1)
-    let question2 = await Question.findByPk(2)
-    let question3 = await Question.findByPk(3)
-    let question5 = await Question.findByPk(5)
-    let question6 = await Question.findByPk(6)
+    let question1 = await Question.findByPk(1);
+    let question2 = await Question.findByPk(2);
+    let question3 = await Question.findByPk(3);
+    let question5 = await Question.findByPk(5);
+    let question6 = await Question.findByPk(6);
 
     await question1.addMacroTag(Js);
     await question1.addMicroTag(bucles);
