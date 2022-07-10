@@ -52,7 +52,7 @@ const CardUserQuestion = ({
     return errors;
   }
 
-  const onClick = (e) => {
+  const confirm = (e) => {
     confirmAlert({
       title: "Confirma borrar la pregunta",
       message: "¿Está seguro de esto?",
@@ -63,7 +63,6 @@ const CardUserQuestion = ({
         },
         {
           label: "No",
-          onClick: null,
         },
       ],
     });
@@ -192,18 +191,24 @@ const CardUserQuestion = ({
               className={style.editText}
               onChange={(e) => onChangeInputText(e)}
             />
-             {errors.title && (
-                <div className={style.error}>
-                  <span> {errors.title}</span>
-                </div>
-              )}
-              {errors.text && (
-                <div className={style.error}>
-                  <span> {errors.text}</span>
-                </div>
-              )}
+            {errors.title && (
+              <div className={style.error}>
+                <span> {errors.title}</span>
+              </div>
+            )}
+            {errors.text && (
+              <div className={style.error}>
+                <span> {errors.text}</span>
+              </div>
+            )}
           </div>
-          <div className={style1 === true || errors.title || errors.text ? style.editFull : style.editBtn}>
+          <div
+            className={
+              style1 === true || errors.title || errors.text
+                ? style.editFull
+                : style.editBtn
+            }
+          >
             <CheckIcon
               fontSize="large"
               color="primary"
@@ -257,7 +262,7 @@ const CardUserQuestion = ({
               <DeleteIcon
                 fontSize="medium"
                 className={style.deleteBtn}
-                onClick={(e) => onClick(e)}
+                onClick={(e) => confirm(e)}
               />
             </Tooltip>
           </div>

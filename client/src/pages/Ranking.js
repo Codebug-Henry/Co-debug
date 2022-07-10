@@ -77,12 +77,12 @@ const Ranking = () => {
               {width > 800 ? (
                 <p className={`col ${style.colunmRespTop}`}>Respuestas</p>
               ) : (
-                <p className={`col ${style.colunmNickTop}`}>Rptas</p>
+                <p className={`col ${style.colunmNickTop}`}>Rptas.</p>
               )}
               {width > 800 ? (
                 <p className={`col ${style.colunmRespTop}`}>Preguntas</p>
               ) : (
-                <p className={`col ${style.colunmNickTop}`}>Pregs</p>
+                <p className={`col ${style.colunmNickTop}`}>Pregs.</p>
               )}
             </div>
             {ranking.map((e) => (

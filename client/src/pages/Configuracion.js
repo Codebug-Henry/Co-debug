@@ -17,7 +17,6 @@ import "react-confirm-alert/src/react-confirm-alert.css";
 import MensajeAlerta from "../components/MensajeAlerta";
 
 const Configuracion = () => {
-
   const { isAuthenticated, isLoading, user } = useAuth0();
   const userInfo = useSelector((state) => state.user);
   const dispatch = useDispatch();
@@ -32,7 +31,7 @@ const Configuracion = () => {
 
   useEffect(() => {
     if (isAuthenticated) {
-      dispatch(getNotifications(user.sub))
+      dispatch(getNotifications(user.sub));
     }
   }, [dispatch, user, isAuthenticated]);
 
@@ -142,8 +141,9 @@ const Configuracion = () => {
         <BannedUser />
       </>
     );
-  } else return (
-    <div className={style.fullContainer}>
+  } else
+    return (
+      <div className={style.fullContainer}>
         <div className="row">
           <div className="col">
             <div className={style.middleRow}>
@@ -343,8 +343,8 @@ const Configuracion = () => {
                     <div className={`col-lg-6 ${style.col2}`}>
                       <StatsUser
                         number={userInfo.cantFav}
-                        characteristic="Mis Favoritos"
-                        link="Ver Favoritos"
+                        characteristic="Mis Favoritas"
+                        link="Ver Favoritas"
                         linkTo="/favoritas"
                       />
                     </div>
@@ -374,11 +374,11 @@ const Configuracion = () => {
             </div>
           </div>
         </div>
-      <div className={style.footer}>
-        <Footer />
+        <div className={style.footer}>
+          <Footer />
+        </div>
       </div>
-    </div>
-  );
+    );
 };
 
 export default Configuracion;

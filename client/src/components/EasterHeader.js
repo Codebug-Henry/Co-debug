@@ -9,7 +9,6 @@ import { sendUserInfo } from "../redux/actions";
 import Header from "./Header";
 import HeaderLoading from "./HeaderLoading";
 
-
 const Headerlogin = () => {
   const { user } = useAuth0();
   const { isAuthenticated, isLoading } = useAuth0();
@@ -17,7 +16,6 @@ const Headerlogin = () => {
   const dispatch = useDispatch();
   const userInfo = useSelector((state) => state.user);
   const [width, setWidth] = useState(window.innerWitdh);
- 
 
   useEffect(() => {
     window.addEventListener("resize", handleResize, false);
@@ -37,10 +35,6 @@ const Headerlogin = () => {
     logout();
     localStorage.clear();
   };
-
-  
-
-  
 
   if (isLoading) {
     return (
@@ -77,13 +71,16 @@ const Headerlogin = () => {
 
         <div className={`col-lg-3 ${style.col4} ${style.imgNameLogOut}`}>
           <div className={style.padreDivs}>
-            <Link to={`/configuracion/${userInfo.sub}`} className={style.contImagen}>
+            <Link
+              to={`/configuracion/${userInfo.sub}`}
+              className={style.contImagen}
+            >
               <img
                 className={style.userImage}
                 src={
                   userInfo.picture
-                    // ? userInfo.picture
-                    // : "https://www.shareicon.net/data/512x512/2016/08/05/806962_user_512x512.png"
+                  // ? userInfo.picture
+                  // : "https://www.shareicon.net/data/512x512/2016/08/05/806962_user_512x512.png"
                 }
                 alt={userInfo.name}
                 referrerPolicy="no-referrer"
@@ -126,7 +123,7 @@ const Headerlogin = () => {
                 <li>
                   <Link className={style.linkDesp} to="/favoritas">
                     <p className="dropdown-item" href="#">
-                      Favoritos
+                      Favoritas
                     </p>
                   </Link>
                 </li>
@@ -149,7 +146,10 @@ const Headerlogin = () => {
                   )}
                 </li>
                 <li>
-                  <Link className={style.linkDesp} to={`/configuracion/${userInfo.sub}`}>
+                  <Link
+                    className={style.linkDesp}
+                    to={`/configuracion/${userInfo.sub}`}
+                  >
                     <p className="dropdown-item" href="#">
                       Configuración
                     </p>

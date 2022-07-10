@@ -3,45 +3,45 @@
 ## ÍNDICE
 
 1. [Rutas **user**](#rutas-user)
-    - [GET user](#get-user)
-    - [POST user](#post-user)
-    - [PUT user](#put-user)
-    - [DELETE user](#delete-user)
+   - [GET user](#get-user)
+   - [POST user](#post-user)
+   - [PUT user](#put-user)
+   - [DELETE user](#delete-user)
 2. [Rutas **users**](#rutas-users)
-    - [GET users](#get-users)
-    - [GET users top ten](#get-users-top-ten)
+   - [GET users](#get-users)
+   - [GET users top ten](#get-users-top-ten)
 3. [Rutas **question**](#rutas-question)
-    - [GET question](#get-question)
-    - [POST question](#post-question)
-    - [PUT question](#put-question)
-    - [DELETE question](#delete-question)
+   - [GET question](#get-question)
+   - [POST question](#post-question)
+   - [PUT question](#put-question)
+   - [DELETE question](#delete-question)
 4. [Rutas **questions**](#rutas-questions)
-    - [GET user questions](#get-user-questions)
-    - [GET all questions](#get-all-questions)
-    - [GET questions favourites](#get-questions-favourites)
-    - [PUT questions favourites](#put-questions-favourites)
+   - [GET user questions](#get-user-questions)
+   - [GET all questions](#get-all-questions)
+   - [GET questions favourites](#get-questions-favourites)
+   - [PUT questions favourites](#put-questions-favourites)
 5. [Rutas **answer**](#rutas-answer)
-    - [POST answer](#post-answer)
-    - [PUT answer](#put-answer)
-    - [DELETE answer](#delete-answer)
+   - [POST answer](#post-answer)
+   - [PUT answer](#put-answer)
+   - [DELETE answer](#delete-answer)
 6. [Rutas **answers**](#rutas-answers)
-    - [GET answers](#get-answers)
+   - [GET answers](#get-answers)
 7. [Rutas **message**](#rutas-message)
-    - [POST message](#post-message)
+   - [POST message](#post-message)
 8. [Rutas **messages**](#rutas-messages)
-    - [GET all messages](#get-all-messages)
+   - [GET all messages](#get-all-messages)
 9. [Rutas **alert**](#rutas-alert)
-    - [POST alert question](#post-alert-question)
-    - [POST alert answer](#post-alert-answer)
+   - [POST alert question](#post-alert-question)
+   - [POST alert answer](#post-alert-answer)
 10. [Rutas **alerts**](#rutas-alerts)
     - [GET all alerts](#get-all-alerts)
 11. [Observaciones](#observaciones)
 
-***
+---
 
 ## RUTAS **user**
 
-***
+---
 
 ### GET **user**
 
@@ -49,7 +49,7 @@
 
 - **DESCRIPCION**: esta ruta es para devolver toda la info de un usuario
 
-- **REQUERIMIENTOS**: por params enviar sub de el usuario  
+- **REQUERIMIENTOS**: por params enviar sub de el usuario
 
         /${sub}=>/(text de el auth0)
 
@@ -73,7 +73,7 @@
             myPosition      //posición del usuario en el ranking
         }
 
-***
+---
 
 ### POST **user**
 
@@ -111,7 +111,7 @@
             cantAns
         }
 
-***
+---
 
 ### PUT **user**
 
@@ -119,7 +119,7 @@
 
 - **DESCRIPCION**: esta ruta es para actualizar la info de un usuario
 
-- **REQUERIMIENTOS**: por params enviar sub de el usuario, por body enviar props a cambiar  
+- **REQUERIMIENTOS**: por params enviar sub de el usuario, por body enviar props a cambiar
 
         /${sub}=>/(text de el auth0)
 
@@ -154,7 +154,7 @@
             cantAns
         }
 
-***
+---
 
 ### DELETE **user**
 
@@ -162,17 +162,17 @@
 
 - **DESCRIPCION**: esta ruta es para borrar un usuario de la base de datos
 
-- **REQUERIMIENTOS**: por params enviar sub de el usuario  
+- **REQUERIMIENTOS**: por params enviar sub de el usuario
 
         /${sub}=>/(text de el auth0)
 
 - **RESPUESTA**: un string indicando que "el usuario ha sido eliminado correctamente"
 
-***
+---
 
 ## RUTAS **users**
 
-***
+---
 
 ### GET **users**
 
@@ -221,7 +221,7 @@
             ]
         }
 
-***
+---
 
 ### GET **users top ten**
 
@@ -257,11 +257,11 @@
             }
         ]
 
-***
+---
 
 ## RUTAS **question**
 
-***
+---
 
 ### GET **question**
 
@@ -271,7 +271,7 @@
 
 - **REQUERIMIENTOS**: por params enviar id de pregunta y por query enviar page y limit para el paginado de las respuestas.
 
-/:id    (id de la pregunta)
+/:id (id de la pregunta)
 ?page=(número de página)
 &limit=(cantidad de elementos por página)
 
@@ -320,7 +320,7 @@
             }
         }
 
-***
+---
 
 ### POST **question**
 
@@ -328,7 +328,7 @@
 
 - **DESCRIPCION**: esta ruta es para crear una pregunta.
 
-- **REQUERIMIENTOS**: por body enviar datos de la pregunta. 
+- **REQUERIMIENTOS**: por body enviar datos de la pregunta.
 
         {
             sub,
@@ -351,7 +351,7 @@
             statusDeleted,
         }
 
-***
+---
 
 ### PUT **question**
 
@@ -359,7 +359,7 @@
 
 - **DESCRIPCION**: esta ruta es para poder modificar una pregunta.
 
-- **REQUERIMIENTOS**: por body enviar el id de la pregunta + campo a actualizar (en el caso de like, si se sumó o restó un like las opciones son "add" o "remove"). 
+- **REQUERIMIENTOS**: por body enviar el id de la pregunta + campo a actualizar (en el caso de like, si se sumó o restó un like las opciones son "add" o "remove").
 
         {
             sub,
@@ -367,7 +367,7 @@
             //tag,
             text,   //contenido de la pregunta
             title,  //titulo de la pregunta
-            like,   //"add" or "remove" 
+            like,   //"add" or "remove"
             statusDeleted,
         }
 
@@ -381,7 +381,7 @@
             statusDeleted,
         }
 
-***
+---
 
 ### DELETE **question**
 
@@ -389,20 +389,20 @@
 
 - **DESCRIPCION**: esta ruta es para eliminar una pregunta (con todas sus respuestas).
 
-- **REQUERIMIENTOS**: por params enviar id de pregunta. 
+- **REQUERIMIENTOS**: por params enviar id de pregunta.
 
 - **RESPUESTA**: un string con el siguiente mensaje: “pregunta eliminada”
 
-***
+---
 
 ## RUTAS **questions**
 
-***
+---
 
 ### GET **user questions**
 
 - **RUTA**: router.get("/questions/:sub",getUserQuestions)
- 
+
 - **DESCRIPCION**: esta ruta es para acceder a todas mis preguntas.
 
 - **REQUERIMIENTOS**: recibo “sub” por params y puede traer por query ?page, ?limit, ?search para que busque dentro de sus preguntas y ?answered para filtrar por preguntas respondidas o no respondidas, en caso de no traer ?answered simplemente accedo a todas las preguntas del usuario.
@@ -445,7 +445,7 @@
             ]
         }
 
-***
+---
 
 ### GET **all questions**
 
@@ -501,7 +501,7 @@
             ]
         }
 
-***
+---
 
 ### GET **questions favourites**
 
@@ -509,7 +509,7 @@
 
 - **DESCRIPCION**: esta ruta es para acceder a mis preguntas favoritas.
 
-- **REQUERIMIENTOS**: por params enviar sub del usuario y por query enviar page y limit. 
+- **REQUERIMIENTOS**: por params enviar sub del usuario y por query enviar page y limit.
 
         /${sub}
         &page=(número de página)
@@ -551,8 +551,8 @@
                 }
             ]
         }
-  
-***
+
+---
 
 ### PUT **questions favourites**
 
@@ -566,13 +566,13 @@
         (id=>id de la pregunta)
         (add=>true agrega/false borra)
 
-- **RESPUESTA**: agregada o quitada correctamente a favoritos
+- **RESPUESTA**: agregada o quitada correctamente a favoritas
 
-***
+---
 
 ## RUTAS **answer**
 
-***
+---
 
 ### POST **answer**
 
@@ -580,7 +580,7 @@
 
 - **DESCRIPCION**: esta ruta es para que el usuario pueda responder una pregunta y se agregue al hilo de respuestas
 
-- **REQUERIMIENTOS**: por body enviar sub del usuario, id de la pregunta y el texto de la respuesta 
+- **REQUERIMIENTOS**: por body enviar sub del usuario, id de la pregunta y el texto de la respuesta
 
         {
             sub,
@@ -597,7 +597,7 @@
             teachPoints     //se le asignan los teachPoints que posee en ese momento la pregunta
         }
 
-***
+---
 
 ### PUT **answer**
 
@@ -607,10 +607,10 @@
 
 - **REQUERIMIENTOS**: por body enviar el id de la respuesta, el texto editado, si se sumó o restó un like ("add"/"remove"), si se eliminó o si se validó
 
-        {  
+        {
             id,
             text,
-            like,   //"add" or "remove" 
+            like,   //"add" or "remove"
             statusDeleted,
             statusValidated,
         }
@@ -619,12 +619,12 @@
 
         {
             text,
-            likes,    //cantidad de likes de la respuesta 
+            likes,    //cantidad de likes de la respuesta
             statusDeleted,
             statusValidated,
         }
 
-***
+---
 
 ### DELETE **answer**
 
@@ -638,11 +638,11 @@
 
 - **RESPUESTA**: en caso de ser necesaria -> "respuesta eliminada correctamente"
 
-***
+---
 
 ## RUTAS **answers**
 
-***
+---
 
 ### GET **answers**
 
@@ -688,11 +688,11 @@
             ]
         }
 
-***
+---
 
 ## RUTAS **message**
 
-***
+---
 
 ### POST **message**
 
@@ -700,7 +700,7 @@
 
 - **DESCRIPCION**: esta ruta es para crear un mensaje por parte del usuario para que le llegue a los admin.
 
-- **REQUERIMIENTOS**: por body enviar datos del mensaje. 
+- **REQUERIMIENTOS**: por body enviar datos del mensaje.
 
         {
             sub,
@@ -718,11 +718,11 @@
             text,
         }
 
-***
+---
 
 ## RUTAS **messages**
 
-***
+---
 
 ### GET **all messages**
 
@@ -763,11 +763,11 @@
             ]
         }
 
-***
+---
 
 ## RUTAS **alert**
 
-***
+---
 
 ### POST **alert question**
 
@@ -775,7 +775,7 @@
 
 - **DESCRIPCION**: esta ruta es para crear una alerta por parte del usuario sobre una pregunta para que le llegue a los admin.
 
-- **REQUERIMIENTOS**: por body enviar datos de la alerta. 
+- **REQUERIMIENTOS**: por body enviar datos de la alerta.
 
         {
             id,
@@ -794,7 +794,7 @@
             }
         }
 
-***
+---
 
 ### POST **alert answer**
 
@@ -802,7 +802,7 @@
 
 - **DESCRIPCION**: esta ruta es para crear una alerta por parte del usuario sobre una respuesta para que le llegue a los admin.
 
-- **REQUERIMIENTOS**: por body enviar datos de la alerta. 
+- **REQUERIMIENTOS**: por body enviar datos de la alerta.
 
         {
             id,
@@ -821,11 +821,11 @@
             }
         }
 
-***
+---
 
 ## RUTAS **alerts**
 
-***
+---
 
 ### GET **all alerts**
 
@@ -866,7 +866,7 @@
             ]
         }
 
-***
+---
 
 ## Observaciones
 
