@@ -116,8 +116,6 @@ const putUserQuestion = async (req, res, next) => {
 
 const postQuestion = async (req, res, next) => {
    let {sub, text, title,imgs,macroTags,microTags} = req.body
-    console.log(macroTags)
-    console.log(microTags)
     try {
         const user = await User.findByPk(sub)
         await user.update({cantQuest: user.cantQuest + 1})
