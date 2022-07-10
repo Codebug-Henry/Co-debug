@@ -26,11 +26,20 @@ const CardUserAnswer = ({
   const user = useSelector((state) => state.user);
   const dispatch = useDispatch();
   const [style1, setStyle1] = useState(true);
+  const [errors, setErrors] = useState({});
   const [newAnswer, setNewAnswer] = useState({
     sub: user.sub,
     id: id,
     text: text,
   });
+
+  function validate(newAnswer) {
+    let errors = {};
+    if (!newAnswer.text) errors.text = "Se requiere una respuesta";
+    if (newAnswer.text.length > 600) errors.text = "La respuesta debe tener un máximo de 600 caracteres";
+    return errors;
+  }
+  
 
   function toRender() {
     style1 === true ? setStyle1(false) : setStyle1(true);
@@ -61,6 +70,11 @@ const CardUserAnswer = ({
       ...newAnswer,
       text: e.target.value,
     });
+    setErrors(
+      validate({
+        text: e.target.value,
+      })
+    );
   }
 
   function handleClick() {
@@ -127,6 +141,11 @@ const CardUserAnswer = ({
                 className={style.editText}
                 onChange={(e) => onChangeInputText(e)}
               />
+              {errors.text && (
+                <div className={style.error}>
+                  <span> {errors.text}</span>
+                </div>
+              )}
             </div>
 
             <div id={style1 === true ? style.editBtn : style.editFull}></div>
@@ -144,7 +163,7 @@ const CardUserAnswer = ({
                 fontSize="large"
                 color="primary"
                 cursor="pointer"
-                className={style.confirmEdit}
+                className={errors.text ? style.hidden : style.confirmEdit}
                 onClick={handleConfirmAnswer}
               />
             </div>
