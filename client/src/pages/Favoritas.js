@@ -15,16 +15,16 @@ import Loading from "../components/Loading";
 const Favoritas = () => {
   const { isAuthenticated, isLoading, user } = useAuth0();
   const favourites = useSelector((state) => state.favourites);
-  const userInfo = useSelector(state => state.user)
+  const userInfo = useSelector((state) => state.user);
   const dispatch = useDispatch();
   const [page, setPage] = useState(1);
   const [isFavorite, setIsFavorite] = useState(false);
-  const [loading, setLoading] = useState(true)
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     if (isAuthenticated) {
       dispatch(getFavourites(user.sub, page, setLoading));
-      dispatch(getNotifications(user.sub))
+      dispatch(getNotifications(user.sub));
     }
     // eslint-disable-next-line
   }, [page, dispatch, isFavorite]);
@@ -37,7 +37,7 @@ const Favoritas = () => {
     );
   }
 
-  if(loading){
+  if (loading) {
     return (
       <div>
         <Loading />
@@ -55,8 +55,9 @@ const Favoritas = () => {
         <BannedUser />
       </>
     );
-  } else return (
-    <div className={style.fullContainer}>
+  } else
+    return (
+      <div className={style.fullContainer}>
         <div className={style.middleRow}>
           {/* Acá el contenido para logueados */}
           <div className={`container-fluid ${style.container}`}>
@@ -100,7 +101,7 @@ const Favoritas = () => {
                       })
                     ) : (
                       <div>
-                        <p>Aún no agregaste favoritos ...</p>
+                        <p>Aún no agregaste favoritas ...</p>
                       </div>
                     )}
                   </div>
@@ -108,16 +109,15 @@ const Favoritas = () => {
                 </div>
               </div>
 
-              <div className={`col-lg-0 ${style.col2}`}>
-              </div>
+              <div className={`col-lg-0 ${style.col2}`}></div>
             </div>
           </div>
         </div>
-      <div className={style.footer}>
-        <Footer />
+        <div className={style.footer}>
+          <Footer />
+        </div>
       </div>
-    </div>
-  );
+    );
 };
 
 export default Favoritas;

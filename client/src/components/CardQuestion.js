@@ -5,7 +5,11 @@ import FavoriteIcon from "@mui/icons-material/Favorite";
 import BlockIcon from "@mui/icons-material/Block";
 import ThumbUpIcon from "@mui/icons-material/ThumbUp";
 import ThumbDownIcon from "@mui/icons-material/ThumbDown";
-import { addFavourites, modifyQuestion, deleteQuestion } from "../redux/actions";
+import {
+  addFavourites,
+  modifyQuestion,
+  deleteQuestion,
+} from "../redux/actions";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import Modal from "@mui/material/Modal";
@@ -181,7 +185,7 @@ const CardQuestion = ({
                     className={style.fav}
                     onClick={(e) => handleRemoveFavourite(e)}
                   />
-                  <span className={style.toolTip3}>Quitar Favoritos</span>
+                  <span className={style.toolTip3}>Quitar Favoritas</span>
                 </span>
               ) : (
                 <span className={style.span4}>
@@ -191,7 +195,7 @@ const CardQuestion = ({
                     className={style.fav}
                     onClick={(e) => handleAddFavourite(e)}
                   />
-                  <span className={style.toolTip4}>Agregar Favoritos</span>
+                  <span className={style.toolTip4}>Agregar Favoritas</span>
                 </span>
               )}
             </div>
@@ -205,7 +209,7 @@ const CardQuestion = ({
                 />
                 <span className={style.toolTip5}>Denunciar</span>
               </span>
-              <span className={userInfo.sub === sub ? null : style.none} >
+              <span className={userInfo.sub === sub ? null : style.none}>
                 <DeleteIcon
                   fontSize="medium"
                   className={style.deleteBtn}
