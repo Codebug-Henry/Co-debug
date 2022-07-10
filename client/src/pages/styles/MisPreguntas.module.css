@@ -41,7 +41,6 @@ html {
 }
 
 #filters {
-  border: solid 1px black;
   border-radius: 0.5vh;
   box-shadow: 3px 3px 3px grey;
   background-color: #f9bf00;
@@ -60,6 +59,8 @@ html {
   gap: 3vh;
   position: relative;
   top: 3vh;
+  width: 85%;
+  margin: auto;
   /* z-index: -1;        esto lo puse para que el boton de delete no quede por encima del dropdown cuando se abre */
 }
 

@@ -13,6 +13,7 @@ const CardsQuestions = ({ isFavorite, setIsFavorite, search }) => {
   const validated = useSelector((state) => state.sortValidate);
   const [page, setPage] = useState(1);
   const [loading, setLoading] = useState(true);
+  const [isModify, setIsModify] = useState(false);
 
   useEffect(() => {
     if (search.length > 0) {
@@ -21,7 +22,7 @@ const CardsQuestions = ({ isFavorite, setIsFavorite, search }) => {
       dispatch(getAllQuestions(sort, page, validated, setLoading));
     }
     // eslint-disable-next-line
-  }, [dispatch, page, isFavorite]);
+  }, [dispatch, page, isFavorite, isModify]);
 
   if (loading) {
     return (
@@ -38,6 +39,7 @@ const CardsQuestions = ({ isFavorite, setIsFavorite, search }) => {
               <CardQuestion
                 cantAnswers={e.cantAnswers}
                 nickname={e.user.nickname}
+                sub={e.user.sub}
                 key={e.id}
                 id={e.id}
                 likes={e.likes}
@@ -47,6 +49,7 @@ const CardsQuestions = ({ isFavorite, setIsFavorite, search }) => {
                 picture={e.user.picture}
                 setIsFavorite={setIsFavorite}
                 statusValidated={e.statusValidated}
+                setIsModify={setIsModify}
               />
             ))}
         </div>

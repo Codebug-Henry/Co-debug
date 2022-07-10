@@ -5,7 +5,7 @@ import FavoriteIcon from "@mui/icons-material/Favorite";
 import BlockIcon from "@mui/icons-material/Block";
 import ThumbUpIcon from "@mui/icons-material/ThumbUp";
 import ThumbDownIcon from "@mui/icons-material/ThumbDown";
-import { addFavourites, modifyQuestion } from "../redux/actions";
+import { addFavourites, modifyQuestion, deleteQuestion } from "../redux/actions";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import Modal from "@mui/material/Modal";
@@ -19,10 +19,12 @@ import axios from "axios";
 import ReactMarkdown from "react-markdown";
 import Highlighter from "./Highlighter";
 import TaskAltIcon from "@mui/icons-material/TaskAlt";
+import DeleteIcon from "@mui/icons-material/Delete";
 
 const CardQuestion = ({
   cantAnswers,
   nickname,
+  sub,
   picture,
   likes,
   title,
@@ -31,6 +33,7 @@ const CardQuestion = ({
   id,
   setIsFavorite,
   statusValidated,
+  setIsModify,
 }) => {
   const dispatch = useDispatch();
   const userInfo = useSelector((state) => state.user);
@@ -77,6 +80,11 @@ const CardQuestion = ({
         )
       );
     }
+  }
+
+  function handleDeleteQuestion(e) {
+    setIsModify(true);
+    dispatch(deleteQuestion({ id: id, statusDeleted: true }, setIsModify));
   }
 
   //MODAL
@@ -188,7 +196,7 @@ const CardQuestion = ({
               )}
             </div>
             <div>
-              <span className={style.span5}>
+              <span className={userInfo.sub === sub ? style.none : style.span5}>
                 <BlockIcon
                   onClick={handleOpen}
                   className={style.delete}
@@ -196,6 +204,14 @@ const CardQuestion = ({
                   color="action"
                 />
                 <span className={style.toolTip5}>Denunciar</span>
+              </span>
+              <span className={userInfo.sub === sub ? null : style.none} >
+                <DeleteIcon
+                  fontSize="medium"
+                  className={style.deleteBtn}
+                  onClick={handleDeleteQuestion}
+                  color="action"
+                />
               </span>
               <Modal
                 open={open}
