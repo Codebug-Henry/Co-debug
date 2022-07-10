@@ -15,6 +15,7 @@ const CardsQuestions = ({ isFavorite, setIsFavorite, search }) => {
   const [loading, setLoading] = useState(true);
   const [isModify, setIsModify] = useState(false);
 
+
   useEffect(() => {
     if (search.length > 0) {
       dispatch(getSearchQuestions(search, sort, page, validated, setLoading));
