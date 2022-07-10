@@ -5,7 +5,11 @@ import Footer from "../components/Footer.js";
 import CardUserQuestion from "../components/CardUserQuestion";
 import FilterBar from "../components/FilterBar";
 import SearchBar from "../components/SearchBar";
-import { getUserQuestions, getUserQuestionsSearch, getNotifications } from "../redux/actions";
+import {
+  getUserQuestions,
+  getUserQuestionsSearch,
+  getNotifications,
+} from "../redux/actions";
 import FilterAltIcon from "@mui/icons-material/FilterAlt";
 import Paginated from "../components/Paginated";
 import Loading from "../components/Loading";
@@ -36,7 +40,9 @@ const MisPreguntas = () => {
   useEffect(() => {
     if (page > 1 && page > totalPages) setPage((prev) => prev - 1);
     if (input.length > 0) {
-      dispatch(getUserQuestionsSearch(userInfo.sub, sort, page, input, setLoading));
+      dispatch(
+        getUserQuestionsSearch(userInfo.sub, sort, page, input, setLoading)
+      );
     } else dispatch(getUserQuestions(userInfo.sub, sort, page, setLoading));
   }, [
     dispatch,
@@ -51,7 +57,7 @@ const MisPreguntas = () => {
 
   useEffect(() => {
     if (isAuthenticated) {
-      dispatch(getNotifications(user.sub))
+      dispatch(getNotifications(user.sub));
     }
   }, [dispatch, user, isAuthenticated]);
 
@@ -83,7 +89,7 @@ const MisPreguntas = () => {
         <div className={style.fullContainer}>
           <div className={`container-fluid ${style.container}`}>
             <div className={`row ${style.middleRow}`}>
-              <div className={`col-lg-12 ${style.col1}`}>
+              <div className={`col-lg-12  ${style.col1}`}>
                 <div id={style.all}>
                   <div id={style.explore}>
                     <p> Mis preguntas</p>
