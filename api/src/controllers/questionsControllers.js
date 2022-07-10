@@ -43,10 +43,10 @@ const getUserQuestions = async (req, res, next) => {
         ["createdAt", "DESC"],
         ["title", "ASC"],
       ],
-      // include:[
-      //     {model:MacroTag},
-      //     {model:MicroTag}
-      // ]
+      include:[
+          {model:MacroTag},
+          {model:MicroTag}
+      ]
     });
 
     res.send(paginate(parseInt(limit), parseInt(page), myQuestions));
