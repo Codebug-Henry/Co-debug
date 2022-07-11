@@ -51,12 +51,18 @@ const Landing = () => {
       return (
         <>
           <NotVerified />
+          <div className={style.footer}>
+            <Footer />
+          </div>
         </>
       );
     } else if (statusBanned === true) {
       return (
         <>
           <BannedUser />
+          <div className={style.footer}>
+            <Footer />
+          </div>
         </>
       );
     } else
