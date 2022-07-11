@@ -10,6 +10,11 @@ import {
   setSortValidate,
 } from "../redux/actions/index.js";
 import style from "./styles/NavBar.module.css";
+import Box from '@mui/material/Box';
+import InputLabel from '@mui/material/InputLabel';
+import MenuItem from '@mui/material/MenuItem';
+import FormControl from '@mui/material/FormControl';
+import Select from '@mui/material/Select';
 
 
 const NavBar = ({ search, setSearch }) => {
@@ -55,10 +60,11 @@ const NavBar = ({ search, setSearch }) => {
 
   const handleMacroTag = (e) => {
     dispatch(setMacrotag(e.target.value))
+    dispatch(setMicrotag('All'))
     if (search.length > 0) {
-      dispatch(getSearchQuestions(search, sort, page, validated, e.target.value, microTag));
+      dispatch(getSearchQuestions(search, sort, page, validated, e.target.value, 'All'));
     } else {
-      dispatch(getAllQuestions(sort, page, validated, e.target.value, microTag));
+      dispatch(getAllQuestions(sort, page, validated, e.target.value, 'All'));
     }
   }
 
@@ -109,7 +115,7 @@ const NavBar = ({ search, setSearch }) => {
                   Más antiguas
                 </option>
               </select>
-              <select value={validated} onChange={handleSortValidate} className={`nav-item dropdown ${style.order}`}>
+              {/* <select value={validated} onChange={handleSortValidate} className={`nav-item dropdown ${style.order}`}>
                 <option value="All" className={style.option}>
                   Todas
                 </option>
@@ -119,9 +125,25 @@ const NavBar = ({ search, setSearch }) => {
                 <option value="false" className={style.option}>
                   No Validadas
                 </option>
-              </select>
+              </select> */}
+              <Box sx={{ minWidth: 120 }}>
+                <FormControl fullWidth>
+                  <InputLabel id="demo-simple-select-label">Validadas</InputLabel>
+                  <Select
+                    labelId="demo-simple-select-label"
+                    id="demo-simple-select"
+                    value={validated}
+                    label="Validadas"
+                    onChange={handleSortValidate}
+                  >
+                    <MenuItem value='All'>Todas</MenuItem>
+                    <MenuItem value='true'>Validadas</MenuItem>
+                    <MenuItem value='false'>No validadas</MenuItem>
+                  </Select>
+                </FormControl>
+              </Box>
               <select value={macroTag} onChange={handleMacroTag} className={`nav-item dropdown ${style.order}`} >
-                {/* <option value='All'>Todos</option> */}
+                <option value='All'>Todos</option>
                 {tags?.map(e => 
                   (
                     <option key={e.id} value={e.tag}>{e.tag}</option>
@@ -129,7 +151,8 @@ const NavBar = ({ search, setSearch }) => {
                 )}
               </select>
               <select value={microTag} onChange={handleMicroTag} className={`nav-item dropdown ${style.order}`}>
-                {/* <option value='All'>Todos</option> */}
+                <option value='All'>Todos</option>
+                {/* Falta renderizar todos los microTags */}
                 {tags.filter(e => e.tag === macroTag).flatMap(e => e.microTags).map(e => (
                   <option key={e.id} value={e.tag}>{e.tag}</option>
                 ))}
