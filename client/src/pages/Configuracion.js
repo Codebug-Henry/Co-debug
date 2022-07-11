@@ -138,12 +138,18 @@ const Configuracion = () => {
     return (
       <>
         <NotVerified />
+        <div className={style.footer}>
+          <Footer />
+        </div>
       </>
     );
   } else if (userInfo.statusBanned === true) {
     return (
       <>
         <BannedUser />
+        <div className={style.footer}>
+          <Footer />
+        </div>
       </>
     );
   } else

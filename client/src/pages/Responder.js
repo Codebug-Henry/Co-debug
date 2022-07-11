@@ -8,6 +8,8 @@ import SimpleAnswer from "../components/SimpleAnswer";
 import Loading from "../components/Loading";
 import ReactMarkdown from "react-markdown";
 import Highlighter from "../components/Highlighter";
+import NotVerified from "../components/NotVerified";
+import BannedUser from "../components/BannedUser";
 import { useAuth0 } from "@auth0/auth0-react";
 import axios from "axios";
 import Paginated from "../components/Paginated";
@@ -107,8 +109,25 @@ const Responder = () => {
         <Loading />
       </>
     );
-  } else
+  } else if (isAuthenticated && user.email_verified === false) {
+      return (
+        <>
+          <NotVerified />
+          <div className={style.footer}>
+            <Footer />
+          </div>
+        </>
+      );
+  } else if (isAuthenticated && userInfo.statusBanned === true){
     return (
+      <>
+        <BannedUser />
+        <div className={style.footer}>
+          <Footer />
+        </div>
+      </>
+    );
+  } else return (
       <div className={style.fullContainer}>
         {question.user ? (
           <div className={style.middleRow}>
