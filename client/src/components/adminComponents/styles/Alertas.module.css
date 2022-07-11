@@ -1,5 +1,19 @@
+html {
+  min-height: 100%;
+  position: relative;
+}
+
+.footer {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  overflow: hidden;
+}
+
 .container {
   margin-bottom: 10vh;
+  padding: 0;
 }
 
 .info {
@@ -9,6 +23,18 @@
   font-weight: 700;
   margin-bottom: 2vh;
   margin-top: 2vh;
+  margin-left: 1vw;
+  margin-right: 1vw;
+}
+
+.alerts {
+  padding: 0;
+  border: 1px red solid;
+}
+
+.data {
+  margin-left: 1vw;
+  margin-right: 1vw;
 }
 
 .info p {
