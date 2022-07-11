@@ -71,10 +71,13 @@ const Alertas = () => {
           </div>
         </div>
         <div>
-          <Paginated
+          {
+            alerts.length > 0 &&
+            <Paginated
             setPage={setAlertsPage}
             page={alertsPage}
           />
+          }
         </div>
       </div>
     </div>
