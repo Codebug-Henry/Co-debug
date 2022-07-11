@@ -25,6 +25,7 @@ const Responder = () => {
   const [isModify, setIsModify] = useState(false);
   const [page, setPage] = useState(1)
   const totalPages = useSelector((state)=> state.totalPages)
+  const [ permiteIMG, setPermiteIMG ] = useState(true)
   //form
   const userInfo = useSelector((state) => state.user);
   const [input, setInput] = useState("");
@@ -93,8 +94,12 @@ const Responder = () => {
       const file = res.data;
       setInput(input + `\n\n![image](${file.secure_url})=250x\n\n`);
       setLoadingImg(false);
+      setPermiteIMG(false);
     }
   }
+
+
+
 
   if (loading) {
     return (
@@ -204,7 +209,7 @@ const Responder = () => {
                       </div>
                     </div>
 
-                    <div className={style.adjBox}>
+                    <div className={permiteIMG ? style.adjBox : style.adjBoxNone}>
                       <span className={style.adjText}>Adjuntar imagen:</span>
                       <input
                         type="file"
@@ -217,6 +222,7 @@ const Responder = () => {
                         <span className={style.loaderImg}>Cargando...</span>
                       )}
                     </div>
+                    <span className={permiteIMG ? style.adjBoxNone : style.permiteIMG}>Ya se agregó una imagen.</span>
 
                     {isAuthenticated ? (
                       <div className={style.button}>

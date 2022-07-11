@@ -249,3 +249,9 @@ img[alt=image] { width: 200px; }
   }
 
 }
+.adjBoxNone{
+  display: none;
+}
+.permiteIMG{
+  align-items: flex-start;
+}
