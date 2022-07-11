@@ -1,23 +1,35 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
   getAllQuestions,
+  getAllTags,
   getSearchQuestions,
+  setMacrotag,
+  setMicrotag,
   setSort,
   setSortValidate,
 } from "../redux/actions/index.js";
 import style from "./styles/NavBar.module.css";
+import { TextField, FormControl, Select, MenuItem, InputLabel } from "@mui/material";
+
 
 const NavBar = ({ search, setSearch }) => {
   const dispatch = useDispatch();
   const [page, setPage] = useState(1);
   const sort = useSelector((state) => state.sort);
   const validated = useSelector((state) => state.sortValidate);
+  const tags = useSelector(state => state.tags)
+  const macroTag = useSelector(state => state.filterMacrotag)
+  const microTag = useSelector(state => state.filterMicrotag)
+
+  useEffect(() => {
+    dispatch(getAllTags())
+  }, [dispatch])
 
   const onChangeSearch = (e) => {
     setSearch(e.target.value);
     setPage(1);
-    dispatch(getSearchQuestions(e.target.value, sort, page, validated));
+    dispatch(getSearchQuestions(e.target.value, sort, page, validated, macroTag, microTag));
   };
 
   const handlerRefresh = () => {
@@ -27,26 +39,43 @@ const NavBar = ({ search, setSearch }) => {
   const handleSort = (e) => {
     dispatch(setSort(e.target.value));
     if (search.length > 0) {
-      dispatch(getSearchQuestions(search, e.target.value, page, validated));
+      dispatch(getSearchQuestions(search, e.target.value, page, validated, macroTag, microTag));
     } else {
-      dispatch(getAllQuestions(e.target.value, page, validated));
+      dispatch(getAllQuestions(e.target.value, page, validated, macroTag, microTag));
     }
   };
 
   const handleSortValidate = (e) => {
     dispatch(setSortValidate(e.target.value));
     if (search.length > 0) {
-      dispatch(getSearchQuestions(search, sort, page, e.target.value));
+      dispatch(getSearchQuestions(search, sort, page, e.target.value, macroTag, microTag));
     } else {
-      dispatch(getAllQuestions(sort, page, e.target.value));
+      dispatch(getAllQuestions(sort, page, e.target.value, macroTag, microTag));
     }
   };
 
+  const handleMacroTag = (e) => {
+    dispatch(setMacrotag(e.target.value))
+    dispatch(setMicrotag('All'))
+    if (search.length > 0) {
+      dispatch(getSearchQuestions(search, sort, page, validated, e.target.value, 'All'));
+    } else {
+      dispatch(getAllQuestions(sort, page, validated, e.target.value, 'All'));
+    }
+  }
+
+  const handleMicroTag = (e) => {
+    dispatch(setMicrotag(e.target.value))
+    if (search.length > 0) {
+      dispatch(getSearchQuestions(search, sort, page, validated, macroTag, e.target.value));
+    } else {
+      dispatch(getAllQuestions(sort, page, validated, macroTag, e.target.value));
+    }
+  }
+
   return (
     <div className={`container-fluid ${style.optionSearch}`}>
-      <nav
-        className={`navbar navbar-expand-lg navbar-light bg-warning ${style.navbar}`}
-      >
+      <nav className={`navbar navbar-expand-lg navbar-light bg-warning ${style.navbar}`}>
         <div className="container-fluid">
           <button
             className="navbar-toggler"
@@ -60,159 +89,54 @@ const NavBar = ({ search, setSearch }) => {
             <span className="navbar-toggler-icon"></span>
           </button>
 
-          <form className={`d-flex ${style.navSearch}`}>
-            <input
-              onChange={(e) => onChangeSearch(e)}
-              className="form-control me-2"
-              type="search"
-              placeholder="Buscar preguntas..."
-              aria-label="Search"
-            />
-          </form>
+          <div className={`d-flex ${style.navSearch}`}>
+            <TextField id="outlined-basic" onChange={onChangeSearch} type="search" label="Buscar..." variant="outlined" />
+          </div>
 
           <div className="collapse navbar-collapse" id="navbarSupportedContent">
             <ul className={`navbar-nav me-auto mb-2 mb-lg-0 ${style.ul}`}>
-              <select
-                value={sort}
-                onChange={handleSort}
-                className={`nav-item dropdown ${style.order}`}
-              >
-                <option
-                  className="nav-link dropdown-toggle"
-                  id="navbarDropdown"
-                  role="button"
-                  data-bs-toggle="dropdown"
-                  aria-expanded="false"
-                  hidden
-                >
-                  Antiguedad
-                </option>
 
-                <option value="desc" className="dropdown-item">
-                  Más nuevas
-                </option>
-                <option value="asc" className="dropdown-item">
-                  Más antiguas
-                </option>
-              </select>
-              <select
-                value={validated}
-                onChange={handleSortValidate}
-                className={`nav-item dropdown ${style.order}`}
-              >
-                <option
-                  className="nav-link dropdown-toggle"
-                  id="navbarDropdown"
-                  role="button"
-                  data-bs-toggle="dropdown"
-                  aria-expanded="false"
-                  hidden
-                >
-                  Antiguedad
-                </option>
-                <option value="All" className="dropdown-item">
-                  Todas
-                </option>
-                <option value="true" className="dropdown-item">
-                  Validadas
-                </option>
-                <option value="false" className="dropdown-item">
-                  No Validadas
-                </option>
-              </select>
-              <li className="nav-item dropdown">
-                <span
-                  className="nav-link dropdown-toggle"
-                  id="navbarDropdown"
-                  role="button"
-                  data-bs-toggle="dropdown"
-                  aria-expanded="false"
-                >
-                  MacroTags
-                </span>
-                <ul className="dropdown-menu" aria-labelledby="navbarDropdown">
-                  <li>
-                    <span className="dropdown-item">JS</span>
-                  </li>
-                  <li>
-                    <span className="dropdown-item">Redux</span>
-                  </li>
-                  <li>
-                    <span className="dropdown-item">React</span>
-                  </li>
-                  <li>
-                    <span className="dropdown-item">HTML</span>
-                  </li>
-                  <li>
-                    <span className="dropdown-item">GitHub</span>
-                  </li>
-                  <li>
-                    <span className="dropdown-item">CSS</span>
-                  </li>
-                  <li>
-                    <span className="dropdown-item">Sequelize</span>
-                  </li>
-                </ul>
-              </li>
-              <li className="nav-item">
-                <span
-                  className="nav-link disabled"
-                  tabIndex="-1"
-                  aria-disabled="true"
-                >
-                  tag
-                </span>
-              </li>
-              <li className="nav-item dropdown">
-                <span
-                  className="nav-link dropdown-toggle"
-                  id="navbarDropdown"
-                  role="button"
-                  data-bs-toggle="dropdown"
-                  aria-expanded="false"
-                >
-                  MicroTags
-                </span>
-                <ul className="dropdown-menu" aria-labelledby="navbarDropdown">
-                  <li>
-                    <span className="dropdown-item">Variables</span>
-                  </li>
-                  <li>
-                    <span className="dropdown-item">Clases</span>
-                  </li>
-                  <li>
-                    <span className="dropdown-item">Arreglos</span>
-                  </li>
-                  <li>
-                    <span className="dropdown-item">Objetos</span>
-                  </li>
-                  <li>
-                    <span className="dropdown-item">Callback</span>
-                  </li>
-                  <li>
-                    <span className="dropdown-item">For in</span>
-                  </li>
-                  <li>
-                    <span className="dropdown-item">For of</span>
-                  </li>
-                </ul>
-              </li>
-              <li className="nav-item">
-                <span
-                  className="nav-link disabled"
-                  tabIndex="-1"
-                  aria-disabled="true"
-                >
-                  tag
-                </span>
-              </li>
+              <FormControl sx={{ width: 140, margin: 0.5 }}>
+                <InputLabel id="demo-simple-select-label">Creacion</InputLabel>
+                <Select value={sort} label="Creacion" onChange={handleSort}>
+                  <MenuItem value='desc'>Más nuevas</MenuItem>
+                  <MenuItem value='asc'>Más antiguas</MenuItem>
+                </Select>
+              </FormControl>
+
+              <FormControl sx={{ width: 140, margin: 0.5 }}>
+                <InputLabel>Validadas</InputLabel>
+                <Select value={validated} label="Validadas" onChange={handleSortValidate}>
+                  <MenuItem value='All'>Todas</MenuItem>
+                  <MenuItem value='true'>Validadas</MenuItem>
+                  <MenuItem value='false'>No validadas</MenuItem>
+                </Select>
+              </FormControl>
+
+              <FormControl sx={{ width: 140, margin: 0.5 }}>
+                <InputLabel>Macrotag</InputLabel>
+                <Select value={macroTag} label="Macrotag" onChange={handleMacroTag}>
+                  <MenuItem value='All'>Todos</MenuItem>
+                  {tags?.map(e => (
+                    <MenuItem key={e.id} value={e.tag}>{e.tag}</MenuItem>
+                  ))}
+                </Select>
+              </FormControl>
+
+              <FormControl sx={{ width: 140, margin: 0.5 }}>
+                <InputLabel>Microtag</InputLabel>
+                <Select value={microTag} label="Microtag" onChange={handleMicroTag}>
+                  <MenuItem value='All'>Todos</MenuItem>
+                  {macroTag !== 'All' ? (
+                    tags.filter(e => e.tag === macroTag).flatMap(e => e.microTags).map(e => (
+                      <MenuItem key={e.id} value={e.tag}>{e.tag}</MenuItem>
+                    ))) : ''
+                }
+                </Select>
+              </FormControl>
             </ul>
 
-            <button
-              onClick={() => handlerRefresh()}
-              className={`btn btn-outline-dark ${style.refresh}`}
-              type="submit"
-            >
+            <button onClick={() => handlerRefresh()} className={`btn btn-outline-dark ${style.refresh}`} type="button">
               Refresh
             </button>
           </div>

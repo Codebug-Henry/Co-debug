@@ -74,7 +74,13 @@ const Alertas = () => {
           </div>
         </div>
         <div>
-          <Paginated setPage={setAlertsPage} page={alertsPage} />
+          {
+            alerts.length > 0 &&
+            <Paginated
+            setPage={setAlertsPage}
+            page={alertsPage}
+          />
+          }
         </div>
       </div>
       <div className={style.footer}>

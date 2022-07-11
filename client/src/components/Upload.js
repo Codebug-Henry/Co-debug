@@ -65,7 +65,7 @@ const Upload = () => {
             <div id="archivoseleccionado"></div>
           </div>
           <div className={`col-lg-4 ${style.col2}`}>
-            <button onClick={handleClick} className={style.btnPhoto}>Confirmar</button>
+            <button onClick={handleClick} className={style.btnCode}>Confirmar</button>
           </div>
         </div>
     </div>

@@ -45,7 +45,15 @@ const PreguntasDirectas = () => {
             })}
         </div>
         <div>
-          <Paginated setPage={setMessagePage} page={messagePage} />
+
+          {
+            messages.length > 0 &&
+            <Paginated
+              setPage={setMessagePage}
+              page={messagePage}
+            />
+          }
+          
         </div>
       </div>
       <div className={style.footer}>

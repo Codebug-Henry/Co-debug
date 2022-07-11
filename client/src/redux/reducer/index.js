@@ -21,10 +21,8 @@ import alerts from "./alerts";
 import sort from "./sort";
 import sortValidate from "./sortValidate";
 import notifications from "./notifications";
-import pages2 from "./pages2"
-import pages3 from "./pages3"
-import totalPages2 from "./totalPages2"
-import totalPages3 from "./totalPages3"
+import filterMacrotag from './filterMacrotag'
+import filterMicrotag from "./filterMicrotrag";
 
 export default combineReducers({
   message,
@@ -48,8 +46,6 @@ export default combineReducers({
   sort,
   sortValidate,
   notifications,
-  pages2,
-  pages3,
-  totalPages2,
-  totalPages3
+  filterMacrotag,
+  filterMicrotag
 });

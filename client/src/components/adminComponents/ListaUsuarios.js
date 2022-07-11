@@ -3,6 +3,7 @@ import UserCard from "./UserCard";
 import style from "./styles/ListaUsuarios.module.css";
 import Paginated from "../Paginated";
 import Footer from "../Footer";
+
 import { useEffect, useState } from "react";
 import BotonesAdmin from "./BotonesAdmin";
 import { getSearchUsers, getAllUsersNoAdmin } from "../../redux/actions";
@@ -93,7 +94,14 @@ const ListaUsuarios = () => {
         ) : (
           <div>No se encontraron usuarios</div>
         )}
-        <Paginated setPage={setUsersPage} page={usersPage} />
+
+          {
+            users.length > 0 &&
+            <Paginated
+            setPage={setUsersPage}
+            page={usersPage}
+          />
+          }
       </div>
       <div className={style.footer}>
         <Footer />

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import style from "./styles/SimpleAnswer.module.css";
 import ReactMarkdown from "react-markdown";
 import Highlighter from "./Highlighter";
@@ -24,6 +24,7 @@ import Tooltip from "@mui/material/Tooltip";
 import CheckIcon from "@mui/icons-material/Check";
 import { confirmAlert } from "react-confirm-alert";
 import "react-confirm-alert/src/react-confirm-alert.css";
+import DownloadIcon from '@mui/icons-material/Download';
 
 const SimpleAnswer = ({
   id,
@@ -44,11 +45,17 @@ const SimpleAnswer = ({
   const disliked = userInfo.ansDisliked?.includes(id);
   const [style1, setStyle1] = useState(true);
   const [errors, setErrors] = useState({});
+  const [imgIncludes, setImgIncludes] = useState(false)
   const [newAnswer, setNewAnswer] = useState({
     sub: userInfo.sub,
     id: id,
     text: text,
   });
+  
+  useEffect(() => {
+    if(text.includes("(https://res.cloudinary.com")) setImgIncludes(true)
+  }, [text, imgIncludes]);
+
 
   function validate(newAnswer) {
     let errors = {};
@@ -150,6 +157,7 @@ const SimpleAnswer = ({
         text: e.target.value,
       })
     );
+
   }
 
   function handleClick() {
@@ -202,30 +210,10 @@ const SimpleAnswer = ({
         const ultimo = anteUltimo[0]
         console.log(ultimo)
         setNameFile(ultimo)
-    }
+    } 
   }
 
-  // const newText = toString(text)
-  // const separado =	newText.split("(https://res.cloudinary.com")
-  // const listo1 = "https://res.cloudinary.com"+separado[1]
-  // const variable = `)=250x`
-  // const listo2 = listo1.split(`${variable}`)
-  // const listo3 = listo2[0]+")=250x"
-  // console.log(listo3)
-  // setUrl(listo3)
 
-  // const segundo = listo3.split("/")
-  // const tamanhoSegundo = segundo.length-1
-  // const casiFinal = segundo[tamanhoSegundo]
-  // const anteUltimo = casiFinal.split(")")
-  // const ultimo = anteUltimo[0]
-  // console.log(ultimo)
-  // setNameFile(ultimo)
-
-
-
-
-  //------------------------------------
   return (
     <div className={statusValidated ? style.validated : style.total}>
       <div className={style.first}>
@@ -320,18 +308,29 @@ const SimpleAnswer = ({
             />
           </span>
         </div>
-
+{/* 
         <div>
           <a className={style.descarga} onClick={(e)=>handleseparar(e)} href={url} download={nameFile} target="_blank" rel="noreferrer">
               Abrir imagen adjunta
           </a>
+        </div> */}
+
+        <div>
+          <a className={imgIncludes ? style.descarga : style.notIncludes} onClick={(e)=>handleseparar(e)} href={url} download={nameFile} target="_blank" rel="noreferrer">
+          <Tooltip title="Descargar imagen">
+            <DownloadIcon 
+              fontSize="medium"
+              color='active'
+            />
+          </Tooltip>
+          </a>
         </div>
 
-        <div className={userInfo.sub === subR ? null : style.none}>
+        <div className={userInfo.sub === subR && !statusValidated ? null : style.none}>
           <Tooltip title="Editar">
             <EditIcon
               fontSize="medium"
-              className={statusValidated ? style.hidden : style.moreBtn}
+              className={statusValidated ? style.none: style.moreBtn}
               onClick={handleEditAnswer}
             />
           </Tooltip>

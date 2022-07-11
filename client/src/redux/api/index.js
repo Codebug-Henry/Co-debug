@@ -44,6 +44,7 @@ export const getUserQuestionsSearch = (sub, sort, page, search) =>
     `/questions/${sub}?answered=${sort}&page=${page}&search=${search}&limit=5`
   ); // answered puede ser true o false
 
+
 // RUTAS ANSWER
 export const sendAnswer = (answer) => axios.post(`/answer`, answer);
 export const putAnswer = (answer) => axios.put(`/answer`, answer);

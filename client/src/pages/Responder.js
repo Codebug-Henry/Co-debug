@@ -8,6 +8,8 @@ import SimpleAnswer from "../components/SimpleAnswer";
 import Loading from "../components/Loading";
 import ReactMarkdown from "react-markdown";
 import Highlighter from "../components/Highlighter";
+import NotVerified from "../components/NotVerified";
+import BannedUser from "../components/BannedUser";
 import { useAuth0 } from "@auth0/auth0-react";
 import axios from "axios";
 import Paginated from "../components/Paginated";
@@ -25,6 +27,7 @@ const Responder = () => {
   const [isModify, setIsModify] = useState(false);
   const [page, setPage] = useState(1)
   const totalPages = useSelector((state)=> state.totalPages)
+  const [ permiteIMG, setPermiteIMG ] = useState(true)
   //form
   const userInfo = useSelector((state) => state.user);
   const [input, setInput] = useState("");
@@ -93,8 +96,12 @@ const Responder = () => {
       const file = res.data;
       setInput(input + `\n\n![image](${file.secure_url})=250x\n\n`);
       setLoadingImg(false);
+      setPermiteIMG(false);
     }
   }
+
+
+
 
   if (loading) {
     return (
@@ -102,8 +109,25 @@ const Responder = () => {
         <Loading />
       </>
     );
-  } else
+  } else if (isAuthenticated && user.email_verified === false) {
+      return (
+        <>
+          <NotVerified />
+          <div className={style.footer}>
+            <Footer />
+          </div>
+        </>
+      );
+  } else if (isAuthenticated && userInfo.statusBanned === true){
     return (
+      <>
+        <BannedUser />
+        <div className={style.footer}>
+          <Footer />
+        </div>
+      </>
+    );
+  } else return (
       <div className={style.fullContainer}>
         {question.user ? (
           <div className={style.middleRow}>
@@ -144,6 +168,18 @@ const Responder = () => {
                           children={question?.text}
                           components={{ code: Highlighter }}
                         />
+                      </div>
+                      <div id={style.tags}>
+                      {
+                        question.macroTags.map((macro)=> (
+                          <span key={macro.tag} className={style.tag}>{" "}#{macro.tag}{" "}</span>
+                        ))
+                      }
+                      {
+                        question.microTags.map((micro)=> (
+                          <span key={micro.tag} className={style.tag}>{" "}#{micro.tag}{" "}</span>
+                        ))
+                      }
                       </div>
                     </div>
                   </div>
@@ -192,7 +228,7 @@ const Responder = () => {
                       </div>
                     </div>
 
-                    <div className={style.adjBox}>
+                    <div className={permiteIMG ? style.adjBox : style.adjBoxNone}>
                       <span className={style.adjText}>Adjuntar imagen:</span>
                       <input
                         type="file"
@@ -205,6 +241,7 @@ const Responder = () => {
                         <span className={style.loaderImg}>Cargando...</span>
                       )}
                     </div>
+                    <span className={permiteIMG ? style.adjBoxNone : style.permiteIMG}>Ya se agregó una imagen.</span>
 
                     {isAuthenticated ? (
                       <div className={style.button}>

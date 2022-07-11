@@ -15,6 +15,9 @@ module.exports = (sequelize) => {
       type: DataTypes.TEXT,
       allowNull: false,
     },
+    imgCreator: {
+      type: DataTypes.TEXT,
+    },
     questId: {
       type: DataTypes.INTEGER,
     },

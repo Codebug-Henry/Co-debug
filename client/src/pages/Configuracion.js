@@ -4,7 +4,6 @@ import { useAuth0 } from "@auth0/auth0-react";
 import style from "./styles/Configuracion.module.css";
 import Footer from "../components/Footer.js";
 import { getUserInfo, putUserInfo, getNotifications } from "../redux/actions";
-import { useNavigate } from "react-router-dom";
 import CheckIcon from "@mui/icons-material/Check";
 import Upload from "../components/Upload.js";
 import Loading from "../components/Loading";
@@ -17,10 +16,9 @@ import "react-confirm-alert/src/react-confirm-alert.css";
 import MensajeAlerta from "../components/MensajeAlerta";
 
 const Configuracion = () => {
-  const { isAuthenticated, isLoading, user } = useAuth0();
+  const { isAuthenticated, isLoading, user, logout } = useAuth0();
   const userInfo = useSelector((state) => state.user);
   const dispatch = useDispatch();
-  const navigate = useNavigate();
   const [nameUser, setNameUser] = useState(false);
   const [input, setInput] = useState({
     name: "",
@@ -68,6 +66,7 @@ const Configuracion = () => {
   }
 
   const textAlerta = "No podes cambiar el nombre en más de dos oportunidades.";
+  
   function handlerEditName(e) {
     e.preventDefault();
     if (userInfo.nameChanges >= 2) {
@@ -97,15 +96,21 @@ const Configuracion = () => {
   }
 
   async function handlerConfirmEditName() {
-    await dispatch(
-      putUserInfo(userInfo.sub, {
-        name: input.name,
-        nameChanges: userInfo.nameChanges,
-      })
-    );
-    dispatch(getUserInfo(userInfo.sub));
-    setNameUser(false);
-    setErrors({});
+    if(userInfo.name !== input.name) {
+      await dispatch(
+        putUserInfo(userInfo.sub, {
+          name: input.name,
+          nameChanges: userInfo.nameChanges,
+        })
+      );
+      dispatch(getUserInfo(userInfo.sub));
+      setNameUser(false);
+      setErrors({});
+    }
+    else {
+      setNameUser(false);
+      setErrors({});
+    }
   }
 
   async function handlerConfirmEditNickname() {
@@ -121,7 +126,7 @@ const Configuracion = () => {
 
   function handlerDeleteAccount() {
     dispatch(putUserInfo(userInfo.sub, { statusDeleted: true }));
-    navigate("/");
+    logout({ returnTo: window.location.origin });
   }
   if (isLoading) {
     return (
@@ -133,12 +138,18 @@ const Configuracion = () => {
     return (
       <>
         <NotVerified />
+        <div className={style.footer}>
+          <Footer />
+        </div>
       </>
     );
   } else if (userInfo.statusBanned === true) {
     return (
       <>
         <BannedUser />
+        <div className={style.footer}>
+          <Footer />
+        </div>
       </>
     );
   } else
@@ -198,7 +209,7 @@ const Configuracion = () => {
                       }
                     >
                       <button
-                        className={style.buttonUpdate}
+                        className={style.btnCode}
                         onClick={handlerEditName}
                       >
                         Modificar
@@ -270,7 +281,7 @@ const Configuracion = () => {
                       }
                     >
                       <button
-                        className={style.buttonUpdate}
+                        className={style.btnCode}
                         onClick={handlerEditNickname}
                       >
                         Modificar
@@ -305,7 +316,7 @@ const Configuracion = () => {
                   <div className={`row ${style.row}`}>
                     <div className={`col-lg-12 ${style.col2}`}>
                       <button
-                        className={style.buttonUpdate}
+                        className={style.btnCode}
                         onClick={handlerSubmit}
                       >
                         Dar de baja mi cuenta
@@ -363,7 +374,7 @@ const Configuracion = () => {
                     <div className={`col-lg-6 ${style.col2}`}>
                       <StatsUser
                         number={userInfo.cantAns}
-                        characteristic="Mis Respuestas"
+                        characteristic="Respondidas"
                         link="Ver Mis Respuestas"
                         linkTo="/misrespuestas"
                       />

@@ -16,8 +16,7 @@ import axios from "axios";
 // import useLocalStorage from "use-local-storage";
 
 const Headerlogin = () => {
-  const { isAuthenticated, isLoading, user } = useAuth0();
-  const { logout } = useAuth0();
+  const { isAuthenticated, isLoading, user, logout } = useAuth0();
   const dispatch = useDispatch();
   const userInfo = useSelector((state) => state.user);
   const [width, setWidth] = useState(window.innerWitdh);
@@ -134,7 +133,13 @@ const Headerlogin = () => {
                       className={style.notification}
                       onClick={() => handleRead(n.id)}
                     >
-                      {n.text}
+                      <img
+                        src={n.imgCreator}
+                        className={style.userImageNotif}
+                        referrerPolicy="no-referrer"
+                        alt="imgUser"
+                      />
+                      <span>{n.text}</span>
                     </Link>
                   ))
                 ) : (

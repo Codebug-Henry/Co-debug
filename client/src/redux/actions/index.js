@@ -33,7 +33,9 @@ import {
   CLEAN_QUESTIONS,
   SET_SORTVALIDATE,
   GET_NOTIFICATIONS,
-  PUT_NOTIFICATION
+  PUT_NOTIFICATION,
+  SET_MACROTAG,
+  SET_MICROTAG
 } from "./actionTypes";
 
 import * as api from "../api";
@@ -207,9 +209,9 @@ export const cleanFavourites = () => {
   return {type: CLEAN_FAVOURITES}
 }
 
-export const getAllQuestions = (sort, page, validated, setLoading) => async (dispatch) => {
+export const getAllQuestions = (sort, page, validated, macroTag, microTag, setLoading) => async (dispatch) => {
   try {
-    const { data } = await api.getAllQuestions(sort, page, validated);
+    const { data } = await api.getAllQuestions(sort, page, validated, macroTag, microTag);
     dispatch({ type: GET_ALL_QUESTIONS, payload: data });
     setLoading && setLoading(false)
   } catch (error) {
@@ -217,9 +219,9 @@ export const getAllQuestions = (sort, page, validated, setLoading) => async (dis
   }
 };
 
-export const getSearchQuestions = (search, sort, page, validated, setLoading) => async (dispatch) => {
+export const getSearchQuestions = (search, sort, page, validated, macroTag, microTag, setLoading) => async (dispatch) => {
   try {
-    const { data } = await api.getSearchQuestions(search, sort, page, validated);
+    const { data } = await api.getSearchQuestions(search, sort, page, validated, macroTag, microTag);
     dispatch({ type: GET_SEARCH_QUESTIONS, payload: data });
     setLoading && setLoading(false)
   } catch (error) {
@@ -369,6 +371,14 @@ export const setSort = (sort) => {
 
 export const setSortValidate = (sort) => {
   return { type: SET_SORTVALIDATE, payload: sort}
+}
+
+export const setMacrotag = (macroTag) => {
+  return { type: SET_MACROTAG, payload: macroTag}
+}
+
+export const setMicrotag = (microTag) => {
+  return { type: SET_MICROTAG, payload: microTag}
 }
 
 // NOTIFICATIONS

@@ -60,6 +60,19 @@
   gap: 5vh;
 }
 
+#tags{
+  height: 30px;
+  width: 92%;
+  /* margin-left: auto;
+  margin-right: auto; */
+  margin-top: 0.5vh;
+  font-weight: 500;
+}
+
+.tag {
+  margin-right: 0.8vw;
+}
+
 .userImage {
   border-radius: 30px;
   width: 60px;
@@ -235,4 +248,10 @@ img[alt=image] { width: 200px; }
     font-size: 13px;
   }
 
+}
+.adjBoxNone{
+  display: none;
+}
+.permiteIMG{
+  align-items: flex-start;
 }

@@ -53,7 +53,7 @@
 }
 .navSearch{
   margin-left: 5.9%;
-  margin-right: 3%;
+  margin-right: 1%;
   border-radius: 0.5vh;
 }
 .gralTags{
@@ -71,7 +71,9 @@
   font-size: 16px;
   color: #4e4e4e;
   margin: 4px;
+  cursor: pointer;
 }
+
 /* .fullPage {
   border: 1px solid red;
   margin: 0px;
