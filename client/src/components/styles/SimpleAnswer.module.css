@@ -204,10 +204,12 @@
 
 .moreBtn:hover{
   cursor: pointer;
+  color: grey;
 }
 
 .deleteBtn:hover{
   cursor: pointer;
+  color: grey;
 }
 
 .editBajo {
@@ -308,9 +310,14 @@
   visibility: visible;
 }
 .descarga{
-  box-shadow:2px 2px 2px 1px rgba(0,0,0,0.2);
-  border-radius: 1vh;
+  /* box-shadow:2px 2px 2px 1px rgba(0,0,0,0.2); */
+  /* border-radius: 1vh; */
   text-decoration: none;
-  padding: 0.5vh;
+  /* padding: 0.5vh; */
   color: black;
+}
+
+.descarga:hover{
+  cursor: pointer;
+  color: grey;
 }
