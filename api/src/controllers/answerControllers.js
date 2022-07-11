@@ -19,10 +19,9 @@ const postAnswer = async (req, res, next) => {
       await newAnswer.setUser(user)
 
       // Notifications
-
       const userReceiver = await question.getUser()
       let textNotif = `${user.name} respondió tu pregunta!`
-      await userReceiver.createNotification({text: textNotif, subCreator: sub, questId: id})
+      await userReceiver.createNotification({text: textNotif, subCreator: sub, imgCreator: user.picture, questId: id})
 
       res.send(newAnswer)
    } catch (error) {
@@ -76,16 +75,20 @@ const putAnswer = async (req, res, next) => {
       await answer.update({text, imgs, likes: newLikes, statusDeleted, statusValidated})
       
       if (statusValidated) {
-         await question.update({statusValidated})
+         await question.update({statusValidated, teachPoints: answer.teachPoints})
          await user.update({myTeachPoints: user.myTeachPoints + answer.teachPoints})
          // Notifications
-         let textNotif = `${userLogged.name} validó tu respuesta!\nSumas ${answer.teachPoints} Teach Points a tu cuenta personal!`
-         await user.createNotification({text: textNotif, subCreator: sub, questId: question.id})
+         let textNotif = `${userLogged.name} validó tu respuesta! Sumas ${answer.teachPoints} Teach Points a tu cuenta personal!`
+         await user.createNotification({text: textNotif, subCreator: sub, imgCreator: userLogged.picture, questId: question.id})
       }
 
       if (statusDeleted) {
          await user.update({cantAns: user.cantAns - 1})
          await question.update({cantAnswers: question.cantAnswers - 1})
+         if (answer.statusValidated) {
+            await question.update({statusValidated: false})
+            await user.update({myTeachPoints: user.myTeachPoints - answer.teachPoints})
+            }
      }
 
       res.send({
