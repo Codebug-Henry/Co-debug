@@ -66,6 +66,7 @@ const Configuracion = () => {
   }
 
   const textAlerta = "No podes cambiar el nombre en más de dos oportunidades.";
+  
   function handlerEditName(e) {
     e.preventDefault();
     if (userInfo.nameChanges >= 2) {
@@ -95,15 +96,21 @@ const Configuracion = () => {
   }
 
   async function handlerConfirmEditName() {
-    await dispatch(
-      putUserInfo(userInfo.sub, {
-        name: input.name,
-        nameChanges: userInfo.nameChanges,
-      })
-    );
-    dispatch(getUserInfo(userInfo.sub));
-    setNameUser(false);
-    setErrors({});
+    if(userInfo.name !== input.name) {
+      await dispatch(
+        putUserInfo(userInfo.sub, {
+          name: input.name,
+          nameChanges: userInfo.nameChanges,
+        })
+      );
+      dispatch(getUserInfo(userInfo.sub));
+      setNameUser(false);
+      setErrors({});
+    }
+    else {
+      setNameUser(false);
+      setErrors({});
+    }
   }
 
   async function handlerConfirmEditNickname() {
@@ -196,7 +203,7 @@ const Configuracion = () => {
                       }
                     >
                       <button
-                        className={style.buttonUpdate}
+                        className={style.btnCode}
                         onClick={handlerEditName}
                       >
                         Modificar
@@ -268,7 +275,7 @@ const Configuracion = () => {
                       }
                     >
                       <button
-                        className={style.buttonUpdate}
+                        className={style.btnCode}
                         onClick={handlerEditNickname}
                       >
                         Modificar
@@ -303,7 +310,7 @@ const Configuracion = () => {
                   <div className={`row ${style.row}`}>
                     <div className={`col-lg-12 ${style.col2}`}>
                       <button
-                        className={style.buttonUpdate}
+                        className={style.btnCode}
                         onClick={handlerSubmit}
                       >
                         Dar de baja mi cuenta
@@ -361,7 +368,7 @@ const Configuracion = () => {
                     <div className={`col-lg-6 ${style.col2}`}>
                       <StatsUser
                         number={userInfo.cantAns}
-                        characteristic="Mis Respuestas"
+                        characteristic="Respondidas"
                         link="Ver Mis Respuestas"
                         linkTo="/misrespuestas"
                       />

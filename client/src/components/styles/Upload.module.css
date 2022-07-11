@@ -50,6 +50,26 @@ input {
     background-color: rgb(215, 212, 212);
 }
 
+.btnCode {
+    width: fit-content;
+    height: 30px;
+    background-color: #f9bf00;
+    color: lightyellow;
+    border: #f9bf00 solid 1.5px;
+    border-radius: 0.5vh;
+    font-weight: 350;
+    font-size: 15px;
+    justify-self: center;
+    align-self: center;
+    margin-left: 2vh;
+  }
+  
+  .btnCode:hover {
+    cursor: pointer;
+    background-color: transparent;
+    color: rgb(75, 71, 71);
+  }
+
 @media screen and (max-width: 900px) {
     .fullContainer{
         display: flex;

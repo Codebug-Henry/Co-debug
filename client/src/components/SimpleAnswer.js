@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import style from "./styles/SimpleAnswer.module.css";
 import ReactMarkdown from "react-markdown";
 import Highlighter from "./Highlighter";
@@ -45,11 +45,17 @@ const SimpleAnswer = ({
   const disliked = userInfo.ansDisliked?.includes(id);
   const [style1, setStyle1] = useState(true);
   const [errors, setErrors] = useState({});
+  const [imgIncludes, setImgIncludes] = useState(false)
   const [newAnswer, setNewAnswer] = useState({
     sub: userInfo.sub,
     id: id,
     text: text,
   });
+  
+  useEffect(() => {
+    if(text.includes("(https://res.cloudinary.com")) setImgIncludes(true)
+  }, [text, imgIncludes]);
+
 
   function validate(newAnswer) {
     let errors = {};
@@ -151,6 +157,7 @@ const SimpleAnswer = ({
         text: e.target.value,
       })
     );
+
   }
 
   function handleClick() {
@@ -203,7 +210,7 @@ const SimpleAnswer = ({
         const ultimo = anteUltimo[0]
         console.log(ultimo)
         setNameFile(ultimo)
-    }
+    } 
   }
 
 
@@ -309,7 +316,7 @@ const SimpleAnswer = ({
         </div> */}
 
         <div>
-          <a className={style.descarga} onClick={(e)=>handleseparar(e)} href={url} download={nameFile} target="_blank" rel="noreferrer">
+          <a className={imgIncludes ? style.descarga : style.notIncludes} onClick={(e)=>handleseparar(e)} href={url} download={nameFile} target="_blank" rel="noreferrer">
           <Tooltip title="Descargar imagen">
             <DownloadIcon 
               fontSize="medium"
@@ -319,11 +326,11 @@ const SimpleAnswer = ({
           </a>
         </div>
 
-        <div className={userInfo.sub === subR ? null : style.none}>
+        <div className={userInfo.sub === subR && !statusValidated ? null : style.none}>
           <Tooltip title="Editar">
             <EditIcon
               fontSize="medium"
-              className={statusValidated ? style.hidden : style.moreBtn}
+              className={statusValidated ? style.none: style.moreBtn}
               onClick={handleEditAnswer}
             />
           </Tooltip>

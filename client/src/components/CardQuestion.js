@@ -318,8 +318,30 @@ const CardQuestion = ({
             </div>
             <div>
               <Link to={`/responder/${id}`}>
-                <button className={style.answerIt}>Responder</button>
+                <button className={style.answerIt}>
+                  <span className={sub !== userInfo.sub ? null: style.none}>
+                    Responder
+                  </span>
+                  <span className={sub === userInfo.sub ? null: style.none}>
+                    Ver pregunta
+                  </span>
+                </button>
               </Link>
+
+              {/* <Link to={`/responder/${id}`}>
+                <button className={sub !== userInfo.sub ? style.answerIt : style.none}>
+                  <span>
+                    Responder
+                  </span>
+                </button>
+              </Link>
+              <Link to={`/mispreguntas`}>
+                <button className={sub === userInfo.sub ? style.answerIt : style.none}>
+                  <span>
+                     Mis preguntas
+                  </span>
+                </button>
+              </Link> */}
             </div>
           </div>
         </div>
