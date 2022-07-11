@@ -170,6 +170,7 @@ const getSingleQuestion = async (req, res, next) => {
 
     question = {
       ...question.dataValues,
+      teachPoints: question.teachPoints,
       answers,
     };
 

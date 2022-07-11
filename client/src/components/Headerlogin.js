@@ -139,7 +139,13 @@ const Headerlogin = () => {
                       className={style.notification}
                       onClick={() => handleRead(n.id)}
                     >
-                      {n.text}
+                      <img
+                        src={n.imgCreator}
+                        className={style.userImageNotif}
+                        referrerPolicy="no-referrer"
+                        alt="imgUser"
+                      />
+                      <span>{n.text}</span>
                     </Link>
                   ))
                 ) : (
