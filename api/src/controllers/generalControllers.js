@@ -65,7 +65,7 @@ const populateDB = async () => {
       cantQuest: 3,
       cantAns: 1,
       picture:
-        "https://media-exp1.licdn.com/dms/image/C4E03AQHrPJNaA_xQRQ/profile-displayphoto-shrink_800_800/0/1612972013299?e=1661385600&v=beta&t=1lbIzsR2k2GfKHSO7VFmh6z059m_BLzYXJSZhDLVMSA",
+        "https://res.cloudinary.com/codebugers/image/upload/v1657481931/codebug/tmzjp7bf7apzyexfxhur.jpg",
     },
     {
       sub: "2",
@@ -117,7 +117,7 @@ const populateDB = async () => {
       cantFav: 2,
       cantAns: 2,
       picture:
-        "https://media-exp1.licdn.com/dms/image/C5603AQESqRrYU1PB7A/profile-displayphoto-shrink_800_800/0/1630024458215?e=1661385600&v=beta&t=CCSGyfdLAShZY2msqz0KVBcKroJL8RH5Au41hcnAI8E",
+        "https://res.cloudinary.com/codebugers/image/upload/v1657342483/codebug/gihydgjiirr20wcu1zqw.jpg",
     },
     {
       sub: "6",
@@ -128,7 +128,7 @@ const populateDB = async () => {
       myTeachPoints: 1100,
       cantAns: 2,
       picture:
-        "https://media-exp1.licdn.com/dms/image/C4D03AQF6Ei7KEuOr2Q/profile-displayphoto-shrink_800_800/0/1646031911164?e=1661385600&v=beta&t=tmOY2NZf646gdf3eSsEcgMTCBvfHjwNZY7QFvcRfEuo",
+        "https://res.cloudinary.com/codebugers/image/upload/v1657552179/codebug/c2hrgarb1urpsbnxutku.jpg",
     },
     {
       sub: "7",
@@ -139,7 +139,7 @@ const populateDB = async () => {
       myTeachPoints: 1000,
       cantAns: 2,
       picture:
-        "https://media-exp1.licdn.com/dms/image/D4D35AQFZmGrAaKPK8A/profile-framedphoto-shrink_800_800/0/1655595844858?e=1657310400&v=beta&t=-2Uoxv1mu7U5m4oeB89MHKLQW5chhEWWLqozMFvVD0A",
+        "https://res.cloudinary.com/codebugers/image/upload/v1656702863/codebug/mr9jd9vwljre9fdu5yzp.jpg",
     },
     {
       sub: "8",
@@ -164,7 +164,7 @@ const populateDB = async () => {
       cantQuest: 3,
       cantAns: 1,
       picture:
-        "https://media-exp1.licdn.com/dms/image/C4E03AQHrPJNaA_xQRQ/profile-displayphoto-shrink_800_800/0/1612972013299?e=1661385600&v=beta&t=1lbIzsR2k2GfKHSO7VFmh6z059m_BLzYXJSZhDLVMSA",
+        "https://res.cloudinary.com/codebugers/image/upload/v1656857276/codebug/xatglaepqkmsuoh6kejw.jpg",
     },
     {
       sub: "10",
@@ -178,7 +178,7 @@ const populateDB = async () => {
       cantQuest: 2,
       cantAns: 1,
       picture:
-        "https://media-exp1.licdn.com/dms/image/C4E03AQHR0-pjCg6BEQ/profile-displayphoto-shrink_800_800/0/1627139903614?e=1661385600&v=beta&t=O7l3OEXo4Y313kbBX52CLRAMezyoQepFpQLNbP9Ss00",
+        "https://res.cloudinary.com/codebugers/image/upload/v1656939594/codebug/v9gblm0zzb2hfzjsivdu.jpg",
     },
     {
       sub: "11",
@@ -216,7 +216,7 @@ const populateDB = async () => {
       cantFav: 2,
       cantAns: 2,
       picture:
-        "https://media-exp1.licdn.com/dms/image/C5603AQESqRrYU1PB7A/profile-displayphoto-shrink_800_800/0/1630024458215?e=1661385600&v=beta&t=CCSGyfdLAShZY2msqz0KVBcKroJL8RH5Au41hcnAI8E",
+        "https://res.cloudinary.com/codebugers/image/upload/v1656901868/codebug/tgopgksiycfzlby7igma.gif",
     },
     {
       sub: "14",
@@ -227,7 +227,7 @@ const populateDB = async () => {
       myTeachPoints: 300,
       cantAns: 2,
       picture:
-        "https://media-exp1.licdn.com/dms/image/C4D03AQF6Ei7KEuOr2Q/profile-displayphoto-shrink_800_800/0/1646031911164?e=1661385600&v=beta&t=tmOY2NZf646gdf3eSsEcgMTCBvfHjwNZY7QFvcRfEuo",
+        "https://res.cloudinary.com/codebugers/image/upload/v1656968392/codebug/oz7jaaw0drs5cepygypy.jpg",
     },
     {
       sub: "15",
@@ -238,7 +238,7 @@ const populateDB = async () => {
       myTeachPoints: 200,
       cantAns: 2,
       picture:
-        "https://media-exp1.licdn.com/dms/image/D4D35AQFZmGrAaKPK8A/profile-framedphoto-shrink_800_800/0/1655595844858?e=1657310400&v=beta&t=-2Uoxv1mu7U5m4oeB89MHKLQW5chhEWWLqozMFvVD0A",
+        "https://res.cloudinary.com/codebugers/image/upload/v1656901868/codebug/tgopgksiycfzlby7igma.gif",
     },
     {
       sub: "16",
@@ -249,7 +249,7 @@ const populateDB = async () => {
       myTeachPoints: 100,
       cantAns: 1,
       picture:
-        "https://media-exp1.licdn.com/dms/image/C4E03AQEqpAyopWiyxg/profile-displayphoto-shrink_800_800/0/1570049909786?e=1661385600&v=beta&t=ip-2OyBLJuiOkxhPAcNc7iIZEDcC6hW2G3gNDJngTEA",
+        "https://res.cloudinary.com/codebugers/image/upload/v1656959870/codebug/svgczjrwzxsi6puerdqh.jpg",
     },
   ];
 

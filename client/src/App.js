@@ -24,7 +24,7 @@ import Easter from "./pages/Easter.js";
 import Alertas from "./components/adminComponents/Alertas.js";
 import ListaUsuarios from "./components/adminComponents/ListaUsuarios.js";
 import AgregarAdmin from "./components/adminComponents/AgregarAdmin.js";
-import Message from "./components/adminComponents/Message.js";
+//import Message from "./components/adminComponents/Message.js";
 import PreguntasDirectas from "./components/adminComponents/PreguntasDirectas.js";
 
 function App() {
