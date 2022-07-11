@@ -12,6 +12,8 @@ import { useAuth0 } from "@auth0/auth0-react";
 import axios from "axios";
 import Paginated from "../components/Paginated";
 import MensajeAlerta from "../components/MensajeAlerta";
+import DownloadIcon from '@mui/icons-material/Download';
+import Tooltip from "@mui/material/Tooltip";
 
 
 const Responder = () => {
@@ -43,6 +45,8 @@ const Responder = () => {
     }
     // eslint-disable-next-line
   }, [isModify]);
+
+
 
   const handleChange = (e) => {
     setInput(e.target.value);
@@ -98,6 +102,34 @@ const Responder = () => {
     }
   }
 
+  //Rescue URL-Image from text to download
+  const [ url , setUrl ] = useState("")
+  const [ nameFile, setNameFile ] = useState("")
+
+
+
+  const handleseparar = ()=> {
+
+
+    if (question.text.includes("(https://res.cloudinary.com")){
+        
+        const separado =	question.text.split("(https://res.cloudinary.com")
+        let listo1 = "https://res.cloudinary.com"+separado[1]
+        const length = listo1.length
+        listo1 = listo1.slice(0,length-3)
+        setUrl(listo1)
+
+        const segundo = listo1.split("/")
+        const tamanhoSegundo = segundo.length-1
+        const casiFinal = segundo[tamanhoSegundo]
+        const anteUltimo = casiFinal.split(")")
+        const ultimo = anteUltimo[0]
+        console.log(ultimo)
+        setNameFile(ultimo)
+    }else{
+      alert("No hay imagenes disponibles")
+    } 
+  }
 
 
 
@@ -162,6 +194,18 @@ const Responder = () => {
                         ))
                       }
                       </div>
+                      
+                      <div>
+                        <a className={style.descarga} onClick={(e)=>handleseparar(e)} href={url} download={nameFile} target="_blank" rel="noreferrer">
+                        <Tooltip title="Descargar imagen">
+                          <DownloadIcon 
+                            fontSize="medium"
+                            color='active'
+                          />
+                        </Tooltip>
+                        </a>
+                      </div>
+
                     </div>
                   </div>
 
