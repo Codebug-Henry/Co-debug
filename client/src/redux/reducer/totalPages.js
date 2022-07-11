@@ -11,6 +11,8 @@ import {
   GET_USER_QUESTIONS_ORDERER,
   GET_RANKING,
   GET_QUESTION,
+  GET_ALL_USERS,
+  GET_ALL_MESSAGES
 } from "../actions/actionTypes";
 
 export default function totalPages(state = 0, action) {
@@ -39,6 +41,10 @@ export default function totalPages(state = 0, action) {
       return action.payload.totalPages;
     case GET_QUESTION:
       return action.payload.answers.totalPages;
+    case GET_ALL_USERS:
+      return action.payload.totalPages;
+    case GET_ALL_MESSAGES:
+      return action.payload.totalPages;
     default:
       return state;
   }

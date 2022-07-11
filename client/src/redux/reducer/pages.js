@@ -17,7 +17,9 @@ import {
   CLEAN_QUESTIONS,
   CLEAN_RANKING,
   CLEAN_USER_QUESTIONS,
-  GET_QUESTION
+  GET_QUESTION,
+  GET_ALL_USERS,
+  GET_ALL_MESSAGES
 } from "../actions/actionTypes";
 
 export default function pages(state = [], action) {
@@ -58,6 +60,10 @@ export default function pages(state = [], action) {
       return [];
     case GET_QUESTION:
       return action.payload.answers.pages;
+    case GET_ALL_USERS:
+      return action.payload.pages;
+    case GET_ALL_MESSAGES:
+      return action.payload.pages;
     default:
       return state;
   }

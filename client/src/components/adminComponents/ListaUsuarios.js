@@ -1,7 +1,7 @@
 import { useDispatch, useSelector } from "react-redux";
 import UserCard from "./UserCard";
 import style from "./styles/ListaUsuarios.module.css";
-import PaginatedAdmin from "../PaginatedAdmin";
+import Paginated from "../Paginated";
 import { useEffect, useState } from "react";
 import BotonesAdmin from "./BotonesAdmin";
 import { getAllUsers } from "../../redux/actions";
@@ -63,10 +63,13 @@ const ListaUsuarios = () => {
         ) : (
           <div>No se encontraron usuarios</div>
         )}
-          <PaginatedAdmin
+          {
+            users.length > 0 &&
+            <Paginated
             setPage={setUsersPage}
             page={usersPage}
           />
+          }
       </div>
     </div>
   );
