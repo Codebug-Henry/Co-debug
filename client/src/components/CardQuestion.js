@@ -220,6 +220,7 @@ const CardQuestion = ({
               )}
             </div>
             <div>
+
               <span className={userInfo.sub === sub ? style.none : style.span5}>
                 <BlockIcon
                   onClick={handleOpen}
@@ -229,14 +230,17 @@ const CardQuestion = ({
                 />
                 <span className={style.toolTip5}>Denunciar</span>
               </span>
-              <span className={userInfo.sub === sub ? null : style.none}>
+
+              <span className={userInfo.sub === sub ? style.span7 : style.none}>
                 <DeleteIcon
                   fontSize="medium"
                   className={style.deleteBtn}
                   onClick={(e) => onClick(e)}
                   color="action"
                 />
+                <span className={style.toolTip7}>Borrar</span>
               </span>
+
               <Modal
                 open={open}
                 onClose={handleClose}

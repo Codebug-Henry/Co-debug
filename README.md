@@ -64,7 +64,7 @@ No está demás informar que el proyecto está pensado para ser utilizado por pe
 - US 17: Como usuario quiero poder acceder a la información de cada uno de los creadores para conocer más en detalle (nombre, linkedin, experiencia, github, imagen) a los responsables de desarrollar la página.
 - US 18: Como usuario quiero poder leer un resumen básico que explica cómo cargar una pregunta.
 - US 21: Como usuario quiero calificar la pregunta de manera anónima para valorar de forma positiva/negativa las preguntas que me gustan/disgustan para eliminar preguntas que no corresponden a la página.
-  US 21.1: Como usuario quiero tener acceso a un “Botón favoritos” para agregar la pregunta específica a una lista de favoritos para tenerla reservada en caso de querer reutilizarla.
+  US 21.1: Como usuario quiero tener acceso a un “Botón favoritas” para agregar la pregunta específica a una lista de favoritas para tenerla reservada en caso de querer reutilizarla.
   US 21.2: Como usuario quiero tener acceso a un “Botón reportar” para reportar la pregunta específica en caso de verla inadecuada.
   US 21.3: Como usuario quiero tener acceso a un “Botón like” para puntuar positivamente la pregunta en caso de verla correcta.
   US 21.4: Como usuario quiero tener acceso a un “Botón dislike” para puntuar negativamente la pregunta en caso de verla incorrecta.
