@@ -60,8 +60,8 @@ const getAllQuestions = async (req, res, next) => {
     let conditionMacroTag = {};
     let conditionMicroTag = {};
 
-    if (macroTag) conditionMacroTag = { tag: macroTag };
-    if (microTag) conditionMicroTag = { tag: microTag };
+    if (macroTag !== "All") conditionMacroTag = { tag: macroTag };
+    if (microTag !== "All") conditionMicroTag = { tag: microTag };
 
     if (search) {
       let searchArr = search.split(" ");
@@ -99,12 +99,12 @@ const getAllQuestions = async (req, res, next) => {
         },
         {
           model: MacroTag,
-          required: false,
+          required: true,
           where: conditionMacroTag,
         },
         {
           model: MicroTag,
-          required: false,
+          required: true,
           where: conditionMicroTag,
         },
       ],
