@@ -16,6 +16,7 @@ const Message = ({ title, text, email, sub, nickname, id, setMessageFlag }) => {
     e.preventDefault();
     dispatch(putMessage(paquete, setMessageFlag));
     MensajeAlerta({ textAlerta });
+    setMessageFlag(prevMessageFlag => !prevMessageFlag)
     setInput("");
   };
 
