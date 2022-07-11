@@ -5,7 +5,11 @@ import FavoriteIcon from "@mui/icons-material/Favorite";
 import BlockIcon from "@mui/icons-material/Block";
 import ThumbUpIcon from "@mui/icons-material/ThumbUp";
 import ThumbDownIcon from "@mui/icons-material/ThumbDown";
-import { addFavourites, modifyQuestion } from "../redux/actions";
+import {
+  addFavourites,
+  modifyQuestion,
+  deleteQuestion,
+} from "../redux/actions";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import Modal from "@mui/material/Modal";
@@ -19,10 +23,14 @@ import axios from "axios";
 import ReactMarkdown from "react-markdown";
 import Highlighter from "./Highlighter";
 import TaskAltIcon from "@mui/icons-material/TaskAlt";
+import DeleteIcon from "@mui/icons-material/Delete";
+import { confirmAlert } from "react-confirm-alert";
+import "react-confirm-alert/src/react-confirm-alert.css";
 
 const CardQuestion = ({
   cantAnswers,
   nickname,
+  sub,
   picture,
   likes,
   title,
@@ -31,11 +39,13 @@ const CardQuestion = ({
   id,
   setIsFavorite,
   statusValidated,
+  setIsModify,
 }) => {
   const dispatch = useDispatch();
   const userInfo = useSelector((state) => state.user);
   const liked = userInfo.questLiked?.includes(id);
   const disliked = userInfo.questDisliked?.includes(id);
+  // const questions = useSelector((state) => state.questions);
 
   const [flag, setFlag] = useState(true);
 
@@ -77,6 +87,28 @@ const CardQuestion = ({
         )
       );
     }
+  }
+
+  const onClick = (e) => {
+    confirmAlert({
+      title: "Confirma borrar la pregunta",
+      message: "¿Está seguro de esto?",
+      buttons: [
+        {
+          label: "Sí",
+          onClick: (e) => handleDeleteQuestion(e),
+        },
+        {
+          label: "No",
+          onClick: null,
+        },
+      ],
+    });
+  };
+
+  function handleDeleteQuestion(e) {
+    setIsModify(true);
+    dispatch(deleteQuestion({ id: id, statusDeleted: true }, setIsModify));
   }
 
   //MODAL
@@ -173,7 +205,7 @@ const CardQuestion = ({
                     className={style.fav}
                     onClick={(e) => handleRemoveFavourite(e)}
                   />
-                  <span className={style.toolTip3}>Quitar Favoritos</span>
+                  <span className={style.toolTip3}>Quitar Favoritas</span>
                 </span>
               ) : (
                 <span className={style.span4}>
@@ -183,12 +215,13 @@ const CardQuestion = ({
                     className={style.fav}
                     onClick={(e) => handleAddFavourite(e)}
                   />
-                  <span className={style.toolTip4}>Agregar Favoritos</span>
+                  <span className={style.toolTip4}>Agregar Favoritas</span>
                 </span>
               )}
             </div>
             <div>
-              <span className={style.span5}>
+
+              <span className={userInfo.sub === sub ? style.none : style.span5}>
                 <BlockIcon
                   onClick={handleOpen}
                   className={style.delete}
@@ -197,6 +230,17 @@ const CardQuestion = ({
                 />
                 <span className={style.toolTip5}>Denunciar</span>
               </span>
+
+              <span className={userInfo.sub === sub ? style.span7 : style.none}>
+                <DeleteIcon
+                  fontSize="medium"
+                  className={style.deleteBtn}
+                  onClick={(e) => onClick(e)}
+                  color="action"
+                />
+                <span className={style.toolTip7}>Borrar</span>
+              </span>
+
               <Modal
                 open={open}
                 onClose={handleClose}

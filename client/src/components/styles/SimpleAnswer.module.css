@@ -95,7 +95,7 @@
 .editFull2{
   /* height: 100px; */
   /* margin-left: 1.5vh; */
-  width: 98%;
+  width: 90%;
   color: #292a2b;
   align-self: center;
   border-radius: 0.5vh;
@@ -111,10 +111,11 @@
 }
 
 .editText {
-  width: 99%;
-  height: 200px;
+  width: 100%;
+  height: 180px;
   background-color: rgb(255, 245, 211);
   border-radius: 0.5vh;
+  /* border: 1px solid red; */
 }
 
 .bajoTexto {
@@ -186,8 +187,8 @@
   justify-self: center;
   align-self: center;
   position: relative;
-  top: -2px;
-  /* left: -60%; */
+  top: -12%;
+  left: -100%;
 }
 
 .btnCode:hover {
@@ -203,14 +204,30 @@
 
 .moreBtn:hover{
   cursor: pointer;
+  color: grey;
 }
 
 .deleteBtn:hover{
   cursor: pointer;
+  color: grey;
 }
 
 .editBajo {
   width: 90%;
+}
+
+.editBtn {
+  display: flex;
+  flex-direction: column;
+  /* border: 1px solid black; */
+}
+
+.error {
+  margin-left: 0.5vh;
+  margin-top: -0.7vh;
+  margin-bottom: 0.5vh;
+  font-size: 0.8rem;
+  color: #f9bf00;
 }
 
 #hidden {
@@ -236,16 +253,26 @@
   .btnCode {
     font-size: 11px;
     height: 25px;
-    top: -2px;
+    /* top: -2px; */
   }
 
   .btnValidate {
     font-size: 12px;
   }
 
-  #question2{
-    width: 108%;
+  .confirmEdit {
+    margin-left: 2px; 
+    margin-top: 55px; 
   }
+
+  #question2{
+    width: 104%;
+  }
+
+  .error {
+    font-size: 11px;
+  }
+  
 }
 
 .spn1{
@@ -281,4 +308,16 @@
 }
 .spn1:hover .toolTip1{
   visibility: visible;
+}
+.descarga{
+  /* box-shadow:2px 2px 2px 1px rgba(0,0,0,0.2); */
+  /* border-radius: 1vh; */
+  text-decoration: none;
+  /* padding: 0.5vh; */
+  color: black;
+}
+
+.descarga:hover{
+  cursor: pointer;
+  color: grey;
 }

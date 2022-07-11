@@ -4,7 +4,6 @@ import { useAuth0 } from "@auth0/auth0-react";
 import style from "./styles/Configuracion.module.css";
 import Footer from "../components/Footer.js";
 import { getUserInfo, putUserInfo, getNotifications } from "../redux/actions";
-import { useNavigate } from "react-router-dom";
 import CheckIcon from "@mui/icons-material/Check";
 import Upload from "../components/Upload.js";
 import Loading from "../components/Loading";
@@ -17,11 +16,9 @@ import "react-confirm-alert/src/react-confirm-alert.css";
 import MensajeAlerta from "../components/MensajeAlerta";
 
 const Configuracion = () => {
-
-  const { isAuthenticated, isLoading, user } = useAuth0();
+  const { isAuthenticated, isLoading, user, logout } = useAuth0();
   const userInfo = useSelector((state) => state.user);
   const dispatch = useDispatch();
-  const navigate = useNavigate();
   const [nameUser, setNameUser] = useState(false);
   const [input, setInput] = useState({
     name: "",
@@ -32,7 +29,7 @@ const Configuracion = () => {
 
   useEffect(() => {
     if (isAuthenticated) {
-      dispatch(getNotifications(user.sub))
+      dispatch(getNotifications(user.sub));
     }
   }, [dispatch, user, isAuthenticated]);
 
@@ -122,7 +119,7 @@ const Configuracion = () => {
 
   function handlerDeleteAccount() {
     dispatch(putUserInfo(userInfo.sub, { statusDeleted: true }));
-    navigate("/");
+    logout({ returnTo: window.location.origin });
   }
   if (isLoading) {
     return (
@@ -142,8 +139,9 @@ const Configuracion = () => {
         <BannedUser />
       </>
     );
-  } else return (
-    <div className={style.fullContainer}>
+  } else
+    return (
+      <div className={style.fullContainer}>
         <div className="row">
           <div className="col">
             <div className={style.middleRow}>
@@ -343,8 +341,8 @@ const Configuracion = () => {
                     <div className={`col-lg-6 ${style.col2}`}>
                       <StatsUser
                         number={userInfo.cantFav}
-                        characteristic="Mis Favoritos"
-                        link="Ver Favoritos"
+                        characteristic="Mis Favoritas"
+                        link="Ver Favoritas"
                         linkTo="/favoritas"
                       />
                     </div>
@@ -374,11 +372,11 @@ const Configuracion = () => {
             </div>
           </div>
         </div>
-      <div className={style.footer}>
-        <Footer />
+        <div className={style.footer}>
+          <Footer />
+        </div>
       </div>
-    </div>
-  );
+    );
 };
 
 export default Configuracion;

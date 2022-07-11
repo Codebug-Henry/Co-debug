@@ -21,6 +21,11 @@ import ResponderPDF from "./pages/ResponderPDF";
 import PaypalPage from "./pages/PaypalPage.js";
 import PagoListo from "./pages/PagoListo.js";
 import Easter from "./pages/Easter.js";
+import Alertas from "./components/adminComponents/Alertas.js";
+import ListaUsuarios from "./components/adminComponents/ListaUsuarios.js";
+import AgregarAdmin from "./components/adminComponents/AgregarAdmin.js";
+import Message from "./components/adminComponents/Message.js";
+import PreguntasDirectas from "./components/adminComponents/PreguntasDirectas.js";
 
 function App() {
   return (
@@ -45,6 +50,10 @@ function App() {
         <Route path={"/pagolisto"} element={<PagoListo />} />
         <Route path={"*"} element={<NotFound />} />
         <Route path={"/easter"} element={<Easter />} />
+        <Route path={"/codenothere/alertas" } element={<Alertas/>}/>
+        <Route path={"/codenothere/usuarios"} element={<ListaUsuarios />}/>
+        <Route path={"/codenothere/admins"} element={<AgregarAdmin />}/>
+        <Route path={"/codenothere/mensajes"} element={<PreguntasDirectas/>}/>
       </Routes>
     </>
   );

@@ -60,6 +60,19 @@
   gap: 5vh;
 }
 
+#tags{
+  height: 30px;
+  width: 92%;
+  /* margin-left: auto;
+  margin-right: auto; */
+  margin-top: 0.5vh;
+  font-weight: 500;
+}
+
+.tag {
+  margin-right: 0.8vw;
+}
+
 .userImage {
   border-radius: 30px;
   width: 60px;
@@ -201,6 +214,7 @@
   font-size: 0.8rem;
   color: rgb(241, 55, 55);
 }
+img[alt=image] { width: 200px; }
 
 @media screen and (max-width: 740px) {
   .fullContainer{

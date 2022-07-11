@@ -162,6 +162,11 @@
   cursor: pointer;
 }
 
+.deleteBtn:hover{
+  cursor: pointer;
+}
+
+
 @media screen and (max-width: 980px) {
   .pictureBox {
     display: flex;
@@ -423,5 +428,41 @@
 }
 
 .span6:hover .toolTip6 {
+  visibility: visible;
+}
+/*-------------------------------------------------------------------*/
+
+.span67 {
+  position: relative;
+}
+
+.toolTip7 {
+  position: absolute;
+  border: none;
+  background-color: #f5bf07;
+  width: fit-content;
+  height: fit-content;
+  color: white;
+  padding: 0.3rem;
+  text-align: center;
+  border-radius: 0.5vh;
+  font-size: 1rem;
+  bottom: -2.2rem;
+  right: 12.5rem;
+  visibility: hidden;
+}
+
+.toolTip7::after {
+  content: "";
+  position: absolute;
+  border-left: 10px solid transparent;
+  border-bottom: 10px solid #f5bf07;
+  border-right: 10px solid transparent;
+  border-top: 10px solid transparent;
+  top: -17px;
+  left: 20.7px;
+}
+
+.span7:hover .toolTip7 {
   visibility: visible;
 }

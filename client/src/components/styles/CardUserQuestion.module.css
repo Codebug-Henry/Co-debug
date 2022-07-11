@@ -181,9 +181,17 @@
     width: 98%;
     background-color: rgb(255, 245, 211);
     border-radius: 0.5vh;
-    height: 200px;
+    height: 170px;
     margin-top: 10px;
 }
+
+.error {
+    margin-left: 0.5vh;
+    margin-top: -0.7vh;
+    margin-bottom: 0.5vh;
+    font-size: 0.8rem;
+    color: #f9bf00;
+  }
 
 #tags{
     height: 30px;
@@ -191,6 +199,10 @@
     margin-left: auto;
     margin-right: auto;
     margin-top: 0.8vh;
+}
+
+.tag {
+    margin-right: 0.8vw;
 }
 
 #right{
@@ -280,6 +292,9 @@
     .btnCode {
         font-size: 9px;
         height: 30px;
+    }
+    .error {
+        font-size: 11px;
     }
 }
 

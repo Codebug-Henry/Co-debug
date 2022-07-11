@@ -24,6 +24,7 @@ import Tooltip from "@mui/material/Tooltip";
 import CheckIcon from "@mui/icons-material/Check";
 import { confirmAlert } from "react-confirm-alert";
 import "react-confirm-alert/src/react-confirm-alert.css";
+import DownloadIcon from '@mui/icons-material/Download';
 
 const SimpleAnswer = ({
   id,
@@ -36,17 +37,26 @@ const SimpleAnswer = ({
   statusValidated,
   setIsModify,
 }) => {
+
   const dispatch = useDispatch();
   const userInfo = useSelector((state) => state.user);
   const question = useSelector((state) => state.question);
   const liked = userInfo.ansLiked?.includes(id);
   const disliked = userInfo.ansDisliked?.includes(id);
   const [style1, setStyle1] = useState(true);
+  const [errors, setErrors] = useState({});
   const [newAnswer, setNewAnswer] = useState({
     sub: userInfo.sub,
     id: id,
     text: text,
   });
+
+  function validate(newAnswer) {
+    let errors = {};
+    if (!newAnswer.text) errors.text = "Se requiere una respuesta";
+    if (newAnswer.text.length > 600) errors.text = "La respuesta debe tener un máximo de 600 caracteres";
+    return errors;
+  }
 
   const handlerChooseQuestion = () => {
     confirmAlert({
@@ -124,10 +134,10 @@ const SimpleAnswer = ({
     toRender();
   }
 
-  const handleConfirmAnswer = (e) => {
+  async function handleConfirmAnswer(e) {
     e.preventDefault();
     setIsModify(true);
-    dispatch(putAnswer(newAnswer, setIsModify));
+    await dispatch(putAnswer(newAnswer, setIsModify));
     toRender();
   };
 
@@ -136,6 +146,11 @@ const SimpleAnswer = ({
       ...newAnswer,
       text: e.target.value,
     });
+    setErrors(
+      validate({
+        text: e.target.value,
+      })
+    );
   }
 
   function handleClick() {
@@ -162,6 +177,35 @@ const SimpleAnswer = ({
     axios.post("/alert/answer", pack).then((response) => null);
     handleClose();
   };
+
+
+
+//Rescue URL-Image from text to download
+  const [ url , setUrl ] = useState("")
+  const [ nameFile, setNameFile ] = useState("")
+
+  const handleseparar = ()=> {
+
+    if (text.includes("(https://res.cloudinary.com")){
+        
+        const separado =	text.split("(https://res.cloudinary.com")
+        const listo1 = "https://res.cloudinary.com"+separado[1]
+        const variable = `)=250x`
+        const listo2 = listo1.split(`${variable}`)
+        const listo3 = listo2[0]
+        console.log(listo3)
+        setUrl(listo3)
+
+        const segundo = listo3.split("/")
+        const tamanhoSegundo = segundo.length-1
+        const casiFinal = segundo[tamanhoSegundo]
+        const anteUltimo = casiFinal.split(")")
+        const ultimo = anteUltimo[0]
+        console.log(ultimo)
+        setNameFile(ultimo)
+    }
+  }
+
 
   return (
     <div className={statusValidated ? style.validated : style.total}>
@@ -210,16 +254,20 @@ const SimpleAnswer = ({
         <div className={style1 === true ? style.editFull : style.editFull2}>
           <textarea
             type="text"
-            // defaultValue={text}
             value={newAnswer.text}
             name="text"
             autoComplete="off"
             className={style.editText}
             onChange={(e) => onChangeInputText(e)}
           />
+           {errors.text && (
+                <div className={style.error}>
+                  <span> {errors.text}</span>
+                </div>
+            )}
         </div>
 
-        <div className={style1 === true ? style.editFull : style.editBtn}>
+        <div className={style1 === true || errors.text ? style.editFull : style.editBtn}>
           <button type="button" className={style.btnCode} onClick={handleClick}>
             {" "}
             Javascript{" "}
@@ -253,6 +301,24 @@ const SimpleAnswer = ({
             />
           </span>
         </div>
+{/* 
+        <div>
+          <a className={style.descarga} onClick={(e)=>handleseparar(e)} href={url} download={nameFile} target="_blank" rel="noreferrer">
+              Abrir imagen adjunta
+          </a>
+        </div> */}
+
+        <div>
+          <a className={style.descarga} onClick={(e)=>handleseparar(e)} href={url} download={nameFile} target="_blank" rel="noreferrer">
+          <Tooltip title="Descargar imagen">
+            <DownloadIcon 
+              fontSize="medium"
+              color='active'
+            />
+          </Tooltip>
+          </a>
+        </div>
+
         <div className={userInfo.sub === subR ? null : style.none}>
           <Tooltip title="Editar">
             <EditIcon

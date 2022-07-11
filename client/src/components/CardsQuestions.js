@@ -5,23 +5,28 @@ import CardQuestion from "./CardQuestion.js";
 import Paginated from "./Paginated";
 import Loading from "./Loading";
 import style from "./styles/CardsQuestions.module.css";
+import CardNotFound from "./CardNotFound.js";
 
 const CardsQuestions = ({ isFavorite, setIsFavorite, search }) => {
   const dispatch = useDispatch();
   const questions = useSelector((state) => state.questions);
   const sort = useSelector((state) => state.sort);
   const validated = useSelector((state) => state.sortValidate);
+  const macroTag = useSelector(state => state.filterMacrotag)
+  const microTag = useSelector(state => state.filterMicrotag)
   const [page, setPage] = useState(1);
   const [loading, setLoading] = useState(true);
+  const [isModify, setIsModify] = useState(false);
+
 
   useEffect(() => {
     if (search.length > 0) {
-      dispatch(getSearchQuestions(search, sort, page, validated, setLoading));
+      dispatch(getSearchQuestions(search, sort, page, validated, macroTag, microTag, setLoading));
     } else {
-      dispatch(getAllQuestions(sort, page, validated, setLoading));
+      dispatch(getAllQuestions(sort, page, validated, macroTag, microTag, setLoading));
     }
     // eslint-disable-next-line
-  }, [dispatch, page, isFavorite]);
+  }, [dispatch, page, isFavorite, isModify]);
 
   if (loading) {
     return (
@@ -33,11 +38,12 @@ const CardsQuestions = ({ isFavorite, setIsFavorite, search }) => {
     return (
       <div className={style.questBox}>
         <div className={style.boxQuestions}>
-          {questions &&
+          {questions.length > 0 ?
             questions.map((e) => (
               <CardQuestion
                 cantAnswers={e.cantAnswers}
                 nickname={e.user.nickname}
+                sub={e.user.sub}
                 key={e.id}
                 id={e.id}
                 likes={e.likes}
@@ -47,8 +53,11 @@ const CardsQuestions = ({ isFavorite, setIsFavorite, search }) => {
                 picture={e.user.picture}
                 setIsFavorite={setIsFavorite}
                 statusValidated={e.statusValidated}
+                setIsModify={setIsModify}
               />
-            ))}
+            )) :
+            <CardNotFound />
+          }
         </div>
 
         <Paginated page={page} setPage={setPage} />

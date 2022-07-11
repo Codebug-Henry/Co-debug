@@ -12,29 +12,20 @@ html {
   overflow: hidden;
 }
 
-.fullContainer {
+.container {
   display: flex;
   flex-direction: column;
   background-color: lightyellow;
 }
 
-.container {
-  background-color: lightyellow;
-  color: black;
-  padding-bottom: 2vh;
-  padding-top: 2vh;
-}
-
-.tittleLeft {
-  font-size: 2vw;
+.title {
+  font-size: 3vw;
   display: flex;
   justify-content: center;
 }
 
-.panel {
+.lowertitle {
   font-size: 2vw;
   display: flex;
   justify-content: center;
-  align-items: center;
-  margin-top: 10vh;
 }

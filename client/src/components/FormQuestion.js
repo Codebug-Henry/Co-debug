@@ -27,11 +27,11 @@ const FormQuestion = () => {
       errors.title = "Título debe tener un máximo de 80 caracteres";
     if (!input.text) errors.text = "Se requiere una pregunta";
     if (input.text.length > 600)
-      errors.title = "La pregunta debe tener un máximo de 600 caracteres";
+      errors.text = "La pregunta debe tener un máximo de 600 caracteres";
     if (input.macroTag.length === 0)
       errors.macroTag = "Selecciona al menos un macroTag";
-    if (input.macroTag.length && input.macroTag.length > 3)
-      errors.macroTag = "Selecciona como máximo 3 macroTag";
+    if (input.macroTag.length && input.macroTag.length > 2)
+      errors.macroTag = "Selecciona como máximo 2 macroTag";
     if (input.microTag.length === 0)
       errors.microTag = "Selecciona al menos un microTag";
     if (input.microTag.length && input.microTag.length > 3)
@@ -167,10 +167,10 @@ const FormQuestion = () => {
   }
 
 
-  function handleSubmit(e) {
+  async function handleSubmit(e) {
     const textAlerta = "Pregunta creada";
     e.preventDefault();
-    dispatch(
+    await dispatch(
       sendQuestion({
         sub,
         title: input.title,

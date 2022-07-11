@@ -1,23 +1,39 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
   getAllQuestions,
+  getAllTags,
   getSearchQuestions,
+  setMacrotag,
+  setMicrotag,
   setSort,
   setSortValidate,
 } from "../redux/actions/index.js";
 import style from "./styles/NavBar.module.css";
+import Box from '@mui/material/Box';
+import InputLabel from '@mui/material/InputLabel';
+import MenuItem from '@mui/material/MenuItem';
+import FormControl from '@mui/material/FormControl';
+import Select from '@mui/material/Select';
+
 
 const NavBar = ({ search, setSearch }) => {
   const dispatch = useDispatch();
   const [page, setPage] = useState(1);
   const sort = useSelector((state) => state.sort);
   const validated = useSelector((state) => state.sortValidate);
+  const tags = useSelector(state => state.tags)
+  const macroTag = useSelector(state => state.filterMacrotag)
+  const microTag = useSelector(state => state.filterMicrotag)
+
+  useEffect(() => {
+    dispatch(getAllTags())
+  }, [dispatch])
 
   const onChangeSearch = (e) => {
     setSearch(e.target.value);
     setPage(1);
-    dispatch(getSearchQuestions(e.target.value, sort, page, validated));
+    dispatch(getSearchQuestions(e.target.value, sort, page, validated, macroTag, microTag));
   };
 
   const handlerRefresh = () => {
@@ -27,20 +43,39 @@ const NavBar = ({ search, setSearch }) => {
   const handleSort = (e) => {
     dispatch(setSort(e.target.value));
     if (search.length > 0) {
-      dispatch(getSearchQuestions(search, e.target.value, page, validated));
+      dispatch(getSearchQuestions(search, e.target.value, page, validated, macroTag, microTag));
     } else {
-      dispatch(getAllQuestions(e.target.value, page, validated));
+      dispatch(getAllQuestions(e.target.value, page, validated, macroTag, microTag));
     }
   };
 
   const handleSortValidate = (e) => {
     dispatch(setSortValidate(e.target.value));
     if (search.length > 0) {
-      dispatch(getSearchQuestions(search, sort, page, e.target.value));
+      dispatch(getSearchQuestions(search, sort, page, e.target.value, macroTag, microTag));
     } else {
-      dispatch(getAllQuestions(sort, page, e.target.value));
+      dispatch(getAllQuestions(sort, page, e.target.value, macroTag, microTag));
     }
   };
+
+  const handleMacroTag = (e) => {
+    dispatch(setMacrotag(e.target.value))
+    dispatch(setMicrotag('All'))
+    if (search.length > 0) {
+      dispatch(getSearchQuestions(search, sort, page, validated, e.target.value, 'All'));
+    } else {
+      dispatch(getAllQuestions(sort, page, validated, e.target.value, 'All'));
+    }
+  }
+
+  const handleMicroTag = (e) => {
+    dispatch(setMicrotag(e.target.value))
+    if (search.length > 0) {
+      dispatch(getSearchQuestions(search, sort, page, validated, macroTag, e.target.value));
+    } else {
+      dispatch(getAllQuestions(sort, page, validated, macroTag, e.target.value));
+    }
+  }
 
   return (
     <div className={`container-fluid ${style.optionSearch}`}>
@@ -72,140 +107,56 @@ const NavBar = ({ search, setSearch }) => {
 
           <div className="collapse navbar-collapse" id="navbarSupportedContent">
             <ul className={`navbar-nav me-auto mb-2 mb-lg-0 ${style.ul}`}>
-              <select
-                value={sort}
-                onChange={handleSort}
-                className={`nav-item dropdown ${style.order}`}
-              >
-                <option
-                  className="nav-link dropdown-toggle"
-                  id="navbarDropdown"
-                  role="button"
-                  data-bs-toggle="dropdown"
-                  aria-expanded="false"
-                  hidden
-                >
-                  Antiguedad
-                </option>
-
-                <option value="desc" className="dropdown-item">
+              <select value={sort} onChange={handleSort} className={`nav-item dropdown ${style.order}`}>
+                <option value="desc" className={style.option}>
                   Más nuevas
                 </option>
-                <option value="asc" className="dropdown-item">
+                <option value="asc" className={style.option}>
                   Más antiguas
                 </option>
               </select>
-              <select
-                value={validated}
-                onChange={handleSortValidate}
-                className={`nav-item dropdown ${style.order}`}
-              >
-                <option
-                  className="nav-link dropdown-toggle"
-                  id="navbarDropdown"
-                  role="button"
-                  data-bs-toggle="dropdown"
-                  aria-expanded="false"
-                  hidden
-                >
-                  Antiguedad
-                </option>
-                <option value="All" className="dropdown-item">
+              {/* <select value={validated} onChange={handleSortValidate} className={`nav-item dropdown ${style.order}`}>
+                <option value="All" className={style.option}>
                   Todas
                 </option>
-                <option value="true" className="dropdown-item">
+                <option value="true" className={style.option}>
                   Validadas
                 </option>
-                <option value="false" className="dropdown-item">
+                <option value="false" className={style.option}>
                   No Validadas
                 </option>
+              </select> */}
+              <Box sx={{ minWidth: 120 }}>
+                <FormControl fullWidth>
+                  <InputLabel id="demo-simple-select-label">Validadas</InputLabel>
+                  <Select
+                    labelId="demo-simple-select-label"
+                    id="demo-simple-select"
+                    value={validated}
+                    label="Validadas"
+                    onChange={handleSortValidate}
+                  >
+                    <MenuItem value='All'>Todas</MenuItem>
+                    <MenuItem value='true'>Validadas</MenuItem>
+                    <MenuItem value='false'>No validadas</MenuItem>
+                  </Select>
+                </FormControl>
+              </Box>
+              <select value={macroTag} onChange={handleMacroTag} className={`nav-item dropdown ${style.order}`} >
+                <option value='All'>Todos</option>
+                {tags?.map(e => 
+                  (
+                    <option key={e.id} value={e.tag}>{e.tag}</option>
+                  )
+                )}
               </select>
-              <li className="nav-item dropdown">
-                <span
-                  className="nav-link dropdown-toggle"
-                  id="navbarDropdown"
-                  role="button"
-                  data-bs-toggle="dropdown"
-                  aria-expanded="false"
-                >
-                  MacroTags
-                </span>
-                <ul className="dropdown-menu" aria-labelledby="navbarDropdown">
-                  <li>
-                    <span className="dropdown-item">JS</span>
-                  </li>
-                  <li>
-                    <span className="dropdown-item">Redux</span>
-                  </li>
-                  <li>
-                    <span className="dropdown-item">React</span>
-                  </li>
-                  <li>
-                    <span className="dropdown-item">HTML</span>
-                  </li>
-                  <li>
-                    <span className="dropdown-item">GitHub</span>
-                  </li>
-                  <li>
-                    <span className="dropdown-item">CSS</span>
-                  </li>
-                  <li>
-                    <span className="dropdown-item">Sequelize</span>
-                  </li>
-                </ul>
-              </li>
-              <li className="nav-item">
-                <span
-                  className="nav-link disabled"
-                  tabIndex="-1"
-                  aria-disabled="true"
-                >
-                  tag
-                </span>
-              </li>
-              <li className="nav-item dropdown">
-                <span
-                  className="nav-link dropdown-toggle"
-                  id="navbarDropdown"
-                  role="button"
-                  data-bs-toggle="dropdown"
-                  aria-expanded="false"
-                >
-                  MicroTags
-                </span>
-                <ul className="dropdown-menu" aria-labelledby="navbarDropdown">
-                  <li>
-                    <span className="dropdown-item">Variables</span>
-                  </li>
-                  <li>
-                    <span className="dropdown-item">Clases</span>
-                  </li>
-                  <li>
-                    <span className="dropdown-item">Arreglos</span>
-                  </li>
-                  <li>
-                    <span className="dropdown-item">Objetos</span>
-                  </li>
-                  <li>
-                    <span className="dropdown-item">Callback</span>
-                  </li>
-                  <li>
-                    <span className="dropdown-item">For in</span>
-                  </li>
-                  <li>
-                    <span className="dropdown-item">For of</span>
-                  </li>
-                </ul>
-              </li>
-              <li className="nav-item">
-                <span
-                  className="nav-link disabled"
-                  tabIndex="-1"
-                  aria-disabled="true"
-                >
-                  tag
-                </span>
-              </li>
+              <select value={microTag} onChange={handleMicroTag} className={`nav-item dropdown ${style.order}`}>
+                <option value='All'>Todos</option>
+                {/* Falta renderizar todos los microTags */}
+                {tags.filter(e => e.tag === macroTag).flatMap(e => e.microTags).map(e => (
+                  <option key={e.id} value={e.tag}>{e.tag}</option>
+                ))}
+              </select>
             </ul>
 
             <button

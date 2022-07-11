@@ -27,19 +27,32 @@ const CardUserQuestion = ({
   setCantFirstLast,
   setIsModify,
   statusValidated,
+  macroTags,
+  microTags
 }) => {
   const dispatch = useDispatch();
   const questions = useSelector((state) => state.userQuestions);
   const [style1, setStyle1] = useState(true);
   const navigate = useNavigate();
-
+  const [errors, setErrors] = useState({});
   const [newQuestion, setnewQuestion] = useState({
     id: id,
     title: title,
     text: text,
   });
 
-  const onClick = (e) => {
+  function validate(newQuestion) {
+    let errors = {};
+    if (!newQuestion.title) errors.title = "Se requiere un título";
+    if (newQuestion.title.length > 80)
+      errors.title = "Título debe tener un máximo de 80 caracteres";
+    if (!newQuestion.text) errors.text = "Se requiere una pregunta";
+    if (newQuestion.text.length > 600)
+      errors.text = "La pregunta debe tener un máximo de 600 caracteres";
+    return errors;
+  }
+
+  const confirm = (e) => {
     confirmAlert({
       title: "Confirma borrar la pregunta",
       message: "¿Está seguro de esto?",
@@ -50,7 +63,6 @@ const CardUserQuestion = ({
         },
         {
           label: "No",
-          onClick: null,
         },
       ],
     });
@@ -83,6 +95,12 @@ const CardUserQuestion = ({
       ...newQuestion,
       title: e.target.value,
     });
+    setErrors(
+      validate({
+        ...newQuestion,
+        title: e.target.value,
+      })
+    );
   }
 
   function onChangeInputText(e) {
@@ -90,6 +108,12 @@ const CardUserQuestion = ({
       ...newQuestion,
       text: e.target.value,
     });
+    setErrors(
+      validate({
+        ...newQuestion,
+        text: e.target.value,
+      })
+    );
   }
 
   function onClickAdd(e) {
@@ -167,8 +191,24 @@ const CardUserQuestion = ({
               className={style.editText}
               onChange={(e) => onChangeInputText(e)}
             />
+            {errors.title && (
+              <div className={style.error}>
+                <span> {errors.title}</span>
+              </div>
+            )}
+            {errors.text && (
+              <div className={style.error}>
+                <span> {errors.text}</span>
+              </div>
+            )}
           </div>
-          <div className={style1 === true ? style.editFull : style.editBtn}>
+          <div
+            className={
+              style1 === true || errors.title || errors.text
+                ? style.editFull
+                : style.editBtn
+            }
+          >
             <CheckIcon
               fontSize="large"
               color="primary"
@@ -179,9 +219,16 @@ const CardUserQuestion = ({
           </div>
         </div>
         <div id={style.tags}>
-          <span> #for </span>
-          <span> #while </span>
-          <span> #Javascript </span>
+          {
+            macroTags.map((macro)=> (
+              <span key={macro.tag} className={style.tag}>{" "}#{macro.tag}{" "}</span>
+            ))
+          }
+          {
+            microTags.map((micro)=> (
+              <span key={micro.tag} className={style.tag}>{" "}#{micro.tag}{" "}</span>
+            ))
+          }
         </div>
       </div>
 
@@ -215,7 +262,7 @@ const CardUserQuestion = ({
               <DeleteIcon
                 fontSize="medium"
                 className={style.deleteBtn}
-                onClick={(e) => onClick(e)}
+                onClick={(e) => confirm(e)}
               />
             </Tooltip>
           </div>

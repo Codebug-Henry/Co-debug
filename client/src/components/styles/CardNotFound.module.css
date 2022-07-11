@@ -1,0 +1,181 @@
+.total {
+    background-color: rgb(255, 255, 255);
+    border-radius: 0.5vh;
+    min-width: 400px;
+    width: 70%;
+    min-width: 400px;
+    height: max-content;
+    margin-bottom: 2vh;
+    box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
+    transition-property: all;
+    transition-duration: 0.3s;
+    transition-timing-function: linear;
+  }
+  
+  .total:hover {
+    transform: scale(102%);
+  }
+  
+  .pictureBox {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+  }
+  
+  .none {
+    display: none;
+  }
+  
+  .userPreg span {
+    font-weight: 500;
+  }
+  
+  .Title {
+    margin-bottom: 1%;
+    width: 100%;
+    /* text-align: center; */
+    /* border: 1px solid black; */
+  }
+  
+  .Title span {
+    font-weight: 650;
+  }
+  
+  .TitleAndExtrasBox {
+    padding-top: 1vh;
+    margin-left: 20px;
+    display: flex;
+    align-items: flex-start;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+  
+  .Extras {
+    font-weight: 500;
+  }
+  
+  .firstRow {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    width: 100%;
+    justify-content: space-between;
+  }
+  
+  .rightBox {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    margin-right: 0vh;
+    height: 20px;
+  }
+  
+  .questionText {
+    min-height: 100px;
+    height: fit-content;
+    max-height: 200px;
+    background-color: rgb(255, 245, 211);
+    box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
+    padding: 1vh;
+    border-radius: 0.5vh;
+    margin-left: 3vh;
+    margin-bottom: 0.5vh;
+    overflow-y: scroll;
+  }
+  
+  .bajoTexto {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    /* justify-content: space-between; */
+    justify-content: flex-end;
+    width: 100%;
+    padding-left: 2vw;
+    height: 3.8vh;
+    padding-top: 1.5vh;
+  }
+  
+  .likes {
+    display: flex;
+    justify-content: space-between;
+    width: 14%;
+  }
+  
+  .userImage {
+    border-radius: 30px;
+    width: 8vh;
+    padding-top: 2vh;
+  }
+
+  
+  .answerIt {
+    border: solid 1px black;
+    border-radius: 0.5vh;
+    background-color: transparent;
+    position: relative;
+    right: 0%;
+  }
+  
+  .answerIt:hover {
+    cursor: pointer;
+    background-color: rgb(240, 238, 238);
+  }
+  
+  .box {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 300;
+    background-color: lightyellow;
+    border: 2px solid #000;
+    box-shadow: 24;
+    border-radius: 0.5vh;
+  }
+  
+  .enviar {
+    margin-left: 42%;
+    margin-bottom: 1vh;
+    border: 1px solid black;
+    background-color: transparent;
+    color: rgb(67, 64, 64);
+    border-radius: 0.5vh;
+    font-style: italic;
+  }
+
+  
+  @media screen and (max-width: 980px) {
+    .pictureBox {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+    }
+  }
+  
+  @media screen and (max-width: 670px) {
+    .total {
+      width: 100%;
+      font-size: 12px;
+    }
+  
+    .validated {
+      width: 100%;
+      font-size: 12px;
+    }
+  
+    .bajoTexto {
+      margin-left: 1vh;
+      padding-top: 1vh;
+      align-items: flex-start;
+    }
+  
+    .userImage {
+      width: 5vh;
+    }
+    .TitleAndExtrasBox {
+      gap: 5vw;
+    }
+  }
+  
+  

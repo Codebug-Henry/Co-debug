@@ -17,3 +17,7 @@
   background-color: green;
   color: white;
 }
+.column{
+  height: auto;
+  word-wrap: break-word;
+}
