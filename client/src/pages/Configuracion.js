@@ -4,7 +4,6 @@ import { useAuth0 } from "@auth0/auth0-react";
 import style from "./styles/Configuracion.module.css";
 import Footer from "../components/Footer.js";
 import { getUserInfo, putUserInfo, getNotifications } from "../redux/actions";
-import { useNavigate } from "react-router-dom";
 import CheckIcon from "@mui/icons-material/Check";
 import Upload from "../components/Upload.js";
 import Loading from "../components/Loading";
@@ -17,10 +16,9 @@ import "react-confirm-alert/src/react-confirm-alert.css";
 import MensajeAlerta from "../components/MensajeAlerta";
 
 const Configuracion = () => {
-  const { isAuthenticated, isLoading, user } = useAuth0();
+  const { isAuthenticated, isLoading, user, logout } = useAuth0();
   const userInfo = useSelector((state) => state.user);
   const dispatch = useDispatch();
-  const navigate = useNavigate();
   const [nameUser, setNameUser] = useState(false);
   const [input, setInput] = useState({
     name: "",
@@ -121,7 +119,7 @@ const Configuracion = () => {
 
   function handlerDeleteAccount() {
     dispatch(putUserInfo(userInfo.sub, { statusDeleted: true }));
-    navigate("/");
+    logout({ returnTo: window.location.origin });
   }
   if (isLoading) {
     return (

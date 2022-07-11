@@ -28,10 +28,10 @@ export const addFavourites = (sub, qId, boolean) =>
   axios.put(`/questions/favourites?sub=${sub}&id=${qId}&add=${boolean}`);
 export const getFavourites = (sub, page) =>
   axios.get(`/questions/favourites/${sub}?limit=5&page=${page}`);
-export const getAllQuestions = (sort, page, validated) =>
-  axios.get(`/questions?sort=${sort}&page=${page}&validated=${validated}&limit=5`);
-export const getSearchQuestions = (search, sort, page, validated) =>
-  axios.get(`/questions?search=${search}&sort=${sort}&page=${page}&validated=${validated}&limit=5`);
+export const getAllQuestions = (sort, page, validated, macroTag, microTag) =>
+  axios.get(`/questions?sort=${sort}&page=${page}&validated=${validated}&macroTag=${macroTag}&microTag=${microTag}&limit=5`);
+export const getSearchQuestions = (search, sort, page, validated, macroTag, microTag) =>
+  axios.get(`/questions?search=${search}&sort=${sort}&page=${page}&validated=${validated}&macroTag=${macroTag}$microTag=${microTag}&limit=5`);
 export const getUserQuestions = (sub, sort, page) => axios.get(`/questions/${sub}?answered=${sort}&page=${page}&limit=5`);
 export const getUserQuestionsSearch = (sub, sort, page, search) => axios.get(`/questions/${sub}?answered=${sort}&page=${page}&search=${search}&limit=5`); // answered puede ser true o false
 
