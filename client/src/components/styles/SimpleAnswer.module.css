@@ -6,6 +6,7 @@
     flex-direction: column;
     padding: 1%;
     border-radius: 0.5vh;
+    position: relative;
 }
 
 .validated{
@@ -324,4 +325,14 @@
 .descarga:hover{
   cursor: pointer;
   color: grey;
+}
+
+.comentarios{
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.comentarios:hover{
+  font-weight: 650;
+  cursor: pointer;
 }

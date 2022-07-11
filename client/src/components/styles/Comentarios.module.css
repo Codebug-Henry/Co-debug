@@ -1,0 +1,91 @@
+/* TODO */
+.subAnsBox{
+     display: flex;
+     border-radius: 10px;
+     flex-direction: column;
+     box-shadow:2px 2px 2px 1px rgba(0,0,0,0.2);
+     word-wrap: break-word;
+     background-color: #f9bf00;
+     padding: 1%;
+     z-index: 1;
+     max-height: 70vh;
+     overflow: hidden;
+     position: absolute;
+     left: 25%;
+     top: 96%;
+}
+
+.row1{
+    overflow-y: scroll;
+    margin-bottom: 1.5vh;
+}
+
+.row2{
+    display: flex;
+    gap: 5px;
+}
+
+.row2 textarea{
+    border-radius: 10px;
+    color: rgba(0, 0, 0, 0.832);
+    width: 80%;
+}
+
+.button button{
+    border-radius: 10px;
+    background-color: lightyellow;
+    color: black;
+    border: 1.5px solid rgb(127, 127, 127);
+    height: 8vh;
+    font-weight: 350;
+    font-size: 15px;
+    justify-self: center;
+    align-self: center;
+}
+
+.button button:hover{
+    cursor: pointer;
+    background-color: rgb(249, 249, 195);;
+    color: rgb(75, 71, 71);
+}
+
+
+/* COMENTARIO INDIVIDUAL */
+
+.comentario{
+    display: flex;
+    flex-direction: column;
+}
+
+.comentario img{
+    margin-right: 0.5vw;
+}
+
+.comentario div{
+    display: flex;
+}
+
+.comentario div p{
+    font-weight: 600;
+}
+
+.comentarioContainer{
+    background-color: whitesmoke;
+    box-shadow:2px 2px 2px 1px rgba(0,0,0,0.2);
+    border-radius: 10px;
+    border: none;
+    padding: 1%;
+    width: 40vw;
+    margin-top: 1vh;
+}
+
+.userImage{
+  border-radius: 100%;
+  height: 38px;
+}
+
+.texto{
+    padding: 1%;
+    background-color: beige;
+    font-weight: 500;
+}

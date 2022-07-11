@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import style from "./styles/SimpleAnswer.module.css";
 import ReactMarkdown from "react-markdown";
 import Highlighter from "./Highlighter";
@@ -25,6 +25,7 @@ import CheckIcon from "@mui/icons-material/Check";
 import { confirmAlert } from "react-confirm-alert";
 import "react-confirm-alert/src/react-confirm-alert.css";
 import DownloadIcon from '@mui/icons-material/Download';
+import Comentarios from "./Comentarios";
 
 const SimpleAnswer = ({
   id,
@@ -36,6 +37,8 @@ const SimpleAnswer = ({
   subR,
   statusValidated,
   setIsModify,
+  cantSubAnswers,
+  subAnswers
 }) => {
 
   const dispatch = useDispatch();
@@ -213,6 +216,25 @@ const SimpleAnswer = ({
     } 
   }
 
+  // Hilo de comentarios en cada respuesta
+  const [toggleHilo, setToggleHilo] = useState(false);
+
+  const myRef = useRef();
+
+  const handleClickOutside = (e) => {
+    if (toggleHilo && !myRef.current.contains(e.target)) {
+      setToggleHilo(false);
+    }
+  };
+
+  useEffect(() => {
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  });
+
+  const handleToggleHilo = () => {
+    setToggleHilo(!toggleHilo);
+  };
 
   return (
     <div className={statusValidated ? style.validated : style.total}>
@@ -314,6 +336,22 @@ const SimpleAnswer = ({
               Abrir imagen adjunta
           </a>
         </div> */}
+
+        {/* Hilo de comentarios en cada respuesta */}
+        <div ref={myRef}>
+          <div onClick={handleToggleHilo} className={style.comentarios}>
+            {cantSubAnswers ?  cantSubAnswers === 1 ? `${cantSubAnswers} comentario` : `${cantSubAnswers} comentarios` : "Comentar"}
+          </div>
+
+          {toggleHilo && (
+              <Comentarios
+                id={id}
+                cantSubAnswers={cantSubAnswers}
+                subAnswers={subAnswers}
+                setIsModify={setIsModify}
+              />
+            )}
+         </div>
 
         <div>
           <a className={imgIncludes ? style.descarga : style.notIncludes} onClick={(e)=>handleseparar(e)} href={url} download={nameFile} target="_blank" rel="noreferrer">

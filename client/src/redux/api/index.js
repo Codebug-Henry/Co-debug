@@ -76,5 +76,8 @@ export const getAllAlerts = (page) =>
 //RUTAS NOTIFICATIONS
 
 export const getNotifications = (sub) => axios.get(`/notifications/${sub}`);
-export const putNotification = (notification) =>
-  axios.put(`/message`, notification);
+
+//RUTAS SUBANSWERS
+
+export const getSubAnswers = (id) => axios.get(`/subAnswers/${id}`);
+

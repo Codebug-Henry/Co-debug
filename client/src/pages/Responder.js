@@ -326,6 +326,8 @@ const Responder = () => {
                           picture={e.user.picture}
                           statusValidated={e.statusValidated}
                           setIsModify={setIsModify}
+                          cantSubAnswers={e.cantSubAnswers}
+                          subAnswers={e.subAnswers}
                         />
                       ))}
                   </div>

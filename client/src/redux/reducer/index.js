@@ -23,6 +23,7 @@ import sortValidate from "./sortValidate";
 import notifications from "./notifications";
 import filterMacrotag from './filterMacrotag'
 import filterMicrotag from "./filterMicrotrag";
+import subAnswers from "./subAnswers";
 
 export default combineReducers({
   message,
@@ -47,5 +48,6 @@ export default combineReducers({
   sortValidate,
   notifications,
   filterMacrotag,
-  filterMicrotag
+  filterMicrotag,
+  subAnswers
 });
