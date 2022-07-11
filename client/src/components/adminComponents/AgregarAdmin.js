@@ -1,25 +1,37 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import style from "./styles/AgregarAdmin.module.css";
 import AdminCard from "./AdminCard";
-import { getSearchUsers } from "../../redux/actions";
+import { getAllAdmins, getAllUsersNoAdmin, getSearchUsers } from "../../redux/actions";
 import UserAdminCard from "./UserAdminCard";
+import BotonesAdmin from "./BotonesAdmin";
 
-const AgregarAdmin = ({ setAdminFlag, setNoAdminFlag }) => {
+const AgregarAdmin = () => {
   const dispatch = useDispatch();
   const admins = useSelector((state) => state.admins);
   const [input, setInput] = useState("");
   const usersNoAdmin = useSelector((state) => state.usersNoAdmin);
 
+  const [adminFlag, setAdminFlag] = useState(true)
+
+  useEffect(()=>{
+    dispatch(getAllAdmins(1))
+    dispatch(getAllUsersNoAdmin(1))
+  },[dispatch, adminFlag])
+
   const onChangeSearch = (e) => {
     setInput(e.target.value);
     dispatch(getSearchUsers(1, input));
-    setNoAdminFlag((prevNoAdminFlag) => !prevNoAdminFlag);
   };
+
 
   const handlerRefresh = (e) => {};
 
   return (
+    <div>
+      <div>
+        <BotonesAdmin/>
+      </div>
     <div>
       <div className={style.adminList}>
         <div className={`container-fluid ${style.container}`}>
@@ -84,7 +96,6 @@ const AgregarAdmin = ({ setAdminFlag, setNoAdminFlag }) => {
                           nickname={user.nickname}
                           email={user.email}
                           setAdminFlag={setAdminFlag}
-                          setNoAdminFlag={setNoAdminFlag}
                         />
                       </div>
                     );
@@ -94,6 +105,7 @@ const AgregarAdmin = ({ setAdminFlag, setNoAdminFlag }) => {
           </div>
         </div>
       </div>
+    </div>
     </div>
   );
 };

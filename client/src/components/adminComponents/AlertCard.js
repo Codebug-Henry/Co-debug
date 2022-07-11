@@ -3,7 +3,7 @@ import style from "./styles/AlertCard.module.css";
 import axios from "axios";
 
 
-const AlertCard = ({id,message,title,text,subCreator,questionSub,questionId,setAlertsFlag,answerId,qStatusDeleted,aStatusDeleted,setTemporalFlag}) => {
+const AlertCard = ({id,message,title,text,subCreator,questionSub,questionId,setAlertsFlag,answerId,qStatusDeleted,aStatusDeleted}) => {
   //const [input, setInput] = useState("");
   //const dispatch = useDispatch();
 

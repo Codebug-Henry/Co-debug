@@ -8,6 +8,7 @@ import AgregarAdmin from "../components/adminComponents/AgregarAdmin.js";
 import PreguntasDirectas from "../components/adminComponents/PreguntasDirectas.js";
 import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import BotonesAdmin from "../components/adminComponents/BotonesAdmin.js";
 import {
   getAllMessages,
   getAllUsers,
@@ -18,130 +19,56 @@ import {
 
 const Admin = () => {
   const isAuthenticated = true;
-  const [optionSelected, setOptionSelected] = useState(null);
   //LISTA USUARIOS
-  const [usersPage, setUsersPage] = useState(1);
-  const [banFlag, setBanFlag] = useState(true);
-  //CONTACTO
-  const [messagePage, setMessagePage] = useState(1);
-  const [messageFlag, setMessageFlag] = useState(false);
-  //ADMINS
-  const adminPage = 1;
-  const [adminFlag, setAdminFlag] = useState(true);
-  //ALERTS
-  const [alertsPage, setAlertsPage] = useState(1);
-  const [alertsFlag, setAlertsFlag] = useState(true);
+  // const [usersPage, setUsersPage] = useState(1);
+  // const [banFlag, setBanFlag] = useState(true);
+  // //CONTACTO
+  // const [messagePage, setMessagePage] = useState(1);
+  // const [messageFlag, setMessageFlag] = useState(false);
+  // //ADMINS
+  // const adminPage = 1;
+  // const [adminFlag, setAdminFlag] = useState(true);
+  // //ALERTS
+  // const [alertsPage, setAlertsPage] = useState(1);
+  // const [alertsFlag, setAlertsFlag] = useState(true);
 
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
   const userInfo = useSelector((state) => state.user);
   const navigate = useNavigate();
-  const totalPages = useSelector((state) => state.totalPages);
+  // const totalPages = useSelector((state) => state.totalPages);
 
-  useEffect(() => {
-    dispatch(getAllUsers(usersPage));
-  }, [dispatch, banFlag, usersPage]);
+  // useEffect(() => {
+  //   dispatch(getAllUsers(usersPage));
+  // }, [dispatch, banFlag, usersPage]);
 
-  useEffect(() => {
-    dispatch(getAllMessages(messagePage));
-  }, [dispatch, messageFlag, messagePage]);
+  // useEffect(() => {
+  //   dispatch(getAllMessages(messagePage));
+  // }, [dispatch, messageFlag, messagePage]);
 
-  useEffect(() => {
-    dispatch(getAllAdmins(adminPage));
-  }, [dispatch, adminFlag, adminPage]);
+  // useEffect(() => {
+  //   dispatch(getAllAdmins(adminPage));
+  // }, [dispatch, adminFlag, adminPage]);
 
-  useEffect(() => {
-    dispatch(getAllUsersNoAdmin(usersPage));
-  }, [dispatch, adminFlag, usersPage]);
+  // useEffect(() => {
+  //   dispatch(getAllUsersNoAdmin(usersPage));
+  // }, [dispatch, adminFlag, usersPage]);
 
-  useEffect(() => {
-    if (alertsPage > 1 && alertsPage > totalPages) {
-      setAlertsPage((prev) => prev - 1);
-    }
-    dispatch(getAllAlerts(alertsPage));
-  }, [dispatch, alertsFlag, alertsPage, totalPages]);
+  // useEffect(() => {
+  //   if (alertsPage > 1 && alertsPage > totalPages) {
+  //     setAlertsPage((prev) => prev - 1);
+  //   }
+  //   dispatch(getAllAlerts(alertsPage));
+  // }, [dispatch, alertsFlag, alertsPage, totalPages]);
 
   return (
     <div className={style.fullContainer}>
       {isAuthenticated ? (
         <div className={style.middleRow}>
           {userInfo.statusAdmin ? (
-            <div className={`container-fluid ${style.container}`}>
-              <div className={`row ${style.row1}`}>
-                <div className={`col-lg ${style.colRow1}`}>
-                  <div className="d-grid gap-2 mx-auto">
-                    <p className={style.tittleLeft}>Admin Options</p>
-                    <button
-                      onClick={() =>
-                        setOptionSelected(
-                          <Alertas
-                            alertsPage={alertsPage}
-                            setAlertsPage={setAlertsPage}
-                            setAlertsFlag={setAlertsFlag}
-                          />
-                        )
-                      }
-                      className="btn btn-warning"
-                      type="button"
-                    >
-                      Alertas
-                    </button>
-                    <button
-                      onClick={() =>
-                        setOptionSelected(
-                          <ListaUsuarios
-                            setUsersPage={setUsersPage}
-                            // setBanFlag={setBanFlag}
-                            setBanFlag={setBanFlag}
-                            usersPage={usersPage}
-                          />
-                        )
-                      }
-                      className="btn btn-warning"
-                      type="button"
-                    >
-                      Lista usuarios
-                    </button>
-                    <button
-                      onClick={() =>
-                        setOptionSelected(
-                          <AgregarAdmin setAdminFlag={setAdminFlag} />
-                        )
-                      }
-                      className="btn btn-warning"
-                      type="button"
-                    >
-                      Agregar Admin
-                    </button>
-                    <button
-                      onClick={() =>
-                        setOptionSelected(
-                          <PreguntasDirectas
-                            messagePage={messagePage}
-                            setMessagePage={setMessagePage}
-                            setMessageFlag={setMessageFlag}
-                          />
-                        )
-                      }
-                      className="btn btn-warning"
-                      data-toggle="button"
-                      type="button"
-                    >
-                      Preguntas directas
-                    </button>
-                  </div>
-                </div>
-                <div className={`row ${style.row2}`}>
-                  <div className={`col-lg ${style.col2}`}>
-                    {optionSelected ? (
-                      optionSelected
-                    ) : (
-                      <p className={style.panel}>
-                        Bienvenido! Elegir la opción deseada
-                      </p>
-                    )}
-                  </div>
-                </div>
-              </div>
+            <div>
+              <p className="display-4">Admin options</p>
+              <BotonesAdmin/>
+              <p className="display-3">Elegir la opcion deseada</p>
             </div>
           ) : (
             <div>{navigate("/")}</div>
