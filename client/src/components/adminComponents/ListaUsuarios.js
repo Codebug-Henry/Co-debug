@@ -96,7 +96,7 @@ const ListaUsuarios = () => {
         )}
 
           {
-            users.length > 0 &&
+            usersPage.length > 0 &&
             <Paginated
             setPage={setUsersPage}
             page={usersPage}
