@@ -255,3 +255,19 @@ img[alt=image] { width: 200px; }
 .permiteIMG{
   align-items: flex-start;
 }
+
+.descarga{
+  /* box-shadow:2px 2px 2px 1px rgba(0,0,0,0.2); */
+  /* border-radius: 1vh; */
+  text-decoration: none;
+  /* padding: 0.5vh; */
+  color: black;
+}
+
+.descarga:hover{
+  cursor: pointer;
+  color: grey;
+}
+.notIncludes {
+  display: none;
+}
