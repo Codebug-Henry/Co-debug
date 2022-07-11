@@ -10,11 +10,7 @@ import {
   setSortValidate,
 } from "../redux/actions/index.js";
 import style from "./styles/NavBar.module.css";
-import Box from '@mui/material/Box';
-import InputLabel from '@mui/material/InputLabel';
-import MenuItem from '@mui/material/MenuItem';
-import FormControl from '@mui/material/FormControl';
-import Select from '@mui/material/Select';
+import { TextField, FormControl, Select, MenuItem, InputLabel } from "@mui/material";
 
 
 const NavBar = ({ search, setSearch }) => {
@@ -79,9 +75,7 @@ const NavBar = ({ search, setSearch }) => {
 
   return (
     <div className={`container-fluid ${style.optionSearch}`}>
-      <nav
-        className={`navbar navbar-expand-lg navbar-light bg-warning ${style.navbar}`}
-      >
+      <nav className={`navbar navbar-expand-lg navbar-light bg-warning ${style.navbar}`}>
         <div className="container-fluid">
           <button
             className="navbar-toggler"
@@ -95,75 +89,54 @@ const NavBar = ({ search, setSearch }) => {
             <span className="navbar-toggler-icon"></span>
           </button>
 
-          <form className={`d-flex ${style.navSearch}`}>
-            <input
-              onChange={(e) => onChangeSearch(e)}
-              className="form-control me-2"
-              type="search"
-              placeholder="Buscar preguntas..."
-              aria-label="Search"
-            />
-          </form>
+          <div className={`d-flex ${style.navSearch}`}>
+            <TextField id="outlined-basic" onChange={onChangeSearch} type="search" label="Buscar..." variant="outlined" />
+          </div>
 
           <div className="collapse navbar-collapse" id="navbarSupportedContent">
             <ul className={`navbar-nav me-auto mb-2 mb-lg-0 ${style.ul}`}>
-              <select value={sort} onChange={handleSort} className={`nav-item dropdown ${style.order}`}>
-                <option value="desc" className={style.option}>
-                  Más nuevas
-                </option>
-                <option value="asc" className={style.option}>
-                  Más antiguas
-                </option>
-              </select>
-              {/* <select value={validated} onChange={handleSortValidate} className={`nav-item dropdown ${style.order}`}>
-                <option value="All" className={style.option}>
-                  Todas
-                </option>
-                <option value="true" className={style.option}>
-                  Validadas
-                </option>
-                <option value="false" className={style.option}>
-                  No Validadas
-                </option>
-              </select> */}
-              <Box sx={{ minWidth: 120 }}>
-                <FormControl fullWidth>
-                  <InputLabel id="demo-simple-select-label">Validadas</InputLabel>
-                  <Select
-                    labelId="demo-simple-select-label"
-                    id="demo-simple-select"
-                    value={validated}
-                    label="Validadas"
-                    onChange={handleSortValidate}
-                  >
-                    <MenuItem value='All'>Todas</MenuItem>
-                    <MenuItem value='true'>Validadas</MenuItem>
-                    <MenuItem value='false'>No validadas</MenuItem>
-                  </Select>
-                </FormControl>
-              </Box>
-              <select value={macroTag} onChange={handleMacroTag} className={`nav-item dropdown ${style.order}`} >
-                <option value='All'>Todos</option>
-                {tags?.map(e => 
-                  (
-                    <option key={e.id} value={e.tag}>{e.tag}</option>
-                  )
-                )}
-              </select>
-              <select value={microTag} onChange={handleMicroTag} className={`nav-item dropdown ${style.order}`}>
-                <option value='All'>Todos</option>
-                {/* Falta renderizar todos los microTags */}
-                {tags.filter(e => e.tag === macroTag).flatMap(e => e.microTags).map(e => (
-                  <option key={e.id} value={e.tag}>{e.tag}</option>
-                ))}
-              </select>
+
+              <FormControl sx={{ width: 140, margin: 0.5 }}>
+                <InputLabel id="demo-simple-select-label">Creacion</InputLabel>
+                <Select value={sort} label="Creacion" onChange={handleSort}>
+                  <MenuItem value='desc'>Más nuevas</MenuItem>
+                  <MenuItem value='asc'>Más antiguas</MenuItem>
+                </Select>
+              </FormControl>
+
+              <FormControl sx={{ width: 140, margin: 0.5 }}>
+                <InputLabel>Validadas</InputLabel>
+                <Select value={validated} label="Validadas" onChange={handleSortValidate}>
+                  <MenuItem value='All'>Todas</MenuItem>
+                  <MenuItem value='true'>Validadas</MenuItem>
+                  <MenuItem value='false'>No validadas</MenuItem>
+                </Select>
+              </FormControl>
+
+              <FormControl sx={{ width: 140, margin: 0.5 }}>
+                <InputLabel>Macrotag</InputLabel>
+                <Select value={macroTag} label="Macrotag" onChange={handleMacroTag}>
+                  <MenuItem value='All'>Todos</MenuItem>
+                  {tags?.map(e => (
+                    <MenuItem key={e.id} value={e.tag}>{e.tag}</MenuItem>
+                  ))}
+                </Select>
+              </FormControl>
+
+              <FormControl sx={{ width: 140, margin: 0.5 }}>
+                <InputLabel>Microtag</InputLabel>
+                <Select value={microTag} label="Microtag" onChange={handleMicroTag}>
+                  <MenuItem value='All'>Todos</MenuItem>
+                  {macroTag !== 'All' ? (
+                    tags.filter(e => e.tag === macroTag).flatMap(e => e.microTags).map(e => (
+                      <MenuItem key={e.id} value={e.tag}>{e.tag}</MenuItem>
+                    ))) : ''
+                }
+                </Select>
+              </FormControl>
             </ul>
 
-            <button
-              onClick={() => handlerRefresh()}
-              className={`btn btn-outline-dark ${style.refresh}`}
-              type="submit"
-            >
+            <button onClick={() => handlerRefresh()} className={`btn btn-outline-dark ${style.refresh}`} type="button">
               Refresh
             </button>
           </div>
