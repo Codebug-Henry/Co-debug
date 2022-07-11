@@ -1,0 +1,32 @@
+.container {
+  padding-bottom: 2vh;
+  padding-top: 2vh;
+}
+
+.buttonAlertas {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+.buttonUsuarios {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+.buttonAdmin {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+.buttonPreguntas {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+.link {
+  text-decoration: none;
+}

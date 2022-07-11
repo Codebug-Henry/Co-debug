@@ -2,20 +2,27 @@ import React from "react";
 import style from "./styles/AlertCard.module.css";
 import axios from "axios";
 
-
-const AlertCard = ({id,message,title,text,subCreator,questionSub,questionId,setAlertsFlag,answerId,qStatusDeleted,aStatusDeleted}) => {
-  //const [input, setInput] = useState("");
-  //const dispatch = useDispatch();
-
+const AlertCard = ({
+  id,
+  message,
+  title,
+  text,
+  subCreator,
+  questionSub,
+  questionId,
+  setAlertsFlag,
+  answerId,
+  qStatusDeleted,
+  aStatusDeleted,
+}) => {
   const handleDelete = async (e) => {
     e.preventDefault();
-    if(questionId){
-      if(qStatusDeleted) {
+    if (questionId) {
+      if (qStatusDeleted) {
         let resolvedPack = { id, statusResolved: true };
         await axios.put(`/alert`, resolvedPack);
         setAlertsFlag((prevAlertsFlag) => !prevAlertsFlag);
-      }
-      else {
+      } else {
         let pack = { id: questionId, statusDeleted: true };
         let resolvedPack = { id, statusResolved: true };
         await axios.put(`/alert`, resolvedPack);
@@ -23,20 +30,18 @@ const AlertCard = ({id,message,title,text,subCreator,questionSub,questionId,setA
         setAlertsFlag((prevAlertsFlag) => !prevAlertsFlag);
       }
     }
-    if(answerId){
-      if(aStatusDeleted){
+    if (answerId) {
+      if (aStatusDeleted) {
         let resolvedPack = { id, statusResolved: true };
         await axios.put(`/alert`, resolvedPack);
         setAlertsFlag((prevAlertsFlag) => !prevAlertsFlag);
-      }
-      else {
+      } else {
         let pack = { id: answerId, statusDeleted: true };
         let resolvedPack = { id, statusResolved: true };
         await axios.put(`/alert`, resolvedPack);
         await axios.put(`/answer`, pack);
         setAlertsFlag((prevAlertsFlag) => !prevAlertsFlag);
       }
-
     }
   };
 
