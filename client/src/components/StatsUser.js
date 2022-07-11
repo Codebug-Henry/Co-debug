@@ -12,21 +12,21 @@ const StatsUser = ({number, characteristic, link, linkTo}) => {
     return (
     <div>
         <div className={`col-lg-12 ${style.col1}`}>
-            <Card sx={{ width: 200, height: 150 }}  id={style.card1} >
-                <CardContent sx={{ width: 200, height: 110 }}>
-                    <Typography gutterBottom variant="h4" component="div" className={style.typo} >
+            <Card sx={{ width: 170, height: 125 }}  id={style.card1} >
+                <CardContent sx={{ width: 170, height: 95 }}>
+                    <Typography gutterBottom variant="h5" component="div" className={style.typo} >
                         {number} 
                     </Typography>
                     <Typography variant="h6" className={style.typo} >
                         {characteristic}
                     </Typography>
                 </CardContent>
-                <CardActions className={style.card2}>
-                    <Button size="small" className={style.btn} >
+                <CardActions sx={{ width: 170, height: 30 }} className={style.card2}>
+                    <Button size="medium" className={style.btn} >
                         <Link to={linkTo} style={{ textDecoration: 'none' }}>
-                            <span>
+                            <Typography gutterBottom variant="caption" style={{ textDecoration: 'none' }} >
                                 {link}
-                            </span>
+                            </Typography>
                         </Link>
                     </Button>
                 </CardActions>

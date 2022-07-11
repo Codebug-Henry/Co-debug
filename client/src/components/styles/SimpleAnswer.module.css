@@ -238,6 +238,10 @@
   visibility: hidden;
 }
 
+.notIncludes {
+  display: none;
+}
+
 @media screen and (max-width: 740px) {
   #photo{
     height: 30px;
