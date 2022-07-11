@@ -1,4 +1,4 @@
-const { User, Question, Answer, MacroTag, MicroTag } = require("../db.js");
+const { User, Question, Answer, MacroTag, MicroTag, SubAnswer } = require("../db.js");
 const { questionTags, paginate } = require("./generalControllers.js");
 
 const deleteUserQuestion = async (req, res, next) => {
@@ -154,7 +154,14 @@ const getSingleQuestion = async (req, res, next) => {
           model: Answer,
           required: false,
           where: { statusDeleted: false },
-          include: User,
+          include: [
+            { model: User },
+            { 
+              model: SubAnswer,
+              required: false,
+              include: User
+            }
+          ]
         },
         { model: MacroTag },
         { model: MicroTag },

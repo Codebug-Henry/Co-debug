@@ -72,6 +72,7 @@ const {
   MicroTag,
   Alert,
   Notification,
+  SubAnswer
 } = sequelize.models;
 
 // Aca vendrian las relaciones
@@ -84,12 +85,6 @@ Answer.belongsTo(User);
 
 Question.hasMany(Answer);
 Answer.belongsTo(Question);
-
-// Question.belongsToMany(MacroTag, {through: 'questions_macroTags'})
-// MacroTag.belongsToMany(Question, {through: 'questions_macroTags'})
-
-// Question.belongsToMany(MicroTag, {through: 'questions_microTags'})
-// MicroTag.belongsToMany(Question, {through: 'questions_microTags'})
 
 Question.hasMany(MicroTag);
 Question.hasMany(MacroTag);
@@ -108,6 +103,12 @@ Alert.belongsTo(Answer);
 
 User.hasMany(Notification);
 Notification.belongsTo(User);
+
+User.hasMany(SubAnswer);
+SubAnswer.belongsTo(User);
+
+Answer.hasMany(SubAnswer);
+SubAnswer.belongsTo(Answer);
 
 module.exports = {
   ...sequelize.models, // para poder importar los modelos así: const { Product, User } = require('./db.js');

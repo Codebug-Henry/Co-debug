@@ -20,8 +20,10 @@ const postAnswer = async (req, res, next) => {
 
       // Notifications
       const userReceiver = await question.getUser()
-      let textNotif = `${user.name} respondió tu pregunta!`
-      await userReceiver.createNotification({text: textNotif, subCreator: sub, imgCreator: user.picture, questId: id})
+      if (sub !== userReceiver.sub) {
+         let textNotif = `${user.name} respondió tu pregunta!`
+         await userReceiver.createNotification({text: textNotif, subCreator: sub, imgCreator: user.picture, questId: id})
+      }
 
       res.send(newAnswer)
    } catch (error) {
