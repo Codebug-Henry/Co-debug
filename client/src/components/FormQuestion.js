@@ -177,7 +177,6 @@ const FormQuestion = () => {
         text: input.text,
         macroTags: input.macroTag,
         microTags: input.microTag,
-        imgs: [],
       })
     );
     MensajeAlerta({ textAlerta });
