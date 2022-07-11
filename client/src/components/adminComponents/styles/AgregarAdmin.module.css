@@ -31,25 +31,19 @@ html {
 .adminRenders {
   padding: 0;
   margin: 0;
-  border: 1px red solid;
 }
 
-.data {
-  margin-right: 1vw;
-  margin-left: 1vw;
+.dataAdmin {
+  margin-right: 0.2vw;
+  margin-left: 0.2vw;
+  padding: 0;
 }
 
-/* .dataAdmin {
+.dataUsers {
   margin-right: 1vw;
   margin-left: 1vw;
   padding: 0;
-} */
-
-/* .AdminCard {
-  margin: 0;
-  padding: 0;
-  border: 1px solid red;
-} */
+}
 
 .info p {
   position: relative;

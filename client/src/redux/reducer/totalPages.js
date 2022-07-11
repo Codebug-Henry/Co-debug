@@ -1,7 +1,7 @@
 import {
   GET_ALL_ALERTS,
   GET_SEARCH_USERS,
-  GET_ALL_ADMINS,
+  //GET_ALL_ADMINS,
   GET_ALL_QUESTIONS,
   GET_SEARCH_QUESTIONS,
   GET_ALL_QUESTIONS_SORTED,
@@ -12,7 +12,8 @@ import {
   GET_RANKING,
   GET_QUESTION,
   GET_ALL_USERS,
-  GET_ALL_MESSAGES
+  GET_ALL_MESSAGES,
+  GET_ALL_USERS_NOADMIN,
 } from "../actions/actionTypes";
 
 export default function totalPages(state = 0, action) {
@@ -31,8 +32,8 @@ export default function totalPages(state = 0, action) {
       return action.payload.totalPages;
     case GET_USER_QUESTIONS_ORDERER:
       return action.payload.totalPages;
-    case GET_ALL_ADMINS:
-      return action.payload.totalPages;
+    // case GET_ALL_ADMINS:
+    // return action.payload.totalPages;
     case GET_SEARCH_USERS:
       return action.payload.totalPages;
     case GET_ALL_ALERTS:
@@ -44,6 +45,8 @@ export default function totalPages(state = 0, action) {
     case GET_ALL_USERS:
       return action.payload.totalPages;
     case GET_ALL_MESSAGES:
+      return action.payload.totalPages;
+    case GET_ALL_USERS_NOADMIN:
       return action.payload.totalPages;
     default:
       return state;

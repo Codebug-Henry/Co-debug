@@ -29,12 +29,11 @@ html {
 
 .alerts {
   padding: 0;
-  border: 1px red solid;
 }
 
 .data {
-  margin-left: 1vw;
-  margin-right: 1vw;
+  margin-left: 0.1vw;
+  margin-right: 0.1vw;
 }
 
 .info p {
