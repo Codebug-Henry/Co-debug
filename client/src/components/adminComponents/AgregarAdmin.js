@@ -26,9 +26,11 @@ const AgregarAdmin = () => {
     if (adminsPage > 1 && adminsPage > totalPages) {
       setAdminsPage((prev) => prev - 1);
     }
-    dispatch(getAllAdmins(adminsPage));
-    dispatch(getAllUsersNoAdmin(adminsPage));
-  }, [dispatch, adminFlag, adminsPage, totalPages]);
+    if (input === "") {
+      dispatch(getAllAdmins(adminsPage));
+      dispatch(getAllUsersNoAdmin(adminsPage));
+    }
+  }, [dispatch, adminFlag, adminsPage, totalPages, input]);
 
   const onChangeSearch = (e) => {
     setInput(e.target.value);
@@ -56,7 +58,7 @@ const AgregarAdmin = () => {
             {admins &&
               admins.map((admin) => {
                 return (
-                  <div className={`row ${style.data}`} key={admin.sub}>
+                  <div className={`row ${style.dataAdmin}`} key={admin.sub}>
                     <AdminCard
                       className={style.AdminCard}
                       sub={admin.sub}
@@ -101,7 +103,10 @@ const AgregarAdmin = () => {
                   {usersNoAdmin &&
                     usersNoAdmin.map((user) => {
                       return (
-                        <div className={`row ${style.data}`} key={user.sub}>
+                        <div
+                          className={`row ${style.dataUsers}`}
+                          key={user.sub}
+                        >
                           <UserAdminCard
                             sub={user.sub}
                             nickname={user.nickname}
@@ -111,11 +116,15 @@ const AgregarAdmin = () => {
                         </div>
                       );
                     })}
-                  <Paginated setPage={setAdminsPage} page={adminsPage} />
                 </div>
               </div>
             </div>
           </div>
+        </div>
+        <div>
+          {usersNoAdmin.length > 0 && (
+            <Paginated setPage={setAdminsPage} page={adminsPage} />
+          )}
         </div>
       </div>
       <div className={style.footer}>
