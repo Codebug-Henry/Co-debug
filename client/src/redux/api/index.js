@@ -31,7 +31,7 @@ export const getFavourites = (sub, page) =>
 export const getAllQuestions = (sort, page, validated, macroTag, microTag) =>
   axios.get(`/questions?sort=${sort}&page=${page}&validated=${validated}&macroTag=${macroTag}&microTag=${microTag}&limit=5`);
 export const getSearchQuestions = (search, sort, page, validated, macroTag, microTag) =>
-  axios.get(`/questions?search=${search}&sort=${sort}&page=${page}&validated=${validated}&macroTag=${macroTag}$microTag=${microTag}&limit=5`);
+  axios.get(`/questions?search=${search}&sort=${sort}&page=${page}&validated=${validated}&macroTag=${macroTag}&microTag=${microTag}&limit=5`);
 export const getUserQuestions = (sub, sort, page) => axios.get(`/questions/${sub}?answered=${sort}&page=${page}&limit=5`);
 export const getUserQuestionsSearch = (sub, sort, page, search) => axios.get(`/questions/${sub}?answered=${sort}&page=${page}&search=${search}&limit=5`); // answered puede ser true o false
 
