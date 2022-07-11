@@ -2,11 +2,12 @@
   border: 1px black solid;
   border-radius: 0.5vh;
   margin-bottom: 0.2vh;
+  padding: 0;
 }
 
 .button {
   margin-top: 1vh;
-  border-radius: 0.5vh;
-  background-color: green;
   color: white;
+  background-color: green;
+  border-radius: 0.5vh;
 }

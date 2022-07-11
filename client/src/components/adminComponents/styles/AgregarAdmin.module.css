@@ -1,5 +1,20 @@
+html {
+  min-height: 100%;
+  position: relative;
+}
+
+.footer {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  overflow: hidden;
+}
+
 .container {
-  margin-bottom: 10vh;
+  margin-bottom: 5vh;
+  padding: 0;
+  margin: 0;
 }
 
 .info {
@@ -9,7 +24,32 @@
   font-weight: 700;
   margin-bottom: 2vh;
   margin-top: 2vh;
+  margin-right: 1vw;
+  margin-left: 1vw;
 }
+
+.adminRenders {
+  padding: 0;
+  margin: 0;
+  border: 1px red solid;
+}
+
+.data {
+  margin-right: 1vw;
+  margin-left: 1vw;
+}
+
+/* .dataAdmin {
+  margin-right: 1vw;
+  margin-left: 1vw;
+  padding: 0;
+} */
+
+/* .AdminCard {
+  margin: 0;
+  padding: 0;
+  border: 1px solid red;
+} */
 
 .info p {
   position: relative;
@@ -21,6 +61,7 @@
   border-radius: 0.5vh;
   margin-bottom: 2vh;
   margin-top: 1vh;
+  margin-left: 1vw;
 }
 
 .button {
@@ -28,4 +69,5 @@
   border-radius: 0.5vh;
   margin-bottom: 2vh;
   margin-top: 1vh;
+  margin-right: 1vw;
 }

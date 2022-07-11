@@ -1,3 +1,16 @@
+html {
+  min-height: 100%;
+  position: relative;
+}
+
+.footer {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  overflow: hidden;
+}
+
 .container {
   margin-bottom: 10vh;
   padding: 0;
@@ -11,9 +24,32 @@
   font-weight: 700;
   margin-bottom: 2vh;
   margin-top: 2vh;
+  margin-right: 1vw;
+  margin-left: 1vw;
+}
+
+.data {
+  margin-right: 1vw;
+  margin-left: 1vw;
 }
 
 .info p {
   position: relative;
   top: 0.8vh;
+}
+
+.input {
+  border: #ff8800 solid 2px;
+  border-radius: 0.5vh;
+  margin-bottom: 2vh;
+  margin-top: 1vh;
+  margin-left: 1vw;
+}
+
+.button {
+  border: #ff8800 solid 2px;
+  border-radius: 0.5vh;
+  margin-bottom: 2vh;
+  margin-top: 1vh;
+  margin-right: 1vw;
 }

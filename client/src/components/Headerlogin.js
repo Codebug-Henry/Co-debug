@@ -93,12 +93,6 @@ const Headerlogin = () => {
             <img className={style.logo} src={logo} alt="logo" />
           </Link>
         </div>
-
-        {/* <div className={`col-lg-2 ${style.colPrin}`}>
-          <Link to="/" className={style.linksInt}>
-            Principal
-          </Link>
-        </div> */}
         <div className={`col-lg-2 ${style.colPreg}`}>
           <Link to="/preguntar" className={style.linksInt}>
             Preguntar
