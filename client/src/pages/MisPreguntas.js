@@ -6,7 +6,7 @@ import CardUserQuestion from "../components/CardUserQuestion";
 import FilterBar from "../components/FilterBar";
 import SearchBar from "../components/SearchBar";
 import { getUserQuestions, getUserQuestionsSearch, getNotifications} from "../redux/actions";
-import FilterAltIcon from "@mui/icons-material/FilterAlt";
+// import FilterAltIcon from "@mui/icons-material/FilterAlt";
 import Paginated from "../components/Paginated";
 import Loading from "../components/Loading";
 import NotVerified from "../components/NotVerified";

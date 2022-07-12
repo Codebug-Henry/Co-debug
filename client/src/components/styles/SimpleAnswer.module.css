@@ -2,11 +2,16 @@
     background: white;
     box-shadow:2px 2px 2px 1px rgba(0,0,0,0.2);
     margin-bottom: 2vh;
-    display: flex;
-    flex-direction: column;
+    /* display: flex; */
+    /* flex-direction: column; */
     padding: 1%;
     border-radius: 0.5vh;
     position: relative;
+}
+
+.simpAnsBox {
+  display: flex;
+  flex-direction: column;
 }
 
 .validated{
@@ -147,7 +152,7 @@
 .likes {
   display: flex;
   justify-content: space-between;
-  width: 7.5%;
+  width: 95px;
 }
 
 .fav:hover{
@@ -287,6 +292,10 @@
   .error {
     font-size: 11px;
   }
+
+  .likes {
+    width: 80px;
+  }
   
 }
 
@@ -340,6 +349,7 @@
 .comentarios{
   font-weight: 500;
   cursor: pointer;
+  /* color: orange; */
 }
 
 .comentarios:hover{

@@ -1,20 +1,15 @@
-import React, { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import React, { useState } from "react";
+import { useSelector } from "react-redux";
 import style from "./styles/Comentarios.module.css";
 import axios from "axios";
 import SubAnswerCard from "./SubAnswerCard";
 
 const Comentarios = ({ id, cantSubAnswers, subAnswers, setIsModify }) => {
-    const dispatch = useDispatch();
     const userInfo = useSelector((state) => state.user);
     
 
     var styleComentario = {
         marginBottom: cantSubAnswers > 0 ? "1.5vh" : "0vh"
-    }
-
-    var styleRow2 = {
-        width: cantSubAnswers === 0 ? "40vw" : null
     }
 
     const [input, setInput] = useState("");
@@ -60,11 +55,12 @@ const Comentarios = ({ id, cantSubAnswers, subAnswers, setIsModify }) => {
                 ))
             }
         </div>
-        <div className={style.row2} style={styleRow2}>
+        <div className={style.row2}>
             <textarea
                 type="text"
                 value={input}
                 name="text"
+                placeholder="Escribe tu comentario..."
                 autoComplete="off"
                 className={style.editText}
                 onChange={(e) => onChangeInputText(e)}
