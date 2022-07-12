@@ -42,6 +42,7 @@ const Ranking = () => {
   };
 
   const handleSort = (e) => {
+    setPage(1)
     setSort(e.target.value);
   };
 
@@ -108,7 +109,7 @@ const Ranking = () => {
                 <p className={`col ${style.colunmNickTop}`}>Pregs.</p>
               )}
             </div>
-            {
+            { sort.includes('desc') &&
               ranking.map((e) => e.myPosition === 1 ? 
               <div
               className={`row align-items-start ${style.info1}`}
@@ -129,7 +130,7 @@ const Ranking = () => {
             </div> :
             null )
             }
-            {
+            { sort.includes('desc') &&
               ranking.map((e) => e.myPosition === 2 ? 
               <div
               className={`row align-items-start ${style.info2}`}
@@ -149,7 +150,7 @@ const Ranking = () => {
             </div> :
             null )
             }
-            {
+            { sort.includes('desc') &&
               ranking.map((e) => e.myPosition === 3 ? 
               <div
               className={`row align-items-start ${style.info3}`}
@@ -188,6 +189,67 @@ const Ranking = () => {
               </div> :
               null
             )}
+             { sort.includes('asc') &&
+              ranking.map((e) => e.myPosition === 3 ? 
+              <div
+              className={`row align-items-start ${style.info3}`}
+              key={e.sub}
+              >
+              <img
+                src={e.picture}
+                className={`col-1 ${style.userImage}`}
+                referrerPolicy="no-referrer"
+                alt={e.name}
+              />
+              <p className={`col-1 ${style.colunmNro}`}><img src={bronce} className={style.medal} alt="3" /></p>
+              <p className={`col ${style.colunmNick}`}>{e.nickname}</p>
+              <p className={`col ${style.colunmTeach}`}>{e.myTeachPoints}</p>
+              <p className={`col ${style.colunmResp}`}>{e.cantAns}</p>
+              <p className={`col ${style.colunmPreg}`}>{e.cantQuest}</p>
+            </div> :
+            null )
+            }
+            { sort.includes('asc') &&
+              ranking.map((e) => e.myPosition === 2 ? 
+              <div
+              className={`row align-items-start ${style.info2}`}
+              key={e.sub}
+              >
+              <img
+                src={e.picture}
+                className={`col-1 ${style.userImage}`}
+                referrerPolicy="no-referrer"
+                alt={e.name}
+              />
+              <p className={`col-1 ${style.colunmNro}`}><img src={plata} className={style.medal} alt="2" /></p>
+              <p className={`col ${style.colunmNick}`}>{e.nickname}</p>
+              <p className={`col ${style.colunmTeach}`}>{e.myTeachPoints}</p>
+              <p className={`col ${style.colunmResp}`}>{e.cantAns}</p>
+              <p className={`col ${style.colunmPreg}`}>{e.cantQuest}</p>
+            </div> :
+            null )
+            }
+            { sort.includes('asc') &&
+              ranking.map((e) => e.myPosition === 1 ? 
+              <div
+              className={`row align-items-start ${style.info1}`}
+              key={e.sub}
+              >
+              <img
+                src={e.picture}
+                className={`col-1 ${style.userImage}`}
+                referrerPolicy="no-referrer"
+                alt={e.name}
+              />
+              {/* <img src={oro} className={style.medal} alt="x" width='17px' height='17px' /> */}
+              <p className={`col-1 ${style.colunmNro}`}><img src={oro} className={style.medal} alt="1" /></p>
+              <p className={`col ${style.colunmNick}`}>{e.nickname}</p>
+              <p className={`col ${style.colunmTeach}`}>{e.myTeachPoints}</p>
+              <p className={`col ${style.colunmResp}`}>{e.cantAns}</p>
+              <p className={`col ${style.colunmPreg}`}>{e.cantQuest}</p>
+            </div> :
+            null )
+            }
           </div>
           <Paginated page={page} setPage={setPage} />
         </div>

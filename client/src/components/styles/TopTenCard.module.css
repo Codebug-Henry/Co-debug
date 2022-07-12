@@ -1,0 +1,4 @@
+.column {
+    display: flex;
+    align-items: flex-end;
+}
