@@ -12,7 +12,7 @@ const postSubAnswer = async (req, res, next) => {
         const userAnswer = await answer.getUser()
         const question = await answer.getQuestion()
         if (sub !== userAnswer.sub) {
-            let textNotif = `${user.name} comentó tu respuesta!`
+            let textNotif = `¡${user.name} comentó tu respuesta!`
             await userAnswer.createNotification({ text: textNotif, subCreator: sub, imgCreator: user.picture, questId: question.id })
         }
         const subAnswers = await answer.getSubAnswers()
