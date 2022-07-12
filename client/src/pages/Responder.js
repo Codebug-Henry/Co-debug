@@ -3,7 +3,13 @@ import style from "./styles/Responder.module.css";
 import Footer from "../components/Footer.js";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
-import { getQuestion, sendAnswer, getUserInfo, getNotifications, deleteQuestion } from "../redux/actions/index";
+import {
+  getQuestion,
+  sendAnswer,
+  getUserInfo,
+  getNotifications,
+  deleteQuestion
+} from "../redux/actions/index";
 import SimpleAnswer from "../components/SimpleAnswer";
 import Loading from "../components/Loading";
 import ReactMarkdown from "react-markdown";
@@ -12,12 +18,11 @@ import { useAuth0 } from "@auth0/auth0-react";
 import axios from "axios";
 import Paginated from "../components/Paginated";
 import MensajeAlerta from "../components/MensajeAlerta";
-import DownloadIcon from '@mui/icons-material/Download';
+import DownloadIcon from "@mui/icons-material/Download";
 import Tooltip from "@mui/material/Tooltip";
 import DeleteIcon from "@mui/icons-material/Delete";
 import { confirmAlert } from "react-confirm-alert";
 import "react-confirm-alert/src/react-confirm-alert.css";
-
 
 const Responder = () => {
   const { isAuthenticated, loginWithRedirect, user } = useAuth0();
@@ -28,9 +33,9 @@ const Responder = () => {
   const [loading, setLoading] = useState(true);
   const [loadingImg, setLoadingImg] = useState(false);
   const [isModify, setIsModify] = useState(false);
-  const [page, setPage] = useState(1)
-  const totalPages = useSelector((state)=> state.totalPages)
-  const [ permiteIMG, setPermiteIMG ] = useState(true)
+  const [page, setPage] = useState(1);
+  const totalPages = useSelector((state) => state.totalPages);
+  const [permiteIMG, setPermiteIMG] = useState(true);
   const navigate= useNavigate()
   //form
   const userInfo = useSelector((state) => state.user);
@@ -45,7 +50,7 @@ const Responder = () => {
   useEffect(() => {
     if (isAuthenticated) {
       dispatch(getUserInfo(user.sub));
-      dispatch(getNotifications(user.sub))
+      dispatch(getNotifications(user.sub));
     }
     // eslint-disable-next-line
   }, [isModify]);
@@ -74,11 +79,13 @@ const Responder = () => {
   };
 
   const handleLogIn = (e) => {
-    e.preventDefault()
-    loginWithRedirect({appState: {
-      returnTo: window.location.pathname
-   }})
-  }
+    e.preventDefault();
+    loginWithRedirect({
+      appState: {
+        returnTo: window.location.pathname,
+      },
+    });
+  };
 
   function handleClick() {
     setInput(
@@ -105,20 +112,8 @@ const Responder = () => {
   }
 
   //Rescue URL-Image from text to download
-  const [ url , setUrl ] = useState("")
-  const [ nameFile, setNameFile ] = useState("")
-  // const [imgIncludes, setImgIncludes] = useState(true)
-
-  // console.log(question)
-  // console.log(question.text)
-
-  // useEffect(() => {
-  //   if(question){
-  //   if(question.text.includes("https://res.cloudinary.com")) {
-  //     setImgIncludes(true)
-  //   }
-  // }
-  // }, [question, imgIncludes]);
+  const [url, setUrl] = useState("");
+  const [nameFile, setNameFile] = useState("");
 
   const textAlerta1 = "No hay imágenes disponibles para descargar";
   const handleseparar = ()=> {
@@ -169,11 +164,28 @@ const Responder = () => {
     });
   };
 
-
   if (loading) {
     return (
       <>
         <Loading />
+      </>
+    );
+  } else if (isAuthenticated && user.email_verified === false) {
+    return (
+      <>
+        <NotVerified />
+        <div className={style.footer}>
+          <Footer />
+        </div>
+      </>
+    );
+  } else if (isAuthenticated && userInfo.statusBanned === true) {
+    return (
+      <>
+        <BannedUser />
+        <div className={style.footer}>
+          <Footer />
+        </div>
       </>
     );
   } else
@@ -219,7 +231,6 @@ const Responder = () => {
                           components={{ code: Highlighter }}
                         />
                       </div>
-
                       <div className={style.bajo}>
                         <div id={style.tags}>
                         {
@@ -307,7 +318,9 @@ const Responder = () => {
                       </div>
                     </div>
 
-                    <div className={permiteIMG ? style.adjBox : style.adjBoxNone}>
+                    <div
+                      className={permiteIMG ? style.adjBox : style.adjBoxNone}
+                    >
                       <span className={style.adjText}>Adjuntar imagen:</span>
                       <input
                         type="file"
@@ -320,7 +333,13 @@ const Responder = () => {
                         <span className={style.loaderImg}>Cargando...</span>
                       )}
                     </div>
-                    <span className={permiteIMG ? style.adjBoxNone : style.permiteIMG}>Ya se agregó una imagen.</span>
+                    <span
+                      className={
+                        permiteIMG ? style.adjBoxNone : style.permiteIMG
+                      }
+                    >
+                      Ya se agregó una imagen.
+                    </span>
 
                     {isAuthenticated ? (
                       <div className={style.button}>
@@ -328,7 +347,7 @@ const Responder = () => {
                           type="submit"
                           onClick={(e) => handleSubmit(e)}
                           className={style.submit}
-                          disabled={!input || error || loadingImg}
+                          disabled={!input || error}
                         >
                           Enviar respuesta
                         </button>
@@ -367,10 +386,7 @@ const Responder = () => {
                       ))}
                   </div>
                   {/* </div> */}
-                  <Paginated
-                      page={page}
-                      setPage={setPage}
-                    />
+                  <Paginated page={page} setPage={setPage} />
                 </div>
               </div>
             )}{" "}
