@@ -2,6 +2,10 @@
   background-color: lightyellow;
 }
 
+.cien {
+  width: 100%;
+}
+
 html {
   min-height: 100%;
   position: relative;
@@ -10,13 +14,15 @@ html {
 .middleRow {
   background-color: lightyellow;
   align-self: center;
-  width: 85%;
+  width: 80%;
   margin: auto;
   /* margin-bottom: 2vh; */
 }
 
 .middleRow2 {
   height: 50%;
+  width: 85%;
+  margin: auto;
 }
 
 .footer {

@@ -174,7 +174,7 @@ const Configuracion = () => {
   } else
     return (
       <div className={style.fullContainer}>
-        <div className="row">
+        <div className={`row ${style.cien}`}>
           <div className="col">
             <div className={style.middleRow}>
               <div className={`container-fluid ${style.container}`}>
