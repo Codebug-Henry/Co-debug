@@ -78,7 +78,7 @@ const Configuracion = () => {
 
   const confirm = (e) => {
     confirmAlert({
-      title: "Confirma cambiar el Nickname",
+      title: "¿Confirma cambiar el Nickname?",
       message: "Solo podrá hacerlo 2 veces",
       buttons: [
         {

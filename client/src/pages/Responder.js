@@ -3,7 +3,12 @@ import style from "./styles/Responder.module.css";
 import Footer from "../components/Footer.js";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
-import { getQuestion, sendAnswer, getUserInfo, getNotifications } from "../redux/actions/index";
+import {
+  getQuestion,
+  sendAnswer,
+  getUserInfo,
+  getNotifications,
+} from "../redux/actions/index";
 import SimpleAnswer from "../components/SimpleAnswer";
 import Loading from "../components/Loading";
 import ReactMarkdown from "react-markdown";
@@ -14,9 +19,8 @@ import { useAuth0 } from "@auth0/auth0-react";
 import axios from "axios";
 import Paginated from "../components/Paginated";
 import MensajeAlerta from "../components/MensajeAlerta";
-import DownloadIcon from '@mui/icons-material/Download';
+import DownloadIcon from "@mui/icons-material/Download";
 import Tooltip from "@mui/material/Tooltip";
-
 
 const Responder = () => {
   const { isAuthenticated, loginWithRedirect, user } = useAuth0();
@@ -27,9 +31,9 @@ const Responder = () => {
   const [loading, setLoading] = useState(true);
   const [loadingImg, setLoadingImg] = useState(false);
   const [isModify, setIsModify] = useState(false);
-  const [page, setPage] = useState(1)
-  const totalPages = useSelector((state)=> state.totalPages)
-  const [ permiteIMG, setPermiteIMG ] = useState(true)
+  const [page, setPage] = useState(1);
+  const totalPages = useSelector((state) => state.totalPages);
+  const [permiteIMG, setPermiteIMG] = useState(true);
   //form
   const userInfo = useSelector((state) => state.user);
   const [input, setInput] = useState("");
@@ -43,12 +47,10 @@ const Responder = () => {
   useEffect(() => {
     if (isAuthenticated) {
       dispatch(getUserInfo(user.sub));
-      dispatch(getNotifications(user.sub))
+      dispatch(getNotifications(user.sub));
     }
     // eslint-disable-next-line
   }, [isModify]);
-
-
 
   const handleChange = (e) => {
     setInput(e.target.value);
@@ -74,11 +76,13 @@ const Responder = () => {
   };
 
   const handleLogIn = (e) => {
-    e.preventDefault()
-    loginWithRedirect({appState: {
-      returnTo: window.location.pathname
-   }})
-  }
+    e.preventDefault();
+    loginWithRedirect({
+      appState: {
+        returnTo: window.location.pathname,
+      },
+    });
+  };
 
   function handleClick() {
     setInput(
@@ -105,35 +109,27 @@ const Responder = () => {
   }
 
   //Rescue URL-Image from text to download
-  const [ url , setUrl ] = useState("")
-  const [ nameFile, setNameFile ] = useState("")
+  const [url, setUrl] = useState("");
+  const [nameFile, setNameFile] = useState("");
 
+  const handleseparar = () => {
+    if (question.text.includes("(https://res.cloudinary.com")) {
+      const separado = question.text.split("(https://res.cloudinary.com");
+      let listo1 = "https://res.cloudinary.com" + separado[1];
+      const length = listo1.length;
+      listo1 = listo1.slice(0, length - 3);
+      setUrl(listo1);
 
-
-  const handleseparar = ()=> {
-
-
-    if (question.text.includes("(https://res.cloudinary.com")){
-        
-        const separado =	question.text.split("(https://res.cloudinary.com")
-        let listo1 = "https://res.cloudinary.com"+separado[1]
-        const length = listo1.length
-        listo1 = listo1.slice(0,length-3)
-        setUrl(listo1)
-
-        const segundo = listo1.split("/")
-        const tamanhoSegundo = segundo.length-1
-        const casiFinal = segundo[tamanhoSegundo]
-        const anteUltimo = casiFinal.split(")")
-        const ultimo = anteUltimo[0]
-        console.log(ultimo)
-        setNameFile(ultimo)
-    }else{
-      alert("No hay imagenes disponibles")
-    } 
-  }
-
-
+      const segundo = listo1.split("/");
+      const tamanhoSegundo = segundo.length - 1;
+      const casiFinal = segundo[tamanhoSegundo];
+      const anteUltimo = casiFinal.split(")");
+      const ultimo = anteUltimo[0];
+      setNameFile(ultimo);
+    } else {
+      alert("No hay imagenes disponibles");
+    }
+  };
 
   if (loading) {
     return (
@@ -142,15 +138,15 @@ const Responder = () => {
       </>
     );
   } else if (isAuthenticated && user.email_verified === false) {
-      return (
-        <>
-          <NotVerified />
-          <div className={style.footer}>
-            <Footer />
-          </div>
-        </>
-      );
-  } else if (isAuthenticated && userInfo.statusBanned === true){
+    return (
+      <>
+        <NotVerified />
+        <div className={style.footer}>
+          <Footer />
+        </div>
+      </>
+    );
+  } else if (isAuthenticated && userInfo.statusBanned === true) {
     return (
       <>
         <BannedUser />
@@ -159,7 +155,8 @@ const Responder = () => {
         </div>
       </>
     );
-  } else return (
+  } else
+    return (
       <div className={style.fullContainer}>
         {question.user ? (
           <div className={style.middleRow}>
@@ -202,29 +199,34 @@ const Responder = () => {
                         />
                       </div>
                       <div id={style.tags}>
-                      {
-                        question.macroTags.map((macro)=> (
-                          <span key={macro.tag} className={style.tag}>{" "}#{macro.tag}{" "}</span>
-                        ))
-                      }
-                      {
-                        question.microTags.map((micro)=> (
-                          <span key={micro.tag} className={style.tag}>{" "}#{micro.tag}{" "}</span>
-                        ))
-                      }
-                      </div>
-                      
-                      <div>
-                        <a className={style.descarga} onClick={(e)=>handleseparar(e)} href={url} download={nameFile} target="_blank" rel="noreferrer">
-                        <Tooltip title="Descargar imagen">
-                          <DownloadIcon 
-                            fontSize="medium"
-                            color='active'
-                          />
-                        </Tooltip>
-                        </a>
+                        {question.macroTags.map((macro) => (
+                          <span key={macro.tag} className={style.tag}>
+                            {" "}
+                            #{macro.tag}{" "}
+                          </span>
+                        ))}
+                        {question.microTags.map((micro) => (
+                          <span key={micro.tag} className={style.tag}>
+                            {" "}
+                            #{micro.tag}{" "}
+                          </span>
+                        ))}
                       </div>
 
+                      <div>
+                        <a
+                          className={style.descarga}
+                          onClick={(e) => handleseparar(e)}
+                          href={url}
+                          download={nameFile}
+                          target="_blank"
+                          rel="noreferrer"
+                        >
+                          <Tooltip title="Descargar imagen">
+                            <DownloadIcon fontSize="medium" color="active" />
+                          </Tooltip>
+                        </a>
+                      </div>
                     </div>
                   </div>
 
@@ -272,7 +274,9 @@ const Responder = () => {
                       </div>
                     </div>
 
-                    <div className={permiteIMG ? style.adjBox : style.adjBoxNone}>
+                    <div
+                      className={permiteIMG ? style.adjBox : style.adjBoxNone}
+                    >
                       <span className={style.adjText}>Adjuntar imagen:</span>
                       <input
                         type="file"
@@ -285,7 +289,13 @@ const Responder = () => {
                         <span className={style.loaderImg}>Cargando...</span>
                       )}
                     </div>
-                    <span className={permiteIMG ? style.adjBoxNone : style.permiteIMG}>Ya se agregó una imagen.</span>
+                    <span
+                      className={
+                        permiteIMG ? style.adjBoxNone : style.permiteIMG
+                      }
+                    >
+                      Ya se agregó una imagen.
+                    </span>
 
                     {isAuthenticated ? (
                       <div className={style.button}>
@@ -332,10 +342,7 @@ const Responder = () => {
                       ))}
                   </div>
                   {/* </div> */}
-                  <Paginated
-                      page={page}
-                      setPage={setPage}
-                    />
+                  <Paginated page={page} setPage={setPage} />
                 </div>
               </div>
             )}{" "}
