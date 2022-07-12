@@ -62,11 +62,16 @@
 
 #tags{
   height: 30px;
-  width: 92%;
-  /* margin-left: auto;
-  margin-right: auto; */
+  width: 70%;
   margin-top: 0.5vh;
   font-weight: 500;
+}
+
+.bajo {
+  display: flex;
+  flex-direction: row;
+  /* border: 1px solid black; */
+  justify-content: space-between;
 }
 
 .tag {
@@ -270,4 +275,25 @@ img[alt=image] { width: 200px; }
 }
 .notIncludes {
   display: none;
+}
+
+.none {
+  display: none
+}
+
+.btns{
+  display: flex;
+  flex-direction: row;
+  justify-self: center;
+  gap: 2vw;
+}
+
+.moreBtn:hover{
+  cursor: pointer;
+  color: grey;
+}
+
+.deleteBtn:hover{
+  cursor: pointer;
+  color: grey;
 }
