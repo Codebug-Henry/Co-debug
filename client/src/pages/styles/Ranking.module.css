@@ -30,7 +30,7 @@ html {
 .colunmRespTop {
   display: flex;
   justify-content: center;
-  margin-right: 2vh;
+  margin-right: 0.5vh;
 }
 
 .colunmPregTop {
@@ -41,11 +41,14 @@ html {
 .userImage {
   border-radius: 100%;
   /* border-radius: 30px; */
+  width: 9vh;
   width: 6vh;
   height: 6vh;
   margin-top: 1vh;
+  margin-left: 2vw;
   /* padding-top: 1vh; */
   padding: 0;
+  align-self: center;
 }
 
 .colunmNro {
@@ -124,10 +127,62 @@ html {
   .container {
     width: 96%;
   }
+
+  .colunmNroTop {
+    font-size: small;
+    margin-right: 1vh;
+    margin-left: -1vh;
+  }
+  
+  .colunmNickTop {
+    font-size: small;
+    margin-right: 1vh;
+  }
+  
+  .colunmTeachTop {
+    font-size: small;
+    margin-right: 1vh;
+  }
+  
+  .colunmRespTop {
+    font-size: small;
+    margin-right: 1vh;
+  }
+  
+  .colunmPregTop {
+    font-size: small;
+    margin-right: 1vh;
+  }
+  
+  .colunmNro {
+    font-size: small;
+  }
+  
+  .colunmNick {
+    font-size: small;
+  }
+  
+  .colunmTeach {
+    font-size: small;
+  }
+  
+  .colunmResp {
+    font-size: small;
+  }
+  
+  .colunmPreg {
+    font-size: small;
+  }
+
+  .userImage {
+    width: 30px;
+    height: 30px;
+  }
 }
 
 .columnsname {
   margin: 0px;
+  margin-left: 1vw;
   padding: 0px;
   font-weight: 600;
 }
@@ -140,6 +195,52 @@ html {
 }
 
 .info p {
-  margin-top: 2.5vh;
+  margin-top: 1.5vh;
   margin-left: 1.5vw;
+}
+
+.info1 {
+  margin: 0px;
+  margin-left: 1vw;
+  padding: 0px;
+  background-color: gold;
+  border-radius: 0.5vh;
+}
+
+.info1 p {
+  margin-top: 3vh;
+  margin-left: 1.5vw;
+}
+
+.info2 {
+  margin: 0px;
+  margin-left: 1vw;
+  padding: 0px;
+  background-color: silver;
+  border-radius: 0.5vh;
+}
+
+.info2 p {
+  margin-top: 3vh;
+  margin-left: 1.5vw;
+}
+
+.info3 {
+  margin: 0px;
+  margin-left: 1vw;
+  padding: 0px;
+  background-color: #CD7F32;
+  border-radius: 0.5vh;
+}
+
+.info3 p {
+  margin-top: 3vh;
+  margin-left: 1.5vw;
+}
+
+.medal {
+  width: 30px;
+  height: 30px;
+  /* position: relative; */
+  /* top: -20px; */
 }
