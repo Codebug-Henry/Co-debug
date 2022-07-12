@@ -81,7 +81,9 @@
 .userImage {
   border-radius: 100%;
   /* border-radius: 30px; */
-  width: 60px;
+  /* width: 60px; */
+  width: 8vh;
+  height: 8vh;
   margin-top: 2vh;
   /* padding-top: 2vh; */
 }

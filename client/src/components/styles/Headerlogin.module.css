@@ -152,7 +152,7 @@
 .notification {
   display: flex;
   align-items: center;
-  gap: 5%;
+  gap: 3%;
   color: black;
   text-decoration: none;
   padding: 5px;

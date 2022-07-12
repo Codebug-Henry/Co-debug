@@ -20,7 +20,7 @@ const postAnswer = async (req, res, next) => {
       // Notifications
       const userReceiver = await question.getUser()
       if (sub !== userReceiver.sub) {
-         let textNotif = `${user.name} respondió tu pregunta!`
+         let textNotif = `¡${user.name} respondió tu pregunta!`
          await userReceiver.createNotification({text: textNotif, subCreator: sub, imgCreator: user.picture, questId: id})
       }
 
@@ -79,7 +79,7 @@ const putAnswer = async (req, res, next) => {
          await question.update({statusValidated, teachPoints: answer.teachPoints})
          await user.update({myTeachPoints: user.myTeachPoints + answer.teachPoints})
          // Notifications
-         let textNotif = `${userLogged.name} validó tu respuesta! Sumas ${answer.teachPoints} Teach Points a tu cuenta personal!`
+         let textNotif = `¡${userLogged.name} validó tu respuesta! ¡Sumas ${answer.teachPoints} Teach Points a tu cuenta personal!`
          await user.createNotification({text: textNotif, subCreator: sub, imgCreator: userLogged.picture, questId: question.id})
       }
 
