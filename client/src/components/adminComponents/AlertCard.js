@@ -1,6 +1,7 @@
 import React from "react";
 import style from "./styles/AlertCard.module.css";
 import axios from "axios";
+import { useSelector } from "react-redux";
 
 const AlertCard = ({
   id,
@@ -52,10 +53,20 @@ const AlertCard = ({
     setAlertsFlag((prevAlertsFlag) => !prevAlertsFlag);
   };
 
+  const dark = useSelector((state)=> state.dark)
+
+  const darkmode = {
+    backgroundColor: dark ? "rgb(11, 13, 43)" : null,
+    color: dark ? "rgb(199, 199, 201)" : null,
+    boxShadow: '0px 0px 2px white',
+    border: dark ? "none" : null,
+    marginBottom: dark ? "2px" : "2px"
+  }
+
   return (
     <div>
-      <div className={`container-fluid ${style.container}`}>
-        <div className={`row ${style.row}`}>
+      <div className={`container-fluid ${style.container}`} style={darkmode}>
+        <div className={`row ${style.row}`} >
           <div className={`col ${style.column}`}>
             <p>{id}</p>
           </div>

@@ -39,15 +39,37 @@ const AgregarAdmin = () => {
 
   const handlerRefresh = (e) => {};
 
+  const dark = useSelector((state)=> state.dark)
+
+  const darkmode = {
+    backgroundColor: dark ? "rgb(18, 18, 18)" : "lightyellow"
+  }
+
+  const darkSearchbar = {
+    border: dark ? "none" : null,
+    backgroundColor: dark ? "rgb(218, 219, 227)" : null
+  }
+
+  const darkRefresh = {
+    border: dark ? "none" : null,
+    backgroundColor: dark ? "lightyellow" : null,
+    color: dark ? "black" : null
+  }
+
+  const darkInfo = {
+    backgroundColor: dark ? "rgb(24, 27, 56)" : null,
+    color: dark ? "rgb(218, 219, 227)" : null
+  }
+
   return (
-    <div className={style.supercontainer}>
+    <div className={style.supercontainer} style={darkmode}>
       <div>
         <BotonesAdmin />
       </div>
       <div>
         <div className={style.adminList}>
           <div className={`container-fluid ${style.container}`}>
-            <div className={`row ${style.info}`}>
+            <div className={`row ${style.info}`} style={darkInfo}>
               <p className={"col"}>Admin(nick)</p>
               <p className={"col"}>Sub</p>
               <p className={"col"}>Email</p>
@@ -80,11 +102,13 @@ const AgregarAdmin = () => {
                 type="search"
                 placeholder="Buscar..."
                 aria-label="Search"
+                style={darkSearchbar}
               />
               <button
                 onClick={() => handlerRefresh()}
                 className={`btn btn-outline-dark ${style.button}`}
                 type="submit"
+                style={darkRefresh}
               >
                 Refresh
               </button>
@@ -92,7 +116,7 @@ const AgregarAdmin = () => {
           </div>
           <div className={style.allUsers}>
             <div className={`container-fluid ${style.container}`}>
-              <div className={`row ${style.info}`}>
+              <div className={`row ${style.info}`} style={darkInfo}>
                 <p className={"col"}>User(nick)</p>
                 <p className={"col"}>Sub</p>
                 <p className={"col"}>Email</p>
