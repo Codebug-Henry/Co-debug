@@ -57,7 +57,7 @@ const Comentarios = ({ id, cantSubAnswers, subAnswers, setIsModify }) => {
                 ))
             }
         </div>
-        <div className={isAuthenticated ? style.row2 : style.none} style={styleRow2}>
+        <div className={isAuthenticated ? style.row2 : style.none}>
             <textarea
                 type="text"
                 value={input}
