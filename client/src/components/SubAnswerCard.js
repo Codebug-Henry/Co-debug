@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import style from "./styles/SubAnswerCard.module.css";
 import axios from "axios";
 import EditIcon from "@mui/icons-material/Edit";

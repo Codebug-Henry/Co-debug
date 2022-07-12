@@ -44,7 +44,7 @@ html {
 #filters {
   width: 100vw;
   background-color: #f9bf00;
-  height: 8vh;
+  height: 11vh;
   display: flex;
   flex-direction: row;
   justify-content: space-evenly;

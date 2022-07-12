@@ -110,7 +110,7 @@
 .likes {
   display: flex;
   justify-content: space-between;
-  width: 14%;
+  width: 95px;
 }
 
 .userImage {
@@ -200,6 +200,12 @@
   }
   .TitleAndExtrasBox {
     gap: 5vw;
+  }
+
+  .likes {
+    display: flex;
+    justify-content: space-between;
+    width: 80px;
   }
 }
 /* ------------------TooLTipDislike---------------------------- */
