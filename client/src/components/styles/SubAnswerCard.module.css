@@ -1,0 +1,115 @@
+/* COMENTARIO INDIVIDUAL */
+
+.comentario{
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    justify-content: space-between;
+    height: max-content;
+}
+
+.comentario img{
+    margin-right: 0.5vw;
+}
+
+.comentario div{
+    display: flex;
+}
+
+.comentario div span{
+    font-weight: 500;
+}
+
+.comentarioContainer{
+    background-color: whitesmoke;
+    box-shadow:2px 2px 2px 1px rgba(0,0,0,0.2);
+    border-radius: 0.5vh;
+    border: none;
+    /* padding: 1%; */
+    width: 40vw;
+    /* border: 1px solid red; */
+    margin-top: 1vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.userImage{
+  border-radius: 100%;
+  height: 30px;
+}
+
+.texto{
+    padding: 1%;
+    background-color: beige;
+    margin-bottom: 5px;
+    /* border: 1px solid red; */
+    width: 100%;
+    /* justify-content: initial */
+}
+
+.primero {
+    margin-left: 4px;
+    margin-top: 3px;
+    height: min-content;
+
+}
+
+.buttons {
+    /* border: 1px solid blue; */
+    /* align-self:flex-end;
+    height: 100%; */
+    margin-top: 0.5vh;
+    margin-right: 1vw;
+    gap: 1vw;
+}
+
+.moreBtn:hover{
+    cursor: pointer;
+    color: grey;
+  }
+  
+.deleteBtn:hover{
+    cursor: pointer;
+    color: grey;
+}
+  
+.none {
+    display: none;
+}
+
+.edit {
+    display: flex;
+    flex-direction: row;
+}
+
+.error2 {
+    display: flex;
+    flex-direction: column;
+    width: 90%;
+}
+
+.editText {
+    width:100%;
+    /* height: 180px; */
+    background-color: rgb(255, 245, 211);
+    border-radius: 0.5vh;
+    /* border: 1px solid red; */
+}
+
+.error {
+    margin-left: 0.5vh;
+    margin-bottom: 0.5vh;
+    font-size: 0.7rem;
+    color: #f9bf00;
+}
+
+.confirmEdit {
+    position: relative;
+    top: 10px;
+    left: 4px;
+}
+
+.hidden {
+    visibility: hidden;
+}
