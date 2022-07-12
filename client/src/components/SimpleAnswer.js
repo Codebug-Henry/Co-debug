@@ -193,13 +193,15 @@ const SimpleAnswer = ({
   const handleseparar = () => {
     if (text.includes("(https://res.cloudinary.com")) {
       const separado = text.split("(https://res.cloudinary.com");
-      const listo1 = "https://res.cloudinary.com" + separado[1];
-      const variable = `)=250x`;
-      const listo2 = listo1.split(`${variable}`);
-      const listo3 = listo2[0];
-      setUrl(listo3);
+      let listo1 = "https://res.cloudinary.com" + separado[1];
+      // const variable = `)=250x`;
+      // const listo2 = listo1.split(`${variable}`);
+      // const listo3 = listo2[0];
+      const length = listo1.length;
+      listo1 = listo1.slice(0, length - 3);
+      setUrl(listo1);
 
-      const segundo = listo3.split("/");
+      const segundo = listo1.split("/");
       const tamanhoSegundo = segundo.length - 1;
       const casiFinal = segundo[tamanhoSegundo];
       const anteUltimo = casiFinal.split(")");

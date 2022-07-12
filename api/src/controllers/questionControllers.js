@@ -170,6 +170,8 @@ const getSingleQuestion = async (req, res, next) => {
       ],
       order: [
         [Answer, "statusValidated", "DESC"],
+        [Answer, "createdAt", "ASC"],
+        [Answer, "text", "DESC"],
         [Answer, SubAnswer, "createdAt", "ASC"],
         [Answer, SubAnswer, "text", "DESC"],
       ],
