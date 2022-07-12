@@ -5,11 +5,7 @@ import Footer from "../components/Footer.js";
 import CardUserQuestion from "../components/CardUserQuestion";
 import FilterBar from "../components/FilterBar";
 import SearchBar from "../components/SearchBar";
-import {
-  getUserQuestions,
-  getUserQuestionsSearch,
-  getNotifications,
-} from "../redux/actions";
+import { getUserQuestions, getUserQuestionsSearch, getNotifications} from "../redux/actions";
 import FilterAltIcon from "@mui/icons-material/FilterAlt";
 import Paginated from "../components/Paginated";
 import Loading from "../components/Loading";
@@ -20,7 +16,7 @@ import { useNavigate } from "react-router-dom";
 import { useAuth0 } from "@auth0/auth0-react";
 
 const MisPreguntas = () => {
-  const { isAuthenticated, user } = useAuth0();
+  const { user } = useAuth0();
   const userInfo = useSelector((state) => state.user);
   const questions = useSelector((state) => state.userQuestions);
   const dispatch = useDispatch();
@@ -44,22 +40,11 @@ const MisPreguntas = () => {
         getUserQuestionsSearch(userInfo.sub, sort, page, input, setLoading)
       );
     } else dispatch(getUserQuestions(userInfo.sub, sort, page, setLoading));
-  }, [
-    dispatch,
-    sort,
-    cantFirstLast,
-    page,
-    userInfo.sub,
-    totalPages,
-    input,
-    isModify,
-  ]);
+  }, [dispatch, sort, cantFirstLast, page, userInfo.sub, totalPages, input, isModify]);
 
   useEffect(() => {
-    if (isAuthenticated) {
       dispatch(getNotifications(user.sub));
-    }
-  }, [dispatch, user, isAuthenticated]);
+  }, [dispatch, user]);
 
   function redirectQuest() {
     navigate("/preguntar");
@@ -97,19 +82,15 @@ const MisPreguntas = () => {
             <div className={`row ${style.middleRow}`}>
               <div className={`col-lg-12  ${style.col1}`}>
                 <div id={style.all}>
+                  <div id={style.filters}>
+                    {/* <div className={style.filterIcon}>
+                      <FilterAltIcon fontSize="medium" />
+                    </div> */}
+                    <SearchBar setInput={setInput} setPage={setPage} />
+                    <FilterBar sort={sort} setSort={setSort} setPage={setPage}/>
+                  </div>
                   <div id={style.explore}>
                     <p> Mis preguntas</p>
-                  </div>
-                  <div id={style.filters}>
-                    <div className={style.filterIcon}>
-                      <FilterAltIcon fontSize="medium" />
-                    </div>
-                    <SearchBar setInput={setInput} setPage={setPage} />
-                    <FilterBar
-                      sort={sort}
-                      setSort={setSort}
-                      setPage={setPage}
-                    />
                   </div>
                   <div id={style.myQuestions}>
                     {questions.length > 0 ? (

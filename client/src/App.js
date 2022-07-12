@@ -31,32 +31,17 @@ function App() {
       <Headerlogin />
       <Routes>
         <Route path={"/"} element={<Landing />} />
-        <Route
-          path={"/mispreguntas"}
-          element={<ProtectedRoute component={MisPreguntas} />}
-        />
-        <Route
-          path={"/preguntar"}
-          element={<ProtectedRoute component={Preguntar} />}
-        />
-        <Route
-          path={"/misrespuestas"}
-          element={<ProtectedRoute component={MisRespuestas} />}
-        />
+        <Route path={"/mispreguntas"} element={<ProtectedRoute component={MisPreguntas}/>} />
+        <Route path={"/preguntar"} element={<ProtectedRoute component={Preguntar}/>} />
+        <Route path={"/misrespuestas"} element={<ProtectedRoute component={MisRespuestas}/>} />
         <Route path={"/responder/:questionId"} element={<ResponderPDF />} />
-        <Route
-          path={"/favoritas"}
-          element={<ProtectedRoute component={Favoritas} />}
-        />
+        <Route path={"/favoritas"} element={<ProtectedRoute component={Favoritas}/>} />
         <Route path={"/ranking"} element={<Ranking />} />
         <Route path={"/codenothere"} element={<Admin />} />
         <Route path={"/creadores"} element={<Creadores />} />
         <Route path={"/ayuda"} element={<Ayuda />} />
         <Route path={"/terminos"} element={<Terminos />} />
-        <Route
-          path={"/configuracion/:sub"}
-          element={<ProtectedRoute component={Configuracion} />}
-        />
+        <Route path={"/configuracion/:sub"} element={<ProtectedRoute component={Configuracion} />} />
         <Route path={"/contacto"} element={<Contacto />} />
         <Route path={"/donacion"} element={<PaypalPage />} />
         <Route path={"/pagolisto"} element={<PagoListo />} />
