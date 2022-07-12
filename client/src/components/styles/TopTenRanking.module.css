@@ -10,9 +10,37 @@
 .nro {
   margin-left: 0;
   padding: 0px;
+  /* text-align: center; */
 }
 
 .nick {
   margin-left: 0;
   padding: 0px;
 }
+
+.medal {
+  width: 25px;
+  height: 25px;
+}
+
+.top1 {
+  background-color: gold;
+  border-radius: 0.5vh;
+  /* margin: auto; */
+}
+
+.top2 {
+  background-color: silver;
+  border-radius: 0.5vh;
+  /* margin: auto; */
+}
+
+.top3 {
+  background-color: #CD7F32;
+  border-radius: 0.5vh;
+  /* margin: auto; */
+}
+
+/* .mapeando {
+  margin: auto;
+} */
