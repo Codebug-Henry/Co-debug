@@ -13,6 +13,7 @@ const FormQuestion = () => {
   const dispatch = useDispatch();
   const userInfo = useSelector((state) => state.user);
   const tags = useSelector((state) => state.tags);
+  const [permiteIMG, setPermiteIMG] = useState(true);
 
   useEffect(() => {
     dispatch(getAllTags());
@@ -217,6 +218,7 @@ const FormQuestion = () => {
         text: input.text + `\n\n![image](${file.secure_url})\n\n`,
       });
       setLoading(false);
+      setPermiteIMG(false);
     }
   }
 
@@ -279,8 +281,8 @@ const FormQuestion = () => {
                 components={{ code: Highlighter }}
               />
             </div>
-          </div>
-          <div className={style.adjBox}>
+          </div>               
+          <div className={permiteIMG ? style.adjBox : style.adjBoxNone}>
             <span className={style.adjText}>Adjuntar imagen:</span>
             <input
               type="file"
@@ -291,6 +293,9 @@ const FormQuestion = () => {
             />
             {loading && <span className={style.loader}>Cargando...</span>}
           </div>
+          <span className={ permiteIMG ? style.adjBoxNone : style.permiteIMG} >
+             Ya se agregó una imagen.
+          </span>
           <div id={style.div3}>
             <div className={style.macroTag1}>
               <div className={style.macro}>

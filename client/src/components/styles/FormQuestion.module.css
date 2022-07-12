@@ -233,6 +233,18 @@
   font-size: xx-large;
 }
 
+.adjBoxNone{
+  display: none;
+}
+
+.permiteIMG{
+  align-items: flex-start;
+  margin-top: -10px;
+  margin-left: 3px;
+  /* font-size: small; */
+  margin-bottom: 10px;
+}
+
 @media screen and (max-width: 740px) {
   #all {
     font-size: 13px;
