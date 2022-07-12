@@ -154,6 +154,12 @@
   cursor: pointer;
 }
 
+.delete:hover{
+  cursor: pointer;
+  color: grey;
+}
+
+
 .box{
   position: absolute;
   top: 50%;
