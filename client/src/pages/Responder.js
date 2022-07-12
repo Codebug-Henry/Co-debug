@@ -77,6 +77,7 @@ const Responder = () => {
     dispatch(sendAnswer({ sub: userInfo.sub, id: questionId, text: input }));
     setLoad(true);
     setInput("");
+    if (!permiteIMG) setPermiteIMG(true)
     MensajeAlerta({ textAlerta });
   };
 
@@ -107,7 +108,7 @@ const Responder = () => {
         data
       );
       const file = res.data;
-      setInput(input + `\n\n![image](${file.secure_url})=250x\n\n`);
+      setInput(input + `\n\n![image](${file.secure_url})\n\n`);
       setLoadingImg(false);
       setPermiteIMG(false);
     }

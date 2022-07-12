@@ -51,7 +51,7 @@ const Headerlogin = () => {
   };
 
   const handleLogOut = () => {
-    logout();
+    logout({ returnTo: window.location.origin });
     localStorage.clear();
   };
 

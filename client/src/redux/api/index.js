@@ -10,7 +10,7 @@ export const putUserInfo = (sub, modify) => axios.put(`/user/${sub}`, modify);
 export const getAllUsers = (page) =>
   axios.get(`/users?sort=name-asc&page=${page}&limit=10&all=true`);
 export const getAllUsersNoAdmin = (page) =>
-  axios.get(`/users?sort=name-asc&page=${page}&limit=10&admin=false`);
+  axios.get(`/users?sort=name-asc&page=${page}&limit=10&admin=false&all=true`);
 export const deleteUser = (sub, status) => axios.put(`/user/${sub}`, status);
 export const getAllAdmins = (page) =>
   axios.get(`/users?sort=name-asc&page=${page}&limit=16&admin=true`);
@@ -80,4 +80,3 @@ export const getNotifications = (sub) => axios.get(`/notifications/${sub}`);
 //RUTAS SUBANSWERS
 
 export const getSubAnswers = (id) => axios.get(`/subAnswers/${id}`);
-

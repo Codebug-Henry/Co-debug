@@ -41,10 +41,9 @@ html {
 }
 
 #filters {
-  border-radius: 0.5vh;
-  box-shadow: 3px 3px 3px grey;
+  width: 100vw;
   background-color: #f9bf00;
-  height: 7vh;
+  height: 8vh;
   display: flex;
   flex-direction: row;
   justify-content: space-evenly;

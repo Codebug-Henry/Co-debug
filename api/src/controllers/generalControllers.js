@@ -432,13 +432,13 @@ const populateDB = async () => {
     { id: 27, tag: "Comandos", macroTagId: 3 },
     { id: 28, tag: "Objetos (datos tablas)", macroTagId: 3 },
     { id: 29, tag: "Sentencias/consultas", macroTagId: 3 },
-    { id: 30, tag: "Sistemas de gestion", macroTagId: 3 },
+    { id: 30, tag: "Sistemas de gestión", macroTagId: 3 },
     { id: 31, tag: "Otro", macroTagId: 3 },
   ];
 
   const microsCSS = [
     { id: 32, tag: "Display (flex/grid)", macroTagId: 4 },
-    { id: 33, tag: "Imagenes", macroTagId: 4 },
+    { id: 33, tag: "Imágenes", macroTagId: 4 },
     { id: 34, tag: "Estilos/propiedades", macroTagId: 4 },
     { id: 35, tag: "Position", macroTagId: 4 },
     { id: 36, tag: "Responsive", macroTagId: 4 },
@@ -509,9 +509,9 @@ const populateDB = async () => {
     { id: 83, tag: "Asociaciones", macroTagId: 10 },
     { id: 84, tag: "Finders", macroTagId: 10 },
     { id: 85, tag: "Instancias", macroTagId: 10 },
-    { id: 86, tag: "Metodos", macroTagId: 10 },
+    { id: 86, tag: "Métodos", macroTagId: 10 },
     { id: 87, tag: "Getter", macroTagId: 10 },
-    { id: 88, tag: "Seters", macroTagId: 10 },
+    { id: 88, tag: "Setters", macroTagId: 10 },
     { id: 89, tag: "Mixins", macroTagId: 10 },
     { id: 90, tag: "Hooks", macroTagId: 10 },
     { id: 91, tag: "Otro", macroTagId: 10 },
@@ -545,16 +545,19 @@ const populateDB = async () => {
     let React = await MacroTag.findByPk(5);
     let Sequelize = await MacroTag.findByPk(10);
     let Redux = await MacroTag.findByPk(8);
+    let Otro = await MacroTag.findByPk(11);
 
-    let bucles = allMicros[3];
-    let comandos = allMicros[76];
-    let hooks = allMicros[52];
-    let mixins = allMicros[88];
-    let store = allMicros[65];
+    let bucles = await MicroTag.findByPk(4);
+    let comandos = await MicroTag.findByPk(77);
+    let hooks = await MicroTag.findByPk(53);
+    let mixins = await MicroTag.findByPk(89);
+    let store = await MicroTag.findByPk(66);
+    let otro = await MicroTag.findByPk(92);
 
     let question1 = await Question.findByPk(1);
     let question2 = await Question.findByPk(2);
     let question3 = await Question.findByPk(3);
+    let question4 = await Question.findByPk(4);
     let question5 = await Question.findByPk(5);
     let question6 = await Question.findByPk(6);
 
@@ -564,6 +567,8 @@ const populateDB = async () => {
     await question2.addMicroTag(comandos);
     await question3.addMacroTag(React);
     await question3.addMicroTag(hooks);
+    await question4.addMacroTag(Otro);
+    await question4.addMicroTag(otro);
     await question5.addMacroTag(Sequelize);
     await question5.addMicroTag(mixins);
     await question6.addMacroTag(Redux);

@@ -50,6 +50,7 @@
 .input input {
   width: 70vw;
   border-radius: 0.5vh;
+  font-size: 120%;
 }
 
 .button {

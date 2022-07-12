@@ -35,7 +35,7 @@ const PaypalPage = () => {
         <div className={style.container}>
           <div className={style.tandt}>
             <div className={style.col}>
-              <p className={style.title}>Tu apoyo nos ayuda a mejor</p>
+              <p className={style.title}>Tu apoyo nos ayuda a mejorar</p>
               <p className={style.text}>
                 Primeramente queremos agradecerte por considerar ayudar en
                 nuestro proyecto. Nos parece justo contarte un poco para que
@@ -57,7 +57,7 @@ const PaypalPage = () => {
         <div className={style.container}>
           <div className={style.tandt}>
             <div className={style.col}>
-              <p className={style.title}>Tu apoyo nos ayuda a mejor</p>
+              <p className={style.title}>Tu apoyo nos ayuda a mejorar</p>
               <p className={style.text}>
                 Primeramente queremos agradecerte por considerar ayudar en
                 nuestro proyecto. Nos parece justo contarte un poco para que
