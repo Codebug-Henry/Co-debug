@@ -100,7 +100,7 @@ const AgregarAdmin = () => {
               </div>
               <div>
                 <div className={style.adminRenders}>
-                  {usersNoAdmin &&
+                  {usersNoAdmin.length > 0 ?
                     usersNoAdmin.map((user) => {
                       return (
                         <div
@@ -115,7 +115,10 @@ const AgregarAdmin = () => {
                           />
                         </div>
                       );
-                    })}
+                    }) : (
+                      <div className={style.notFound}>No se encontraron usuarios</div>
+                    )
+                    }
                 </div>
               </div>
             </div>

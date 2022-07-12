@@ -69,7 +69,7 @@ const ListaUsuarios = () => {
             <p className={`col`}>Ban</p>
             <p className={`col`}>Banear</p>
           </div>
-          {usersNoAdmin ? (
+          {usersNoAdmin.length > 0 ? (
             <>
               {usersNoAdmin?.map((e) => {
                 return (
@@ -91,7 +91,7 @@ const ListaUsuarios = () => {
               })}
             </>
           ) : (
-            <div>No se encontraron usuarios</div>
+            <div className={style.notFound}>No se encontraron usuarios</div>
           )}
         </div>
         <div>
