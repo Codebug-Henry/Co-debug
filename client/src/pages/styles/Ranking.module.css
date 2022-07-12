@@ -39,9 +39,11 @@ html {
 }
 
 .userImage {
-  border-radius: 30px;
-  width: 8vh;
-  padding-top: 1vh;
+  border-radius: 100%;
+  /* border-radius: 30px; */
+  width: 9vh;
+  margin-top: 1vh;
+  /* padding-top: 1vh; */
 }
 
 .colunmNro {

@@ -1,9 +1,8 @@
-/* TODO */
 .subAnsBox{
      display: flex;
      border-radius: 0.5vh;
      flex-direction: column;
-     box-shadow:2px 2px 2px 1px rgba(0,0,0,0.2);
+     box-shadow: 2px 2px 2px 1px rgba(0,0,0,0.2);
      word-wrap: break-word;
      background-color: #f9bf00;
      padding: 1%;

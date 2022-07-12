@@ -3,7 +3,7 @@
     left: 0;
     bottom: 0;
     width: 100%;
-    overflow:hidden;
+    overflow: hidden;
 }
 
 .fullContainer{
@@ -79,9 +79,11 @@
 }
 
 .userImage {
-  border-radius: 30px;
+  border-radius: 100%;
+  /* border-radius: 30px; */
   width: 60px;
-  padding-top: 2vh;
+  margin-top: 2vh;
+  /* padding-top: 2vh; */
 }
 
 .userPreg {
@@ -208,7 +210,7 @@
 }
 
 .submit:disabled {
-  cursor: text;
+  cursor: auto;
   border: #f9bf00 solid 0.5px;
   background-color: white;
   color: rgb(75, 71, 71);

@@ -354,8 +354,8 @@ const SimpleAnswer = ({
         </div>
 
 
-        <div className={imgIncludes ? style.descarga : style.notIncludes}>
-          <a className={imgIncludes ? style.descarga : style.notIncludes} onClick={(e)=>handleseparar(e)} href={url} download={nameFile} target="_blank" rel="noreferrer">
+        <div className={imgIncludes ? null : style.notIncludes}>
+          <a className={style.descarga} onClick={(e)=>handleseparar(e)} href={url} download={nameFile} target="_blank" rel="noreferrer">
           <Tooltip title="Descargar imagen">
             <DownloadIcon 
               fontSize="medium"

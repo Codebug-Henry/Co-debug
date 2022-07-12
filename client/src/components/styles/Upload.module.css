@@ -1,5 +1,6 @@
 .foto{
-    border-radius: 0.5vh;
+    border-radius: 100%;
+    /* border-radius: 0.5vh; */
 }
 
 .loader {

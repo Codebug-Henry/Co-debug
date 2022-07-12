@@ -2,25 +2,29 @@ import React, { useEffect, useState } from "react";
 import style from "./styles/Responder.module.css";
 import Footer from "../components/Footer.js";
 import { useDispatch, useSelector } from "react-redux";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import {
   getQuestion,
   sendAnswer,
   getUserInfo,
   getNotifications,
+  deleteQuestion,
 } from "../redux/actions/index";
 import SimpleAnswer from "../components/SimpleAnswer";
 import Loading from "../components/Loading";
 import ReactMarkdown from "react-markdown";
 import Highlighter from "../components/Highlighter";
-import NotVerified from "../components/NotVerified";
-import BannedUser from "../components/BannedUser";
 import { useAuth0 } from "@auth0/auth0-react";
 import axios from "axios";
 import Paginated from "../components/Paginated";
 import MensajeAlerta from "../components/MensajeAlerta";
 import DownloadIcon from "@mui/icons-material/Download";
 import Tooltip from "@mui/material/Tooltip";
+import DeleteIcon from "@mui/icons-material/Delete";
+import { confirmAlert } from "react-confirm-alert";
+import "react-confirm-alert/src/react-confirm-alert.css";
+import NotVerified from "../components/NotVerified";
+import BannedUser from "../components/BannedUser";
 
 const Responder = () => {
   const { isAuthenticated, loginWithRedirect, user } = useAuth0();
@@ -34,6 +38,7 @@ const Responder = () => {
   const [page, setPage] = useState(1);
   const totalPages = useSelector((state) => state.totalPages);
   const [permiteIMG, setPermiteIMG] = useState(true);
+  const navigate = useNavigate();
   //form
   const userInfo = useSelector((state) => state.user);
   const [input, setInput] = useState("");
@@ -112,6 +117,7 @@ const Responder = () => {
   const [url, setUrl] = useState("");
   const [nameFile, setNameFile] = useState("");
 
+  const textAlerta1 = "No hay imágenes disponibles para descargar";
   const handleseparar = () => {
     if (question.text.includes("(https://res.cloudinary.com")) {
       const separado = question.text.split("(https://res.cloudinary.com");
@@ -126,9 +132,37 @@ const Responder = () => {
       const anteUltimo = casiFinal.split(")");
       const ultimo = anteUltimo[0];
       setNameFile(ultimo);
+
+      window.open(listo1);
     } else {
-      alert("No hay imagenes disponibles");
+      MensajeAlerta({ textAlerta: textAlerta1 });
     }
+  };
+
+  // Editar y eliminar pregunta
+
+  function handleDeleteQuestion(e) {
+    setIsModify(true);
+    dispatch(
+      deleteQuestion({ id: question.id, statusDeleted: true }, setIsModify)
+    );
+    navigate("/");
+  }
+
+  const confirm = (e) => {
+    confirmAlert({
+      title: "Confirma borrar la pregunta",
+      message: "¿Está seguro de esto?",
+      buttons: [
+        {
+          label: "Sí",
+          onClick: (e) => handleDeleteQuestion(e),
+        },
+        {
+          label: "No",
+        },
+      ],
+    });
   };
 
   if (loading) {
@@ -198,34 +232,54 @@ const Responder = () => {
                           components={{ code: Highlighter }}
                         />
                       </div>
-                      <div id={style.tags}>
-                        {question.macroTags.map((macro) => (
-                          <span key={macro.tag} className={style.tag}>
-                            {" "}
-                            #{macro.tag}{" "}
-                          </span>
-                        ))}
-                        {question.microTags.map((micro) => (
-                          <span key={micro.tag} className={style.tag}>
-                            {" "}
-                            #{micro.tag}{" "}
-                          </span>
-                        ))}
-                      </div>
+                      <div className={style.bajo}>
+                        <div id={style.tags}>
+                          {question.macroTags.map((macro) => (
+                            <span key={macro.tag} className={style.tag}>
+                              {" "}
+                              #{macro.tag}{" "}
+                            </span>
+                          ))}
+                          {question.microTags.map((micro) => (
+                            <span key={micro.tag} className={style.tag}>
+                              {" "}
+                              #{micro.tag}{" "}
+                            </span>
+                          ))}
+                        </div>
 
-                      <div>
-                        <a
-                          className={style.descarga}
-                          onClick={(e) => handleseparar(e)}
-                          href={url}
-                          download={nameFile}
-                          target="_blank"
-                          rel="noreferrer"
-                        >
-                          <Tooltip title="Descargar imagen">
-                            <DownloadIcon fontSize="medium" color="active" />
-                          </Tooltip>
-                        </a>
+                        <div className={style.btns}>
+                          <div>
+                            <form action={url} target="_blank" rel="noreferrer">
+                              <Tooltip title="Descargar imagen">
+                                <DownloadIcon
+                                  className={style.descarga}
+                                  fontSize="medium"
+                                  color="active"
+                                  type="submit"
+                                  download={nameFile}
+                                  onClick={(e) => handleseparar(e)}
+                                />
+                              </Tooltip>
+                            </form>
+                          </div>
+                          <div
+                            className={
+                              userInfo.sub !== question.userSub ||
+                              question.statusValidated
+                                ? style.none
+                                : null
+                            }
+                          >
+                            <Tooltip title="Eliminar">
+                              <DeleteIcon
+                                fontSize="medium"
+                                className={style.deleteBtn}
+                                onClick={(e) => confirm(e)}
+                              />
+                            </Tooltip>
+                          </div>
+                        </div>
                       </div>
                     </div>
                   </div>
