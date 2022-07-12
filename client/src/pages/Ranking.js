@@ -48,7 +48,7 @@ const Ranking = () => {
         <Loading />
       </>
     );
-  } else if (user.email_verified === false) {
+  } else if (isAuthenticated && user.email_verified === false) {
     return (
       <>
         <NotVerified />
@@ -57,7 +57,7 @@ const Ranking = () => {
         </div>
       </>
     );
-  } else if (userInfo.statusBanned === true) {
+  } else if (isAuthenticated && userInfo.statusBanned === true) {
     return (
       <>
         <BannedUser />

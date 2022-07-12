@@ -1,9 +1,8 @@
-/* TODO */
 .subAnsBox{
      display: flex;
      border-radius: 10px;
      flex-direction: column;
-     box-shadow:2px 2px 2px 1px rgba(0,0,0,0.2);
+     box-shadow: 2px 2px 2px 1px rgba(0,0,0,0.2);
      word-wrap: break-word;
      background-color: #f9bf00;
      padding: 1%;
@@ -46,6 +45,12 @@
 .button button:hover{
     cursor: pointer;
     background-color: rgb(249, 249, 195);;
+    color: rgb(75, 71, 71);
+}
+
+.button button:disabled {
+    cursor: auto;
+    background-color: white;
     color: rgb(75, 71, 71);
 }
 

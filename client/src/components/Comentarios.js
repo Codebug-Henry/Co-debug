@@ -80,7 +80,7 @@ const Comentarios = ({ id, cantSubAnswers, subAnswers, setIsModify }) => {
                     type="button"
                     onClick={(e) => handleSubmit(e)}
                     className={style.submit}
-                    // disabled={!input || error}
+                    disabled={!input}
                 >
                     Enviar comentario
                 </button>

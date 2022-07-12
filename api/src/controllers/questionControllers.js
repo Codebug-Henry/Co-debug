@@ -159,6 +159,10 @@ const getSingleQuestion = async (req, res, next) => {
               required: false,
               include: User
             }
+          ],
+          order: [
+            [SubAnswer, "createdAt", "ASC"],
+            [SubAnswer, "text", "DESC"],
           ]
         },
         { model: MacroTag },
@@ -166,8 +170,8 @@ const getSingleQuestion = async (req, res, next) => {
       ],
       order: [
         [Answer, "statusValidated", "DESC"],
-        [Answer, "createdAt", "ASC"],
-        [Answer, "text", "DESC"],
+        [Answer, SubAnswer, "createdAt", "ASC"],
+        [Answer, SubAnswer, "text", "DESC"],
       ],
     });
 
