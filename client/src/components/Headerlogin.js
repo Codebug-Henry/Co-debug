@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
-import logo from "../images/logo_codebug.png";
+import logo_gif from "../images/logo_codebug2.gif";
+import logo from "../images/logo_codebug _margen.png";
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useState, useEffect, useRef } from "react";
@@ -21,6 +22,7 @@ const Headerlogin = () => {
   const notifications = useSelector((state) => state.notifications);
 
   const [open, setOpen] = useState(false);
+  const [ logoState, setLogoState ] = useState(logo)
 
   const myRef = useRef();
 
@@ -79,7 +81,7 @@ const Headerlogin = () => {
       <div className={`row ${style.row1}`}>
         <div className={`col-lg-3 ${style.col1}`}>
           <Link to="/">
-            <img className={style.logo} src={logo} alt="logo" />
+            <img onMouseLeave={()=>setLogoState(logo)} onMouseOver={()=>setLogoState(logo_gif)} className={style.logo} src={logoState} alt="logo" />
           </Link>
         </div>
         <div className={`col-lg-2 ${style.colPreg}`}>

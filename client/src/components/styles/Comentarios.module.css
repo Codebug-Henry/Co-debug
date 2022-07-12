@@ -63,6 +63,9 @@
     border: black solid 0.5px;
   }
 
+  .none {
+    display: none;
+  }
 
 /* COMENTARIO INDIVIDUAL */
 

@@ -3,9 +3,11 @@ import { useSelector } from "react-redux";
 import style from "./styles/Comentarios.module.css";
 import axios from "axios";
 import SubAnswerCard from "./SubAnswerCard";
+import { useAuth0 } from "@auth0/auth0-react";
 
 const Comentarios = ({ id, cantSubAnswers, subAnswers, setIsModify }) => {
     const userInfo = useSelector((state) => state.user);
+    const { isAuthenticated } = useAuth0();
     
 
     var styleComentario = {
@@ -55,7 +57,7 @@ const Comentarios = ({ id, cantSubAnswers, subAnswers, setIsModify }) => {
                 ))
             }
         </div>
-        <div className={style.row2}>
+        <div className={isAuthenticated ? style.row2 : style.none} style={styleRow2}>
             <textarea
                 type="text"
                 value={input}
