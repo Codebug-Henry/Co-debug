@@ -4,4 +4,9 @@
     display: flex;
     align-items: center;
     justify-content: center;
+
+}
+.loadingGif{
+    border-radius: 100%;
+    box-shadow: 0px 0px 2px 2px;
 }

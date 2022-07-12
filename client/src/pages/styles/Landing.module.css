@@ -17,7 +17,7 @@ html {
 .fullContainer {
   display: flex;
   flex-direction: column;
-  background-color: lightyellow;
+  background-color: hwb(60 88% 0%);
 }
 
 .middleRow {
@@ -25,7 +25,7 @@ html {
 }
 
 .container {
-  background-color: lightyellow;
+  background-color: #ffffe0;
 }
 
 .col2 {
@@ -49,13 +49,13 @@ html {
 }
 
 .rightRowUp {
-  background-color: lightyellow;
+  background-color: #ffffe0;
   padding: 1%;
   margin: 1%;
 }
 
 .rightRow {
-  background-color: lightyellow;
+  background-color: #ffffe0;
   padding: 1%;
   text-align: justify;
   margin-right: 15%;
