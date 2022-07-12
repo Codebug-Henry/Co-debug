@@ -3,13 +3,11 @@ import UserCard from "./UserCard";
 import style from "./styles/ListaUsuarios.module.css";
 import Paginated from "../Paginated";
 import Footer from "../Footer";
-
 import { useEffect, useState } from "react";
 import BotonesAdmin from "./BotonesAdmin";
 import { getSearchUsers, getAllUsersNoAdmin } from "../../redux/actions";
 
 const ListaUsuarios = () => {
-  // const users = useSelector((state) => state.users);
   const usersNoAdmin = useSelector((state) => state.usersNoAdmin);
   const totalPages = useSelector((state) => state.totalPages);
   const dispatch = useDispatch();
