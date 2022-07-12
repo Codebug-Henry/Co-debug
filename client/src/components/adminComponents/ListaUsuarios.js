@@ -64,7 +64,7 @@ const ListaUsuarios = () => {
             <p className={`col-2`}>Nickname</p>
             <p className={`col-3`}>Sub id</p>
             <p className={`col-2`}>Email</p>
-            <p className={`col-1`}>Ciudad</p>
+            <p className={`col-1`}>Origen</p>
             <p className={`col`}>Preg</p>
             <p className={`col`}>Res</p>
             <p className={`col`}>Points</p>
