@@ -1,6 +1,8 @@
 import React from "react";
 import style from "./styles/UserCard.module.css";
 import axios from "axios";
+import { confirmAlert } from "react-confirm-alert";
+import "react-confirm-alert/src/react-confirm-alert.css";
 
 const UserCard = ({
   cantAns,
@@ -19,6 +21,22 @@ const UserCard = ({
     axios
       .put(`/user/${sub}`, modify)
       .then((response) => setBanFlag((prevFlag) => !prevFlag));
+  };
+
+  const confirmBanUser = (e) => {
+    confirmAlert({
+      title: "Cambiar statusBan del usuario",
+      message: "¿Está seguro de esto?",
+      buttons: [
+        {
+          label: "Sí",
+          onClick: () => banUser(e),
+        },
+        {
+          label: "No",
+        },
+      ],
+    });
   };
 
   return (
@@ -53,7 +71,8 @@ const UserCard = ({
             className={
               statusBanned === false ? style.unbanButton : style.banButton
             }
-            onClick={(e) => banUser(e)}
+            // onClick={(e) => banUser(e)}
+            onClick={(e) => confirmBanUser(e)}
           >
             Ban
           </button>
