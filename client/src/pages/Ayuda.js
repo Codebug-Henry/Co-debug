@@ -3,23 +3,23 @@ import style from "./styles/Ayuda.module.css";
 import Footer from "../components/Footer.js";
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
-import { useAuth0 } from '@auth0/auth0-react';
+import { useAuth0 } from "@auth0/auth0-react";
 import { getNotifications } from "../redux/actions";
 
 const Ayuda = () => {
   const { isAuthenticated, user } = useAuth0();
-    const dispatch = useDispatch();
+  const dispatch = useDispatch();
 
-    useEffect(() => {
-        if (isAuthenticated) {
-          dispatch(getNotifications(user.sub))
-        }
-    }, [dispatch, user, isAuthenticated]);
+  useEffect(() => {
+    if (isAuthenticated) {
+      dispatch(getNotifications(user.sub));
+    }
+  }, [dispatch, user, isAuthenticated]);
 
   return (
     <div className={style.containerTotal}>
       <div className={`container-fluid ${style.container}`}>
-        <div className={style.title}>Preguntas frecuentes</div>
+        <p className={style.title}>Preguntas frecuentes</p>
         <div className={`row ${style.row1}`}>
           <div className={`col-lg ${style.col1}`}>
             <div className={style.questionContainer}>

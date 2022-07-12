@@ -4,7 +4,7 @@ import Footer from "../components/Footer.js";
 import FormContact from "../components/FormContact.js";
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
-import { useAuth0 } from '@auth0/auth0-react';
+import { useAuth0 } from "@auth0/auth0-react";
 import { getNotifications } from "../redux/actions";
 
 const Contacto = () => {
@@ -12,13 +12,14 @@ const Contacto = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-      if (isAuthenticated) {
-        dispatch(getNotifications(user.sub))
-      }
+    if (isAuthenticated) {
+      dispatch(getNotifications(user.sub));
+    }
   }, [dispatch, user, isAuthenticated]);
 
   return (
     <div className={style.fullContainer}>
+      <p className={style.title}>Ingresa una consulta, sugerencia o reclamo</p>
       <div>
         <div className={`container-fluid ${style.container}`}>
           <div className={`row ${style.middleRow}`}>
