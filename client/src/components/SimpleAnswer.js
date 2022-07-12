@@ -24,7 +24,7 @@ import Tooltip from "@mui/material/Tooltip";
 import CheckIcon from "@mui/icons-material/Check";
 import { confirmAlert } from "react-confirm-alert";
 import "react-confirm-alert/src/react-confirm-alert.css";
-import DownloadIcon from '@mui/icons-material/Download';
+import DownloadIcon from "@mui/icons-material/Download";
 import Comentarios from "./Comentarios";
 
 const SimpleAnswer = ({
@@ -38,9 +38,8 @@ const SimpleAnswer = ({
   statusValidated,
   setIsModify,
   cantSubAnswers,
-  subAnswers
+  subAnswers,
 }) => {
-
   const dispatch = useDispatch();
   const userInfo = useSelector((state) => state.user);
   const question = useSelector((state) => state.question);
@@ -48,22 +47,22 @@ const SimpleAnswer = ({
   const disliked = userInfo.ansDisliked?.includes(id);
   const [style1, setStyle1] = useState(true);
   const [errors, setErrors] = useState({});
-  const [imgIncludes, setImgIncludes] = useState(false)
+  const [imgIncludes, setImgIncludes] = useState(false);
   const [newAnswer, setNewAnswer] = useState({
     sub: userInfo.sub,
     id: id,
     text: text,
   });
-  
-  useEffect(() => {
-    if(text.includes("(https://res.cloudinary.com")) setImgIncludes(true)
-  }, [text, imgIncludes]);
 
+  useEffect(() => {
+    if (text.includes("(https://res.cloudinary.com")) setImgIncludes(true);
+  }, [text, imgIncludes]);
 
   function validate(newAnswer) {
     let errors = {};
     if (!newAnswer.text) errors.text = "Se requiere una respuesta";
-    if (newAnswer.text.length > 600) errors.text = "La respuesta debe tener un máximo de 600 caracteres";
+    if (newAnswer.text.length > 600)
+      errors.text = "La respuesta debe tener un máximo de 600 caracteres";
     return errors;
   }
 
@@ -148,7 +147,7 @@ const SimpleAnswer = ({
     setIsModify(true);
     await dispatch(putAnswer(newAnswer, setIsModify));
     toRender();
-  };
+  }
 
   function onChangeInputText(e) {
     setNewAnswer({
@@ -160,7 +159,6 @@ const SimpleAnswer = ({
         text: e.target.value,
       })
     );
-
   }
 
   function handleClick() {
@@ -188,33 +186,27 @@ const SimpleAnswer = ({
     handleClose();
   };
 
+  //Rescue URL-Image from text to download
+  const [url, setUrl] = useState("");
+  const [nameFile, setNameFile] = useState("");
 
+  const handleseparar = () => {
+    if (text.includes("(https://res.cloudinary.com")) {
+      const separado = text.split("(https://res.cloudinary.com");
+      const listo1 = "https://res.cloudinary.com" + separado[1];
+      const variable = `)=250x`;
+      const listo2 = listo1.split(`${variable}`);
+      const listo3 = listo2[0];
+      setUrl(listo3);
 
-//Rescue URL-Image from text to download
-  const [ url , setUrl ] = useState("")
-  const [ nameFile, setNameFile ] = useState("")
-
-  const handleseparar = ()=> {
-
-    if (text.includes("(https://res.cloudinary.com")){
-        
-        const separado =	text.split("(https://res.cloudinary.com")
-        const listo1 = "https://res.cloudinary.com"+separado[1]
-        const variable = `)=250x`
-        const listo2 = listo1.split(`${variable}`)
-        const listo3 = listo2[0]
-        console.log(listo3)
-        setUrl(listo3)
-
-        const segundo = listo3.split("/")
-        const tamanhoSegundo = segundo.length-1
-        const casiFinal = segundo[tamanhoSegundo]
-        const anteUltimo = casiFinal.split(")")
-        const ultimo = anteUltimo[0]
-        console.log(ultimo)
-        setNameFile(ultimo)
-    } 
-  }
+      const segundo = listo3.split("/");
+      const tamanhoSegundo = segundo.length - 1;
+      const casiFinal = segundo[tamanhoSegundo];
+      const anteUltimo = casiFinal.split(")");
+      const ultimo = anteUltimo[0];
+      setNameFile(ultimo);
+    }
+  };
 
   // Hilo de comentarios en cada respuesta
   const [toggleHilo, setToggleHilo] = useState(false);
@@ -289,14 +281,18 @@ const SimpleAnswer = ({
             className={style.editText}
             onChange={(e) => onChangeInputText(e)}
           />
-           {errors.text && (
-                <div className={style.error}>
-                  <span> {errors.text}</span>
-                </div>
-            )}
+          {errors.text && (
+            <div className={style.error}>
+              <span> {errors.text}</span>
+            </div>
+          )}
         </div>
 
-        <div className={style1 === true || errors.text ? style.editFull : style.editBtn}>
+        <div
+          className={
+            style1 === true || errors.text ? style.editFull : style.editBtn
+          }
+        >
           <button type="button" className={style.btnCode} onClick={handleClick}>
             {" "}
             Javascript{" "}
@@ -330,7 +326,7 @@ const SimpleAnswer = ({
             />
           </span>
         </div>
-{/* 
+        {/* 
         <div>
           <a className={style.descarga} onClick={(e)=>handleseparar(e)} href={url} download={nameFile} target="_blank" rel="noreferrer">
               Abrir imagen adjunta
@@ -340,18 +336,23 @@ const SimpleAnswer = ({
         {/* Hilo de comentarios en cada respuesta */}
         <div ref={myRef}>
           <div onClick={handleToggleHilo} className={style.comentarios}>
-            {cantSubAnswers ?  cantSubAnswers === 1 ? `${cantSubAnswers} comentario` : `${cantSubAnswers} comentarios` : "Comentar"}
+            {cantSubAnswers
+              ? cantSubAnswers === 1
+                ? `${cantSubAnswers} comentario`
+                : `${cantSubAnswers} comentarios`
+              : "Comentar"}
           </div>
 
           {toggleHilo && (
-              <Comentarios
-                id={id}
-                cantSubAnswers={cantSubAnswers}
-                subAnswers={subAnswers}
-                setIsModify={setIsModify}
-              />
-            )}
-         </div>
+            <Comentarios
+              id={id}
+              cantSubAnswers={cantSubAnswers}
+              subAnswers={subAnswers}
+              setIsModify={setIsModify}
+            />
+          )}
+        </div>
+
 
         <div className={imgIncludes ? style.descarga : style.notIncludes}>
           <a className={imgIncludes ? style.descarga : style.notIncludes} onClick={(e)=>handleseparar(e)} href={url} download={nameFile} target="_blank" rel="noreferrer">
@@ -364,11 +365,15 @@ const SimpleAnswer = ({
           </a>
         </div>
 
-        <div className={userInfo.sub === subR && !statusValidated ? null : style.none}>
+        <div
+          className={
+            userInfo.sub === subR && !statusValidated ? null : style.none
+          }
+        >
           <Tooltip title="Editar">
             <EditIcon
               fontSize="medium"
-              className={statusValidated ? style.none: style.moreBtn}
+              className={statusValidated ? style.none : style.moreBtn}
               onClick={handleEditAnswer}
             />
           </Tooltip>
