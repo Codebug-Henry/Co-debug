@@ -8,7 +8,7 @@ import {
   sendAnswer,
   getUserInfo,
   getNotifications,
-  deleteQuestion
+  deleteQuestion,
 } from "../redux/actions/index";
 import SimpleAnswer from "../components/SimpleAnswer";
 import Loading from "../components/Loading";
@@ -23,6 +23,8 @@ import Tooltip from "@mui/material/Tooltip";
 import DeleteIcon from "@mui/icons-material/Delete";
 import { confirmAlert } from "react-confirm-alert";
 import "react-confirm-alert/src/react-confirm-alert.css";
+import NotVerified from "../components/NotVerified";
+import BannedUser from "../components/BannedUser";
 
 const Responder = () => {
   const { isAuthenticated, loginWithRedirect, user } = useAuth0();
@@ -36,7 +38,7 @@ const Responder = () => {
   const [page, setPage] = useState(1);
   const totalPages = useSelector((state) => state.totalPages);
   const [permiteIMG, setPermiteIMG] = useState(true);
-  const navigate= useNavigate()
+  const navigate = useNavigate();
   //form
   const userInfo = useSelector((state) => state.user);
   const [input, setInput] = useState("");
@@ -116,37 +118,36 @@ const Responder = () => {
   const [nameFile, setNameFile] = useState("");
 
   const textAlerta1 = "No hay imágenes disponibles para descargar";
-  const handleseparar = ()=> {
+  const handleseparar = () => {
+    if (question.text.includes("(https://res.cloudinary.com")) {
+      const separado = question.text.split("(https://res.cloudinary.com");
+      let listo1 = "https://res.cloudinary.com" + separado[1];
+      const length = listo1.length;
+      listo1 = listo1.slice(0, length - 3);
+      setUrl(listo1);
 
-    if (question.text.includes("(https://res.cloudinary.com")){
-        
-        const separado =	question.text.split("(https://res.cloudinary.com")
-        let listo1 = "https://res.cloudinary.com"+separado[1]
-        const length = listo1.length
-        listo1 = listo1.slice(0,length-3)
-        setUrl(listo1)
+      const segundo = listo1.split("/");
+      const tamanhoSegundo = segundo.length - 1;
+      const casiFinal = segundo[tamanhoSegundo];
+      const anteUltimo = casiFinal.split(")");
+      const ultimo = anteUltimo[0];
+      setNameFile(ultimo);
 
-        const segundo = listo1.split("/")
-        const tamanhoSegundo = segundo.length-1
-        const casiFinal = segundo[tamanhoSegundo]
-        const anteUltimo = casiFinal.split(")")
-        const ultimo = anteUltimo[0]
-        setNameFile(ultimo)
-
-        window.open(listo1);
-    }else{
+      window.open(listo1);
+    } else {
       MensajeAlerta({ textAlerta: textAlerta1 });
-    } 
-  }
+    }
+  };
 
   // Editar y eliminar pregunta
 
   function handleDeleteQuestion(e) {
     setIsModify(true);
-    dispatch(deleteQuestion({ id: question.id, statusDeleted: true }, setIsModify));
-    navigate('/')
+    dispatch(
+      deleteQuestion({ id: question.id, statusDeleted: true }, setIsModify)
+    );
+    navigate("/");
   }
-
 
   const confirm = (e) => {
     confirmAlert({
@@ -233,34 +234,43 @@ const Responder = () => {
                       </div>
                       <div className={style.bajo}>
                         <div id={style.tags}>
-                        {
-                          question.macroTags.map((macro)=> (
-                            <span key={macro.tag} className={style.tag}>{" "}#{macro.tag}{" "}</span>
-                          ))
-                        }
-                        {
-                          question.microTags.map((micro)=> (
-                            <span key={micro.tag} className={style.tag}>{" "}#{micro.tag}{" "}</span>
-                          ))
-                        }
+                          {question.macroTags.map((macro) => (
+                            <span key={macro.tag} className={style.tag}>
+                              {" "}
+                              #{macro.tag}{" "}
+                            </span>
+                          ))}
+                          {question.microTags.map((micro) => (
+                            <span key={micro.tag} className={style.tag}>
+                              {" "}
+                              #{micro.tag}{" "}
+                            </span>
+                          ))}
                         </div>
-                        
+
                         <div className={style.btns}>
                           <div>
                             <form action={url} target="_blank" rel="noreferrer">
                               <Tooltip title="Descargar imagen">
-                                <DownloadIcon 
+                                <DownloadIcon
                                   className={style.descarga}
                                   fontSize="medium"
-                                  color='active'
+                                  color="active"
                                   type="submit"
-                                  download={nameFile} 
-                                  onClick={(e)=>handleseparar(e)}
+                                  download={nameFile}
+                                  onClick={(e) => handleseparar(e)}
                                 />
                               </Tooltip>
                             </form>
                           </div>
-                          <div className={ userInfo.sub !== question.userSub || question.statusValidated ? style.none : null}>
+                          <div
+                            className={
+                              userInfo.sub !== question.userSub ||
+                              question.statusValidated
+                                ? style.none
+                                : null
+                            }
+                          >
                             <Tooltip title="Eliminar">
                               <DeleteIcon
                                 fontSize="medium"
