@@ -13,7 +13,7 @@ const Terminos = () => {
 
   useEffect(() => {
     if (isAuthenticated) {
-      dispatch(getNotifications(user.sub))
+      dispatch(getNotifications(user.sub));
     }
   }, [dispatch, user, isAuthenticated]);
 
@@ -28,10 +28,8 @@ const Terminos = () => {
     <div className={style.fullContainer}>
       <div className={`container-fluid ${style.container}`}>
         <div className={`row ${style.middleRow}`}>
-          <div className={`display-4 ${style.title}`}>
-            Términos y condiciones
-          </div>
-          <div className={`col-lg-8 ${style.col}`}>
+          <p className={style.title}>Términos y condiciones</p>
+          <div className={`col-lg ${style.col}`}>
             TÉRMINOS DEL SERVICIO ---- GENERALIDADES Codebug gestiona este sitio
             web. En todo el sitio, los términos "nosotros", "nos" y "nuestro" se
             refieren en lo sucesivo a Codebug. Codebug ofrece esta página web,
