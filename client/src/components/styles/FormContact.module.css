@@ -102,13 +102,7 @@
   border: black solid 0.5px;
 }
 
-#title {
-  display: flex;
-  gap: 50vw;
-}
-
 @media screen and (max-width: 740px) {
-
   #all {
     font-size: 14px;
   }
@@ -136,8 +130,8 @@
 
   .div2 textarea,
   .markdown {
-  width: 100%;
-  height: 150px;  
+    width: 100%;
+    height: 150px;
   }
 
   .btn {
@@ -147,4 +141,3 @@
     margin-bottom: 10px;
   }
 }
-  

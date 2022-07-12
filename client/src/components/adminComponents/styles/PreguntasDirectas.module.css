@@ -1,3 +1,19 @@
-.container{
-    margin-bottom: 5vh;
+html {
+  min-height: 100%;
+  position: relative;
+}
+
+.footer {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  overflow: hidden;
+}
+
+.container {
+  margin-bottom: 5vh;
+  margin-left: 0.9vw;
+  margin-right: 0.9vw;
+  padding: 0;
 }

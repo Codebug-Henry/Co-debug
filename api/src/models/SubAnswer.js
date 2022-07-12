@@ -1,7 +1,7 @@
 const { DataTypes } = require("sequelize");
 
 module.exports = (sequelize) => {
-  sequelize.define("notification", {
+  sequelize.define("subAnswer", {
     id: {
       type: DataTypes.INTEGER,
       autoIncrement: true,
@@ -11,19 +11,9 @@ module.exports = (sequelize) => {
       type: DataTypes.TEXT,
       allowNull: false,
     },
-    subCreator: {
-      type: DataTypes.TEXT,
-      allowNull: false,
-    },
-    imgCreator: {
-      type: DataTypes.TEXT,
-    },
-    questId: {
-      type: DataTypes.INTEGER,
-    },
-    statusRead: {
+    statusDeleted: {
       type: DataTypes.BOOLEAN,
       defaultValue: false
-    },
+    }
   });
 };

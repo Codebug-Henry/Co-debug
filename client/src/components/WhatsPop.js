@@ -64,7 +64,7 @@ const WhatsPop = ({ idUser }) => {
             <p className={style.titleWhats}>
               {" "}
               {
-                "Coloca el número de la persona con su código de area, sin \n caracteres especiales ni espacios."
+                "Coloca el número de la persona con su código de area, sin caracteres especiales ni espacios. Deja el campo vacío para elegir entre tus contactos."
               }{" "}
             </p>
             <input

@@ -15,7 +15,9 @@ module.exports = (sequelize) => {
         const now = Date.now()
         const created = Date.parse(this.createdAt)
         const daysOld = Math.floor((now - created) / (24  * 60 * 60 * 1000))
-        const points = daysOld ? 100 * daysOld : this.getDataValue('teachPoints')
+        const points = daysOld && !this.getDataValue('statusValidated')
+          ? 100 * daysOld
+          : this.getDataValue('teachPoints')
         return points;
       }
     },
@@ -42,10 +44,6 @@ module.exports = (sequelize) => {
     statusValidated: {
       type: DataTypes.BOOLEAN,
       defaultValue: false
-    },
-    imgs:{
-      type: DataTypes.ARRAY(DataTypes.TEXT),
-      defaultValue:[]
     },
   });
 };

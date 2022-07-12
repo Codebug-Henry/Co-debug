@@ -65,19 +65,40 @@ const Configuracion = () => {
     return errors;
   }
 
-  const textAlerta = "No podes cambiar el nombre en más de dos oportunidades.";
+  const textAlerta =
+    "No podes cambiar el Nickname en más de dos oportunidades.";
+
   function handlerEditName(e) {
+    e.preventDefault();
+    // if (userInfo.nameChanges >= 2) {
+    //   MensajeAlerta({ textAlerta });
+    // } else {
+    setNameUser(true);
+  }
+
+  const confirm = (e) => {
+    confirmAlert({
+      title: "¿Confirma cambiar el Nickname?",
+      message: "Solo podrá hacerlo 2 veces",
+      buttons: [
+        {
+          label: "Sí",
+          onClick: (e) => handlerConfirmEditNickname(e),
+        },
+        {
+          label: "No",
+        },
+      ],
+    });
+  };
+
+  function handlerEditNickname(e) {
     e.preventDefault();
     if (userInfo.nameChanges >= 2) {
       MensajeAlerta({ textAlerta });
     } else {
-      setNameUser(true);
+      setNicknameUser(true);
     }
-  }
-
-  function handlerEditNickname(e) {
-    e.preventDefault();
-    setNicknameUser(true);
   }
 
   function handlerChange(e) {
@@ -94,26 +115,31 @@ const Configuracion = () => {
     );
   }
 
+  async function handlerConfirmEditNickname() {
+    if (userInfo.nickname !== input.nickname) {
+      await dispatch(
+        putUserInfo(userInfo.sub, {
+          nickname: input.nickname,
+          nameChanges: userInfo.nameChanges,
+        })
+      );
+      dispatch(getUserInfo(userInfo.sub));
+      setNicknameUser(false);
+      setErrors({});
+    } else {
+      setNicknameUser(false);
+      setErrors({});
+    }
+  }
+
   async function handlerConfirmEditName() {
     await dispatch(
       putUserInfo(userInfo.sub, {
         name: input.name,
-        nameChanges: userInfo.nameChanges,
       })
     );
     dispatch(getUserInfo(userInfo.sub));
     setNameUser(false);
-    setErrors({});
-  }
-
-  async function handlerConfirmEditNickname() {
-    await dispatch(
-      putUserInfo(userInfo.sub, {
-        nickname: input.nickname,
-      })
-    );
-    dispatch(getUserInfo(userInfo.sub));
-    setNicknameUser(false);
     setErrors({});
   }
 
@@ -131,18 +157,24 @@ const Configuracion = () => {
     return (
       <>
         <NotVerified />
+        <div className={style.footer}>
+          <Footer />
+        </div>
       </>
     );
   } else if (userInfo.statusBanned === true) {
     return (
       <>
         <BannedUser />
+        <div className={style.footer}>
+          <Footer />
+        </div>
       </>
     );
   } else
     return (
       <div className={style.fullContainer}>
-        <div className="row">
+        <div className={`row ${style.cien}`}>
           <div className="col">
             <div className={style.middleRow}>
               <div className={`container-fluid ${style.container}`}>
@@ -196,7 +228,7 @@ const Configuracion = () => {
                       }
                     >
                       <button
-                        className={style.buttonUpdate}
+                        className={style.btnCode}
                         onClick={handlerEditName}
                       >
                         Modificar
@@ -268,7 +300,7 @@ const Configuracion = () => {
                       }
                     >
                       <button
-                        className={style.buttonUpdate}
+                        className={style.btnCode}
                         onClick={handlerEditNickname}
                       >
                         Modificar
@@ -290,7 +322,7 @@ const Configuracion = () => {
                           fontSize="large"
                           color="primary"
                           cursor="pointer"
-                          onClick={handlerConfirmEditNickname}
+                          onClick={confirm}
                         />
                       </div>
                     </div>
@@ -302,10 +334,7 @@ const Configuracion = () => {
 
                   <div className={`row ${style.row}`}>
                     <div className={`col-lg-12 ${style.col2}`}>
-                      <button
-                        className={style.buttonUpdate}
-                        onClick={handlerSubmit}
-                      >
+                      <button className={style.btnCode} onClick={handlerSubmit}>
                         Dar de baja mi cuenta
                       </button>
                     </div>
@@ -361,7 +390,7 @@ const Configuracion = () => {
                     <div className={`col-lg-6 ${style.col2}`}>
                       <StatsUser
                         number={userInfo.cantAns}
-                        characteristic="Mis Respuestas"
+                        characteristic="Respondidas"
                         link="Ver Mis Respuestas"
                         linkTo="/misrespuestas"
                       />

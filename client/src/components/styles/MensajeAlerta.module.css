@@ -1,6 +1,7 @@
 .custom {
   background: lightyellow;
   width: 150%;
+  max-width: 80vw;
   height: 30%;
   text-align: center;
   color: black;

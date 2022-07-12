@@ -4,7 +4,7 @@ import Footer from "../components/Footer.js";
 import Creador from "../components/Creador";
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
-import { useAuth0 } from '@auth0/auth0-react';
+import { useAuth0 } from "@auth0/auth0-react";
 import { getNotifications } from "../redux/actions";
 
 let luciano = {
@@ -13,7 +13,7 @@ let luciano = {
   email: "lucianommorea@gmail.com",
   linkedin: "https://www.linkedin.com/in/luciano-morea",
   photo:
-    "https://media-exp1.licdn.com/dms/image/C5603AQESqRrYU1PB7A/profile-displayphoto-shrink_800_800/0/1630024458215?e=1661385600&v=beta&t=CCSGyfdLAShZY2msqz0KVBcKroJL8RH5Au41hcnAI8E",
+    "https://res.cloudinary.com/codebugers/image/upload/v1657061942/codebug/ubbkbccekzqjenczkvwn.jpg",
   github: "https://github.com/lucianommorea",
 };
 
@@ -23,7 +23,7 @@ let gonzalo = {
   email: "gonzalogdv@gmail.com",
   linkedin: "https://www.linkedin.com/in/gonzalo-gomez-0156b985/",
   photo:
-    "https://media-exp1.licdn.com/dms/image/C4E03AQHrPJNaA_xQRQ/profile-displayphoto-shrink_800_800/0/1612972013299?e=1661385600&v=beta&t=1lbIzsR2k2GfKHSO7VFmh6z059m_BLzYXJSZhDLVMSA",
+    "https://res.cloudinary.com/codebugers/image/upload/v1657481931/codebug/tmzjp7bf7apzyexfxhur.jpg",
   github: "https://github.com/GonzaloGDV",
 };
 
@@ -33,7 +33,7 @@ let matias = {
   email: "matibalbi@gmail.com",
   linkedin: "https://www.linkedin.com/in/matiasbalbi/",
   photo:
-    "https://media-exp1.licdn.com/dms/image/C4E03AQEqpAyopWiyxg/profile-displayphoto-shrink_800_800/0/1570049909786?e=1661385600&v=beta&t=ip-2OyBLJuiOkxhPAcNc7iIZEDcC6hW2G3gNDJngTEA",
+    "https://res.cloudinary.com/codebugers/image/upload/v1656770336/codebug/mbtnjqrtoesnxrlylvdb.png",
   github: "https://github.com/matibalbi",
 };
 
@@ -73,7 +73,7 @@ let gustavo = {
   email: "tutemaposo2016@gmail.com",
   linkedin: "https://www.linkedin.com/in/gustavo-de-la-torre-309a581ba/",
   photo:
-    "https://media-exp1.licdn.com/dms/image/C4D03AQF6Ei7KEuOr2Q/profile-displayphoto-shrink_800_800/0/1646031911164?e=1661385600&v=beta&t=tmOY2NZf646gdf3eSsEcgMTCBvfHjwNZY7QFvcRfEuo",
+    "https://res.cloudinary.com/codebugers/image/upload/v1657552179/codebug/c2hrgarb1urpsbnxutku.jpg",
   github: "https://github.com/XDrimer",
 };
 
@@ -83,7 +83,7 @@ let santiago = {
   email: "santiagotrabucco@gmail.com",
   linkedin: "https://www.linkedin.com/in/santiagotrabucco/",
   photo:
-    "https://media-exp1.licdn.com/dms/image/C4E03AQHR0-pjCg6BEQ/profile-displayphoto-shrink_800_800/0/1627139903614?e=1661385600&v=beta&t=O7l3OEXo4Y313kbBX52CLRAMezyoQepFpQLNbP9Ss00",
+    "https://res.cloudinary.com/codebugers/image/upload/v1656857791/codebug/qcbkl7rtfar5l0lxj0iw.jpg",
   github: "https://github.com/Sandotcom",
 };
 
@@ -92,14 +92,15 @@ const Creadores = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-      if (isAuthenticated) {
-        dispatch(getNotifications(user.sub))
-      }
+    if (isAuthenticated) {
+      dispatch(getNotifications(user.sub));
+    }
   }, [dispatch, user, isAuthenticated]);
-  
+
   return (
     <div className={style.fullContainer}>
       <div>
+        <p className={style.title}>Creadores</p>
         <div className={`container-fluid ${style.container}`}>
           <div className={`row ${style.middleRow}`}>
             <div className={`col-lg-6 ${style.col1}`}>

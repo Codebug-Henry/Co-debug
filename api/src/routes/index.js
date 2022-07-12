@@ -20,6 +20,9 @@ const alertsRoutes = require("./alertsRoutes")
 const notificationRoutes = require("./notificationRoutes")
 const notificationsRoutes = require("./notificationsRoutes")
 
+const subAnswerRoutes = require("./subAnswerRoutes")
+const subAnswersRoutes = require("./subAnswersRoutes")
+
 
 const router = Router()
 
@@ -42,5 +45,8 @@ router.use("/alerts", alertsRoutes)
 
 router.use("/notification", notificationRoutes)
 router.use("/notifications", notificationsRoutes)
+
+router.use("/subAnswer", subAnswerRoutes)
+router.use("/subAnswers", subAnswersRoutes)
 
 module.exports = router

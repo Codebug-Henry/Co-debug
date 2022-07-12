@@ -114,9 +114,12 @@
 }
 
 .userImage {
-  border-radius: 30px;
+  border-radius: 100%;
+  /* border-radius: 30px; */
   width: 8vh;
-  padding-top: 2vh;
+  height: 8vh;
+  margin-top: 2vh;
+  /* padding-top: 2vh; */
 }
 
 .fav:hover {

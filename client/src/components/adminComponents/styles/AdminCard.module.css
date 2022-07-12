@@ -1,14 +1,13 @@
-.button {
-  color: white;
-  background-color: rgb(255, 60, 60);
-  border-radius: 0.5vh;
-  border: 0px;
-  position: relative;
-  margin-top: 1vh;
-}
-
 .container {
   border: 1px black solid;
   border-radius: 0.5vh;
   margin-bottom: 0.2vh;
+  padding: 0;
+}
+
+.button {
+  margin-top: 1vh;
+  color: white;
+  background-color: rgb(255, 60, 60);
+  border-radius: 0.5vh;
 }

@@ -33,9 +33,9 @@ import {
   CLEAN_QUESTIONS,
   SET_SORTVALIDATE,
   GET_NOTIFICATIONS,
-  PUT_NOTIFICATION,
   SET_MACROTAG,
-  SET_MICROTAG
+  SET_MICROTAG,
+  GET_SUBANSWERS
 } from "./actionTypes";
 
 import * as api from "../api";
@@ -392,11 +392,12 @@ export const getNotifications = (sub) => async (dispatch) => {
   }
 };
 
-export const putNotification = (notification) => async (dispatch) => {
+// NOTIFICATIONS
+
+export const getSubAnswers = (id) => async (dispatch) => {
   try {
-    const { data } = await api.putNotification(notification);
-    dispatch({ type: PUT_NOTIFICATION, payload: data });
-    // setMessageFlag && setMessageFlag(prevFlag => !prevFlag);
+    const { data } = await api.getSubAnswers(id);
+    dispatch({ type: GET_SUBANSWERS, payload: data });
   } catch (error) {
     console.log(error.message);
   }

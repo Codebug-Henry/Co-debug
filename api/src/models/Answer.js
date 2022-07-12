@@ -20,6 +20,10 @@ module.exports = (sequelize) => {
       type: DataTypes.INTEGER,
       defaultValue: 0
     },
+    cantSubAnswers: {
+      type: DataTypes.INTEGER,
+      defaultValue: 0
+    },
     statusDeleted: {
       type: DataTypes.BOOLEAN,
       defaultValue: false
@@ -28,10 +32,6 @@ module.exports = (sequelize) => {
       type: DataTypes.BOOLEAN,
       defaultValue: false
     },
-    imgs:{
-      type: DataTypes.ARRAY(DataTypes.TEXT),
-      defaultValue:[]
-    }
   });
 };
 

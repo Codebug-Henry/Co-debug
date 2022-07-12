@@ -12,8 +12,6 @@ import NotificationsIcon from "@mui/icons-material/Notifications";
 import NotificationsNoneIcon from "@mui/icons-material/NotificationsNone";
 import Badge from "@mui/material/Badge";
 import axios from "axios";
-// import "../index.css";
-// import useLocalStorage from "use-local-storage";
 
 const Headerlogin = () => {
   const { isAuthenticated, isLoading, user, logout } = useAuth0();
@@ -21,13 +19,6 @@ const Headerlogin = () => {
   const userInfo = useSelector((state) => state.user);
   const [width, setWidth] = useState(window.innerWitdh);
   const notifications = useSelector((state) => state.notifications);
-
-  // const [theme, setTheme] = useLocalStorage("theme" ? "dark" : "light");
-
-  // const switchTheme = () => {
-  //   const newTheme = theme === "light" ? "dark" : "light";
-  //   setTheme(newTheme);
-  // };
 
   const [open, setOpen] = useState(false);
 
@@ -84,7 +75,6 @@ const Headerlogin = () => {
   }
 
   return isAuthenticated ? (
-    // <div className="app" data-theme={theme}>
     <div className={`container-fluid ${style.container}`}>
       <div className={`row ${style.row1}`}>
         <div className={`col-lg-3 ${style.col1}`}>
@@ -92,12 +82,6 @@ const Headerlogin = () => {
             <img className={style.logo} src={logo} alt="logo" />
           </Link>
         </div>
-
-        {/* <div className={`col-lg-2 ${style.colPrin}`}>
-          <Link to="/" className={style.linksInt}>
-            Principal
-          </Link>
-        </div> */}
         <div className={`col-lg-2 ${style.colPreg}`}>
           <Link to="/preguntar" className={style.linksInt}>
             Preguntar
@@ -139,7 +123,13 @@ const Headerlogin = () => {
                       className={style.notification}
                       onClick={() => handleRead(n.id)}
                     >
-                      {n.text}
+                      <img
+                        src={n.imgCreator}
+                        className={style.userImageNotif}
+                        referrerPolicy="no-referrer"
+                        alt="imgUser"
+                      />
+                      <span>{n.text}</span>
                     </Link>
                   ))
                 ) : (
@@ -251,11 +241,6 @@ const Headerlogin = () => {
                 </li>
               </ul>
             </div>
-            {/* <div className={`col-lg-1 ${style.colButton}`}>
-              <button onClick={switchTheme} className="button">
-                Dark
-              </button>
-            </div> */}
           </div>
         </div>
       </div>

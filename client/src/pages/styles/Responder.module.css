@@ -3,7 +3,7 @@
     left: 0;
     bottom: 0;
     width: 100%;
-    overflow:hidden;
+    overflow: hidden;
 }
 
 .fullContainer{
@@ -62,11 +62,16 @@
 
 #tags{
   height: 30px;
-  width: 92%;
-  /* margin-left: auto;
-  margin-right: auto; */
+  width: 70%;
   margin-top: 0.5vh;
   font-weight: 500;
+}
+
+.bajo {
+  display: flex;
+  flex-direction: row;
+  /* border: 1px solid black; */
+  justify-content: space-between;
 }
 
 .tag {
@@ -74,9 +79,13 @@
 }
 
 .userImage {
-  border-radius: 30px;
-  width: 60px;
-  padding-top: 2vh;
+  border-radius: 100%;
+  /* border-radius: 30px; */
+  /* width: 60px; */
+  width: 8vh;
+  height: 8vh;
+  margin-top: 2vh;
+  /* padding-top: 2vh; */
 }
 
 .userPreg {
@@ -203,7 +212,7 @@
 }
 
 .submit:disabled {
-  cursor: text;
+  cursor: auto;
   border: #f9bf00 solid 0.5px;
   background-color: white;
   color: rgb(75, 71, 71);
@@ -248,4 +257,47 @@ img[alt=image] { width: 200px; }
     font-size: 13px;
   }
 
+}
+.adjBoxNone{
+  display: none;
+}
+.permiteIMG{
+  align-items: flex-start;
+}
+
+.descarga{
+  /* box-shadow:2px 2px 2px 1px rgba(0,0,0,0.2); */
+  /* border-radius: 1vh; */
+  text-decoration: none;
+  /* padding: 0.5vh; */
+  color: black;
+}
+
+.descarga:hover{
+  cursor: pointer;
+  color: grey;
+}
+.notIncludes {
+  display: none;
+}
+
+.none {
+  display: none
+}
+
+.btns{
+  display: flex;
+  flex-direction: row;
+  justify-self: center;
+  gap: 2vw;
+}
+
+.moreBtn:hover{
+  cursor: pointer;
+  color: grey;
+}
+
+.deleteBtn:hover{
+  cursor: pointer;
+  color: grey;
 }

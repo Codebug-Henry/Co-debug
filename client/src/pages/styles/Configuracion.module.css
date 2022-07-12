@@ -2,6 +2,10 @@
   background-color: lightyellow;
 }
 
+.cien {
+  width: 100%;
+}
+
 html {
   min-height: 100%;
   position: relative;
@@ -10,13 +14,15 @@ html {
 .middleRow {
   background-color: lightyellow;
   align-self: center;
-  width: 85%;
+  width: 80%;
   margin: auto;
   /* margin-bottom: 2vh; */
 }
 
 .middleRow2 {
   height: 50%;
+  width: 85%;
+  margin: auto;
 }
 
 .footer {
@@ -112,7 +118,7 @@ html {
   font-size: 14px;
 }
 
-.buttonUpdate {
+/* .buttonUpdate {
   border-radius: 0.5vh;
   background-color: rgb(240, 238, 238);
   border: solid 2px black;
@@ -120,10 +126,29 @@ html {
 
 .buttonUpdate:hover {
   background-color: rgb(215, 212, 212);
-}
+} */
 
 .userImage {
   border-radius: 50%;
+}
+
+.btnCode {
+  width: fit-content;
+  height: 30px;
+  background-color: #f9bf00;
+  color: lightyellow;
+  border: #f9bf00 solid 1.5px;
+  border-radius: 0.5vh;
+  font-weight: 350;
+  font-size: 15px;
+  justify-self: center;
+  align-self: center;
+}
+
+.btnCode:hover {
+  cursor: pointer;
+  background-color: transparent;
+  color: rgb(75, 71, 71);
 }
 
 @media screen and (max-width: 600px) {

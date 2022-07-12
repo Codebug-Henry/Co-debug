@@ -1,4 +1,4 @@
-const { User, Question, Answer, MacroTag, MicroTag } = require("../db.js");
+const { User, Question, Answer, MacroTag, MicroTag, SubAnswer } = require("../db.js");
 const { questionTags, paginate } = require("./generalControllers.js");
 
 const deleteUserQuestion = async (req, res, next) => {
@@ -26,7 +26,6 @@ const putUserQuestion = async (req, res, next) => {
     title,
     like,
     statusDeleted,
-    imgs,
     macroTags,
     microTags,
     sub,
@@ -104,7 +103,7 @@ const putUserQuestion = async (req, res, next) => {
     }
 
     await Question.update(
-      { text, title, likes: newLikes, statusDeleted, imgs },
+      { text, title, likes: newLikes, statusDeleted },
       {
         where: {
           id: parseInt(id),
@@ -118,7 +117,6 @@ const putUserQuestion = async (req, res, next) => {
       text,
       title,
       likes: newLikes,
-      imgs,
       statusDeleted,
     });
   } catch (error) {
@@ -127,11 +125,11 @@ const putUserQuestion = async (req, res, next) => {
 };
 
 const postQuestion = async (req, res, next) => {
-  let { sub, text, title, imgs, macroTags, microTags } = req.body;
+  let { sub, text, title, macroTags, microTags } = req.body;
   try {
     const user = await User.findByPk(sub);
     await user.update({ cantQuest: user.cantQuest + 1 });
-    const newQuestion = await Question.create({ text, title, imgs });
+    const newQuestion = await Question.create({ text, title });
 
     macroTags = await questionTags(macroTags, MacroTag, newQuestion);
     microTags = await questionTags(microTags, MicroTag, newQuestion);
@@ -154,15 +152,26 @@ const getSingleQuestion = async (req, res, next) => {
           model: Answer,
           required: false,
           where: { statusDeleted: false },
-          include: User,
+          include: [
+            { model: User },
+            { 
+              model: SubAnswer,
+              required: false,
+              include: User
+            }
+          ],
+          order: [
+            [SubAnswer, "createdAt", "ASC"],
+            [SubAnswer, "text", "DESC"],
+          ]
         },
         { model: MacroTag },
         { model: MicroTag },
       ],
       order: [
         [Answer, "statusValidated", "DESC"],
-        [Answer, "createdAt", "ASC"],
-        [Answer, "text", "DESC"],
+        [Answer, SubAnswer, "createdAt", "ASC"],
+        [Answer, SubAnswer, "text", "DESC"],
       ],
     });
 
@@ -170,6 +179,7 @@ const getSingleQuestion = async (req, res, next) => {
 
     question = {
       ...question.dataValues,
+      teachPoints: question.teachPoints,
       answers,
     };
 

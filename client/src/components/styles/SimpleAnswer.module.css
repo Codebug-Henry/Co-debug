@@ -6,6 +6,7 @@
     flex-direction: column;
     padding: 1%;
     border-radius: 0.5vh;
+    position: relative;
 }
 
 .validated{
@@ -46,24 +47,28 @@
 #name{
   display: flex;
   flex-direction: row;
+  align-items: center;
   font-weight: 500;
   padding-bottom: 1.5vh;
 }
 
 #photo{
-  height: 38px;
+  /* height: 38px; */
+  height: 6vh;
 }
 
 #avatar{
-  width: 38px;
-  height: 38px;
+  /* width: 38px;
+  height: 38px; */
+  width: 6vh;
+  height: 6vh;
   float: right;
   margin-top: 0.1vh;
 }
 
 #user{
-  margin-top: 0.8vh;
-  margin-left: 1vh;
+  /* margin-top: 0.8vh; */
+  margin-left: 1.5vh;
 }
 
 .btnValidate {
@@ -153,6 +158,12 @@
   cursor: pointer;
 }
 
+.delete:hover{
+  cursor: pointer;
+  color: grey;
+}
+
+
 .box{
   position: absolute;
   top: 50%;
@@ -238,6 +249,10 @@
   visibility: hidden;
 }
 
+.notIncludes {
+  display: none;
+}
+
 @media screen and (max-width: 740px) {
   #photo{
     height: 30px;
@@ -320,4 +335,14 @@
 .descarga:hover{
   cursor: pointer;
   color: grey;
+}
+
+.comentarios{
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.comentarios:hover{
+  font-weight: 650;
+  cursor: pointer;
 }

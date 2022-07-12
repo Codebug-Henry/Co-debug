@@ -3,6 +3,8 @@ import { useDispatch, useSelector } from "react-redux";
 import style from "./styles/Ranking.module.css";
 import Footer from "../components/Footer.js";
 import Paginated from "../components/Paginated";
+import NotVerified from "../components/NotVerified";
+import BannedUser from "../components/BannedUser";
 import { getRanking } from "../redux/actions";
 import Loading from "../components/Loading";
 import { useAuth0 } from "@auth0/auth0-react";
@@ -11,6 +13,7 @@ import { getNotifications } from "../redux/actions";
 const Ranking = () => {
   const dispatch = useDispatch();
   const ranking = useSelector((state) => state.ranking);
+  const userInfo = useSelector(state => state.user)
   const [sort, setSort] = useState("points-desc");
   const [page, setPage] = useState(1);
   const [loading, setLoading] = useState(true);
@@ -45,8 +48,25 @@ const Ranking = () => {
         <Loading />
       </>
     );
-  } else
+  } else if (isAuthenticated && user.email_verified === false) {
     return (
+      <>
+        <NotVerified />
+        <div className={style.footer}>
+          <Footer />
+        </div>
+      </>
+    );
+  } else if (isAuthenticated && userInfo.statusBanned === true) {
+    return (
+      <>
+        <BannedUser />
+        <div className={style.footer}>
+          <Footer />
+        </div>
+      </>
+    );
+  } else return (
       <div className={style.fullContainer}>
         <div className={style.middleRow}>
           {/* Acá el contenido para logueados */}
