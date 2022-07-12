@@ -1,20 +1,15 @@
-import React from 'react';
-import style from './styles/SearchBar.module.css'
-import { TextField } from '@mui/material';
+import React from "react";
+import { TextField } from "@mui/material";
 
+export default function SearchBar({ setInput, setPage }) {
+  const onChangeSearch = (e) => {
+    setPage(1);
+    setInput(e.target.value);
+  };
 
-export default function SearchBar({setInput, setPage}) {
-    
-    const onChangeSearch = (e)=>{
-      setPage(1)
-      setInput(e.target.value);        
-    }
-
-    return (
-        <div className={style.questBox}>
-          <div className={style.searchBar}>
-            <TextField onChange={onChangeSearch} type="search" label="Buscar..." variant="outlined"/>
-          </div>
-        </div>
-    )
+  return (
+    <div>
+      <TextField sx={{ margin: 0.5, maxWidth: "30vw"}} onChange={onChangeSearch} type="search" label="Buscar..." variant="outlined" />
+    </div>
+  );
 }
