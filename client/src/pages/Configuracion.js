@@ -65,20 +65,40 @@ const Configuracion = () => {
     return errors;
   }
 
-  const textAlerta = "No podes cambiar el nombre en más de dos oportunidades.";
-  
+  const textAlerta =
+    "No podes cambiar el Nickname en más de dos oportunidades.";
+
   function handlerEditName(e) {
+    e.preventDefault();
+    // if (userInfo.nameChanges >= 2) {
+    //   MensajeAlerta({ textAlerta });
+    // } else {
+    setNameUser(true);
+  }
+
+  const confirm = (e) => {
+    confirmAlert({
+      title: "Confirma cambiar el Nickname",
+      message: "Solo podrá hacerlo 2 veces",
+      buttons: [
+        {
+          label: "Sí",
+          onClick: (e) => handlerConfirmEditNickname(e),
+        },
+        {
+          label: "No",
+        },
+      ],
+    });
+  };
+
+  function handlerEditNickname(e) {
     e.preventDefault();
     if (userInfo.nameChanges >= 2) {
       MensajeAlerta({ textAlerta });
     } else {
-      setNameUser(true);
+      setNicknameUser(true);
     }
-  }
-
-  function handlerEditNickname(e) {
-    e.preventDefault();
-    setNicknameUser(true);
   }
 
   function handlerChange(e) {
@@ -95,32 +115,31 @@ const Configuracion = () => {
     );
   }
 
-  async function handlerConfirmEditName() {
-    if(userInfo.name !== input.name) {
+  async function handlerConfirmEditNickname() {
+    if (userInfo.nickname !== input.nickname) {
       await dispatch(
         putUserInfo(userInfo.sub, {
-          name: input.name,
+          nickname: input.nickname,
           nameChanges: userInfo.nameChanges,
         })
       );
       dispatch(getUserInfo(userInfo.sub));
-      setNameUser(false);
+      setNicknameUser(false);
       setErrors({});
-    }
-    else {
-      setNameUser(false);
+    } else {
+      setNicknameUser(false);
       setErrors({});
     }
   }
 
-  async function handlerConfirmEditNickname() {
+  async function handlerConfirmEditName() {
     await dispatch(
       putUserInfo(userInfo.sub, {
-        nickname: input.nickname,
+        name: input.name,
       })
     );
     dispatch(getUserInfo(userInfo.sub));
-    setNicknameUser(false);
+    setNameUser(false);
     setErrors({});
   }
 
@@ -303,7 +322,7 @@ const Configuracion = () => {
                           fontSize="large"
                           color="primary"
                           cursor="pointer"
-                          onClick={handlerConfirmEditNickname}
+                          onClick={confirm}
                         />
                       </div>
                     </div>
@@ -315,10 +334,7 @@ const Configuracion = () => {
 
                   <div className={`row ${style.row}`}>
                     <div className={`col-lg-12 ${style.col2}`}>
-                      <button
-                        className={style.btnCode}
-                        onClick={handlerSubmit}
-                      >
+                      <button className={style.btnCode} onClick={handlerSubmit}>
                         Dar de baja mi cuenta
                       </button>
                     </div>

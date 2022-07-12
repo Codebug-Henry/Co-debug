@@ -2,17 +2,11 @@ import React, { useState } from "react";
 import { postMessage } from "../redux/actions/index";
 import { useSelector, useDispatch } from "react-redux";
 import style from "./styles/FormContact.module.css";
-// import { confirmAlert } from "react-confirm-alert";
-// import "react-confirm-alert/src/react-confirm-alert.css";
 import MensajeAlerta from "./MensajeAlerta";
 
 const FormContact = () => {
   const dispatch = useDispatch();
   let user = useSelector((state) => state.user);
-
-  // useEffect(()=> {
-  //     dispatch(getUserInfo());
-  // }, [dispatch])
 
   function validate(input) {
     let errors = {};
@@ -82,9 +76,6 @@ const FormContact = () => {
 
   return (
     <div id={style.all}>
-      <div id={style.title}>
-        <h2>Ingresa una consulta, sugerencia o reclamo</h2>
-      </div>
       <div id={style.contenedor}>
         <form id={style.form}>
           <div id={style.div1}>

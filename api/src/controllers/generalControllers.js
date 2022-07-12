@@ -417,60 +417,58 @@ const populateDB = async () => {
     { id: 15, tag: "Función generadora", macroTagId: 1 },
     { id: 16, tag: "Promesas", macroTagId: 1 },
     { id: 17, tag: "Set", macroTagId: 1 },
-    { id: 18, tag: "Typescript", macroTagId: 1 },
-    { id: 19, tag: "JSON", macroTagId: 1 },
-    { id: 20, tag: "Node.js", macroTagId: 1 },
-    { id: 21, tag: "Otro", macroTagId: 1 },
+    { id: 18, tag: "JSON", macroTagId: 1 },
+    { id: 19, tag: "Otro", macroTagId: 1 },
   ];
   const microsHTML = [
-    { id: 22, tag: "elementos/etiquetas (div/span/p.etc)", macroTagId: 2 },
-    { id: 23, tag: "atributos (id/clase)", macroTagId: 2 },
-    { id: 24, tag: "secciones", macroTagId: 2 },
-    { id: 25, tag: "otro", macroTagId: 2 },
+    { id: 22, tag: "Elementos/etiquetas", macroTagId: 2 },
+    { id: 23, tag: "Atributos (id/clase)", macroTagId: 2 },
+    { id: 24, tag: "Secciones", macroTagId: 2 },
+    { id: 25, tag: "Otro", macroTagId: 2 },
   ];
 
   const microsDataBase = [
-    { id: 26, tag: "tablas", macroTagId: 3 },
-    { id: 27, tag: "comandos", macroTagId: 3 },
-    { id: 28, tag: "objetos (datos en las tablas)", macroTagId: 3 },
-    { id: 29, tag: "sentencias/consultas", macroTagId: 3 },
-    { id: 30, tag: "sistemas de gestion (mySql/postgress/etc)", macroTagId: 3 },
-    { id: 31, tag: "otro", macroTagId: 3 },
+    { id: 26, tag: "Tablas", macroTagId: 3 },
+    { id: 27, tag: "Comandos", macroTagId: 3 },
+    { id: 28, tag: "Objetos (datos tablas)", macroTagId: 3 },
+    { id: 29, tag: "Sentencias/consultas", macroTagId: 3 },
+    { id: 30, tag: "Sistemas de gestion", macroTagId: 3 },
+    { id: 31, tag: "Otro", macroTagId: 3 },
   ];
 
   const microsCSS = [
-    { id: 32, tag: "display (flex/block/grid)", macroTagId: 4 },
-    { id: 33, tag: "imagenes", macroTagId: 4 },
-    { id: 34, tag: "style/properties (estilos)", macroTagId: 4 },
-    { id: 35, tag: "position", macroTagId: 4 },
-    { id: 36, tag: "responsive", macroTagId: 4 },
-    { id: 37, tag: "media", macroTagId: 4 },
-    { id: 38, tag: "animaciones", macroTagId: 4 },
-    { id: 39, tag: "backgrounds (fondo del elemento)", macroTagId: 4 },
-    { id: 40, tag: "pseudo clases (hover/after/etc)", macroTagId: 4 },
-    { id: 41, tag: "frameworks (bootstrap/Tailwind CSS/etc)", macroTagId: 4 },
-    { id: 42, tag: "otro", macroTagId: 4 },
+    { id: 32, tag: "Display (flex/grid)", macroTagId: 4 },
+    { id: 33, tag: "Imagenes", macroTagId: 4 },
+    { id: 34, tag: "Estilos/propiedades", macroTagId: 4 },
+    { id: 35, tag: "Position", macroTagId: 4 },
+    { id: 36, tag: "Responsive", macroTagId: 4 },
+    { id: 37, tag: "Media", macroTagId: 4 },
+    { id: 38, tag: "Animaciones", macroTagId: 4 },
+    { id: 39, tag: "Background", macroTagId: 4 },
+    { id: 40, tag: "Pseudo clases (hover/after)", macroTagId: 4 },
+    { id: 41, tag: "Frameworks", macroTagId: 4 },
+    { id: 42, tag: "Otro", macroTagId: 4 },
   ];
 
   const microsReact = [
-    { id: 43, tag: "componentes", macroTagId: 5 },
-    { id: 44, tag: "jsx", macroTagId: 5 },
-    { id: 45, tag: "propiedades", macroTagId: 5 },
-    { id: 46, tag: "ciclo de vida", macroTagId: 5 },
-    { id: 47, tag: "eventos", macroTagId: 5 },
-    { id: 48, tag: "renderizado", macroTagId: 5 },
-    { id: 49, tag: "formularios", macroTagId: 5 },
-    { id: 50, tag: "estados", macroTagId: 5 },
-    { id: 51, tag: "reactDom", macroTagId: 5 },
-    { id: 52, tag: "ReactRouter", macroTagId: 5 },
-    { id: 53, tag: "hooks", macroTagId: 5 },
-    { id: 54, tag: "otro", macroTagId: 5 },
+    { id: 43, tag: "Componentes", macroTagId: 5 },
+    { id: 44, tag: "JSX", macroTagId: 5 },
+    { id: 45, tag: "Propiedades", macroTagId: 5 },
+    { id: 46, tag: "Ciclo de vida", macroTagId: 5 },
+    { id: 47, tag: "Eventos", macroTagId: 5 },
+    { id: 48, tag: "Renderizado", macroTagId: 5 },
+    { id: 49, tag: "Formularios", macroTagId: 5 },
+    { id: 50, tag: "Estados", macroTagId: 5 },
+    { id: 51, tag: "ReactDom", macroTagId: 5 },
+    { id: 52, tag: "React-router", macroTagId: 5 },
+    { id: 53, tag: "Hooks", macroTagId: 5 },
+    { id: 54, tag: "Otro", macroTagId: 5 },
   ];
 
   const microsClienteHTTP = [
-    { id: 55, tag: "peticiones", macroTagId: 6 },
+    { id: 55, tag: "Peticiones", macroTagId: 6 },
     { id: 56, tag: "API", macroTagId: 6 },
-    { id: 57, tag: "otro", macroTagId: 6 },
+    { id: 57, tag: "Otro", macroTagId: 6 },
   ];
 
   const microsEditoresDeTexto = [
@@ -480,46 +478,46 @@ const populateDB = async () => {
     { id: 61, tag: "Atom", macroTagId: 7 },
     { id: 62, tag: "Visual Studio Code", macroTagId: 7 },
     { id: 63, tag: "Vim", macroTagId: 7 },
-    { id: 64, tag: "otro", macroTagId: 7 },
+    { id: 64, tag: "Otro", macroTagId: 7 },
   ];
 
   const microsRedux = [
-    { id: 65, tag: "reducer", macroTagId: 8 },
-    { id: 66, tag: "store", macroTagId: 8 },
-    { id: 67, tag: "actions", macroTagId: 8 },
-    { id: 68, tag: "react/redux", macroTagId: 8 },
-    { id: 69, tag: "flujo", macroTagId: 8 },
-    { id: 70, tag: "dispatch", macroTagId: 8 },
-    { id: 71, tag: "middleware (ej redux-thunk)", macroTagId: 8 },
-    { id: 72, tag: "global state (estado global)", macroTagId: 8 },
-    { id: 73, tag: "otro", macroTagId: 8 },
+    { id: 65, tag: "Reducer", macroTagId: 8 },
+    { id: 66, tag: "Store", macroTagId: 8 },
+    { id: 67, tag: "Actions", macroTagId: 8 },
+    { id: 68, tag: "React-redux", macroTagId: 8 },
+    { id: 69, tag: "Flujo", macroTagId: 8 },
+    { id: 70, tag: "Dispatch", macroTagId: 8 },
+    { id: 71, tag: "Middleware", macroTagId: 8 },
+    { id: 72, tag: "Estado global", macroTagId: 8 },
+    { id: 73, tag: "Otro", macroTagId: 8 },
   ];
 
   const microsGitHub = [
-    { id: 74, tag: "repositorios", macroTagId: 9 },
-    { id: 75, tag: "cuentas", macroTagId: 9 },
-    { id: 76, tag: "workflow", macroTagId: 9 },
-    { id: 77, tag: "comandos", macroTagId: 9 },
-    { id: 78, tag: "repositorios compartidos", macroTagId: 9 },
-    { id: 79, tag: "ramas", macroTagId: 9 },
-    { id: 80, tag: "commits", macroTagId: 9 },
-    { id: 81, tag: "otro", macroTagId: 9 },
+    { id: 74, tag: "Repositorios", macroTagId: 9 },
+    { id: 75, tag: "Cuentas", macroTagId: 9 },
+    { id: 76, tag: "Workflow", macroTagId: 9 },
+    { id: 77, tag: "Comandos", macroTagId: 9 },
+    { id: 78, tag: "Pull request", macroTagId: 9 },
+    { id: 79, tag: "Ramas", macroTagId: 9 },
+    { id: 80, tag: "Commits", macroTagId: 9 },
+    { id: 81, tag: "Otro", macroTagId: 9 },
   ];
 
   const microsSequelize = [
-    { id: 82, tag: "modelos", macroTagId: 10 },
-    { id: 83, tag: "asociaciones", macroTagId: 10 },
-    { id: 84, tag: "finders", macroTagId: 10 },
-    { id: 85, tag: "instancias", macroTagId: 10 },
-    { id: 86, tag: "metodos", macroTagId: 10 },
-    { id: 87, tag: "getter", macroTagId: 10 },
-    { id: 88, tag: "seters", macroTagId: 10 },
-    { id: 89, tag: "mixins", macroTagId: 10 },
-    { id: 90, tag: "hooks", macroTagId: 10 },
-    { id: 91, tag: "otro", macroTagId: 10 },
+    { id: 82, tag: "Modelos", macroTagId: 10 },
+    { id: 83, tag: "Asociaciones", macroTagId: 10 },
+    { id: 84, tag: "Finders", macroTagId: 10 },
+    { id: 85, tag: "Instancias", macroTagId: 10 },
+    { id: 86, tag: "Metodos", macroTagId: 10 },
+    { id: 87, tag: "Getter", macroTagId: 10 },
+    { id: 88, tag: "Seters", macroTagId: 10 },
+    { id: 89, tag: "Mixins", macroTagId: 10 },
+    { id: 90, tag: "Hooks", macroTagId: 10 },
+    { id: 91, tag: "Otro", macroTagId: 10 },
   ];
 
-  const microsOtro = [{ id: 92, tag: "otro", macroTagId: 11 }];
+  const microsOtro = [{ id: 92, tag: "Otro", macroTagId: 11 }];
 
   try {
     await User.bulkCreate(users);

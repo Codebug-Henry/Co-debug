@@ -1,6 +1,6 @@
 .subAnsBox{
      display: flex;
-     border-radius: 10px;
+     border-radius: 0.5vh;
      flex-direction: column;
      box-shadow: 2px 2px 2px 1px rgba(0,0,0,0.2);
      word-wrap: break-word;
@@ -17,6 +17,7 @@
 .row1{
     overflow-y: scroll;
     margin-bottom: 1.5vh;
+    /* border: 1px solid black; */
 }
 
 .row2{
@@ -25,13 +26,13 @@
 }
 
 .row2 textarea{
-    border-radius: 10px;
+    border-radius: 0.5vh;
     color: rgba(0, 0, 0, 0.832);
     width: 80%;
 }
 
 .button button{
-    border-radius: 10px;
+    border-radius: 0.5vh;
     background-color: lightyellow;
     color: black;
     border: 1.5px solid rgb(127, 127, 127);
@@ -48,18 +49,28 @@
     color: rgb(75, 71, 71);
 }
 
-.button button:disabled {
-    cursor: auto;
-    background-color: white;
-    color: rgb(75, 71, 71);
+.error {
+    margin-left: 0.5vh;
+    font-size: 0.8vw;
+    color: black;
 }
+
+.button button:disabled {
+    background-color: white;
+    color: #c0c0c0;
+    cursor: none;
+    border: black solid 0.5px;
+  }
 
 
 /* COMENTARIO INDIVIDUAL */
 
-.comentario{
+/* .comentario{
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
+    width: 100%;
+    justify-content: space-between;
+    height: max-content;
 }
 
 .comentario img{
@@ -70,27 +81,47 @@
     display: flex;
 }
 
-.comentario div p{
-    font-weight: 600;
+.comentario div span{
+    font-weight: 500;
 }
 
 .comentarioContainer{
     background-color: whitesmoke;
     box-shadow:2px 2px 2px 1px rgba(0,0,0,0.2);
-    border-radius: 10px;
+    border-radius: 0.5vh;
     border: none;
-    padding: 1%;
     width: 40vw;
     margin-top: 1vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 }
 
 .userImage{
   border-radius: 100%;
-  height: 38px;
+  height: 30px;
 }
 
 .texto{
     padding: 1%;
     background-color: beige;
-    font-weight: 500;
+    margin-bottom: 5px;
+    width: 100%;
 }
+
+.primero {
+    margin-left: 4px;
+    margin-top: 3px;
+    height: min-content;
+
+}
+
+.buttons {
+    margin-top: 0.5vh;
+    margin-right: 1vw;
+    gap: 1vw;
+}
+
+.none {
+    display: none;
+} */

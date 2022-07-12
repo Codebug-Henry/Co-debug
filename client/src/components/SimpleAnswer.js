@@ -392,7 +392,7 @@ const SimpleAnswer = ({
                 onClick={handleOpen}
                 className={style.delete}
                 fontSize="medium"
-                color="action"
+                // color="action"
               />
             </Tooltip>
           </span>

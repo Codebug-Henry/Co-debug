@@ -2,10 +2,12 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import style from "./styles/Comentarios.module.css";
 import axios from "axios";
+import SubAnswerCard from "./SubAnswerCard";
 
 const Comentarios = ({ id, cantSubAnswers, subAnswers, setIsModify }) => {
     const dispatch = useDispatch();
     const userInfo = useSelector((state) => state.user);
+    
 
     var styleComentario = {
         marginBottom: cantSubAnswers > 0 ? "1.5vh" : "0vh"
@@ -16,24 +18,25 @@ const Comentarios = ({ id, cantSubAnswers, subAnswers, setIsModify }) => {
     }
 
     const [input, setInput] = useState("");
+    const [errors, setErrors] = useState({});
 
-    const handleDeleteSubAnswer = async (id) => {
-        let deletePack = { id, statusDeleted: true };
-        await axios.put(`/subAnswer`, deletePack);
-        setIsModify(prevState=> !prevState)
-    };
-
-    const handleModifySubAnswer = async (id) => {
-        let modifyPack = { id, text: true };
-        await axios.put(`/subAnswer`, modifyPack);
-        setIsModify(prevState=> !prevState)
-    };
+    function validate(newSubAnswer) {
+        let errors = {};
+        if (!newSubAnswer.text) errors.text = "Se requiere una respuesta";
+        if (newSubAnswer.text.length > 100) errors.text = "La respuesta debe tener un máximo de 100 caracteres";
+        return errors;
+    }
 
     const onChangeInputText = (e) => {
         setInput(e.target.value);
+        setErrors(
+            validate({
+              text: e.target.value,
+            })
+        );
     }
       
-      const handleSubmit = async (e) => {
+    const handleSubmit = async (e) => {
         await axios.post(`/subAnswer`, { sub: userInfo.sub, id, text: input });
         setIsModify(prevState=> !prevState)
         setInput("");
@@ -44,25 +47,16 @@ const Comentarios = ({ id, cantSubAnswers, subAnswers, setIsModify }) => {
         <div className={style.row1} style={styleComentario}>
             {subAnswers.length > 0 &&
                 subAnswers.map((e) => (
-                    <div key={e.id} className={style.comentarioContainer}>
-                        <div className={style.comentario}>
-                            <div>
-                                <img
-                                    src={e.user.picture}
-                                    className={style.userImage}
-                                    referrerPolicy="no-referrer"
-                                    alt="imgUser"
-                                />
-                                <p>
-                                    {e.user.nickname}
-                                </p>       
-                            </div>
-                            <p className={style.texto}>
-                                {e.text}
-                            </p>
-
-                        </div>
-                    </div>
+                    !e.statusDeleted &&
+                    <SubAnswerCard
+                        key={e.id}
+                        sId={e.id}
+                        picture={e.user.picture}
+                        nickname={e.user.nickname}
+                        text={e.text}  
+                        userSub={e.userSub}
+                        setIsModify={setIsModify}
+                    />             
                 ))
             }
         </div>
@@ -80,12 +74,17 @@ const Comentarios = ({ id, cantSubAnswers, subAnswers, setIsModify }) => {
                     type="button"
                     onClick={(e) => handleSubmit(e)}
                     className={style.submit}
-                    disabled={!input}
+                    disabled={!input || errors.text}
                 >
                     Enviar comentario
                 </button>
             </div>
         </div>
+        {errors.text && (
+            <div className={style.error}>
+                <span> {errors.text}</span>
+            </div>
+        )}
       </div>
     );
 };
