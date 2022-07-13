@@ -76,12 +76,12 @@ const Ranking = () => {
           {/* Acá el contenido para logueados */}
           <div className={style.filterbar}>
             <select className={style.select} value={sort} onChange={handleSort}>
-              <option value="points-desc">Teach Points descendente</option>
-              <option value="points-asc">Teach Points ascendente</option>
-              <option value="answ-desc">Respuestas descendente</option>
-              <option value="answ-asc">Respuestas ascendente</option>
-              <option value="quest-desc">Preguntas descendente</option>
-              <option value="quest-asc">Preguntas ascendente</option>
+              <option value="points-desc">Teach Points</option>
+              {/* <option value="points-asc">Teach Points ascendente</option> */}
+              <option value="answ-desc">Respuestas</option>
+              {/* <option value="answ-asc">Respuestas ascendente</option> */}
+              <option value="quest-desc">Preguntas</option>
+              {/* <option value="quest-asc">Preguntas ascendente</option> */}
             </select>
           </div>
           <div className={`container-fluid ${style.container}`}>
@@ -112,7 +112,7 @@ const Ranking = () => {
             { sort.includes('desc') &&
               ranking.map((e) => e.myPosition === 1 ? 
               <div
-              className={`row align-items-start ${style.info1}`}
+              className={userInfo.sub === e.sub ? `row align-items-start ${style.info1sub}` : `row align-items-start ${style.info1}`}
               key={e.sub}
               > 
                 <img
@@ -132,7 +132,7 @@ const Ranking = () => {
             { sort.includes('desc') &&
               ranking.map((e) => e.myPosition === 2 ? 
               <div
-              className={`row align-items-start ${style.info2}`}
+              className={userInfo.sub === e.sub ? `row align-items-start ${style.infos2sub}` : `row align-items-start ${style.info2}`}
               key={e.sub}
               >
               <img
@@ -152,7 +152,7 @@ const Ranking = () => {
             { sort.includes('desc') &&
               ranking.map((e) => e.myPosition === 3 ? 
               <div
-              className={`row align-items-start ${style.info3}`}
+              className={userInfo.sub === e.sub ? `row align-items-start ${style.infos3sub}` : `row align-items-start ${style.info3}`}
               key={e.sub}
               >
               <img
@@ -171,7 +171,7 @@ const Ranking = () => {
             }
             {ranking.map((e) => e.myPosition > 3 ? 
               <div
-                className={`row align-items-start ${style.info}`}
+                className={userInfo.sub === e.sub ? `row align-items-start ${style.infosub}` : `row align-items-start ${style.info}`}
                 key={e.sub}
               >
                 <img
@@ -188,7 +188,7 @@ const Ranking = () => {
               </div> :
               null
             )}
-             { sort.includes('asc') &&
+             {/* { sort.includes('asc') &&
               ranking.map((e) => e.myPosition === 3 ? 
               <div
               className={`row align-items-start ${style.info3}`}
@@ -240,7 +240,6 @@ const Ranking = () => {
                 referrerPolicy="no-referrer"
                 alt={e.name}
               />
-              {/* <img src={oro} className={style.medal} alt="x" width='17px' height='17px' /> */}
               <p className={`col-1 ${style.colunmNro}`}><img src={oro} className={style.medal} alt="1" /></p>
               <p className={`col ${style.colunmNick}`}>{e.nickname}</p>
               <p className={`col ${style.colunmTeach}`}>{e.myTeachPoints}</p>
@@ -248,7 +247,7 @@ const Ranking = () => {
               <p className={`col ${style.colunmPreg}`}>{e.cantQuest}</p>
             </div> :
             null )
-            }
+            } */}
           </div>
           <Paginated page={page} setPage={setPage} />
         </div>

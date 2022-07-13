@@ -44,7 +44,7 @@ html {
   width: 9vh;
   width: 6vh;
   height: 6vh;
-  margin-top: 1vh;
+  /* margin-top: 1vh; */
   margin-left: 2vw;
   /* padding-top: 1vh; */
   padding: 0;
@@ -95,6 +95,8 @@ html {
 }
 
 .filterbar {
+  display: flex;
+  justify-content: center;
   background-color: #ffc107;
   padding: 9px;
 }
@@ -102,10 +104,14 @@ html {
 .select {
   background-color: transparent;
   border: 1px solid transparent;
-  font-size: 16px;
+  font-size: 20px;
   color: #4e4e4e;
   margin-left: 5vh;
   padding: 0.8vh;
+}
+
+.select:focus {
+  outline: none;
 }
 
 .container {
@@ -194,7 +200,62 @@ html {
   border-top: 1px solid grey;
 }
 
+.infosub {
+  margin: 0px;
+  margin-left: 1vw;
+  padding: 0px;
+  border: 2px solid black;
+  border-radius: 0.5vh;
+}
+
+.info1sub {
+  margin: 0px;
+  margin-left: 1vw;
+  padding: 0px;
+  background-color: gold;
+  border-radius: 0.5vh;
+  border: 2px solid black;
+}
+
+.info2sub {
+  margin: 0px;
+  margin-left: 1vw;
+  padding: 0px;
+  background-color: silver;
+  border-radius: 0.5vh;
+  border: 2px solid black;
+}
+
+.info3sub {
+  margin: 0px;
+  margin-left: 1vw;
+  padding: 0px;
+  background-color: #CD7F32;
+  border-radius: 0.5vh;
+  border: 2px solid black;
+}
+
 .info p {
+  margin-top: 1.5vh;
+  margin-left: 1.5vw;
+}
+
+.infosub p {
+  margin-top: 1.5vh;
+  margin-left: 1.5vw;
+}
+
+.info1sub p {
+  margin-top: 1.5vh;
+  margin-left: 1.5vw;
+}
+
+.info2sub p {
+  margin-top: 1.5vh;
+  margin-left: 1.5vw;
+}
+
+.info3sub p {
   margin-top: 1.5vh;
   margin-left: 1.5vw;
 }
