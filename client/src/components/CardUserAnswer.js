@@ -10,6 +10,8 @@ import Tooltip from "@mui/material/Tooltip";
 import CheckIcon from "@mui/icons-material/Check";
 import { putAnswer } from "../redux/actions";
 import TaskAltIcon from "@mui/icons-material/TaskAlt";
+import { confirmAlert } from "react-confirm-alert";
+import "react-confirm-alert/src/react-confirm-alert.css";
 
 const CardUserAnswer = ({
   id,
@@ -46,10 +48,26 @@ const CardUserAnswer = ({
     style1 === true ? setStyle1(false) : setStyle1(true);
   }
 
-  function handleDeleteAnswer(e) {
+  const handlerCheckDelete = (e) => {
+    confirmAlert({
+      title: "Confirma borrar esta respuesta",
+      message: "¿Está seguro de esto?",
+      buttons: [
+        {
+          label: "Sí",
+          onClick: () => handleDeleteAnswer(e),
+        },
+        {
+          label: "No",
+        },
+      ],
+    });
+  };
+
+  async function handleDeleteAnswer(e) {
     e.preventDefault();
     setIsModify(true);
-    dispatch(
+    await dispatch(
       putAnswer({ id: id, statusDeleted: true, sub: user.sub }, setIsModify)
     );
   }
@@ -191,7 +209,7 @@ const CardUserAnswer = ({
                 <DeleteIcon
                   fontSize="medium"
                   className={style.deleteBtn}
-                  onClick={handleDeleteAnswer}
+                  onClick={handlerCheckDelete}
                 />
               </Tooltip>
             </div>
