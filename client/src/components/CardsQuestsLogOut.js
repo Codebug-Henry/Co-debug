@@ -47,6 +47,8 @@ const CardsQuestsLogOut = ({ search }) => {
               teachPoints={e.teachPoints}
               picture={e.user.picture}
               statusValidated={e.statusValidated}
+              macroTags={e.macroTags}
+              microTags={e.microTags}
             />
           ))}
       </div>

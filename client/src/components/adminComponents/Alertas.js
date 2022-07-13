@@ -13,6 +13,19 @@ const Alertas = () => {
   const totalPages = useSelector((state) => state.totalPages);
   const alerts = useSelector((state) => state.alerts);
   const dispatch = useDispatch();
+
+  const dark = useSelector((state)=> state.dark)
+
+  const darkmode = {
+    backgroundColor: dark ? "rgb(18, 18, 18)" : "lightyellow"
+  }
+
+  const darkInfo = {
+    backgroundColor: dark ? "rgb(24, 27, 56)" : null,
+    color: dark ? "rgb(218, 219, 227)" : null
+  }
+
+
   useEffect(() => {
     if (alertsPage > 1 && alertsPage > totalPages) {
       setAlertsPage((prev) => prev - 1);
@@ -21,14 +34,14 @@ const Alertas = () => {
   }, [dispatch, alertsPage, alertsFlag, totalPages]);
 
   return (
-    <div>
+    <div style={darkmode}>
       <div>
         <BotonesAdmin />
       </div>
-      <div className={style.container}>
+      <div className={style.container} >
         <div className={style.alertList}>
           <div className={`container-fluid ${style.container}`}>
-            <div className={`row ${style.info}`}>
+            <div className={`row ${style.info}`} style={darkInfo}>
               <p className={`col`}>Id</p>
               <p className={`col-2`}>Sub creador alerta</p>
               <p className={`col-3`}>Sub pregunta / respuesta</p>

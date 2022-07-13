@@ -23,8 +23,14 @@ const PreguntasDirectas = () => {
     dispatch(getAllMessages(messagePage));
   }, [dispatch, messagePage, messageFlag, totalPages]);
 
+  const dark = useSelector((state)=> state.dark)
+
+  const darkmode = {
+    backgroundColor: dark ? "rgb(18, 18, 18)" : "lightyellow"
+  }
+
   return (
-    <div>
+    <div style={darkmode}>
       <div>
         <BotonesAdmin />
       </div>

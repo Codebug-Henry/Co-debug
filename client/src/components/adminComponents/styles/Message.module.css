@@ -3,7 +3,7 @@
   flex-direction: column;
   background: orange;
   border: 1px solid black;
-  border-radius: 0.5vh;
+  border-radius: 10px;
   margin-top: 3vh;
 }
 
@@ -50,9 +50,13 @@
 .input input {
   width: 70vw;
   border-radius: 0.5vh;
-  font-size: 120%;
+  font-size: 100%;
+  margin-bottom: 0.8vh;
 }
 
 .button {
   border-radius: 0.5vh;
+  margin-top: 0.7vh;
+  background-color: green;
+  color: white;
 }

@@ -12,7 +12,7 @@ const postSubAnswer = async (req, res, next) => {
         const userAnswer = await answer.getUser()
         const question = await answer.getQuestion()
         if (sub !== userAnswer.sub) {
-            let textNotif = `¡${user.name} comentó tu respuesta!`
+            let textNotif = `¡${user.nickname} comentó tu respuesta!`
             await userAnswer.createNotification({ text: textNotif, subCreator: sub, imgCreator: user.picture, questId: question.id })
         }
         const subAnswers = await answer.getSubAnswers()
@@ -22,7 +22,7 @@ const postSubAnswer = async (req, res, next) => {
                 usersSet.add(subAns.userSub)
                 subAns.getUser()
                 .then(userSubAns => {
-                    let textNotif = `${user.name} también comentó en el hilo de comentarios que participas`
+                    let textNotif = `${user.nickname} también comentó en el hilo de comentarios que participas`
                     userSubAns.createNotification({ text: textNotif, subCreator: sub, imgCreator: user.picture, questId: question.id })
                 })
             }

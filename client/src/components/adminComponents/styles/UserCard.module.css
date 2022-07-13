@@ -21,3 +21,8 @@
   position: relative;
   margin-top: 1vh;
 }
+
+.column {
+  display: flex;
+  justify-content: center;
+}

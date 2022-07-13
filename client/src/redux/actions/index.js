@@ -36,7 +36,8 @@ import {
   GET_NOTIFICATIONS,
   SET_MACROTAG,
   SET_MICROTAG,
-  GET_SUBANSWERS
+  GET_SUBANSWERS,
+  TOGGLE_DARKMODE
 } from "./actionTypes";
 
 import * as api from "../api";
@@ -416,3 +417,9 @@ export const getSubAnswers = (id) => async (dispatch) => {
     console.log(error.message);
   }
 };
+
+//DARKMODE
+
+export const toggleDarkmode = () => {
+  return { type: TOGGLE_DARKMODE, payload: null}
+}

@@ -11,3 +11,8 @@
   background-color: rgb(255, 60, 60);
   border-radius: 0.5vh;
 }
+
+.column {
+  display: flex;
+  justify-content: center;
+}
