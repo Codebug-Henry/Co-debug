@@ -12,6 +12,7 @@ const UserAdminCard = ({ sub, nickname, email, setAdminFlag, setInput }) => {
     let modify = { statusAdmin: true };
     await axios.put(`/user/${sub}`, modify);
     setAdminFlag((prevAdminFlag) => !prevAdminFlag);
+    setInput("");
   };
 
   const confirmAdmin = (e) => {

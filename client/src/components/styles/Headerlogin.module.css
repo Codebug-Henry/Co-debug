@@ -38,6 +38,10 @@
   .bell {
     justify-content: center;
   }
+  .col1 {
+    display: flex;
+    justify-content: center;
+  }
 }
 
 .logo {
@@ -51,6 +55,7 @@
   font-size: 100%;
   text-decoration: none;
   color: black;
+  text-align: center;
 }
 @media screen and (max-width: 900px) {
   .linksInt {

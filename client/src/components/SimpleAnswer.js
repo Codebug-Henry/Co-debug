@@ -212,7 +212,7 @@ const SimpleAnswer = ({
   const [toggleHilo, setToggleHilo] = useState(false);
 
   var styleComments = {
-    color: toggleHilo ? "orange" : "black",
+    color: toggleHilo ? "orange" : "rgb(100, 100, 100)",
   };
 
   const handleToggleHilo = () => {
@@ -314,21 +314,25 @@ const SimpleAnswer = ({
           <div className={style.bajoTexto}>
             <div className={style.likes}>
               <span className={style.span2}>
-                <ThumbUpIcon
-                  fontSize="medium"
-                  color={liked ? "primary" : "action"}
-                  onClick={(e) => addLike(e)}
-                  className={style.fav}
-                />
+                <Tooltip title="Like">
+                  <ThumbUpIcon
+                    fontSize="medium"
+                    color={liked ? "primary" : "action"}
+                    onClick={(e) => addLike(e)}
+                    className={style.fav}
+                  />
+                </Tooltip>
               </span>
               <span className={style.spanLikes}>{likes}</span>
               <span className={style.span}>
-                <ThumbDownIcon
-                  fontSize="medium"
-                  color={disliked ? "error" : "action"}
-                  onClick={(e) => removeLike(e)}
-                  className={style.fav}
-                />
+                <Tooltip title="Dislike">
+                  <ThumbDownIcon
+                    fontSize="medium"
+                    color={disliked ? "error" : "action"}
+                    onClick={(e) => removeLike(e)}
+                    className={style.fav}
+                  />
+                </Tooltip>
               </span>
             </div>
             {/* 
@@ -401,6 +405,7 @@ const SimpleAnswer = ({
                     onClick={handleOpen}
                     className={style.delete}
                     fontSize="medium"
+                    color="action"
                   />
                 </Tooltip>
               </span>
