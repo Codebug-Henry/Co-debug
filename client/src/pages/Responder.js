@@ -215,7 +215,7 @@ const Responder = () => {
                     <div className={`col-lg-9 ${style.leftBox}`}>
                       <div className={style.TitleAndExtrasBox}>
                         <div className={style.userPreg}>
-                          <p>{question?.user.name} pregunta:</p>
+                          <p>{question?.user.nickname} pregunta:</p>
                         </div>
                         <div className={style.Title}>
                           <p>{question?.title}</p>
@@ -386,7 +386,7 @@ const Responder = () => {
                           id={e.id}
                           text={e.text}
                           likes={e.likes}
-                          name={e.user.name}
+                          nickname={e.user.nickname}
                           subQ={question.userSub}
                           subR={e.userSub}
                           picture={e.user.picture}
