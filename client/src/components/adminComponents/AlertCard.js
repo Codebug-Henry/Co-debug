@@ -53,20 +53,20 @@ const AlertCard = ({
     setAlertsFlag((prevAlertsFlag) => !prevAlertsFlag);
   };
 
-  const dark = useSelector((state)=> state.dark)
+  const dark = useSelector((state) => state.dark);
 
   const darkmode = {
     backgroundColor: dark ? "rgb(11, 13, 43)" : null,
     color: dark ? "rgb(199, 199, 201)" : null,
-    boxShadow: '0px 0px 2px white',
+    boxShadow: "0px 0px 2px white",
     border: dark ? "none" : null,
-    marginBottom: dark ? "2px" : "2px"
-  }
+    marginBottom: dark ? "0.7vh" : null,
+  };
 
   return (
     <div>
       <div className={`container-fluid ${style.container}`} style={darkmode}>
-        <div className={`row ${style.row}`} >
+        <div className={`row ${style.row}`}>
           <div className={`col ${style.column}`}>
             <p>{id}</p>
           </div>

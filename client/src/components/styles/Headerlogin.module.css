@@ -57,6 +57,11 @@
   color: black;
   text-align: center;
 }
+
+.linksInt:hover {
+  color: #f9bf00;
+}
+
 @media screen and (max-width: 900px) {
   .linksInt {
     font-size: 2vw;
