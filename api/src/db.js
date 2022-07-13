@@ -86,8 +86,10 @@ Answer.belongsTo(User);
 Question.hasMany(Answer);
 Answer.belongsTo(Question);
 
-Question.hasMany(MicroTag);
-Question.hasMany(MacroTag);
+Question.belongsToMany(MicroTag, {through: 'question_microtag'});
+MicroTag.belongsToMany(Question, {through: 'question_microtag'});
+Question.belongsToMany(MacroTag, {through: 'question_macrotag'});
+MacroTag.belongsToMany(Question, {through: 'question_macrotag'});
 
 MacroTag.hasMany(MicroTag);
 MicroTag.belongsTo(MacroTag);

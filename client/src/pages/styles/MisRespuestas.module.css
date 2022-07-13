@@ -14,16 +14,15 @@
     width: 100vw;
 }
 
-
 #all {
     display: flex;
     flex-direction: column;
     justify-content: center;
     width: 100vw;
     margin-left: -0.8%;
-  }
+}
 
-  #explore {
+#explore {
     /* border: solid 1px black; */
     background-color: #f9bf00;
     height: 11vh;
@@ -42,8 +41,8 @@
     font-weight: 350;
 }
   
-
-/* .html{
+/* 
+.html{
     min-height: 100%;
     position: relative;
 } */
