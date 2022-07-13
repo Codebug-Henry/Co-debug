@@ -3,10 +3,12 @@ import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import style from "./styles/BotonesAdmin.module.css";
 import { toggleDarkmode } from "../../redux/actions";
+import { useState } from "react";
 
 export default function BotonesAdmin() {
   const dispatch = useDispatch();
   const dark = useSelector((state) => state.dark);
+  const [selected, setSelected] = useState("");
 
   const toggleDark = () => {
     dispatch(toggleDarkmode());
@@ -28,6 +30,12 @@ export default function BotonesAdmin() {
     color: dark ? "black" : null,
   };
 
+  const buttonStylesAlert = {
+    backgroundColor: selected ? "red" : dark ? "rgb(22, 43, 120)" : null,
+    color: dark ? "white" : "black",
+    border: dark ? "none" : null,
+  };
+
   return (
     <div>
       <div className={`container-fluid ${style.container}`} style={darkmode}>
@@ -43,10 +51,12 @@ export default function BotonesAdmin() {
               </button>
               <Link className={style.link} to="/codenothere/alertas">
                 <button
+                  onClick={(e) => setSelected(e.target.value)}
                   className={`btn btn-warning ${style.buttonAlertas}`}
                   data-toggle="button"
                   type="button"
-                  style={buttonStyles}
+                  style={buttonStylesAlert}
+                  value="alertas"
                 >
                   Alertas
                 </button>

@@ -115,8 +115,9 @@ const CardUserAnswer = ({
               <div className={style.userPreg}>
                 <span>Pregunta de </span>
                 <Link to={`/user/${sub}`} className={style.toUser}>
-                  <span>{nickname}: {title}</span>
+                  <span>{nickname}: </span>
                 </Link>
+                <span>{title} </span>
               </div>
 
               <div className={style.Extras}>

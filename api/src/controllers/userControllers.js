@@ -54,9 +54,11 @@ const putUserInfo = async (req, res, next) => {
   } = req.body;
 
   try {
-    console.log(checkNickname(nickname))
-    if (nickname && await checkNickname(nickname) !== null) throw "El nickname ya existe";
-    if (nickname && await checkNickname(nickname) === null) nameChanges = nameChanges + 1;
+    // if (nickname && await checkNickname(nickname) !== null) throw "El nickname ya existe";
+    if (nickname) {
+      nameChanges = nameChanges + 1;
+      //console.log(await checkNickname(nickname));
+    }
 
     await User.update(
       {

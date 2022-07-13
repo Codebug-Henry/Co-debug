@@ -7,21 +7,21 @@ import Loading from "./Loading.js";
 import style from "./styles/CardsQuestions.module.css";
 import CardNotFound from "./CardNotFound.js";
 
-const CardsQuestsLogOut = ({ search }) => {
+const CardsQuestsLogOut = ({ search, page }) => {
   const dispatch = useDispatch();
   const questions = useSelector((state) => state.questions);
   const sort = useSelector(state => state.sort)
   const validated = useSelector((state) => state.sortValidate);
   const macroTag = useSelector(state => state.filterMacrotag)
   const microTag = useSelector(state => state.filterMicrotag)
-  const [page, setPage] = useState(1);
+  // const [page, setPage] = useState(1);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     if (search.length > 0) {
-      dispatch(getSearchQuestions(search, sort, page, validated, macroTag, microTag, setLoading));
+      dispatch(getSearchQuestions(search, sort, 1, validated, macroTag, microTag, setLoading));
     } else {
-      dispatch(getAllQuestions(sort, page, validated, macroTag, microTag, setLoading));
+      dispatch(getAllQuestions(sort, 1, validated, macroTag, microTag, setLoading));
     }
     // eslint-disable-next-line
   }, [dispatch, page]);
@@ -55,8 +55,8 @@ const CardsQuestsLogOut = ({ search }) => {
           <CardNotFound />
         }
       </div>
-
-      <Paginated page={page} setPage={setPage} />
+{/* 
+      <Paginated page={page} setPage={setPage} /> */}
     </div>
   );
 };

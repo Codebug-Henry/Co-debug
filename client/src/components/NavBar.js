@@ -1,12 +1,11 @@
-import React, {useEffect, useState} from "react";
+import React, {useEffect} from "react";
 import {useDispatch, useSelector} from "react-redux";
 import { getAllQuestions, getAllTags, getSearchQuestions,setMacrotag, setMicrotag, setSort, setSortValidate } from "../redux/actions/index.js";
 import style from "./styles/NavBar.module.css";
 import { TextField, FormControl, Select, MenuItem, InputLabel } from "@mui/material";
 
-const NavBar = ({search, setSearch}) => {
+const NavBar = ({search, setSearch, setPage}) => {
   const dispatch = useDispatch();
-  const [page, setPage] = useState(1);
   const sort = useSelector((state) => state.sort);
   const validated = useSelector((state) => state.sortValidate);
   const tags = useSelector((state) => state.tags);
@@ -17,10 +16,11 @@ const NavBar = ({search, setSearch}) => {
     dispatch(getAllTags());
   }, [dispatch]);
 
+
   const onChangeSearch = (e) => {
     setSearch(e.target.value);
-    setPage(1);
-    dispatch(getSearchQuestions(e.target.value, sort, page, validated, macroTag, microTag));
+    setPage(1) 
+    dispatch(getSearchQuestions(e.target.value, sort, 1, validated, macroTag, microTag));
   };
 
   const handlerRefresh = () => {
@@ -28,46 +28,50 @@ const NavBar = ({search, setSearch}) => {
   };
 
   const handleSort = (e) => {
+    setPage(1) 
     dispatch(setSort(e.target.value));
     if (search.length > 0) {
-      dispatch(getSearchQuestions(search, e.target.value, page, validated, macroTag, microTag));
+      dispatch(getSearchQuestions(search, e.target.value, 1, validated, macroTag, microTag));
     } else {
       dispatch(
-        getAllQuestions(e.target.value, page, validated, macroTag, microTag)
+        getAllQuestions(e.target.value, 1, validated, macroTag, microTag)
       );
     }
   };
 
   const handleSortValidate = (e) => {
+    setPage(1) 
     dispatch(setSortValidate(e.target.value));
     if (search.length > 0) {
       dispatch(
-        getSearchQuestions(search, sort, page, e.target.value, macroTag, microTag));
+        getSearchQuestions(search, sort, 1, e.target.value, macroTag, microTag));
     } else {
-      dispatch(getAllQuestions(sort, page, e.target.value, macroTag, microTag));
+      dispatch(getAllQuestions(sort, 1, e.target.value, macroTag, microTag));
     }
   };
 
   const handleMacroTag = (e) => {
+    setPage(1) 
     dispatch(setMacrotag(e.target.value));
     dispatch(setMicrotag("All"));
     if (search.length > 0) {
       dispatch(
-        getSearchQuestions(search, sort, page, validated, e.target.value, "All")
+        getSearchQuestions(search, sort, 1, validated, e.target.value, "All")
       );
     } else {
-      dispatch(getAllQuestions(sort, page, validated, e.target.value, "All"));
+      dispatch(getAllQuestions(sort, 1, validated, e.target.value, "All"));
     }
   };
 
   const handleMicroTag = (e) => {
+    setPage(1) 
     dispatch(setMicrotag(e.target.value));
     if (search.length > 0) {
       dispatch(
-        getSearchQuestions(search, sort, page, validated, macroTag, e.target.value));
+        getSearchQuestions(search, sort, 1, validated, macroTag, e.target.value));
     } else {
       dispatch(
-        getAllQuestions(sort, page, validated, macroTag, e.target.value)
+        getAllQuestions(sort, 1, validated, macroTag, e.target.value)
       );
     }
   };
