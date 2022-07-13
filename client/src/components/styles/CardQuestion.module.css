@@ -126,7 +126,7 @@
   cursor: pointer;
 }
 
-.answerIt {
+/* .answerIt {
   border: solid 1px black;
   border-radius: 0.5vh;
   background-color: transparent;
@@ -137,7 +137,30 @@
 .answerIt:hover {
   cursor: pointer;
   background-color: rgb(240, 238, 238);
+} */
+
+.answerIt {
+  width: fit-content;
+  height: 30px;
+  background-color: transparent;
+  color: rgb(75, 71, 71);
+  /* background-color: #f9bf00;
+  color: lightyellow; */
+  border: #f9bf00 solid 1.5px;
+  border-radius: 0.5vh;
+  font-weight: 400;
+  font-size: 15px;
+  justify-self: center;
+  align-self: center;
 }
+
+.answerIt:hover {
+  cursor: pointer;
+  background-color: #f9bf00;
+  color: lightyellow; 
+  /* background-color: transparent;
+  color: rgb(75, 71, 71); */
+} 
 
 .box {
   position: absolute;
