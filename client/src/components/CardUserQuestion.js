@@ -135,7 +135,9 @@ const CardUserQuestion = ({
         <div id={style.first}>
           <div id={style.name}>
             <div className={statusValidated ? style.success : style.none}>
-              <TaskAltIcon color="success" fontSize="large" />
+              <Tooltip title="Pregunta Validada">
+                <TaskAltIcon color="success" fontSize="large" />
+              </Tooltip>
             </div>
             <div id={style.photo}>
               <Avatar
@@ -239,7 +241,7 @@ const CardUserQuestion = ({
           <span>Likes: {likes}</span>
         </div>
         <div>
-          <WhatsPop idUser={id} />
+            <WhatsPop idUser={id} />
         </div>
         <div>
           <Tooltip title="Click para ver">

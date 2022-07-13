@@ -13,6 +13,8 @@ const Alertas = () => {
   const totalPages = useSelector((state) => state.totalPages);
   const alerts = useSelector((state) => state.alerts);
   const dispatch = useDispatch();
+  // eslint-disable-next-line
+  const [alertasOn, setAlertasOn] = useState(true);
 
   const dark = useSelector((state)=> state.dark)
 
@@ -36,7 +38,9 @@ const Alertas = () => {
   return (
     <div style={darkmode}>
       <div>
-        <BotonesAdmin />
+        <BotonesAdmin 
+        alertasOn={alertasOn}
+        />
       </div>
       <div className={style.container} >
         <div className={style.alertList}>

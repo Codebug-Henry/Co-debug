@@ -124,7 +124,9 @@ const CardUserAnswer = ({
             />
           </Link>
           <div className={statusValidated ? style.success : style.none}>
-            <TaskAltIcon color="success" fontSize="large" />
+            <Tooltip title="Respuesta Validada">
+              <TaskAltIcon color="success" fontSize="large" />
+            </Tooltip>
           </div>
         </div>
         <div className={`col-lg-11 ${style.leftBox}`}>

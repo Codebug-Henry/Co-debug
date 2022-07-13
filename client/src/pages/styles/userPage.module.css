@@ -91,7 +91,7 @@ html {
 .foto {
     height: 120px;
     width: 120px;
-    border-radius: 0.5vh;
+    border-radius: 100%;
 }
   
 @media screen and (max-width: 600px) {
