@@ -1,22 +1,52 @@
-.fullContainer {
+.fullContainer{
+    display: flex;
+    flex-direction: column;
+    width: 100vw;
+  }
+  
+.container {
     background-color: lightyellow;
 }
 
-.container {
-  background-color: lightyellow;
-  width: 91%
+.col1 {
+    /* border: 1px solid black; */
+    margin: auto;
+    width: 100vw;
 }
 
-#explore {
-    font-weight: 600;
+
+#all {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 100vw;
+    margin-left: -0.8%;
+  }
+
+  #explore {
+    /* border: solid 1px black; */
+    background-color: #f9bf00;
+    height: 11vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.title {
+    /* border: 1px solid black; */
     text-align: center;
-    font-size: 2.5vw;
+    margin: auto;
+    /* top: 10vh; */
+    font-size: 2vw;
+    font-weight: 350;
 }
+  
 
-.html{
+/* .html{
     min-height: 100%;
     position: relative;
-}
+} */
 
 .footer{
     position: absolute;
@@ -31,10 +61,16 @@
     flex-direction: column;
 }
 
-#myQuestions{
+#myQuestions {
+    /* border: solid 1px black; */
+    height: fit-content;
     display: flex;
+    width: 85%;
+    margin: auto;
     flex-direction: column;
-    gap: 15px;
+    gap: 3vh;
+    position: relative;
+    top: 3vh;
 }
 
 .btnCreate {
@@ -50,8 +86,13 @@
     /* background-color: rgb(244, 244, 209); */
 }
 
+.imgQuest {
+    margin-left: 5px;
+    margin-top: -5px;
+  }
+
 @media screen and (max-width: 950px) {
-    #explore {
+    #explore p{
     font-size: 24px;
     }
 }

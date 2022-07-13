@@ -1,15 +1,15 @@
-const {MacroTag,MicroTag} = require("../db")
+const { MacroTag, MicroTag } = require("../db");
 
-const getTags=async (req, res, next)=>{
-    try {
-        let tags=await MacroTag.findAll({
-            include:MicroTag
-        })
-        res.send(tags)
-    } catch (error) {
-        next(error)
-    }
-}
+const getTags = async (req, res, next) => {
+  try {
+    let tags = await MacroTag.findAll({
+      include: MicroTag,
+    });
+    res.send(tags);
+  } catch (error) {
+    next(error);
+  }
+};
 
 // const postTag=async (req, res, next)=>{
 //     const {macro,micros} = req.body
@@ -23,7 +23,7 @@ const getTags=async (req, res, next)=>{
 //     }
 // }
 
-module.exports={
-    getTags,
-    // postTag
-}
+module.exports = {
+  getTags,
+  // postTag
+};

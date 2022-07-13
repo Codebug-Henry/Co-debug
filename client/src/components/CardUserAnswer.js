@@ -22,6 +22,7 @@ const CardUserAnswer = ({
   statusValidated,
   nickname,
   picture,
+  sub
 }) => {
   const user = useSelector((state) => state.user);
   const dispatch = useDispatch();
@@ -36,10 +37,10 @@ const CardUserAnswer = ({
   function validate(newAnswer) {
     let errors = {};
     if (!newAnswer.text) errors.text = "Se requiere una respuesta";
-    if (newAnswer.text.length > 600) errors.text = "La respuesta debe tener un máximo de 600 caracteres";
+    if (newAnswer.text.length > 600)
+      errors.text = "La respuesta debe tener un máximo de 600 caracteres";
     return errors;
   }
-  
 
   function toRender() {
     style1 === true ? setStyle1(false) : setStyle1(true);
@@ -96,12 +97,14 @@ const CardUserAnswer = ({
     >
       <div className={`row ${style.fila}`}>
         <div className={`col-lg-1 ${style.pictureBox}`}>
-          <img
-            className={style.userImage}
-            src={picture}
-            alt={nickname}
-            referrerPolicy="no-referrer"
-          />
+          <Link to={`/user/${sub}`} className={style.toUser}>
+            <img
+              className={style.userImage}
+              src={picture}
+              alt={nickname}
+              referrerPolicy="no-referrer"
+            />
+          </Link>
           <div className={statusValidated ? style.success : style.none}>
             <TaskAltIcon color="success" fontSize="large" />
           </div>
@@ -110,7 +113,10 @@ const CardUserAnswer = ({
           <div className={style.TitleAndExtrasBox}>
             <div className={style.firstRow}>
               <div className={style.userPreg}>
-                <span>{nickname} pregunta:</span>
+                <Link to={`/user/${sub}`} className={style.toUser}>
+                  <span>{nickname} </span>
+                </Link>
+                <span>pregunta:</span>
               </div>
 
               <div className={style.Extras}>
@@ -134,7 +140,6 @@ const CardUserAnswer = ({
             <div className={style1 === true ? style.editFull : style.editFull2}>
               <textarea
                 type="text"
-                // defaultValue={text}
                 value={newAnswer.text}
                 name="text"
                 autoComplete="off"

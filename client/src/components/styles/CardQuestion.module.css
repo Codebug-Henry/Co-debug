@@ -169,6 +169,18 @@
   cursor: pointer;
 }
 
+#tags{
+  /* min-height: 30px; */
+  height: fit-content;
+  width: 92%;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 0.8vh;
+}
+
+.tag {
+  margin-right: 0.8vw;
+}
 
 @media screen and (max-width: 980px) {
   .pictureBox {
@@ -207,6 +219,10 @@
     justify-content: space-between;
     width: 80px;
   }
+
+  #tags span{
+    font-size: smaller;
+  } 
 }
 /* ------------------TooLTipDislike---------------------------- */
 .span {
@@ -400,6 +416,18 @@
   font-weight: 650;
   color: black;
 }
+
+.toUser {
+  text-decoration: none;
+  color: black;
+}
+
+.toUser:hover {
+  cursor: pointer;
+  /* font-weight: 650; */
+  color: black;
+}
+
 
 .span4 {
   position: relative;

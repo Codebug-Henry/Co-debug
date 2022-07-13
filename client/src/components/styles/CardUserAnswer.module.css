@@ -268,11 +268,26 @@
   color: rgb(75, 71, 71);
 }
 
+.toUser {
+  text-decoration: none;
+  color: black;
+}
+
+.toUser:hover {
+  cursor: pointer;
+  /* font-weight: 650; */
+  color: black;
+}
+
 @media screen and (max-width: 980px){
   .pictureBox {
     display: flex;
     flex-direction: row;
     justify-content: space-between
+  }
+  
+  .userImage {
+    width: 35px;
   }
 }
 
@@ -300,11 +315,12 @@
   }
 
   .userImage {
-    width: 5vh;
+    width: 30px;
   }
+
   .TitleAndExtrasBox {
     /* border: solid 1px black; */
-    gap: 5vw;
+    gap: 2vh;
   }
 
   .error {

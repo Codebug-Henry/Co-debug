@@ -26,12 +26,13 @@ import { confirmAlert } from "react-confirm-alert";
 import "react-confirm-alert/src/react-confirm-alert.css";
 import DownloadIcon from "@mui/icons-material/Download";
 import Comentarios from "./Comentarios";
+import { Link } from "react-router-dom";
 
 const SimpleAnswer = ({
   id,
   text,
   likes,
-  name,
+  nickname,
   picture,
   subQ,
   subR,
@@ -194,9 +195,6 @@ const SimpleAnswer = ({
     if (text.includes("(https://res.cloudinary.com")) {
       const separado = text.split("(https://res.cloudinary.com");
       let listo1 = "https://res.cloudinary.com" + separado[1];
-      // const variable = `)=250x`;
-      // const listo2 = listo1.split(`${variable}`);
-      // const listo3 = listo2[0];
       const length = listo1.length;
       listo1 = listo1.slice(0, length - 3);
       setUrl(listo1);
@@ -214,42 +212,37 @@ const SimpleAnswer = ({
   const [toggleHilo, setToggleHilo] = useState(false);
 
   var styleComments = {
-    color: toggleHilo ? "orange" : "black"
-  }
+    color: toggleHilo ? "orange" : "black",
+  };
 
   const handleToggleHilo = () => {
     setToggleHilo(!toggleHilo);
   };
 
-  // const myRef = useRef();
-
-  // const handleClickOutside = (e) => {
-  //   if (toggleHilo && !myRef.current.contains(e.target)) {
-  //     setToggleHilo(false);
-  //   }
-  // };
-
-  // useEffect(() => {
-  //   document.addEventListener("mousedown", handleClickOutside);
-  //   return () => document.removeEventListener("mousedown", handleClickOutside);
-  // });
-
   return (
-    <div className={`container-fluid ${statusValidated ? style.validated : style.total}`}>
+    <div
+      className={`container-fluid ${
+        statusValidated ? style.validated : style.total
+      }`}
+    >
       <div className={`row ${style.row1}`}>
         <div className={`col-lg ${style.simpAnsBox}`}>
           <div className={style.first}>
             <div id={style.name}>
               <div id={style.photo}>
-                <Avatar
-                  alt={name}
-                  src={picture}
-                  id={style.avatar}
-                  referrerPolicy="no-referrer"
-                />
+                <Link to={`/user/${subR}`} className={style.toUser}>
+                  <Avatar
+                    alt={nickname}
+                    src={picture}
+                    id={style.avatar}
+                    referrerPolicy="no-referrer"
+                  />
+                </Link>
               </div>
               <div id={style.user}>
-                <span>{name}</span>
+                <Link to={`/user/${subR}`} className={style.toUser}>
+                  <span>{nickname}</span>
+                </Link>
               </div>
             </div>
             <div className={style.validate}>
@@ -301,7 +294,11 @@ const SimpleAnswer = ({
                 style1 === true || errors.text ? style.editFull : style.editBtn
               }
             >
-              <button type="button" className={style.btnCode} onClick={handleClick}>
+              <button
+                type="button"
+                className={style.btnCode}
+                onClick={handleClick}
+              >
                 {" "}
                 Javascript{" "}
               </button>
@@ -341,27 +338,32 @@ const SimpleAnswer = ({
               </a>
             </div> */}
 
-            <div onClick={handleToggleHilo} className={style.comentarios} style={styleComments}>
-              {
-                toggleHilo
+            <div
+              onClick={handleToggleHilo}
+              className={style.comentarios}
+              style={styleComments}
+            >
+              {toggleHilo
                 ? "Ocultar comentarios"
                 : cantSubAnswers
-                  ? cantSubAnswers === 1
-                    ? `${cantSubAnswers} comentario`
-                    : `${cantSubAnswers} comentarios`
-                  : "Comentar"
-              }
+                ? cantSubAnswers === 1
+                  ? `${cantSubAnswers} comentario`
+                  : `${cantSubAnswers} comentarios`
+                : "Comentar"}
             </div>
 
-
             <div className={imgIncludes ? null : style.notIncludes}>
-              <a className={style.descarga} onClick={(e)=>handleseparar(e)} href={url} download={nameFile} target="_blank" rel="noreferrer">
-              <Tooltip title="Abrir imagen en tamaño completo">
-                <DownloadIcon 
-                  fontSize="medium"
-                  color='action'
-                />
-              </Tooltip>
+              <a
+                className={style.descarga}
+                onClick={(e) => handleseparar(e)}
+                href={url}
+                download={nameFile}
+                target="_blank"
+                rel="noreferrer"
+              >
+                <Tooltip title="Abrir imagen en tamaño completo">
+                  <DownloadIcon fontSize="medium" color="action" />
+                </Tooltip>
               </a>
             </div>
 
@@ -375,7 +377,7 @@ const SimpleAnswer = ({
                   fontSize="medium"
                   className={statusValidated ? style.none : style.moreBtn}
                   onClick={handleEditAnswer}
-                  color='action'
+                  color="action"
                 />
               </Tooltip>
             </div>
@@ -388,7 +390,7 @@ const SimpleAnswer = ({
                   fontSize="medium"
                   className={style.deleteBtn}
                   onClick={handlerCheckDelete}
-                  color='action'
+                  color="action"
                 />
               </Tooltip>
             </div>
@@ -399,7 +401,6 @@ const SimpleAnswer = ({
                     onClick={handleOpen}
                     className={style.delete}
                     fontSize="medium"
-                    // color="action"
                   />
                 </Tooltip>
               </span>
@@ -469,7 +470,10 @@ const SimpleAnswer = ({
                       </RadioGroup>
                     </FormControl>
                   </div>
-                  <button className={style.enviar} onClick={(e) => handleAlert(e)}>
+                  <button
+                    className={style.enviar}
+                    onClick={(e) => handleAlert(e)}
+                  >
                     Enviar
                   </button>
                 </Box>
@@ -487,7 +491,7 @@ const SimpleAnswer = ({
             />
           </div>
         )}
-      </div>  
+      </div>
     </div>
   );
 };

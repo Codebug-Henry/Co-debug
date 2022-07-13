@@ -70,9 +70,6 @@ const Configuracion = () => {
 
   function handlerEditName(e) {
     e.preventDefault();
-    // if (userInfo.nameChanges >= 2) {
-    //   MensajeAlerta({ textAlerta });
-    // } else {
     setNameUser(true);
   }
 

@@ -61,7 +61,8 @@
 }
 
 #tags{
-  height: 30px;
+  /* min-height: 30px; */
+  height: fit-content;
   width: 70%;
   margin-top: 0.5vh;
   font-weight: 500;
@@ -216,6 +217,17 @@
   border: #f9bf00 solid 0.5px;
   background-color: white;
   color: rgb(75, 71, 71);
+}
+
+.toUser {
+  text-decoration: none;
+  color: black;
+}
+
+.toUser:hover {
+  cursor: pointer;
+  /* font-weight: 650; */
+  color: black;
 }
 
 .errorMessage {

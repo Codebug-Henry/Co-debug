@@ -80,19 +80,19 @@ html {
 .error {
   margin-top: 0.5vh;
   font-size: 1.4vh;
-  color: #f9bf00;;
+  color: #f9bf00;
   width: 140%;
   text-align: center;
 }
 
 .errorInputs {
   border-radius: 0.5vh;
-  border: solid 2px #f9bf00;;
+  border: solid 2px #f9bf00;
 }
 
 .errorInputs:hover {
   border-radius: 0.5vh;
-  border: solid 2px #f9bf00;;
+  border: solid 2px #f9bf00;
 }
 
 .col2modify {

@@ -1,0 +1,102 @@
+.container {
+    background-color: lightyellow;
+}
+  
+.cien {
+    width: 100%;
+}
+  
+html {
+    min-height: 100%;
+    position: relative;
+}
+  
+.middleRow {
+    background-color: lightyellow;
+    align-self: center;
+    width: 80%;
+    margin: auto;
+    /* margin-bottom: 2vh; */
+}
+  
+.middleRow2 {
+    height: 50%;
+    width: 85%;
+    margin: auto;
+}
+  
+.footer {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    overflow: hidden;
+}
+  
+.fullContainer {
+    display: flex;
+    flex-direction: column;
+    background-color: lightyellow;
+}
+  
+.row {
+    padding: 2vh;
+    background-color: lightyellow;
+    /* border-bottom: 1px #f9bf00 solid; */
+    border-top: 1px grey solid;
+    /* border-radius: 1vh; */
+}
+  
+.rowTitle {
+    text-align: center;
+    font-size: 5vh;
+    /* margin: auto; */
+    color: rgb(53, 49, 43);
+    border: none;
+}
+  
+.row2 {
+    padding: 2vh;
+    background-color: lightyellow;
+    /* border: 1px black solid; */
+    border-radius: 0.5vh;
+}
+  
+.col11 {
+    padding-top: 5vh;
+}
+  
+.col2 {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-size: large;
+    font-weight: 400;
+}
+  
+  
+.col3 {
+    text-align: center;
+    font-size: 5vh;
+    margin: auto;
+    color: rgb(53, 49, 43);
+}
+  
+.text {
+    font-weight: 600;
+    font-size: large;
+}
+
+.foto {
+    height: 120px;
+    width: 120px;
+    border-radius: 0.5vh;
+}
+  
+@media screen and (max-width: 600px) {
+    .userImage {
+      width: 30px;
+    }
+}
+  

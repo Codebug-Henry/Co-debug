@@ -1,7 +1,6 @@
 import {
   GET_ALL_ALERTS,
   GET_SEARCH_USERS,
-  //GET_ALL_ADMINS,
   GET_ALL_QUESTIONS,
   GET_SEARCH_QUESTIONS,
   GET_ALL_QUESTIONS_SORTED,
@@ -32,8 +31,6 @@ export default function totalPages(state = 0, action) {
       return action.payload.totalPages;
     case GET_USER_QUESTIONS_ORDERER:
       return action.payload.totalPages;
-    // case GET_ALL_ADMINS:
-    // return action.payload.totalPages;
     case GET_SEARCH_USERS:
       return action.payload.totalPages;
     case GET_ALL_ALERTS:

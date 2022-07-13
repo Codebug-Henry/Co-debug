@@ -40,12 +40,13 @@ const CardQuestion = ({
   setIsFavorite,
   statusValidated,
   setIsModify,
+  macroTags,
+  microTags
 }) => {
   const dispatch = useDispatch();
   const userInfo = useSelector((state) => state.user);
   const liked = userInfo.questLiked?.includes(id);
   const disliked = userInfo.questDisliked?.includes(id);
-  // const questions = useSelector((state) => state.questions);
 
   const [flag, setFlag] = useState(true);
 
@@ -138,12 +139,14 @@ const CardQuestion = ({
     >
       <div className={`row ${style.fila}`}>
         <div className={`col-lg-1 ${style.pictureBox}`}>
-          <img
-            className={style.userImage}
-            src={picture}
-            alt="imagen user"
-            referrerPolicy="no-referrer"
-          />
+          <Link to={`/user/${sub}`} className={style.toUser}>
+            <img
+              className={style.userImage}
+              src={picture}
+              alt="imagen user"
+              referrerPolicy="no-referrer"
+            />
+          </Link>
           <div className={statusValidated ? style.success : style.none}>
             <span className={style.span6}>
               <TaskAltIcon color="success" fontSize="large" />
@@ -155,7 +158,10 @@ const CardQuestion = ({
           <div className={style.TitleAndExtrasBox}>
             <div className={style.firstRow}>
               <div className={style.userPreg}>
-                <span>{nickname} pregunta:</span>
+                <Link to={`/user/${sub}`} className={style.toUser}>
+                  <span>{nickname} </span>
+                </Link>
+                <span>pregunta:</span>
               </div>
 
               <div className={style.Extras}>
@@ -169,9 +175,25 @@ const CardQuestion = ({
               <span>{title}</span>
             </div>
           </div>
+
           <div className={style.questionText}>
             <ReactMarkdown children={text} components={{ code: Highlighter }} />
           </div>
+
+          {/* Tags */}
+          <div id={style.tags}>
+            {
+              macroTags?.map((macro) => (
+                <span key={macro.tag} className={style.tag}>{" "}#{macro.tag}{" "}</span>
+              ))
+            }
+            {
+              microTags?.map((micro) => (
+                <span key={micro.tag} className={style.tag}>{" "}#{micro.tag}{" "}</span>
+              ))
+            }
+          </div>
+
           <div className={style.bajoTexto}>
             <div className={style.likes}>
               <span className={style.span2}>
@@ -220,7 +242,6 @@ const CardQuestion = ({
               )}
             </div>
             <div>
-
               <span className={userInfo.sub === sub ? style.none : style.span5}>
                 <BlockIcon
                   onClick={handleOpen}
@@ -319,10 +340,10 @@ const CardQuestion = ({
             <div>
               <Link to={`/responder/${id}`}>
                 <button className={style.answerIt}>
-                  <span className={sub !== userInfo.sub ? null: style.none}>
+                  <span className={sub !== userInfo.sub ? null : style.none}>
                     Responder
                   </span>
-                  <span className={sub === userInfo.sub ? null: style.none}>
+                  <span className={sub === userInfo.sub ? null : style.none}>
                     Ver pregunta
                   </span>
                 </button>
