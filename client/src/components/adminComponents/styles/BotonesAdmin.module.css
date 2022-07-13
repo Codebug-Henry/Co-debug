@@ -9,20 +9,10 @@
   width: 100%;
 }
 
-.buttonAlertas:focus {
-  outline: none;
-  box-shadow: none;
-}
-
 .buttonUsuarios {
   display: flex;
   justify-content: center;
   width: 100%;
-}
-
-.buttonUsuarioss:focus {
-  outline: orange;
-  box-shadow: none;
 }
 
 .buttonAdmin {
