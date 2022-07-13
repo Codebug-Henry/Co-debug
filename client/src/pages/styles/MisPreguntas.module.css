@@ -86,12 +86,15 @@ html {
   #explore {
     font-size: 22px;
   }
+
 }
+
 
 @media screen and (max-width: 500px) {
   #filters {
-    height: 9vh;
+    height: 11vh;
   }
+
 
   #explore {
     display: none;

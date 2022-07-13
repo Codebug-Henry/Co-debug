@@ -24,6 +24,7 @@ import notifications from "./notifications";
 import filterMacrotag from './filterMacrotag'
 import filterMicrotag from "./filterMicrotrag";
 import subAnswers from "./subAnswers";
+import userProfile from "./userProfile"
 import dark from "./dark";
 
 export default combineReducers({
@@ -51,5 +52,6 @@ export default combineReducers({
   filterMacrotag,
   filterMicrotag,
   subAnswers,
+  userProfile,
   dark
 });

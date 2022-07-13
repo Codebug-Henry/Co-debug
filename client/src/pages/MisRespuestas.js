@@ -70,7 +70,7 @@ const MisRespuestas = () => {
               <div className={`col-lg-12 ${style.col1}`}>
                 <div id={style.all}>
                   <div id={style.explore}>
-                    <p> Mis respuestas</p>
+                    <p className={style.title}> Mis respuestas</p>
                   </div>
                   <div id={style.myQuestions}>
                     {answers.length > 0 ? (
