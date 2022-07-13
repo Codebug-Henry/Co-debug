@@ -633,6 +633,14 @@ const checkEmailAdmin = (obj) => {
   return emails.includes(obj.email);
 };
 
+const checkNickname = async (nickname) => {
+  let theNickname = await User.findOne({
+    where: { nickname },
+  })
+  console.log("este es el nn" + theNickname);
+  return theNickname;
+};
+
 const sendEmail = (to, subject, text) => {
   var transporter = nodemailer.createTransport({
     host: "smtp.gmail.com",
@@ -666,4 +674,7 @@ module.exports = {
   questionTags,
   checkEmailAdmin,
   sendEmail,
+  checkNickname,
+  // sortByPointsDesc,
+  // sortByPointsAsc,
 };

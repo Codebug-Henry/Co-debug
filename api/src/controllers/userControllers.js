@@ -3,6 +3,7 @@ const {
   getUserPosition,
   checkEmailAdmin,
   sendEmail,
+  checkNickname,
 } = require("./generalControllers");
 
 const getUserInfo = async (req, res, next) => {
@@ -53,7 +54,9 @@ const putUserInfo = async (req, res, next) => {
   } = req.body;
 
   try {
-    if (nickname) nameChanges = nameChanges + 1;
+    console.log(checkNickname(nickname))
+    if (nickname && await checkNickname(nickname) !== null) throw "El nickname ya existe";
+    if (nickname && await checkNickname(nickname) === null) nameChanges = nameChanges + 1;
 
     await User.update(
       {
