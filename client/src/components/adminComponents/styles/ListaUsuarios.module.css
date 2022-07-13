@@ -28,6 +28,11 @@ html {
   margin-left: 1vw;
 }
 
+.col {
+  display: flex;
+  justify-content: center;
+}
+
 .data {
   margin-right: 1vw;
   margin-left: 1vw;

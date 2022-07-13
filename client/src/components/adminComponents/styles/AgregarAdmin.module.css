@@ -45,6 +45,11 @@ html {
   padding: 0;
 }
 
+.col {
+  display: flex;
+  justify-content: center;
+}
+
 .info p {
   position: relative;
   top: 0.8vh;

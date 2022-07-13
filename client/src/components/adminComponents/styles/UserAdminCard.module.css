@@ -5,6 +5,11 @@
   padding: 0;
 }
 
+.column {
+  display: flex;
+  justify-content: center;
+}
+
 .button {
   margin-top: 1vh;
   color: white;
