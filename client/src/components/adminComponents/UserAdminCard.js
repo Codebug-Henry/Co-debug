@@ -8,6 +8,7 @@ import "react-confirm-alert/src/react-confirm-alert.css";
 const UserAdminCard = ({ sub, nickname, email, setAdminFlag, setInput }) => {
   const addAdmin = async (e) => {
     e.preventDefault();
+    setInput("");
     let modify = { statusAdmin: true };
     await axios.put(`/user/${sub}`, modify);
     setAdminFlag((prevAdminFlag) => !prevAdminFlag);

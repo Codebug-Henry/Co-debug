@@ -103,6 +103,7 @@ const AgregarAdmin = () => {
                 placeholder="Buscar..."
                 aria-label="Search"
                 style={darkSearchbar}
+                value={input}
               />
               <button
                 onClick={() => handlerRefresh()}
