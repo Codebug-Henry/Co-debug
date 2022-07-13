@@ -1,4 +1,11 @@
-const { User, Question, Answer, MacroTag, MicroTag, SubAnswer } = require("../db.js");
+const {
+  User,
+  Question,
+  Answer,
+  MacroTag,
+  MicroTag,
+  SubAnswer,
+} = require("../db.js");
 const { questionTags, paginate } = require("./generalControllers.js");
 
 const deleteUserQuestion = async (req, res, next) => {
@@ -20,28 +27,13 @@ const deleteUserQuestion = async (req, res, next) => {
 };
 
 const putUserQuestion = async (req, res, next) => {
-  let {
-    id,
-    text,
-    title,
-    like,
-    statusDeleted,
-    macroTags,
-    microTags,
-    sub,
-  } = req.body;
+  let { id, text, title, like, statusDeleted, macroTags, microTags, sub } =
+    req.body;
 
   const question = await Question.findByPk(id);
   const userQues = await question.getUser();
   const answersQues = await question.getAnswers();
   const userLogged = await User.findByPk(sub);
-
-  // const newFavourites = [...user.favourites, id]
-
-  //         await user.update({
-  //             favourites: newFavourites,
-  //             cantFav: user.cantFav + 1
-  //         })
 
   let newLikes = question.likes;
 
@@ -74,20 +66,6 @@ const putUserQuestion = async (req, res, next) => {
   }
 
   try {
-    // if(macroTags){
-    //     macroTags=await MacroTag.findAll({where:{id:macroTags}})
-    //     let oldMacroTags=await question.getMacroTags()
-    //     await question.removeMacroTags(oldMacroTags)
-    //     macroTags=await questionTags(macroTags, MacroTag, question)
-    // }
-
-    // if(microTags){
-    //     microTags=await MicroTag.findAll({where:{id:microTags}})
-    //     let oldMicroTags=await question.getMicroTags()
-    //     await question.removeMicroTags(oldMicroTags)
-    //     microTags=await questionTags(microTags, MicroTag, question)
-    // }
-
     if (statusDeleted) {
       let promise = userQues.update({ cantQuest: userQues.cantQuest - 1 });
       let arrPromises1 = answersQues.map((ans) => {
@@ -154,16 +132,16 @@ const getSingleQuestion = async (req, res, next) => {
           where: { statusDeleted: false },
           include: [
             { model: User },
-            { 
+            {
               model: SubAnswer,
               required: false,
-              include: User
-            }
+              include: User,
+            },
           ],
           order: [
             [SubAnswer, "createdAt", "ASC"],
             [SubAnswer, "text", "DESC"],
-          ]
+          ],
         },
         { model: MacroTag },
         { model: MicroTag },

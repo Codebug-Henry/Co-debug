@@ -110,17 +110,6 @@ const getAllQuestions = async (req, res, next) => {
       ],
     });
 
-    // if(macroTag){
-    //     allQuestions=allQuestions.filter(q=>
-    //         q.macroTags.filter(maTag=>maTag.tag===macroTag).length>0
-    //     )
-    // }
-    // if(microTag){
-    //     allQuestions=allQuestions.filter(q=>
-    //         q.microTags.filter(miTag=>miTag.tag===microTag).length>0
-    //     )
-    // }
-
     res.send(paginate(parseInt(limit), parseInt(page), allQuestions));
   } catch (error) {
     next(error);
