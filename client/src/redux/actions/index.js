@@ -4,6 +4,7 @@ import {
   GET_ALL_USERS,
   GET_TOPTEN_RANKING,
   GET_USER_INFO,
+  GET_USER_INFO2,
   DELETE_USER,
   MODIFY_QUESTION,
   DELETE_QUESTION,
@@ -35,7 +36,8 @@ import {
   GET_NOTIFICATIONS,
   SET_MACROTAG,
   SET_MICROTAG,
-  GET_SUBANSWERS
+  GET_SUBANSWERS,
+  TOGGLE_DARKMODE,
 } from "./actionTypes";
 
 import * as api from "../api";
@@ -63,15 +65,15 @@ export const getRanking = (sort, page, setLoading) => async (dispatch) => {
   try {
     const { data } = await api.getRanking(sort, page);
     dispatch({ type: GET_RANKING, payload: data });
-    setLoading && setLoading(false)
+    setLoading && setLoading(false);
   } catch (error) {
     console.log(error.message);
   }
 };
 
 export const cleanRanking = () => {
-  return {type: CLEAN_RANKING}
-}
+  return { type: CLEAN_RANKING };
+};
 
 export const getUserInfo = (sub) => async (dispatch) => {
   try {
@@ -79,6 +81,18 @@ export const getUserInfo = (sub) => async (dispatch) => {
     dispatch({ type: GET_USER_INFO, payload: data });
   } catch (error) {
     console.log(error.message);
+  }
+};
+
+
+export const getUserInfo2 = (sub, setLoad) => async (dispatch) => {
+  try {
+    const { data } = await api.getUserInfo2(sub);
+    dispatch({ type: GET_USER_INFO2, payload: data });
+    setLoad && setLoad(false)
+  } catch (error) {
+    console.log(error.message);
+    setLoad && setLoad(false)
   }
 };
 
@@ -92,6 +106,7 @@ export const putUserInfo = (sub, modify, setLoading, setIsModify) => async (disp
     console.log(error.message);
   }
 };
+
 
 export const deleteUser = (sub, deleted) => async (dispatch) => {
   try {
@@ -149,6 +164,7 @@ export const sendQuestion = (question) => async (dispatch) => {
   }
 };
 
+
 export const getQuestion = (id, page, setLoad, setLoading) => async (dispatch) => {
   try {
     const { data } = await api.getQuestion(id, page);
@@ -157,20 +173,24 @@ export const getQuestion = (id, page, setLoad, setLoading) => async (dispatch) =
     setLoading && setLoading(false)
   } catch (error) {
     console.log(error.message);
+    setLoad && setLoad(false);
+    setLoading && setLoading(false)
   }
 };
 
-export const modifyQuestion = (question, setIsModify, setIsLiked, setFlag) => async (dispatch) => {
-  try {
-    const { data } = await api.modifyQuestion(question);
-    dispatch({ type: MODIFY_QUESTION, payload: data });
-    setIsModify && setIsModify(false);
-    setIsLiked && setIsLiked(prevIsLiked => !prevIsLiked)
-    setFlag && setFlag(true)
-  } catch (error) {
-    console.log(error.message);
-  }
-};
+
+export const modifyQuestion =
+  (question, setIsModify, setIsLiked, setFlag) => async (dispatch) => {
+    try {
+      const { data } = await api.modifyQuestion(question);
+      dispatch({ type: MODIFY_QUESTION, payload: data });
+      setIsModify && setIsModify(false);
+      setIsLiked && setIsLiked((prevIsLiked) => !prevIsLiked);
+      setFlag && setFlag(true);
+    } catch (error) {
+      console.log(error.message);
+    }
+  };
 
 export const deleteQuestion = (question, setIsModify) => async (dispatch) => {
   try {
@@ -183,8 +203,8 @@ export const deleteQuestion = (question, setIsModify) => async (dispatch) => {
 };
 
 export const cleanQuestion = () => {
-  return {type: CLEAN_QUESTION}
-}
+  return { type: CLEAN_QUESTION };
+};
 
 export const addFavourites = async (sub, qId, boolean, setIsLiked) => {
   try {
@@ -199,63 +219,87 @@ export const getFavourites = (sub, page, setLoading) => async (dispatch) => {
   try {
     const { data } = await api.getFavourites(sub, page);
     dispatch({ type: GET_FAVOURITES, payload: data });
-    setLoading && setLoading(false)
+    setLoading && setLoading(false);
   } catch (error) {
     console.log(error.message);
   }
 };
 
 export const cleanFavourites = () => {
-  return {type: CLEAN_FAVOURITES}
-}
-
-export const getAllQuestions = (sort, page, validated, macroTag, microTag, setLoading) => async (dispatch) => {
-  try {
-    const { data } = await api.getAllQuestions(sort, page, validated, macroTag, microTag);
-    dispatch({ type: GET_ALL_QUESTIONS, payload: data });
-    setLoading && setLoading(false)
-  } catch (error) {
-    console.log(error.message);
-  }
+  return { type: CLEAN_FAVOURITES };
 };
 
-export const getSearchQuestions = (search, sort, page, validated, macroTag, microTag, setLoading) => async (dispatch) => {
-  try {
-    const { data } = await api.getSearchQuestions(search, sort, page, validated, macroTag, microTag);
-    dispatch({ type: GET_SEARCH_QUESTIONS, payload: data });
-    setLoading && setLoading(false)
-  } catch (error) {
-    console.log(error.message);
-  }
-};
-
-export const getUserQuestions = (sub, sort, page, setLoading) => async (dispatch) => {
-  try {
-    const { data } = await api.getUserQuestions(sub, sort, page);
-    dispatch({ type: GET_USER_QUESTIONS, payload: data });
-    setLoading && setLoading(false)
-  } catch (error) {
-    console.log(error.message);
-  }
-};
-
-export const getUserQuestionsSearch = (sub, answered, page, search, setLoading) => async (dispatch) => {
+export const getAllQuestions =
+  (sort, page, validated, macroTag, microTag, setLoading) =>
+  async (dispatch) => {
     try {
-      const { data } = await api.getUserQuestionsSearch(sub, answered, page, search);
+      const { data } = await api.getAllQuestions(
+        sort,
+        page,
+        validated,
+        macroTag,
+        microTag
+      );
+      dispatch({ type: GET_ALL_QUESTIONS, payload: data });
+      setLoading && setLoading(false);
+    } catch (error) {
+      console.log(error.message);
+    }
+  };
+
+export const getSearchQuestions =
+  (search, sort, page, validated, macroTag, microTag, setLoading) =>
+  async (dispatch) => {
+    try {
+      const { data } = await api.getSearchQuestions(
+        search,
+        sort,
+        page,
+        validated,
+        macroTag,
+        microTag
+      );
+      dispatch({ type: GET_SEARCH_QUESTIONS, payload: data });
+      setLoading && setLoading(false);
+    } catch (error) {
+      console.log(error.message);
+    }
+  };
+
+export const getUserQuestions =
+  (sub, sort, page, setLoading) => async (dispatch) => {
+    try {
+      const { data } = await api.getUserQuestions(sub, sort, page);
+      dispatch({ type: GET_USER_QUESTIONS, payload: data });
+      setLoading && setLoading(false);
+    } catch (error) {
+      console.log(error.message);
+    }
+  };
+
+export const getUserQuestionsSearch =
+  (sub, answered, page, search, setLoading) => async (dispatch) => {
+    try {
+      const { data } = await api.getUserQuestionsSearch(
+        sub,
+        answered,
+        page,
+        search
+      );
       dispatch({ type: GET_USER_QUESTIONS_ORDERER, payload: data });
-      setLoading && setLoading(false)
+      setLoading && setLoading(false);
     } catch (error) {
       console.log(error.message);
     }
   };
 
 export const cleanUserQuestion = () => {
-  return {type: CLEAN_USER_QUESTIONS}
-}
+  return { type: CLEAN_USER_QUESTIONS };
+};
 
 export const cleanQuestions = () => {
-  return {type: CLEAN_QUESTIONS}
-}
+  return { type: CLEAN_QUESTIONS };
+};
 
 // RUTAS ANSWER
 
@@ -268,21 +312,12 @@ export const sendAnswer = (answer) => async (dispatch) => {
   }
 };
 
-// export const sendQuestion = (question) => async (dispatch) => {
-//     try {
-//         const { data } = await api.sendQuestion(question)
-//         dispatch({ type: GET_QUESTION, payload: data})
-//     } catch (error) {
-//         console.log(error.message)
-//     }
-// }
-
 export const putAnswer = (answer, setIsModify, setFlag) => async (dispatch) => {
   try {
     const { data } = await api.putAnswer(answer);
     dispatch({ type: PUT_ANSWER, payload: data });
-    setIsModify && setIsModify(prevState=> !prevState);
-    setFlag && setFlag(true)
+    setIsModify && setIsModify((prevState) => !prevState);
+    setFlag && setFlag(true);
   } catch (error) {
     console.log(error.message);
   }
@@ -301,16 +336,15 @@ export const getUserAnswers = (sub, page, setLoading) => async (dispatch) => {
   try {
     const { data } = await api.getUserAnswers(sub, page);
     dispatch({ type: GET_USER_ANSWERS, payload: data });
-    setLoading && setLoading(false)
+    setLoading && setLoading(false);
   } catch (error) {
     console.log(error.message);
   }
 };
 
 export const cleanAnswers = () => {
-  return {type: CLEAN_ANSWERS}
-}
-
+  return { type: CLEAN_ANSWERS };
+};
 
 // RUTAS Message/Messages
 export const postMessage = (message) => async (dispatch) => {
@@ -335,7 +369,7 @@ export const putMessage = (message, setMessageFlag) => async (dispatch) => {
   try {
     const { data } = await api.putMessage(message);
     dispatch({ type: PUT_MESSAGE, payload: data });
-    setMessageFlag && setMessageFlag(prevFlag => !prevFlag);
+    setMessageFlag && setMessageFlag((prevFlag) => !prevFlag);
   } catch (error) {
     console.log(error.message);
   }
@@ -366,20 +400,20 @@ export const getAllAlerts = (page) => async (dispatch) => {
 // SORT
 
 export const setSort = (sort) => {
-  return { type: SET_SORT, payload: sort}
-}
+  return { type: SET_SORT, payload: sort };
+};
 
 export const setSortValidate = (sort) => {
-  return { type: SET_SORTVALIDATE, payload: sort}
-}
+  return { type: SET_SORTVALIDATE, payload: sort };
+};
 
 export const setMacrotag = (macroTag) => {
-  return { type: SET_MACROTAG, payload: macroTag}
-}
+  return { type: SET_MACROTAG, payload: macroTag };
+};
 
 export const setMicrotag = (microTag) => {
-  return { type: SET_MICROTAG, payload: microTag}
-}
+  return { type: SET_MICROTAG, payload: microTag };
+};
 
 // NOTIFICATIONS
 
@@ -401,4 +435,10 @@ export const getSubAnswers = (id) => async (dispatch) => {
   } catch (error) {
     console.log(error.message);
   }
+};
+
+//DARKMODE
+
+export const toggleDarkmode = () => {
+  return { type: TOGGLE_DARKMODE, payload: null };
 };

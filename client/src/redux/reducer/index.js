@@ -24,6 +24,8 @@ import notifications from "./notifications";
 import filterMacrotag from './filterMacrotag'
 import filterMicrotag from "./filterMicrotrag";
 import subAnswers from "./subAnswers";
+import userProfile from "./userProfile"
+import dark from "./dark";
 
 export default combineReducers({
   message,
@@ -49,5 +51,7 @@ export default combineReducers({
   notifications,
   filterMacrotag,
   filterMicrotag,
-  subAnswers
+  subAnswers,
+  userProfile,
+  dark
 });

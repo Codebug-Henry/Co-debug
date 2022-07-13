@@ -11,6 +11,27 @@ const ListaUsuarios = () => {
   const usersNoAdmin = useSelector((state) => state.usersNoAdmin);
   const totalPages = useSelector((state) => state.totalPages);
   const dispatch = useDispatch();
+  const dark = useSelector((state) => state.dark);
+
+  const darkmode = {
+    backgroundColor: dark ? "rgb(18, 18, 18)" : "lightyellow",
+  };
+
+  const darkSearchbar = {
+    border: dark ? "none" : null,
+    backgroundColor: dark ? "rgb(218, 219, 227)" : null,
+  };
+
+  const darkRefresh = {
+    border: dark ? "none" : null,
+    backgroundColor: dark ? "lightyellow" : null,
+    color: dark ? "black" : null,
+  };
+
+  const darkInfo = {
+    backgroundColor: dark ? "rgb(24, 27, 56)" : null,
+    color: dark ? "rgb(218, 219, 227)" : null,
+  };
 
   const [usersFlag, setUsersFlag] = useState(true);
   const [usersPage, setUsersPage] = useState(1);
@@ -38,7 +59,7 @@ const ListaUsuarios = () => {
       <div>
         <BotonesAdmin />
       </div>
-      <div>
+      <div style={darkmode}>
         <div>
           <form className="d-flex">
             <input
@@ -47,29 +68,31 @@ const ListaUsuarios = () => {
               type="search"
               placeholder="Buscar..."
               aria-label="Search"
+              style={darkSearchbar}
             />
             <button
               onClick={() => handlerRefresh()}
               className={`btn btn-outline-dark ${style.button}`}
               type="submit"
+              style={darkRefresh}
             >
               Refresh
             </button>
           </form>
         </div>
         <div className={`container-fluid ${style.container}`}>
-          <div className={`row ${style.info}`}>
-            <p className={`col-2`}>Nickname</p>
-            <p className={`col-3`}>Sub id</p>
-            <p className={`col-2`}>Email</p>
-            <p className={`col-1`}>Origen</p>
-            <p className={`col`}>Preg</p>
-            <p className={`col`}>Res</p>
-            <p className={`col`}>Points</p>
-            <p className={`col`}>Ban</p>
-            <p className={`col`}>Banear</p>
+          <div className={`row ${style.info}`} style={darkInfo}>
+            <p className={`col-2 ${style.col}`}>Nickname</p>
+            <p className={`col-3 ${style.col}`}>Sub id</p>
+            <p className={`col-2 ${style.col}`}>Email</p>
+            <p className={`col-1 ${style.col}`}>Origen</p>
+            <p className={`col ${style.col}`}>Preg</p>
+            <p className={`col ${style.col}`}>Res</p>
+            <p className={`col ${style.col}`}>Points</p>
+            <p className={`col ${style.col}`}>Ban</p>
+            <p className={`col ${style.col}`}>Banear</p>
           </div>
-          {usersNoAdmin ? (
+          {usersNoAdmin.length > 0 ? (
             <>
               {usersNoAdmin?.map((e) => {
                 return (
@@ -91,7 +114,7 @@ const ListaUsuarios = () => {
               })}
             </>
           ) : (
-            <div>No se encontraron usuarios</div>
+            <div className={style.notFound}>No se encontraron usuarios</div>
           )}
         </div>
         <div>

@@ -1,21 +1,14 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import style from "./styles/CardNotFound.module.css";
-// import FavoriteIcon from "@mui/icons-material/Favorite";
-// import BlockIcon from "@mui/icons-material/Block";
-// import ThumbUpIcon from "@mui/icons-material/ThumbUp";
-// import ThumbDownIcon from "@mui/icons-material/ThumbDown";
-import AccountBoxIcon from '@mui/icons-material/AccountBox';
+import AccountBoxIcon from "@mui/icons-material/AccountBox";
 
 const CardNotFound = () => {
-
   return (
-    <div
-      className={`container-fluid ${style.total}`}>
+    <div className={`container-fluid ${style.total}`}>
       <div className={`row ${style.fila}`}>
         <div className={`col-lg-1 ${style.pictureBox}`}>
-          <AccountBoxIcon
-            fontSize="large" />
+          <AccountBoxIcon fontSize="large" />
         </div>
         <div className={`col-lg-11 ${style.leftBox}`}>
           <div className={style.TitleAndExtrasBox}>

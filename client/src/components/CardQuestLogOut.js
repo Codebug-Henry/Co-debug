@@ -20,7 +20,9 @@ const CardQuestLogOut = ({
   title,
   text,
   teachPoints,
-  statusValidated
+  statusValidated,
+  macroTags,
+  microTags
 }) => {
 
   const { loginWithRedirect } = useAuth0();
@@ -59,12 +61,28 @@ const CardQuestLogOut = ({
               <span>{title}</span>
             </div>
           </div>
+
           <div className={style.questionText}>
             <ReactMarkdown
               children={text}
               components={{ code: Highlighter }}
             />
           </div>
+
+          {/* Tags */}
+          <div id={style.tags}>
+            {
+              macroTags?.map((macro) => (
+                <span key={macro.tag} className={style.tag}>{" "}#{macro.tag}{" "}</span>
+              ))
+            }
+            {
+              microTags?.map((micro) => (
+                <span key={micro.tag} className={style.tag}>{" "}#{micro.tag}{" "}</span>
+              ))
+            }
+          </div>
+
           <div className={style.bajoTexto}>
             <div className={style.likes}>
               <ThumbUpIcon fontSize='medium' color="action" onClick={() => loginWithRedirect()} className={style.fav}/>

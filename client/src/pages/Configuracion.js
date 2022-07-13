@@ -70,26 +70,27 @@ const Configuracion = () => {
 
   function handlerEditName(e) {
     e.preventDefault();
-    // if (userInfo.nameChanges >= 2) {
-    //   MensajeAlerta({ textAlerta });
-    // } else {
     setNameUser(true);
   }
 
-  const confirm = (e) => {
-    confirmAlert({
-      title: "¿Confirma cambiar el Nickname?",
-      message: "Solo podrá hacerlo 2 veces",
-      buttons: [
-        {
-          label: "Sí",
-          onClick: (e) => handlerConfirmEditNickname(e),
-        },
-        {
-          label: "No",
-        },
-      ],
-    });
+  const editNickname = (e) => {
+    if (userInfo.nameChanges <= 1) {
+      confirmAlert({
+        title: "¿Confirma cambiar el Nickname?",
+        message: "Solo podrá hacerlo 2 veces",
+        buttons: [
+          {
+            label: "Sí",
+            onClick: () => handlerEditNickname(e),
+          },
+          {
+            label: "No",
+          },
+        ],
+      });
+    } else {
+      MensajeAlerta({ textAlerta });
+    }
   };
 
   function handlerEditNickname(e) {
@@ -299,10 +300,7 @@ const Configuracion = () => {
                           : style.col2modify
                       }
                     >
-                      <button
-                        className={style.btnCode}
-                        onClick={handlerEditNickname}
-                      >
+                      <button className={style.btnCode} onClick={editNickname}>
                         Modificar
                       </button>
                     </div>
@@ -322,7 +320,7 @@ const Configuracion = () => {
                           fontSize="large"
                           color="primary"
                           cursor="pointer"
-                          onClick={confirm}
+                          onClick={handlerConfirmEditNickname}
                         />
                       </div>
                     </div>

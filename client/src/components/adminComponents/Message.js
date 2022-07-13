@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import style from "./styles/Message.module.css";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { putMessage } from "../../redux/actions";
 import MensajeAlerta from "../MensajeAlerta";
 
@@ -25,8 +25,23 @@ const Message = ({ title, text, email, sub, nickname, id, setMessageFlag }) => {
     setInput(e.target.value);
   };
 
+  const dark = useSelector((state)=> state.dark)
+
+  const darkmode = {
+    backgroundColor: dark ? "rgb(11, 13, 43)" : null,
+    color: dark ? "rgb(199, 199, 201)" : null,
+    boxShadow: '0px 0px 2px white',
+    border: dark ? "none" : null,
+    marginBottom: dark ? "2px" : "2px"
+  }
+
+  const darkLetter = {
+    color: dark ? "black" : null,
+  }
+
+
   return (
-    <div className={style.container}>
+    <div className={style.container} style={darkmode}>
       <div className={style.info}>
         <div className={style.title}>
           <p>{title}</p>
@@ -35,7 +50,7 @@ const Message = ({ title, text, email, sub, nickname, id, setMessageFlag }) => {
         <p>{email}</p>
         <p>{sub}</p>
       </div>
-      <div className={style.text}>
+      <div className={style.text} style={darkLetter}>
         <p>{text}</p>
       </div>
       <div className={style.form}>

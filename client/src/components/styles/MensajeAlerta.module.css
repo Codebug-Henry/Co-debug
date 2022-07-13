@@ -1,7 +1,7 @@
 .custom {
   background: lightyellow;
-  width: 150%;
-  max-width: 80vw;
+  width: 100%;
+  max-width: 75vw;
   height: 30%;
   text-align: center;
   color: black;
@@ -19,9 +19,9 @@
   background-color: orange;
   width: 33%;
   height: 3.5rem;
-  margin: 1rem;
   font-size: 2rem;
   color: black;
   border: 1px solid black;
   border-radius: 1vh;
+  margin-top: 4vh;
 }

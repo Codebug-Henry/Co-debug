@@ -28,7 +28,7 @@ const CardUserQuestion = ({
   setIsModify,
   statusValidated,
   macroTags,
-  microTags
+  microTags,
 }) => {
   const dispatch = useDispatch();
   const questions = useSelector((state) => state.userQuestions);
@@ -73,6 +73,7 @@ const CardUserQuestion = ({
   }
 
   function handleDeleteQuestion(e) {
+    e.preventDefault();
     setIsModify(true);
     dispatch(deleteQuestion({ id: id, statusDeleted: true }, setIsModify));
     setCantFirstLast([questions.length, questions[1], questions[4]]);
@@ -219,16 +220,18 @@ const CardUserQuestion = ({
           </div>
         </div>
         <div id={style.tags}>
-          {
-            macroTags.map((macro)=> (
-              <span key={macro.tag} className={style.tag}>{" "}#{macro.tag}{" "}</span>
-            ))
-          }
-          {
-            microTags.map((micro)=> (
-              <span key={micro.tag} className={style.tag}>{" "}#{micro.tag}{" "}</span>
-            ))
-          }
+          {macroTags?.map((macro) => (
+            <span key={macro.tag} className={style.tag}>
+              {" "}
+              #{macro.tag}{" "}
+            </span>
+          ))}
+          {microTags?.map((micro) => (
+            <span key={micro.tag} className={style.tag}>
+              {" "}
+              #{micro.tag}{" "}
+            </span>
+          ))}
         </div>
       </div>
 

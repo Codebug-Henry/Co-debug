@@ -1,22 +1,21 @@
-import React, { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import React, {useEffect, useState} from "react";
+import {useDispatch, useSelector} from "react-redux";
 import style from "./styles/MisPreguntas.module.css";
 import Footer from "../components/Footer.js";
 import CardUserQuestion from "../components/CardUserQuestion";
 import FilterBar from "../components/FilterBar";
 import SearchBar from "../components/SearchBar";
 import { getUserQuestions, getUserQuestionsSearch, getNotifications} from "../redux/actions";
-import FilterAltIcon from "@mui/icons-material/FilterAlt";
 import Paginated from "../components/Paginated";
 import Loading from "../components/Loading";
 import NotVerified from "../components/NotVerified";
 import BannedUser from "../components/BannedUser";
 import quest from "../images/question.png";
-import { useNavigate } from "react-router-dom";
-import { useAuth0 } from "@auth0/auth0-react";
+import {useNavigate} from "react-router-dom";
+import {useAuth0} from "@auth0/auth0-react";
 
 const MisPreguntas = () => {
-  const { user } = useAuth0();
+  const {user} = useAuth0();
   const userInfo = useSelector((state) => state.user);
   const questions = useSelector((state) => state.userQuestions);
   const dispatch = useDispatch();
@@ -43,7 +42,7 @@ const MisPreguntas = () => {
   }, [dispatch, sort, cantFirstLast, page, userInfo.sub, totalPages, input, isModify]);
 
   useEffect(() => {
-      dispatch(getNotifications(user.sub));
+    dispatch(getNotifications(user.sub));
   }, [dispatch, user]);
 
   function redirectQuest() {
@@ -80,18 +79,15 @@ const MisPreguntas = () => {
         <div className={style.fullContainer}>
           <div className={`container-fluid ${style.container}`}>
             <div className={`row ${style.middleRow}`}>
+              <div id={style.filters}>
+                <SearchBar setInput={setInput} setPage={setPage} className={style.search} />
+                <div id={style.explore}>
+                  <p> Mis preguntas</p>
+                </div>
+                <FilterBar sort={sort} setSort={setSort} setPage={setPage} />
+              </div>
               <div className={`col-lg-12  ${style.col1}`}>
                 <div id={style.all}>
-                  <div id={style.filters}>
-                    {/* <div className={style.filterIcon}>
-                      <FilterAltIcon fontSize="medium" />
-                    </div> */}
-                    <SearchBar setInput={setInput} setPage={setPage} />
-                    <FilterBar sort={sort} setSort={setSort} setPage={setPage}/>
-                  </div>
-                  <div id={style.explore}>
-                    <p> Mis preguntas</p>
-                  </div>
                   <div id={style.myQuestions}>
                     {questions.length > 0 ? (
                       questions.map((q) => {
@@ -115,27 +111,14 @@ const MisPreguntas = () => {
                       })
                     ) : (
                       <div>
-                        <button
-                          className={style.btnCreate}
-                          onClick={redirectQuest}
-                        >
+                        <button className={style.btnCreate} onClick={redirectQuest}>
                           Crea una nueva pregunta
-                          <img
-                            src={quest}
-                            alt=""
-                            className={style.imgQuest}
-                            height="20px"
-                            width="20px"
-                          />
+                          <img src={quest} alt="" className={style.imgQuest} height="20px" width="20px"/>
                         </button>
                       </div>
                     )}
                   </div>
-                  <Paginated
-                    page={page}
-                    setPage={setPage}
-                    totalPages={totalPages}
-                  />
+                  <Paginated page={page} setPage={setPage} totalPages={totalPages}/>
                 </div>
               </div>
             </div>

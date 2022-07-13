@@ -3,6 +3,7 @@ import style from "./styles/UserCard.module.css";
 import axios from "axios";
 import { confirmAlert } from "react-confirm-alert";
 import "react-confirm-alert/src/react-confirm-alert.css";
+import { useSelector } from "react-redux";
 
 const UserCard = ({
   cantAns,
@@ -26,7 +27,7 @@ const UserCard = ({
   const confirmBanUser = (e) => {
     confirmAlert({
       title: "Cambiar statusBan del usuario",
-      message: "¿Está seguro de esto?",
+      message: "¿Está seguro?",
       buttons: [
         {
           label: "Sí",
@@ -39,8 +40,18 @@ const UserCard = ({
     });
   };
 
+  const dark = useSelector((state) => state.dark);
+
+  const darkmode = {
+    backgroundColor: dark ? "rgb(11, 13, 43)" : null,
+    color: dark ? "rgb(199, 199, 201)" : null,
+    boxShadow: "0px 0px 2px white",
+    border: dark ? "none" : null,
+    marginBottom: dark ? "2px" : "2px",
+  };
+
   return (
-    <div className={`container-fluid ${style.container}`}>
+    <div className={`container-fluid ${style.container}`} style={darkmode}>
       <div className={`row ${style.row}`}>
         <div className={`col-2 ${style.column}`}>
           <p>{nickname}</p>
