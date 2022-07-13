@@ -91,6 +91,7 @@ const Favoritas = () => {
                           <CardQuestion
                             cantAnswers={f.cantAnswers}
                             nickname={f.user.nickname}
+                            sub={f.user.sub}
                             key={f.id}
                             id={f.id}
                             likes={f.likes}

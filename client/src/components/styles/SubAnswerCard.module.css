@@ -113,3 +113,14 @@
 .hidden {
     visibility: hidden;
 }
+
+.toUser {
+    text-decoration: none;
+    color: black;
+}
+  
+.toUser:hover {
+    cursor: pointer;
+    /* font-weight: 650; */
+    color: black;
+}
