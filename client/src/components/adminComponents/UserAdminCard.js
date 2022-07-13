@@ -38,7 +38,7 @@ const UserAdminCard = ({ sub, nickname, email, setAdminFlag, setInput }) => {
     color: dark ? "rgb(199, 199, 201)" : null,
     boxShadow: "0px 0px 2px white",
     border: dark ? "none" : null,
-    marginBottom: dark ? "2px" : "2px",
+    marginBottom: dark ? "0.9vh" : null,
   };
 
   return (
