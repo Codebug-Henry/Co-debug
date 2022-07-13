@@ -10,7 +10,7 @@ const PagoListo = () => {
           <span>Gracias!</span>
         </div>
         <div className={style.texto}>
-          <span>Tu donación fue enviada con suceso</span>
+          <span>Tu donación fue enviada con éxito</span>
         </div>
 
         <div className={style.footer}>

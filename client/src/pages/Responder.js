@@ -26,6 +26,7 @@ import "react-confirm-alert/src/react-confirm-alert.css";
 import NotVerified from "../components/NotVerified";
 import BannedUser from "../components/BannedUser";
 import NotFound from "./NotFound";
+import { Link } from "react-router-dom";
 
 const Responder = () => {
   const { isAuthenticated, loginWithRedirect, user } = useAuth0();
@@ -125,8 +126,7 @@ const Responder = () => {
     if (question.text.includes("(https://res.cloudinary.com")) {
       const separado = question.text.split("(https://res.cloudinary.com");
       let listo1 = "https://res.cloudinary.com" + separado[1];
-      const length = listo1.length;
-      listo1 = listo1.slice(0, length - 3);
+      listo1 = listo1.split(')')[0];
       setUrl(listo1);
 
       const segundo = listo1.split("/");
@@ -209,18 +209,23 @@ const Responder = () => {
                     {/* <div className={`col-lg ${style.col1}`}> */}
 
                     <div className={`col-lg-1 ${style.pictureBox}`}>
-                      <img
-                        className={style.userImage}
-                        src={question?.user.picture}
-                        alt="imagen de usuario"
-                        referrerPolicy="no-referrer"
-                      />
+                      <Link to={`/user/${question.user.sub}`} className={style.toUser}>
+                        <img
+                          className={style.userImage}
+                          src={question?.user.picture}
+                          alt="imagen de usuario"
+                          referrerPolicy="no-referrer"
+                        />
+                      </Link>
                     </div>
 
                     <div className={`col-lg-9 ${style.leftBox}`}>
                       <div className={style.TitleAndExtrasBox}>
                         <div className={style.userPreg}>
-                          <p>{question?.user.nickname} pregunta:</p>
+                          <Link to={`/user/${question.user.sub}`} className={style.toUser}>
+                            <span>{question?.user.nickname} </span>
+                          </Link>
+                          <span>pregunta:</span>
                         </div>
                         <div className={style.Title}>
                           <p>{question?.title}</p>

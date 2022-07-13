@@ -1,7 +1,8 @@
 import React from "react";
 import style from "./styles/TopTenCard.module.css";
+import { Link } from "react-router-dom";
 
-const TopTenCard = ({ nickname, position, points }) => {
+const TopTenCard = ({ nickname, position, points, sub }) => {
   return (
     <div className={`container-fluid ${style.container}`}>
       <div className={`row ${style.row}`}>
@@ -9,7 +10,9 @@ const TopTenCard = ({ nickname, position, points }) => {
           <p>{position}</p>
         </div>
         <div className={`col-7 ${style.column}`}>
-          <p>{nickname}</p>
+          <Link to={`/user/${sub}`} className={style.toUser}>
+            <p>{nickname}</p>
+          </Link>
         </div>
         <div className={`col-3  ${style.column}`}>
           <p>{points}</p>

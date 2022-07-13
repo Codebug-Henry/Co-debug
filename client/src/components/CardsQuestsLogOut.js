@@ -5,6 +5,7 @@ import CardQuestLogOut from "./CardQuestLogOut.js";
 import Paginated from "./Paginated.js";
 import Loading from "./Loading.js";
 import style from "./styles/CardsQuestions.module.css";
+import CardNotFound from "./CardNotFound.js";
 
 const CardsQuestsLogOut = ({ search }) => {
   const dispatch = useDispatch();
@@ -34,7 +35,7 @@ const CardsQuestsLogOut = ({ search }) => {
   } else return (
     <div className={style.questBox}>
       <div className={style.boxQuestions}>
-        {questions &&
+        {questions.length > 0 ?
           questions.map((e) => (
             <CardQuestLogOut
               cantAnswers={e.cantAnswers}
@@ -50,7 +51,9 @@ const CardsQuestsLogOut = ({ search }) => {
               macroTags={e.macroTags}
               microTags={e.microTags}
             />
-          ))}
+          )):
+          <CardNotFound />
+        }
       </div>
 
       <Paginated page={page} setPage={setPage} />

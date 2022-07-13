@@ -114,14 +114,13 @@ const Ranking = () => {
               <div
               className={`row align-items-start ${style.info1}`}
               key={e.sub}
-              >
-              <img
-                src={e.picture}
-                className={`col-1 ${style.userImage}`}
-                referrerPolicy="no-referrer"
-                alt={e.name}
-              />
-              {/* <img src={oro} className={style.medal} alt="x" width='17px' height='17px' /> */}
+              > 
+                <img
+                  src={e.picture}
+                  className={`col-1 ${style.userImage}`}
+                  referrerPolicy="no-referrer"
+                  alt={e.name}
+                />
               <p className={`col-1 ${style.colunmNro}`}><img src={oro} className={style.medal} alt="1" /></p>
               <p className={`col ${style.colunmNick}`}>{e.nickname}</p>
               <p className={`col ${style.colunmTeach}`}>{e.myTeachPoints}</p>

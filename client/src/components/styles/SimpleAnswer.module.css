@@ -136,8 +136,9 @@
   width: 100%;
   padding-left: 0.5vw;
   height: 3vh;
-  padding-top: 1.5vh;
-  margin-bottom: 1vh;
+  /* padding-top: 1.5vh; */
+  margin-top: 1.5vh;
+  margin-bottom: 0.5vh;
   /* border: 1px solid black */
 }
 
@@ -258,6 +259,17 @@
   display: none;
 }
 
+.toUser {
+  text-decoration: none;
+  color: black;
+}
+
+.toUser:hover {
+  cursor: pointer;
+  /* font-weight: 650; */
+  color: black;
+}
+
 @media screen and (max-width: 740px) {
   #photo{
     height: 30px;
@@ -349,7 +361,6 @@
 .comentarios{
   font-weight: 500;
   cursor: pointer;
-  /* color: orange; */
 }
 
 .comentarios:hover{

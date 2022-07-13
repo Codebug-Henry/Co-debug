@@ -242,3 +242,15 @@ html {
   width: 30px;
   height: 30px;
 }
+
+.toUser {
+  display: flex;
+  text-decoration: none;
+  color: black;
+}
+
+.toUser:hover {
+  cursor: pointer;
+  /* font-weight: 650; */
+  color: black;
+}

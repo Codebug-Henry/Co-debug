@@ -5,12 +5,13 @@ import { useSelector } from "react-redux";
 import { confirmAlert } from "react-confirm-alert";
 import "react-confirm-alert/src/react-confirm-alert.css";
 
-const UserAdminCard = ({ sub, nickname, email, setAdminFlag }) => {
+const UserAdminCard = ({ sub, nickname, email, setAdminFlag, setInput }) => {
   const addAdmin = async (e) => {
     e.preventDefault();
     let modify = { statusAdmin: true };
     await axios.put(`/user/${sub}`, modify);
     setAdminFlag((prevAdminFlag) => !prevAdminFlag);
+    setInput("");
   };
 
   const confirmAdmin = (e) => {

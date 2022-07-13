@@ -35,6 +35,7 @@ const TopTenRanking = () => {
                     position= {<img src={oro} className={style.medal} alt="1" />}
                     nickname={e.nickname}
                     points={e.myTeachPoints}
+                    sub={e.sub}
                   />
                 </div>
              : null )}
@@ -49,6 +50,7 @@ const TopTenRanking = () => {
                     position= {<img src={plata} className={style.medal} alt="2" />}
                     nickname={e.nickname}
                     points={e.myTeachPoints}
+                    sub={e.sub}
                   />
                 </div>
              : null )}
@@ -63,6 +65,7 @@ const TopTenRanking = () => {
                     position= {<img src={bronce} className={style.medal} alt="3" />}
                     nickname={e.nickname}
                     points={e.myTeachPoints}
+                    sub={e.sub}
                   />
                 </div>
              : null )}
@@ -78,6 +81,7 @@ const TopTenRanking = () => {
                     position={e.myPosition}
                     nickname={e.nickname}
                     points={e.myTeachPoints}
+                    sub={e.sub}
                   />
                 </div> 
               : null

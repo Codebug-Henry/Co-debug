@@ -22,6 +22,7 @@ const CardUserAnswer = ({
   statusValidated,
   nickname,
   picture,
+  sub
 }) => {
   const user = useSelector((state) => state.user);
   const dispatch = useDispatch();
@@ -96,12 +97,14 @@ const CardUserAnswer = ({
     >
       <div className={`row ${style.fila}`}>
         <div className={`col-lg-1 ${style.pictureBox}`}>
-          <img
-            className={style.userImage}
-            src={picture}
-            alt={nickname}
-            referrerPolicy="no-referrer"
-          />
+          <Link to={`/user/${sub}`} className={style.toUser}>
+            <img
+              className={style.userImage}
+              src={picture}
+              alt={nickname}
+              referrerPolicy="no-referrer"
+            />
+          </Link>
           <div className={statusValidated ? style.success : style.none}>
             <TaskAltIcon color="success" fontSize="large" />
           </div>
@@ -110,7 +113,10 @@ const CardUserAnswer = ({
           <div className={style.TitleAndExtrasBox}>
             <div className={style.firstRow}>
               <div className={style.userPreg}>
-                <span>{nickname} pregunta:</span>
+                <span>Pregunta de </span>
+                <Link to={`/user/${sub}`} className={style.toUser}>
+                  <span>{nickname}: {title}</span>
+                </Link>
               </div>
 
               <div className={style.Extras}>
@@ -118,7 +124,7 @@ const CardUserAnswer = ({
               </div>
             </div>
             <div className={style.Title}>
-              <span>{title}</span>
+              <span>Tu respuesta:</span>
             </div>
           </div>
 

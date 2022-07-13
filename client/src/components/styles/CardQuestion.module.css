@@ -209,6 +209,7 @@
 
   .userImage {
     width: 5vh;
+    height: 5vh;
   }
   .TitleAndExtrasBox {
     gap: 5vw;
@@ -416,6 +417,18 @@
   font-weight: 650;
   color: black;
 }
+
+.toUser {
+  text-decoration: none;
+  color: black;
+}
+
+.toUser:hover {
+  cursor: pointer;
+  /* font-weight: 650; */
+  color: black;
+}
+
 
 .span4 {
   position: relative;

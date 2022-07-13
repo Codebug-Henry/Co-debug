@@ -139,12 +139,14 @@ const CardQuestion = ({
     >
       <div className={`row ${style.fila}`}>
         <div className={`col-lg-1 ${style.pictureBox}`}>
-          <img
-            className={style.userImage}
-            src={picture}
-            alt="imagen user"
-            referrerPolicy="no-referrer"
-          />
+          <Link to={`/user/${sub}`} className={style.toUser}>
+            <img
+              className={style.userImage}
+              src={picture}
+              alt="imagen user"
+              referrerPolicy="no-referrer"
+            />
+          </Link>
           <div className={statusValidated ? style.success : style.none}>
             <span className={style.span6}>
               <TaskAltIcon color="success" fontSize="large" />
@@ -156,7 +158,10 @@ const CardQuestion = ({
           <div className={style.TitleAndExtrasBox}>
             <div className={style.firstRow}>
               <div className={style.userPreg}>
-                <span>{nickname} pregunta:</span>
+                <Link to={`/user/${sub}`} className={style.toUser}>
+                  <span>{nickname} </span>
+                </Link>
+                <span>pregunta:</span>
               </div>
 
               <div className={style.Extras}>
