@@ -1,7 +1,7 @@
 .container {
   border: 1px black solid;
   border-radius: 0.5vh;
-  margin-bottom: 0.2vh;
+  margin-bottom: 0.3vh;
   padding: 0;
 }
 
@@ -15,4 +15,5 @@
   color: white;
   background-color: green;
   border-radius: 0.5vh;
+  margin-bottom: 1vh;
 }

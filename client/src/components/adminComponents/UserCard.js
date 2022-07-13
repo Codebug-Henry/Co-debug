@@ -47,7 +47,7 @@ const UserCard = ({
     color: dark ? "rgb(199, 199, 201)" : null,
     boxShadow: "0px 0px 2px white",
     border: dark ? "none" : null,
-    marginBottom: dark ? "2px" : "2px",
+    marginBottom: dark ? "0.7vh" : null,
   };
 
   return (
@@ -82,7 +82,6 @@ const UserCard = ({
             className={
               statusBanned === false ? style.unbanButton : style.banButton
             }
-            // onClick={(e) => banUser(e)}
             onClick={(e) => confirmBanUser(e)}
           >
             Ban
