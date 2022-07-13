@@ -135,7 +135,7 @@ const Landing = () => {
             </div>
             <div className={`row ${style.middleRow}`}>
               <div className={`col-lg-8 ${style.colOutLeft}`}>
-                <CardsQuestsLogOut search={search} page={page} setPage={setPage}/>
+                <CardsQuestsLogOut search={search} page={page} />
                 <Paginated page={page} setPage={setPage} />
               </div>
               <div className={`col-lg-4 ${style.colOutRigth}`}>

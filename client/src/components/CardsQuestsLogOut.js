@@ -18,9 +18,9 @@ const CardsQuestsLogOut = ({ search, page }) => {
 
   useEffect(() => {
     if (search.length > 0) {
-      dispatch(getSearchQuestions(search, sort, 1, validated, macroTag, microTag, setLoading));
+      dispatch(getSearchQuestions(search, sort, page, validated, macroTag, microTag, setLoading));
     } else {
-      dispatch(getAllQuestions(sort, 1, validated, macroTag, microTag, setLoading));
+      dispatch(getAllQuestions(sort, page, validated, macroTag, microTag, setLoading));
     }
     // eslint-disable-next-line
   }, [dispatch, page]);
