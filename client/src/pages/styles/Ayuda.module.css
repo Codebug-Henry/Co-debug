@@ -77,3 +77,11 @@ html {
   width: 100%;
   overflow: hidden;
 }
+
+.rightRow {
+  /* width: 99%; */
+  margin: 0.6%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

@@ -40,13 +40,13 @@
     justify-content: center;
     text-align: center;
     font-weight: 600;
-    opacity: 150%;
+    /* opacity: 150%; */
     color: red;
 
 }
 
 .cajaParrafo{
-    opacity: 80%;
+    /* opacity: 80%; */
     background-color: rgb(255, 255, 255);
     border-radius: 0.5vh;
     width: 40%;

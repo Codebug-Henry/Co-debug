@@ -12,7 +12,6 @@ import { getNotifications } from "../redux/actions";
 import oro from '../images/oro.png';
 import plata from '../images/plata.png';
 import bronce from '../images/bronce.png';
-import { Link } from "react-router-dom";
 
 const Ranking = () => {
   const dispatch = useDispatch();
