@@ -77,7 +77,7 @@ const Responder = () => {
     dispatch(sendAnswer({ sub: userInfo.sub, id: questionId, text: input }));
     setLoad(true);
     setInput("");
-    if (!permiteIMG) setPermiteIMG(true)
+    if (!permiteIMG) setPermiteIMG(true);
     MensajeAlerta({ textAlerta });
   };
 
@@ -143,6 +143,7 @@ const Responder = () => {
   // Editar y eliminar pregunta
 
   function handleDeleteQuestion(e) {
+    e.preventDefault();
     setIsModify(true);
     dispatch(
       deleteQuestion({ id: question.id, statusDeleted: true }, setIsModify)
@@ -157,7 +158,7 @@ const Responder = () => {
       buttons: [
         {
           label: "Sí",
-          onClick: (e) => handleDeleteQuestion(e),
+          onClick: () => handleDeleteQuestion(e),
         },
         {
           label: "No",
