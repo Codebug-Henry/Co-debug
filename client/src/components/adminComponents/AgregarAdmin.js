@@ -136,6 +136,7 @@ const AgregarAdmin = () => {
                             nickname={user.nickname}
                             email={user.email}
                             setAdminFlag={setAdminFlag}
+                            setInput={setInput}
                           />
                         </div>
                       );
