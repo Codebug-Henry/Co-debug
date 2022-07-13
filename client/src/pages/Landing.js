@@ -13,6 +13,7 @@ import NavBar from "../components/NavBar";
 import { useNavigate } from "react-router-dom";
 import NotVerified from "../components/NotVerified";
 import BannedUser from "../components/BannedUser";
+import Paginated from "../components/Paginated";
 
 const Landing = () => {
   const dispatch = useDispatch();
@@ -21,6 +22,7 @@ const Landing = () => {
   const [isFavorite, setIsFavorite] = useState(false);
   const [search, setSearch] = useState("");
   const [easter, setEaster] = useState(0);
+  const [page, setPage] = useState(1);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -72,7 +74,7 @@ const Landing = () => {
             {/* Acá el contenido para logueados */}
             <div className={`container-fluid ${style.container}`}>
               <div className={`row ${style.navBar}`}>
-                <NavBar search={search} setSearch={setSearch} />
+                <NavBar search={search} setSearch={setSearch} setPage={setPage} />
               </div>
               <div className={`row ${style.middleRow}`}>
                 <div className={`col-lg-8 ${style.col1}`}>
@@ -80,7 +82,9 @@ const Landing = () => {
                     isFavorite={isFavorite}
                     setIsFavorite={setIsFavorite}
                     search={search}
+                    page={page}
                   />
+                  <Paginated page={page} setPage={setPage} />
                 </div>
                 <div className={`col-lg-4 ${style.col2}`}>
                   <div className={`container-fluid${style.rigthContainer}`}>
@@ -127,11 +131,12 @@ const Landing = () => {
           {/* Acá el contenido para no logueados */}
           <div className={`container-fluid ${style.container}`}>
             <div className={`row ${style.navBar}`}>
-              <NavBar search={search} setSearch={setSearch} />
+              <NavBar search={search} setSearch={setSearch} setPage={setPage} />
             </div>
             <div className={`row ${style.middleRow}`}>
               <div className={`col-lg-8 ${style.colOutLeft}`}>
-                <CardsQuestsLogOut search={search} />
+                <CardsQuestsLogOut search={search} page={page} setPage={setPage}/>
+                <Paginated page={page} setPage={setPage} />
               </div>
               <div className={`col-lg-4 ${style.colOutRigth}`}>
                 <div className={`container-fluid${style.rigthContainer}`}>

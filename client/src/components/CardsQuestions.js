@@ -2,19 +2,17 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getAllQuestions, getSearchQuestions } from "../redux/actions/index.js";
 import CardQuestion from "./CardQuestion.js";
-import Paginated from "./Paginated";
 import Loading from "./Loading";
 import style from "./styles/CardsQuestions.module.css";
 import CardNotFound from "./CardNotFound.js";
 
-const CardsQuestions = ({ isFavorite, setIsFavorite, search }) => {
+const CardsQuestions = ({ isFavorite, setIsFavorite, search, page}) => {
   const dispatch = useDispatch();
   const questions = useSelector((state) => state.questions);
   const sort = useSelector((state) => state.sort);
   const validated = useSelector((state) => state.sortValidate);
   const macroTag = useSelector(state => state.filterMacrotag)
   const microTag = useSelector(state => state.filterMicrotag)
-  const [page, setPage] = useState(1);
   const [loading, setLoading] = useState(true);
   const [isModify, setIsModify] = useState(false);
 
@@ -62,7 +60,7 @@ const CardsQuestions = ({ isFavorite, setIsFavorite, search }) => {
           }
         </div>
 
-        <Paginated page={page} setPage={setPage} />
+        {/* <Paginated page={page} setPage={setPage} /> */}
       </div>
     );
 };
