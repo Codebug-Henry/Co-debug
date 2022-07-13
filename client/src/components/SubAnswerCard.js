@@ -5,6 +5,7 @@ import axios from "axios";
 import EditIcon from "@mui/icons-material/Edit";
 import DeleteIcon from "@mui/icons-material/Delete";
 import CheckIcon from "@mui/icons-material/Check";
+import { Link } from "react-router-dom";
 
 
 const SubAnswerCard = ({ sId, picture, nickname, text, userSub, setIsModify }) => {
@@ -65,15 +66,19 @@ const SubAnswerCard = ({ sId, picture, nickname, text, userSub, setIsModify }) =
         <div className={style.comentarioContainer}>
             <div className={style.comentario}>
                 <div className={style.primero}>
-                    <img
-                        src={picture}
-                        className={style.userImage}
-                        referrerPolicy="no-referrer"
-                        alt="imgUser"
-                    />
-                    <span>
-                        {nickname}
-                    </span>       
+                    <Link to={`/user/${userSub}`} className={style.toUser}>
+                        <img
+                            src={picture}
+                            className={style.userImage}
+                            referrerPolicy="no-referrer"
+                            alt="imgUser"
+                        />
+                    </Link>
+                    <Link to={`/user/${userSub}`} className={style.toUser}>
+                        <span>
+                            {nickname}
+                        </span>    
+                    </Link>   
                 </div>
                 <div className={style.buttons}>
                     <div className={userInfo.sub === userSub ? null : style.hidden}>

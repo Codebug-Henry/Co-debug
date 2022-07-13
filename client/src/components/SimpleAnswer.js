@@ -26,6 +26,7 @@ import { confirmAlert } from "react-confirm-alert";
 import "react-confirm-alert/src/react-confirm-alert.css";
 import DownloadIcon from "@mui/icons-material/Download";
 import Comentarios from "./Comentarios";
+import { Link } from "react-router-dom";
 
 const SimpleAnswer = ({
   id,
@@ -241,15 +242,19 @@ const SimpleAnswer = ({
           <div className={style.first}>
             <div id={style.name}>
               <div id={style.photo}>
-                <Avatar
-                  alt={nickname}
-                  src={picture}
-                  id={style.avatar}
-                  referrerPolicy="no-referrer"
-                />
+                <Link to={`/user/${subR}`} className={style.toUser}>
+                  <Avatar
+                    alt={nickname}
+                    src={picture}
+                    id={style.avatar}
+                    referrerPolicy="no-referrer"
+                  />
+                </Link>
               </div>
               <div id={style.user}>
-                <span>{nickname}</span>
+                <Link to={`/user/${subR}`} className={style.toUser}>
+                  <span>{nickname}</span>
+                </Link>
               </div>
             </div>
             <div className={style.validate}>

@@ -88,6 +88,7 @@ const MisRespuestas = () => {
                             statusValidated={r.statusValidated}
                             nickname={r.question.user.nickname}
                             picture={r.question.user.picture}
+                            sub={r.question.user.sub}
                           />
                         );
                       })
