@@ -2,6 +2,7 @@ export const SEND_USER_INFO = "SEND_USER_INFO";
 export const GET_TOPTEN_RANKING = "GET_TOPTEN_RANKING";
 export const GET_RANKING = "GET_RANKING";
 export const GET_USER_INFO = "GET_USER_INFO";
+export const GET_USER_INFO2 = "GET_USER_INFO2";
 export const MODIFY_USER = "MODIFY_USER";
 export const DELETE_USER = "DELETE_USER";
 export const SEND_QUESTION = "SEND_QUESTION";

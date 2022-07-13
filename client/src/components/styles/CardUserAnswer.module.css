@@ -274,6 +274,10 @@
     flex-direction: row;
     justify-content: space-between
   }
+  
+  .userImage {
+    width: 35px;
+  }
 }
 
 @media screen and (max-width: 670px){
@@ -300,11 +304,12 @@
   }
 
   .userImage {
-    width: 5vh;
+    width: 30px;
   }
+
   .TitleAndExtrasBox {
     /* border: solid 1px black; */
-    gap: 5vw;
+    gap: 2vh;
   }
 
   .error {

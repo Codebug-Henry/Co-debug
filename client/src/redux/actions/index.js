@@ -4,6 +4,7 @@ import {
   GET_ALL_USERS,
   GET_TOPTEN_RANKING,
   GET_USER_INFO,
+  GET_USER_INFO2,
   DELETE_USER,
   MODIFY_QUESTION,
   DELETE_QUESTION,
@@ -82,6 +83,17 @@ export const getUserInfo = (sub) => async (dispatch) => {
   }
 };
 
+export const getUserInfo2 = (sub, setLoad) => async (dispatch) => {
+  try {
+    const { data } = await api.getUserInfo2(sub);
+    dispatch({ type: GET_USER_INFO2, payload: data });
+    setLoad && setLoad(false)
+  } catch (error) {
+    console.log(error.message);
+    setLoad && setLoad(false)
+  }
+};
+
 export const putUserInfo = (sub, modify, setLoading, setIsModify) => async (dispatch) => {
   try {
     await api.putUserInfo(sub, modify);
@@ -157,6 +169,8 @@ export const getQuestion = (id, page, setLoad, setLoading) => async (dispatch) =
     setLoading && setLoading(false)
   } catch (error) {
     console.log(error.message);
+    setLoad && setLoad(false);
+    setLoading && setLoading(false)
   }
 };
 

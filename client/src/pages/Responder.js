@@ -25,6 +25,7 @@ import { confirmAlert } from "react-confirm-alert";
 import "react-confirm-alert/src/react-confirm-alert.css";
 import NotVerified from "../components/NotVerified";
 import BannedUser from "../components/BannedUser";
+import NotFound from "./NotFound";
 
 const Responder = () => {
   const { isAuthenticated, loginWithRedirect, user } = useAuth0();
@@ -72,9 +73,10 @@ const Responder = () => {
     return error;
   };
   const textAlerta = "Respuesta enviada";
-  const handleSubmit = (e) => {
+  
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    dispatch(sendAnswer({ sub: userInfo.sub, id: questionId, text: input }));
+    await dispatch(sendAnswer({ sub: userInfo.sub, id: questionId, text: input }));
     setLoad(true);
     setInput("");
     if (!permiteIMG) setPermiteIMG(true)
@@ -142,9 +144,9 @@ const Responder = () => {
 
   // Editar y eliminar pregunta
 
-  function handleDeleteQuestion(e) {
+  async function handleDeleteQuestion(e) {
     setIsModify(true);
-    dispatch(
+    await dispatch(
       deleteQuestion({ id: question.id, statusDeleted: true }, setIsModify)
     );
     navigate("/");
@@ -190,6 +192,9 @@ const Responder = () => {
         </div>
       </>
     );
+  } 
+  if (!question.id) {
+    return <NotFound />
   } else
     return (
       <div className={style.fullContainer}>
