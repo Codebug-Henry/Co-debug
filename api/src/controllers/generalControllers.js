@@ -33,13 +33,10 @@ const getUserPosition = async (sub) => {
 };
 
 async function questionTags(tagArr, tagType, question) {
-  // await newQuestion.addMicroTags(microTags);
-  // microTags = await newQuestion.getMicroTags();
-
   let tagPromises = tagArr.map((tag) => tagType.findOne({ where: { tag } }));
-  //[{"tag":"React","id":1}]
+
   let tags = await Promise.all(tagPromises);
-  //[tags de]
+
   if (tagType === MacroTag) {
     await question.addMacroTags(tags);
     tags = await question.getMacroTags();
@@ -662,16 +659,6 @@ const sendEmail = (to, subject, text) => {
   });
 };
 
-// Callback function for descending sort
-// const sortByPointsDesc = (a, b) => {
-//     return b.teachPoints - a.teachPoints
-// }
-
-// Callback function for ascending sort
-// const sortByPointsAsc = (a, b) => {
-//     return a.teachPoints - b.teachPoints
-// }
-
 module.exports = {
   populateDB,
   paginate,
@@ -679,6 +666,4 @@ module.exports = {
   questionTags,
   checkEmailAdmin,
   sendEmail,
-  // sortByPointsDesc,
-  // sortByPointsAsc,
 };

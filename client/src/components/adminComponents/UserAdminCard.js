@@ -5,13 +5,7 @@ import { useSelector } from "react-redux";
 import { confirmAlert } from "react-confirm-alert";
 import "react-confirm-alert/src/react-confirm-alert.css";
 
-const UserAdminCard = ({
-  sub,
-  nickname,
-  email,
-  setAdminFlag,
-  //setNoAdminFlag,
-}) => {
+const UserAdminCard = ({ sub, nickname, email, setAdminFlag }) => {
   const addAdmin = async (e) => {
     e.preventDefault();
     let modify = { statusAdmin: true };

@@ -1,12 +1,11 @@
-const { DataTypes } = require('sequelize');
+const { DataTypes } = require("sequelize");
 
 module.exports = (sequelize) => {
-
-  sequelize.define('user', {
+  sequelize.define("user", {
     sub: {
       type: DataTypes.TEXT,
-      allowNull:false,
-      primaryKey:true
+      allowNull: false,
+      primaryKey: true,
     },
     name: {
       type: DataTypes.STRING,
@@ -14,78 +13,70 @@ module.exports = (sequelize) => {
     },
     nameChanges: {
       type: DataTypes.INTEGER,
-      defaultValue:0
+      defaultValue: 0,
     },
     nickname: {
       type: DataTypes.STRING,
       allowNull: false,
     },
-    // password: {
-    //   type: DataTypes.STRING,
-    // },
     email: {
       type: DataTypes.STRING,
       allowNull: false,
     },
-    // email_verified: {
-    //   type: DataTypes.BOOLEAN,
-    //   allowNull: false,
-    // },
     locale: {
       type: DataTypes.STRING,
-      // allowNull: false,
     },
     myTeachPoints: {
       type: DataTypes.INTEGER,
-      defaultValue:0
+      defaultValue: 0,
     },
     picture: {
       type: DataTypes.TEXT,
-      defaultValue:"imgvacia"
+      defaultValue: "imgvacia",
     },
     statusAdmin: {
       type: DataTypes.BOOLEAN,
-      defaultValue:false
+      defaultValue: false,
     },
     statusBanned: {
       type: DataTypes.BOOLEAN,
-      defaultValue:false
+      defaultValue: false,
     },
     statusDeleted: {
       type: DataTypes.BOOLEAN,
-      defaultValue:false
+      defaultValue: false,
     },
     favourites: {
       type: DataTypes.ARRAY(DataTypes.INTEGER),
-      defaultValue:[]
+      defaultValue: [],
     },
     cantFav: {
       type: DataTypes.INTEGER,
-      defaultValue:0
+      defaultValue: 0,
     },
     cantQuest: {
       type: DataTypes.INTEGER,
-      defaultValue:0
+      defaultValue: 0,
     },
     cantAns: {
       type: DataTypes.INTEGER,
-      defaultValue:0
+      defaultValue: 0,
     },
     questLiked: {
       type: DataTypes.ARRAY(DataTypes.INTEGER),
-      defaultValue: []
+      defaultValue: [],
     },
     questDisliked: {
       type: DataTypes.ARRAY(DataTypes.INTEGER),
-      defaultValue: []
+      defaultValue: [],
     },
     ansLiked: {
       type: DataTypes.ARRAY(DataTypes.INTEGER),
-      defaultValue: []
+      defaultValue: [],
     },
     ansDisliked: {
       type: DataTypes.ARRAY(DataTypes.INTEGER),
-      defaultValue: []
-    }
+      defaultValue: [],
+    },
   });
 };

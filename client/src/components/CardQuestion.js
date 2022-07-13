@@ -45,7 +45,6 @@ const CardQuestion = ({
   const userInfo = useSelector((state) => state.user);
   const liked = userInfo.questLiked?.includes(id);
   const disliked = userInfo.questDisliked?.includes(id);
-  // const questions = useSelector((state) => state.questions);
 
   const [flag, setFlag] = useState(true);
 
@@ -220,7 +219,6 @@ const CardQuestion = ({
               )}
             </div>
             <div>
-
               <span className={userInfo.sub === sub ? style.none : style.span5}>
                 <BlockIcon
                   onClick={handleOpen}
@@ -319,10 +317,10 @@ const CardQuestion = ({
             <div>
               <Link to={`/responder/${id}`}>
                 <button className={style.answerIt}>
-                  <span className={sub !== userInfo.sub ? null: style.none}>
+                  <span className={sub !== userInfo.sub ? null : style.none}>
                     Responder
                   </span>
-                  <span className={sub === userInfo.sub ? null: style.none}>
+                  <span className={sub === userInfo.sub ? null : style.none}>
                     Ver pregunta
                   </span>
                 </button>
