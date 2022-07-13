@@ -54,6 +54,8 @@ const CardsQuestions = ({ isFavorite, setIsFavorite, search }) => {
                 setIsFavorite={setIsFavorite}
                 statusValidated={e.statusValidated}
                 setIsModify={setIsModify}
+                macroTags={e.macroTags}
+                microTags={e.microTags}
               />
             )) :
             <CardNotFound />

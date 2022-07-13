@@ -31,7 +31,7 @@ const SimpleAnswer = ({
   id,
   text,
   likes,
-  name,
+  nickname,
   picture,
   subQ,
   subR,
@@ -230,14 +230,14 @@ const SimpleAnswer = ({
             <div id={style.name}>
               <div id={style.photo}>
                 <Avatar
-                  alt={name}
+                  alt={nickname}
                   src={picture}
                   id={style.avatar}
                   referrerPolicy="no-referrer"
                 />
               </div>
               <div id={style.user}>
-                <span>{name}</span>
+                <span>{nickname}</span>
               </div>
             </div>
             <div className={style.validate}>

@@ -24,6 +24,7 @@ import Alertas from "./components/adminComponents/Alertas.js";
 import ListaUsuarios from "./components/adminComponents/ListaUsuarios.js";
 import AgregarAdmin from "./components/adminComponents/AgregarAdmin.js";
 import PreguntasDirectas from "./components/adminComponents/PreguntasDirectas.js";
+import UserPage from "./pages/UserPage"
 
 function App() {
   return (
@@ -51,6 +52,7 @@ function App() {
         <Route path={"/codenothere/usuarios"} element={<ListaUsuarios />} />
         <Route path={"/codenothere/admins"} element={<AgregarAdmin />} />
         <Route path={"/codenothere/mensajes"} element={<PreguntasDirectas />} />
+        <Route path={"/user/:sub"} element={<UserPage />} />
       </Routes>
     </>
   );

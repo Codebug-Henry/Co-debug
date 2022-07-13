@@ -25,6 +25,7 @@ import { confirmAlert } from "react-confirm-alert";
 import "react-confirm-alert/src/react-confirm-alert.css";
 import NotVerified from "../components/NotVerified";
 import BannedUser from "../components/BannedUser";
+import NotFound from "./NotFound";
 
 const Responder = () => {
   const { isAuthenticated, loginWithRedirect, user } = useAuth0();
@@ -72,9 +73,10 @@ const Responder = () => {
     return error;
   };
   const textAlerta = "Respuesta enviada";
-  const handleSubmit = (e) => {
+  
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    dispatch(sendAnswer({ sub: userInfo.sub, id: questionId, text: input }));
+    await dispatch(sendAnswer({ sub: userInfo.sub, id: questionId, text: input }));
     setLoad(true);
     setInput("");
     if (!permiteIMG) setPermiteIMG(true);
@@ -142,10 +144,10 @@ const Responder = () => {
 
   // Editar y eliminar pregunta
 
-  function handleDeleteQuestion(e) {
+  async function handleDeleteQuestion(e) {
     e.preventDefault();
     setIsModify(true);
-    dispatch(
+    await dispatch(
       deleteQuestion({ id: question.id, statusDeleted: true }, setIsModify)
     );
     navigate("/");
@@ -191,6 +193,9 @@ const Responder = () => {
         </div>
       </>
     );
+  } 
+  if (!question.id) {
+    return <NotFound />
   } else
     return (
       <div className={style.fullContainer}>
@@ -215,7 +220,7 @@ const Responder = () => {
                     <div className={`col-lg-9 ${style.leftBox}`}>
                       <div className={style.TitleAndExtrasBox}>
                         <div className={style.userPreg}>
-                          <p>{question?.user.name} pregunta:</p>
+                          <p>{question?.user.nickname} pregunta:</p>
                         </div>
                         <div className={style.Title}>
                           <p>{question?.title}</p>
@@ -236,13 +241,13 @@ const Responder = () => {
                       </div>
                       <div className={style.bajo}>
                         <div id={style.tags}>
-                          {question.macroTags.map((macro) => (
+                          {question.macroTags?.map((macro) => (
                             <span key={macro.tag} className={style.tag}>
                               {" "}
                               #{macro.tag}{" "}
                             </span>
                           ))}
-                          {question.microTags.map((micro) => (
+                          {question.microTags?.map((micro) => (
                             <span key={micro.tag} className={style.tag}>
                               {" "}
                               #{micro.tag}{" "}
@@ -386,7 +391,7 @@ const Responder = () => {
                           id={e.id}
                           text={e.text}
                           likes={e.likes}
-                          name={e.user.name}
+                          nickname={e.user.nickname}
                           subQ={question.userSub}
                           subR={e.userSub}
                           picture={e.user.picture}

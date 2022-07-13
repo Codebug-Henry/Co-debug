@@ -8,8 +8,8 @@ import Paginated from "../components/Paginated";
 import CardQuestion from "../components/CardQuestion";
 import NotVerified from "../components/NotVerified";
 import BannedUser from "../components/BannedUser";
-import Fab from "@mui/material/Fab";
-import FavoriteIcon from "@mui/icons-material/Favorite";
+// import Fab from "@mui/material/Fab";
+// import FavoriteIcon from "@mui/icons-material/Favorite";
 import Loading from "../components/Loading";
 
 const Favoritas = () => {
@@ -71,7 +71,7 @@ const Favoritas = () => {
               <div className={`col-lg-12 ${style.col1}`}>
                 <div id={style.all}>
                   <div id={style.explore}>
-                    <div>
+                    {/* <div>
                       <Fab
                         color="error"
                         aria-label="FavoriteIcon"
@@ -79,9 +79,9 @@ const Favoritas = () => {
                       >
                         <FavoriteIcon />
                       </Fab>
-                    </div>
-                    <div>
-                      <p> Mis preguntas favoritas</p>
+                    </div> */}
+                    <div className={style.title} >
+                      <p className={style.title1}> Mis favoritas</p>
                     </div>
                   </div>
                   <div id={style.myQuestions}>
@@ -102,12 +102,14 @@ const Favoritas = () => {
                             setPage={setPage}
                             setIsFavorite={setIsFavorite}
                             statusValidated={f.statusValidated}
+                            macroTags={f.macroTags}
+                            microTags={f.microTags}
                           />
                         );
                       })
                     ) : (
                       <div>
-                        <p>Aún no agregaste favoritas ...</p>
+                        <p>Aún no agregaste favoritas ... </p>
                       </div>
                     )}
                   </div>

@@ -9,6 +9,7 @@ import style from "./styles/Headerlogin.module.css";
 import { getNotifications, sendUserInfo } from "../redux/actions";
 import Header from "./Header";
 import HeaderLoading from "./HeaderLoading";
+import HeaderBanned from "./HeaderBanned";
 import NotificationsIcon from "@mui/icons-material/Notifications";
 import NotificationsNoneIcon from "@mui/icons-material/NotificationsNone";
 import Badge from "@mui/material/Badge";
@@ -74,9 +75,17 @@ const Headerlogin = () => {
         <HeaderLoading />
       </div>
     );
-  }
-
-  return isAuthenticated ? (
+    
+  } 
+  
+  if(isAuthenticated && userInfo.statusBanned === true){
+    return (
+      <>
+        <HeaderBanned />
+      </>
+    )
+    } else if (isAuthenticated) {
+    return (
     <div className={`container-fluid ${style.container}`}>
       <div className={`row ${style.row1}`}>
         <div className={`col-lg-3 ${style.col1}`}>
@@ -147,115 +156,179 @@ const Headerlogin = () => {
                 )}
               </div>
             )}
-          </div>
 
-          {/* <div className={style.notifBtnBox}>
-              <button className={style.notifBtn} onClick={handleReadAll}>
-                Marcar como leídas
-              </button>
-            </div> */}
-        </div>
-        <div className={`col-lg-3 ${style.col4} ${style.imgNameLogOut}`}>
-          <div className={style.padreDivs}>
-            <Link
-              to={`/configuracion/${userInfo.sub}`}
-              className={style.contImagen}
-            >
-              <img
-                className={style.userImage}
-                src={
-                  userInfo.picture
-                  // ? userInfo.picture
-                  // : "https://www.shareicon.net/data/512x512/2016/08/05/806962_user_512x512.png"
-                }
-                alt={userInfo.name}
-                referrerPolicy="no-referrer"
-              />
+          </div>
+          <div className={`col-lg-2 ${style.colPreg}`}>
+            <Link to="/preguntar" className={style.linksInt}>
+              Preguntar
             </Link>
-            <div className="dropdown">
-              <button
-                className={`
-                  ${
-                    width > 600
-                      ? "btn btn-warning btn-secondary dropdown-toggle"
-                      : "btn btn-warning btn-secondary btn-sm"
-                  }
-                `}
-                type="button"
-                id="dropdownMenuButton2"
-                data-bs-toggle="dropdown"
-                aria-expanded="false"
+          </div>
+          <div className={`col-lg-2 ${style.colRank}`}>
+            <Link to="/ranking" className={style.linksInt}>
+              Ranking
+            </Link>
+          </div>
+  
+          <div className={`col-lg-2 ${style.bell}`}>
+            <div className={style.badgeNotifBox} ref={myRef}>
+              <div className={style.badge} onClick={handleOpen}>
+                <Badge
+                  badgeContent={notifications.total}
+                  sx={{
+                    "& .MuiBadge-badge": {
+                      backgroundColor: "#f9bf00",
+                    },
+                  }}
+                >
+                  {open ? (
+                    <NotificationsNoneIcon sx={{ fontSize: 28 }} />
+                  ) : (
+                    <NotificationsIcon sx={{ fontSize: 28 }} />
+                  )}
+                </Badge>
+              </div>
+  
+              {/* Notifications */}
+              {open && (
+                <div className={style.notifBox}>
+                  {notifications.total ? (
+                    notifications.results?.map((n, i) => (
+                      <Link
+                        to={`/responder/${n.questId}`}
+                        key={i}
+                        className={style.notification}
+                        onClick={() => handleRead(n.id)}
+                      >
+                        <img
+                          src={n.imgCreator}
+                          className={style.userImageNotif}
+                          referrerPolicy="no-referrer"
+                          alt="imgUser"
+                        />
+                        <span>{n.text}</span>
+                      </Link>
+                    ))
+                  ) : (
+                    <span className={style.noNotif}>
+                      No tienes nuevas notificaciones
+                    </span>
+                  )}
+                </div>
+              )}
+            </div>
+  
+            {/* <div className={style.notifBtnBox}>
+                <button className={style.notifBtn} onClick={handleReadAll}>
+                  Marcar como leídas
+                </button>
+              </div> */}
+          </div>
+          <div className={`col-lg-3 ${style.col4} ${style.imgNameLogOut}`}>
+            <div className={style.padreDivs}>
+              <Link
+                to={`/configuracion/${userInfo.sub}`}
+                className={style.contImagen}
               >
-                {userInfo.name}
-              </button>
-              <ul
-                className="dropdown-menu dropdown-menu-dark"
-                aria-labelledby="dropdownMenuButton2"
-              >
-                <li>
-                  <Link className={style.linkDesp} to="/mispreguntas">
-                    <p className="dropdown-item" href="#">
-                      Mis preguntas
-                    </p>
-                  </Link>
-                </li>
-                <li>
-                  <Link className={style.linkDesp} to="/misrespuestas">
-                    <p className="dropdown-item" href="#">
-                      Mis respuestas
-                    </p>
-                  </Link>
-                </li>
-                <li>
-                  <Link className={style.linkDesp} to="/favoritas">
-                    <p className="dropdown-item" href="#">
-                      Favoritas
-                    </p>
-                  </Link>
-                </li>
-                <li>
-                  {userInfo.statusAdmin ? (
-                    <Link className={style.linkDesp} to="/codenothere">
+                <img
+                  className={style.userImage}
+                  src={userInfo.picture}
+                  alt={userInfo.name}
+                  referrerPolicy="no-referrer"
+                />
+              </Link>
+              <div className="dropdown">
+                <button
+                  className={`
+                    ${
+                      width > 600
+                        ? "btn btn-warning btn-secondary dropdown-toggle"
+                        : "btn btn-warning btn-secondary btn-sm"
+                    }
+                  `}
+                  type="button"
+                  id="dropdownMenuButton2"
+                  data-bs-toggle="dropdown"
+                  aria-expanded="false"
+                >
+                  {userInfo.name}
+                </button>
+                <ul
+                  className="dropdown-menu dropdown-menu-dark"
+                  aria-labelledby="dropdownMenuButton2"
+                >
+                  <li>
+                    <Link className={style.linkDesp} to="/mispreguntas">
                       <p className="dropdown-item" href="#">
-                        Admin
+                        Mis preguntas
                       </p>
                     </Link>
-                  ) : (
-                    ""
-                  )}
-                </li>
-                <li>
-                  <Link
-                    className={style.linkDesp}
-                    to={`/configuracion/${userInfo.sub}`}
-                  >
-                    <p className="dropdown-item" href="#">
-                      Configuración
+                  </li>
+                  <li>
+                    <Link className={style.linkDesp} to="/misrespuestas">
+                      <p className="dropdown-item" href="#">
+                        Mis respuestas
+                      </p>
+                    </Link>
+                  </li>
+                  <li>
+                    <Link className={style.linkDesp} to="/favoritas">
+                      <p className="dropdown-item" href="#">
+                        Favoritas
+                      </p>
+                    </Link>
+                  </li>
+                  <li>
+                    {userInfo.statusAdmin ? (
+                      <Link className={style.linkDesp} to="/codenothere">
+                        <p className="dropdown-item" href="#">
+                          Admin
+                        </p>
+                      </Link>
+                    ) : (
+                      ""
+                    )}
+                  </li>
+                  <li>
+                    <Link
+                      className={style.linkDesp}
+                      to={`/configuracion/${userInfo.sub}`}
+                    >
+                      <p className="dropdown-item" href="#">
+                        Configuración
+                      </p>
+                    </Link>
+                  </li>
+  
+                  <li>
+                    <hr className="dropdown-divider"></hr>
+                  </li>
+                  <li>
+                    <p
+                      onClick={handleLogOut}
+                      className={`dropdown-item ${style.logOut}`}
+                      href="#"
+                    >
+                      Log Out
                     </p>
-                  </Link>
-                </li>
-
-                <li>
-                  <hr className="dropdown-divider"></hr>
-                </li>
-                <li>
-                  <p
-                    onClick={handleLogOut}
-                    className={`dropdown-item ${style.logOut}`}
-                    href="#"
-                  >
-                    Log Out
-                  </p>
-                </li>
-              </ul>
+                  </li>
+                </ul>
+              </div>
             </div>
           </div>
         </div>
       </div>
+
     </div>
-  ) : (
-    <Header />
-  );
+
+    )
+  } else {
+    return (
+      <>
+        <Header />
+      </>
+    )
+  }
+
 };
 
 export default Headerlogin;

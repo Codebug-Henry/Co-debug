@@ -4,6 +4,7 @@ import {
   GET_ALL_USERS,
   GET_TOPTEN_RANKING,
   GET_USER_INFO,
+  GET_USER_INFO2,
   DELETE_USER,
   MODIFY_QUESTION,
   DELETE_QUESTION,
@@ -83,16 +84,29 @@ export const getUserInfo = (sub) => async (dispatch) => {
   }
 };
 
-export const putUserInfo =
-  (sub, modify, setLoading, setIsModify) => async (dispatch) => {
-    try {
-      await api.putUserInfo(sub, modify);
-      setLoading && setLoading(false);
-      setIsModify && setIsModify((prevState) => !prevState);
-    } catch (error) {
-      console.log(error.message);
-    }
-  };
+
+export const getUserInfo2 = (sub, setLoad) => async (dispatch) => {
+  try {
+    const { data } = await api.getUserInfo2(sub);
+    dispatch({ type: GET_USER_INFO2, payload: data });
+    setLoad && setLoad(false)
+  } catch (error) {
+    console.log(error.message);
+    setLoad && setLoad(false)
+  }
+};
+
+export const putUserInfo = (sub, modify, setLoading, setIsModify) => async (dispatch) => {
+  try {
+    await api.putUserInfo(sub, modify);
+    // dispatch({ type: MODIFY_USER, payload: data})
+    setLoading && setLoading(false);
+    setIsModify && setIsModify(prevState => !prevState);
+  } catch (error) {
+    console.log(error.message);
+  }
+};
+
 
 export const deleteUser = (sub, deleted) => async (dispatch) => {
   try {
@@ -150,17 +164,20 @@ export const sendQuestion = (question) => async (dispatch) => {
   }
 };
 
-export const getQuestion =
-  (id, page, setLoad, setLoading) => async (dispatch) => {
-    try {
-      const { data } = await api.getQuestion(id, page);
-      dispatch({ type: GET_QUESTION, payload: data });
-      setLoad && setLoad(false);
-      setLoading && setLoading(false);
-    } catch (error) {
-      console.log(error.message);
-    }
-  };
+
+export const getQuestion = (id, page, setLoad, setLoading) => async (dispatch) => {
+  try {
+    const { data } = await api.getQuestion(id, page);
+    dispatch({ type: GET_QUESTION, payload: data });
+    setLoad && setLoad(false);
+    setLoading && setLoading(false)
+  } catch (error) {
+    console.log(error.message);
+    setLoad && setLoad(false);
+    setLoading && setLoading(false)
+  }
+};
+
 
 export const modifyQuestion =
   (question, setIsModify, setIsLiked, setFlag) => async (dispatch) => {

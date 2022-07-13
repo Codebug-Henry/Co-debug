@@ -61,7 +61,8 @@
 }
 
 #tags{
-  height: 30px;
+  /* min-height: 30px; */
+  height: fit-content;
   width: 70%;
   margin-top: 0.5vh;
   font-weight: 500;

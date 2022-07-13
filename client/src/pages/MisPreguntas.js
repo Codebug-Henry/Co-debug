@@ -80,7 +80,7 @@ const MisPreguntas = () => {
           <div className={`container-fluid ${style.container}`}>
             <div className={`row ${style.middleRow}`}>
               <div id={style.filters}>
-                <SearchBar setInput={setInput} setPage={setPage} />
+                <SearchBar setInput={setInput} setPage={setPage} className={style.search} />
                 <div id={style.explore}>
                   <p> Mis preguntas</p>
                 </div>

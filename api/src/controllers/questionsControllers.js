@@ -128,8 +128,8 @@ const getFavourites = async (req, res, next) => {
       where: { statusDeleted: false, id: { [Op.in]: user.favourites } },
       include: [
         { model: User },
-        // {model:MacroTag},
-        // {model:MicroTag}
+        { model: MacroTag },
+        { model: MicroTag }
       ],
     });
 

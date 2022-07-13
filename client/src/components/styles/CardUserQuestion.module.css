@@ -193,12 +193,14 @@
     color: #f9bf00;
   }
 
-#tags{
-    height: 30px;
+#tags {
+    min-height: 30px;
+    height: fit-content;
     width: 92%;
     margin-left: auto;
     margin-right: auto;
     margin-top: 0.8vh;
+    /* font-weight: 500; */
 }
 
 .tag {
