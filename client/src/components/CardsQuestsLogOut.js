@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getAllQuestions, getSearchQuestions } from "../redux/actions/index.js";
 import CardQuestLogOut from "./CardQuestLogOut.js";
-import Paginated from "./Paginated.js";
 import Loading from "./Loading.js";
 import style from "./styles/CardsQuestions.module.css";
 import CardNotFound from "./CardNotFound.js";

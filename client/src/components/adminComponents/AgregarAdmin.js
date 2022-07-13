@@ -21,6 +21,8 @@ const AgregarAdmin = () => {
 
   const [adminFlag, setAdminFlag] = useState(true);
   const [adminsPage, setAdminsPage] = useState(1);
+  // eslint-disable-next-line
+  const [adminOn, setAdminOn] = useState(true);
 
   useEffect(() => {
     if (adminsPage > 1 && adminsPage > totalPages) {
@@ -64,7 +66,9 @@ const AgregarAdmin = () => {
   return (
     <div className={style.supercontainer} style={darkmode}>
       <div>
-        <BotonesAdmin />
+        <BotonesAdmin 
+        adminOn={adminOn}
+        />
       </div>
       <div>
         <div className={style.adminList}>

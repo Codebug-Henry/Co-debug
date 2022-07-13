@@ -3,12 +3,12 @@ import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import style from "./styles/BotonesAdmin.module.css";
 import { toggleDarkmode } from "../../redux/actions";
-import { useState } from "react";
+// import { useState } from "react";
 
-export default function BotonesAdmin() {
+export default function BotonesAdmin({alertasOn, usuariosOn, adminOn, preguntasOn}) {
   const dispatch = useDispatch();
   const dark = useSelector((state) => state.dark);
-  const [selected, setSelected] = useState("");
+  // const [selected, setSelected] = useState("");
 
   const toggleDark = () => {
     dispatch(toggleDarkmode());
@@ -18,11 +18,11 @@ export default function BotonesAdmin() {
     backgroundColor: dark ? "rgb(18, 18, 18)" : null,
   };
 
-  const buttonStyles = {
-    backgroundColor: dark ? "rgb(22, 43, 120)" : null,
-    color: dark ? "white" : "black",
-    border: dark ? "none" : null,
-  };
+  // const buttonStyles = {
+  //   backgroundColor: dark ? "rgb(22, 43, 120)" : null,
+  //   color: dark ? "white" : "black",
+  //   border: dark ? "none" : null,
+  // };
 
   const darkButtonStyle = {
     backgroundColor: dark ? "rgb(209, 219, 255)" : null,
@@ -31,7 +31,25 @@ export default function BotonesAdmin() {
   };
 
   const buttonStylesAlert = {
-    backgroundColor: selected ? "red" : dark ? "rgb(22, 43, 120)" : null,
+    backgroundColor: alertasOn ? "#ff8800" : dark ? "rgb(22, 43, 120)" : null,
+    color: dark ? "white" : "black",
+    border: dark ? "none" : null,
+  };
+
+  const buttonStylesUsuarios = {
+    backgroundColor: usuariosOn ? "#ff8800" : dark ? "rgb(22, 43, 120)" : null,
+    color: dark ? "white" : "black",
+    border: dark ? "none" : null,
+  };
+
+  const buttonStylesAdmin = {
+    backgroundColor: adminOn ? "#ff8800" : dark ? "rgb(22, 43, 120)" : null,
+    color: dark ? "white" : "black",
+    border: dark ? "none" : null,
+  };
+
+  const buttonStylesPreguntas = {
+    backgroundColor: preguntasOn ? "#ff8800" : dark ? "rgb(22, 43, 120)" : null,
     color: dark ? "white" : "black",
     border: dark ? "none" : null,
   };
@@ -51,7 +69,7 @@ export default function BotonesAdmin() {
               </button>
               <Link className={style.link} to="/codenothere/alertas">
                 <button
-                  onClick={(e) => setSelected(e.target.value)}
+                  // onClick={(e) => setSelected(e.target.value)}
                   className={`btn btn-warning ${style.buttonAlertas}`}
                   data-toggle="button"
                   type="button"
@@ -66,7 +84,7 @@ export default function BotonesAdmin() {
                   className={`btn btn-warning ${style.buttonUsuarios}`}
                   data-toggle="button"
                   type="button"
-                  style={buttonStyles}
+                  style={buttonStylesUsuarios}
                 >
                   Lista usuarios
                 </button>
@@ -76,7 +94,7 @@ export default function BotonesAdmin() {
                   className={`btn btn-warning ${style.buttonAdmin}`}
                   data-toggle="button"
                   type="button"
-                  style={buttonStyles}
+                  style={buttonStylesAdmin}
                 >
                   Agregar Admin
                 </button>
@@ -86,7 +104,7 @@ export default function BotonesAdmin() {
                   className={`btn btn-warning ${style.buttonPreguntas}`}
                   data-toggle="button"
                   type="button"
-                  style={buttonStyles}
+                  style={buttonStylesPreguntas}
                 >
                   Preguntas directas
                 </button>

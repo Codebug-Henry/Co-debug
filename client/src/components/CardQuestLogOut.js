@@ -9,7 +9,7 @@ import ReactMarkdown from 'react-markdown';
 import Highlighter from './Highlighter';
 import { Link } from "react-router-dom";
 import TaskAltIcon from '@mui/icons-material/TaskAlt';
-
+import Tooltip from "@mui/material/Tooltip";
 
 const CardQuestLogOut = ({
   id,
@@ -35,7 +35,9 @@ const CardQuestLogOut = ({
         <div className={`col-lg-1 ${style.pictureBox}`}>
           <img className={style.userImage} src={picture} alt="imagen user" referrerPolicy="no-referrer"/>
           <div className={statusValidated ? style.success : style.none}>
-            <TaskAltIcon color='success' fontSize='large' />
+            <Tooltip title="Pregunta Validada">
+              <TaskAltIcon color='success' fontSize='large' />
+            </Tooltip>
           </div>
         </div>
         <div className={`col-lg-11 ${style.leftBox}`}>
@@ -85,23 +87,30 @@ const CardQuestLogOut = ({
 
           <div className={style.bajoTexto}>
             <div className={style.likes}>
+            <Tooltip title="Like">
               <ThumbUpIcon fontSize='medium' color="action" onClick={() => loginWithRedirect()} className={style.fav}/>
+            </Tooltip>  
               {likes}
+            <Tooltip title="Dislike">
               <ThumbDownIcon fontSize='medium' color="action" onClick={() => loginWithRedirect()} className={style.fav} />
+            </Tooltip>
             </div>
 
             <div>
               {/* <img src={favorito} alt="favorito" className={style.like} /> */}
+              <Tooltip title="Agregar a Favoritas">  
                 <FavoriteIcon fontSize="medium" 
                               color='action'
                               id='favorite'
 
                               className={style.fav}
                               onClick={() => loginWithRedirect()} />                
-
+              </Tooltip>
             </div>
             <div>
-              <BlockIcon onClick={() => loginWithRedirect()} className={style.delete} fontSize="medium" color='action'/>
+              <Tooltip title="Reportar">
+                <BlockIcon onClick={() => loginWithRedirect()} className={style.delete} fontSize="medium" color='action'/>
+              </Tooltip>
             </div>
             <div>
               <Link to={`/responder/${id}`}>

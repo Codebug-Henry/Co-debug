@@ -94,10 +94,10 @@ const Landing = () => {
                         onClick={() => handleEaster()}
                       >
                         <p className={style.estadisticas}>Mis estadísticas:</p>
-                        <p>Mi posición en el Ranking: {myPosition}</p>
-                        <p>Mis Teach-Points: {myTeachPoints}</p>
-                        <p>Cuántas preguntas hice? {cantQuest}</p>
-                        <p>Cuántas preguntas respondí? {cantAns}</p>
+                        <p>Mi posición en el Ranking: <span className={style.dato}>{myPosition}</span></p>
+                        <p>Mis Teach-Points: <span className={style.dato}>{myTeachPoints}</span></p>
+                        <p>Cuántas preguntas hice? <span className={style.dato}>{cantQuest}</span></p>
+                        <p>Cuántas preguntas respondí? <span className={style.dato}>{cantAns}</span></p>
                       </div>
                     </div>
                     <div className={`row ${style.rightRowUp}`}>

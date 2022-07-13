@@ -12,6 +12,8 @@ const ListaUsuarios = () => {
   const totalPages = useSelector((state) => state.totalPages);
   const dispatch = useDispatch();
   const dark = useSelector((state) => state.dark);
+  // eslint-disable-next-line
+  const [usuariosOn, setListaUsuariosOn] = useState(true);
 
   const darkmode = {
     backgroundColor: dark ? "rgb(18, 18, 18)" : "lightyellow",
@@ -57,7 +59,9 @@ const ListaUsuarios = () => {
   return (
     <div>
       <div>
-        <BotonesAdmin />
+        <BotonesAdmin 
+        usuariosOn={usuariosOn}
+        />
       </div>
       <div style={darkmode}>
         <div>

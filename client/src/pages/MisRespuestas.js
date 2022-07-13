@@ -24,6 +24,7 @@ const MisRespuestas = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
+    if (page > 1 && page > totalPages) setPage((prev) => prev - 1);
     dispatch(getUserAnswers(userInfo.sub, page, setLoading));
   }, [dispatch, userInfo.sub, page, totalPages, isModify]);
 

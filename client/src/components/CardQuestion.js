@@ -26,6 +26,7 @@ import TaskAltIcon from "@mui/icons-material/TaskAlt";
 import DeleteIcon from "@mui/icons-material/Delete";
 import { confirmAlert } from "react-confirm-alert";
 import "react-confirm-alert/src/react-confirm-alert.css";
+import Tooltip from "@mui/material/Tooltip";
 
 const CardQuestion = ({
   cantAnswers,
@@ -149,8 +150,10 @@ const CardQuestion = ({
           </Link>
           <div className={statusValidated ? style.success : style.none}>
             <span className={style.span6}>
-              <TaskAltIcon color="success" fontSize="large" />
-              <span className={style.toolTip6}>Respuesta Validada</span>
+              <Tooltip title="Pregunta Validada">
+                <TaskAltIcon color="success" fontSize="large" />
+              </Tooltip>
+              {/* <span className={style.toolTip6}>Respuesta Validada</span> */}
             </span>
           </div>
         </div>
@@ -197,69 +200,81 @@ const CardQuestion = ({
           <div className={style.bajoTexto}>
             <div className={style.likes}>
               <span className={style.span2}>
-                <ThumbUpIcon
-                  fontSize="medium"
-                  color={liked ? "primary" : "action"}
-                  onClick={(e) => addLike(e)}
-                  className={style.fav}
-                />
-                <span className={style.toolTip2}>Like</span>
+                <Tooltip title="Like">
+                  <ThumbUpIcon
+                    fontSize="medium"
+                    color={liked ? "primary" : "action"}
+                    onClick={(e) => addLike(e)}
+                    className={style.fav}
+                  />
+                </Tooltip>
+                {/* <span className={style.toolTip2}>Like</span> */}
               </span>
               <span className={style.spanLikes}>{likes}</span>
               <span className={style.span}>
-                <ThumbDownIcon
-                  fontSize="medium"
-                  color={disliked ? "error" : "action"}
-                  onClick={(e) => removeLike(e)}
-                  className={style.fav}
-                />
-                <span className={style.toolTip}>Dislike</span>
+                <Tooltip title="Dislike">
+                  <ThumbDownIcon
+                    fontSize="medium"
+                    color={disliked ? "error" : "action"}
+                    onClick={(e) => removeLike(e)}
+                    className={style.fav}
+                  />
+                </Tooltip>
+                {/* <span className={style.toolTip}>Dislike</span> */}
               </span>
             </div>
 
             <div>
               {userInfo.favourites?.includes(id) ? (
                 <span className={style.span3}>
-                  <FavoriteIcon
-                    fontSize="medium"
-                    color="error"
-                    id="favorite"
-                    className={style.fav}
-                    onClick={(e) => handleRemoveFavourite(e)}
-                  />
-                  <span className={style.toolTip3}>Quitar Favoritas</span>
+                  <Tooltip title="Quitar de Favoritas">
+                    <FavoriteIcon
+                      fontSize="medium"
+                      color="error"
+                      id="favorite"
+                      className={style.fav}
+                      onClick={(e) => handleRemoveFavourite(e)}
+                    />
+                  </Tooltip>
+                  {/* <span className={style.toolTip3}>Quitar Favoritas</span> */}
                 </span>
               ) : (
                 <span className={style.span4}>
-                  <FavoriteIcon
-                    fontSize="medium"
-                    color="action"
-                    className={style.fav}
-                    onClick={(e) => handleAddFavourite(e)}
-                  />
-                  <span className={style.toolTip4}>Agregar Favoritas</span>
+                  <Tooltip title="Agregar a Favoritas">
+                    <FavoriteIcon
+                      fontSize="medium"
+                      color="action"
+                      className={style.fav}
+                      onClick={(e) => handleAddFavourite(e)}
+                    />
+                  </Tooltip>
+                  {/* <span className={style.toolTip4}>Agregar Favoritas</span> */}
                 </span>
               )}
             </div>
             <div>
               <span className={userInfo.sub === sub ? style.none : style.span5}>
-                <BlockIcon
-                  onClick={handleOpen}
-                  className={style.delete}
-                  fontSize="medium"
-                  color="action"
-                />
-                <span className={style.toolTip5}>Denunciar</span>
+                <Tooltip title="Reportar">
+                  <BlockIcon
+                    onClick={handleOpen}
+                    className={style.delete}
+                    fontSize="medium"
+                    color="action"
+                  />
+                </Tooltip>
+                {/* <span className={style.toolTip5}>Denunciar</span> */}
               </span>
 
               <span className={userInfo.sub === sub ? style.span7 : style.none}>
-                <DeleteIcon
-                  fontSize="medium"
-                  className={style.deleteBtn}
-                  onClick={(e) => onClick(e)}
-                  color="action"
-                />
-                <span className={style.toolTip7}>Borrar</span>
+                <Tooltip title="Borrar">
+                  <DeleteIcon
+                    fontSize="medium"
+                    className={style.deleteBtn}
+                    onClick={(e) => onClick(e)}
+                    color="action"
+                  />
+                </Tooltip>
+                {/* <span className={style.toolTip7}>Borrar</span> */}
               </span>
 
               <Modal
