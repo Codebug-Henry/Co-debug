@@ -113,10 +113,10 @@ const CardUserAnswer = ({
           <div className={style.TitleAndExtrasBox}>
             <div className={style.firstRow}>
               <div className={style.userPreg}>
+                <span>Pregunta de </span>
                 <Link to={`/user/${sub}`} className={style.toUser}>
-                  <span>{nickname} </span>
+                  <span>{nickname}: {title}</span>
                 </Link>
-                <span>pregunta:</span>
               </div>
 
               <div className={style.Extras}>
@@ -124,7 +124,7 @@ const CardUserAnswer = ({
               </div>
             </div>
             <div className={style.Title}>
-              <span>{title}</span>
+              <span>Tu respuesta:</span>
             </div>
           </div>
 

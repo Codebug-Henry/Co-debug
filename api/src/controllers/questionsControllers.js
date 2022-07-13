@@ -131,6 +131,10 @@ const getFavourites = async (req, res, next) => {
         { model: MacroTag },
         { model: MicroTag }
       ],
+      order: [
+        ["createdAt", "DESC"],
+        ["title", "DESC"],
+      ]
     });
 
     res.send(paginate(parseInt(limit), parseInt(page), favourites));
