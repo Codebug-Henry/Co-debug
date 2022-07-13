@@ -5,6 +5,7 @@ import style from "./styles/WhatsPop.module.css";
 import WhatsappRoundedIcon from "@mui/icons-material/WhatsappRounded";
 import ClickAwayListener from "@mui/material/ClickAwayListener";
 import { useState } from "react";
+import Tooltip from "@mui/material/Tooltip";
 
 const WhatsPop = ({ idUser }) => {
   const [anchorEl, setAnchorEl] = useState(null);
@@ -38,14 +39,16 @@ const WhatsPop = ({ idUser }) => {
 
   return (
     <div>
-      <button
-        className={style.icoWhats}
-        onClick={handlerClick}
-        type="button"
-        aria-describedby={id}
-      >
-        <WhatsappRoundedIcon />
-      </button>
+      <Tooltip title="Compartir por Whatsapp">
+        <button
+          className={style.icoWhats}
+          onClick={handlerClick}
+          type="button"
+          aria-describedby={id}
+        >
+          <WhatsappRoundedIcon />
+        </button>
+      </Tooltip>
       <Popper id={id} open={open} anchorEl={anchorEl}>
         <ClickAwayListener onClickAway={handleClickAway}>
           <Box

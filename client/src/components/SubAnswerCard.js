@@ -6,7 +6,7 @@ import EditIcon from "@mui/icons-material/Edit";
 import DeleteIcon from "@mui/icons-material/Delete";
 import CheckIcon from "@mui/icons-material/Check";
 import { Link } from "react-router-dom";
-
+import Tooltip from "@mui/material/Tooltip";
 
 const SubAnswerCard = ({ sId, picture, nickname, text, userSub, setIsModify }) => {
 
@@ -83,19 +83,25 @@ const SubAnswerCard = ({ sId, picture, nickname, text, userSub, setIsModify }) =
                 <div className={style.buttons}>
                     <div className={userInfo.sub === userSub ? null : style.hidden}>
                     {/* <div> */}
+                    <Tooltip title="Editar">
                         <EditIcon
                             fontSize="small"
                             className={style.moreBtn}
                             onClick={e=>handleEditAnswer(e)}
+                            color="action"
                         />
+                    </Tooltip>
                     </div>
                     <div className={userInfo.sub === userSub ? null : style.hidden}>
                     {/* <div> */}
+                    <Tooltip title="Eliminar">
                         <DeleteIcon
                             fontSize="small"
                             className={style.deleteBtn}
                             onClick={()=>handleDeleteSubAnswer(sId)}
+                            color="action"
                         />
+                    </Tooltip>
                     </div>
                 </div>
             </div>

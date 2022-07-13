@@ -241,10 +241,12 @@
 
 .moreBtn:hover{
   cursor: pointer;
+  color: grey;
 }
 
 .deleteBtn:hover{
   cursor: pointer;
+  color: grey;
 }
 
 .btnCode {

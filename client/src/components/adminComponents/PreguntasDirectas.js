@@ -15,6 +15,8 @@ const PreguntasDirectas = () => {
 
   const [messagePage, setMessagePage] = useState(1);
   const [messageFlag, setMessageFlag] = useState(true);
+  // eslint-disable-next-line
+  const [preguntasOn, setPreguntasOn] = useState(true);
 
   useEffect(() => {
     if (messagePage > 1 && messagePage > totalPages) {
@@ -32,7 +34,9 @@ const PreguntasDirectas = () => {
   return (
     <div style={darkmode}>
       <div>
-        <BotonesAdmin />
+        <BotonesAdmin 
+        preguntasOn={preguntasOn}
+        />
       </div>
       <div className={style.container}>
         <div>

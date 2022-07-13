@@ -88,9 +88,9 @@ const Ayuda = () => {
               <div>¿Qué hago ante un comportamiento inadecuado?</div>
             </div>
             <div className={style.answerContainer}>
-              Denunciá cualquier comportamiento que consideres impropio,
+              Reportá cualquier comportamiento que consideres impropio,
               irrespetuoso o de mal gusto con cualquiera de los administradores.
-              Encontrarás un botón "denunciar" disponible en preguntas y
+              Encontrarás un botón "reportar" disponible en preguntas y
               respuestas por toda nuestra página. Igual, ante todo, te pedimos
               paciencia. Somos muy geniales pero todavía no somos pulpos!
             </div>

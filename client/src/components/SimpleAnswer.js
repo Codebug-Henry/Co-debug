@@ -260,7 +260,9 @@ const SimpleAnswer = ({
               </button>
             </div>
             <div className={statusValidated ? null : style.none}>
-              <TaskAltIcon color="success" fontSize="large" />
+              <Tooltip title="Respuesta Validada">
+                <TaskAltIcon color="success" fontSize="large" />
+              </Tooltip>
             </div>
           </div>
 
