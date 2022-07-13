@@ -356,7 +356,7 @@ const SimpleAnswer = ({
 
             <div className={imgIncludes ? null : style.notIncludes}>
               <a className={style.descarga} onClick={(e)=>handleseparar(e)} href={url} download={nameFile} target="_blank" rel="noreferrer">
-              <Tooltip title="Descargar imagen">
+              <Tooltip title="Abrir imagen en tamaño completo">
                 <DownloadIcon 
                   fontSize="medium"
                   color='action'

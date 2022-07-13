@@ -252,7 +252,7 @@ const Responder = () => {
                         <div className={style.btns}>
                           <div>
                             <form action={url} target="_blank" rel="noreferrer">
-                              <Tooltip title="Descargar imagen">
+                              <Tooltip title="Abrir imagen en tamaño completo">
                                 <DownloadIcon
                                   className={style.descarga}
                                   fontSize="medium"
