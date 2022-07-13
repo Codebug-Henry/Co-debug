@@ -16,19 +16,23 @@ const Favoritas = () => {
   const { isAuthenticated, isLoading, user } = useAuth0();
   const favourites = useSelector((state) => state.favourites);
   const userInfo = useSelector((state) => state.user);
+  const totalPages = useSelector((state)=> state.totalPages)
   const dispatch = useDispatch();
   const [page, setPage] = useState(1);
   const [isFavorite, setIsFavorite] = useState(false);
   const [loading, setLoading] = useState(true);
+  const [isModify, setIsModify] = useState(false);
+  
 
   useEffect(() => {
+    if (page > 1 && page > totalPages) setPage((prev) => prev - 1);
     if (isAuthenticated) {
       dispatch(getFavourites(user.sub, page, setLoading));
       dispatch(getUserInfo(user.sub))
       dispatch(getNotifications(user.sub));
     }
     // eslint-disable-next-line
-  }, [page, dispatch, isFavorite]);
+  }, [page, dispatch, isFavorite, isModify, totalPages]);
 
   if (isLoading) {
     return (
@@ -106,6 +110,7 @@ const Favoritas = () => {
                             statusValidated={f.statusValidated}
                             macroTags={f.macroTags}
                             microTags={f.microTags}
+                            setIsModify={setIsModify}
                           />
                         );
                       })
