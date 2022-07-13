@@ -75,7 +75,6 @@ const Headerlogin = () => {
         <HeaderLoading />
       </div>
     );
-    
   } 
   
   if(isAuthenticated && userInfo.statusBanned === true){
@@ -84,79 +83,20 @@ const Headerlogin = () => {
         <HeaderBanned />
       </>
     )
-    } else if (isAuthenticated) {
+  } else if (isAuthenticated) {
     return (
-    <div className={`container-fluid ${style.container}`}>
-      <div className={`row ${style.row1}`}>
-        <div className={`col-lg-3 ${style.col1}`}>
-          <Link to="/">
-            <img
-              onMouseLeave={() => setLogoState(logo)}
-              onMouseOver={() => setLogoState(logo_gif)}
-              className={style.logo}
-              src={logoState}
-              alt="logo"
-            />
-          </Link>
-        </div>
-        <div className={`col-lg-2 ${style.colPreg}`}>
-          <Link to="/preguntar" className={style.linksInt}>
-            Preguntar
-          </Link>
-        </div>
-        <div className={`col-lg-2 ${style.colRank}`}>
-          <Link to="/ranking" className={style.linksInt}>
-            Ranking
-          </Link>
-        </div>
-
-        <div className={`col-lg-2 ${style.bell}`}>
-          <div className={style.badgeNotifBox} ref={myRef}>
-            <div className={style.badge} onClick={handleOpen}>
-              <Badge
-                badgeContent={notifications.total}
-                sx={{
-                  "& .MuiBadge-badge": {
-                    backgroundColor: "#f9bf00",
-                  },
-                }}
-              >
-                {open ? (
-                  <NotificationsNoneIcon sx={{ fontSize: 28 }} />
-                ) : (
-                  <NotificationsIcon sx={{ fontSize: 28 }} />
-                )}
-              </Badge>
-            </div>
-
-            {/* Notifications */}
-            {open && (
-              <div className={style.notifBox}>
-                {notifications.total ? (
-                  notifications.results?.map((n, i) => (
-                    <Link
-                      to={`/responder/${n.questId}`}
-                      key={i}
-                      className={style.notification}
-                      onClick={() => handleRead(n.id)}
-                    >
-                      <img
-                        src={n.imgCreator}
-                        className={style.userImageNotif}
-                        referrerPolicy="no-referrer"
-                        alt="imgUser"
-                      />
-                      <span>{n.text}</span>
-                    </Link>
-                  ))
-                ) : (
-                  <span className={style.noNotif}>
-                    No tienes nuevas notificaciones
-                  </span>
-                )}
-              </div>
-            )}
-
+      <div className={`container-fluid ${style.container}`}>
+        <div className={`row ${style.row1}`}>
+          <div className={`col-lg-3 ${style.col1}`}>
+            <Link to="/">
+              <img
+                onMouseLeave={() => setLogoState(logo)}
+                onMouseOver={() => setLogoState(logo_gif)}
+                className={style.logo}
+                src={logoState}
+                alt="logo"
+              />
+            </Link>
           </div>
           <div className={`col-lg-2 ${style.colPreg}`}>
             <Link to="/preguntar" className={style.linksInt}>
@@ -168,7 +108,7 @@ const Headerlogin = () => {
               Ranking
             </Link>
           </div>
-  
+
           <div className={`col-lg-2 ${style.bell}`}>
             <div className={style.badgeNotifBox} ref={myRef}>
               <div className={style.badge} onClick={handleOpen}>
@@ -187,7 +127,7 @@ const Headerlogin = () => {
                   )}
                 </Badge>
               </div>
-  
+
               {/* Notifications */}
               {open && (
                 <div className={style.notifBox}>
@@ -216,13 +156,8 @@ const Headerlogin = () => {
                 </div>
               )}
             </div>
-  
-            {/* <div className={style.notifBtnBox}>
-                <button className={style.notifBtn} onClick={handleReadAll}>
-                  Marcar como leídas
-                </button>
-              </div> */}
           </div>
+
           <div className={`col-lg-3 ${style.col4} ${style.imgNameLogOut}`}>
             <div className={style.padreDivs}>
               <Link
@@ -298,7 +233,7 @@ const Headerlogin = () => {
                       </p>
                     </Link>
                   </li>
-  
+
                   <li>
                     <hr className="dropdown-divider"></hr>
                   </li>
@@ -317,9 +252,6 @@ const Headerlogin = () => {
           </div>
         </div>
       </div>
-
-    </div>
-
     )
   } else {
     return (
