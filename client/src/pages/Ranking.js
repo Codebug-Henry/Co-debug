@@ -12,6 +12,7 @@ import { getNotifications } from "../redux/actions";
 import oro from '../images/oro.png';
 import plata from '../images/plata.png';
 import bronce from '../images/bronce.png';
+import { FormControl, Select, MenuItem, InputLabel } from "@mui/material";
 
 const Ranking = () => {
   const dispatch = useDispatch();
@@ -75,14 +76,24 @@ const Ranking = () => {
         <div className={style.middleRow}>
           {/* Acá el contenido para logueados */}
           <div className={style.filterbar}>
-            <select className={style.select} value={sort} onChange={handleSort}>
+            
+            {/* <select className={style.select} value={sort} onChange={handleSort}>
               <option value="points-desc">Teach Points</option>
-              {/* <option value="points-asc">Teach Points ascendente</option> */}
+              <option value="points-asc">Teach Points ascendente</option>
               <option value="answ-desc">Respuestas</option>
-              {/* <option value="answ-asc">Respuestas ascendente</option> */}
+              <option value="answ-asc">Respuestas ascendente</option>
               <option value="quest-desc">Preguntas</option>
-              {/* <option value="quest-asc">Preguntas ascendente</option> */}
-            </select>
+              <option value="quest-asc">Preguntas ascendente</option>
+            </select> */}
+
+            <FormControl sx={{width: 140, margin: 0.5}}>
+                <InputLabel id="demo-simple-select-label">Categoría</InputLabel>
+                <Select value={sort} label="Categoría" onChange={handleSort}>
+                  <MenuItem value="points-desc">Teach Points</MenuItem>
+                  <MenuItem value="answ-desc">Respuestas</MenuItem>
+                  <MenuItem value="quest-desc">Preguntas</MenuItem>
+                </Select>
+              </FormControl>
           </div>
           <div className={`container-fluid ${style.container}`}>
             <div className={`row align-items-start ${style.columnsname}`}>
@@ -132,7 +143,7 @@ const Ranking = () => {
             { sort.includes('desc') &&
               ranking.map((e) => e.myPosition === 2 ? 
               <div
-              className={userInfo.sub === e.sub ? `row align-items-start ${style.infos2sub}` : `row align-items-start ${style.info2}`}
+              className={userInfo.sub === e.sub ? `row align-items-start ${style.info2sub}` : `row align-items-start ${style.info2}`}
               key={e.sub}
               >
               <img
@@ -152,7 +163,7 @@ const Ranking = () => {
             { sort.includes('desc') &&
               ranking.map((e) => e.myPosition === 3 ? 
               <div
-              className={userInfo.sub === e.sub ? `row align-items-start ${style.infos3sub}` : `row align-items-start ${style.info3}`}
+              className={userInfo.sub === e.sub ? `row align-items-start ${style.info3sub}` : `row align-items-start ${style.info3}`}
               key={e.sub}
               >
               <img
