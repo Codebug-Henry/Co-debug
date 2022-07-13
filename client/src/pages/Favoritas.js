@@ -102,6 +102,8 @@ const Favoritas = () => {
                             setPage={setPage}
                             setIsFavorite={setIsFavorite}
                             statusValidated={f.statusValidated}
+                            macroTags={f.macroTags}
+                            microTags={f.microTags}
                           />
                         );
                       })
