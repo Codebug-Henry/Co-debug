@@ -6,10 +6,12 @@ import Footer from "../Footer";
 import { useEffect, useState } from "react";
 import BotonesAdmin from "./BotonesAdmin";
 import { getSearchUsers, getAllUsersNoAdmin } from "../../redux/actions";
+import NotFound from "../../pages/NotFound";
 
 const ListaUsuarios = () => {
   const usersNoAdmin = useSelector((state) => state.usersNoAdmin);
   const totalPages = useSelector((state) => state.totalPages);
+  const user = useSelector(state => state.user)
   const dispatch = useDispatch();
   const dark = useSelector((state) => state.dark);
   // eslint-disable-next-line
@@ -56,82 +58,90 @@ const ListaUsuarios = () => {
 
   const handlerRefresh = (e) => {};
 
-  return (
-    <div>
-      <div>
-        <BotonesAdmin 
-        usuariosOn={usuariosOn}
-        />
-      </div>
-      <div style={darkmode}>
-        <div>
-          <form className="d-flex">
-            <input
-              onChange={(e) => onChangeSearch(e)}
-              className={`form-control me-2 ${style.input}`}
-              type="search"
-              placeholder="Buscar..."
-              aria-label="Search"
-              style={darkSearchbar}
-            />
-            <button
-              onClick={() => handlerRefresh()}
-              className={`btn btn-outline-dark ${style.button}`}
-              type="submit"
-              style={darkRefresh}
-            >
-              Refresh
-            </button>
-          </form>
-        </div>
-        <div className={`container-fluid ${style.container}`}>
-          <div className={`row ${style.info}`} style={darkInfo}>
-            <p className={`col-2 ${style.col}`}>Nickname</p>
-            <p className={`col-3 ${style.col}`}>Sub id</p>
-            <p className={`col-2 ${style.col}`}>Email</p>
-            <p className={`col-1 ${style.col}`}>Origen</p>
-            <p className={`col ${style.col}`}>Preg</p>
-            <p className={`col ${style.col}`}>Res</p>
-            <p className={`col ${style.col}`}>Points</p>
-            <p className={`col ${style.col}`}>Ban</p>
-            <p className={`col ${style.col}`}>Banear</p>
-          </div>
-          {usersNoAdmin.length > 0 ? (
-            <>
-              {usersNoAdmin?.map((e) => {
-                return (
-                  <div className={`row ${style.data}`} key={e.sub}>
-                    <UserCard
-                      cantAns={e.cantAns}
-                      cantQuest={e.cantQuest}
-                      email={e.email}
-                      locale={e.locale}
-                      nickname={e.nickname}
-                      statusBanned={e.statusBanned}
-                      sub={e.sub}
-                      points={e.myTeachPoints}
-                      setUsersFlag={setUsersFlag}
-                      setBanFlag={setBanFlag}
-                    />
-                  </div>
-                );
-              })}
-            </>
-          ) : (
-            <div className={style.notFound}>No se encontraron usuarios</div>
-          )}
-        </div>
-        <div>
-          {usersNoAdmin.length > 0 && (
-            <Paginated setPage={setUsersPage} page={usersPage} />
-          )}
-        </div>
-      </div>
-      <div className={style.footer}>
-        <Footer />
-      </div>
-    </div>
-  );
+  if(user.statusAdmin) {
+    return (
+     <div>
+       <div>
+         <BotonesAdmin usuariosOn={usuariosOn} />
+       </div>
+       <div style={darkmode}>
+         <div>
+           <form className="d-flex">
+             <input
+               onChange={(e) => onChangeSearch(e)}
+               className={`form-control me-2 ${style.input}`}
+               type="search"
+               placeholder="Buscar..."
+               aria-label="Search"
+               style={darkSearchbar}
+               value={input}
+             />
+             <button
+               onClick={() => handlerRefresh()}
+               className={`btn btn-outline-dark ${style.button}`}
+               type="submit"
+               style={darkRefresh}
+             >
+               Refresh
+             </button>
+           </form>
+         </div>
+         <div className={`container-fluid ${style.container}`}>
+           <div className={`row ${style.info}`} style={darkInfo}>
+             <p className={`col-2 ${style.col}`}>Nickname</p>
+             <p className={`col-3 ${style.col}`}>Sub id</p>
+             <p className={`col-2 ${style.col}`}>Email</p>
+             <p className={`col-1 ${style.col}`}>Origen</p>
+             <p className={`col ${style.col}`}>Preg</p>
+             <p className={`col ${style.col}`}>Res</p>
+             <p className={`col ${style.col}`}>Points</p>
+             <p className={`col ${style.col}`}>Ban</p>
+             <p className={`col ${style.col}`}>Banear</p>
+           </div>
+           {usersNoAdmin.length > 0 ? (
+             <>
+               {usersNoAdmin?.map((e) => {
+                 return (
+                   <div className={`row ${style.data}`} key={e.sub}>
+                     <UserCard
+                       cantAns={e.cantAns}
+                       cantQuest={e.cantQuest}
+                       email={e.email}
+                       locale={e.locale}
+                       nickname={e.nickname}
+                       statusBanned={e.statusBanned}
+                       sub={e.sub}
+                       points={e.myTeachPoints}
+                       setUsersFlag={setUsersFlag}
+                       setBanFlag={setBanFlag}
+                       setInput={setInput}
+                     />
+                   </div>
+                 );
+               })}
+             </>
+           ) : (
+             <div className={style.notFound}>No se encontraron usuarios</div>
+           )}
+         </div>
+         <div>
+           {usersNoAdmin.length > 0 && (
+             <Paginated setPage={setUsersPage} page={usersPage} />
+           )}
+         </div>
+       </div>
+       <div className={style.footer}>
+         <Footer />
+       </div>
+     </div>
+   );
+  } else {
+    return (
+      <>
+        <NotFound />
+      </>
+    )
+  }
 };
 
 export default ListaUsuarios;

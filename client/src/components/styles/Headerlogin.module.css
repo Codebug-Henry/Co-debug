@@ -26,7 +26,6 @@
   align-items: center;
   justify-content: right;
   gap: 8%;
-  /* margin-right: 25% */
 }
 
 .bell {
@@ -58,7 +57,17 @@
   text-align: center;
 }
 
-.linksInt:hover {
+.linksIntActive {
+  font-weight: bold;
+  width: 30%;
+  font-size: 100%;
+  text-decoration: none;
+  color: #f9bf00;
+  text-align: center;
+}
+
+.linksInt:hover,
+.linksIntActive:hover {
   color: #f9bf00;
 }
 
@@ -89,17 +98,12 @@
 
 .userImage {
   border-radius: 100%;
-  width: 100%;
-  height: 8vh;
+  height: 7vh;
   border-style: solid;
   border-color: #f9bf00;
   border-width: 0.9vh;
-}
-@media screen and (max-width: 600px) {
-  .userImage {
-    width: 100%;
-    height: 7vh;
-  }
+  padding: 0;
+  align-self: center;
 }
 
 .cajaLogReg {
@@ -185,26 +189,7 @@
   font-size: 14px;
   border-radius: 0.5vh;
 }
-/* .notifBtnBox {
-  display: flex;
-  justify-content: center;
-}
-.notifBtn {
-  width: fit-content;
-  height: 30px;
-  background-color: #f9bf00;
-  color: lightyellow;
-  border: #f9bf00 solid 0.5px;
-  border-radius: 0.5vh;
-  font-weight: 300;
-  font-size: 15px;
-  margin-top: 10px;
-}
-.notifBtn:hover {
-  cursor: pointer;
-  background-color: transparent;
-  color: rgb(75, 71, 71);
-} */
+
 .padreDivs {
   display: flex;
   justify-content: center;

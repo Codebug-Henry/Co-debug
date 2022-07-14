@@ -11,7 +11,7 @@ require('dotenv').config();
 
 cloudinary.config({
   cloud_name: process.env.REACT_APP_CLOUD_NAME,
-  api_key: process.env.REACT_APP_API_KEY,
+  api_key: process.env.REACT_APP_API_KEY.toString(),
   api_secret: process.env.REACT_APP_API_SECRET
 });
 
@@ -32,17 +32,19 @@ const Upload = () => {
     }, [isModify])
 
     const handleClick = () => {
-      dispatch(putUserInfo(userInfo.sub, {
-        picture: image
-      }, null, setIsModify))
-      setTimeout(() => {
-
-        cloudinary.v2.uploader.destroy(public_id_home, function(error,result) {
-          console.log(result, error) })
-          .then(resp => console.log(resp))
-          .catch(_err=> console.log("Something went wrong, please try again later."));
-
-      }, 4000);
+      if(image !== null){
+        dispatch(putUserInfo(userInfo.sub, {
+          picture: image
+        }, null, setIsModify))
+        setTimeout(() => {
+  
+          cloudinary.v2.uploader.destroy(public_id_home, function(error,result) {
+            console.log(result, error) })
+            .then(resp => console.log(resp))
+            .catch(_err=> console.log("Something went wrong, please try again later."));
+  
+        }, 4000);
+      }
     }
 
     const uploadImage = async (e) => {
