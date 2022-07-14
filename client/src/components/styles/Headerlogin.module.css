@@ -58,7 +58,16 @@
   text-align: center;
 }
 
-.linksInt:hover {
+.linksIntActive {
+  font-weight: bold;
+  width: 30%;
+  font-size: 100%;
+  text-decoration: none;
+  color: #f9bf00;
+  text-align: center;
+}
+.linksInt:hover,
+.linksIntActive:hover {
   color: #f9bf00;
 }
 

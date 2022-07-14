@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import logo_gif from "../images/logo_codebug2.gif";
 import logo from "../images/logo_codebug _margen.png";
 import React from "react";
@@ -99,14 +99,14 @@ const Headerlogin = () => {
             </Link>
           </div>
           <div className={`col-lg-2 ${style.colPreg}`}>
-            <Link to="/preguntar" className={style.linksInt}>
+            <NavLink to="/preguntar" className={({isActive}) => isActive ? style.linksIntActive : style.linksInt}>
               Preguntar
-            </Link>
+            </NavLink>
           </div>
           <div className={`col-lg-2 ${style.colRank}`}>
-            <Link to="/ranking" className={style.linksInt}>
+            <NavLink to="/ranking" className={({isActive}) => isActive ? style.linksIntActive : style.linksInt}>
               Ranking
-            </Link>
+            </NavLink>
           </div>
 
           <div className={`col-lg-2 ${style.bell}`}>
