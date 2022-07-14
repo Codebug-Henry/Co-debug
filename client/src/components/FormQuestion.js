@@ -14,10 +14,37 @@ const FormQuestion = () => {
   const userInfo = useSelector((state) => state.user);
   const tags = useSelector((state) => state.tags);
   const [permiteIMG, setPermiteIMG] = useState(true);
-
+  const [errors, setErrors] = useState({});  
+  const [loading, setLoading] = useState(false);
+  const [input, setInput] = useState({
+    title: localStorage.titleQuestion || "",
+    text: localStorage.textQuestion || "",
+    macroTag: localStorage.macroTagQuestion
+    ? JSON.parse(localStorage.macroTagQuestion)
+    : [],
+    microTag: localStorage.microTagQuestion
+    ? JSON.parse(localStorage.microTagQuestion)
+    : [],
+  });
+  let sub = userInfo.sub;
+  
   useEffect(() => {
     dispatch(getAllTags());
   }, [dispatch]);
+
+  useEffect(() => {
+    if(input.title || input.text || input.macroTag.length > 0 || input.microTag.length > 0){
+      setErrors(
+        validate({
+          title: input.title,
+          text: input.text,
+          macroTag: input.macroTag,
+          microTag: input.microTag
+        })
+      )
+    }
+    // eslint-disable-next-line
+  }, [])
 
   const navigate = useNavigate();
 
@@ -40,22 +67,6 @@ const FormQuestion = () => {
 
     return errors;
   }
-  let sub = userInfo.sub;
-
-  const [input, setInput] = useState({
-    title: localStorage.titleQuestion || "",
-    text: localStorage.textQuestion || "",
-    macroTag: localStorage.macroTagQuestion
-      ? JSON.parse(localStorage.macroTagQuestion)
-      : [],
-    microTag: localStorage.microTagQuestion
-      ? JSON.parse(localStorage.microTagQuestion)
-      : [],
-  });
-
-  const [errors, setErrors] = useState({});
-
-  const [loading, setLoading] = useState(false);
 
   function handleChange(e) {
     setInput({
