@@ -16,7 +16,7 @@ const Paypal = ({ val }) => {
               {
                 description: "Donación",
                 amount: {
-                  currency_code: "BRL",
+                  currency_code: "USD",
                   value: val,
                 },
               },
