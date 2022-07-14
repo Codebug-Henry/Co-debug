@@ -6,10 +6,12 @@ import style from "./styles/PreguntasDirectas.module.css";
 import { getAllMessages } from "../../redux/actions";
 import BotonesAdmin from "./BotonesAdmin";
 import Paginated from "../Paginated";
+import NotFound from "../../pages/NotFound";
 
 const PreguntasDirectas = () => {
   const messages = useSelector((state) => state.messages);
   const totalPages = useSelector((state) => state.totalPages);
+  const user = useSelector(state => state.user)
 
   const dispatch = useDispatch();
 
@@ -31,40 +33,48 @@ const PreguntasDirectas = () => {
     backgroundColor: dark ? "rgb(18, 18, 18)" : "lightyellow"
   }
 
-  return (
-    <div style={darkmode}>
-      <div>
-        <BotonesAdmin 
-        preguntasOn={preguntasOn}
-        />
-      </div>
-      <div className={style.container}>
+  if(user.statusAdmin) {
+    return (
+      <div style={darkmode}>
         <div>
-          {messages &&
-            messages.map((e) => {
-              return (
-                <Message
-                  key={e.id}
-                  title={e.title}
-                  text={e.text}
-                  email={e.email}
-                  id={e.id}
-                  setMessageFlag={setMessageFlag}
-                />
-              );
-            })}
+          <BotonesAdmin 
+          preguntasOn={preguntasOn}
+          />
         </div>
-        <div>
-          {messages.length > 0 && (
-            <Paginated setPage={setMessagePage} page={messagePage} />
-          )}
+        <div className={style.container}>
+          <div>
+            {messages &&
+              messages.map((e) => {
+                return (
+                  <Message
+                    key={e.id}
+                    title={e.title}
+                    text={e.text}
+                    email={e.email}
+                    id={e.id}
+                    setMessageFlag={setMessageFlag}
+                  />
+                );
+              })}
+          </div>
+          <div>
+            {messages.length > 0 && (
+              <Paginated setPage={setMessagePage} page={messagePage} />
+            )}
+          </div>
+        </div>
+        <div className={style.footer}>
+          <Footer />
         </div>
       </div>
-      <div className={style.footer}>
-        <Footer />
-      </div>
-    </div>
-  );
+    );
+  } else {
+    return (
+      <>
+        <NotFound />
+      </>
+    )
+  }
 };
 
 export default PreguntasDirectas;
