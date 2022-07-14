@@ -69,8 +69,8 @@ const Responder = () => {
     if (!input) error = "Se requiere escribir una respuesta";
     if (input.length < 10)
       error = "La respuesta debe tener como mínimo 10 caracteres";
-    if (input.length > 600)
-      error = "La respuesta debe tener como máximo 600 caracteres";
+    if (input.length > 6000)
+      error = "La respuesta debe tener como máximo 6000 caracteres";
     return error;
   };
   const textAlerta = "Respuesta enviada";

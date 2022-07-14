@@ -73,7 +73,7 @@ const PaypalPage = () => {
               {/* <p>Powered By</p> */}
 
               <div className={style.extra}>
-                <p className={style.currency}>R$ </p>
+                <p className={style.currency}>U$D </p>
                 <input
                   type="number"
                   onChange={(e) => handleValor(e)}
