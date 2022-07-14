@@ -15,13 +15,15 @@ const UserCard = ({
   sub,
   points,
   setBanFlag,
+  setInput,
 }) => {
   const banUser = (e) => {
     e.preventDefault();
+    setInput("");
     let modify = { statusBanned: !statusBanned };
-    axios
-      .put(`/user/${sub}`, modify)
-      .then((response) => setBanFlag((prevFlag) => !prevFlag));
+    axios.put(`/user/${sub}`, modify);
+    setBanFlag((prevFlag) => !prevFlag);
+    setInput("");
   };
 
   const confirmBanUser = (e) => {

@@ -40,13 +40,9 @@ html {
 
 .userImage {
   border-radius: 100%;
-  /* border-radius: 30px; */
-  width: 9vh;
   width: 6vh;
   height: 6vh;
-  /* margin-top: 1vh; */
   margin-left: 2vw;
-  /* padding-top: 1vh; */
   padding: 0;
   align-self: center;
 }
@@ -139,43 +135,43 @@ html {
     margin-right: 1vh;
     margin-left: -1vh;
   }
-  
+
   .colunmNickTop {
     font-size: small;
     margin-right: 1vh;
   }
-  
+
   .colunmTeachTop {
     font-size: small;
     margin-right: 1vh;
   }
-  
+
   .colunmRespTop {
     font-size: small;
     margin-right: 1vh;
   }
-  
+
   .colunmPregTop {
     font-size: small;
     margin-right: 1vh;
   }
-  
+
   .colunmNro {
     font-size: small;
   }
-  
+
   .colunmNick {
     font-size: small;
   }
-  
+
   .colunmTeach {
     font-size: small;
   }
-  
+
   .colunmResp {
     font-size: small;
   }
-  
+
   .colunmPreg {
     font-size: small;
   }
@@ -230,7 +226,7 @@ html {
   margin: 0px;
   margin-left: 1vw;
   padding: 0px;
-  background-color: #CD7F32;
+  background-color: #cd7f32;
   border-radius: 0.5vh;
   border: 2px solid black;
 }
@@ -290,7 +286,7 @@ html {
   margin: 0px;
   margin-left: 1vw;
   padding: 0px;
-  background-color: #CD7F32;
+  background-color: #cd7f32;
   border-radius: 0.5vh;
 }
 

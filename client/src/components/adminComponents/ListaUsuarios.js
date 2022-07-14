@@ -59,9 +59,7 @@ const ListaUsuarios = () => {
   return (
     <div>
       <div>
-        <BotonesAdmin 
-        usuariosOn={usuariosOn}
-        />
+        <BotonesAdmin usuariosOn={usuariosOn} />
       </div>
       <div style={darkmode}>
         <div>
@@ -73,6 +71,7 @@ const ListaUsuarios = () => {
               placeholder="Buscar..."
               aria-label="Search"
               style={darkSearchbar}
+              value={input}
             />
             <button
               onClick={() => handlerRefresh()}
@@ -112,6 +111,7 @@ const ListaUsuarios = () => {
                       points={e.myTeachPoints}
                       setUsersFlag={setUsersFlag}
                       setBanFlag={setBanFlag}
+                      setInput={setInput}
                     />
                   </div>
                 );
