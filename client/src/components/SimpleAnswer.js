@@ -195,8 +195,7 @@ const SimpleAnswer = ({
     if (text.includes("(https://res.cloudinary.com")) {
       const separado = text.split("(https://res.cloudinary.com");
       let listo1 = "https://res.cloudinary.com" + separado[1];
-      const length = listo1.length;
-      listo1 = listo1.slice(0, length - 3);
+      listo1 = listo1.split(')')[0];
       setUrl(listo1);
 
       const segundo = listo1.split("/");
