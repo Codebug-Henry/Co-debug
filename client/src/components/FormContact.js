@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { postMessage } from "../redux/actions/index";
 import { useSelector, useDispatch } from "react-redux";
 import style from "./styles/FormContact.module.css";
@@ -7,13 +7,32 @@ import MensajeAlerta from "./MensajeAlerta";
 const FormContact = () => {
   const dispatch = useDispatch();
   let user = useSelector((state) => state.user);
+  const [input, setInput] = useState({
+    email: localStorage.emailContact || "",
+    title: localStorage.titleContact || "",
+    text: localStorage.textContact || "",
+  });
+  const [errors, setErrors] = useState({});
+
+  useEffect(() => {
+    if(input.email || input.title || input.text){
+      setErrors(
+        validate({
+          title: input.title,
+          text: input.text,
+          email: input.email,
+        })
+      )
+    }
+    // eslint-disable-next-line
+  }, []);
 
   function validate(input) {
     let errors = {};
     if (!input.title) errors.title = "Se requiere un título";
     if (input.title.length > 30) errors.title = "Máximo 30 caracteres";
     if (!input.email) errors.email = "Se requiere un email";
-    if (input.email.length > 30) errors.email = "Máximo 30 caracteres";
+    if (input.email.length > 50) errors.email = "Máximo 50 caracteres";
     if (
       input.email &&
       !/^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(
@@ -28,14 +47,6 @@ const FormContact = () => {
 
     return errors;
   }
-
-  const [input, setInput] = useState({
-    email: localStorage.emailContact || "",
-    title: localStorage.titleContact || "",
-    text: localStorage.textContact || "",
-  });
-
-  const [errors, setErrors] = useState({});
 
   function handleChange(e) {
     setInput({
