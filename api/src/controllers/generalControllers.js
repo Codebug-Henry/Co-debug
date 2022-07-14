@@ -49,332 +49,332 @@ async function questionTags(tagArr, tagType, question) {
 
 // Populate database with random data
 const populateDB = async () => {
-  const users = [
-    {
-      sub: "1",
-      name: "Gonzalo",
-      nickname: "Gonza",
-      email: "gonza@gmail.com",
-      locale: "Argentina",
-      myTeachPoints: 1600,
-      favourites: [1, 2, 4],
-      cantFav: 3,
-      cantQuest: 3,
-      cantAns: 1,
-      picture:
-        "https://res.cloudinary.com/codebugers/image/upload/v1657481931/codebug/tmzjp7bf7apzyexfxhur.jpg",
-    },
-    {
-      sub: "2",
-      name: "Santiago",
-      nickname: "Santi",
-      email: "santi@gmail.com",
-      locale: "Argentina",
-      myTeachPoints: 1500,
-      favourites: [3, 4, 5],
-      cantFav: 3,
-      cantQuest: 2,
-      cantAns: 1,
-      picture:
-        "https://res.cloudinary.com/codebugers/image/upload/v1656613573/codebug/cishty3ie3xxldbgpryt.jpg",
-    },
-    {
-      sub: "3",
-      name: "Felipe",
-      nickname: "Feli",
-      email: "feli@gmail.com",
-      locale: "Argentina",
-      myTeachPoints: 1400,
-      favourites: [1],
-      cantFav: 1,
-      cantQuest: 1,
-      cantAns: 2,
-      picture:
-        "https://res.cloudinary.com/codebugers/image/upload/v1656642327/codebug/ls3q6jh4b7nnkstdjvnc.jpg",
-    },
-    {
-      sub: "4",
-      name: "David",
-      nickname: "Davo",
-      email: "davo@gmail.com",
-      locale: "Argentina",
-      myTeachPoints: 1300,
-      cantAns: 2,
-      picture:
-        "https://res.cloudinary.com/codebugers/image/upload/v1656635530/codebug/sxaohmgkzc1wvx8u37qj.jpg",
-    },
-    {
-      sub: "5",
-      name: "Luciano",
-      nickname: "Lucho",
-      email: "lucho@gmail.com",
-      locale: "Argentina",
-      myTeachPoints: 1200,
-      favourites: [2, 3],
-      cantFav: 2,
-      cantAns: 2,
-      picture:
-        "https://res.cloudinary.com/codebugers/image/upload/v1657342483/codebug/gihydgjiirr20wcu1zqw.jpg",
-    },
-    {
-      sub: "6",
-      name: "Gustavo",
-      nickname: "Gus",
-      email: "gus@gmail.com",
-      locale: "Argentina",
-      myTeachPoints: 1100,
-      cantAns: 2,
-      picture:
-        "https://res.cloudinary.com/codebugers/image/upload/v1657552179/codebug/c2hrgarb1urpsbnxutku.jpg",
-    },
-    {
-      sub: "7",
-      name: "Patricio",
-      nickname: "Pato",
-      email: "pato@gmail.com",
-      locale: "Argentina",
-      myTeachPoints: 1000,
-      cantAns: 2,
-      picture:
-        "https://res.cloudinary.com/codebugers/image/upload/v1656702863/codebug/mr9jd9vwljre9fdu5yzp.jpg",
-    },
-    {
-      sub: "8",
-      name: "Matias",
-      nickname: "Mati",
-      email: "mati@gmail.com",
-      locale: "Argentina",
-      myTeachPoints: 900,
-      cantAns: 1,
-      picture:
-        "https://res.cloudinary.com/codebugers/image/upload/v1656605851/codebug/gpiz9uxtds9dtihu69cx.png",
-    },
-    {
-      sub: "9",
-      name: "Fabricio",
-      nickname: "Fabri",
-      email: "fabri@gmail.com",
-      locale: "Argentina",
-      myTeachPoints: 800,
-      favourites: [1, 2, 4],
-      cantFav: 3,
-      cantQuest: 3,
-      cantAns: 1,
-      picture:
-        "https://res.cloudinary.com/codebugers/image/upload/v1656857276/codebug/xatglaepqkmsuoh6kejw.jpg",
-    },
-    {
-      sub: "10",
-      name: "Roberto",
-      nickname: "Rober",
-      email: "rober@gmail.com",
-      locale: "Argentina",
-      myTeachPoints: 700,
-      favourites: [3, 4, 5],
-      cantFav: 3,
-      cantQuest: 2,
-      cantAns: 1,
-      picture:
-        "https://res.cloudinary.com/codebugers/image/upload/v1656939594/codebug/v9gblm0zzb2hfzjsivdu.jpg",
-    },
-    {
-      sub: "11",
-      name: "Patroclo",
-      nickname: "Patroclo",
-      email: "patroclo@gmail.com",
-      locale: "Argentina",
-      myTeachPoints: 600,
-      favourites: [1],
-      cantFav: 1,
-      cantQuest: 1,
-      cantAns: 2,
-      picture:
-        "https://res.cloudinary.com/codebugers/image/upload/v1656642327/codebug/ls3q6jh4b7nnkstdjvnc.jpg",
-    },
-    {
-      sub: "12",
-      name: "Aquiles",
-      nickname: "Aquiles",
-      email: "aquiles@gmail.com",
-      locale: "Argentina",
-      myTeachPoints: 500,
-      cantAns: 2,
-      picture:
-        "https://res.cloudinary.com/codebugers/image/upload/v1656635530/codebug/sxaohmgkzc1wvx8u37qj.jpg",
-    },
-    {
-      sub: "13",
-      name: "Julieta",
-      nickname: "Juli",
-      email: "juli@gmail.com",
-      locale: "Argentina",
-      myTeachPoints: 400,
-      favourites: [2, 3],
-      cantFav: 2,
-      cantAns: 2,
-      picture:
-        "https://res.cloudinary.com/codebugers/image/upload/v1656901868/codebug/tgopgksiycfzlby7igma.gif",
-    },
-    {
-      sub: "14",
-      name: "Marcelo",
-      nickname: "Marce",
-      email: "marce@gmail.com",
-      locale: "Argentina",
-      myTeachPoints: 300,
-      cantAns: 2,
-      picture:
-        "https://res.cloudinary.com/codebugers/image/upload/v1656968392/codebug/oz7jaaw0drs5cepygypy.jpg",
-    },
-    {
-      sub: "15",
-      name: "Natalia",
-      nickname: "Nati",
-      email: "nati@gmail.com",
-      locale: "Argentina",
-      myTeachPoints: 200,
-      cantAns: 2,
-      picture:
-        "https://res.cloudinary.com/codebugers/image/upload/v1656901868/codebug/tgopgksiycfzlby7igma.gif",
-    },
-    {
-      sub: "16",
-      name: "Camila",
-      nickname: "Cami",
-      email: "cami@gmail.com",
-      locale: "Argentina",
-      myTeachPoints: 100,
-      cantAns: 1,
-      picture:
-        "https://res.cloudinary.com/codebugers/image/upload/v1656959870/codebug/svgczjrwzxsi6puerdqh.jpg",
-    },
-  ];
+  // const users = [
+  //   {
+  //     sub: "1",
+  //     name: "Gonzalo",
+  //     nickname: "Gonza",
+  //     email: "gonza@gmail.com",
+  //     locale: "Argentina",
+  //     myTeachPoints: 1600,
+  //     favourites: [1, 2, 4],
+  //     cantFav: 3,
+  //     cantQuest: 3,
+  //     cantAns: 1,
+  //     picture:
+  //       "https://res.cloudinary.com/codebugers/image/upload/v1657481931/codebug/tmzjp7bf7apzyexfxhur.jpg",
+  //   },
+  //   {
+  //     sub: "2",
+  //     name: "Santiago",
+  //     nickname: "Santi",
+  //     email: "santi@gmail.com",
+  //     locale: "Argentina",
+  //     myTeachPoints: 1500,
+  //     favourites: [3, 4, 5],
+  //     cantFav: 3,
+  //     cantQuest: 2,
+  //     cantAns: 1,
+  //     picture:
+  //       "https://res.cloudinary.com/codebugers/image/upload/v1656613573/codebug/cishty3ie3xxldbgpryt.jpg",
+  //   },
+  //   {
+  //     sub: "3",
+  //     name: "Felipe",
+  //     nickname: "Feli",
+  //     email: "feli@gmail.com",
+  //     locale: "Argentina",
+  //     myTeachPoints: 1400,
+  //     favourites: [1],
+  //     cantFav: 1,
+  //     cantQuest: 1,
+  //     cantAns: 2,
+  //     picture:
+  //       "https://res.cloudinary.com/codebugers/image/upload/v1656642327/codebug/ls3q6jh4b7nnkstdjvnc.jpg",
+  //   },
+  //   {
+  //     sub: "4",
+  //     name: "David",
+  //     nickname: "Davo",
+  //     email: "davo@gmail.com",
+  //     locale: "Argentina",
+  //     myTeachPoints: 1300,
+  //     cantAns: 2,
+  //     picture:
+  //       "https://res.cloudinary.com/codebugers/image/upload/v1656635530/codebug/sxaohmgkzc1wvx8u37qj.jpg",
+  //   },
+  //   {
+  //     sub: "5",
+  //     name: "Luciano",
+  //     nickname: "Lucho",
+  //     email: "lucho@gmail.com",
+  //     locale: "Argentina",
+  //     myTeachPoints: 1200,
+  //     favourites: [2, 3],
+  //     cantFav: 2,
+  //     cantAns: 2,
+  //     picture:
+  //       "https://res.cloudinary.com/codebugers/image/upload/v1657342483/codebug/gihydgjiirr20wcu1zqw.jpg",
+  //   },
+  //   {
+  //     sub: "6",
+  //     name: "Gustavo",
+  //     nickname: "Gus",
+  //     email: "gus@gmail.com",
+  //     locale: "Argentina",
+  //     myTeachPoints: 1100,
+  //     cantAns: 2,
+  //     picture:
+  //       "https://res.cloudinary.com/codebugers/image/upload/v1657552179/codebug/c2hrgarb1urpsbnxutku.jpg",
+  //   },
+  //   {
+  //     sub: "7",
+  //     name: "Patricio",
+  //     nickname: "Pato",
+  //     email: "pato@gmail.com",
+  //     locale: "Argentina",
+  //     myTeachPoints: 1000,
+  //     cantAns: 2,
+  //     picture:
+  //       "https://res.cloudinary.com/codebugers/image/upload/v1656702863/codebug/mr9jd9vwljre9fdu5yzp.jpg",
+  //   },
+  //   {
+  //     sub: "8",
+  //     name: "Matias",
+  //     nickname: "Mati",
+  //     email: "mati@gmail.com",
+  //     locale: "Argentina",
+  //     myTeachPoints: 900,
+  //     cantAns: 1,
+  //     picture:
+  //       "https://res.cloudinary.com/codebugers/image/upload/v1656605851/codebug/gpiz9uxtds9dtihu69cx.png",
+  //   },
+  //   {
+  //     sub: "9",
+  //     name: "Fabricio",
+  //     nickname: "Fabri",
+  //     email: "fabri@gmail.com",
+  //     locale: "Argentina",
+  //     myTeachPoints: 800,
+  //     favourites: [1, 2, 4],
+  //     cantFav: 3,
+  //     cantQuest: 3,
+  //     cantAns: 1,
+  //     picture:
+  //       "https://res.cloudinary.com/codebugers/image/upload/v1656857276/codebug/xatglaepqkmsuoh6kejw.jpg",
+  //   },
+  //   {
+  //     sub: "10",
+  //     name: "Roberto",
+  //     nickname: "Rober",
+  //     email: "rober@gmail.com",
+  //     locale: "Argentina",
+  //     myTeachPoints: 700,
+  //     favourites: [3, 4, 5],
+  //     cantFav: 3,
+  //     cantQuest: 2,
+  //     cantAns: 1,
+  //     picture:
+  //       "https://res.cloudinary.com/codebugers/image/upload/v1656939594/codebug/v9gblm0zzb2hfzjsivdu.jpg",
+  //   },
+  //   {
+  //     sub: "11",
+  //     name: "Patroclo",
+  //     nickname: "Patroclo",
+  //     email: "patroclo@gmail.com",
+  //     locale: "Argentina",
+  //     myTeachPoints: 600,
+  //     favourites: [1],
+  //     cantFav: 1,
+  //     cantQuest: 1,
+  //     cantAns: 2,
+  //     picture:
+  //       "https://res.cloudinary.com/codebugers/image/upload/v1656642327/codebug/ls3q6jh4b7nnkstdjvnc.jpg",
+  //   },
+  //   {
+  //     sub: "12",
+  //     name: "Aquiles",
+  //     nickname: "Aquiles",
+  //     email: "aquiles@gmail.com",
+  //     locale: "Argentina",
+  //     myTeachPoints: 500,
+  //     cantAns: 2,
+  //     picture:
+  //       "https://res.cloudinary.com/codebugers/image/upload/v1656635530/codebug/sxaohmgkzc1wvx8u37qj.jpg",
+  //   },
+  //   {
+  //     sub: "13",
+  //     name: "Julieta",
+  //     nickname: "Juli",
+  //     email: "juli@gmail.com",
+  //     locale: "Argentina",
+  //     myTeachPoints: 400,
+  //     favourites: [2, 3],
+  //     cantFav: 2,
+  //     cantAns: 2,
+  //     picture:
+  //       "https://res.cloudinary.com/codebugers/image/upload/v1656901868/codebug/tgopgksiycfzlby7igma.gif",
+  //   },
+  //   {
+  //     sub: "14",
+  //     name: "Marcelo",
+  //     nickname: "Marce",
+  //     email: "marce@gmail.com",
+  //     locale: "Argentina",
+  //     myTeachPoints: 300,
+  //     cantAns: 2,
+  //     picture:
+  //       "https://res.cloudinary.com/codebugers/image/upload/v1656968392/codebug/oz7jaaw0drs5cepygypy.jpg",
+  //   },
+  //   {
+  //     sub: "15",
+  //     name: "Natalia",
+  //     nickname: "Nati",
+  //     email: "nati@gmail.com",
+  //     locale: "Argentina",
+  //     myTeachPoints: 200,
+  //     cantAns: 2,
+  //     picture:
+  //       "https://res.cloudinary.com/codebugers/image/upload/v1656901868/codebug/tgopgksiycfzlby7igma.gif",
+  //   },
+  //   {
+  //     sub: "16",
+  //     name: "Camila",
+  //     nickname: "Cami",
+  //     email: "cami@gmail.com",
+  //     locale: "Argentina",
+  //     myTeachPoints: 100,
+  //     cantAns: 1,
+  //     picture:
+  //       "https://res.cloudinary.com/codebugers/image/upload/v1656959870/codebug/svgczjrwzxsi6puerdqh.jpg",
+  //   },
+  // ];
 
-  const questions = [
-    {
-      userSub: 1,
-      teachPoints: 100,
-      title: "Javascript",
-      text: "Que es un bucle for?",
-      cantAnswers: 3,
-    },
-    {
-      userSub: 1,
-      teachPoints: 200,
-      title: "Github",
-      text: "Como hacer git push?",
-      cantAnswers: 5,
-    },
-    {
-      userSub: 1,
-      teachPoints: 300,
-      title: "React",
-      text: "Que es un hook?",
-      cantAnswers: 2,
-    },
-    {
-      userSub: 2,
-      teachPoints: 400,
-      title: "Node",
-      text: "Como funciona express?",
-      cantAnswers: 1,
-    },
-    {
-      userSub: 2,
-      teachPoints: 500,
-      title: "Sequelize",
-      text: "Que son los mixins?",
-      cantAnswers: 2,
-    },
-    {
-      userSub: 3,
-      teachPoints: 600,
-      title: "Redux",
-      text: "Como se configura una store?",
-      cantAnswers: 0,
-    },
-  ];
+  // const questions = [
+  //   {
+  //     userSub: 1,
+  //     teachPoints: 100,
+  //     title: "Javascript",
+  //     text: "Que es un bucle for?",
+  //     cantAnswers: 3,
+  //   },
+  //   {
+  //     userSub: 1,
+  //     teachPoints: 200,
+  //     title: "Github",
+  //     text: "Como hacer git push?",
+  //     cantAnswers: 5,
+  //   },
+  //   {
+  //     userSub: 1,
+  //     teachPoints: 300,
+  //     title: "React",
+  //     text: "Que es un hook?",
+  //     cantAnswers: 2,
+  //   },
+  //   {
+  //     userSub: 2,
+  //     teachPoints: 400,
+  //     title: "Node",
+  //     text: "Como funciona express?",
+  //     cantAnswers: 1,
+  //   },
+  //   {
+  //     userSub: 2,
+  //     teachPoints: 500,
+  //     title: "Sequelize",
+  //     text: "Que son los mixins?",
+  //     cantAnswers: 2,
+  //   },
+  //   {
+  //     userSub: 3,
+  //     teachPoints: 600,
+  //     title: "Redux",
+  //     text: "Como se configura una store?",
+  //     cantAnswers: 0,
+  //   },
+  // ];
 
-  const answers = [
-    {
-      userSub: 3,
-      questionId: 1,
-      teachPoints: 100,
-      text: "El bucle for es una estructura de control en programación en la que se puede indicar de antemano el número máximo de iteraciones",
-    },
-    {
-      userSub: 4,
-      questionId: 1,
-      teachPoints: 100,
-      text: "Su uso principal se orienta a los vectores, pudiendo modificar, agregar, eliminar o consultar datos que se encuentren según el índice.",
-    },
-    {
-      userSub: 5,
-      questionId: 1,
-      teachPoints: 100,
-      text: "Por esto último, una condición mínima del vector es que debe ser ordenado, porque si se intenta leer un dato inexistente, esto genera un error de programación.",
-    },
-    {
-      userSub: 6,
-      questionId: 2,
-      teachPoints: 100,
-      text: "El comando git push se usa para cargar contenido del repositorio local a un repositorio remoto.",
-    },
-    {
-      userSub: 7,
-      questionId: 2,
-      teachPoints: 100,
-      text: "El envío es la forma de transferir confirmaciones desde tu repositorio local a un repositorio remoto",
-    },
-    {
-      userSub: 8,
-      questionId: 2,
-      teachPoints: 200,
-      text: "Es el equivalente a git fetch, pero mientras que al recuperar se importan las confirmaciones a ramas locales, al enviar estas se exportan a ramas remotas.",
-    },
-    {
-      userSub: 3,
-      questionId: 2,
-      teachPoints: 200,
-      text: "Las ramas remotas se configuran mediante el comando git remote",
-    },
-    {
-      userSub: 4,
-      questionId: 2,
-      teachPoints: 200,
-      text: "Los envíos pueden sobrescribir los cambios, por lo que se debe tener cuidado a la hora de realizarlos.",
-    },
-    {
-      userSub: 5,
-      questionId: 3,
-      teachPoints: 200,
-      text: "Un Hook es una función especial que permite “conectarse” a características de React",
-    },
-    {
-      userSub: 2,
-      questionId: 3,
-      teachPoints: 300,
-      text: "Por ejemplo, useState es un Hook que te permite añadir el estado de React a un componente de función",
-    },
-    {
-      userSub: 1,
-      questionId: 4,
-      teachPoints: 200,
-      text: "Express es el framework web más popular de Node, y es la librería subyacente para un gran número de otros frameworks web de Node populares.",
-    },
-    {
-      userSub: 6,
-      questionId: 5,
-      teachPoints: 300,
-      text: "Cuando se define una asociación entre dos modelos, las instancias de esos modelos obtienen métodos especiales para interactuar con sus contrapartes asociadas.",
-    },
-    {
-      userSub: 7,
-      questionId: 5,
-      teachPoints: 500,
-      text: "Por ejemplo, si tenemos dos modelos, Foo y Bar, y están asociados, sus instancias tendrán disponibles diferentes métodos/mixins, según el tipo de asociación",
-    },
-  ];
+  // const answers = [
+  //   {
+  //     userSub: 3,
+  //     questionId: 1,
+  //     teachPoints: 100,
+  //     text: "El bucle for es una estructura de control en programación en la que se puede indicar de antemano el número máximo de iteraciones",
+  //   },
+  //   {
+  //     userSub: 4,
+  //     questionId: 1,
+  //     teachPoints: 100,
+  //     text: "Su uso principal se orienta a los vectores, pudiendo modificar, agregar, eliminar o consultar datos que se encuentren según el índice.",
+  //   },
+  //   {
+  //     userSub: 5,
+  //     questionId: 1,
+  //     teachPoints: 100,
+  //     text: "Por esto último, una condición mínima del vector es que debe ser ordenado, porque si se intenta leer un dato inexistente, esto genera un error de programación.",
+  //   },
+  //   {
+  //     userSub: 6,
+  //     questionId: 2,
+  //     teachPoints: 100,
+  //     text: "El comando git push se usa para cargar contenido del repositorio local a un repositorio remoto.",
+  //   },
+  //   {
+  //     userSub: 7,
+  //     questionId: 2,
+  //     teachPoints: 100,
+  //     text: "El envío es la forma de transferir confirmaciones desde tu repositorio local a un repositorio remoto",
+  //   },
+  //   {
+  //     userSub: 8,
+  //     questionId: 2,
+  //     teachPoints: 200,
+  //     text: "Es el equivalente a git fetch, pero mientras que al recuperar se importan las confirmaciones a ramas locales, al enviar estas se exportan a ramas remotas.",
+  //   },
+  //   {
+  //     userSub: 3,
+  //     questionId: 2,
+  //     teachPoints: 200,
+  //     text: "Las ramas remotas se configuran mediante el comando git remote",
+  //   },
+  //   {
+  //     userSub: 4,
+  //     questionId: 2,
+  //     teachPoints: 200,
+  //     text: "Los envíos pueden sobrescribir los cambios, por lo que se debe tener cuidado a la hora de realizarlos.",
+  //   },
+  //   {
+  //     userSub: 5,
+  //     questionId: 3,
+  //     teachPoints: 200,
+  //     text: "Un Hook es una función especial que permite “conectarse” a características de React",
+  //   },
+  //   {
+  //     userSub: 2,
+  //     questionId: 3,
+  //     teachPoints: 300,
+  //     text: "Por ejemplo, useState es un Hook que te permite añadir el estado de React a un componente de función",
+  //   },
+  //   {
+  //     userSub: 1,
+  //     questionId: 4,
+  //     teachPoints: 200,
+  //     text: "Express es el framework web más popular de Node, y es la librería subyacente para un gran número de otros frameworks web de Node populares.",
+  //   },
+  //   {
+  //     userSub: 6,
+  //     questionId: 5,
+  //     teachPoints: 300,
+  //     text: "Cuando se define una asociación entre dos modelos, las instancias de esos modelos obtienen métodos especiales para interactuar con sus contrapartes asociadas.",
+  //   },
+  //   {
+  //     userSub: 7,
+  //     questionId: 5,
+  //     teachPoints: 500,
+  //     text: "Por ejemplo, si tenemos dos modelos, Foo y Bar, y están asociados, sus instancias tendrán disponibles diferentes métodos/mixins, según el tipo de asociación",
+  //   },
+  // ];
 
   const macros = [
     { tag: "JavaScript" },
@@ -517,9 +517,9 @@ const populateDB = async () => {
   const microsOtro = [{ id: 92, tag: "Otro", macroTagId: 11 }];
 
   try {
-    await User.bulkCreate(users);
-    await Question.bulkCreate(questions);
-    await Answer.bulkCreate(answers);
+    // await User.bulkCreate(users);
+    // await Question.bulkCreate(questions);
+    // await Answer.bulkCreate(answers);
     await MacroTag.bulkCreate(macros);
 
     let micros = [
@@ -537,39 +537,39 @@ const populateDB = async () => {
     ];
     let allMicros = await MicroTag.bulkCreate(micros);
 
-    let Js = await MacroTag.findByPk(1);
-    let GH = await MacroTag.findByPk(9);
-    let React = await MacroTag.findByPk(5);
-    let Sequelize = await MacroTag.findByPk(10);
-    let Redux = await MacroTag.findByPk(8);
-    let Otro = await MacroTag.findByPk(11);
+    // let Js = await MacroTag.findByPk(1);
+    // let GH = await MacroTag.findByPk(9);
+    // let React = await MacroTag.findByPk(5);
+    // let Sequelize = await MacroTag.findByPk(10);
+    // let Redux = await MacroTag.findByPk(8);
+    // let Otro = await MacroTag.findByPk(11);
 
-    let bucles = await MicroTag.findByPk(4);
-    let comandos = await MicroTag.findByPk(77);
-    let hooks = await MicroTag.findByPk(53);
-    let mixins = await MicroTag.findByPk(89);
-    let store = await MicroTag.findByPk(66);
-    let otro = await MicroTag.findByPk(92);
+    // let bucles = await MicroTag.findByPk(4);
+    // let comandos = await MicroTag.findByPk(77);
+    // let hooks = await MicroTag.findByPk(53);
+    // let mixins = await MicroTag.findByPk(89);
+    // let store = await MicroTag.findByPk(66);
+    // let otro = await MicroTag.findByPk(92);
 
-    let question1 = await Question.findByPk(1);
-    let question2 = await Question.findByPk(2);
-    let question3 = await Question.findByPk(3);
-    let question4 = await Question.findByPk(4);
-    let question5 = await Question.findByPk(5);
-    let question6 = await Question.findByPk(6);
+    // let question1 = await Question.findByPk(1);
+    // let question2 = await Question.findByPk(2);
+    // let question3 = await Question.findByPk(3);
+    // let question4 = await Question.findByPk(4);
+    // let question5 = await Question.findByPk(5);
+    // let question6 = await Question.findByPk(6);
 
-    await question1.addMacroTag(Js);
-    await question1.addMicroTag(bucles);
-    await question2.addMacroTag(GH);
-    await question2.addMicroTag(comandos);
-    await question3.addMacroTag(React);
-    await question3.addMicroTag(hooks);
-    await question4.addMacroTag(Otro);
-    await question4.addMicroTag(otro);
-    await question5.addMacroTag(Sequelize);
-    await question5.addMicroTag(mixins);
-    await question6.addMacroTag(Redux);
-    await question6.addMicroTag(store);
+    // await question1.addMacroTag(Js);
+    // await question1.addMicroTag(bucles);
+    // await question2.addMacroTag(GH);
+    // await question2.addMicroTag(comandos);
+    // await question3.addMacroTag(React);
+    // await question3.addMicroTag(hooks);
+    // await question4.addMacroTag(Otro);
+    // await question4.addMicroTag(otro);
+    // await question5.addMacroTag(Sequelize);
+    // await question5.addMicroTag(mixins);
+    // await question6.addMacroTag(Redux);
+    // await question6.addMicroTag(store);
 
     console.log("DB populated correctly");
   } catch (error) {
