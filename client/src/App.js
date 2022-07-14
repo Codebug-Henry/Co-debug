@@ -38,7 +38,7 @@ function App() {
         <Route path={"/responder/:questionId"} element={<ResponderPDF />} />
         <Route path={"/favoritas"} element={<ProtectedRoute component={Favoritas}/>} />
         <Route path={"/ranking"} element={<Ranking />} />
-        <Route path={"/codenothere"} element={<Admin />} />
+        <Route path={"/codenothere"} element={<ProtectedRoute component={Admin}/>} />
         <Route path={"/creadores"} element={<Creadores />} />
         <Route path={"/ayuda"} element={<Ayuda />} />
         <Route path={"/terminos"} element={<Terminos />} />
@@ -48,11 +48,11 @@ function App() {
         <Route path={"/pagolisto"} element={<PagoListo />} />
         <Route path={"*"} element={<NotFound />} />
         <Route path={"/easter"} element={<Easter />} />
-        <Route path={"/codenothere/alertas"} element={<Alertas />} />
-        <Route path={"/codenothere/usuarios"} element={<ListaUsuarios />} />
-        <Route path={"/codenothere/admins"} element={<AgregarAdmin />} />
-        <Route path={"/codenothere/mensajes"} element={<PreguntasDirectas />} />
-        <Route path={"/user/:sub"} element={<UserPage />} />
+        <Route path={"/codenothere/alertas"} element={<ProtectedRoute component={Alertas}/>} />
+        <Route path={"/codenothere/usuarios"} element={<ProtectedRoute component={ListaUsuarios}/>} />
+        <Route path={"/codenothere/admins"} element={<ProtectedRoute component={AgregarAdmin}/>} />
+        <Route path={"/codenothere/mensajes"} element={<ProtectedRoute component={PreguntasDirectas}/>} />
+        <Route path={"/user/:sub"} element={<ProtectedRoute component={UserPage}/>} />
       </Routes>
     </>
   );
