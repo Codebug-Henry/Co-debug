@@ -14,6 +14,12 @@ import { useNavigate } from "react-router-dom";
 import NotVerified from "../components/NotVerified";
 import BannedUser from "../components/BannedUser";
 import Paginated from "../components/Paginated";
+import Table from '@mui/material/Table';
+import TableBody from '@mui/material/TableBody';
+import TableCell from '@mui/material/TableCell';
+import TableContainer from '@mui/material/TableContainer';
+import TableRow from '@mui/material/TableRow';
+import Paper from '@mui/material/Paper';
 
 const Landing = () => {
   const dispatch = useDispatch();
@@ -94,10 +100,35 @@ const Landing = () => {
                         onClick={() => handleEaster()}
                       >
                         <p className={style.estadisticas}>Mis estadísticas:</p>
-                        <p>Mi posición en el Ranking: <span className={style.dato}>{myPosition}</span></p>
+
+                        {/* <p>Mi posición en el Ranking: <span className={style.dato}>{myPosition}</span></p>
                         <p>Mis Teach-Points: <span className={style.dato}>{myTeachPoints}</span></p>
                         <p>Cuántas preguntas hice? <span className={style.dato}>{cantQuest}</span></p>
-                        <p>Cuántas preguntas respondí? <span className={style.dato}>{cantAns}</span></p>
+                        <p>Cuántas preguntas respondí? <span className={style.dato}>{cantAns}</span></p> */}
+
+                        <TableContainer component={Paper}>
+                          <Table aria-label="simple table">
+                            <TableBody>
+                                <TableRow sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
+                                  <TableCell component="th" scope="row"><span>Mi posición en el Ranking</span></TableCell>
+                                  <TableCell align="right"><span className={style.dato}>{myPosition}</span></TableCell>
+                                </TableRow>
+                                <TableRow sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
+                                  <TableCell component="th" scope="row">Mis Teach-Points</TableCell>
+                                  <TableCell align="right"><span className={style.dato}>{myTeachPoints}</span></TableCell>
+                                </TableRow>
+                                <TableRow sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
+                                  <TableCell component="th" scope="row">Cuántas preguntas hice?</TableCell>
+                                  <TableCell align="right"><span className={style.dato}>{cantQuest}</span></TableCell>
+                                </TableRow>
+                                <TableRow sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
+                                  <TableCell component="th" scope="row">Cuántas preguntas respondí?</TableCell>
+                                  <TableCell align="right"><span className={style.dato}>{cantAns}</span></TableCell>
+                                </TableRow>
+                            </TableBody>
+                          </Table>
+                        </TableContainer>
+
                       </div>
                     </div>
                     <div className={`row ${style.rightRowUp}`}>
