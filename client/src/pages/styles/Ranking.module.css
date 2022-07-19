@@ -194,7 +194,15 @@ html {
   margin-left: 1vw;
   padding: 0px;
   border-top: 1px solid grey;
+  transition-property: all;
+  transition-duration: 0.3s;
+  transition-timing-function: linear;
 }
+
+.info:hover {
+  transform: scale(103%);
+}
+
 
 .infosub {
   margin: 0px;
@@ -202,6 +210,13 @@ html {
   padding: 0px;
   border: 2px solid black;
   border-radius: 0.5vh;
+  transition-property: all;
+  transition-duration: 0.3s;
+  transition-timing-function: linear;
+}
+
+.infosub:hover {
+  transform: scale(103%);
 }
 
 .info1sub {
@@ -211,7 +226,15 @@ html {
   background-color: gold;
   border-radius: 0.5vh;
   border: 2px solid black;
+  transition-property: all;
+  transition-duration: 0.3s;
+  transition-timing-function: linear;
 }
+
+.info1sub:hover {
+  transform: scale(103%);
+}
+
 
 .info2sub {
   margin: 0px;
@@ -220,7 +243,15 @@ html {
   background-color: silver;
   border-radius: 0.5vh;
   border: 2px solid black;
+  transition-property: all;
+  transition-duration: 0.3s;
+  transition-timing-function: linear;
 }
+
+.info2sub:hover {
+  transform: scale(103%);
+}
+
 
 .info3sub {
   margin: 0px;
@@ -229,6 +260,13 @@ html {
   background-color: #cd7f32;
   border-radius: 0.5vh;
   border: 2px solid black;
+  transition-property: all;
+  transition-duration: 0.3s;
+  transition-timing-function: linear;
+}
+
+.info3sub:hover {
+  transform: scale(103%);
 }
 
 .info p {
@@ -262,11 +300,18 @@ html {
   padding: 0px;
   background-color: gold;
   border-radius: 0.5vh;
+  transition-property: all;
+  transition-duration: 0.3s;
+  transition-timing-function: linear;
 }
 
 .info1 p {
   margin-top: 3vh;
   margin-left: 1.5vw;
+}
+
+.info1:hover {
+  transform: scale(103%);
 }
 
 .info2 {
@@ -275,11 +320,18 @@ html {
   padding: 0px;
   background-color: silver;
   border-radius: 0.5vh;
+  transition-property: all;
+  transition-duration: 0.3s;
+  transition-timing-function: linear;
 }
 
 .info2 p {
   margin-top: 3vh;
   margin-left: 1.5vw;
+}
+
+.info2:hover {
+  transform: scale(103%);
 }
 
 .info3 {
@@ -288,11 +340,18 @@ html {
   padding: 0px;
   background-color: #cd7f32;
   border-radius: 0.5vh;
+  transition-property: all;
+  transition-duration: 0.3s;
+  transition-timing-function: linear;
 }
 
 .info3 p {
   margin-top: 3vh;
   margin-left: 1.5vw;
+}
+
+.info3:hover {
+  transform: scale(103%);
 }
 
 .medal {
@@ -310,4 +369,16 @@ html {
   cursor: pointer;
   /* font-weight: 650; */
   color: black;
+}
+
+.toUser1 {
+  text-decoration: none;
+  color: black;
+}
+
+.toUser1:hover {
+  cursor: pointer;
+  /* font-weight: 650; */
+  color: black;
+  transform: scale(103%);
 }
