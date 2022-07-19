@@ -168,7 +168,7 @@ const CardQuestion = ({
               </div>
 
               <div className={style.Extras}>
-                <Link to={`/responder/${id}`} className={style.botonResp}>
+                <Link to={`/responder/${id}`} className={cantAnswers === 0 ? style.botonResp : style.botonResp2}>
                   <span>{cantAnswers} respuestas</span>
                 </Link>
                 <span>- T. Points: {teachPoints}</span>

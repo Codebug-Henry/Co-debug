@@ -39,8 +39,8 @@ const CardUserAnswer = ({
   function validate(newAnswer) {
     let errors = {};
     if (!newAnswer.text) errors.text = "Se requiere una respuesta";
-    if (newAnswer.text.length > 600)
-      errors.text = "La respuesta debe tener un máximo de 600 caracteres";
+    if (newAnswer.text.length > 6000)
+      errors.text = "La respuesta debe tener un máximo de 6000 caracteres";
     return errors;
   }
 

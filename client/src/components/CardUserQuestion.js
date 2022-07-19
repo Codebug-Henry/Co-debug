@@ -47,8 +47,8 @@ const CardUserQuestion = ({
     if (newQuestion.title.length > 80)
       errors.title = "Título debe tener un máximo de 80 caracteres";
     if (!newQuestion.text) errors.text = "Se requiere una pregunta";
-    if (newQuestion.text.length > 600)
-      errors.text = "La pregunta debe tener un máximo de 600 caracteres";
+    if (newQuestion.text.length > 6000)
+      errors.text = "La pregunta debe tener un máximo de 6000 caracteres";
     return errors;
   }
 
