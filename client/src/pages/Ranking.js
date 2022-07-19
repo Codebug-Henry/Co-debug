@@ -13,6 +13,7 @@ import oro from '../images/oro.png';
 import plata from '../images/plata.png';
 import bronce from '../images/bronce.png';
 import { FormControl, Select, MenuItem, InputLabel } from "@mui/material";
+import { Link } from "react-router-dom";
 
 const Ranking = () => {
   const dispatch = useDispatch();
@@ -107,96 +108,120 @@ const Ranking = () => {
               {width > 800 ? (
                 <p className={`col ${style.colunmTeachTop}`}>Teach Points</p>
               ) : (
-                <p className={`col ${style.colunmNickTop}`}>Points</p>
+                <p className={`col ${style.colunmTeachTop}`}>Points</p>
               )}
-              {width > 800 ? (
-                <p className={`col ${style.colunmRespTop}`}>Respuestas</p>
+              {width > 1400 ? (
+                <p className={`col-1 ${style.colunmRespTop}`}>Respuestas</p>
               ) : (
-                <p className={`col ${style.colunmNickTop}`}>Rptas.</p>
+                <p className={`col-1 ${style.colunmRespTop}`}>Resp</p>
               )}
-              {width > 800 ? (
-                <p className={`col ${style.colunmRespTop}`}>Preguntas</p>
+              {width > 1400 ? (
+                <p className={`col-1 ${style.colunmPregTop}`}>Preguntas</p>
               ) : (
-                <p className={`col ${style.colunmNickTop}`}>Pregs.</p>
+                <p className={`col-1 ${style.colunmPregTop}`}>Preg</p>
               )}
             </div>
             { sort.includes('desc') &&
               ranking.map((e) => e.myPosition === 1 ? 
-              <div
-              className={userInfo.sub === e.sub ? `row align-items-start ${style.info1sub}` : `row align-items-start ${style.info1}`}
-              key={e.sub}
-              > 
-                <img
-                  src={e.picture}
-                  className={`col-1 ${style.userImage}`}
-                  referrerPolicy="no-referrer"
-                  alt={e.name}
-                />
-              <p className={`col-1 ${style.colunmNro}`}><img src={oro} className={style.medal} alt="1" /></p>
-              <p className={`col ${style.colunmNick}`}>{e.nickname}</p>
-              <p className={`col ${style.colunmTeach}`}>{e.myTeachPoints}</p>
-              <p className={`col ${style.colunmResp}`}>{e.cantAns}</p>
-              <p className={`col ${style.colunmPreg}`}>{e.cantQuest}</p>
-            </div> :
+              <Link to={`/user/${e.sub}`} className={style.toUser1}>
+                <div
+                className={userInfo.sub === e.sub ? `row align-items-start ${style.info1sub}` : `row align-items-start ${style.info1}`}
+                key={e.sub}
+                > 
+                  <img
+                    src={e.picture}
+                    className={`col-1 ${style.userImage}`}
+                    referrerPolicy="no-referrer"
+                    alt={e.name}
+                  />
+                <p className={`col-1 ${style.colunmNro}`}><img src={oro} className={style.medal} alt="1" /></p>
+                {width > 800 ? (
+                  <p className={`col ${style.colunmNick}`}>{e.nickname}</p>
+                ) : (
+                  <p className={`col ${style.colunmNick}`}>{e.nickname.slice(0,13)}</p>
+                )}
+                <p className={`col ${style.colunmTeach}`}>{e.myTeachPoints}</p>
+                <p className={`col-1 ${style.colunmResp}`}>{e.cantAns}</p>
+                <p className={`col-1 ${style.colunmPreg}`}>{e.cantQuest}</p>
+              </div>
+            </Link>:
             null )
             }
             { sort.includes('desc') &&
               ranking.map((e) => e.myPosition === 2 ? 
-              <div
-              className={userInfo.sub === e.sub ? `row align-items-start ${style.info2sub}` : `row align-items-start ${style.info2}`}
-              key={e.sub}
-              >
-              <img
-                src={e.picture}
-                className={`col-1 ${style.userImage}`}
-                referrerPolicy="no-referrer"
-                alt={e.name}
-              />
-              <p className={`col-1 ${style.colunmNro}`}><img src={plata} className={style.medal} alt="2" /></p>
-              <p className={`col ${style.colunmNick}`}>{e.nickname}</p>
-              <p className={`col ${style.colunmTeach}`}>{e.myTeachPoints}</p>
-              <p className={`col ${style.colunmResp}`}>{e.cantAns}</p>
-              <p className={`col ${style.colunmPreg}`}>{e.cantQuest}</p>
-            </div> :
-            null )
-            }
-            { sort.includes('desc') &&
-              ranking.map((e) => e.myPosition === 3 ? 
-              <div
-              className={userInfo.sub === e.sub ? `row align-items-start ${style.info3sub}` : `row align-items-start ${style.info3}`}
-              key={e.sub}
-              >
-              <img
-                src={e.picture}
-                className={`col-1 ${style.userImage}`}
-                referrerPolicy="no-referrer"
-                alt={e.name}
-              />
-              <p className={`col-1 ${style.colunmNro}`}><img src={bronce} className={style.medal} alt="3" /></p>
-              <p className={`col ${style.colunmNick}`}>{e.nickname}</p>
-              <p className={`col ${style.colunmTeach}`}>{e.myTeachPoints}</p>
-              <p className={`col ${style.colunmResp}`}>{e.cantAns}</p>
-              <p className={`col ${style.colunmPreg}`}>{e.cantQuest}</p>
-            </div> :
-            null )
-            }
-            {ranking.map((e) => e.myPosition > 3 ? 
-              <div
-                className={userInfo.sub === e.sub ? `row align-items-start ${style.infosub}` : `row align-items-start ${style.info}`}
+              <Link to={`/user/${e.sub}`} className={style.toUser1}>
+                <div
+                className={userInfo.sub === e.sub ? `row align-items-start ${style.info2sub}` : `row align-items-start ${style.info2}`}
                 key={e.sub}
-              >
+                >
                 <img
                   src={e.picture}
                   className={`col-1 ${style.userImage}`}
                   referrerPolicy="no-referrer"
                   alt={e.name}
                 />
-                <p className={`col-1 ${style.colunmNro}`}>{e.myPosition}</p>
-                <p className={`col ${style.colunmNick}`}>{e.nickname}</p>
+                <p className={`col-1 ${style.colunmNro}`}><img src={plata} className={style.medal} alt="2" /></p>
+                {width > 800 ? (
+                  <p className={`col ${style.colunmNick}`}>{e.nickname}</p>
+                ) : (
+                  <p className={`col ${style.colunmNick}`}>{e.nickname.slice(0,13)}</p>
+                )}
                 <p className={`col ${style.colunmTeach}`}>{e.myTeachPoints}</p>
-                <p className={`col ${style.colunmResp}`}>{e.cantAns}</p>
-                <p className={`col ${style.colunmPreg}`}>{e.cantQuest}</p>
-              </div> :
+                <p className={`col-1 ${style.colunmResp}`}>{e.cantAns}</p>
+                <p className={`col-1 ${style.colunmPreg}`}>{e.cantQuest}</p>
+              </div>
+            </Link> :
+            null )
+            }
+            { sort.includes('desc') &&
+              ranking.map((e) => e.myPosition === 3 ? 
+              <Link to={`/user/${e.sub}`} className={style.toUser1}>
+                <div
+                className={userInfo.sub === e.sub ? `row align-items-start ${style.info3sub}` : `row align-items-start ${style.info3}`}
+                key={e.sub}
+                >
+                <img
+                  src={e.picture}
+                  className={`col-1 ${style.userImage}`}
+                  referrerPolicy="no-referrer"
+                  alt={e.name}
+                />
+                <p className={`col-1 ${style.colunmNro}`}><img src={bronce} className={style.medal} alt="3" /></p>
+                {width > 800 ? (
+                  <p className={`col ${style.colunmNick}`}>{e.nickname}</p>
+                ) : (
+                  <p className={`col ${style.colunmNick}`}>{e.nickname.slice(0,13)}</p>
+                )}
+                <p className={`col ${style.colunmTeach}`}>{e.myTeachPoints}</p>
+                <p className={`col-1 ${style.colunmResp}`}>{e.cantAns}</p>
+                <p className={`col-1 ${style.colunmPreg}`}>{e.cantQuest}</p>
+              </div> 
+            </Link> :
+            null )
+            }
+            {ranking.map((e) => e.myPosition > 3 ? 
+              <Link to={`/user/${e.sub}`} className={style.toUser1}>
+                <div
+                  className={userInfo.sub === e.sub ? `row align-items-start ${style.infosub}` : `row align-items-start ${style.info}`}
+                  key={e.sub}
+                >
+                  <img
+                    src={e.picture}
+                    className={`col-1 ${style.userImage}`}
+                    referrerPolicy="no-referrer"
+                    alt={e.name}
+                  />
+                  <p className={`col-1 ${style.colunmNro}`}>{e.myPosition}</p>
+                  {width > 800 ? (
+                    <p className={`col ${style.colunmNick}`}>{e.nickname}</p>
+                  ) : (
+                    <p className={`col ${style.colunmNick}`}>{e.nickname.slice(0,13)}</p>
+                  )}
+                  <p className={`col ${style.colunmTeach}`}>{e.myTeachPoints}</p>
+                  <p className={`col-1 ${style.colunmResp}`}>{e.cantAns}</p>
+                  <p className={`col-1 ${style.colunmPreg}`}>{e.cantQuest}</p>
+                </div> 
+              </Link> :
               null
             )}
              {/* { sort.includes('asc') &&
