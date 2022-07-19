@@ -1,21 +1,23 @@
-ENGLISH >>>>>>
-
 # CodeBug - Final Project Henry
 
 ![Codebug](https://github.com/Codebug-Henry/Co-debug/blob/dev/client/src/images/Captura%20Landing%20Codebug.PNG)
 
 ## Introduction
 
-CodeBug is a student group project. It was done as a final assignment, where we had to apply all technologies learned at SoyHenry bootcamp. 
+<p align="justify">
+CodeBug is a student group project. It was done as a final assignment, where we had to apply all technologies learned at SoyHenry bootcamp.
+</p>
 
 ## About
 
+<p align="justify">
 The site is designed to provide a space for questions and answers among programming students. It is planned to be dynamic and intuitive so that the experience is as spontaneous as possible. Unlike other pre-existing solutions.
 Among its functions, we can highlight the valuation of replies to questions with more time without being answered. We rate those who help and highlight them in a ranking according to their participation. We also make interactions public so users can learn from others' questions.
 This site seeks to put an end to the problem present in all study groups where, by generating a lot of interaction, some questions are forgotten in the general history. It also seeks to foster empathy and connect students with each other by forming study groups.
 It is worth noting that the project is designed to be used by people who are currently studying Full-stack development.
+</p>
 
-## Developer Team
+## Development Team
 
 <ul>
   <li><a href="https://github.com/matibalbi">@matibalbi</a></li>
@@ -28,7 +30,7 @@ It is worth noting that the project is designed to be used by people who are cur
   <li><a href="https://github.com/GonzaloGDV">@GonzaloGDV</a></li>
 </ul>
 
-## Project Objetives
+## Project Objectives
 
 - Build a JavaScript App from scratch.
 - Affirm and connect skills learned during bootcamp. 
@@ -69,22 +71,24 @@ Visit us!
 
 ---
 
-SPANISH >>>>>>
-
 # CodeBug - Proyecto Final Henry
 
 ![Codebug](https://github.com/Codebug-Henry/Co-debug/blob/dev/client/src/images/Captura%20Landing%20Codebug.PNG)
 
 ## Introducción
 
-CodeBug es un proyecto grupal de estudiantes. Fue realizado como evaluación final del bootcamp de Soy Henry. En el cual tuvimos que aplicar todas las tecnologías aprendidas. 
+<p align="justify">
+CodeBug es un proyecto grupal de estudiantes. Fue realizado como evaluación final del bootcamp de Soy Henry. En el cual tuvimos que aplicar todas las tecnologías aprendidas.
+</p>
 
 ## Descripción
 
+<p align="justify">
 El sitio está pensado para otorgar un espacio de preguntas y respuestas entre estudiantes de programación. El mismo está planificado a fin de ser dinámico e intuitivo para que la experiencia sea la más espontánea posible. A diferencia de otras soluciones preexistentes.
 Entre las funciones podemos destacar la valorización de respuestas a preguntas con mayor tiempo sin responder. Puntuamos a quienes ayudan y los destacamos en un ranking según su participación. También hacemos públicas las interacciones para que los usuarios puedan aprender de las dudas de otros.
 Este sitio busca terminar con el problema presente en todo grupo de estudios donde al generarse mucha interacción, algunas preguntas quedan olvidadas en el historial general. Además busca también fomentar la empatía y conectar alumnos entre sí formando grupos de estudios.
 No está demás informar que el proyecto está pensado para ser utilizado por personas que actualmente se encuentran estudiando Full-stack developer.
+</p>
 
 ## Equipo
 
