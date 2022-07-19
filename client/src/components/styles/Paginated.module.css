@@ -14,12 +14,13 @@
     min-width: fit-content;
     margin-left: 0.3vh;
     border-radius: 0.5vh;
-    border: 1px solid grey;
+    /* border: 1px solid grey; */
 }
 
 .number{
     border-radius: 0.5vh;
     text-align: center;
+    border: 1px solid grey;
 }
 
 .number:hover{
@@ -29,18 +30,21 @@
 
 .active{
     background-color: #f9bf00;
+    border: 1px solid grey;
 }
 
 .prev{
     border-radius: 0.5vh;
     margin-right: 0.5vh;
     align-content: flex-start;
+    border: 1px solid grey;
 }
 
 .one{
     border-radius: 0.5vh;
     text-align: center;
     margin-left: 1px;
+    border: 1px solid grey;
 }
 
 .one:hover{
@@ -62,7 +66,7 @@
     cursor: auto
 }
 
-.lastDot{
+.lastDot:hover{
     cursor: auto
 }
 
@@ -70,6 +74,7 @@
     border-radius: 0.5vh;
     margin-right: 2px;
     text-align: center;
+    border: 1px solid grey;
 }
 
 .last:hover{
@@ -80,6 +85,7 @@
 .next{
     border-radius: 0.5vh;
     margin-left: 1px;
+    border: 1px solid grey;
 }
 
 .next:hover{
