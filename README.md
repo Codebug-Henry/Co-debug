@@ -30,7 +30,7 @@ It is worth noting that the project is designed to be used by people who are cur
   <li><a href="https://github.com/GonzaloGDV">@GonzaloGDV</a></li>
 </ul>
 
-## Project Objetives
+## Project Objectives
 
 - Build a JavaScript App from scratch.
 - Affirm and connect skills learned during bootcamp. 
