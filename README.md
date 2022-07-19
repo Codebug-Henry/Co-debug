@@ -17,14 +17,16 @@ It is worth noting that the project is designed to be used by people who are cur
 
 ## Developer Team
 
-- @matibalbi
-- @regenerik
-- @lucianommorea
-- @Sandotcom
-- @XDrimer
-- @Patricio-Colella
-- @FelipeGuitelman
-- @GonzaloGDV
+<ul>
+  <li><a href="https://github.com/matibalbi">@matibalbi</a></li>
+  <li><a href="https://github.com/regenerik">@regenerik</a></li>
+  <li><a href="https://github.com/lucianommorea">@lucianommorea</a></li>
+  <li><a href="https://github.com/Sandotcom">@Sandotcom</a></li>
+  <li><a href="https://github.com/XDrimer">@XDrimer</a></li>
+  <li><a href="https://github.com/Patricio-Colella">@Patricio-Colella</a></li>
+  <li><a href="https://github.com/FelipeGuitelman">@FelipeGuitelman</a></li>
+  <li><a href="https://github.com/GonzaloGDV">@GonzaloGDV</a></li>
+</ul>
 
 ## Project Objetives
 
@@ -86,14 +88,16 @@ No está demás informar que el proyecto está pensado para ser utilizado por pe
 
 ## Equipo
 
-- @matibalbi
-- @regenerik
-- @lucianommorea
-- @Sandotcom
-- @XDrimer
-- @Patricio-Colella
-- @FelipeGuitelman
-- @GonzaloGDV
+<ul>
+  <li><a href="https://github.com/matibalbi">@matibalbi</a></li>
+  <li><a href="https://github.com/regenerik">@regenerik</a></li>
+  <li><a href="https://github.com/lucianommorea">@lucianommorea</a></li>
+  <li><a href="https://github.com/Sandotcom">@Sandotcom</a></li>
+  <li><a href="https://github.com/XDrimer">@XDrimer</a></li>
+  <li><a href="https://github.com/Patricio-Colella">@Patricio-Colella</a></li>
+  <li><a href="https://github.com/FelipeGuitelman">@FelipeGuitelman</a></li>
+  <li><a href="https://github.com/GonzaloGDV">@GonzaloGDV</a></li>
+</ul>
 
 ## Objetivos
 
