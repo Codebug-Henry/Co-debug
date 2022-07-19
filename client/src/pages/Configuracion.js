@@ -147,6 +147,7 @@ const Configuracion = () => {
   function handlerDeleteAccount() {
     dispatch(putUserInfo(userInfo.sub, { statusDeleted: true }));
     logout({ returnTo: window.location.origin });
+    localStorage.clear();
   }
   if (isLoading) {
     return (

@@ -43,7 +43,7 @@ const Responder = () => {
   const navigate = useNavigate();
   //form
   const userInfo = useSelector((state) => state.user);
-  const [input, setInput] = useState("");
+  const [input, setInput] = useState(localStorage["textAnswer" + questionId] || "");
   const [error, setError] = useState("");
 
   useEffect(() => {
@@ -62,6 +62,7 @@ const Responder = () => {
   const handleChange = (e) => {
     setInput(e.target.value);
     setError(validate(e.target.value));
+    localStorage["textAnswer" + questionId] = e.target.value;
   };
 
   const validate = (input) => {
@@ -82,6 +83,7 @@ const Responder = () => {
     setInput("");
     if (!permiteIMG) setPermiteIMG(true);
     MensajeAlerta({ textAlerta });
+    localStorage.removeItem("textAnswer" + questionId);
   };
 
   const handleLogIn = (e) => {
