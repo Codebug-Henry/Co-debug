@@ -1,9 +1,31 @@
+
+ENGLISH >>>>>>
+
+# Final Project Henry - Co-debug
+
+The site is designed to provide a space for questions and answers among programming students. It is planned to be dynamic and intuitive so that the experience is as spontaneous as possible. Unlike other pre-existing solutions.
+Among its functions, we can highlight the valuation of replies to questions with more time without being answered. We rate those who help and highlight them in a ranking according to their participation. We also make interactions public so users can learn from others' questions.
+This site seeks to put an end to the problem present in all study groups where, by generating a lot of interaction, some questions are forgotten in the general history. It also seeks to foster empathy and connect students with each other by forming study groups.
+It is worth noting that the project is designed to be used by people who are currently studying Full-stack developer.
+
+The site is currently available at: https://codebug-ten.vercel.app
+
+Visit us!
+
+
+SPANISH >>>>>>
 # Final Project Henry - Co-debug
 
 El sitio está pensado para otorgar un espacio de preguntas y respuestas entre estudiantes de programación. El mismo está planificado a fin de ser dinámico e intuitivo para que la experiencia sea lo más espontánea posible. A diferencia de otras soluciones preexistentes.
-Entre las funciones a desarrollar podemos destacar la valorización de respuestas a preguntas con mayor tiempo sin solucionar. Puntuamos a quienes ayudan y los destacamos en un ranking según su participación. También hacemos públicas las interacciones para que los usuarios puedan aprender de las dudas de otros.
+Entre las funciones podemos destacar la valorización de respuestas a preguntas con mayor tiempo sin solucionar. Puntuamos a quienes ayudan y los destacamos en un ranking según su participación. También hacemos públicas las interacciones para que los usuarios puedan aprender de las dudas de otros.
 Este sitio busca terminar con el problema presente en todo grupo de estudios donde al generarse mucha interacción, algunas preguntas quedan olvidadas en el historial general. Además busca también fomentar la empatía y conectar alumnos entre sí formando grupos de estudios.
-No está demás informar que el proyecto está pensado para ser utilizado por personas que actualmente se encuentran estudiando esta carrera.
+No está demás informar que el proyecto está pensado para ser utilizado por personas que actualmente se encuentran estudiando Full-stack developer.
+
+El sitio se encuentra actualmente disponible en : https://codebug-ten.vercel.app
+
+Visísitanos! 
+
+
 
 ## User Stories
 
