@@ -1,25 +1,27 @@
-const { DataTypes } = require('sequelize');
+const { DataTypes } = require("sequelize");
 
 module.exports = (sequelize) => {
-
-  sequelize.define('question', {
+  sequelize.define("question", {
     id: {
       type: DataTypes.INTEGER,
       autoIncrement: true,
-      primaryKey: true
+      primaryKey: true,
     },
     teachPoints: {
       type: DataTypes.INTEGER,
       defaultValue: 300,
       get() {
-        const now = Date.now()
-        const created = Date.parse(this.createdAt)
-        const daysOld = Math.floor((now - created) / (24  * 60 * 60 * 1000))
-        const points = daysOld && !this.getDataValue('statusValidated')
-          ? 100 * daysOld
-          : this.getDataValue('teachPoints')
+        const now = Date.now();
+        const created = Date.parse(this.createdAt);
+        const daysOld = Math.floor((now - created) / (24 * 60 * 60 * 1000));
+        const points =
+          daysOld > 6
+            ? 600
+            : daysOld && !this.getDataValue("statusValidated")
+            ? 100 * daysOld
+            : this.getDataValue("teachPoints");
         return points;
-      }
+      },
     },
     title: {
       type: DataTypes.STRING,
@@ -31,21 +33,19 @@ module.exports = (sequelize) => {
     },
     likes: {
       type: DataTypes.INTEGER,
-      defaultValue: 0
+      defaultValue: 0,
     },
     cantAnswers: {
       type: DataTypes.INTEGER,
-      defaultValue: 0
+      defaultValue: 0,
     },
     statusDeleted: {
       type: DataTypes.BOOLEAN,
-      defaultValue: false
+      defaultValue: false,
     },
     statusValidated: {
       type: DataTypes.BOOLEAN,
-      defaultValue: false
+      defaultValue: false,
     },
   });
 };
-
-
