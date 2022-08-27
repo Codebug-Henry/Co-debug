@@ -1,51 +1,51 @@
 // COMMIT NUMERO 400!!!!!!!!!!!!!
 
-import React, { useState, useEffect } from "react";
-import { postMessage } from "../redux/actions/index";
-import { useSelector, useDispatch } from "react-redux";
-import style from "./styles/FormContact.module.css";
-import MensajeAlerta from "./MensajeAlerta";
+import React, { useState, useEffect } from 'react';
+import { postMessage } from '../redux/actions/index';
+import { useSelector, useDispatch } from 'react-redux';
+import style from './styles/FormContact.module.css';
+import MensajeAlerta from './MensajeAlerta';
 
 const FormContact = () => {
   const dispatch = useDispatch();
   let user = useSelector((state) => state.user);
   const [input, setInput] = useState({
-    email: localStorage.emailContact || "",
-    title: localStorage.titleContact || "",
-    text: localStorage.textContact || "",
+    email: localStorage.emailContact || '',
+    title: localStorage.titleContact || '',
+    text: localStorage.textContact || '',
   });
   const [errors, setErrors] = useState({});
 
   useEffect(() => {
-    if(input.email || input.title || input.text){
+    if (input.email || input.title || input.text) {
       setErrors(
         validate({
           title: input.title,
           text: input.text,
           email: input.email,
         })
-      )
+      );
     }
     // eslint-disable-next-line
   }, []);
 
   function validate(input) {
     let errors = {};
-    if (!input.title) errors.title = "Se requiere un título";
-    if (input.title.length > 30) errors.title = "Máximo 30 caracteres";
-    if (!input.email) errors.email = "Se requiere un email";
-    if (input.email.length > 50) errors.email = "Máximo 50 caracteres";
+    if (!input.title) errors.title = 'Se requiere un título';
+    if (input.title.length > 30) errors.title = 'Máximo 30 caracteres';
+    if (!input.email) errors.email = 'Se requiere un email';
+    if (input.email.length > 50) errors.email = 'Máximo 50 caracteres';
     if (
       input.email &&
       !/^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(
         input.email
       )
     )
-      errors.email = "El formato de email debe ser válido.";
+      errors.email = 'El formato de email debe ser válido.';
     if (!input.text)
-      errors.text = "Se requiere una consulta, sugerencia o reclamo";
-    if (input.text.length > 500)
-      errors.title = "La consulta debe tener un máximo de 500 caracteres";
+      errors.text = 'Se requiere una consulta, sugerencia o reclamo';
+    if (input.text.length > 2000)
+      errors.title = 'La consulta debe tener un máximo de 2000 caracteres';
 
     return errors;
   }
@@ -61,11 +61,11 @@ const FormContact = () => {
         [e.target.name]: e.target.value,
       })
     );
-    const property = e.target.name + "Contact";
+    const property = e.target.name + 'Contact';
     localStorage[property] = e.target.value;
   }
 
-  const textAlerta = "Mensaje enviado";
+  const textAlerta = 'Mensaje enviado';
 
   function handleSubmit(e) {
     e.preventDefault();
@@ -78,13 +78,13 @@ const FormContact = () => {
     dispatch(postMessage(message));
     MensajeAlerta({ textAlerta });
     setInput({
-      email: "",
-      title: "",
-      text: "",
+      email: '',
+      title: '',
+      text: '',
     });
-    localStorage.removeItem("emailContact");
-    localStorage.removeItem("titleContact");
-    localStorage.removeItem("textContact");
+    localStorage.removeItem('emailContact');
+    localStorage.removeItem('titleContact');
+    localStorage.removeItem('textContact');
   }
 
   return (
@@ -94,10 +94,10 @@ const FormContact = () => {
           <div id={style.div1}>
             <p> Elige un título: </p>
             <input
-              type="text"
+              type='text'
               value={input.title}
-              name="title"
-              autoComplete="off"
+              name='title'
+              autoComplete='off'
               onChange={handleChange}
             />
             {errors.title && (
@@ -109,10 +109,10 @@ const FormContact = () => {
           <div id={style.divEmail}>
             <p> Ingresa tu email: </p>
             <input
-              type="text"
+              type='text'
               value={input.email}
-              name="email"
-              autoComplete="off"
+              name='email'
+              autoComplete='off'
               onChange={handleChange}
             />
             {errors.email && (
@@ -124,10 +124,10 @@ const FormContact = () => {
           <div id={style.div2}>
             <p> Ingresa tu consulta, sugerencia o reclamo: </p>
             <textarea
-              type="text"
+              type='text'
               value={input.text}
-              name="text"
-              autoComplete="off"
+              name='text'
+              autoComplete='off'
               onChange={handleChange}
             />
             {errors.text && (
@@ -138,7 +138,7 @@ const FormContact = () => {
           </div>
 
           <button
-            type="submit"
+            type='submit'
             onClick={handleSubmit}
             disabled={
               !input.title ||
