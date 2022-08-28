@@ -2,7 +2,7 @@ import * as React from "react";
 import Box from "@mui/material/Box";
 import Popper from "@mui/material/Popper";
 import style from "./styles/WhatsPop.module.css";
-import WhatsappRoundedIcon from "@mui/icons-material/WhatsappRounded";
+import WhatsappRoundedIcon from "@mui/icons-material/Whatsapp";
 import ClickAwayListener from "@mui/material/ClickAwayListener";
 import { useState } from "react";
 import Tooltip from "@mui/material/Tooltip";
