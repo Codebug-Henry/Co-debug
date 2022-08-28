@@ -1,12 +1,12 @@
-import React, { useState } from 'react';
-import { useSelector } from 'react-redux';
-import style from './styles/SubAnswerCard.module.css';
-import axios from 'axios';
-import EditIcon from '@mui/icons-material/Edit';
-import DeleteIcon from '@mui/icons-material/Delete';
-import CheckIcon from '@mui/icons-material/Check';
-import { Link } from 'react-router-dom';
-import Tooltip from '@mui/material/Tooltip';
+import React, { useState } from "react";
+import { useSelector } from "react-redux";
+import style from "./styles/SubAnswerCard.module.css";
+import axios from "axios";
+import EditIcon from "@mui/icons-material/Edit";
+import DeleteIcon from "@mui/icons-material/Delete";
+import CheckIcon from "@mui/icons-material/Check";
+import { Link } from "react-router-dom";
+import Tooltip from "@mui/material/Tooltip";
 
 const SubAnswerCard = ({
   sId,
@@ -28,9 +28,9 @@ const SubAnswerCard = ({
 
   function validate(newSubAnswer) {
     let errors = {};
-    if (!newSubAnswer.text) errors.text = 'Se requiere una respuesta';
+    if (!newSubAnswer.text) errors.text = "Se requiere una respuesta";
     if (newSubAnswer.text.length > 2000)
-      errors.text = 'La respuesta debe tener un máximo de 2000 caracteres';
+      errors.text = "La respuesta debe tener un máximo de 2000 caracteres";
     return errors;
   }
 
@@ -76,8 +76,8 @@ const SubAnswerCard = ({
             <img
               src={picture}
               className={style.userImage}
-              referrerPolicy='no-referrer'
-              alt='imgUser'
+              referrerPolicy="no-referrer"
+              alt="imgUser"
             />
           </Link>
           <Link to={`/user/${userSub}`} className={style.toUser}>
@@ -87,23 +87,23 @@ const SubAnswerCard = ({
         <div className={style.buttons}>
           <div className={userInfo.sub === userSub ? null : style.hidden}>
             {/* <div> */}
-            <Tooltip title='Editar'>
+            <Tooltip title="Editar">
               <EditIcon
-                fontSize='small'
+                fontSize="small"
                 className={style.moreBtn}
                 onClick={(e) => handleEditAnswer(e)}
-                color='action'
+                color="action"
               />
             </Tooltip>
           </div>
           <div className={userInfo.sub === userSub ? null : style.hidden}>
             {/* <div> */}
-            <Tooltip title='Eliminar'>
+            <Tooltip title="Eliminar">
               <DeleteIcon
-                fontSize='small'
+                fontSize="small"
                 className={style.deleteBtn}
                 onClick={() => handleDeleteSubAnswer(sId)}
-                color='action'
+                color="action"
               />
             </Tooltip>
           </div>
@@ -115,9 +115,9 @@ const SubAnswerCard = ({
       <div className={style1 ? style.none : style.edit}>
         <div className={style.error2}>
           <textarea
-            type='text'
+            type="text"
             value={newSubAnswer.text}
-            autoComplete='off'
+            autoComplete="off"
             className={style.editText}
             onChange={(e) => onChangeEditInputText(e)}
           />
@@ -129,9 +129,9 @@ const SubAnswerCard = ({
         </div>
         <div className={style1 || errors.text ? style.none : style.editBtn}>
           <CheckIcon
-            fontSize='medium'
-            color='primary'
-            cursor='pointer'
+            fontSize="medium"
+            color="primary"
+            cursor="pointer"
             className={style.confirmEdit}
             onClick={() => handleModifySubAnswer(sId)}
           />
