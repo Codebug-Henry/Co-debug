@@ -17,14 +17,14 @@ const FormContact = () => {
   const [errors, setErrors] = useState({});
 
   useEffect(() => {
-    if(input.email || input.title || input.text){
+    if (input.email || input.title || input.text) {
       setErrors(
         validate({
           title: input.title,
           text: input.text,
           email: input.email,
         })
-      )
+      );
     }
     // eslint-disable-next-line
   }, []);
@@ -44,8 +44,8 @@ const FormContact = () => {
       errors.email = "El formato de email debe ser válido.";
     if (!input.text)
       errors.text = "Se requiere una consulta, sugerencia o reclamo";
-    if (input.text.length > 500)
-      errors.title = "La consulta debe tener un máximo de 500 caracteres";
+    if (input.text.length > 2000)
+      errors.title = "La consulta debe tener un máximo de 2000 caracteres";
 
     return errors;
   }
