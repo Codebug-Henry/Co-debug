@@ -1,26 +1,26 @@
-import React, { useState } from 'react';
-import { useSelector } from 'react-redux';
-import style from './styles/Comentarios.module.css';
-import axios from 'axios';
-import SubAnswerCard from './SubAnswerCard';
-import { useAuth0 } from '@auth0/auth0-react';
+import React, { useState } from "react";
+import { useSelector } from "react-redux";
+import style from "./styles/Comentarios.module.css";
+import axios from "axios";
+import SubAnswerCard from "./SubAnswerCard";
+import { useAuth0 } from "@auth0/auth0-react";
 
 const Comentarios = ({ id, cantSubAnswers, subAnswers, setIsModify }) => {
   const userInfo = useSelector((state) => state.user);
   const { isAuthenticated } = useAuth0();
 
   var styleComentario = {
-    marginBottom: cantSubAnswers > 0 ? '1.5vh' : '0vh',
+    marginBottom: cantSubAnswers > 0 ? "1.5vh" : "0vh",
   };
 
-  const [input, setInput] = useState('');
+  const [input, setInput] = useState("");
   const [errors, setErrors] = useState({});
 
   function validate(newSubAnswer) {
     let errors = {};
-    if (!newSubAnswer.text) errors.text = 'Se requiere una respuesta';
+    if (!newSubAnswer.text) errors.text = "Se requiere una respuesta";
     if (newSubAnswer.text.length > 2000)
-      errors.text = 'La respuesta debe tener un máximo de 2000 caracteres';
+      errors.text = "La respuesta debe tener un máximo de 2000 caracteres";
     return errors;
   }
 
@@ -36,7 +36,7 @@ const Comentarios = ({ id, cantSubAnswers, subAnswers, setIsModify }) => {
   const handleSubmit = async (e) => {
     await axios.post(`/subAnswer`, { sub: userInfo.sub, id, text: input });
     setIsModify((prevState) => !prevState);
-    setInput('');
+    setInput("");
   };
 
   return (
@@ -60,17 +60,17 @@ const Comentarios = ({ id, cantSubAnswers, subAnswers, setIsModify }) => {
       </div>
       <div className={isAuthenticated ? style.row2 : style.none}>
         <textarea
-          type='text'
+          type="text"
           value={input}
-          name='text'
-          placeholder='Escribe tu comentario...'
-          autoComplete='off'
+          name="text"
+          placeholder="Escribe tu comentario..."
+          autoComplete="off"
           className={style.editText}
           onChange={(e) => onChangeInputText(e)}
         />
         <div className={style.button}>
           <button
-            type='button'
+            type="button"
             onClick={(e) => handleSubmit(e)}
             className={style.submit}
             disabled={!input || errors.text}
