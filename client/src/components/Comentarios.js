@@ -89,4 +89,3 @@ const Comentarios = ({ id, cantSubAnswers, subAnswers, setIsModify }) => {
 };
 
 export default Comentarios;
-
