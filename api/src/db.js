@@ -1,18 +1,12 @@
-require("dotenv").config();
-const { Sequelize } = require("sequelize");
-const fs = require("fs");
-const path = require("path");
-const { DB_USER, DB_PASSWORD, DB_HOST, DB_NAME } = process.env;
+require('dotenv').config();
+const { Sequelize } = require('sequelize');
+const fs = require('fs');
+const path = require('path');
+const { DB_USER, DB_PASSWORD, DB_HOST, DB_NAME, DB_DEPLOY } = process.env;
 
 let sequelize =
-  process.env.NODE_ENV === "production"
-    ? new Sequelize({
-        database: DB_NAME,
-        dialect: "postgres",
-        host: DB_HOST,
-        port: 5432,
-        username: DB_USER,
-        password: DB_PASSWORD,
+  process.env.NODE_ENV === 'production'
+    ? new Sequelize(DB_DEPLOY, {
         pool: {
           max: 3,
           min: 1,
@@ -25,6 +19,10 @@ let sequelize =
           },
           keepAlive: true,
         },
+
+        logging: false,
+        native: false,
+
         ssl: true,
       })
     : new Sequelize(`postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}/codebug`, {
@@ -41,13 +39,13 @@ const basename = path.basename(__filename);
 const modelDefiners = [];
 
 // Leemos todos los archivos de la carpeta Models, los requerimos y agregamos al arreglo modelDefiners
-fs.readdirSync(path.join(__dirname, "/models"))
+fs.readdirSync(path.join(__dirname, '/models'))
   .filter(
     (file) =>
-      file.indexOf(".") !== 0 && file !== basename && file.slice(-3) === ".js"
+      file.indexOf('.') !== 0 && file !== basename && file.slice(-3) === '.js'
   )
   .forEach((file) => {
-    modelDefiners.push(require(path.join(__dirname, "/models", file)));
+    modelDefiners.push(require(path.join(__dirname, '/models', file)));
   });
 
 // Injectamos la conexion (sequelize) a todos los modelos
@@ -72,7 +70,7 @@ const {
   MicroTag,
   Alert,
   Notification,
-  SubAnswer
+  SubAnswer,
 } = sequelize.models;
 
 // Aca vendrian las relaciones
@@ -86,10 +84,10 @@ Answer.belongsTo(User);
 Question.hasMany(Answer);
 Answer.belongsTo(Question);
 
-Question.belongsToMany(MicroTag, {through: 'question_microtag'});
-MicroTag.belongsToMany(Question, {through: 'question_microtag'});
-Question.belongsToMany(MacroTag, {through: 'question_macrotag'});
-MacroTag.belongsToMany(Question, {through: 'question_macrotag'});
+Question.belongsToMany(MicroTag, { through: 'question_microtag' });
+MicroTag.belongsToMany(Question, { through: 'question_microtag' });
+Question.belongsToMany(MacroTag, { through: 'question_macrotag' });
+MacroTag.belongsToMany(Question, { through: 'question_macrotag' });
 
 MacroTag.hasMany(MicroTag);
 MicroTag.belongsTo(MacroTag);
