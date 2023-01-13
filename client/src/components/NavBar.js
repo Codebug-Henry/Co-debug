@@ -1,5 +1,6 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import axios from 'axios';
 import {
   getAllQuestions,
   getAllTags,
@@ -100,7 +101,16 @@ const NavBar = ({ search, setSearch, setPage }) => {
     }
   };
 
-  console.log(tags);
+  const [tagstest, setTagstest] = useState([]);
+
+  useEffect(() => {
+    axios.get('/tags').then((response) => {
+      setTagstest(response);
+    });
+  }, []);
+
+  console.log('tags', tags);
+  console.log('test', tagstest);
 
   return (
     <div className={`container-fluid ${style.optionSearch}`}>
