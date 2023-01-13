@@ -1,6 +1,5 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import axios from 'axios';
 import {
   getAllQuestions,
   getAllTags,
@@ -100,19 +99,6 @@ const NavBar = ({ search, setSearch, setPage }) => {
       dispatch(getAllQuestions(sort, 1, validated, macroTag, e.target.value));
     }
   };
-
-  const [tagstest, setTagstest] = useState([]);
-
-  useEffect(() => {
-    fetch('https://co-debug-production.up.railway.app/tags')
-      .then((data) => {
-        return data.json();
-      })
-      .then((response) => {
-        setTagstest(response);
-      });
-  }, []);
-  console.log('test', tagstest);
 
   return (
     <div className={`container-fluid ${style.optionSearch}`}>
