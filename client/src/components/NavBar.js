@@ -104,12 +104,14 @@ const NavBar = ({ search, setSearch, setPage }) => {
   const [tagstest, setTagstest] = useState([]);
 
   useEffect(() => {
-    axios.get('/tags').then((response) => {
-      setTagstest(response);
-    });
+    fetch('https://co-debug-production.up.railway.app/tags')
+      .then((data) => {
+        return data.json();
+      })
+      .then((response) => {
+        setTagstest(response);
+      });
   }, []);
-
-  console.log('tags', tags);
   console.log('test', tagstest);
 
   return (
