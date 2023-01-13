@@ -1,32 +1,32 @@
-import React, { useState, useEffect } from "react";
-import style from "./styles/SimpleAnswer.module.css";
-import ReactMarkdown from "react-markdown";
-import Highlighter from "./Highlighter";
-import ThumbUpIcon from "@mui/icons-material/ThumbUp";
-import ThumbDownIcon from "@mui/icons-material/ThumbDown";
-import { useDispatch, useSelector } from "react-redux";
-import { putAnswer } from "../redux/actions";
-import BlockIcon from "@mui/icons-material/Block";
-import Box from "@mui/material/Box";
-import Typography from "@mui/material/Typography";
-import Modal from "@mui/material/Modal";
-import FormControlLabel from "@mui/material/FormControlLabel";
-import Radio from "@mui/material/Radio";
-import RadioGroup from "@mui/material/RadioGroup";
-import FormLabel from "@mui/material/FormLabel";
-import FormControl from "@mui/material/FormControl";
-import axios from "axios";
-import { Avatar } from "@mui/material";
-import TaskAltIcon from "@mui/icons-material/TaskAlt";
-import EditIcon from "@mui/icons-material/Edit";
-import DeleteIcon from "@mui/icons-material/Delete";
-import Tooltip from "@mui/material/Tooltip";
-import CheckIcon from "@mui/icons-material/Check";
-import { confirmAlert } from "react-confirm-alert";
-import "react-confirm-alert/src/react-confirm-alert.css";
-import DownloadIcon from "@mui/icons-material/Download";
-import Comentarios from "./Comentarios";
-import { Link } from "react-router-dom";
+import React, { useState, useEffect } from 'react';
+import style from './styles/SimpleAnswer.module.css';
+import ReactMarkdown from 'react-markdown';
+import Highlighter from './Highlighter';
+import ThumbUpIcon from '@mui/icons-material/ThumbUp';
+import ThumbDownIcon from '@mui/icons-material/ThumbDown';
+import { useDispatch, useSelector } from 'react-redux';
+import { putAnswer } from '../redux/actions';
+import BlockIcon from '@mui/icons-material/Block';
+import Box from '@mui/material/Box';
+import Typography from '@mui/material/Typography';
+import Modal from '@mui/material/Modal';
+import FormControlLabel from '@mui/material/FormControlLabel';
+import Radio from '@mui/material/Radio';
+import RadioGroup from '@mui/material/RadioGroup';
+import FormLabel from '@mui/material/FormLabel';
+import FormControl from '@mui/material/FormControl';
+import axios from 'axios';
+import { Avatar } from '@mui/material';
+import TaskAltIcon from '@mui/icons-material/TaskAlt';
+import EditIcon from '@mui/icons-material/Edit';
+import DeleteIcon from '@mui/icons-material/Delete';
+import Tooltip from '@mui/material/Tooltip';
+import CheckIcon from '@mui/icons-material/Check';
+import { confirmAlert } from 'react-confirm-alert';
+import 'react-confirm-alert/src/react-confirm-alert.css';
+import DownloadIcon from '@mui/icons-material/Download';
+import Comentarios from './Comentarios';
+import { Link } from 'react-router-dom';
 
 const SimpleAnswer = ({
   id,
@@ -56,28 +56,28 @@ const SimpleAnswer = ({
   });
 
   useEffect(() => {
-    if (text.includes("(https://res.cloudinary.com")) setImgIncludes(true);
+    if (text.includes('(https://res.cloudinary.com')) setImgIncludes(true);
   }, [text, imgIncludes]);
 
   function validate(newAnswer) {
     let errors = {};
-    if (!newAnswer.text) errors.text = "Se requiere una respuesta";
-    if (newAnswer.text.length > 6000)
-      errors.text = "La respuesta debe tener un máximo de 6000 caracteres";
+    if (!newAnswer.text) errors.text = 'Se requiere una respuesta';
+    if (newAnswer.text.length > 10000)
+      errors.text = 'La respuesta debe tener un máximo de 10000 caracteres';
     return errors;
   }
 
   const handlerChooseQuestion = () => {
     confirmAlert({
-      title: "Confirma elegir pregunta favorita",
-      message: "¿Está seguro de esto?",
+      title: 'Confirma elegir pregunta favorita',
+      message: '¿Está seguro de esto?',
       buttons: [
         {
-          label: "Sí",
+          label: 'Sí',
           onClick: () => validateAnswer(),
         },
         {
-          label: "No",
+          label: 'No',
         },
       ],
     });
@@ -85,15 +85,15 @@ const SimpleAnswer = ({
 
   const handlerCheckDelete = (e) => {
     confirmAlert({
-      title: "Confirma borrar esta respuesta",
-      message: "¿Está seguro de esto?",
+      title: 'Confirma borrar esta respuesta',
+      message: '¿Está seguro de esto?',
       buttons: [
         {
-          label: "Sí",
+          label: 'Sí',
           onClick: () => handleDeleteAnswer(e),
         },
         {
-          label: "No",
+          label: 'No',
         },
       ],
     });
@@ -103,7 +103,7 @@ const SimpleAnswer = ({
     e.preventDefault();
     if (!liked) {
       dispatch(
-        putAnswer({ id: id, like: "add", sub: userInfo.sub }, setIsModify)
+        putAnswer({ id: id, like: 'add', sub: userInfo.sub }, setIsModify)
       );
     }
   }
@@ -112,7 +112,7 @@ const SimpleAnswer = ({
     e.preventDefault();
     if (!disliked) {
       dispatch(
-        putAnswer({ id: id, like: "remove", sub: userInfo.sub }, setIsModify)
+        putAnswer({ id: id, like: 'remove', sub: userInfo.sub }, setIsModify)
       );
     }
   }
@@ -167,7 +167,7 @@ const SimpleAnswer = ({
       ...newAnswer,
       text:
         newAnswer.text +
-        "\n```javascript\n(escribe tu código javascript aquí)\n```",
+        '\n```javascript\n(escribe tu código javascript aquí)\n```',
     });
   }
 
@@ -183,25 +183,25 @@ const SimpleAnswer = ({
   const handleAlert = (e) => {
     e.preventDefault();
     let pack = { id, message: selected, subCreator: userInfo.sub };
-    axios.post("/alert/answer", pack).then((response) => null);
+    axios.post('/alert/answer', pack).then((response) => null);
     handleClose();
   };
 
   //Rescue URL-Image from text to download
-  const [url, setUrl] = useState("");
-  const [nameFile, setNameFile] = useState("");
+  const [url, setUrl] = useState('');
+  const [nameFile, setNameFile] = useState('');
 
   const handleseparar = () => {
-    if (text.includes("(https://res.cloudinary.com")) {
-      const separado = text.split("(https://res.cloudinary.com");
-      let listo1 = "https://res.cloudinary.com" + separado[1];
+    if (text.includes('(https://res.cloudinary.com')) {
+      const separado = text.split('(https://res.cloudinary.com');
+      let listo1 = 'https://res.cloudinary.com' + separado[1];
       listo1 = listo1.split(')')[0];
       setUrl(listo1);
 
-      const segundo = listo1.split("/");
+      const segundo = listo1.split('/');
       const tamanhoSegundo = segundo.length - 1;
       const casiFinal = segundo[tamanhoSegundo];
-      const anteUltimo = casiFinal.split(")");
+      const anteUltimo = casiFinal.split(')');
       const ultimo = anteUltimo[0];
       setNameFile(ultimo);
     }
@@ -211,7 +211,7 @@ const SimpleAnswer = ({
   const [toggleHilo, setToggleHilo] = useState(false);
 
   var styleComments = {
-    color: toggleHilo ? "orange" : "rgb(100, 100, 100)",
+    color: toggleHilo ? 'orange' : 'rgb(100, 100, 100)',
   };
 
   const handleToggleHilo = () => {
@@ -234,7 +234,7 @@ const SimpleAnswer = ({
                     alt={nickname}
                     src={picture}
                     id={style.avatar}
-                    referrerPolicy="no-referrer"
+                    referrerPolicy='no-referrer'
                   />
                 </Link>
               </div>
@@ -259,8 +259,8 @@ const SimpleAnswer = ({
               </button>
             </div>
             <div className={statusValidated ? null : style.none}>
-              <Tooltip title="Respuesta Validada">
-                <TaskAltIcon color="success" fontSize="large" />
+              <Tooltip title='Respuesta Validada'>
+                <TaskAltIcon color='success' fontSize='large' />
               </Tooltip>
             </div>
           </div>
@@ -276,10 +276,10 @@ const SimpleAnswer = ({
 
             <div className={style1 === true ? style.editFull : style.editFull2}>
               <textarea
-                type="text"
+                type='text'
                 value={newAnswer.text}
-                name="text"
-                autoComplete="off"
+                name='text'
+                autoComplete='off'
                 className={style.editText}
                 onChange={(e) => onChangeInputText(e)}
               />
@@ -296,17 +296,17 @@ const SimpleAnswer = ({
               }
             >
               <button
-                type="button"
+                type='button'
                 className={style.btnCode}
                 onClick={handleClick}
               >
-                {" "}
-                Javascript{" "}
+                {' '}
+                Javascript{' '}
               </button>
               <CheckIcon
-                fontSize="large"
-                color="primary"
-                cursor="pointer"
+                fontSize='large'
+                color='primary'
+                cursor='pointer'
                 className={style.confirmEdit}
                 onClick={handleConfirmAnswer}
               />
@@ -315,10 +315,10 @@ const SimpleAnswer = ({
           <div className={style.bajoTexto}>
             <div className={style.likes}>
               <span className={style.span2}>
-                <Tooltip title="Like">
+                <Tooltip title='Like'>
                   <ThumbUpIcon
-                    fontSize="medium"
-                    color={liked ? "primary" : "action"}
+                    fontSize='medium'
+                    color={liked ? 'primary' : 'action'}
                     onClick={(e) => addLike(e)}
                     className={style.fav}
                   />
@@ -326,10 +326,10 @@ const SimpleAnswer = ({
               </span>
               <span className={style.spanLikes}>{likes}</span>
               <span className={style.span}>
-                <Tooltip title="Dislike">
+                <Tooltip title='Dislike'>
                   <ThumbDownIcon
-                    fontSize="medium"
-                    color={disliked ? "error" : "action"}
+                    fontSize='medium'
+                    color={disliked ? 'error' : 'action'}
                     onClick={(e) => removeLike(e)}
                     className={style.fav}
                   />
@@ -349,12 +349,12 @@ const SimpleAnswer = ({
               style={styleComments}
             >
               {toggleHilo
-                ? "Ocultar comentarios"
+                ? 'Ocultar comentarios'
                 : cantSubAnswers
                 ? cantSubAnswers === 1
                   ? `${cantSubAnswers} comentario`
                   : `${cantSubAnswers} comentarios`
-                : "Comentar"}
+                : 'Comentar'}
             </div>
 
             <div className={imgIncludes ? null : style.notIncludes}>
@@ -363,11 +363,11 @@ const SimpleAnswer = ({
                 onClick={(e) => handleseparar(e)}
                 href={url}
                 download={nameFile}
-                target="_blank"
-                rel="noreferrer"
+                target='_blank'
+                rel='noreferrer'
               >
-                <Tooltip title="Abrir imagen en tamaño completo">
-                  <DownloadIcon fontSize="medium" color="action" />
+                <Tooltip title='Abrir imagen en tamaño completo'>
+                  <DownloadIcon fontSize='medium' color='action' />
                 </Tooltip>
               </a>
             </div>
@@ -377,12 +377,12 @@ const SimpleAnswer = ({
                 userInfo.sub === subR && !statusValidated ? null : style.none
               }
             >
-              <Tooltip title="Editar">
+              <Tooltip title='Editar'>
                 <EditIcon
-                  fontSize="medium"
+                  fontSize='medium'
                   className={statusValidated ? style.none : style.moreBtn}
                   onClick={handleEditAnswer}
-                  color="action"
+                  color='action'
                 />
               </Tooltip>
             </div>
@@ -390,48 +390,48 @@ const SimpleAnswer = ({
               className={userInfo.sub === subR ? null : style.none}
               id={style1 ? null : style.hidden}
             >
-              <Tooltip title="Eliminar">
+              <Tooltip title='Eliminar'>
                 <DeleteIcon
-                  fontSize="medium"
+                  fontSize='medium'
                   className={style.deleteBtn}
                   onClick={handlerCheckDelete}
-                  color="action"
+                  color='action'
                 />
               </Tooltip>
             </div>
             <div className={userInfo.sub === subR ? style.none : null}>
               <span className={style.span5}>
-                <Tooltip title="Reportar">
+                <Tooltip title='Reportar'>
                   <BlockIcon
                     onClick={handleOpen}
                     className={style.delete}
-                    fontSize="medium"
-                    color="action"
+                    fontSize='medium'
+                    color='action'
                   />
                 </Tooltip>
               </span>
               <Modal
                 open={open}
                 onClose={handleClose}
-                aria-labelledby="modal-modal-title"
-                aria-describedby="modal-modal-description"
+                aria-labelledby='modal-modal-title'
+                aria-describedby='modal-modal-description'
               >
                 <Box className={style.box}>
                   <Typography
-                    id="modal-modal-title"
-                    variant="h6"
-                    component="h2"
-                    sx={{ mt: 2, marginLeft: "1vw", marginRight: "0.5vw" }}
+                    id='modal-modal-title'
+                    variant='h6'
+                    component='h2'
+                    sx={{ mt: 2, marginLeft: '1vw', marginRight: '0.5vw' }}
                   >
                     Reportar respuesta
                   </Typography>
                   <Typography
-                    id="modal-modal-description"
+                    id='modal-modal-description'
                     sx={{
                       mt: 2,
-                      marginLeft: "1vw",
-                      marginRight: "0.5vw",
-                      fontStyle: "normal",
+                      marginLeft: '1vw',
+                      marginRight: '0.5vw',
+                      fontStyle: 'normal',
                     }}
                   >
                     Eliga su motivo para reportar esta respuesta
@@ -439,39 +439,39 @@ const SimpleAnswer = ({
                   <div>
                     <FormControl>
                       <FormLabel
-                        id="demo-radio-buttons-group-label"
+                        id='demo-radio-buttons-group-label'
                         sx={{
-                          fontStyle: "normal",
+                          fontStyle: 'normal',
                           mt: 2,
-                          marginLeft: "1vw",
-                          marginRight: "0.5vw",
+                          marginLeft: '1vw',
+                          marginRight: '0.5vw',
                         }}
                       >
-                        Opciones:{" "}
+                        Opciones:{' '}
                       </FormLabel>
                       <RadioGroup
-                        aria-labelledby="demo-radio-buttons-group-label"
-                        defaultValue=""
-                        name="radio-buttons-group"
-                        sx={{ mt: 2, marginLeft: "1vw", marginRight: "0.5vw" }}
+                        aria-labelledby='demo-radio-buttons-group-label'
+                        defaultValue=''
+                        name='radio-buttons-group'
+                        sx={{ mt: 2, marginLeft: '1vw', marginRight: '0.5vw' }}
                       >
                         <FormControlLabel
                           onChange={(e) => handleChangeAlert(e)}
-                          value="inadecuado"
+                          value='inadecuado'
                           control={<Radio />}
-                          label="Comportamiento inadecuado"
+                          label='Comportamiento inadecuado'
                         />
                         <FormControlLabel
                           onChange={(e) => handleChangeAlert(e)}
-                          value="incompleto"
+                          value='incompleto'
                           control={<Radio />}
-                          label="Respuesta insignificante"
+                          label='Respuesta insignificante'
                         />
                         <FormControlLabel
                           onChange={(e) => handleChangeAlert(e)}
-                          value="otro"
+                          value='otro'
                           control={<Radio />}
-                          label="Otro"
+                          label='Otro'
                         />
                       </RadioGroup>
                     </FormControl>

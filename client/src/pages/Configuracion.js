@@ -1,19 +1,19 @@
-import React, { useEffect, useState } from "react";
-import { useSelector, useDispatch } from "react-redux";
-import { useAuth0 } from "@auth0/auth0-react";
-import style from "./styles/Configuracion.module.css";
-import Footer from "../components/Footer.js";
-import { getUserInfo, putUserInfo, getNotifications } from "../redux/actions";
-import CheckIcon from "@mui/icons-material/Check";
-import Upload from "../components/Upload.js";
-import Loading from "../components/Loading";
-import NotVerified from "../components/NotVerified";
-import BannedUser from "../components/BannedUser";
-import StatsUser from "../components/StatsUser";
-import TeachPoints from "../components/TeachPoints";
-import { confirmAlert } from "react-confirm-alert";
-import "react-confirm-alert/src/react-confirm-alert.css";
-import MensajeAlerta from "../components/MensajeAlerta";
+import React, { useEffect, useState } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { useAuth0 } from '@auth0/auth0-react';
+import style from './styles/Configuracion.module.css';
+import Footer from '../components/Footer.js';
+import { getUserInfo, putUserInfo, getNotifications } from '../redux/actions';
+import CheckIcon from '@mui/icons-material/Check';
+import Upload from '../components/Upload.js';
+import Loading from '../components/Loading';
+import NotVerified from '../components/NotVerified';
+import BannedUser from '../components/BannedUser';
+import StatsUser from '../components/StatsUser';
+import TeachPoints from '../components/TeachPoints';
+import { confirmAlert } from 'react-confirm-alert';
+import 'react-confirm-alert/src/react-confirm-alert.css';
+import MensajeAlerta from '../components/MensajeAlerta';
 
 const Configuracion = () => {
   const { isAuthenticated, isLoading, user, logout } = useAuth0();
@@ -21,8 +21,8 @@ const Configuracion = () => {
   const dispatch = useDispatch();
   const [nameUser, setNameUser] = useState(false);
   const [input, setInput] = useState({
-    name: "",
-    nickname: "",
+    name: '',
+    nickname: '',
   });
   const [nicknameUser, setNicknameUser] = useState(false);
   const [errors, setErrors] = useState({});
@@ -35,15 +35,15 @@ const Configuracion = () => {
 
   const handlerSubmit = () => {
     confirmAlert({
-      title: "Confirma borrar su cuenta",
-      message: "¿Está seguro de esto?",
+      title: 'Confirma borrar su cuenta',
+      message: '¿Está seguro de esto?',
       buttons: [
         {
-          label: "Sí",
+          label: 'Sí',
           onClick: () => handlerDeleteAccount(),
         },
         {
-          label: "No",
+          label: 'No',
         },
       ],
     });
@@ -58,15 +58,15 @@ const Configuracion = () => {
 
   function validate(input) {
     let errors = {};
-    if (!input.name) errors.name = "Se requiere un Nombre";
-    if (input.name.length > 20) errors.name = "Máximo 20 caracteres";
-    if (!input.nickname) errors.nickname = "Se requiere un Nickname";
-    if (input.nickname.length > 20) errors.nickname = "Máximo 20 caracteres";
+    if (!input.name) errors.name = 'Se requiere un Nombre';
+    if (input.name.length > 25) errors.name = 'Máximo 25 caracteres';
+    if (!input.nickname) errors.nickname = 'Se requiere un Nickname';
+    if (input.nickname.length > 25) errors.nickname = 'Máximo 25 caracteres';
     return errors;
   }
 
   const textAlerta =
-    "No podes cambiar el Nickname en más de dos oportunidades.";
+    'No podes cambiar el Nickname en más de dos oportunidades.';
 
   function handlerEditName(e) {
     e.preventDefault();
@@ -76,15 +76,15 @@ const Configuracion = () => {
   const editNickname = (e) => {
     if (userInfo.nameChanges <= 1) {
       confirmAlert({
-        title: "¿Confirma cambiar el Nickname?",
-        message: "Solo podrá hacerlo 2 veces",
+        title: '¿Confirma cambiar el Nickname?',
+        message: 'Solo podrá hacerlo 2 veces',
         buttons: [
           {
-            label: "Sí",
+            label: 'Sí',
             onClick: () => handlerEditNickname(e),
           },
           {
-            label: "No",
+            label: 'No',
           },
         ],
       });
@@ -177,7 +177,7 @@ const Configuracion = () => {
     return (
       <div className={style.fullContainer}>
         <div className={`row ${style.cien}`}>
-          <div className="col">
+          <div className='col'>
             <div className={style.middleRow}>
               <div className={`container-fluid ${style.container}`}>
                 <div className={`col-lg-12 ${style.col11}`}>
@@ -209,9 +209,9 @@ const Configuracion = () => {
                         className={
                           errors.name ? style.errorInputs : style.inputs
                         }
-                        name="name"
-                        type="text"
-                        autoComplete="off"
+                        name='name'
+                        type='text'
+                        autoComplete='off'
                         defaultValue={userInfo.name}
                         onChange={(e) => handlerChange(e)}
                       />
@@ -247,9 +247,9 @@ const Configuracion = () => {
                         className={errors.name ? style.col2modify : style.check}
                       >
                         <CheckIcon
-                          fontSize="large"
-                          color="primary"
-                          cursor="pointer"
+                          fontSize='large'
+                          color='primary'
+                          cursor='pointer'
                           onClick={handlerConfirmEditName}
                         />
                       </div>
@@ -281,9 +281,9 @@ const Configuracion = () => {
                         className={
                           errors.nickname ? style.errorInputs : style.inputs
                         }
-                        name="nickname"
-                        type="text"
-                        autoComplete="off"
+                        name='nickname'
+                        type='text'
+                        autoComplete='off'
                         defaultValue={userInfo.nickname}
                         onChange={(e) => handlerChange(e)}
                       />
@@ -318,9 +318,9 @@ const Configuracion = () => {
                         }
                       >
                         <CheckIcon
-                          fontSize="large"
-                          color="primary"
-                          cursor="pointer"
+                          fontSize='large'
+                          color='primary'
+                          cursor='pointer'
                           onClick={handlerConfirmEditNickname}
                         />
                       </div>
@@ -351,7 +351,7 @@ const Configuracion = () => {
                     <div className={`col-lg-6 ${style.col2}`}>
                       <TeachPoints
                         number={userInfo.myTeachPoints}
-                        characteristic="Teach Points"
+                        characteristic='Teach Points'
                       />
                     </div>
                   </div>
@@ -360,18 +360,18 @@ const Configuracion = () => {
                     <div className={`col-lg-6 ${style.col2} ${style.text}`}>
                       <StatsUser
                         number={userInfo.myPosition}
-                        characteristic="Mi Ranking"
-                        link="Ver Ranking"
-                        linkTo="/ranking"
+                        characteristic='Mi Ranking'
+                        link='Ver Ranking'
+                        linkTo='/ranking'
                       />
                     </div>
 
                     <div className={`col-lg-6 ${style.col2}`}>
                       <StatsUser
                         number={userInfo.cantFav}
-                        characteristic="Mis Favoritas"
-                        link="Ver Favoritas"
-                        linkTo="/favoritas"
+                        characteristic='Mis Favoritas'
+                        link='Ver Favoritas'
+                        linkTo='/favoritas'
                       />
                     </div>
                   </div>
@@ -380,18 +380,18 @@ const Configuracion = () => {
                     <div className={`col-lg-6 ${style.col2} ${style.text}`}>
                       <StatsUser
                         number={userInfo.cantQuest}
-                        characteristic="Mis preguntas"
-                        link="Ver Mis Preguntas"
-                        linkTo="/mispreguntas"
+                        characteristic='Mis preguntas'
+                        link='Ver Mis Preguntas'
+                        linkTo='/mispreguntas'
                       />
                     </div>
 
                     <div className={`col-lg-6 ${style.col2}`}>
                       <StatsUser
                         number={userInfo.cantAns}
-                        characteristic="Respondidas"
-                        link="Ver Mis Respuestas"
-                        linkTo="/misrespuestas"
+                        characteristic='Respondidas'
+                        link='Ver Mis Respuestas'
+                        linkTo='/misrespuestas'
                       />
                     </div>
                   </div>
