@@ -100,6 +100,8 @@ const NavBar = ({ search, setSearch, setPage }) => {
     }
   };
 
+  console.log(tags);
+
   return (
     <div className={`container-fluid ${style.optionSearch}`}>
       <nav
